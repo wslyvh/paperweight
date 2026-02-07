@@ -1,26 +1,29 @@
 # Paperweight 🗿
 
-**Take control of your inbox.**
+**Your inbox knows where your data lives. We help you take back control.**
 
-Paperweight is a local-first desktop app that helps you understand and reduce unwanted email. Connect your mailbox, sync recent messages, see who emails you the most, and use simple workflows to clean things up over time.
+Every account you create, every service you sign up for, every online purchase is connected to your email address. Most people have 100+ accounts they've forgotten about, creating security risks and privacy exposure.
 
-Your data stays on your computer. Paperweight is built to be privacy-respecting by default.
+Paperweight uses your inbox as a discovery tool to take back control over your digital footprint and personal data.
+
+Local-first. Your data stays on your computer. Respecting your privacy by default.
 
 ## Features
 
+- **Account inventory** — Discover which vendors and services have your data
+- **GDPR deletion support** — Generate data deletion requests to reduce exposure
+- **Marketing email detection** — Find and unsubscribe from unwanted bulk email
+- **Sender insights** — See who emails you the most
 - **Local-first** — Your emails and settings stay on your machine
-- **Open-source** — Built in public, contributions welcome
 - **Privacy-respecting** — No data sent to external servers
-- **Inbox insights** — See who emails you the most
-- **Account inventory** — Discover which vendors have your data
-- **Unsubscribe workflows** — Clean up unwanted emails
+- **Open development** — Built in public, source code available for audit
 
 ## Email Providers
 
-- Custom IMAP
-- Google
-- Microsoft (coming soon)
-- Apple (coming soon)
+- ✅ Custom IMAP
+- ✅ Google / Gmail
+- 🔜 Microsoft (coming soon)
+- 🔜 Apple (coming soon)
 
 ## Contributing
 
