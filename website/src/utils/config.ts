@@ -11,7 +11,8 @@ export const SITE_CONFIG = {
   DOMAIN,
   URL: `https://www.${DOMAIN}`,
   GITHUB_URL: "https://github.com/wslyvh/paperweight",
-  LICENSE_URL: "https://polar.sh/pricing",
+  LICENSE_URL:
+    "https://buy.polar.sh/polar_cl_OJu6ndcYoHMB8L1EePkz9dlDytnsloprg8Oh14MCNqW",
 
   OWNER_NAME: "westech",
   SOCIAL_TWITTER: "wslyvh",
