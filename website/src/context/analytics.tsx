@@ -8,7 +8,11 @@ export function AnalyticsProvider(props: PropsWithChildren) {
   >["children"];
 
   return (
-    <PlausibleProvider domain={SITE_CONFIG.DOMAIN} trackOutboundLinks={true}>
+    <PlausibleProvider
+      domain={SITE_CONFIG.DOMAIN}
+      trackOutboundLinks={true}
+      taggedEvents={true}
+    >
       {children}
     </PlausibleProvider>
   );

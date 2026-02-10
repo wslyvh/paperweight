@@ -85,19 +85,19 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-4 mb-8">
             <Link
               href={`${SITE_CONFIG.GITHUB_URL}/releases`}
-              className="btn btn-outline btn-lg"
+              className="btn btn-outline btn-lg plausible-event-name=Download+macOS"
             >
               macOS
             </Link>
             <Link
               href={`${SITE_CONFIG.GITHUB_URL}/releases`}
-              className="btn btn-outline btn-lg"
+              className="btn btn-outline btn-lg plausible-event-name=Download+Windows"
             >
               Windows
             </Link>
             <Link
               href={`${SITE_CONFIG.GITHUB_URL}/releases`}
-              className="btn btn-outline btn-lg"
+              className="btn btn-outline btn-lg plausible-event-name=Download+Linux"
             >
               Linux
             </Link>
@@ -148,7 +148,7 @@ export default function Home() {
               </ul>
               <a
                 href={SITE_CONFIG.LICENSE_URL}
-                className="btn btn-primary btn-lg"
+                className="btn btn-primary btn-lg plausible-event-name=Buy+License"
               >
                 Buy lifetime license
               </a>
