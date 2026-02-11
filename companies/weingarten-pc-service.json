@@ -1,0 +1,18 @@
+{
+    "slug": "weingarten-pc-service",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Weingarten PC-Service GmbH",
+    "address": "c/o a.s.k. Datenschutz e.K.\nSchulstraße 16A\n91245 Simmelsdorf\nDeutschland",
+    "phone": "+49 9155 2639970",
+    "email": "info@ask-datenschutz.de",
+    "web": "https://www.computer-erlangen.de",
+    "sources": [
+        "https://www.computer-erlangen.de/impressum/",
+        "https://www.computer-erlangen.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2242"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

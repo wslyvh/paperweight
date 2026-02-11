@@ -1,0 +1,22 @@
+{
+    "slug": "umweltbank",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "UmweltBank AG",
+    "address": "Laufertorgraben 6\n90489 Nürnberg\nDeutschland",
+    "phone": "+49 911 53082020",
+    "fax": "+49 911 5308129",
+    "email": "datenschutz@umweltbank.de",
+    "web": "https://www.umweltbank.de/",
+    "sources": [
+        "https://www.umweltbank.de/datenschutz",
+        "https://www.umweltbank.de/impressum",
+        "https://github.com/datenanfragen/data/pull/1054"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

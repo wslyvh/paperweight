@@ -1,0 +1,27 @@
+{
+    "slug": "vhh-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Verkehrsbetriebe Hamburg-Holstein GmbH (VHH)",
+    "address": "Curslacker Neuer Deich 37\n21029 Hamburg\nDeutschland",
+    "email": "datenschutz@vhhbus.de",
+    "web": "https://vhhbus.de/",
+    "sources": [
+        "https://vhhbus.de/impressum/",
+        "https://vhhbus.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1405"
+    ],
+    "required-elements": [
+        {
+            "desc": "Email",
+            "type": "name",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

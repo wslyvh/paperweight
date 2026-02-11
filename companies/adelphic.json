@@ -1,0 +1,20 @@
+{
+    "slug": "adelphic",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Adelphic LLC",
+    "address": "880 Main Street\nFloor 3\nWaltham\nMA 02451\nUnited States of America",
+    "email": "dpo@adelphic.com",
+    "web": "https://www.adelphic.com/",
+    "sources": [
+        "https://www.adelphic.com/privacy-policy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

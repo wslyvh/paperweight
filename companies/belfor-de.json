@@ -1,0 +1,20 @@
+{
+    "slug": "belfor-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "BELFOR Deutschland GmbH",
+    "address": "Keniastraße 24\n47269 Duisburg\nDeutschland",
+    "phone": "+49 203 75640400",
+    "fax": "+49 203 75640455",
+    "email": "privacy@belfor.com",
+    "sources": [
+        "https://www.belfor.com/de/de/datenschutzerklaerung",
+        "https://www.belfor.com/de/de/impressum",
+        "https://github.com/datenanfragen/data/pull/2157"
+    ],
+    "quality": "verified"
+}

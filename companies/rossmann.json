@@ -1,0 +1,26 @@
+{
+    "slug": "rossmann",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "ROSSMANN",
+    "runs": [
+        "Dirk Rossmann GmbH",
+        "Rossmann Online GmbH"
+    ],
+    "address": "Isernhägener Str. 16\n30938 Burgwedel\nDeutschland",
+    "phone": "+49 800 76776266",
+    "fax": "+49 5139 8984999",
+    "email": "datenschutz@rossmann.de",
+    "web": "https://www.rossmann.de",
+    "sources": [
+        "https://www.rossmann.de/de/datenschutzerklaerung",
+        "https://github.com/datenanfragen/data/pull/1583",
+        "https://www.rossmann.de/de/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

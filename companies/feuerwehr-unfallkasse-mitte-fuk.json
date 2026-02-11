@@ -1,0 +1,17 @@
+{
+    "slug": "feuerwehr-unfallkasse-mitte-fuk",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Feuerwehr-Unfallkasse Mitte",
+    "address": "Magdeburger Allee 4\n99086 Erfurt\nDeutschland",
+    "email": "datenschutzbeauftragter@fuk-mitte.de",
+    "sources": [
+        "https://www.fuk-mitte.de/fuk-mitte/datenschutz-und-informationspflichten",
+        "https://github.com/datenanfragen/data/pull/2746"
+    ],
+    "quality": "verified"
+}

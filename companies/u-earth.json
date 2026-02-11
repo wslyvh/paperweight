@@ -1,0 +1,22 @@
+{
+    "slug": "u-earth",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "U-Earth Biotech Ltd",
+    "runs": [
+        "U-Mask"
+    ],
+    "address": "Via Scarpa 9\n20145 Milano\nItaly",
+    "email": "legal@u-earth.eu",
+    "web": "https://u-earth.store/",
+    "sources": [
+        "https://u-earth.store/policies/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/2191"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

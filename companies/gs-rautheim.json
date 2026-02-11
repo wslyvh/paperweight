@@ -1,0 +1,21 @@
+{
+    "slug": "gs-rautheim",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Grundschule Rautheim Braunschweig",
+    "address": "Schulstraße 7\n38126 Braunschweig\nDeutschland",
+    "phone": "+49 531 693091",
+    "fax": "+49 531 2622788",
+    "email": "gs.rautheim@braunschweig.de",
+    "sources": [
+        "https://www.braunschweig.de/leben/schule_bildung/schulportal/schulen/schulen/gs-rautheim.html"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

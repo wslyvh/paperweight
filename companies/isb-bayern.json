@@ -1,0 +1,40 @@
+{
+    "slug": "isb-bayern",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Staatsinstitut für Schulqualität und Bildungsforschung (ISB)",
+    "runs": [
+        "mebis (mebis.bayern.de)",
+        "Lernen zuhause (lernenzuhause.bayern.de)"
+    ],
+    "address": "Schellingstr. 155\n80797 München\nDeutschland",
+    "phone": "+49 89 21702101",
+    "email": "datenschutz@isb.bayern.de",
+    "web": "https://isb.bayern.de",
+    "sources": [
+        "https://www.mebis.bayern.de/datenschutzerklaerung/",
+        "https://github.com/datenanfragen/data/issues/658",
+        "https://isb.bayern.de/datenschutz/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": true
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

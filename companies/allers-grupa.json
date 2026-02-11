@@ -1,0 +1,22 @@
+{
+    "slug": "allers-grupa",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Allers grupa sp. z o.o.",
+    "runs": [
+        "geschenkeja.de"
+    ],
+    "address": "ul. Torowa 3N\n30-435 Kraków\nPoland",
+    "web": "http://www.allersgrupa.com/",
+    "sources": [
+        "http://www.allersgrupa.com/",
+        "https://www.geschenkeja.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2471"
+    ],
+    "quality": "verified",
+    "phone": "+48 12 414 00 30"
+}

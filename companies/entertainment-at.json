@@ -1,0 +1,21 @@
+{
+    "slug": "entertainment-at",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Entertainment Media GmbH",
+    "address": "Twin Towers\nWienerbergstraße 11/12A\n1100 Vienna\nÖsterreich",
+    "phone": "+43 720 882325",
+    "email": "datenschutz@entertainment.at",
+    "web": "https://entertainment.at/",
+    "sources": [
+        "https://entertainment.at/datenschutzerklaerung/",
+        "https://entertainment.at/impressum/",
+        "https://github.com/datenanfragen/data/issues/542"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

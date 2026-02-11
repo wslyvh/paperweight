@@ -1,0 +1,23 @@
+{
+    "slug": "bonifyde",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Forteil GmbH",
+    "runs": [
+        "bonify",
+        "bonify Finanzmanager"
+    ],
+    "address": "Reichenberger Straße 124\n10999 Berlin\nDeutschland",
+    "email": "datenschutz@bonify.de",
+    "web": "https://www.bonify.de/",
+    "sources": [
+        "https://wwwbonifyde-prod.cdn.prismic.io/wwwbonifyde-prod/7547e427-5414-4825-99a6-40f5b7d79ecc_2020-06-05+-+DSE+Forteil_v_6_03.pdf",
+        "https://github.com/datenanfragen/data/issues/614"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

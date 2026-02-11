@@ -1,0 +1,27 @@
+{
+    "slug": "cloudapp",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "CloudPlus, Inc.",
+    "runs": [
+        "CloudApp (www.getcloudapp.com)"
+    ],
+    "address": "431 Tehama St\nSan Francisco CA 94103\nUnited States of America",
+    "email": "compliance@getcloudapp.com",
+    "web": "https://www.getcloudapp.com/",
+    "sources": [
+        "https://www.getcloudapp.com/privacy",
+        "https://www.getcloudapp.com/cloudapp-privacy-policy-gdpr-updates"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "required-elements": [
+        {
+            "desc": "Email",
+            "type": "name",
+            "optional": false
+        }
+    ],
+    "quality": "verified"
+}

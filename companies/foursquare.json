@@ -1,0 +1,19 @@
+{
+    "slug": "foursquare",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Foursquare Labs, Inc.",
+    "runs": [
+        "Factual (formerly)"
+    ],
+    "address": "50 West 23rd Street\n8th Floor\nNew York\nNY 10010\nUnited States of America",
+    "email": "privacy@foursquare.com",
+    "web": "https://foursquare.com/",
+    "sources": [
+        "https://foursquare.com/legal/privacy-center/foursquare-privacy-policy-consumer-services/",
+        "https://foursquare.com/resources/blog/news/factual-joins-foursquare-to-create-clear-location-market-leader/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-warendorf",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Der Landrat als Kreispolizeibehörde Warendorf",
+    "address": "Waldenburger Straße 2 – 4\n48231 Warendorf\nDeutschland",
+    "phone": "+49 2581 6000",
+    "fax": "+49 2581 600170",
+    "email": "datenschutz.warendorf@polizei.nrw.de",
+    "web": "https://warendorf.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

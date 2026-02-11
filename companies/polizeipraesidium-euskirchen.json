@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-euskirchen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Der Landrat als Kreispolizeibehörde Euskirchen",
+    "address": "Kölner Straße 76\n53879 Euskirchen\nDeutschland",
+    "phone": "+49 2251 7990",
+    "fax": "+49 2251 799349",
+    "email": "datenschutz.euskirchen@polizei.nrw.de",
+    "web": "https://euskirchen.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

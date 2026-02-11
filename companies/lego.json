@@ -1,0 +1,21 @@
+{
+    "slug": "lego",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce",
+        "entertainment"
+    ],
+    "name": "LEGO System A/S",
+    "address": "Aastvej 1\n7190 Billund\nDenmark",
+    "phone": "+44 1753 826000",
+    "email": "privacy.officer@LEGO.com",
+    "web": "https://www.lego.com",
+    "sources": [
+        "https://www.lego.com/en-de/legal/notices-and-policies/privacy-policy",
+        "https://www.lego.com/en-gb/legal/privacy-policy/contact-us"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,31 @@
+{
+    "slug": "ihre-ahornapotheke-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "Theresien Apotheke Filialapotheke der Ahorn Apotheke",
+    "address": "Leipziger Platz 13\n90491 Nürnberg\nDeutschland",
+    "phone": "+49 911 9518082",
+    "fax": "+49 911 9518088",
+    "email": "info@ihre-ahornapotheke.de",
+    "web": "http://www.ihre-ahornapotheke.de",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/416",
+        "http://www.ihre-ahornapotheke.de/a/?page_id=6397",
+        "http://ihre-theresienapotheke.de/t/?page_id=6110"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "propstei-salzgitter-lebenstedt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Ev.-luth. Propstei Salzgitter",
+    "address": "Schumannstraße 1\n38226 Salzgitter\nDeutschland",
+    "phone": "+49 5341 846810",
+    "fax": "+49 5341 846888",
+    "email": "salzgitter.pr@lk-bs.de",
+    "web": "https://www.propstei-salzgitter.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/salzgitter-lebenstedt.html"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "verified",
+    "facet-group": "church"
+}

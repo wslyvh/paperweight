@@ -1,0 +1,17 @@
+{
+    "slug": "tuev-saar-cert",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "TÜV Saarland Certification GmbH",
+    "address": "Am TÜV 1\n66280 Sulzbach\nDeutschland",
+    "phone": "+49 6897 5060",
+    "fax": "+49 6897 506205",
+    "email": "datenschutz@tuev-saar.de",
+    "web": "https://cert.tuev-saar.de",
+    "sources": [
+        "https://cert.tuev-saar.de/datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

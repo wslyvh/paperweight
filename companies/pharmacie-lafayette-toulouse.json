@@ -1,0 +1,19 @@
+{
+    "slug": "pharmacie-lafayette-toulouse",
+    "relevant-countries": [
+        "fr"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "Pharmacie Lafayette Toulouse",
+    "address": "35 rue Lafayette\n31000 Toulouse\nFrance",
+    "phone": "+33 5 34 45 58 80",
+    "email": "contact@pharmacielafayettetoulouse.com",
+    "web": "https://www.pharmacielafayette.com/toulouse-centre",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/693",
+        "https://www.pharmacielafayette.com/toulouse-centre/mentions-legales"
+    ],
+    "quality": "verified"
+}

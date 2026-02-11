@@ -1,0 +1,24 @@
+{
+    "slug": "radissonhotels",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Radisson Hotel Group",
+    "runs": [
+        "Radisson Hospitality Belgium SRL (Reservation and Guest Data)",
+        "Radisson Loyalty Management SRL (Radisson Rewards)"
+    ],
+    "address": "Avenue du Bourget 44\n1130 Brussels\nBelgium",
+    "phone": "+32 2 702 92 00",
+    "email": "dataprotection@radissonhotels.com",
+    "web": "https://www.radissonhotels.com",
+    "sources": [
+        "https://www.radissonhotels.com/en-us/privacy/printable",
+        "https://github.com/datenanfragen/data/pull/2931"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

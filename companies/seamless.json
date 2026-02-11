@@ -1,0 +1,17 @@
+{
+    "slug": "seamless",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Seamless.AI",
+    "address": "c/o IT Governance Europe\nThe Mill Enterprise Hub\nSagreenan\nDrogheda\nCo. Louth\nA92 CD3D\nIreland",
+    "email": "eurep@itgovernance.eu",
+    "webform": "https://login.seamless.ai/personalDataRequest",
+    "web": "https://seamless.ai",
+    "sources": [
+        "https://seamless.ai/policies/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/3066"
+    ],
+    "suggested-transport-medium": "webform",
+    "quality": "verified"
+}

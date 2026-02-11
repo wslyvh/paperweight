@@ -1,0 +1,27 @@
+{
+    "slug": "anerkennung-kirche",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Unabhängige Kommission für Anerkennungsleistungen",
+    "address": "c/o Verband der Diözesen Deutschlands (KöR)\nKaiserstraße 161\n53113 Bonn\nDeutschland",
+    "phone": "+49 228 103214",
+    "fax": "+49 228 103254",
+    "email": "bdsb-vdd@dbk.de",
+    "web": "https://www.anerkennung-kirche.de/",
+    "sources": [
+        "https://www.anerkennung-kirche.de/datenschutzhinweise",
+        "https://www.anerkennung-kirche.de/impressum",
+        "https://github.com/datenanfragen/data/pull/2107"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-katholische-kirche",
+    "custom-erasure-template": "erasure-katholische-kirche",
+    "custom-rectification-template": "rectification-katholische-kirche",
+    "custom-objection-template": "objection-katholische-kirche",
+    "quality": "verified",
+    "suggested-transport-medium": "email"
+}

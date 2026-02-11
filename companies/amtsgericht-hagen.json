@@ -1,0 +1,22 @@
+{
+    "slug": "amtsgericht-hagen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Amtsgericht Hagen",
+    "address": "Heinitzstr. 42\n58097 Hagen\nDeutschland",
+    "phone": "+49 2331 9850",
+    "fax": "+49 2331 985515",
+    "email": "Datenschutz@ag-hagen.nrw.de",
+    "web": "https://www.ag-hagen.nrw.de/",
+    "sources": [
+        "https://www.ag-hagen.nrw.de/kontakt/impressum/datenschutz/index.php",
+        "https://www.ag-hagen.nrw.de/kontakt/impressum/index.php"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

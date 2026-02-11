@@ -1,0 +1,21 @@
+{
+    "slug": "beeswax",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Beeswax",
+    "address": "275 7th Ave\n21st Floor\nNew York\nNY 10001\nUnited States of America",
+    "email": "privacy@beeswax.com",
+    "web": "https://www.beeswax.com/",
+    "sources": [
+        "https://www.beeswax.com/privacy/",
+        "https://www.beeswax.com/about/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

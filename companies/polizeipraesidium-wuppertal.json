@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-wuppertal",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Polizeipräsidium Wuppertal",
+    "address": "Friedrich-Engels-Allee 228\n42285 Wuppertal\nDeutschland",
+    "phone": "+49 202 2840",
+    "fax": "+49 202 2848448",
+    "email": "datenschutz.wuppertal@polizei.nrw.de",
+    "web": "https://wuppertal.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

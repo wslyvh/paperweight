@@ -1,0 +1,44 @@
+{
+    "slug": "volkswohl-bund-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "VOLKSWOHL BUND Lebensversicherung a. G.",
+    "runs": [
+        "VOLKSWOHL BUND Sachversicherung AG",
+        "SECUNDA Unterstützungskasse für den Mittelstand e.V.",
+        "prokundo GmbH"
+    ],
+    "address": "Südwall 37-41\n44137 Dortmund\nDeutschland",
+    "phone": "+49 231 5433692",
+    "fax": "+49 231 5433574",
+    "email": "datenschutz@volkswohl-bund.de",
+    "web": "https://www.volkswohl-bund.de/",
+    "sources": [
+        "https://www.volkswohl-bund.de/impressum",
+        "https://github.com/datenanfragen/data/issues/604",
+        "https://druckstuecke.volkswohl-bund.de/api/products/294/documents/Hinweise_Datenschutz_VBL.pdf",
+        "https://druckstuecke.volkswohl-bund.de/api/products/296/documents/Hinweise_Datenschutz_SECUNDA.pdf",
+        "https://rechner.prokundo.de/druckstuecke/api/products/301/documents/Hinweise_zum_Datenschutz.pdf",
+        "https://www.volkswohl-bund.de/datenschutz"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Geburtsdatum",
+            "type": "birthdate"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

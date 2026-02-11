@@ -1,0 +1,43 @@
+{
+    "slug": "elsevier",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "Elsevier B.V",
+    "runs": [
+        "Elsevier Ltd.",
+        "Mendeley",
+        "Mendeley Careers",
+        "Hivebench",
+        "bepress",
+        "Digital Commons",
+        "SelectedWorks",
+        "ExpressO"
+    ],
+    "address": "Radarweg 29\n1043 Amsterdam\nThe Netherlands",
+    "email": "DPO@elsevier.com",
+    "webform": "https://service.elsevier.com/app/contact/supporthub/privacysupport/",
+    "web": "https://www.elsevier.com/",
+    "sources": [
+        "https://www.elsevier.com/legal/privacy-policy",
+        "https://www.elsevier.com/about/policies/privacy-principles",
+        "https://github.com/datenanfragen/data/pull/1057"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,26 @@
+{
+    "slug": "bjw-hausverwaltung-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "BJW Hausverwaltung GmbH",
+    "address": "Lessnergasse 2\n91207 Lauf\nDeutschland",
+    "phone": "+49 9123 9892255",
+    "fax": "+49 9123 9892257",
+    "email": "info@bjw-hausverwaltung.de",
+    "web": "https://bjw-hausverwaltung.de",
+    "sources": [
+        "https://bjw-hausverwaltung.de/datenschutz.html"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "quality": "verified"
+}

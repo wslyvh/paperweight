@@ -1,0 +1,27 @@
+{
+    "slug": "hibb-hamburg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body",
+        "school"
+    ],
+    "name": "Hamburger Institut für Berufliche Bildung (HIBB)",
+    "runs": [
+        "Jugendberufsagentur Hamburg",
+        "Beratungszentrum Berufliche Schulen (BZBS)"
+    ],
+    "address": "c/o Freie und Hansestadt Hamburg\nBehörde für Schule, Familie und Berufsbildung\nHamburger Straße 31\n22083 Hamburg\nDeutschland",
+    "phone": "+49 40 428280",
+    "email": "datenschutz@bsfb.hamburg.de",
+    "web": "https://hibb.hamburg.de",
+    "sources": [
+        "https://hibb.hamburg.de/ergaenzende-datenschutzerklaerung/",
+        "https://jba-hamburg.de/de/datenschutz",
+        "https://hibb.hamburg.de/beratung-recht/beratungszentrum-berufliche-schulen-bzbs/",
+        "https://github.com/datenanfragen/data/pull/1420"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,50 @@
+{
+    "slug": "tuev-sued",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body",
+        "school",
+        "telecommunication",
+        "travel",
+        "commerce",
+        "utility",
+        "health"
+    ],
+    "name": "TÜV SÜD",
+    "runs": [
+        "TÜV SÜD AG",
+        "TÜV SÜD Business Services GmbH",
+        "TÜV SÜD Chemie Service GmbH",
+        "TÜV SÜD Energietechnik GmbH Baden-Württemberg",
+        "TÜV SÜD Industrie Service GmbH",
+        "TÜV SÜD Rail GmbH",
+        "TÜV SÜD Auto Partner GmbH",
+        "TÜV SÜD Auto Plus GmbH",
+        "TÜV SÜD Auto Service GmbH",
+        "TÜV SÜD Life Service GmbH",
+        "TÜV SÜD Pluspunkt GmbH",
+        "FleetCompany GmbH",
+        "TÜV HANSE GmbH",
+        "TÜV SÜD Akademie GmbH",
+        "TÜV SÜD Management Service GmbH",
+        "TÜV SÜD Product Service GmbH",
+        "TÜV SÜD Food Safety Institute GmbH",
+        "TÜV SÜD Advimo GmbH",
+        "TÜV SÜD ImmoWert GmbH",
+        "TÜV Technische Überwachung Hessen GmbH",
+        "Uniscon GmbH"
+    ],
+    "address": "Westendstr. 199\n80686 München\nDeutschland",
+    "phone": "+49 89 57910",
+    "fax": "+49 89 57911551",
+    "email": "datenschutzbeauftragter@tuvsud.com",
+    "web": "https://www.tuvsud.com",
+    "sources": [
+        "https://www.tuvsud.com/de-de/datenschutz",
+        "https://www.tuvsud.com/de-de/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

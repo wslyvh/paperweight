@@ -1,0 +1,25 @@
+{
+    "slug": "unwirednetworks",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication",
+        "travel"
+    ],
+    "name": "Unwired Networks GmbH",
+    "address": "Gonzagagasse 11/25\n1010 Wien\nAustria",
+    "phone": "+43 1 9962051",
+    "email": "privacy@unwired.at",
+    "web": "https://unwirednetworks.net",
+    "sources": [
+        "https://unwirednetworks.net/service/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/891"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Alternative, deutsche Telefonnummer: +49 174 73 96 00",
+        "Niederlassung in Deutschland: Alexanderufer 3 – 7\n10117 Berlin\nDeutschland"
+    ],
+    "quality": "verified"
+}

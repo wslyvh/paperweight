@@ -1,0 +1,24 @@
+{
+    "slug": "hse24",
+    "categories": [
+        "commerce"
+    ],
+    "name": "Home Shopping Europe GmbH",
+    "address": "Münchener Straße 101 h\n85737 Ismaning\nDeutschland",
+    "phone": "+49 800 27 888 88",
+    "fax": "+49 1801 87 359 999",
+    "email": "datenschutz@hse24.de",
+    "web": "https://www.hse24.de/",
+    "sources": [
+        "https://www.hse24.de/service/datenschutz.html",
+        "https://www.hse24.de/service/impressum.html"
+    ],
+    "comments": [
+        "Achtung: Faxnummer ist gebührenpflichtig (3,9 Ct./Min aus dem Festnetz, max. 42 Ct./Min aus dem Mobilnetz)!"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

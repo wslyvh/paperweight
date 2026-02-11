@@ -1,0 +1,22 @@
+{
+    "slug": "giga-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "GIGA.de",
+    "address": "c/o Ströer Media Brands GmbH\nTorstraße 49\n10119 Berlin-Mitte\nDeutschland",
+    "phone": "+49 30 59001130",
+    "fax": "+49 30 590011399",
+    "email": "datenschutz-giga@stroeermediabrands.de",
+    "web": "https://www.giga.de",
+    "sources": [
+        "https://www.giga.de/info/impressum",
+        "https://www.giga.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1337"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

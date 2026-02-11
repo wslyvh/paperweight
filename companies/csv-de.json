@@ -1,0 +1,24 @@
+{
+    "slug": "csv-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "CSV Computer - Service & Vertrieb",
+    "runs": [
+        "CSV.de",
+        "csv-direct.de"
+    ],
+    "address": "Zitadellenweg 28\n13599 Berlin\nDeutschland",
+    "phone": "+49 30 3377350",
+    "fax": "+49 30 33773599",
+    "email": "datenschutz@csv.de",
+    "web": "https://www.csv.de/",
+    "sources": [
+        "https://www.csv.de/ownpage/datenschutz.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "cineplex",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "CINEPLEX Deutschland GmbH & Co. KG",
+    "address": "Hofaue 37\n42103 Wuppertal\nDeutschland",
+    "phone": "+49 202 51570100",
+    "fax": "+49 202 51570111",
+    "email": "datenschutz@cineplex.de",
+    "web": "https://www.cineplex.de",
+    "sources": [
+        "https://www.cineplex.de/rechtliches/datennutzung/",
+        "https://github.com/datenanfragen/data/pull/2420"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

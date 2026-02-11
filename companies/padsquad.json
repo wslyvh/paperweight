@@ -1,0 +1,19 @@
+{
+    "slug": "padsquad",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "PadSquad, LLC",
+    "address": "350 Seventh Avenue\nSuite #406\nNew York, NY 10001\nUnited States of America",
+    "email": "privacy@padsquad.com",
+    "web": "https://padsquad.com/",
+    "sources": [
+        "https://padsquad.com/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/1730"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

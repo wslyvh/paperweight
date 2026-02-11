@@ -1,0 +1,30 @@
+{
+    "slug": "target-team-europe",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "TARGET TEAM EUROPE S.L.",
+    "address": "Madrazo 27, 1a Planta\n08006 Barcelona\nSpain",
+    "email": "service@target-team-europe.com",
+    "web": "http://www.target-team-europe.com",
+    "sources": [
+        "http://www.target-team-europe.com/de/legal/",
+        "https://github.com/datenanfragen/data/issues/559",
+        "https://github.com/datenanfragen/data/pull/1132",
+        "https://www.gutscheine-gewinn.com/datenschutz.php"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "quality": "verified"
+}

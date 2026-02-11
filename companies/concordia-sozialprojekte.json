@@ -1,0 +1,19 @@
+{
+    "slug": "concordia-sozialprojekte",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "nonprofit"
+    ],
+    "name": "CONCORDIA Sozialprojekte Stiftung Deutschland",
+    "address": "Hohnerstraße 25\n70469 Stuttgart\nDeutschland",
+    "phone": "+49 711 80630070",
+    "email": "stiftung@concordia-sozialprojekte.de",
+    "web": "https://www.concordia-sozialprojekte.de",
+    "sources": [
+        "https://www.concordia-sozialprojekte.de/datenschutzerklaerung/",
+        "https://github.com/datenanfragen/data/pull/835"
+    ],
+    "quality": "verified"
+}

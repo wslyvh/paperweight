@@ -1,0 +1,20 @@
+{
+    "slug": "marketscan-gb",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "addresses"
+    ],
+    "name": "Marketscan Ltd.",
+    "address": "8 Duke’s Court\nBognor Road\nChichester\nPO19 8FX\nUnited Kingdom",
+    "phone": "+44 1243 786 711",
+    "email": "info@marketscan.co.uk",
+    "web": "https://www.marketscan.co.uk/terms-privacy/",
+    "sources": [
+        "https://www.marketscan.co.uk/terms-privacy/",
+        "https://www.marketscan.co.uk/anti-spam-policy/"
+    ],
+    "request-language": "en",
+    "quality": "verified"
+}

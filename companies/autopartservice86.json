@@ -1,0 +1,22 @@
+{
+    "slug": "autopartservice86",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Avto parts serviz 86 eood",
+    "runs": [
+        "autopartservice86",
+        "usedgenuinecarparts"
+    ],
+    "address": "Lesnovska 29\n2100 Elin Pelin\nBulgaria",
+    "phone": "+359 87 985 5850",
+    "email": "autoparts86@abv.bg",
+    "sources": [
+        "https://www.ebay.de/str/usedgenuinecarparts?_tab=about",
+        "https://github.com/datenanfragen/data/pull/1796"
+    ],
+    "quality": "verified"
+}

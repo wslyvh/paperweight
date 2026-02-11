@@ -1,0 +1,22 @@
+{
+    "slug": "folkestone-and-hythe-district-council",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Folkestone and Hythe District Council",
+    "address": "Civic Centre\nCastle Hill Avenue\nFolkestone\nKent\nCT20 2QY\nUnited Kingdom",
+    "phone": "+44 1303 853437",
+    "email": "data.protection@folkestone-hythe.gov.uk",
+    "web": "https://folkestone-hythe.gov.uk/home",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/366",
+        "https://folkestone-hythe.gov.uk/home",
+        "https://folkestone-hythe.gov.uk/privacy-policy"
+    ],
+    "needs-id-document": true,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

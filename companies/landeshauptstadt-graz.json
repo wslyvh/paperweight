@@ -1,0 +1,23 @@
+{
+    "slug": "landeshauptstadt-graz",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Landeshauptstadt Graz",
+    "runs": [
+        "A 10/1P - Parkgebührenreferat"
+    ],
+    "address": "Präsidialabteilung der Stadt Graz\nHauptplatz 1\n8010 Graz\nÖsterreich",
+    "phone": "+43 316 8722301",
+    "email": "datenschutzbeauftragter@stadt.graz.at",
+    "web": "https://www.graz.at/",
+    "sources": [
+        "https://www.graz.at/cms/ziel/13178676/DE",
+        "https://github.com/datenanfragen/data/pull/2649"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

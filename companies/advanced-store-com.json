@@ -1,0 +1,21 @@
+{
+    "slug": "advanced-store-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "advanced store GmbH",
+    "address": "Stefan-Heym-Platz 1\n10367 Berlin\nDeutschland",
+    "phone": "+49 30 577066020",
+    "fax": "+49 30 577066029",
+    "email": "privacy@advanced-store.com",
+    "web": "https://www.advanced-store.com/en/",
+    "sources": [
+        "https://www.advanced-store.com/privacy",
+        "https://www.advanced-store.com/imprint"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

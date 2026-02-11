@@ -1,0 +1,23 @@
+{
+    "slug": "piranha-games",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Piranha Games Inc.",
+    "runs": [
+        "MechWarrior Online"
+    ],
+    "address": "2065 - 88 Pender St W\nVancouver, BC V6B 6N9\nCanada",
+    "email": "dpo@piranhagames.com",
+    "web": "https://piranhagames.com/",
+    "sources": [
+        "https://mwomercs.com/privacy",
+        "https://piranhagames.com/contact",
+        "https://github.com/datenanfragen/data/issues/545"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "madsack",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment",
+        "ads"
+    ],
+    "name": "Verlagsgesellschaft Madsack GmbH & Co. KG",
+    "address": "August-Madsack-Straße 1\n30559 Hannover\nDeutschland",
+    "phone": "+49 511 5180",
+    "email": "datenschutz@madsack.de",
+    "web": "https://www.madsack.de",
+    "sources": [
+        "https://www.madsack.de/wp-content/uploads/2021/06/Informationen-gem-Art-13-DSGVO.pdf",
+        "https://github.com/datenanfragen/data/pull/1328",
+        "https://github.com/datenanfragen/data/pull/1372"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

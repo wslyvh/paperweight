@@ -1,0 +1,13 @@
+{
+    "slug": "fiddiam-sa",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Fiddiam SA",
+    "address": "25, Rue des Bruyères\nL-1274 Howald\nLuxembourg",
+    "sources": [
+        "https://opencorporates.com/companies/lu/B44695",
+        "https://github.com/datenanfragen/data/pull/1076"
+    ],
+    "quality": "verified"
+}

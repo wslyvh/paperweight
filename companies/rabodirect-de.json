@@ -1,0 +1,28 @@
+{
+    "slug": "rabodirect-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "RaboDirect Deutschland",
+    "runs": [
+        "Coöperatieve Rabobank U.A., Zweigniederlassung Frankfurt am Main"
+    ],
+    "address": "Postfach 90 01 48\n60441 Frankfurt\nDeutschland",
+    "phone": "+49 69 1302600",
+    "fax": "+49 69 130260909",
+    "email": "datenschutz@rabobank.com",
+    "web": "https://www.rabodirect.de/",
+    "sources": [
+        "https://www.rabodirect.de/system/datenschutzhinweise",
+        "https://github.com/datenanfragen/data/pull/828",
+        "https://www.rabodirect.de/system/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Haben ein optionales Formular für Auskunftsanfragen: https://www.rabodirect.de/dam/jcr:31dda545-b798-46bf-8675-9fe95b250e1b/rabodirect-datenschutzantrag.pdf"
+    ],
+    "quality": "verified"
+}

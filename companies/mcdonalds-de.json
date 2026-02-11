@@ -1,0 +1,19 @@
+{
+    "slug": "mcdonalds-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "McDonald's Deutschland LLC",
+    "address": "Drygalski-Allee 51\n81477 München\nDeutschland",
+    "email": "datenschutz@de.mcd.com",
+    "web": "https://www.mcdonalds.com/de/",
+    "sources": [
+        "https://www.mcdonalds.com/de/de-de/datenschutz.html",
+        "https://github.com/datenanfragen/data/issues/500"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

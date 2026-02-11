@@ -1,0 +1,21 @@
+{
+    "slug": "dkb-bank",
+    "categories": [
+        "finance"
+    ],
+    "name": "Deutsche Kreditbank AG",
+    "address": "Taubenstraße 7 – 9\n10117 Berlin\nDeutschland",
+    "phone": "+49 30 120 300 00",
+    "fax": "+49 30 120 300 01",
+    "email": "datenschutzanfragen@dkb.de",
+    "web": "https://www.dkb.de/",
+    "sources": [
+        "https://www.dkb.de/info/impressum/",
+        "https://www.dkb.de/kundenservice/datenschutz"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

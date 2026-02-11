@@ -1,0 +1,31 @@
+{
+    "slug": "home24",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch",
+        "nl",
+        "be",
+        "it"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "home24 SE",
+    "runs": [
+        "Smood (www.smood-sleep.de)",
+        "Black Friday Möbel (www.black-friday-moebel.de)"
+    ],
+    "address": "Greifswalder Straße 212 – 213\n10405 Berlin\nDeutschland",
+    "phone": "+49 30 20 38 99 66",
+    "fax": "+49 30 60 98 80 06 3",
+    "email": "datenschutz@home24.de",
+    "web": "https://www.home24.de/",
+    "sources": [
+        "https://www.home24.de/datenschutz/",
+        "https://www.home24.de/impressum/",
+        "https://github.com/datenanfragen/data/issues/32"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

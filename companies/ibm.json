@@ -1,0 +1,30 @@
+{
+    "slug": "ibm",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce",
+        "telecommunication"
+    ],
+    "name": "IBM International Group B.V.",
+    "runs": [
+        "IBM Aspera",
+        "IBM Cloud (formerly Softlayer)",
+        "IBM Consulting",
+        "IBM Watson"
+    ],
+    "address": "Johan Huizingalaan 765\n1066 VH Amsterdam\nThe Netherlands",
+    "email": "ibmidsupportuk@ibm.com",
+    "webform": "https://www.ibm.com/privacy/portal/contact/us-en",
+    "web": "https://www.ibm.com",
+    "sources": [
+        "https://www.ibm.com/privacy",
+        "https://www.ibm.com/privacy/portal/us-en",
+        "https://www.ibm.com/privacy/details",
+        "https://www.ibm.com/docs/en/ibmid?topic=contact-support",
+        "https://github.com/datenanfragen/data/pull/2466"
+    ],
+    "suggested-transport-medium": "webform",
+    "quality": "verified"
+}

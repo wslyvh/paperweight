@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-bonn",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Polizeipräsidium Bonn",
+    "address": "Königswinterer Str. 500\n53227 Bonn\nDeutschland",
+    "phone": "+49 228 150",
+    "fax": "+49 228 151211",
+    "email": "datenschutz.bonn@polizei.nrw.de",
+    "web": "https://bonn.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

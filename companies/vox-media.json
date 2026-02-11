@@ -1,0 +1,29 @@
+{
+    "slug": "vox-media",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Vox Media, Inc.",
+    "runs": [
+        "Vox (www.vox.com)",
+        "Curbed (www.curbed.com)",
+        "Eater (www.eater.com)",
+        "Racked (www.racked.com)",
+        "Polygon (www.polygon.com)",
+        "SBNation (www.sbnation.com)",
+        "The Verge (www.theverge.com)",
+        "Recode (www.recode.net)"
+    ],
+    "address": "1201 Connecticut Ave., NW\n11th FL.\nWashington\nDC 20036\nUnited States of America",
+    "email": "VMprivacy@voxmedia.com",
+    "web": "https://www.vox.com",
+    "sources": [
+        "https://www.voxmedia.com/pages/privacy-policy"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

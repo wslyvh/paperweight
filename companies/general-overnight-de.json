@@ -1,0 +1,45 @@
+{
+    "slug": "general-overnight-de",
+    "relevant-countries": [
+        "de",
+        "at",
+        "lu"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "GO! Express & Logistics (Deutschland) GmbH",
+    "runs": [
+        "GO! Express & Logistics West GmbH & Co. KG",
+        "GO! Express & Logistics GmbH",
+        "GO! General Overnight Express + City Logistics GmbH",
+        "GO! Express & Logistics Essen GmbH & Co. KG",
+        "GO! Express & Logistics Siegen GmbH",
+        "GO! Express & Logistics Freiburg GmbH",
+        "GO! Express & Logistics Villingen-Schwenningen GmbH",
+        "GO! Express & Logistics Karlsruhe GmbH",
+        "GO! Express & Logistics Südwest GmbH & Co. KG",
+        "GO! EXPRESS & LOGISTICS Hamburg AG",
+        "GO! Express & Logistics Frankfurt GmbH",
+        "GO! Express & Logistics Bremen GmbH",
+        "GO! General Overnight Service Lübeck GmbH",
+        "CL Tansporte & Expressdienstleistungs GmbH",
+        "GO! Express & Logistics Eisenach GmbH",
+        "GO! Express & Logistics Dresden GmbH",
+        "GO! Express & Logistics Göttingen GmbH"
+    ],
+    "address": "c/o Scheja und Partner Rechtsanwälte mbB\nAdenauerallee 136\n53113 Bonn\nDeutschland",
+    "phone": "+49 228 2272260",
+    "fax": "+49 228 24393 590",
+    "email": "datenschutz@general-overnight.com",
+    "web": "https://www.general-overnight.com",
+    "sources": [
+        "https://www.general-overnight.com/deu_de/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/1032",
+        "https://www.general-overnight.com/aut_de/datenschutz.html",
+        "https://www.general-overnight.com/lux_de/datenschutz.html",
+        "https://www.general-overnight.com/deu_de/impressum.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

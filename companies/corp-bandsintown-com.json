@@ -1,0 +1,29 @@
+{
+    "slug": "corp-bandsintown-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Bandsintown, LLC",
+    "address": "8 W 36th Street 9th floor\nNew York\nNY 10018\nUnited States of America",
+    "email": "dpo@bandsintown.com",
+    "web": "https://corp.bandsintown.com",
+    "sources": [
+        "https://corp.bandsintown.com/privacy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

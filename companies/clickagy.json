@@ -1,0 +1,22 @@
+{
+    "slug": "clickagy",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Clickagy, LLC",
+    "address": "c/o VeraSafe Ireland Ltd.\nUnit 3D North Point House\nNorth Point Business Park\nNew Mallow Road\nCork T23AT2P\nIreland",
+    "phone": "+1 833 737 1973",
+    "email": "privacy@clickagy.com",
+    "webform": "https://www.clickagy.com/privacy-center/",
+    "web": "https://www.clickagy.com/",
+    "sources": [
+        "https://www.clickagy.com/privacy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

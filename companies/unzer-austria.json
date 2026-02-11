@@ -1,0 +1,20 @@
+{
+    "slug": "unzer-austria",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Unzer Austria GmbH",
+    "address": "Columbusplatz 7-8\nStiege 1 / 5. Stock\n1100 Wien\nÖsterreich",
+    "phone": "+43 1 5136633100",
+    "fax": "+43 1 5136622200",
+    "email": "datenschutz@unzer.com",
+    "web": "https://www.unzer.com/at/",
+    "sources": [
+        "https://a.storyblok.com/f/118211/x/ef853279f4/20250214_datenschutzhinweise_unzer-austria_endkunden.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

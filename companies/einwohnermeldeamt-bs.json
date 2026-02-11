@@ -1,0 +1,20 @@
+{
+    "slug": "einwohnermeldeamt-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Einwohnermeldeamt Braunschweig",
+    "address": "Fachbereich Bürgerservice, Öffentliche Sicherheit\nAbteilung Bürgerangelegenheiten\nFriedrich-Seele-Straße 7\n38122 Braunschweig\nDeutschland",
+    "phone": "+49 531 4701",
+    "fax": "+49 531 4706099",
+    "email": "buergerangelegenheiten@braunschweig.de",
+    "web": "https://www.braunschweig.de/politik_verwaltung/fb_institutionen/fachbereiche_referate/fb32/fb32_4/",
+    "sources": [
+        "https://www.braunschweig.de/politik_verwaltung/fb_institutionen/fachbereiche_referate/fb32/fb32_4/"
+    ],
+    "request-language": "de",
+    "quality": "verified"
+}

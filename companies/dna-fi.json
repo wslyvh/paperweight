@@ -1,0 +1,20 @@
+{
+    "slug": "dna-fi",
+    "relevant-countries": [
+        "fi"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "DNA Oyj",
+    "address": "PO Box 10\n01044 DNA\nFinland",
+    "phone": "+358 44 144044",
+    "email": "palvelu@dna.fi",
+    "web": "https://www.dna.fi/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/624",
+        "https://corporate.dna.fi/tietosuoja/tietosuojaseloste"
+    ],
+    "needs-id-document": true,
+    "quality": "verified"
+}

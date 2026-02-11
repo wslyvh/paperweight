@@ -1,0 +1,19 @@
+{
+    "slug": "windaten",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "addresses"
+    ],
+    "name": "WINDATEN",
+    "address": "Nelkenstraße 2\n71723 Großbottwar\nDeutschland",
+    "phone": "+49 7148 1637171",
+    "email": "info@win-daten.de",
+    "web": "https://win-daten.de/",
+    "sources": [
+        "https://win-daten.de/datenschutz",
+        "https://github.com/datenanfragen/data/issues/506"
+    ],
+    "quality": "verified"
+}

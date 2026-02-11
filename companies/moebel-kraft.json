@@ -1,0 +1,22 @@
+{
+    "slug": "moebel-kraft",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Möbel-Kraft Online GmbH & Co. KG",
+    "address": "Ziegelstraße 1\n23795 Bad Segeberg\nDeutschland",
+    "phone": "+49 4551 501",
+    "fax": "+49 800 3522222",
+    "email": "datenschutz@moebel-kraft.de",
+    "web": "https://www.moebel-kraft.de",
+    "sources": [
+        "https://www.moebel-kraft.de/impressum",
+        "https://www.moebel-kraft.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1298"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

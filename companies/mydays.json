@@ -1,0 +1,22 @@
+{
+    "slug": "mydays",
+    "categories": [
+        "commerce",
+        "insurance"
+    ],
+    "name": "mydays GmbH",
+    "address": "Riesstraße 22\n80992 München\nDeutschland",
+    "phone": "+49 89 21 12 99 933",
+    "fax": "+49 89 452 134 119",
+    "email": "datenschutz@mydays.de",
+    "web": "https://www.mydays.de/",
+    "sources": [
+        "https://www.mydays.de/datenschutz",
+        "https://www.mydays.de/impressum"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

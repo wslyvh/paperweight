@@ -1,0 +1,26 @@
+{
+    "slug": "vivobarefoot",
+    "relevant-countries": [
+        "de",
+        "ch",
+        "at"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "EOD European Online Distribution GmbH",
+    "runs": [
+        "Vivobarefoot"
+    ],
+    "address": "Bötzinger Straße 31\n79111 Freiburg\nDeutschland",
+    "phone": "+49 761 45 89 2930",
+    "fax": "+49 761 45 89 2999",
+    "email": "datenschutz@eod.de",
+    "web": "https://www.vivobarefoot.de/",
+    "sources": [
+        "https://www.vivobarefoot.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1599"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,35 @@
+{
+    "slug": "tvinfo",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "TVinfo Internet GmbH",
+    "address": "Kronprinzenstr. 49\n40217 Düsseldorf\nDeutschland",
+    "phone": "+49 211 97262990",
+    "fax": "+49 211 97262999",
+    "email": "support@tvinfo.de",
+    "web": "https://www.tvinfo.de",
+    "sources": [
+        "https://www.tvinfo.de/impressum",
+        "https://www.tvinfo.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1325",
+        "https://github.com/datenanfragen/data/pull/2318"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "quality": "tested"
+}

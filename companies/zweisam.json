@@ -1,0 +1,24 @@
+{
+    "slug": "zweisam",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "name": "Zweisam",
+    "runs": [
+        "Zweisam.de",
+        "Zweisam.at",
+        "Zweisam.ch"
+    ],
+    "address": "FriendScout24 GmbH\nc/o WeWork\nNeuturmstraße 5\n80331 München\nDeutschland",
+    "email": "privacy@zweisam.de",
+    "web": "https://www.zweisam.de",
+    "sources": [
+        "https://www.zweisam.de/pages/misc/privacy",
+        "https://www.zweisam.at/pages/misc/privacy",
+        "https://www.zweisam.ch/pages/misc/privacy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "jako-o",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Connect GmbH",
+    "runs": [
+        "JAKO-O"
+    ],
+    "address": "Dorfstraße 13\n27367 Hellwege\nDeutschland",
+    "phone": "+49 4264 837800",
+    "email": "info@jako-o.com",
+    "web": "https://www.jako-o.com/",
+    "sources": [
+        "https://www.jako-o.com/Datenschutz"
+    ],
+    "quality": "verified"
+}

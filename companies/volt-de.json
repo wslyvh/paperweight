@@ -1,0 +1,18 @@
+{
+    "slug": "volt-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "political party"
+    ],
+    "name": "Volt Deutschland",
+    "address": "Choriner Straße 34\n10435 Berlin\nDeutschland",
+    "email": "datenschutz@voltdeutschland.org",
+    "web": "https://www.voltdeutschland.org/",
+    "sources": [
+        "https://www.voltdeutschland.org/datenschutz"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

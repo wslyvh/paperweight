@@ -1,0 +1,23 @@
+{
+    "slug": "alditalk",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "E-Plus Service GmbH",
+    "runs": [
+        "ALDI TALK",
+        "mein ALDI TALK"
+    ],
+    "address": "E-Plus-Straße 1\n40472 Düsseldorf\nDeutschland",
+    "email": "datenschutz@eplus.de",
+    "web": "https://www.alditalk.de",
+    "sources": [
+        "https://www.alditalk.de/datenschutz",
+        "https://media.medion.com/s/ALDItalk/PDF/Datenschutzmerkblatt-ALDITALK_14092020_n.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

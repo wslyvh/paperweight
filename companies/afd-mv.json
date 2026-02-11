@@ -1,0 +1,22 @@
+{
+    "slug": "afd-mv",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "political party"
+    ],
+    "name": "„Alternative für Deutschland“ Mecklenburg-Vorpommern",
+    "address": "Woldegker Straße 27\n17033 Neubrandenburg\nDeutschland",
+    "phone": "+49 395 36967312",
+    "fax": "+49 395 36967313",
+    "email": "datenschutz@afd-mv.de",
+    "web": "https://afd-mv.de",
+    "sources": [
+        "https://afd-mv.de/partei/geschaeftsstelle/",
+        "https://github.com/datenanfragen/data/issues/225",
+        "https://afd-mv.de/datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

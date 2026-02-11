@@ -1,0 +1,16 @@
+{
+    "slug": "seitwert",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Seitwert GmbH",
+    "address": "Siegburger Straße 215\n50679 Köln\nDeutschland",
+    "phone": "+49 221 992020",
+    "email": "info@seitwert.de",
+    "web": "https://www.seitwert.de",
+    "sources": [
+        "https://www.seitwert.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1264"
+    ],
+    "quality": "verified"
+}

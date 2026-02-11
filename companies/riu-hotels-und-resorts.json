@@ -1,0 +1,23 @@
+{
+    "slug": "riu-hotels-und-resorts",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "RIU Hotels und Resorts",
+    "runs": [
+        "RIUSA II, S.A.",
+        "RESERVATION SHOP, S.L.U."
+    ],
+    "address": "C. Llaud S/N\n07610, Palma de Mallorca\nSpain",
+    "email": "privacy@riu.com",
+    "web": "https://www.riu.com",
+    "sources": [
+        "https://www.riu.com/privacy",
+        "https://github.com/datenanfragen/data/pull/2323"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

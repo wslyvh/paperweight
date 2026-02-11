@@ -1,0 +1,22 @@
+{
+    "slug": "bb-services-gmbh",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "BB Services GmbH",
+    "runs": [
+        "Blue Brixx (bluebrixx.com)"
+    ],
+    "address": "Böttgerstr. 14\n65439 Flörsheim\nDeutschland",
+    "phone": "+49 6145 5456192",
+    "email": "contact@bluebrixx.com",
+    "web": "https://www.bluebrixx.com",
+    "sources": [
+        "https://www.bluebrixx.com/de/policy_privacy",
+        "https://www.bluebrixx.com/de/legal_notice"
+    ],
+    "quality": "verified"
+}

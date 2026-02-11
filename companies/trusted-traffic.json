@@ -1,0 +1,25 @@
+{
+    "slug": "trusted-traffic",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "TT Online Marketing GmbH",
+    "runs": [
+        "special24-angebote.de",
+        "top24-angebote.de"
+    ],
+    "address": "Josef-Göres-Platz 2\n56068 Koblenz\nDeutschland",
+    "phone": "+49 261 45099419",
+    "email": "datenschutz@trusted-traffic.de",
+    "web": "http://www.trusted-traffic.de",
+    "sources": [
+        "https://trusted-traffic.de/datenschutz",
+        "https://trusted-traffic.de/impressum",
+        "https://github.com/datenanfragen/data/issues/516"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

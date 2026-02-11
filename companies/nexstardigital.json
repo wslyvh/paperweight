@@ -1,0 +1,20 @@
+{
+    "slug": "nexstardigital",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Nexstar Media Inc.",
+    "address": "545 E. John Carpenter Freeway\nSuite 700\nIrving\nTX 75062\nUnited States of America",
+    "email": "PrivacyAdministrator@nexstar.tv",
+    "web": "https://www.nexstar.tv",
+    "sources": [
+        "https://www.nexstar.tv/privacy-policy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

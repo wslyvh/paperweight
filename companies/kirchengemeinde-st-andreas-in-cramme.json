@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-st-andreas-in-cramme",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde St. Andreas in Cramme",
+    "address": "Werkstraße 18\n38229 Salzgitter\nDeutschland",
+    "phone": "+49 5341 24018",
+    "fax": "+49 5341 229396",
+    "email": "lobmachtersen.pfa@lk-bs.de",
+    "web": "http://www.pfarrverband-lobmachtersen.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=872"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

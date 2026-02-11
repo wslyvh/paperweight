@@ -1,0 +1,21 @@
+{
+    "slug": "goldbach-ch",
+    "relevant-countries": [
+        "ch"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Goldbach Group AG",
+    "address": "Seestrasse 39\nCH-8700 Küsnacht ZH\nSchweiz",
+    "phone": "+41 44 914 91 00",
+    "email": "oba@ch.goldbach.com",
+    "web": "https://goldbach.com/ch/de",
+    "sources": [
+        "https://goldbach.com/ch/de/datenschutz",
+        "https://goldbach.com/ch/de/impressum"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

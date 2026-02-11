@@ -1,0 +1,24 @@
+{
+    "slug": "art-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Art & Allposters International B.V.",
+    "runs": [
+        "Art.com Inc."
+    ],
+    "address": "De Voorde 40\n5807EZ Oostrum Lb\nThe Netherlands",
+    "phone": "+1 919 831 0199",
+    "email": "privacy@art.com",
+    "web": "https://www.art.com/",
+    "sources": [
+        "https://web.archive.org/web/20210606225606/https://www.art.com/help/talktous.html",
+        "https://web.archive.org/web/20210517181556/https://www.art.com/help/privacy-policy.html"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

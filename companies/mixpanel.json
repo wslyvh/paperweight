@@ -1,0 +1,25 @@
+{
+    "slug": "mixpanel",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Mixpanel, S.L.",
+    "runs": [
+        "Mixpanel International, Inc.",
+        "Mixpanel UK Ltd.",
+        "Mixpanel APAC Pte. Ltd."
+    ],
+    "address": "92, 75 Av. de Champs-Elysees\n75008 Paris\nFrance",
+    "email": "dpo@mixpanel.com",
+    "web": "https://mixpanel.com/",
+    "sources": [
+        "https://mixpanel.com/legal/privacy-policy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

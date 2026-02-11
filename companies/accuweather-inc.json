@@ -1,0 +1,16 @@
+{
+    "slug": "accuweather-inc",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "AccuWeather, Inc.",
+    "address": "385 Science Park Road\nState College\nPA 16803\nUnited States of America",
+    "phone": "+1 800 562 6452",
+    "email": "support@accuweather.com",
+    "webform": "https://www.accuweather.com/en/contact",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/3139"
+    ],
+    "suggested-transport-medium": "webform",
+    "quality": "verified"
+}

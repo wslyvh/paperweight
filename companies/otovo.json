@@ -1,0 +1,18 @@
+{
+    "slug": "otovo",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Otovo GmbH",
+    "address": "Friedrichstraße 171\n10117 Berlin\nDeutschland",
+    "phone": "+49 30 56796681",
+    "email": "privacy@otovo.com",
+    "web": "https://www.otovo.de/",
+    "sources": [
+        "https://www.otovo.de/legal/privacy/",
+        "https://www.otovo.de/legal/imprint/",
+        "https://github.com/datenanfragen/data/pull/2125"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

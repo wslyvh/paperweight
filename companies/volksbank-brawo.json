@@ -1,0 +1,21 @@
+{
+    "slug": "volksbank-brawo",
+    "categories": [
+        "finance"
+    ],
+    "name": "Volksbank eG Braunschweig Wolfsburg",
+    "address": "Am Mühlengraben 1\n38440 Wolfsburg\nDeutschland",
+    "phone": "+49 800 269 910 66",
+    "fax": "+49 5361 201 88888",
+    "email": "datenschutz@vbbrawo.de",
+    "web": "https://www.volksbank-brawo.de",
+    "sources": [
+        "https://www.volksbank-brawo.de/service/datenschutzhinweis.html",
+        "https://www.volksbank-brawo.de/service/impressum.html"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

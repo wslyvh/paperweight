@@ -1,0 +1,21 @@
+{
+    "slug": "frankonia-handels-gmbh-co-kg",
+    "relevant-countries": [
+        "de",
+        "at"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Frankonia Handels GmbH & Co. KG",
+    "address": "Schießhausstraße 10\n97228 Rottendorf\nDeutschland",
+    "phone": "+49 9302 200",
+    "email": "datenschutz@frankonia.de",
+    "web": "https://www.frankonia.de",
+    "sources": [
+        "https://www.frankonia.de/service/rechtliches-und-sicherheit/datenschutz/datenschutzhinweis.html",
+        "https://github.com/datenanfragen/data/pull/2748"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

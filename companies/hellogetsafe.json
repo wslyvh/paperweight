@@ -1,0 +1,23 @@
+{
+    "slug": "hellogetsafe",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Getsafe GmbH",
+    "runs": [
+        "Getsafe Digital GmbH"
+    ],
+    "address": "Waldhofer Str. 102\n69123 Heidelberg\nDeutschland",
+    "phone": "+49 6221 3579990",
+    "email": "datenschutz@hellogetsafe.com",
+    "web": "https://hellogetsafe.com",
+    "sources": [
+        "https://www.hellogetsafe.com/de-de/datenschutzerklaerung",
+        "https://github.com/datenanfragen/data/pull/1488"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

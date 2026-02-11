@@ -1,0 +1,22 @@
+{
+    "slug": "kfw-bankengruppe",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "KfW",
+    "address": "Palmengartenstr. 5-9\n60325 Frankfurt\nDeutschland",
+    "phone": "+49 69 74310",
+    "fax": "+49 69 74312944",
+    "email": "datenschutz@kfw.de",
+    "web": "https://www.kfw.de",
+    "sources": [
+        "https://www.kfw.de/%C3%9Cber-die-KfW/Datenschutz.html",
+        "https://github.com/datenanfragen/data/issues/560"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

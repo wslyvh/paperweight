@@ -1,0 +1,19 @@
+{
+    "slug": "bookdepository",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "The Book Depository Ltd",
+    "address": "Goodridge Business Park\nGloucester\nGL2 5EB\nUnited Kingdom",
+    "email": "help@support.bookdepository.com",
+    "web": "https://www.bookdepository.com",
+    "sources": [
+        "https://www.bookdepository.com/help/topic/HelpId/20/Our-privacy-policy#helpContent",
+        "https://www.bookdepository.com/contactus"
+    ],
+    "request-language": "en",
+    "quality": "verified"
+}

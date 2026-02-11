@@ -1,0 +1,22 @@
+{
+    "slug": "bast-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesanstalt für Straßenwesen (BASt)",
+    "address": "Brüderstraße 53\n51427 Bergisch Gladbach\nDeutschland",
+    "phone": "+49 2204 439002",
+    "fax": "+49 2204 43 1150",
+    "email": "datenschutz@bast.de",
+    "web": "https://www.bast.de",
+    "sources": [
+        "https://www.bast.de/DE/Service/Datenschutz/Datenschutz_node.html",
+        "https://www.bast.de/DE/Service/Impressum/impressum_node.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "data-factory",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": ":data factory GmbH",
+    "address": "Dr.-Karl-Lexer-Weg B300\n86633 Neuburg\nDeutschland",
+    "phone": "+49 8431 647390",
+    "fax": "+49 8431 6473919",
+    "email": "info@data-factory.net",
+    "web": "https://data-factory.net/",
+    "sources": [
+        "https://data-factory.net/impressum",
+        "https://github.com/datenanfragen/data/pull/2437"
+    ],
+    "quality": "verified"
+}

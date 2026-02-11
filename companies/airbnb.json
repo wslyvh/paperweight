@@ -1,0 +1,38 @@
+{
+    "slug": "airbnb",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Airbnb Ireland UC",
+    "runs": [
+        "Luxury Retreats International Inc.",
+        "Crowdtilt",
+        "Accomable",
+        "Aibiying",
+        "Trooly, Inc.",
+        "Deco Software Inc.",
+        "Trip4real Experiences, S.L.",
+        "Lapka, Inc.",
+        "Airbnb Uk Limited",
+        "Airbnb, Inc.",
+        "Airbnb Payments, Inc.",
+        "Airbnb Global Services Limited",
+        "Airbnb Internet (Beijing) Co., Ltd.",
+        "Airbnb Payments India Pvt. Ltd.",
+        "Airbnb Payments UK Ltd",
+        "Airbnb Payments Australia Pty. Ltd."
+    ],
+    "address": "8 Hanover Quay\nDublin 2\nIreland",
+    "email": "dpo@airbnb.com",
+    "web": "https://www.airbnb.com/",
+    "sources": [
+        "https://www.airbnb.com/help/article/2855/privacy-policy",
+        "https://www.airbnb.com/help/article/2860/outside-of-the-united-states",
+        "https://github.com/datenanfragen/data/issues/83"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

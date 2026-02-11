@@ -1,0 +1,22 @@
+{
+    "slug": "adux",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "AdUX",
+    "address": "27 rue de Mogador\n75009 Paris\nFrance",
+    "phone": "+33 1 73 03 89 00",
+    "email": "privacy@adux.com",
+    "web": "http://www.adux.com",
+    "sources": [
+        "https://www.adux.co/donnees-personnelles/",
+        "https://www.adux.co/informations-legales/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

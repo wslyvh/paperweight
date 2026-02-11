@@ -1,0 +1,40 @@
+{
+    "slug": "grandvision-es",
+    "relevant-countries": [
+        "es"
+    ],
+    "categories": [
+        "health",
+        "commerce"
+    ],
+    "name": "Grandvisión Spain Grupo Óptico, S.A.U.",
+    "runs": [
+        "Optica2000",
+        "MasVisión / +Visión",
+        "Solaris"
+    ],
+    "address": "C/ Numancia, 46\n5ª planta\n08029 Barcelona\nEspaña",
+    "phone": "+34 933 63 28 38",
+    "fax": "+34 934 10 84 98",
+    "email": "dpd@grandvisionspain.es",
+    "web": "https://www.optica2000.com",
+    "sources": [
+        "https://www.optica2000.com/es_ES/politicaprivacidad",
+        "https://www.masvision.es/politicaprivacidad",
+        "https://github.com/datenanfragen/data/pull/1946"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

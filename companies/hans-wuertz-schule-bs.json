@@ -1,0 +1,22 @@
+{
+    "slug": "hans-wuertz-schule-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Hans Würtz Schule Braunschweig",
+    "address": "Kruppstraße 24 a\n38126 Braunschweig\nDeutschland",
+    "phone": "+49 531 680 37 0",
+    "fax": "+49 531 680 37 19",
+    "email": "hans-wuertz-schule@braunschweig.de",
+    "web": "https://www.hans-wuertz-schule.com/",
+    "sources": [
+        "https://www.hans-wuertz-schule.com/about/"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

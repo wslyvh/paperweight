@@ -1,0 +1,23 @@
+{
+    "slug": "similarweb",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads",
+        "commerce"
+    ],
+    "name": "SimilarWeb Ltd.",
+    "address": "Bentima House\nSeventh Floor\n168–172 Old St\nLondon\nEC1V 9BP\nUnited Kingdom",
+    "phone": "+44 808 189 3321",
+    "email": "dpo@similarweb.com",
+    "web": "https://www.similarweb.com/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/35",
+        "https://www.similarweb.com/corp/legal/privacy-policy/"
+    ],
+    "request-language": "en",
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

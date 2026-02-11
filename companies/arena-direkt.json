@@ -1,0 +1,21 @@
+{
+    "slug": "arena-direkt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "ARENA Direkt GmbH",
+    "address": "Gustav-Hertz-Straße 9\n91074 Herzogenaurach\nDeutschland",
+    "email": "datenschutz@arena-direkt.de",
+    "web": "https://www.arena-direkt.de/",
+    "sources": [
+        "https://www.arena-direkt.de/index.php/impressum",
+        "https://www.arena-direkt.de/index.php/datenschutz",
+        "https://github.com/datenanfragen/data/issues/75"
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

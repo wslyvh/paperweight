@@ -1,0 +1,25 @@
+{
+    "slug": "untis",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch",
+        "es",
+        "fr",
+        "it",
+        "dk",
+        "nl",
+        "pt"
+    ],
+    "name": "Untis GmbH",
+    "address": "Belvederegasse 11\n2000 Stockerau\nÖsterreich",
+    "phone": "+43 2266 62241",
+    "fax": "+43 2266 62241 6",
+    "email": "datenschutz@untis.at",
+    "web": "https://www.untis.at",
+    "sources": [
+        "https://www.untis.at/Downloads/datenschutz/de/privacyPolicyUntis.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

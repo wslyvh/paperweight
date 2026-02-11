@@ -1,0 +1,19 @@
+{
+    "slug": "minicar-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "MC Mini-Car GmbH",
+    "address": "Varrentrappstraße 14\n38114 Braunschweig\nDeutschland",
+    "phone": "+49 531 5 50 50",
+    "fax": "+49 531 57 77 760",
+    "email": "kontakt@minicar-braunschweig.de",
+    "web": "https://minicar-braunschweig.de/",
+    "sources": [
+        "https://minicar-braunschweig.de/impressum-datenschutz/"
+    ],
+    "quality": "verified"
+}

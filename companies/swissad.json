@@ -1,0 +1,21 @@
+{
+    "slug": "swissad",
+    "relevant-countries": [
+        "ch",
+        "de"
+    ],
+    "name": "swissad GmbH",
+    "address": "c/o IBS data protection services and consulting GmbH\nZirkusweg 1\n20359 Hamburg\nDeutschland",
+    "phone": "+41 71 886 30 20",
+    "email": "datenschutz@swissad.net",
+    "web": "https://swissad.net/",
+    "sources": [
+        "https://swissad.net/",
+        "https://github.com/datenanfragen/data/pull/1546"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Alternative Adresse: swissad GmbH, St. Gallerstr. 49, 9100 Herisau, Schweiz"
+    ],
+    "quality": "verified"
+}

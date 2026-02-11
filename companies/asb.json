@@ -1,0 +1,21 @@
+{
+    "slug": "asb",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "nonprofit"
+    ],
+    "name": "Arbeiter-Samariter-Bund Deutschland e.V.",
+    "address": "c/o Projekt 29 GmbH & Co. KG\nOstengasse 14\n93047 Regensburg\nDeutschland",
+    "phone": "+49 941 2986930",
+    "fax": "+49 941 29869316",
+    "email": "anfragen@projekt29.de",
+    "web": "https://asb.de",
+    "sources": [
+        "https://www.asb.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1979"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

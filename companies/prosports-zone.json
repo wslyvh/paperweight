@@ -1,0 +1,21 @@
+{
+    "slug": "prosports-zone",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "voor GmbH",
+    "runs": [
+        "SportsZone GmbH (ehem.)"
+    ],
+    "address": "c/o ImpactHub Leipzig GmbH\nNaumburger Str. 25\n04229 Leipzig\nDeutschland",
+    "phone": "+49 341 56639590",
+    "email": "mail@voor.sport",
+    "web": "https://voor.sport/",
+    "sources": [
+        "https://voor.sport/de/datenschutzerklaerung",
+        "https://voor.sport/de/impressum",
+        "https://www.northdata.de/voor%20GmbH,%20Leipzig/HRB%2042037",
+        "https://github.com/datenanfragen/data/pull/2592"
+    ],
+    "quality": "verified"
+}

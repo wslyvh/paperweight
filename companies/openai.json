@@ -1,0 +1,20 @@
+{
+    "slug": "openai",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media",
+        "telecommunication"
+    ],
+    "name": "OpenAI, L.L.C.",
+    "address": "3180 18th St\nSan Francisco, CA 94110\nUnited States of America",
+    "email": "dsar@openai.com",
+    "web": "https://openai.com/",
+    "sources": [
+        "https://openai.com/policies/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/2175"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

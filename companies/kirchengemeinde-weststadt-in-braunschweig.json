@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-weststadt-in-braunschweig",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Weststadt in Braunschweig",
+    "address": "Muldeweg 5\n38120 Braunschweig\nDeutschland",
+    "phone": "+49 531 841880",
+    "fax": "+49 531 842372",
+    "email": "weststadt.bs.buero@lk-bs.de",
+    "web": "https://www.emmaus-braunschweig.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=766"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

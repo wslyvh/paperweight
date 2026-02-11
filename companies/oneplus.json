@@ -1,0 +1,18 @@
+{
+    "slug": "oneplus",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "OnePlus Technology (Shenzhen) Co., Ltd.",
+    "address": "c/o Reflection Investment B.V.\nHofplein 20\n3032AC Rotterdam\nThe Netherlands",
+    "email": "privacy@oneplus.com",
+    "sources": [
+        "https://www.oneplus.com/de/legal/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/2304"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

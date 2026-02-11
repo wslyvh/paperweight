@@ -1,0 +1,20 @@
+{
+    "slug": "bankofamerica-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Bank of America Europe Designated Activity Company, Zweigniederlassung Frankfurt am Main",
+    "address": "Taunusanlage 9-10\n60329 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 58995028",
+    "email": "datenschutzbamlfrankfurt@bofa.com",
+    "web": "https://www.bankofamerica.com",
+    "sources": [
+        "https://business.bofa.com/content/dam/boamlimages/documents/articles/ID18_0208/GBAM-GDPR-Privacy-Notice-EMEA.pdf",
+        "https://github.com/datenanfragen/data/pull/2094"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

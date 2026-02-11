@@ -1,0 +1,16 @@
+{
+    "slug": "flatastic-app",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Flatastic GmbH",
+    "address": "Nordstrasse 300\n8037 Zürich\nSwitzerland",
+    "email": "gdpr@flatastic-app.com",
+    "web": "https://www.flatastic-app.com/de/",
+    "sources": [
+        "https://www.flatastic-app.com/de/privacy/#contact",
+        "https://github.com/datenanfragen/data/pull/2357"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

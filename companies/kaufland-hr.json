@@ -1,0 +1,19 @@
+{
+    "slug": "kaufland-hr",
+    "relevant-countries": [
+        "hr"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Kaufland Hrvatska k.d.",
+    "address": "Donje Svetice 14\n10 000 Zagreb\nHrvatska",
+    "phone": "+385 1 2353 555",
+    "email": "gdpr@kaufland.hr",
+    "web": "https://www.kaufland.hr",
+    "sources": [
+        "https://www.kaufland.hr/pravne-napomene.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

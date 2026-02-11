@@ -1,0 +1,24 @@
+{
+    "slug": "preisvergleich-internet-services-ag",
+    "relevant-countries": [
+        "de",
+        "at",
+        "pl"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Preisvergleich Internet Services AG",
+    "runs": [
+        "Geizhals.de",
+        "Geizhals.at",
+        "cenowarka.pl"
+    ],
+    "address": "Rothschildplatz 3 Top 3.01\n1020 Wien\nÖsterreich",
+    "email": "info@geizhals.at",
+    "sources": [
+        "https://unternehmen.geizhals.at/datenschutzerklaerung/",
+        "https://github.com/datenanfragen/data/pull/2793"
+    ],
+    "quality": "verified"
+}

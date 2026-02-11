@@ -1,0 +1,28 @@
+{
+    "slug": "nhs-england",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "health",
+        "public body"
+    ],
+    "name": "NHS England",
+    "runs": [
+        "NELCSU",
+        "NHS Arden & Gem Commissioning Support Unit",
+        "NHS Midlands & Lancashire Commissiong Support Unit",
+        "NHS North of England Commissioning Support Unit",
+        "NHS South, Central & West Commissioning Support Unit"
+    ],
+    "address": "Quarry House\nQuarry Hill\nLeeds\nLS2 7UE\nUnited Kingdom",
+    "email": "england.contactus@nhs.net",
+    "web": "https://www.england.nhs.uk/",
+    "sources": [
+        "https://ico.org.uk/ESDWebPages/Entry/Z2950066",
+        "https://www.england.nhs.uk/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/2114"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,42 @@
+{
+    "slug": "italiaonline",
+    "relevant-countries": [
+        "it"
+    ],
+    "categories": [
+        "telecommunication",
+        "addresses",
+        "entertainment",
+        "social media",
+        "finance",
+        "travel"
+    ],
+    "name": "Italiaonline S.p.A.",
+    "runs": [
+        "libero.it",
+        "virgilio.it",
+        "paginegialle.it",
+        "pgcasa.it",
+        "paginebianche.it",
+        "tuttocitta.it",
+        "dilei.it",
+        "siviaggia.it",
+        "quifinanza.it",
+        "buonissimo.it",
+        "supereva.it"
+    ],
+    "address": "Corso Mortara 22\n10149 Torino TO\nItalia",
+    "phone": "+39 800 011 411",
+    "fax": "+39 800 011 412",
+    "email": "info@italiaonline.it",
+    "webform": "https://privacy.italiaonline.it/dpo/form-contatto-dpo",
+    "web": "https://www.italiaonline.it/",
+    "sources": [
+        "https://www.italiaonline.it/corporate/informativa-privacy/",
+        "https://privacy.italiaonline.it/Privacy/form.privacy.php",
+        "http://privacy.italiaonline.it/common/cookie/privacy_libero.html",
+        "http://privacy.italiaonline.it/common/cookie/privacy_virgilio.html",
+        "https://www.paginegialle.it/termini-condizioni/dati_personali"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "aadia",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Confer UG",
+    "runs": [
+        "aadia Online Shop"
+    ],
+    "address": "Weinbergstraße 8\n99834 Gerstungen\nDeutschland",
+    "phone": "+49 36922 41500",
+    "email": "handel@aadia.de",
+    "web": "https://aadia.de/",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/2529",
+        "https://aadia.de/epages/a5787161-cf17-4eb7-a77b-c97d673b591b.sf/de_DE/?ObjectPath=/Shops/a5787161-cf17-4eb7-a77b-c97d673b591b/Categories/Imprint"
+    ],
+    "quality": "verified"
+}

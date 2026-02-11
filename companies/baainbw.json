@@ -1,0 +1,19 @@
+{
+    "slug": "baainbw",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesamt für Ausrüstung, Informationstechnik und Nutzung der Bundeswehr (BAAINBw)",
+    "address": "Ferdinand-Sauerbruch-Straße 1\n56073 Koblenz\nDeutschland",
+    "phone": "+49 261 400 0",
+    "fax": "+49 261 400 12660",
+    "web": "http://www.baainbw.de",
+    "sources": [
+        "https://www.bundeswehr.de/de/organisation/ausruestung-baainbw/adressen-und-telefonnummern"
+    ],
+    "request-language": "de",
+    "quality": "verified"
+}

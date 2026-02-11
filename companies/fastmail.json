@@ -1,0 +1,35 @@
+{
+    "slug": "fastmail",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Fastmail Pty Ltd",
+    "runs": [
+        "Fastmail",
+        "Pobox",
+        "Topicbox"
+    ],
+    "address": "PO Box 234\nCollins Street West\nVIC 8007\nAustralia",
+    "email": "dataprotection@fastmailteam.com",
+    "web": "https://www.fastmail.com",
+    "sources": [
+        "https://www.fastmail.com/about/privacy/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

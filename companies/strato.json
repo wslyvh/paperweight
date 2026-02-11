@@ -1,0 +1,21 @@
+{
+    "slug": "strato",
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "STRATO AG",
+    "address": "Pascalstraße 10\n10587 Berlin\nDeutschland",
+    "phone": "+49 30 300 146 0",
+    "fax": "+49 30 886 15 111",
+    "email": "datenschutz@strato.de",
+    "web": "https://www.strato.de",
+    "sources": [
+        "https://www.strato.de/datenschutz/",
+        "https://www.strato.de/impressum/"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

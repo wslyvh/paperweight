@@ -1,0 +1,20 @@
+{
+    "slug": "nexiga",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "addresses"
+    ],
+    "name": "Nexiga GmbH",
+    "address": "Mozartstraße 4 – 10\n53115 Bonn\nDeutschland",
+    "phone": "+49 228 84960",
+    "fax": "+49 228 8496130",
+    "email": "datenschutzbeauftragter@nexiga.com",
+    "web": "https://www.nexiga.com",
+    "sources": [
+        "https://www.nexiga.com/datenschutzerklaerung/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

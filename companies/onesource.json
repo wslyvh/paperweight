@@ -1,0 +1,18 @@
+{
+    "slug": "onesource",
+    "relevant-countries": [
+        "be",
+        "nl",
+        "gb"
+    ],
+    "name": "OneSource Belgium",
+    "address": "Avenue Henry Dunant 38/2\n1140, Evere\nBelgium",
+    "phone": "+32 2 808 20 80",
+    "email": "info@onesource.one",
+    "web": "https://www.onesource.one/",
+    "sources": [
+        "https://www.onesource.one/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/1079"
+    ],
+    "quality": "verified"
+}

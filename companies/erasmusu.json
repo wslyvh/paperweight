@@ -1,0 +1,36 @@
+{
+    "slug": "erasmusu",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "COKIDOO STUDIOS S.L.U.",
+    "runs": [
+        "erasmusu.com"
+    ],
+    "address": "Calle Fernando Alonso Navarro 12, 1º\n30009 Murcia\nSpain",
+    "phone": "+34 694 47 24 62",
+    "email": "legal@erasmusu.com",
+    "web": "https://erasmusu.com",
+    "sources": [
+        "https://erasmusu.com/en/legal#section-13",
+        "https://github.com/datenanfragen/data/issues/179"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Account email",
+            "type": "input",
+            "optional": true
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

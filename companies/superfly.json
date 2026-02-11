@@ -1,0 +1,32 @@
+{
+    "slug": "superfly",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Superfly Air Sports Holding GmbH",
+    "runs": [
+        "shop-wiesbaden.superfly.de"
+    ],
+    "address": "Weiseler Str. 105\n35510 Butzbach\nDeutschland",
+    "email": "datenschutz@superfly.de",
+    "web": "https://superfly.de",
+    "sources": [
+        "https://superfly.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2219"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

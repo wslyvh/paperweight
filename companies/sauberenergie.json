@@ -1,0 +1,35 @@
+{
+    "slug": "sauberenergie",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "SE SAUBER ENERGIE GmbH & Co. KG",
+    "address": "Bachstraße 3\n53721 Siegburg\nDeutschland",
+    "phone": "+49 800 1122999",
+    "fax": "+49 2241 107485",
+    "email": "datenschutz@sauberenergie.de",
+    "web": "https://www.sauberenergie.de",
+    "sources": [
+        "https://www.sauberenergie.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/954"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail-Adresse",
+            "type": "email"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

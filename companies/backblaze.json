@@ -1,0 +1,23 @@
+{
+    "slug": "backblaze",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Backblaze, Inc.",
+    "runs": [
+        "Backblaze Computer Backup",
+        "B2 Cloud Storage"
+    ],
+    "address": "500 Ben Franklin Ct\nSan Mateo\nCA 94401\nUnited States of America",
+    "phone": "+1 650 352 3738",
+    "fax": "+1 650 472 8095",
+    "email": "privacy@backblaze.com",
+    "web": "https://www.backblaze.com",
+    "sources": [
+        "https://www.backblaze.com/company/privacy.html",
+        "https://www.backblaze.com/company/contact.html"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

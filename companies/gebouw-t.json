@@ -1,0 +1,19 @@
+{
+    "slug": "gebouw-t",
+    "relevant-countries": [
+        "nl"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Gebouw-T",
+    "address": "Postbus 714\n4600 AS\nBergen op Zoom\nThe Netherlands",
+    "phone": "+31 164 253 122",
+    "email": "info@gebouw-t.nl",
+    "web": "https://gebouw-t.nl",
+    "sources": [
+        "https://gebouw-t.nl/privacy-statement/",
+        "https://github.com/datenanfragen/data/pull/1671"
+    ],
+    "quality": "verified"
+}

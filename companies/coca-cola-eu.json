@@ -1,0 +1,42 @@
+{
+    "slug": "coca-cola-eu",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "NV Coca-Cola Services SA",
+    "runs": [
+        "Coca-Cola GmbH"
+    ],
+    "address": "Chaussée de Mons 1424\n1070 Brussels\nBelgium",
+    "phone": "+49 30 209 11 209",
+    "email": "privacy@coca-cola.com",
+    "webform": "https://privacyportal.onetrust.com/webform/e3ab7adf-beb9-4769-844e-c1ec4e6d17bb/f2a168c7-8bfd-4f84-bf62-f11feac5dae6",
+    "web": "https://www.coca-cola.com",
+    "sources": [
+        "https://www.coca-cola-france.fr/politique-de-confidentialite",
+        "https://www.coca-cola-deutschland.de/datenschutz",
+        "https://www.coca-cola-oesterreich.at/datenschutz",
+        "https://fr.coca-cola.be/politique-de-confidentialite",
+        "https://www.coca-cola.bg/privacy-policy",
+        "https://www.coca-cola.hr/politika-privatnosti",
+        "https://www.coca-cola.cz/zasady-ochrany-osobnich-udaju",
+        "https://www.coca-cola.dk/privacy-policy",
+        "https://www.coca-cola.ee/privaatsuspoliitika",
+        "https://www.coca-cola.fi/evastekaytanto",
+        "https://www.coca-cola.gr/privacy-policy",
+        "https://www.coca-cola.ie/privacy-policy",
+        "https://www.coca-colaitalia.it/informativa-privacy",
+        "https://www.cocacolanederland.nl/privacy",
+        "https://www.coca-cola.pl/polityka-prywatnosci",
+        "https://www.cocacola.pt/politica-de-privacidade",
+        "https://www.coca-cola.sk/zasady-ochrany-osobnych-udajov",
+        "https://www.cocacolaespana.es/politica-de-privacidad",
+        "https://www.coca-cola.se/personuppgifter",
+        "https://github.com/datenanfragen/data/issues/557"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

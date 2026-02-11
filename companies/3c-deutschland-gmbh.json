@@ -1,0 +1,17 @@
+{
+    "slug": "3c-deutschland-gmbh",
+    "relevant-countries": [
+        "de",
+        "ch"
+    ],
+    "name": "3C Deutschland GmbH",
+    "address": "Edisonstrasse 19\n74076 Heilbronn\nDeutschland",
+    "phone": "+49 7131 797866700",
+    "email": "datenschutz@3c-d.de",
+    "web": "https://www.3c-d.de",
+    "sources": [
+        "https://www.3c-d.de/de/ccc/cms/privacy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

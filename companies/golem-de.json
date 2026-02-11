@@ -1,0 +1,17 @@
+{
+    "slug": "golem-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Golem Media GmbH",
+    "address": "c/o JBB Data Consult GmbH\nChristinenstraße 18-19\n10119 Berlin\nDeutschland",
+    "phone": "+49 30 62901110",
+    "email": "datenschutz@golem.de",
+    "web": "https://www.golem.de",
+    "sources": [
+        "https://www.golem.de/sonstiges/impressum.html",
+        "https://www.golem.de/sonstiges/Datenschutz.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

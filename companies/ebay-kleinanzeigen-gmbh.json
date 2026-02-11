@@ -1,0 +1,25 @@
+{
+    "slug": "ebay-kleinanzeigen-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "kleinanzeigen.de GmbH",
+    "runs": [
+        "eBay Kleinanzeigen (ehem.)"
+    ],
+    "address": "Albert-Einstein-Ring 2-6\n14532 Kleinmachnow Dreilinden\nDeutschland",
+    "fax": "+49 30 81097004",
+    "email": "datenschutz@kleinanzeigen.de",
+    "web": "https://www.kleinanzeigen.de/",
+    "sources": [
+        "https://themen.kleinanzeigen.de/datenschutzerklaerung/",
+        "https://www.kleinanzeigen.de/impressum.html",
+        "https://www.globenewswire.com/en/news-release/2023/05/16/2669599/0/en/Adevinta-s-eBay-Kleinanzeigen-is-now-Kleinanzeigen.html",
+        "https://github.com/datenanfragen/data/pull/2347"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

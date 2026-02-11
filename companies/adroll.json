@@ -1,0 +1,28 @@
+{
+    "slug": "adroll",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "NextRoll Limited",
+    "runs": [
+        "AdRoll (www.adroll.com)",
+        "RollWorks (www.rollworks.com)",
+        "NextRoll, Inc.",
+        "AdRoll Advertising Ltd. (formerly)",
+        "AdRoll, Inc. (formerly)"
+    ],
+    "address": "Floor 3, Block 3\nMiesian Plaza\nDublin 2\nD02 Y754\nIreland",
+    "email": "support@nextroll.com",
+    "webform": "https://nextroll-privacy.relyance.ai/",
+    "web": "https://www.adroll.com/",
+    "sources": [
+        "https://www.nextroll.com/privacy",
+        "https://github.com/datenanfragen/data/pull/753"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "webform",
+    "quality": "verified"
+}

@@ -1,0 +1,39 @@
+{
+    "slug": "dance-all-day",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Dance All Day Musicvertriebs GmbH",
+    "runs": [
+        "feiyr.com",
+        "djshop.de (ehem.)"
+    ],
+    "address": "Raiffeisenstr 4\n83377 Vachendorf\nDeutschland",
+    "phone": "+49 861 166170",
+    "email": "datenschutz@dance-all-day.com",
+    "web": "https://www.dance-all-day.com",
+    "sources": [
+        "https://www.dance-all-day.com/privacypolicy/index.html",
+        "https://www.feiyr.com/de/privacy-statement.html",
+        "https://github.com/datenanfragen/data/pull/2213",
+        "https://github.com/datenanfragen/data/pull/2364"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

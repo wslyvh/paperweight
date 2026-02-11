@@ -1,0 +1,17 @@
+{
+    "slug": "calvary-petroleum-uk-limited",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "CALVARY Petroleum (UK) Limited",
+    "address": "22-1 Craighall Gardens\nEdinburgh\nEH6 4RJ\nUnited Kingdom",
+    "email": "accounts@calvarypetroleum.co.uk",
+    "web": "https://www.calvarypetroleum.co.uk",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/297"
+    ],
+    "quality": "verified"
+}

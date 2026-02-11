@@ -1,0 +1,18 @@
+{
+    "slug": "zara-gb",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Zara UK Ltd.",
+    "address": "Lumina House\n89 New Bond Street\nLondon W1S 1DA\nUnited Kingdom",
+    "email": "dataprotection@zara.com",
+    "web": "https://www.zara.com/gb",
+    "sources": [
+        "https://static.zara.net/static/pdfs/UK/privacy-policy/privacy-policy-en_UK-20180525.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

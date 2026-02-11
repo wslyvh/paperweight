@@ -1,0 +1,31 @@
+{
+    "slug": "mintegral",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Mobvista (Guangzhou) Technology Company Limited",
+    "runs": [
+        "Mintegral",
+        "Mobworld Technology Limited",
+        "Mobvista International Technology Limited",
+        "Mintegral Limited",
+        "Advertter Technology Company Limited",
+        "Mintegral International Limited",
+        "Mintegral North America Inc.",
+        "Adlogic Technology Pte.Ltd"
+    ],
+    "address": "c/o Eurocore B.V.\nHullenbergweg 278\n1101BV Amsterdam\nThe Netherlands",
+    "email": "privacy@mintegral.com",
+    "web": "https://www.mintegral.com",
+    "sources": [
+        "https://www.mintegral.com/en/privacy/",
+        "https://www.mintegral.com/wp-content/uploads/2021/07/Privacy_Policy-Mintegral.pdf"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

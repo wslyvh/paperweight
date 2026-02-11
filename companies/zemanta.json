@@ -1,0 +1,24 @@
+{
+    "slug": "zemanta",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Zemanta, Inc.",
+    "runs": [
+        "Outbrain DSP"
+    ],
+    "address": "111 West 19th Street\n3rd floor\nNew York\nNY 10011\nUnited States of America",
+    "email": "Privacy@outbrain.com",
+    "web": "http://www.zemanta.com/",
+    "sources": [
+        "https://www.outbrain.com/privacy/privacy-policy-outbrain-dsp/",
+        "https://vault.pactsafe.io/s/9ac72792-c7df-4d0d-832d-0ca873f73a64/legal.html"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

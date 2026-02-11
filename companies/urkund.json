@@ -1,0 +1,20 @@
+{
+    "slug": "urkund",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Prio InfoCenter AB",
+    "runs": [
+        "Ouriginal",
+        "Urkund (formerly)"
+    ],
+    "address": "6th Floor\nWellbar Central 36\nGallowgate\nNewcastle upon Tyne\nNE1 4TD\nUnited Kingdom",
+    "email": "dpo@ouriginal.com",
+    "web": "https://www.ouriginal.com/",
+    "sources": [
+        "https://www.ouriginal.com/privacy-and-personal-data-protection-policy/",
+        "https://github.com/datenanfragen/data/issues/521"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

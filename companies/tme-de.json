@@ -1,0 +1,20 @@
+{
+    "slug": "tme-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "TME Germany GmbH",
+    "address": "Dohnanyistraße 28-30\n04103 Leipzig\nDeutschland",
+    "phone": "+49 341 2120340",
+    "fax": "+49 341 21203429",
+    "email": "tme@tme-germany.de",
+    "web": "https://www.tme.eu",
+    "sources": [
+        "https://www.tme.eu/de/information/data-protection-policy/6274/Datenschutz/",
+        "https://www.tme.eu/de/information/the-odr-platform/16286/impressum/"
+    ],
+    "quality": "verified"
+}

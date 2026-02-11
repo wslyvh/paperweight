@@ -1,0 +1,24 @@
+{
+    "slug": "crif-it",
+    "relevant-countries": [
+        "it"
+    ],
+    "categories": [
+        "finance",
+        "credit agency"
+    ],
+    "name": "CRIF SpA",
+    "address": "Via Mario Fantin, 1-3\n40131 Bologna\nItaly",
+    "phone": "+39 051 417 5084",
+    "email": "dirprivacy@crif.com",
+    "web": "https://www.crif.it",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/138",
+        "https://www.crif.it/privacy-policy/"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "CRIF company provides data analytics (credit scoring) on European citizens for banks and a lot of 3rd party financial institutions. They are similar to Equifax in the US."
+    ],
+    "quality": "verified"
+}

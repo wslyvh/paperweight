@@ -1,0 +1,19 @@
+{
+    "slug": "freelancermap",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "freelancermap GmbH",
+    "address": "Pretzfelder Straße 7 – 11\n90425 Nürnberg\nDeutschland",
+    "phone": "+49 911 37750270",
+    "fax": "+49 911 99399402",
+    "email": "datenschutz@freelancermap.de",
+    "web": "https://www.freelancermap.de",
+    "sources": [
+        "https://www.freelancermap.de/impressum.html",
+        "https://www.freelancermap.de/datenschutz.html",
+        "https://github.com/datenanfragen/data/issues/33",
+        "https://github.com/datenanfragen/data/pull/2841"
+    ],
+    "quality": "verified"
+}

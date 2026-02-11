@@ -1,0 +1,34 @@
+{
+    "slug": "radiosaw",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "VMG Verlags- und Medien GmbH & Co.KG",
+    "runs": [
+        "radio SAW",
+        "rockland.fm"
+    ],
+    "address": "c/o compolicy GmbH\nSchwedenkai 1\n24103 Kiel\nDeutschland",
+    "email": "info@compolicy.de",
+    "web": "https://www.radiosaw.de",
+    "sources": [
+        "https://www.radiosaw.de/content/datenschutzerklaerung",
+        "https://www.rockland.fm/datenschutzerklaerung",
+        "https://github.com/datenanfragen/data/pull/1753"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail-Adresse",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

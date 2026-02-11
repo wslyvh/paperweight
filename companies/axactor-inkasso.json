@@ -1,0 +1,21 @@
+{
+    "slug": "axactor-inkasso",
+    "categories": [
+        "collection agency"
+    ],
+    "name": "Axactor Germany GmbH",
+    "address": "Im Breitspiel 13\n69126 Heidelberg\nDeutschland",
+    "phone": "+49 6221 987 60",
+    "fax": "+49 6221 987 999",
+    "email": "datenschutz@axactor.de",
+    "web": "https://www.axactor.de/",
+    "sources": [
+        "https://www.axactor.de/privacy",
+        "https://www.axactor.de/impressum"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

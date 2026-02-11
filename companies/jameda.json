@@ -1,0 +1,24 @@
+{
+    "slug": "jameda",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "jameda GmbH",
+    "runs": [
+        "danke-coronahelden.de"
+    ],
+    "address": "Balanstraße 71a\n81541 München\nDeutschland",
+    "phone": "+49 89 20194494",
+    "fax": "+49 800 111237686",
+    "email": "datenschutz@jameda.de",
+    "web": "https://www.jameda.de/",
+    "sources": [
+        "https://www.jameda.de/datenschutz",
+        "https://www.jameda.de/impressum",
+        "https://github.com/datenanfragen/data/pull/2343"
+    ],
+    "quality": "verified"
+}

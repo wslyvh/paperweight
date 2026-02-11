@@ -1,0 +1,37 @@
+{
+    "slug": "telekom-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Telekom Deutschland GmbH",
+    "runs": [
+        "FCB Mobil (FC Bayern Mobil)",
+        "Kaufland mobil",
+        "NORMA Connect",
+        "EDEKA smart",
+        "Share Mobile"
+    ],
+    "address": "Friedrich-Ebert-Allee 140\n53113 Bonn\nDeutschland",
+    "email": "datenschutz@telekom.de",
+    "webform": "https://www.telekom.de/kontakt/e-mail-kontakt/unternehmen/datenschutz",
+    "web": "https://www.telekom.de",
+    "sources": [
+        "https://www.telekom.de/ueber-das-unternehmen/datenschutz",
+        "https://www.telekom.com/de/verantwortung/datenschutz-und-datensicherheit/datenschutz",
+        "https://www.telekom.de/mobilewholesale/de/partner",
+        "https://www.fcbayernmobil.de/assets/pdf/AllgemeinerDatenschutzhinweis.pdf",
+        "https://www.kaufland-mobil.de/wp-content/uploads/dokumente/Datenschutz_mobilfunkvertrags.pdf",
+        "https://www.norma-connect.de/wp-content/uploads/dokumente/Datenschutz_mobilfunkvertrags.pdf",
+        "https://www.edeka-smart.de/file/286/e241b501/EDEKAsmart_AllgDatenschutzhinweis_20180523.pdf",
+        "https://github.com/datenanfragen/data/pull/1675",
+        "https://github.com/datenanfragen/data/pull/2046",
+        "https://share-mobile.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2561",
+        "https://github.com/datenanfragen/data/pull/2602"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,38 @@
+{
+    "slug": "deutsche-bahn",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "DB Vertrieb GmbH",
+    "runs": [
+        "bahn.de",
+        "BahnCard",
+        "bahn.bonus",
+        "DB Navigator",
+        "DB Regio AG",
+        "DB Fernverkehr AG"
+    ],
+    "address": "Europa-Allee 78-84\n60486 Frankfurt\nGermany",
+    "email": "p.d-datenschutz@deutschebahn.com",
+    "web": "https://www.bahn.de",
+    "sources": [
+        "https://www.bahn.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2349"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

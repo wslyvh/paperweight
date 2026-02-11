@@ -1,0 +1,19 @@
+{
+    "slug": "beyondhealth",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "BEYONDHEALTH GmbH",
+    "address": "Vor den Siebenburgen 30\n50676 Köln\nDeutschland",
+    "phone": "+49 221 17730500",
+    "email": "info@beyondhealth.de",
+    "web": "https://beyondhealth.de",
+    "sources": [
+        "https://beyondhealth.de/impressum-datenschutz",
+        "https://github.com/datenanfragen/data/pull/1788"
+    ],
+    "quality": "verified"
+}

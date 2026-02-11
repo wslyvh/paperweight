@@ -1,0 +1,33 @@
+{
+    "slug": "holidaycheck",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "HolidayCheck AG",
+    "address": "Bahnweg 8\n8598 Bottighofen\nSwitzerland",
+    "email": "datenschutz@holidaycheck.com",
+    "web": "https://www.holidaycheck.de/",
+    "sources": [
+        "https://www.holidaycheck.de/datenschutz",
+        "https://www.holidaycheck.de/impressum",
+        "https://github.com/datenanfragen/data/pull/1960"
+    ],
+    "required-elements": [
+        {
+            "type": "name",
+            "desc": "Name",
+            "optional": false
+        },
+        {
+            "type": "email",
+            "desc": "E-Mail-Adresse",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

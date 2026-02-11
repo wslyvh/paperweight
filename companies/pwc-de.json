@@ -1,0 +1,38 @@
+{
+    "slug": "pwc-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "PricewaterhouseCoopers GmbH Wirtschaftsprüfungsgesellschaft (PWC)",
+    "address": "Friedrich-Ebert-Anlage 35-37\n60327 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 95850",
+    "fax": "+49 69 95851000",
+    "email": "DE_Datenschutz@pwc.com",
+    "web": "https://www.pwc.de/",
+    "sources": [
+        "https://www.pwc.de/de/datenschutzerklaerung.html",
+        "https://github.com/datenanfragen/data/pull/992"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Geburtsdatum",
+            "type": "birthdate",
+            "optional": true
+        },
+        {
+            "desc": "Beziehung zum Unternehmen",
+            "type": "input",
+            "optional": true
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,27 @@
+{
+    "slug": "tinc",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "The Infrastructure Company GmbH",
+    "runs": [
+        "Servercow"
+    ],
+    "address": "Parkstrasse 42\n47877 Willich\nDeutschland",
+    "phone": "+49 2154 9304600",
+    "email": "datenschutz@tinc.gmbh",
+    "web": "https://tinc.gmbh",
+    "sources": [
+        "https://tinc.gmbh/?datenschutz",
+        "https://servercow.de/impressum",
+        "https://github.com/datenanfragen/data/pull/1700"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Sie können auch einen Export Ihrer Daten aus dem Servercow-Kundencenter herunterladen.\n\nYou can also download an export of your data from the Servercow client area"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,18 @@
+{
+    "slug": "kaufland-bg",
+    "relevant-countries": [
+        "bg"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Kaufland Bulgaria",
+    "address": "1A Skopje Street\nSofia 1233\nBulgaria",
+    "email": "dataprotection@kaufland.bg",
+    "web": "https://www.kaufland.bg",
+    "sources": [
+        "https://www.kaufland.bg/lichni-danni.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

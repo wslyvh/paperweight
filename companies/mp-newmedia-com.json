@@ -1,0 +1,30 @@
+{
+    "slug": "mp-newmedia-com",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "M,P,NEWMEDIA, GmbH",
+    "address": "Hindenburgstraße 45\n71638 Ludwigsburg\nDeutschland",
+    "phone": "+49 7141 258940",
+    "fax": "+49 7141 2589410",
+    "email": "info@mp-newmedia.com",
+    "web": "https://www.mp-newmedia.com",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/374",
+        "https://www.mp-newmedia.com/datenschutz"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "quality": "verified"
+}

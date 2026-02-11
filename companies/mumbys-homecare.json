@@ -1,0 +1,25 @@
+{
+    "slug": "mumbys-homecare",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "Mumby’s Homecare Support Ltd.",
+    "runs": [
+        "Mumby's Home Nursing Ltd.",
+        "Mumby's Nursing Care Services Ltd. (formerly)"
+    ],
+    "address": "Noahs Ark Wantage Road\nFrilford, Abingdon\nOxfordshire\nOX13 5NY\nUnited Kingdom",
+    "phone": "+44 800 505 3511",
+    "email": "recruitment@mumbys.com",
+    "web": "https://mumbys.com/",
+    "sources": [
+        "https://mumbys.com/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/1075",
+        "https://find-and-update.company-information.service.gov.uk/company/11399129",
+        "https://mumbys.com/mumbys-home-nursing-services/"
+    ],
+    "quality": "verified"
+}

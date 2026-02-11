@@ -1,0 +1,26 @@
+{
+    "slug": "zagg",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "ZAGG Inc.",
+    "runs": [
+        "iFrogz",
+        "mophie",
+        "Braven",
+        "Gear4",
+        "HALO"
+    ],
+    "address": "910 West Legacy Center Way\nSuite 500\nMidvale UT 84047\nUnited States of America",
+    "phone": "+1 800 700 9244",
+    "email": "privacy@zagg.com",
+    "web": "https://www.zagg.com",
+    "sources": [
+        "https://www.zagg.com/en_us/privacy-policy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

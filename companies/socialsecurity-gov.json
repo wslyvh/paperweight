@@ -1,0 +1,37 @@
+{
+    "slug": "socialsecurity-gov",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Social Security Scotland",
+    "address": "PO Box 10298\nDundee\nDD1 9FS\nUnited Kingdom",
+    "phone": "+44 800 182 2222",
+    "email": "dataprotectionofficer@socialsecurity.gov.scot",
+    "webform": "https://www.socialsecurity.gov.scot/contact/subject-access",
+    "web": "https://www.socialsecurity.gov.scot/",
+    "sources": [
+        "https://www.socialsecurity.gov.scot/privacy-notice",
+        "https://github.com/datenanfragen/data/pull/2257"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        },
+        {
+            "desc": "National Insurance number (NINO)",
+            "type": "input",
+            "optional": true
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

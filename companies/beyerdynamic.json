@@ -1,0 +1,22 @@
+{
+    "slug": "beyerdynamic",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "beyerdynamic GmbH & Co. KG",
+    "address": "c/o Trusted Shops SE\nSubbelrather Str. 15c\n50823 Köln\nDeutschland",
+    "phone": "+49 7131 6170",
+    "fax": "+49 7131 617224",
+    "email": "dsgvo@trustedshops.de",
+    "web": "https://www.beyerdynamic.de/",
+    "sources": [
+        "https://www.beyerdynamic.de/rechtliche-informationen/datenschutzerklaerung",
+        "https://github.com/datenanfragen/data/pull/861",
+        "https://github.com/datenanfragen/data/pull/2991"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

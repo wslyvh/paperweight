@@ -1,0 +1,20 @@
+{
+    "slug": "airlaps-com",
+    "relevant-countries": [
+        "fr"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Colabl France SAS",
+    "address": "83 A RUE DES ALLIES\n42100 SAINT-ETIENNE\nFrance",
+    "email": "dpo@airlaps.com",
+    "web": "https://airlaps.com",
+    "sources": [
+        "https://airlaps.com/legal/mentions-legales",
+        "https://airlaps.com/legal/confidentialite",
+        "https://github.com/datenanfragen/data/pull/2660"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

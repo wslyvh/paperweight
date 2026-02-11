@@ -1,0 +1,24 @@
+{
+    "slug": "myntelligence",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "MINT S.p.A",
+    "runs": [
+        "Myntelligence (formerly)"
+    ],
+    "address": "Ripa di Porta Ticinese 113\n20143 Milan\nItaly",
+    "email": "dpo@mint.ai",
+    "web": "https://www.mint.ai/",
+    "sources": [
+        "https://www.mint.ai/privacy-policy",
+        "https://www.exchangewire.com/blog/2021/09/29/myntelligence-mint-creates-real-value-digital-business-world-adv-sustainable-accessible/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

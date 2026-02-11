@@ -1,0 +1,21 @@
+{
+    "slug": "meapp",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "addresses"
+    ],
+    "name": "N.F.O software development Ltd.",
+    "runs": [
+        "Me"
+    ],
+    "address": "4 Arba Imaot St.\nAshdod 7773504\nIsrael",
+    "email": "help@me.app",
+    "web": "https://me.app/",
+    "sources": [
+        "https://me.app/privacy-policy/",
+        "https://github.com/datenanfragen/data/issues/529"
+    ],
+    "quality": "verified"
+}

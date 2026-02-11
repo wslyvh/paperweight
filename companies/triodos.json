@@ -1,0 +1,22 @@
+{
+    "slug": "triodos",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Triodos Bank N.V. Deutschland",
+    "address": "Falkstraße 5\n60487 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 71719191",
+    "fax": "+49 69 71719222",
+    "email": "datenschutz@triodos.de",
+    "web": "https://www.triodos.de",
+    "sources": [
+        "https://www.triodos.de/datenschutz",
+        "https://www.triodos.de/impressum",
+        "https://github.com/datenanfragen/data/pull/2418"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

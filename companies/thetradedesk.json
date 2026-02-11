@@ -1,0 +1,24 @@
+{
+    "slug": "thetradedesk",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "The UK Trade Desk Ltd.",
+    "runs": [
+        "Adbrain (formerly)"
+    ],
+    "address": "10th Floor\n1 Bartholomew Close\nLondon\nEC1A 7BL\nUnited Kingdom",
+    "email": "dpo@thetradedesk.com",
+    "webform": "https://privacyportal-eu.onetrust.com/webform/2abc1a63-35c5-4ef7-b11b-1c55714738b5/61b81601-fe65-4dfe-a922-e1c5a68fa8cb",
+    "web": "https://www.thetradedesk.com/",
+    "sources": [
+        "https://www.thetradedesk.com/legal/privacy",
+        "https://investors.thetradedesk.com/news-and-events/news/news-details/2017/The-Trade-Desk-Acquires-The-Assets-of-Adbrain-Ltd.-10-20-2017/default.aspx"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-dahlum",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Dahlum",
+    "address": "Voigtsdahlumer Straße 1\n38170 Dahlum\nDeutschland",
+    "phone": "+49 5332 3342",
+    "fax": "+49 5332 3347",
+    "email": "dahlum.buero@lk-bs.de",
+    "web": "http://www.dahlum-evangelisch.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=930"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

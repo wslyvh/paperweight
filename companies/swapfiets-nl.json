@@ -1,0 +1,17 @@
+{
+    "slug": "swapfiets-nl",
+    "relevant-countries": [
+        "nl"
+    ],
+    "name": "Swapfiets B.V.",
+    "address": "Amsteldijk 216\n1079 LK Amsterdam\nThe Netherlands",
+    "phone": "+31 88 991 1600",
+    "email": "privacy@swapfiets.nl",
+    "web": "https://swapfiets.nl/",
+    "sources": [
+        "https://swapfiets.nl/en-NL/privacy",
+        "https://help.swapfiets.nl/hc/en-gb"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

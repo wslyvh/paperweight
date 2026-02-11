@@ -1,0 +1,23 @@
+{
+    "slug": "rs-sidonien-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Realschule Sidonienstraße Braunschweig",
+    "address": "Sidonienstraße 3\n38118 Braunschweig\nDeutschland",
+    "phone": "+49 531 281242",
+    "fax": "+49 531 2812426",
+    "email": "schulleitung.sidonien@rs-sidonien.de",
+    "web": "http://www.rs-sidonien.de/",
+    "sources": [
+        "http://www.rs-sidonien.de/datenschutz/index.php",
+        "https://www.braunschweig.de/leben/schule_bildung/schulportal/schulen/schulen/rs-sidonienstrasse.php"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

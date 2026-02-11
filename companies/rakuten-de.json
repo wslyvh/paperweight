@@ -1,0 +1,37 @@
+{
+    "slug": "rakuten-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Rakuten Europe S.à rl",
+    "runs": [
+        "Rakuten Deutschland GmbH (ehem.)"
+    ],
+    "address": "2 rue du Fossé\nL-1536 Luxemburg\nLuxembourg",
+    "web": "https://www.rakuten.de/",
+    "sources": [
+        "https://rakuten.de/datenschutz"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "E-Mail-Adresse",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "quality": "verified"
+}

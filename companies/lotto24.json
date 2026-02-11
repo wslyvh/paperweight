@@ -1,0 +1,21 @@
+{
+    "slug": "lotto24",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Lotto24 AG",
+    "address": "c/o datenschutz nord GmbH\nKonsul-Smidt-Str. 88\n28217 Bremen\nDeutschland",
+    "phone": "+49 40 8222390",
+    "fax": "+49 40 82223970",
+    "email": "datenschutzbeauftragter@lotto24.de",
+    "web": "https://www.lotto24.de",
+    "sources": [
+        "https://www.lotto24.de/datenschutz",
+        "https://github.com/datenanfragen/data/issues/456"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

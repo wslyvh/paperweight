@@ -1,0 +1,17 @@
+{
+    "slug": "dhh-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Deutscher Hochseesportverband HANSA e.V. (DHH)",
+    "address": "Rothenbaumchaussee 58\n20148 Hamburg\nDeutschland",
+    "email": "datenschutz@dhh.de",
+    "web": "https://www.dhh.de",
+    "sources": [
+        "https://www.dhh.de/impressum",
+        "https://www.dhh.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1438"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

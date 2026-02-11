@@ -1,0 +1,30 @@
+{
+    "slug": "pubmatic",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "PubMatic GmbH",
+    "runs": [
+        "PubMatic, Inc.",
+        "PubMatic Limited",
+        "PubMatic India Private Limited",
+        "パブマティック株式会社 (PubMatic KK)",
+        "PubMatic Pte. Ltd.",
+        "据翼软件科技有限公司 (PubMatic Software (Shanghai)) Limited"
+    ],
+    "address": "Barbara Strozzilaan 101\n1083 HN Amsterdam\nThe Netherlands",
+    "phone": "+1 855 550 0007",
+    "email": "privacy@pubmatic.com",
+    "web": "https://pubmatic.com",
+    "sources": [
+        "https://pubmatic.com/legal/privacy-policy/",
+        "https://pubmatic.com/legal/dsr-notice/",
+        "https://github.com/datenanfragen/data/pull/2935"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

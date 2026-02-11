@@ -1,0 +1,17 @@
+{
+    "slug": "trendtest",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "trend.test Gesellschaft für telefonische Datenerhebung mbH",
+    "address": "Kolonnenstr. 26\n10829 Berlin\nDeutschland",
+    "phone": "+49 89 996001850",
+    "email": "datenschutz@ipsos.de",
+    "web": "https://www.trendtest.de",
+    "sources": [
+        "https://www.trendtest.de/datenschutzerklaerung/",
+        "https://github.com/datenanfragen/data/pull/2238"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

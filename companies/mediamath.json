@@ -1,0 +1,23 @@
+{
+    "slug": "mediamath",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "MediaMath UK Ltd",
+    "runs": [
+        "MediaMath, Inc."
+    ],
+    "address": "230 Blackfriars Road\nLondon\nSE1 8NW\nUnited Kingdom",
+    "email": "privacy@mediamath.com",
+    "web": "https://www.mediamath.com/",
+    "sources": [
+        "https://www.mediamath.com/privacy-policy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

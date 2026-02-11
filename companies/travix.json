@@ -1,0 +1,30 @@
+{
+    "slug": "travix",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Travix Nederland B.V.",
+    "runs": [
+        "Cheaptickets",
+        "Vliegwinkel",
+        "BudgetAir",
+        "Flugladen",
+        "Vayama"
+    ],
+    "address": "Hoekenrode 3\n1102 BR Amsterdam\nThe Netherlands",
+    "email": "privacy@travix.com",
+    "web": "https://www.travix.com/",
+    "sources": [
+        "https://s1.travix.com/cheaptickets/DE/assets/pdf/ctde-privacy-de-updated-2024.pdf",
+        "https://s1.travix.com/vliegwinkel/NL/assets/pdf/vwnl-privacy-nl-updated-2024.pdf",
+        "https://s1.travix.com/vayama/IE/vayie-privacy-english-updated-2024.pdf",
+        "https://s1.travix.com/flugladen/DE/flde-privacy-de-updated-2024.pdf",
+        "https://s1.travix.com/budgetair/FR/buafr-privacy-fr.pdf",
+        "https://github.com/datenanfragen/data/pull/3164"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "grundschule-waggum-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Grundschule Waggum Braunschweig",
+    "address": "Claudiusstraße 1\n38110 Braunschweig\nDeutschland",
+    "phone": "+49 5307 65 44",
+    "fax": "+49 5307 98 02 80",
+    "email": "gs.waggum@braunschweig.de",
+    "web": "https://wordpress.nibis.de/gswaggum/",
+    "sources": [
+        "https://wordpress.nibis.de/gswaggum/kontakt/"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

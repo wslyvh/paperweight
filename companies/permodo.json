@@ -1,0 +1,20 @@
+{
+    "slug": "permodo",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "PERMODO GmbH",
+    "address": "Derendorfer Allee 6c\n40476 Düsseldorf\nDeutschland",
+    "phone": "+49 89 413240264",
+    "email": "privacy@permodo.com",
+    "web": "https://permodo.com",
+    "sources": [
+        "https://permodo.com/de/privacy.html",
+        "https://github.com/datenanfragen/data/pull/1004"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "gs-st-josef-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Grundschule St. Josef Braunschweig",
+    "address": "Hohestieg 2\n38118 Braunschweig\nDeutschland",
+    "phone": "+49 531 2810916",
+    "fax": "+49 531 2810946",
+    "email": "gs.st-josef@braunschweig.de",
+    "web": "http://www.gs-st-josef.de",
+    "sources": [
+        "http://www.gs-st-josef.de/kontakt.html"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

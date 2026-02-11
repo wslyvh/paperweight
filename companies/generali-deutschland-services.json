@@ -1,0 +1,18 @@
+{
+    "slug": "generali-deutschland-services",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Generali Deutschland Services GmbH",
+    "address": "Anton-Kurze-Alle 16\n52064 Aachen\nDeutschland",
+    "phone": "+49 89 51210",
+    "email": "datenschutzbeauftragter.de@generali.com",
+    "sources": [
+        "https://www.generali.de/resource/blob/37568/8e090988152cf8f766a0c4387b484230/TA%2025%20231107%20DSGVO%20GDS_G.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

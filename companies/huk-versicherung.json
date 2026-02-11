@@ -1,0 +1,38 @@
+{
+    "slug": "huk-versicherung",
+    "categories": [
+        "insurance"
+    ],
+    "name": "HUK-COBURG Unternehmensgruppe",
+    "runs": [
+        "HUK-COBURG Haftpflicht-Unterstützungs-Kasse kraftfahrender Beamter Deutschlands a. G. in Coburg",
+        "HUK-COBURG-Allgemeine Versicherung AG",
+        "HUK-COBURG-Lebensversicherung AG",
+        "HUK-COBURG-Krankenversicherung AG",
+        "HUK-COBURG-Rechtsschutzversicherung AG",
+        "HUK-COBURG-Assistance GmbH",
+        "HUK24 AG",
+        "HUK-COBURG Vermittlungsgesellschaft für Finanzdienstleistungen mbH",
+        "HUK-COBURG Asset Management GmbH",
+        "Bruderhilfe Sachversicherung AG im Raum der Kirchen",
+        "Familienfürsorge Lebensversicherung AG im Raum der Kirchen",
+        "Pax-Familienfürsorge Krankenversicherung AG im Raum der Kirchen",
+        "VRK Holding GmbH",
+        "GSC Service- und Controlling GmbH",
+        "IPZ Institut für Pensions-Management und Zusatzversorgung GmbH"
+    ],
+    "address": "96444 Coburg\nDeutschland",
+    "phone": "+49 9561 960",
+    "fax": "+49 9561 963636",
+    "email": "info@huk-coburg.de",
+    "webform": "https://www.huk.de/hukinfo/af/form.html?formname=/sonstige/datenschutz",
+    "web": "https://www.huk.de/",
+    "sources": [
+        "https://www.huk.de/datenschutz.html?ID=D0045",
+        "https://www.huk.de/impressum.html"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "quality": "verified"
+}

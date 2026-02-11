@@ -1,0 +1,23 @@
+{
+    "slug": "ewe-tel",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "EWE TEL GmbH",
+    "runs": [
+        "osnatel"
+    ],
+    "address": "Cloppenburger Str. 310\n26133 Oldenburg\nDeutschland",
+    "phone": "+49 441 80000",
+    "fax": "+49 441 80001999",
+    "email": "datenschutz.ewetel@ewe.de",
+    "web": "https://www.ewe.de/",
+    "sources": [
+        "https://www.ewe.de/datenschutz-ewe-tel-gmbh"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

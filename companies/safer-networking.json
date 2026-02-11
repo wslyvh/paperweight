@@ -1,0 +1,27 @@
+{
+    "slug": "safer-networking",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Safer-Networking Ltd.",
+    "runs": [
+        "Spybot Search & Destroy",
+        "Spybot Anti-Beacon",
+        "Spybot Identity Monitor",
+        "FileAlyzer",
+        "RegAlyzer"
+    ],
+    "address": "Unit 5, Watson & Johnson Centre\nMill Road, Greystones, Co. Wicklow\nA63 P0E2\nIreland",
+    "phone": "+353 1 287 0707",
+    "email": "support@safer-networking.org",
+    "webform": "https://www.safer-networking.org/privacy-policy/#jumpdown",
+    "web": "https://www.safer-networking.org",
+    "sources": [
+        "https://www.safer-networking.org/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/1331"
+    ],
+    "quality": "verified"
+}

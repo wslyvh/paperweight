@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-martin-luther-salzgitter-lebenstedt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Martin Luther Salzgitter-Lebenstedt",
+    "address": "Berliner Straße 182\n38226 Salzgitter\nDeutschland",
+    "phone": "+49 5341 65793",
+    "fax": "+49 5341 62754",
+    "email": "lebenstedt.pfa@lk-bs.de",
+    "web": "http://www.martin-luther-salzgitter.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=895"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

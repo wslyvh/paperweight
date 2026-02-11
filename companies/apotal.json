@@ -1,0 +1,24 @@
+{
+    "slug": "apotal",
+    "categories": [
+        "commerce"
+    ],
+    "name": "Bad Apotheke",
+    "runs": [
+        "Versandapotheke APOTAL.de"
+    ],
+    "address": "Frankfurter Straße 29\n49214 Bad Rothenfelde\nDeutschland",
+    "phone": "+49 800 1011422",
+    "fax": "+49 5424 21 64 47",
+    "email": "datenschutz@bad-apotheke.com",
+    "web": "https://shop.apotal.de/",
+    "sources": [
+        "https://shop.apotal.de/renderFContent;jsessionid=FF9F3E9311FF530DA1AD839222E9BBA7-memc0.pla2tom2?attachmentId=10331",
+        "https://shop.apotal.de/renderFContent;jsessionid=FF9F3E9311FF530DA1AD839222E9BBA7-memc0.pla2tom2?attachmentId=10329"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

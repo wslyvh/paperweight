@@ -1,0 +1,20 @@
+{
+    "slug": "weltbett-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Weltbett GmbH",
+    "address": "Boschstraße 16\n24568 Kaltenkirchen\nDeutschland",
+    "phone": "+49 4191 9903990",
+    "email": "info@weltbett.de",
+    "web": "https://www.weltbett.de",
+    "sources": [
+        "https://www.weltbett.de/richtlinie-datenschutz",
+        "https://www.weltbett.de/impressum",
+        "https://github.com/datenanfragen/data/pull/1601"
+    ],
+    "quality": "verified"
+}

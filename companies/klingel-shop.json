@@ -1,0 +1,23 @@
+{
+    "slug": "klingel-shop",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Bruno Bader GmbH + Co. KG",
+    "runs": [
+        "KLiNGEL"
+    ],
+    "address": "Maximilianstr. 48\n75172 Pforzheim\nDeutschland",
+    "phone": "+49 7231 303123",
+    "email": "datenschutz@klingel.de",
+    "web": "https://www.klingel.de/",
+    "sources": [
+        "https://www.klingel.de/datenschutz",
+        "https://www.klingel.de/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

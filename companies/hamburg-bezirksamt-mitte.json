@@ -1,0 +1,22 @@
+{
+    "slug": "hamburg-bezirksamt-mitte",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bezirksamt Hamburg-Mitte",
+    "address": "c/o Bezirksamt Hamburg-Nord\nPostfach 20 17 44\n20243 Hamburg\nDeutschland",
+    "phone": "+49 40 428542877",
+    "fax": "+49 40 427901119",
+    "email": "dsbderbezirke@hamburg-nord.hamburg.de",
+    "web": "https://www.hamburg.de/mitte/bezirksamt-und-service/",
+    "sources": [
+        "https://www.hamburg.de/politik-und-verwaltung/bezirke/mitte/bezirksamt/datenschutzerklaerung-fachamt-interner-service-66780",
+        "https://www.hamburg.de/politik-und-verwaltung/bezirke/mitte/bezirksamt/impressum-66822",
+        "https://github.com/datenanfragen/data/pull/1089"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

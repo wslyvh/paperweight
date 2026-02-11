@@ -1,0 +1,20 @@
+{
+    "slug": "thueringer-landtag",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Thüringer Landtag",
+    "address": "Jürgen-Fuchs-Str. 1\n99096 Erfurt\nDeutschland",
+    "phone": "+49 361 3771018",
+    "fax": "+49 361 3772016",
+    "email": "poststelle@thueringer-landtag.de",
+    "web": "https://www.thueringer-landtag.de",
+    "sources": [
+        "https://www.thueringer-landtag.de/datenschutzhinweise-internet/",
+        "https://github.com/datenanfragen/data/pull/2728"
+    ],
+    "quality": "verified"
+}

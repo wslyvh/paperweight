@@ -1,0 +1,26 @@
+{
+    "slug": "barclays",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Barclays PLC",
+    "runs": [
+        "Barclays Bank UK PLC"
+    ],
+    "address": "Leicester\nLE87 2BB\nUnited Kingdom",
+    "phone": "+44 800 282 390",
+    "webform": "https://forms-int.barclays.co.uk/forms/gdpr",
+    "web": "https://www.barclays.co.uk/",
+    "email": "DPO@Barclays.com",
+    "sources": [
+        "https://www.barclays.co.uk/important-information/control-your-data/",
+        "https://www.barclays.co.uk/content/dam/documents/wealth-management/site-hygiene/full-privacy-notice/full-privacy-notice.pdf",
+        "https://www.barclays.co.uk/important-information/privacy-policy/",
+        "https://www.barclays.co.uk/complaints/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

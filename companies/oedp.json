@@ -1,0 +1,19 @@
+{
+    "slug": "oedp",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "political party"
+    ],
+    "name": "Ökologisch-Demokratische Partei (ÖDP)",
+    "address": "Pommergasse 1\n97070 Würzburg\nDeutschland",
+    "phone": "+49 931 404 86 14",
+    "email": "datenschutz@oedp.de",
+    "web": "https://www.oedp.de",
+    "sources": [
+        "https://www.oedp.de/datenschutz"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

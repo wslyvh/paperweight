@@ -1,0 +1,17 @@
+{
+    "slug": "raygun",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Raygun Limited",
+    "address": "PO Box 19057\nMarion Square\nWellington\n6141\nNew Zealand",
+    "email": "dpa@raygun.com",
+    "web": "https://raygun.com/",
+    "sources": [
+        "https://raygun.com/privacy"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "custom-access-template": "access-tracking"
+}

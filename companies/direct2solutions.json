@@ -1,0 +1,31 @@
+{
+    "slug": "direct2solutions",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Direct2Solutions GmbH",
+    "address": "Berliner Str. 46\n33330 Gütersloh\nDeutschland",
+    "sources": [
+        "https://www.google.com/maps/place/Direct2Solutions+GmbH/@51.90733,8.37993,15z/data=!4m5!3m4!1s0x0:0xe922e9cbe36f7c75!8m2!3d51.90733!4d8.37993",
+        "https://github.com/datenanfragen/data/issues/109"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "E-Mail-Adresse",
+            "type": "input",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "quality": "verified"
+}

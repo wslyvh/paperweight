@@ -1,0 +1,19 @@
+{
+    "slug": "gog",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "GOG sp. z o.o.",
+    "address": "Jagiellońska 74\n03-301 Warsaw\nPoland",
+    "email": "privacy@gog.com",
+    "web": "https://www.gog.com/",
+    "sources": [
+        "https://support.gog.com/hc/en-us/articles/212632109",
+        "https://github.com/datenanfragen/data/pull/2268"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

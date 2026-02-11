@@ -1,0 +1,21 @@
+{
+    "slug": "hygi-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "hygi.de GmbH & Co. KG",
+    "address": "c/o exkulpa gmbh\nWaldfeuchter Str. 266\n52525 Heinsberg\nDeutschland",
+    "phone": "+49 2452 993311",
+    "fax": "+49 2504 7313444",
+    "email": "datenschutz@hygi.de",
+    "web": "https://www.hygi.de",
+    "sources": [
+        "https://www.hygi.de/impressum",
+        "https://github.com/datenanfragen/data/pull/2159"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

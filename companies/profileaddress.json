@@ -1,0 +1,43 @@
+{
+    "slug": "profileaddress",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "ads",
+        "addresses"
+    ],
+    "name": "DPIT GmbH",
+    "runs": [
+        "ProfileAddress Direktmarketing GmbH (ehem.)"
+    ],
+    "address": "Mariahilfer Straße 117 Top 19\n1060 Wien\nÖsterreich",
+    "email": "auskunft@dp-it.at",
+    "webform": "https://dp-it.at/auskunft/",
+    "web": "https://dp-it.at/",
+    "sources": [
+        "https://profileaddress.com/impressum/",
+        "https://dp-it.at/datenschutz/",
+        "https://www.northdata.de/DPIT%20GmbH,%20Wien/240484d",
+        "https://github.com/datenanfragen/data/issues/204"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": false
+        },
+        {
+            "desc": "Geburtsdatum",
+            "type": "birthdate",
+            "optional": true
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

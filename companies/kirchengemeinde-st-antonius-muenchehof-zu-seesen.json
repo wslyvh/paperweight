@@ -1,0 +1,23 @@
+{
+    "slug": "kirchengemeinde-st-antonius-muenchehof-zu-seesen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde St. Antonius Münchehof zu Seesen",
+    "address": "Lange Straße 42\n37539 Bad Grund (Harz)\nDeutschland",
+    "phone": "+49 5327 4243",
+    "fax": "+49 5327 859263",
+    "email": "gittelde.pfa@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=987"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

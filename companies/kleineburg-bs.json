@@ -1,0 +1,20 @@
+{
+    "slug": "kleineburg-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Gymnasium Kleine Burg Braunschweig",
+    "address": "Kleine Burg 5 – 7\n38100 Braunschweig\nDeutschland",
+    "phone": "+49 531 470 2414",
+    "fax": "+49 531 470 2479",
+    "email": "GymnasiumKleineBurg@braunschweig.de",
+    "web": "http://www.kleineburg.de/",
+    "sources": [
+        "http://www.kleineburg.de/impressum/"
+    ],
+    "request-language": "de",
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "united-internet-media",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "United Internet Media GmbH",
+    "address": "Elgendorfer Straße 57\n56410 Montabaur\nDeutschland",
+    "phone": "+49 721 91374 1717",
+    "fax": "+49 721 91374 1600",
+    "email": "datenschutz@united-internet-media.de",
+    "web": "https://www.united-internet-media.de",
+    "sources": [
+        "https://www.united-internet-media.de/de/datenschutzhinweis/",
+        "https://www.united-internet-media.de/de/impressum/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

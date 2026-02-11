@@ -1,0 +1,18 @@
+{
+    "slug": "oekotest",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "ÖKO-TEST GmbH & Co. KG",
+    "address": "Kasseler Straße 1a\n60486 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 977770",
+    "fax": "+49 69 97777139",
+    "email": "datenschutz@oekotest.de",
+    "web": "https://www.oekotest.de",
+    "sources": [
+        "https://www.oekotest.de/impressum/Datenschutz_003.html",
+        "https://github.com/datenanfragen/data/pull/2413"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

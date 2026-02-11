@@ -1,0 +1,16 @@
+{
+    "slug": "nugg-ad",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "nugg.ad GmbH",
+    "address": "Valeska-Gert-Str. 5\n10243 Berlin\nDeutschland",
+    "sources": [
+        "https://www.northdata.de/nugg%C2%B7ad%20GmbH,%20Berlin/Amtsgericht%20Charlottenburg%20(Berlin)%20HRB%20172673%20B"
+    ],
+    "custom-access-template": "access-tracking",
+    "quality": "verified"
+}

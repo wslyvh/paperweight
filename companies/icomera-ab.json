@@ -1,0 +1,21 @@
+{
+    "slug": "icomera-ab",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Icomera AB",
+    "runs": [
+        "metronom free WLAN"
+    ],
+    "address": "Odinsplatsen 28\n41103 Göteborg\nSweden",
+    "email": "dpo@icomera.com",
+    "sources": [
+        "http://wifi.metronom.de/de/terms/",
+        "https://github.com/datenanfragen/data/pull/3285"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

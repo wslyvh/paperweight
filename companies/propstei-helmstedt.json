@@ -1,0 +1,24 @@
+{
+    "slug": "propstei-helmstedt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Propstei Helmstedt",
+    "address": "Großer Kirchhof 6\n38350 Helmstedt\nDeutschland",
+    "phone": "+49 5351 2093",
+    "fax": "+49 5351 2094",
+    "email": "helmstedt.pr@lk-bs.de",
+    "web": "http://www.propstei-helmstedt.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/helmstedt.html"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "gs-hohestieg-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "OGS Hohestieg Braunschweig",
+    "address": "Hohestieg 2\n38118 Braunschweig\nDeutschland",
+    "phone": "+49 531 28123 20",
+    "fax": "+49 531 28123 45",
+    "email": "gs.hohestieg@braunschweig.de",
+    "web": "https://www.gs-hohestieg.de/",
+    "sources": [
+        "https://www.gs-hohestieg.de/datenschutz.html"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

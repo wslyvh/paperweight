@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-hagen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Polizeipräsidium Hagen",
+    "address": "Hoheleye 3\n58093 Hagen\nDeutschland",
+    "phone": "+49 2331 9860",
+    "fax": "+49 2331 9862069",
+    "email": "datenschutz.hagen@polizei.nrw.de",
+    "web": "https://hagen.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

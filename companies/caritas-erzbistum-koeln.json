@@ -1,0 +1,21 @@
+{
+    "slug": "caritas-erzbistum-koeln",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church",
+        "nonprofit"
+    ],
+    "name": "Sozialdienst Katholischer Frauen Rhein-Erft-Kreis e.V.",
+    "address": "c/o Diözesan-Caritasverband für das Erzbistum Köln e.V.\nDatenschutzbeauftragter\nGeorgstr. 7\n50676 Köln\nDeutschland",
+    "phone": "+49 221 2010357",
+    "email": "datenschutzbeauftragter@caritasnet.de",
+    "web": "https://caritas.erzbistum-koeln.de/rheinerft-skf/",
+    "sources": [
+        "https://caritas.erzbistum-koeln.de/rheinerft-skf/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2639"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

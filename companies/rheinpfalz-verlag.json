@@ -1,0 +1,21 @@
+{
+    "slug": "rheinpfalz-verlag",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "RHEINPFALZ Verlag und Druckerei GmbH & Co. KG",
+    "address": "Amtsstraße 5 – 11\n67059 Ludwigshafen\nDeutschland",
+    "phone": "+49 631 37016600",
+    "fax": "+49 631 37016601",
+    "email": "datenschutz@rheinpfalz.de",
+    "web": "https://www.rheinpfalz.de",
+    "sources": [
+        "https://www.rheinpfalz.de/datenschutzerklaerung.html",
+        "https://github.com/datenanfragen/data/pull/1443"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

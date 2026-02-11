@@ -1,0 +1,32 @@
+{
+    "slug": "4sigma",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health",
+        "telecommunication"
+    ],
+    "name": "4sigma GmbH",
+    "address": "Bajuwarenring 9\n82041 Oberhaching\nDeutschland",
+    "phone": "+49 89 9500840",
+    "fax": "+49 89 95008410",
+    "email": "info@4sigma.de",
+    "web": "https://www.4sigma.de",
+    "sources": [
+        "https://www.4sigma.de/j/privacy",
+        "https://www.4sigma.de/about"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

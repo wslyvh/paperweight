@@ -1,0 +1,19 @@
+{
+    "slug": "zulutrade",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "ZuluTrade",
+    "address": "Akti Kondili 14\nPiraeus 185 45\nGreece",
+    "phone": "+30 21 3017 6300",
+    "email": "support@zulutrade.com",
+    "web": "https://www.zulutrade.com",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/419",
+        "https://www.zulutrade.com/privacy-policy"
+    ],
+    "quality": "verified"
+}

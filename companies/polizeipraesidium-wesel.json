@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-wesel",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Der Landrat als Kreispolizeibehörde Wesel",
+    "address": "Reeser Landstraße 21\n46483 Wesel\nDeutschland",
+    "phone": "+49 281 1070",
+    "fax": "+49 281 1071009",
+    "email": "datenschutz.wesel@polizei.nrw.de",
+    "web": "https://wesel.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

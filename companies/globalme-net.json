@@ -1,0 +1,22 @@
+{
+    "slug": "globalme-net",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Summa Linguae S.A.",
+    "runs": [
+        "Globalme Localization Inc. (globalme.net, formerly)"
+    ],
+    "address": "63 Josepha Conrada Street\n31-357 Krakow\nPoland",
+    "phone": "+48 12 293 93 80",
+    "email": "iod@summalinguae.com",
+    "web": "https://summalinguae.com/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/187",
+        "https://summalinguae.com/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/1080",
+        "https://summalinguae.com/company-news/globalme-is-now-summa-linguae-technologies/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

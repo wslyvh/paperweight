@@ -1,0 +1,18 @@
+{
+    "slug": "canon-deutschland",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Canon Deutschland",
+    "address": "Europark Fichtenhain A10\n47807 Krefeld\nDeutschland",
+    "email": "datenschutz@canon.de",
+    "sources": [
+        "https://www.canon.de/privacy/privacy-notice/",
+        "https://www.canon.de/terms-and-conditions/",
+        "https://github.com/datenanfragen/data/pull/2752"
+    ],
+    "quality": "verified"
+}

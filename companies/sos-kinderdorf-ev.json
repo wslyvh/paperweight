@@ -1,0 +1,22 @@
+{
+    "slug": "sos-kinderdorf-ev",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "nonprofit"
+    ],
+    "name": "SOS-Kinderdorf e.V.",
+    "address": "Renatastraße 77\n80639 München\nDeutschland",
+    "phone": "+49 89 126060",
+    "fax": "+49 89 12606404",
+    "email": "kontakt-dsb@althammer-kill.de",
+    "web": "https://www.sos-kinderdorf.de/portal",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/188",
+        "https://www.sos-kinderdorf.de/portal/ueber-uns/transparenz/datenschutz",
+        "https://www.sos-kinderdorf.de/portal/footer/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

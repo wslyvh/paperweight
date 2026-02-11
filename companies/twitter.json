@@ -1,0 +1,26 @@
+{
+    "slug": "twitter",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Twitter International Unlimited Company",
+    "runs": [
+        "X Corp. (x.com)",
+        "Periscope"
+    ],
+    "address": "One Cumberland Place\nFenian Street\nDublin 2\nD02 AX07\nIreland",
+    "fax": "+1 415 222 9958",
+    "webform": "https://help.x.com/forms/privacy",
+    "web": "https://twitter.com",
+    "sources": [
+        "https://twitter.com/en/privacy",
+        "https://legal.twitter.com/de/imprint",
+        "https://www.pscp.tv/privacy",
+        "https://github.com/datenanfragen/data/pull/2443",
+        "https://github.com/datenanfragen/data/pull/3055"
+    ],
+    "quality": "verified"
+}

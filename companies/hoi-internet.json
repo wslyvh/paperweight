@@ -1,0 +1,21 @@
+{
+    "slug": "hoi-internet",
+    "relevant-countries": [
+        "li"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Hoi Internet AG",
+    "address": "Schaaner Strasse 25\n9487 Gamprin-Bendern\nLiechtenstein",
+    "phone": "+423 233 17 01",
+    "fax": "+423 233 17 03",
+    "email": "datenschutz@hoi.li",
+    "web": "https://www.hoi.li/",
+    "sources": [
+        "https://www.hoi.li/datenschutz/",
+        "https://www.hoi.li/wp-content/uploads/2020/03/Datenschutzerkl%C3%A4rung-DSGVO-EU-EWR.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

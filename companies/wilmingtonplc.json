@@ -1,0 +1,21 @@
+{
+    "slug": "wilmingtonplc",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "addresses",
+        "credit agency"
+    ],
+    "name": "Wilmington plc",
+    "address": "5th Floor\n10 Whitechapel High Street\nLondon\nE1 8QS\nUnited Kingdom",
+    "phone": "+44 20 7324 2346",
+    "email": "dataprotection@wilmingtonplc.com",
+    "web": "https://www.wilmingtonplc.com/",
+    "sources": [
+        "https://www.wilmingtonplc.com/wilmington-plc-privacy-notice"
+    ],
+    "suggested-transport-medium": "email",
+    "request-language": "en",
+    "quality": "verified"
+}

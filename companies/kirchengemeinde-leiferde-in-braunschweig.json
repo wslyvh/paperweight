@@ -1,0 +1,23 @@
+{
+    "slug": "kirchengemeinde-leiferde-in-braunschweig",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Leiferde in Braunschweig",
+    "address": "Geiteldestraße 39\n38122 Braunschweig\nDeutschland",
+    "phone": "+49 5300 372",
+    "email": "geitelde.pfa@lk-bs.de",
+    "web": "http://www.kirche-leiferde.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=1058"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

@@ -1,0 +1,33 @@
+{
+    "slug": "jetbrains-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "JetBrains s.r.o.",
+    "runs": [
+        "IntelliJ Software s.r.o. (formerly)"
+    ],
+    "address": "Kavčí Hory Office Park\nNa hřebenech II 1718/10\nPraha 4 - Nusle - 140 00\nCzech Republic",
+    "phone": "+420 241 722 501",
+    "fax": "+420 241 722 540",
+    "email": "privacy@jetbrains.com",
+    "web": "https://www.jetbrains.com",
+    "sources": [
+        "https://www.jetbrains.com/company/contacts/#headquarters-international-sales",
+        "https://www.jetbrains.com/company/privacy.html",
+        "https://github.com/datenanfragen/data/pull/859"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        }
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

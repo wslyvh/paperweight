@@ -1,0 +1,30 @@
+{
+    "slug": "porkbun",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Porkbun LLC",
+    "address": "21370 SW Langer Farms Parkway\nSuite 142-429\nSherwood, OR 97140\nUnited States of America",
+    "email": "privacy@porkbun.com",
+    "web": "https://porkbun.com",
+    "sources": [
+        "https://porkbun.com/legal/agreement/privacy_policy",
+        "https://github.com/datenanfragen/data/pull/1324"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

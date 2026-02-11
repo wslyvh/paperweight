@@ -1,0 +1,16 @@
+{
+    "slug": "fileee",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "fileee GmbH",
+    "address": "Windthorststraße 68\n48143 Münster\nDeutschland",
+    "phone": "+49 251 32368309",
+    "email": "datenschutz@fileee.com",
+    "web": "https://www.fileee.com",
+    "sources": [
+        "https://www.fileee.com/datenschutzbestimmungen",
+        "https://github.com/datenanfragen/data/pull/1522"
+    ],
+    "quality": "verified"
+}

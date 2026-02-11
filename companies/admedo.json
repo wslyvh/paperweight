@@ -1,0 +1,22 @@
+{
+    "slug": "admedo",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Admedo Ltd.",
+    "address": "High Holborn House\n52–54 High Holborn\n1st Floor\nWC1V 6RQ\nUnited Kingdom",
+    "phone": "+44 20 3603 8610",
+    "email": "privacy-request@admedo.com",
+    "web": "https://www.admedo.com/",
+    "sources": [
+        "https://www.admedo.com/privacy-policy",
+        "https://www.admedo.com/contact-us"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

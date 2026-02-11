@@ -1,0 +1,35 @@
+{
+    "slug": "drk-nordrhein",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "Deutsches Rotes Kreuz Nordrhein gGmbH",
+    "runs": [
+        "Deutsches Rotes Kreuz Assistance GmbH"
+    ],
+    "address": "Auf’m Hennekamp 71\n40225 Düsseldorf\nDeutschland",
+    "phone": "+49 211 31040",
+    "fax": "+49 211 3104420",
+    "email": "datenschutz@drk-nordrhein.de",
+    "web": "https://www.drk-nordrhein-ggmbh.de",
+    "sources": [
+        "https://www.drk-nordrhein-ggmbh.de/datenschutzerklaerung/",
+        "https://github.com/datenanfragen/data/issues/666",
+        "https://www.drk-nordrhein-ggmbh.de/impressum/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

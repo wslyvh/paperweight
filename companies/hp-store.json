@@ -1,0 +1,27 @@
+{
+    "slug": "hp-store",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "HP Deutschland GmbH",
+    "runs": [
+        "HP Instant Ink",
+        "HP Connected",
+        "Hewlett Packard"
+    ],
+    "address": "Herrenberger Straße 140\n71034 Böblingen\nDeutschland",
+    "phone": "+49 7031 4507000",
+    "email": "privacy@hp.com",
+    "webform": "https://legalops.hp.com/portals/apps/61a910c70245286a3c002c0d/atoms/new?anon_lang=de",
+    "web": "http://store.hp.com/GermanyStore/Merch/Default.aspx?v=mar1",
+    "sources": [
+        "https://www.hp.com/de-de/privacy/privacy.html",
+        "http://www.hp.com/us-en/privacy/ww-privacy-form.html",
+        "https://github.com/datenanfragen/data/pull/2399"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

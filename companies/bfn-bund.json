@@ -1,0 +1,22 @@
+{
+    "slug": "bfn-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesamt für Naturschutz (BfN)",
+    "address": "Konstantinstraße 110\n53179 Bonn\nDeutschland",
+    "phone": "+49 228 8491 1441",
+    "fax": "+49 228 8491 9999",
+    "email": "Datenschutzbeauftragter@BfN.de",
+    "web": "https://www.bfn.de",
+    "sources": [
+        "https://www.bfn.de/datenschutz.html",
+        "https://www.bfn.de/impressum.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

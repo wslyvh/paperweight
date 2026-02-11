@@ -1,0 +1,17 @@
+{
+    "slug": "jugendherbergede",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Deutsches Jugendherbergswerk",
+    "address": "c/o Hauptverband für Jugendwandern und Jugendherbergen e.V.\nLeonardo-da-Vinci-Weg 1\n32760 Detmold\nDeutschland",
+    "phone": "+49 5231 7401220",
+    "fax": "+49 5231 7401225",
+    "email": "hauptverband@jugendherberge.de",
+    "web": "https://www.jugendherberge.de",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/371",
+        "https://www.jugendherberge.de/datenschutz/"
+    ],
+    "quality": "verified"
+}

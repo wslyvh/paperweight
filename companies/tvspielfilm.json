@@ -1,0 +1,24 @@
+{
+    "slug": "tvspielfilm",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "TV Spielfilm",
+    "runs": [
+        "www.tvspielfilm.de",
+        "StreamPicker (streampicker.de)"
+    ],
+    "address": "St.-Martin-Straße 66\n81541 München\nDeutschland",
+    "phone": "+49 89 92504500",
+    "email": "tvspielfilmonline@datenschutzanfrage.de",
+    "web": "https://www.tvspielfilm.de/",
+    "sources": [
+        "https://www.tvspielfilm.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2011"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

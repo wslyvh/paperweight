@@ -1,0 +1,19 @@
+{
+    "slug": "vestiairecollective",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Vestiaire Collective",
+    "address": "255 Boulevard Pereire\n75017 Paris\nFrance",
+    "email": "dataprivacy@vestiairecollective.com",
+    "web": "https://www.vestiairecollective.com",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/956",
+        "https://www.vestiairecollective.com/privacy-policy/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "bofrost",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "bofrost*Dienstleistungs GmbH & Co. KG",
+    "address": "An der Oelmühle 6\n47638 Straelen\nDeutschland",
+    "phone": "+49 2834 7070",
+    "fax": "+49 2834 707594",
+    "email": "datenschutz@bofrost.de",
+    "web": "https://www.bofrost.de",
+    "sources": [
+        "https://www.bofrost.de/datenschutz.html",
+        "https://github.com/datenanfragen/data/issues/645"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

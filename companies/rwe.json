@@ -1,0 +1,32 @@
+{
+    "slug": "rwe",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "RWE Aktiengesellschaft",
+    "runs": [
+        "RWE Power AG",
+        "RWE Renewables GmbH",
+        "RWE Technology International GmbH",
+        "RWE Nuclear GmbH",
+        "RV Rheinbraun Handel und Dienstleistungen GmbH",
+        "Rheinbraun Brennstoff GmbH",
+        "Rheinische Baustoffwerke GmbH"
+    ],
+    "address": "Altenessener Straße 35\n45141 Essen\nDeutschland",
+    "phone": "+49 201 51790",
+    "fax": "+49 201 51795005",
+    "email": "datenschutz@rwe.com",
+    "web": "https://www.group.rwe",
+    "sources": [
+        "https://www.group.rwe/datenschutz",
+        "https://www.group.rwe/der-konzern/organisationsstruktur/",
+        "https://github.com/datenanfragen/data/issues/512",
+        "https://github.com/datenanfragen/data/issues/513"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

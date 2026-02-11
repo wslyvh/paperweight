@@ -1,0 +1,23 @@
+{
+    "slug": "harzkirchengemeinde-trinitatis",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Harzkirchengemeinde Trinitatis",
+    "address": "Heimburger Kirchstraße 4\n38889 Blankenburg (Harz)\nDeutschland",
+    "phone": "+49 3944 63614",
+    "fax": "+49 3944 367088",
+    "email": "heimburg.buero@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=709"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

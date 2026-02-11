@@ -1,0 +1,19 @@
+{
+    "slug": "fonoa",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Fonoa Technologies Limited",
+    "address": "6th Floor\nSouth Bank House\nBarrow Street\nDublin 4\nD04TR29\nIreland",
+    "email": "gdpr@fonoa.com",
+    "web": "https://www.fonoa.com",
+    "sources": [
+        "https://www.fonoa.com/legal/privacy-notice",
+        "https://github.com/datenanfragen/data/pull/1232"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

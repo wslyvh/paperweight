@@ -1,0 +1,23 @@
+{
+    "slug": "abellio-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "ATH Rail Transport Beteiligungsgesellschaft Deutschland GmbH",
+    "runs": [
+        "Abellio Rail Mitteldeutschland GmbH"
+    ],
+    "address": "c/o KINAST Rechtsanwaltsgesellschaft mbH\nHohenzollernring 54\n50672 Köln\nDeutschland",
+    "phone": "+49 221 2221830",
+    "email": "mail@kinast.eu",
+    "web": "https://www.abellio.de",
+    "sources": [
+        "https://www.abellio.de/datenschutz",
+        "https://obj.abellio.de/public/uploaded-files/garantie_formular_2018.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,39 @@
+{
+    "slug": "sift-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce",
+        "finance"
+    ],
+    "name": "Sift Science Ireland Limited",
+    "runs": [
+        "Sift Science, Inc."
+    ],
+    "address": "c/o Sift Science, Inc.\n525 Market Street\nSixth Floor\nSan Francisco, CA 94105\nUnited States of America",
+    "phone": "+1 571 366 1784",
+    "email": "privacy@sift.com",
+    "web": "https://sift.com",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/375",
+        "https://sift.com/service-privacy/",
+        "https://www.achievedcompliance.com/contact/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

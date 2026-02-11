@@ -1,0 +1,19 @@
+{
+    "slug": "sharethis",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "ShareThis, Inc.",
+    "address": "4005 Miranda Avenue\nSuite 100\nPalo Alto\nCA 94304-1227\nUnited States of America",
+    "email": "dpo@sharethis.com",
+    "web": "https://www.sharethis.com/",
+    "sources": [
+        "https://www.sharethis.com/privacy/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

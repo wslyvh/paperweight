@@ -1,0 +1,21 @@
+{
+    "slug": "technikakademie-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Technikakademie der Stadt Braunschweig",
+    "address": "Kastanienallee 71\n38102 Braunschweig\nDeutschland",
+    "phone": "+49 531 470 7900",
+    "fax": "+49 531 470 7949",
+    "email": "tab-datenschutz@ta-bs.eu",
+    "web": "https://www.technikakademie-bs.de/",
+    "sources": [
+        "https://www.technikakademie-bs.de/service/datenschutz/"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

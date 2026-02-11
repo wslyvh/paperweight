@@ -1,0 +1,23 @@
+{
+    "slug": "interrail",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Eurail B.V.",
+    "runs": [
+        "Interrail.eu"
+    ],
+    "address": "Leidseveer 10\n3511 SB Utrecht\nThe Netherlands",
+    "email": "privacy@eurail.com",
+    "web": "https://www.interrail.eu",
+    "sources": [
+        "https://www.eurail.com/en/terms-conditions/privacy-and-cookie-statement",
+        "https://www.eurail.com/en/about-us",
+        "https://github.com/datenanfragen/data/pull/2284"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

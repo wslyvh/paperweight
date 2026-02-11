@@ -1,0 +1,30 @@
+{
+    "slug": "cameo",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Baron App, Inc.",
+    "runs": [
+        "Cameo"
+    ],
+    "address": "2045 West Grand Avenue, Suite B\nPMB 71534\nChicago IL 60612-1577\nUnited States of America",
+    "phone": "+1 800 243 1739",
+    "email": "dataprotection@cameo.com",
+    "web": "https://www.cameo.com",
+    "sources": [
+        "https://www.cameo.com/privacy",
+        "https://github.com/datenanfragen/data/pull/1379"
+    ],
+    "required-elements": [
+        {
+            "desc": "Email",
+            "type": "name",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

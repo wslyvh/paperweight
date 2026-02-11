@@ -1,0 +1,23 @@
+{
+    "slug": "numberly",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "1000mercis Group",
+    "runs": [
+        "Numberly"
+    ],
+    "address": "28 rue de Châteaudun\n75009 Paris\nFrance",
+    "phone": "+33 1 49 49 06 60",
+    "email": "dpo@numberly.com",
+    "web": "https://numberly.com/",
+    "sources": [
+        "https://numberly.com/privacy"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

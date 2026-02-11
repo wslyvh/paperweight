@@ -1,0 +1,21 @@
+{
+    "slug": "atala",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Atala GmbH & Co. Fliesen- und Sanitärhandel KG",
+    "address": "c/o TRIAPILA GmbH\nTorgauer Straße 231\n04347 Leipzig\nDeutschland",
+    "phone": "+49 30 962410",
+    "fax": "+49 30 9251220",
+    "email": "datenschutz@triapila.com",
+    "web": "https://www.atala.de",
+    "sources": [
+        "https://www.atala.de/Datenschutz",
+        "https://github.com/datenanfragen/data/pull/2631"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

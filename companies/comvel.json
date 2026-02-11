@@ -1,0 +1,28 @@
+{
+    "slug": "comvel",
+    "categories": [
+        "travel"
+    ],
+    "name": "COMVEL GmbH",
+    "runs": [
+        "weg.de (www.weg.de)",
+        "ferien.de (www.ferien.de)",
+        "restplatzboerse.de (www.restplatzboerse.de)"
+    ],
+    "address": "Landsberger Straße 314\n80687 München\nDeutschland",
+    "phone": "+49 89 520 370 0",
+    "fax": "+49 89 520 370 77",
+    "email": "datenschutz@weg.de",
+    "web": "https://www.weg.de/",
+    "sources": [
+        "https://www.weg.de/ueber-wegde/datenschutz",
+        "https://www.weg.de/ueber-wegde/impressum",
+        "http://www.ferien.de/ueber-feriende/impressum",
+        "http://www.restplatzboerse.de/impressum"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

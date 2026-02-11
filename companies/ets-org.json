@@ -1,0 +1,23 @@
+{
+    "slug": "ets-org",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "ETS Global B.V.",
+    "runs": [
+        "TOEFL",
+        "TOEIC",
+        "GRE"
+    ],
+    "address": "Strawinskylaan 929\n1077 XX Amsterdam\nThe Netherlands",
+    "email": "etsinfo@ets.org",
+    "web": "https://www.ets.org/",
+    "sources": [
+        "https://www.ets.org/legal/privacy",
+        "https://github.com/datenanfragen/data/pull/1807"
+    ],
+    "quality": "verified"
+}

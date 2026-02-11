@@ -1,0 +1,29 @@
+{
+    "slug": "superhuman",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Superhuman Labs, Inc.",
+    "runs": [
+        "Superhuman (email client)"
+    ],
+    "address": "555 Mission Street #300\nSan Francisco CA 94105\nUnited States of America",
+    "email": "privacy@superhuman.com",
+    "web": "https://superhuman.com",
+    "sources": [
+        "https://superhuman.com/privacy",
+        "https://superhuman.com/contact"
+    ],
+    "required-elements": [
+        {
+            "desc": "Email",
+            "type": "name",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

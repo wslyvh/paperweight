@@ -1,0 +1,17 @@
+{
+    "slug": "rescuetime",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "RescueTime, Inc.",
+    "address": "1425 Broadway #468\nSeattle WA 9812\nUnited States of America",
+    "email": "dpo@rescuetime.com",
+    "web": "https://www.rescuetime.com/",
+    "sources": [
+        "https://blog.rescuetime.com/personal-data-gdpr/",
+        "https://opencorporates.com/companies/us_wa/602852484",
+        "https://github.com/datenanfragen/data/pull/1259"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

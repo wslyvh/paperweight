@@ -1,0 +1,23 @@
+{
+    "slug": "mvv-muenchen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "Münchner Verkehrs- und Tarifverbund GmbH (MVV)",
+    "address": "Thierschstraße 2\n80538 München\nDeutschland",
+    "phone": "+49 89 210330",
+    "fax": "+49 89 21033282",
+    "email": "Datenschutz@mvv-muenchen.de",
+    "web": "https://www.mvv-muenchen.de/",
+    "sources": [
+        "https://www.mvv-muenchen.de/footer/datenschutz/index.html",
+        "https://github.com/datenanfragen/data/pull/911",
+        "https://www.mvv-muenchen.de/footer/impressum/index.html"
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

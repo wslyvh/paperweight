@@ -1,0 +1,30 @@
+{
+    "slug": "vip-live",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "VIPLIVE GbR",
+    "address": "Goernestraße 4\n20249 Hamburg\nDeutschland",
+    "email": "info@vip-live.de",
+    "web": "https://vip-live.de",
+    "sources": [
+        "https://vip-live.de/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/1346"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "quality": "verified"
+}

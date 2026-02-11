@@ -1,0 +1,21 @@
+{
+    "slug": "emp-shop",
+    "categories": [
+        "commerce"
+    ],
+    "name": "E.M.P. Merchandising Handelsgesellschaft mbH",
+    "address": "Darmer Esch 70a\n49811 Lingen\nDeutschland",
+    "phone": "+49 591 9143 10",
+    "fax": "+49 591 9143 20",
+    "email": "datenschutz@emp.de",
+    "web": "https://www.emp.de/",
+    "sources": [
+        "https://www.emp.de/customer-service/terms-%26-conditions/terms-privacy-policy.html",
+        "https://www.emp.de/impressum/imprint.html"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

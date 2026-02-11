@@ -1,0 +1,20 @@
+{
+    "slug": "time-for-kids",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "TIME for kids Informationstechnologien GmbH",
+    "address": "Gubener Straße 47\n10243 Berlin\nDeutschland",
+    "phone": "+49 30 29369890",
+    "email": "datenschutz@time-for-kids.de",
+    "web": "https://www.time-for-kids.de",
+    "sources": [
+        "https://time-for-kids.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2911"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "relevant-countries": [
+        "ch",
+        "de",
+        "at"
+    ],
+    "slug": "guidle",
+    "name": "Guidle AG",
+    "address": "Schutzengelstrasse 57\n6340 Baar\nSchweiz",
+    "phone": "+41 41 766 95 95",
+    "fax": "+41 41 766 95 94",
+    "email": "info@guidle.com",
+    "web": "https://www.guidle.com",
+    "sources": [
+        "https://www.guidle.com/de/unternehmen/kontakt",
+        "https://www.guidle.com/de/unternehmen/agb",
+        "https://www.guidle.com/de/impressum"
+    ],
+    "quality": "verified"
+}

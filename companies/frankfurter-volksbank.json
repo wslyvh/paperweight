@@ -1,0 +1,19 @@
+{
+    "slug": "frankfurter-volksbank",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Frankfurter Volksbank eG",
+    "address": "Börsenstrasse 7-11\n60313 Frankfurt\nDeutschland",
+    "phone": "+49 69 21720",
+    "fax": "+49 69 217221501",
+    "email": "datenschutz@frankfurter-volksbank.de",
+    "web": "https://www.frankfurter-volksbank.de",
+    "sources": [
+        "https://www.frankfurter-volksbank.de/service/datenschutzhinweis.html",
+        "https://github.com/datenanfragen/data/issues/572"
+    ],
+    "needs-id-document": true,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

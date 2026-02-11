@@ -1,0 +1,23 @@
+{
+    "slug": "kirchengemeinde-danndorf-grafhorst",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Danndorf-Grafhorst",
+    "address": "Kirchstraße 30\n38462 Grafhorst\nDeutschland",
+    "phone": "+49 5364 4822",
+    "fax": "+49 5364 4822",
+    "email": "danndorf-grafhorst.buero@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=1034"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

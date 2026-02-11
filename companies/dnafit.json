@@ -1,0 +1,18 @@
+{
+    "slug": "dnafit",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "DNAFit Life Sciences Ltd.",
+    "address": "TMS House\nCray Avenue\nOrpington, Kent\nBR5 3QB\nUnited Kingdom",
+    "phone": "+44 20 8004 4008",
+    "email": "compliance@dnafit.com",
+    "web": "https://www.dnafit.com",
+    "sources": [
+        "https://www.dnafit.com/privacy.asp",
+        "https://dnafit.zendesk.com/hc/en-gb/requests/new"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

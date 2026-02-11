@@ -1,0 +1,25 @@
+{
+    "slug": "openx",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "OpenX Software Ltd.",
+    "runs": [
+        "OpenX Technologies, Inc.",
+        "OpenX Japan Kabushiki Kaisha"
+    ],
+    "address": "Aleja 29 Listopada 20\n31-401 Krakow\nPoland",
+    "phone": "+1 626 466 1141",
+    "email": "privacy@openx.com",
+    "web": "https://www.openx.com/",
+    "sources": [
+        "https://www.openx.com/legal/privacy-policy/",
+        "https://www.openx.com/contact-us/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

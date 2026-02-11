@@ -1,0 +1,22 @@
+{
+    "slug": "mhplus",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health",
+        "insurance"
+    ],
+    "name": "mhplus Betriebskrankenkasse",
+    "address": "Nordostpark 14\n90411 Nürnberg\nDeutschland",
+    "phone": "+49 7141 97909968",
+    "fax": "+49 7141 9790449968",
+    "email": "Datenschutz@mhplus.de",
+    "web": "https://www.mhplus-krankenkasse.de/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/201",
+        "https://www.mhplus-krankenkasse.de/datenschutz"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

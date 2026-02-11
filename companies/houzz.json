@@ -1,0 +1,14 @@
+{
+    "slug": "houzz",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Houzz",
+    "address": "285 Hamilton Avenue\nPalo Alto\nCalifornia 94301\nUnited States of America",
+    "sources": [
+        "https://www.houzz.com/privacyPolicy",
+        "https://en.wikipedia.org/wiki/Houzz",
+        "https://github.com/datenanfragen/data/issues/427"
+    ],
+    "quality": "verified"
+}

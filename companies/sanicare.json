@@ -1,0 +1,23 @@
+{
+    "slug": "sanicare",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "BS - Apotheken oHG",
+    "runs": [
+        "Sanicare-Apotheke"
+    ],
+    "address": "Grüner Weg 1\n49196 Bad Laer\nDeutschland",
+    "phone": "+49 5424 6470100",
+    "fax": "+49 5424 801 109",
+    "email": "datenschutz@sanicare.de",
+    "web": "https://www.sanicare.de/",
+    "sources": [
+        "https://www.sanicare.de/navigation/018f29b8c5f37fbfb946bc9916a60430"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

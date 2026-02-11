@@ -1,0 +1,20 @@
+{
+    "slug": "id5",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "ID5 Technology Ltd.",
+    "address": "15 Bishopsgate\nLondon\nEC2N 3AR\nUnited Kingdom",
+    "email": "privacy@id5.io",
+    "web": "https://id5.io/",
+    "sources": [
+        "https://id5.io/platform-privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/2923"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

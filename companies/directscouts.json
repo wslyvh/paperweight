@@ -1,0 +1,20 @@
+{
+    "slug": "directscouts",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Direct Scouts GmbH",
+    "address": "Schneiderstraße 6\n40764 Langenfeld\nDeutschland",
+    "phone": "+49 212 13061130",
+    "email": "datenschutz@directscouts.de",
+    "web": "https://directscouts.de/",
+    "sources": [
+        "https://directscouts.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1610"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

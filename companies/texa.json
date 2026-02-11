@@ -1,0 +1,27 @@
+{
+    "slug": "texa",
+    "relevant-countries": [
+        "de",
+        "it",
+        "gb",
+        "es",
+        "pl",
+        "fr"
+    ],
+    "categories": [
+        "utility",
+        "commerce",
+        "telecommunication"
+    ],
+    "name": "Texa S.p.A.",
+    "address": "Via Vallio 15\n31050 Monastier di Treviso\nItaly",
+    "phone": "+39 0422 791393",
+    "email": "dpo@texa.com",
+    "web": "https://www.texa.com",
+    "sources": [
+        "https://www.texa.com",
+        "https://www.texa.com/privacy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

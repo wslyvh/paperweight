@@ -1,0 +1,22 @@
+{
+    "slug": "griesson-debeukelaer",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Griesson - de Beukelaer GmbH & Co. KG",
+    "address": "c/o VdE Service GmbH\nEduard-Pfeiffer-Straße 48\n70192 Stuttgart\nDeutschland",
+    "phone": "+49 2654 4010",
+    "fax": "+49 2654 4011000",
+    "email": "datenschutzbeauftragter@griesson.de",
+    "web": "https://www.griesson-debeukelaer.de",
+    "sources": [
+        "https://www.griesson-debeukelaer.de/de/de/footer-navigation/datenschutz.html",
+        "https://www.griesson-debeukelaer.de/de/de/footer-navigation/impressum.html",
+        "https://github.com/datenanfragen/data/pull/1719"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

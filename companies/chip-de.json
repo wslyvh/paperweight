@@ -1,0 +1,23 @@
+{
+    "slug": "chip-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "BurdaForward GmbH",
+    "runs": [
+        "chip.de"
+    ],
+    "address": "St.-Martin-Straße 66\n81541 München\nDeutschland",
+    "phone": "+49 89 92504500",
+    "email": "chipdigital@datenschutzanfrage.de",
+    "webform": "https://datenschutzanfrage.de/?source=chipdigital",
+    "web": "https://www.chip.de",
+    "sources": [
+        "https://www.chip.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2731"
+    ],
+    "quality": "verified"
+}

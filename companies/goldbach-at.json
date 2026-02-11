@@ -1,0 +1,22 @@
+{
+    "slug": "goldbach-at",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Goldbach Austria GmbH",
+    "address": "Laimgrubengasse 14\n1060 Wien\nÖsterreich",
+    "phone": "+43 1 370 88 08",
+    "fax": "+43 1 370 88 08 20",
+    "email": "oba@at.goldbach.com",
+    "web": "https://goldbach.com/at/de",
+    "sources": [
+        "https://goldbach.com/at/de/datenschutz/datenschutz-goldbach-austria",
+        "https://goldbach.com/at/de/impressum"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

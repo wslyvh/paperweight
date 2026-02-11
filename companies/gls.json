@@ -1,0 +1,30 @@
+{
+    "slug": "gls",
+    "categories": [
+        "commerce"
+    ],
+    "name": "General Logistics Systems Germany GmbH & Co. OHG",
+    "runs": [
+        "GLS Paketdienst",
+        "GLS-ONE"
+    ],
+    "address": "GLS Germany-Straße 1 – 7\n36286 Neuenstein\nDeutschland",
+    "phone": "+49 6677 646907000",
+    "fax": "+49 6677 646907039",
+    "email": "datenschutz@gls-germany.com",
+    "web": "https://gls-group.eu",
+    "sources": [
+        "https://gls-group.eu/DE/de/datenschutz-standard",
+        "https://gls-group.eu/DE/de/datenschutz-easy-start",
+        "https://gls-group.eu/DE/de/impressum",
+        "https://www.gls-one.de/DE/de/GLS-ONE_agb_DE.pdf"
+    ],
+    "comments": [
+        "Faxnummer ist von der Debitorenbuchhaltung."
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

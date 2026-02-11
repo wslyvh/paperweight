@@ -1,0 +1,17 @@
+{
+    "slug": "direkta-marketing",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Direkta Gesellschaft für Marketing mbH",
+    "address": "Hoyendonk 12\n47638 Straelen\nDeutschland",
+    "phone": "+49 2834 982614",
+    "fax": "+49 2834 7982617",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/185"
+    ],
+    "quality": "verified"
+}

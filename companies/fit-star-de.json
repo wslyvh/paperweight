@@ -1,0 +1,27 @@
+{
+    "slug": "fit-star-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "FIT STAR Holding GmbH & Co. KG",
+    "address": "Kistlerhofstr. 168\n81379 München\nDeutschland",
+    "phone": "+49 171 4776920",
+    "fax": "+49 89 78072727",
+    "email": "info@hagl-arbeitssicherheit.de",
+    "web": "https://www.fit-star.de",
+    "sources": [
+        "https://www.fit-star.de/datenschutz/",
+        "https://www.fit-star.de/impressum/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "quality": "verified"
+}

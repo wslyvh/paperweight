@@ -1,0 +1,22 @@
+{
+    "slug": "popsure-deutschland-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Popsure Deutschland GmbH",
+    "runs": [
+        "Feather"
+    ],
+    "address": "Factory Görlitzer Park\nLohmühlenstraße 65\n12435 Berlin\nDeutschland",
+    "phone": "+49 30 30806125",
+    "email": "hello@feather-insurance.com",
+    "sources": [
+        "https://feather-insurance.com/de/privacy-policy",
+        "https://feather-insurance.com/de/impressum",
+        "https://github.com/datenanfragen/data/pull/2267"
+    ],
+    "quality": "verified"
+}

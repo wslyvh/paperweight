@@ -1,0 +1,17 @@
+{
+    "slug": "lexa-nl",
+    "relevant-countries": [
+        "nl"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Lexa.nl",
+    "address": "c/o Meetic SAS\n53 rue de Châteaudun\nParis 9\nFrance",
+    "webform": "https://www.lexa.nl/faq/#privacyRequest",
+    "web": "https://www.lexa.nl/",
+    "sources": [
+        "https://www.lexa.nl/pages/misc/privacy"
+    ],
+    "quality": "verified"
+}

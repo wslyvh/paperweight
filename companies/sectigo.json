@@ -1,0 +1,17 @@
+{
+    "slug": "sectigo",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Sectigo Limited",
+    "address": "Unit 7 & 9\nListerhills, Science Park, Campus Road\nBradford\nBD7 1HR\nUnited Kingdom",
+    "email": "DPOfficer@sectigo.com",
+    "webform": "https://www.sectigo.com/privacy-portal",
+    "web": "https://www.sectigo.com/",
+    "sources": [
+        "https://www.sectigo.com/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/2360"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

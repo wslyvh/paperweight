@@ -1,0 +1,20 @@
+{
+    "slug": "branch-io",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Branch Metrics, Inc.",
+    "address": "1400 Seaport Blvd\nBuilding B\n2nd Floor\nRedwood City\nCA 94063\nUnited States of America",
+    "email": "privacy@branch.io",
+    "web": "https://branch.io/",
+    "sources": [
+        "https://branch.io/policies/#privacy"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,27 @@
+{
+    "slug": "sueddeutsche",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Süddeutsche Zeitung GmbH",
+    "runs": [
+        "Jetzt.de",
+        "Kaufdown"
+    ],
+    "address": "atarax Unternehmensgruppe\nLuitpold-Maier-Str. 7\n91074 Herzogenaurach\nDeutschland",
+    "phone": "+49 9132 79800",
+    "fax": "+49 89 21839777",
+    "email": "swmh-datenschutz@atarax.de",
+    "web": "https://www.sueddeutsche.de",
+    "sources": [
+        "https://www.swmh-datenschutz.de/sz",
+        "https://www.swmh-datenschutz.de/jetzt#scroll-to-9",
+        "https://www.swmh-datenschutz.de/kaufdown",
+        "https://www.sueddeutsche.de/projekte/artikel/verlag/artikel-e287935/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

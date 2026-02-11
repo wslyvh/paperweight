@@ -1,0 +1,23 @@
+{
+    "slug": "apotheke-zur-rose",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Apotheke Zur Rose",
+    "address": "Thüringer Straße 29\n06112 Halle (Saale)\nDeutschland",
+    "phone": "+49 800 2040111",
+    "fax": "+49 180 5 883033",
+    "email": "service@zurrose.de",
+    "web": "https://www.zurrose.de/",
+    "sources": [
+        "https://www.zurrose.de/services/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1739"
+    ],
+    "comments": [
+        "Achtung: Faxnummer ist kostenpflichtig (14 Cent inkl. Mwst./Min. aus dem deutschen Festnetz. Aus den Mobilfunknetzen höchstens 42 Cent inkl. Mwst./Min.)!"
+    ],
+    "quality": "verified"
+}

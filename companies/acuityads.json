@@ -1,0 +1,21 @@
+{
+    "slug": "acuityads",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "AcuityAds Inc.",
+    "address": "181 Bay Street, Suite 320\nBrookfield Place, Bay Wellington Tower\nToronto\nON M5J 2T3\nCanada",
+    "phone": "+1 416 218 9888",
+    "email": "privacy@acuityads.com",
+    "web": "https://www.acuityads.com/",
+    "sources": [
+        "https://www.acuityads.com/privacy-policy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

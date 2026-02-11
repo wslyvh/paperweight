@@ -1,0 +1,23 @@
+{
+    "slug": "brandmaker",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "BrandMaker GmbH",
+    "runs": [
+        "BrandMaker Inc."
+    ],
+    "address": "Rüppurrer Straße 1\n76137 Karlsruhe\nGermany",
+    "phone": "+49 721 97791000",
+    "fax": "+49 721 97791098",
+    "email": "info@brandmaker.com",
+    "web": "https://www.brandmaker.com/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/537",
+        "https://www.brandmaker.com/privacy-policy-eu/"
+    ],
+    "quality": "verified"
+}

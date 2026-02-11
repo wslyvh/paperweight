@@ -1,0 +1,21 @@
+{
+    "slug": "radiusnetworks",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Radius Networks, Inc",
+    "runs": [
+        "Flybuy"
+    ],
+    "address": "3299 K Street NW Suite 400\nWashington DC 20007\nUnited States",
+    "email": "privacy@radiusnetworks.com",
+    "web": "http://www.radiusnetworks.com/",
+    "sources": [
+        "https://www.flybuy.com/privacy-policy",
+        "https://www.privacyshield.gov/participant?id=a2zt00000008WuQAAU&status=Active"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "custom-access-template": "access-tracking"
+}

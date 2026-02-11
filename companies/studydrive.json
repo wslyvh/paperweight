@@ -1,0 +1,33 @@
+{
+    "slug": "studydrive",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "school",
+        "social media"
+    ],
+    "name": "Studydrive GmbH",
+    "address": "Karl-Marx-Straße 97-99\n12043 Berlin\nDeutschland",
+    "phone": "+49 30 55579464",
+    "email": "legal@stepstone.de",
+    "web": "https://www.studydrive.net",
+    "sources": [
+        "https://www.studydrive.net/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2351"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": true
+        },
+        {
+            "desc": "E-Mail-Adresse",
+            "type": "input",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

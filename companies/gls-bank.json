@@ -1,0 +1,21 @@
+{
+    "slug": "gls-bank",
+    "categories": [
+        "finance"
+    ],
+    "name": "GLS Gemeinschaftsbank eG",
+    "address": "44774 Bochum\nDeutschland",
+    "phone": "+49 234 5797 100",
+    "fax": "+49 234 5797 222",
+    "email": "datenschutz@gls.de",
+    "web": "https://www.gls.de/privatkunden/",
+    "sources": [
+        "https://www.gls.de/privatkunden/datenschutz/",
+        "https://www.gls.de/privatkunden/impressum/"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

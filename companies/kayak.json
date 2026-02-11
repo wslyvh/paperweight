@@ -1,0 +1,30 @@
+{
+    "slug": "kayak",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "KAYAK",
+    "runs": [
+        "momondo",
+        "HotelsCombined",
+        "SWOODOO",
+        "Cheapflights.com",
+        "checkfelix"
+    ],
+    "address": "c/o Momondo A/S\nFarvergade 10, 1\n1463 Copenhagen K\nDenmark",
+    "email": "privacy@kayak.com",
+    "web": "https://www.kayak.de/",
+    "sources": [
+        "https://www.kayak.de/privacy",
+        "https://www.swoodoo.com/privacy",
+        "https://www.momondo.de/privacy",
+        "https://www.hotelscombined.de/privacy",
+        "https://www.cheapflights.com/privacy",
+        "https://www.checkfelix.com/privacy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

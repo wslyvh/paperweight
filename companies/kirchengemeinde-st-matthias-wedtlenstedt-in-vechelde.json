@@ -1,0 +1,23 @@
+{
+    "slug": "kirchengemeinde-st-matthias-wedtlenstedt-in-vechelde",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde St. Matthias Wedtlenstedt in Vechelde",
+    "address": "Pastor-Graffam-Weg 1\n38176 Wendeburg\nDeutschland",
+    "phone": "+49 5302 1424",
+    "fax": "+49 5302 804947",
+    "email": "bortfeld.pfa@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=1003"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

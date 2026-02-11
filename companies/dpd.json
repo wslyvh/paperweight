@@ -1,0 +1,21 @@
+{
+    "slug": "dpd",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "DPD Deutschland GmbH",
+    "address": "Wailandtstraße 1\n63741 Aschaffenburg\nDeutschland",
+    "phone": "+49 6021 843 0",
+    "email": "datenschutz@dpd.de",
+    "webform": "https://www.dpd.com/de/de/datenschutz/datenschutz-formular/",
+    "web": "https://www.dpd.com",
+    "sources": [
+        "https://www.dpd.com/de/de/datenschutz/",
+        "https://www.dpd.com/de/de/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

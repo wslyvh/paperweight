@@ -1,0 +1,24 @@
+{
+    "slug": "propstei-vechelde",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Propstei Vechelde",
+    "address": "Peiner Straße 7 A\n38159 Vechelde\nDeutschland",
+    "phone": "+49 5302 1466",
+    "fax": "+49 5302 6578",
+    "email": "vechelde.pr@lk-bs.de",
+    "web": "http://www.propstei-vechelde.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/vechelde.html"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

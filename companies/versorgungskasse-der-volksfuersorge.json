@@ -1,0 +1,17 @@
+{
+    "slug": "versorgungskasse-der-volksfuersorge",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Versorgungskasse der Volksfürsorge VVaG",
+    "address": "Besenbinderhof 43\n20097 Hamburg\nDeutschland",
+    "email": "konzerndatenschutz.de@generali.com",
+    "sources": [
+        "https://www.generali.de/resource/blob/48978/c1eec93d670c3f0866941aeabcfd6178/Datenschutz%20VK.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

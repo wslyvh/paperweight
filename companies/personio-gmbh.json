@@ -1,0 +1,18 @@
+{
+    "slug": "personio-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Personio GmbH",
+    "address": "Rundfunkplatz 4\n80335 München\nDeutschland",
+    "email": "datenschutz@personio.de",
+    "sources": [
+        "https://www.personio.de/datenschutzerklaerung/",
+        "https://github.com/datenanfragen/data/pull/1147"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

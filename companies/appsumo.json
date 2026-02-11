@@ -1,0 +1,22 @@
+{
+    "slug": "appsumo",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Sumo Group Inc.",
+    "runs": [
+        "AppSumo",
+        "SendFox",
+        "KingSumo"
+    ],
+    "address": "1305 E. 6th St #3\nAustin TX 78702\nUnited States of America",
+    "email": "support@appsumo.com",
+    "web": "https://appsumo.com/",
+    "sources": [
+        "https://appsumo.com/privacy/"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,38 @@
+{
+    "slug": "gloeckle",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Staatliche Lotterie-Einnahme Glöckle KG",
+    "address": "Daimlerstraße 86\n70372 Stuttgart\nDeutschland",
+    "phone": "+49 711 9541620",
+    "fax": "+49 731 9541309",
+    "email": "datenschutz@gloeckle.de",
+    "web": "https://www.gloeckle.de",
+    "sources": [
+        "https://www.gloeckle.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1063"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "Kundennummer",
+            "type": "input",
+            "optional": true
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

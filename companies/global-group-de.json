@@ -1,0 +1,37 @@
+{
+    "slug": "global-group-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "addresses"
+    ],
+    "name": "Global Group TDA Germany GmbH",
+    "address": "Serviceware-Kreisel 1\n65510 Idstein\nDeutschland",
+    "phone": "+49 6126 9375 1765",
+    "fax": "+49 6126 9375 93",
+    "email": "datenschutz@global-group.de",
+    "webform": "https://global-group.de/de/weitere-betroffenenrechte",
+    "web": "https://www.global-group.de",
+    "sources": [
+        "https://global-group.de/files/original/global-group-datenschutzhinweise-personen-mai-2024.pdf",
+        "https://global-group.de/de/footer/impressum"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        },
+        {
+            "desc": "Unternehmen, von dem Werbebrief kommt",
+            "type": "textarea",
+            "optional": true
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

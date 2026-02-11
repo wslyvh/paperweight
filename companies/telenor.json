@@ -1,0 +1,18 @@
+{
+    "slug": "telenor",
+    "relevant-countries": [
+        "no"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Telenor Norge AS",
+    "address": "Snarøyveien 30\n1331 Fornebu\nNorway",
+    "email": "personvernsenter@telenor.no",
+    "web": "https://www.telenor.no",
+    "sources": [
+        "https://www.telenor.no/om/personvern/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

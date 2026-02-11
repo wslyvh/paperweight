@@ -1,0 +1,35 @@
+{
+    "slug": "patreon",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment",
+        "finance",
+        "social media"
+    ],
+    "name": "Patreon Ireland Limited",
+    "runs": [
+        "Patreon, Inc."
+    ],
+    "address": "Suite 3\nOne Earlsfort Center\nLower Hatch Street\nDublin 2\nIreland",
+    "phone": "+1 833 972 8766",
+    "email": "privacy@patreon.com",
+    "web": "https://www.patreon.com/",
+    "sources": [
+        "https://privacy.patreon.com/policies"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Username",
+            "type": "input"
+        }
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

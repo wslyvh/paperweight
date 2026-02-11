@@ -1,0 +1,21 @@
+{
+    "slug": "mri-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Max Rubner-Institut (MRI)",
+    "address": "Haid-und-Neu-Straße 9\n76131 Karlsruhe\nDeutschland",
+    "phone": "+49 721 6625 0",
+    "fax": "+49 721 6625 111",
+    "email": "datenschutz@mri.bund.de",
+    "web": "https://www.mri.bund.de",
+    "sources": [
+        "https://www.mri.bund.de/de/datenschutz/"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

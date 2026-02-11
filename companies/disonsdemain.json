@@ -1,0 +1,22 @@
+{
+    "slug": "disonsdemain",
+    "relevant-countries": [
+        "fr",
+        "be"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "DisonsDemain.fr",
+    "runs": [
+        "DisonsDemain.be"
+    ],
+    "address": "c/o Meetic SAS\n53 rue de Châteaudun\nParis 9\nFrance",
+    "webform": "https://www.disonsdemain.fr/faq/#privacyRequest",
+    "web": "https://www.disonsdemain.fr",
+    "sources": [
+        "https://www.disonsdemain.fr/pages/misc/privacy",
+        "https://www.disonsdemain.be/pages/misc/privacy"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,18 @@
+{
+    "slug": "warta-pl",
+    "relevant-countries": [
+        "pl"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "WARTA S.A.",
+    "address": "rondzie I. Daszyńskiego 1\n00-843 Warszawie\nPoland",
+    "email": "IOD@warta.pl",
+    "web": "https://www.warta.pl",
+    "sources": [
+        "https://www.warta.pl/polityka-prywatnosci/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

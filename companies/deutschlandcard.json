@@ -1,0 +1,22 @@
+{
+    "slug": "deutschlandcard",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads",
+        "commerce"
+    ],
+    "name": "DeutschlandCard GmbH",
+    "address": "Neumarkter Straße 28\n81673 München\nDeutschland",
+    "email": "datenschutz@deutschlandcard.de",
+    "web": "https://www.deutschlandcard.de/",
+    "sources": [
+        "https://www.deutschlandcard.de/datenschutz/datenschutz-programm"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Die DeutschlandCard GmbH selbst sitzt: Neumarkter Straße 22, 81637 München, Deutschland."
+    ],
+    "quality": "verified"
+}

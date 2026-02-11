@@ -1,0 +1,22 @@
+{
+    "slug": "cdu-bw",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "political party"
+    ],
+    "name": "CDU-Landesverband Baden-Württemberg",
+    "address": "Heilbronner Straße 43\n70191 Stuttgart\nDeutschland",
+    "phone": "+49 711 66904 0",
+    "fax": "+49 711 66904 15",
+    "email": "datenschutz@ubgnet.de",
+    "web": "https://www.cdu-bw.de",
+    "sources": [
+        "https://www.cdu-bw.de/impressum/",
+        "https://www.cdu-bw.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1001"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

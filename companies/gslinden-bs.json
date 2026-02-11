@@ -1,0 +1,21 @@
+{
+    "slug": "gslinden-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Grundschule Lindenbergsiedlung Braunschweig",
+    "address": "Bunsenstraße 22\n38126 Braunschweig\nDeutschland",
+    "phone": "+49 531 26 40 710",
+    "email": "schulleitung@gs-lbs.de",
+    "web": "https://wordpress.nibis.de/gslinden",
+    "sources": [
+        "https://wordpress.nibis.de/gslinden/impressum/"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

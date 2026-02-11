@@ -1,0 +1,18 @@
+{
+    "slug": "mullvad",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Mullvad VPN AB",
+    "runs": [
+        "Mullvad Browser"
+    ],
+    "address": "Box 53049\n400 14 Gothenburg\nSweden",
+    "email": "support@mullvadvpn.net",
+    "web": "https://mullvad.net/",
+    "sources": [
+        "https://mullvad.net/en/help/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/2559"
+    ],
+    "quality": "verified"
+}

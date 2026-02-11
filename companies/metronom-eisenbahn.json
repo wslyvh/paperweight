@@ -1,0 +1,19 @@
+{
+    "slug": "metronom-eisenbahn",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "metronom Eisenbahngesellschaft mbH",
+    "address": "St.-Viti-Str. 15\n29525 Uelzen\nDeutschland",
+    "phone": "+49 581 971640",
+    "web": "https://www.der-metronom.de",
+    "sources": [
+        "https://www.der-metronom.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1428"
+    ],
+    "quality": "verified",
+    "email": "info@der-metronom.de"
+}

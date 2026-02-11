@@ -1,0 +1,25 @@
+{
+    "slug": "htc-europe",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment",
+        "social media",
+        "commerce"
+    ],
+    "name": "HTC Europe Co. Ltd",
+    "runs": [
+        "Viveport",
+        "HTCSense.com"
+    ],
+    "address": "Salamanca\nWellington Street\nSlough, Berkshire\nSL1 1YP\nUnited Kingdom",
+    "email": "global-privacy@htc.com",
+    "web": "https://www.htc.com/",
+    "sources": [
+        "https://www.htc.com/us/terms/privacy/",
+        "https://github.com/datenanfragen/data/issues/594"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

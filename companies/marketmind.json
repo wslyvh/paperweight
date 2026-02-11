@@ -1,0 +1,35 @@
+{
+    "slug": "marketmind",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "marketmind GmbH",
+    "address": "Porzellangasse 32\n1090 Wien\nÖsterreich",
+    "phone": "+43 1 36946260",
+    "fax": "+43 1 369462633",
+    "email": "datenschutz@marketmind.at",
+    "web": "https://www.marketmind.at",
+    "sources": [
+        "https://www.marketmind.at/html/de/index.aspx?page_url=Datenschutz&mid=335",
+        "https://www.marketmind.at/html/de/index.aspx?page_url=Impressum&mid=270",
+        "https://github.com/datenanfragen/data/issues/161"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Telefonnummer",
+            "type": "input"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Macht Umfragen für verschiedene Firmen."
+    ],
+    "quality": "verified"
+}

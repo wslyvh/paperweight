@@ -1,0 +1,20 @@
+{
+    "slug": "creditreform-gb",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "collection agency",
+        "credit agency"
+    ],
+    "name": "Federation of Creditreform Associations",
+    "address": "Fairgate House\n205 Kings Road\nTyseley\nBirmingham\nB11 2AA\nUnited Kingdom",
+    "phone": "+44 121 546 0470",
+    "fax": "+44 121 442 5340",
+    "email": "info@creditreform.co.uk",
+    "web": "https://creditreform.co.uk",
+    "sources": [
+        "https://creditreform.co.uk/contact-us/"
+    ],
+    "quality": "verified"
+}

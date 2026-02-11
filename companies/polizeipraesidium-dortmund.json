@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-dortmund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Polizeipräsidium Dortmund",
+    "address": "Markgrafenstraße 102\n44139 Dortmund\nDeutschland",
+    "phone": "+49 231 1320",
+    "fax": "+49 231 1329486",
+    "email": "datenschutz.dortmund@polizei.nrw.de",
+    "web": "https://dortmund.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

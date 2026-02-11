@@ -1,0 +1,21 @@
+{
+    "slug": "wageningen-university",
+    "relevant-countries": [
+        "nl"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Wageningen University & Research",
+    "address": "P.O. Box 9101\n6700 HB Wageningen\nThe Netherlands",
+    "phone": "+31 317 480 100",
+    "email": "privacy@wur.nl",
+    "web": "https://www.wur.nl",
+    "sources": [
+        "https://www.wur.nl/en/Privacy-Cookie-statement.htm",
+        "https://github.com/datenanfragen/data/pull/1230",
+        "https://www.wur.nl/en/Contact-Wageningen-University-Research.htm"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,25 @@
+{
+    "slug": "stats-fm",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment",
+        "social media"
+    ],
+    "name": "StatsFM B.V.",
+    "address": "Crommelinbaan 3\n2142EX Cruquius\nThe Netherlands",
+    "email": "dpo@stats.fm",
+    "web": "https://stats.fm",
+    "sources": [
+        "https://stats.fm/privacy",
+        "https://www.kvk.nl/bestellen/#/86035096000046261222",
+        "https://github.com/datenanfragen/data/pull/2622",
+        "https://github.com/datenanfragen/data/pull/2708"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Asks you to fill out this form https://cdn.stats.fm/dsr.doc and send it as attachment of your email."
+    ],
+    "quality": "verified"
+}

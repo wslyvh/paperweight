@@ -1,0 +1,23 @@
+{
+    "slug": "kirchengemeinde-salzgitter-gross-mahner",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Salzgitter-Groß Mahner",
+    "address": "Oderwaldstraße 5\n38312 Flöthe\nDeutschland",
+    "phone": "+49 5341 9650",
+    "fax": "+49 5341 30265",
+    "email": "salzgitter-bad.pr@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=882"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

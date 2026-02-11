@@ -1,0 +1,25 @@
+{
+    "slug": "e-wie-einfach",
+    "categories": [
+        "utility"
+    ],
+    "name": "E WIE EINFACH GmbH",
+    "runs": [
+        "Produkttest-Community (produkttest.e-wie-einfach.de)",
+        "WieEinfach-Shop (www.wie-einfach.de)"
+    ],
+    "address": "Salierring 47 – 53\n50677 Köln\nDeutschland",
+    "phone": "+49 221 1 77 37 0",
+    "fax": "+49 221 1 77 37 2 10",
+    "email": "datenschutzbeauftragter@e-wie-einfach.de",
+    "web": "https://www.e-wie-einfach.de/",
+    "sources": [
+        "https://www.e-wie-einfach.de/datenschutz",
+        "https://www.e-wie-einfach.de/impressum"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

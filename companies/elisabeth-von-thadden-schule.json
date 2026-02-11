@@ -1,0 +1,35 @@
+{
+    "slug": "elisabeth-von-thadden-schule",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Elisabeth-von-Thadden-Schule",
+    "address": "c/o Schulstiftung der Evangelischen Landeskirche in Baden\nBlumenstraße 1-7\n76133 Karlsruhe\nDeutschland",
+    "phone": "+49 721 9175135",
+    "fax": "+49 721 917525135",
+    "email": "info@schulstiftung-baden.de",
+    "web": "https://elisabeth-von-thadden-schule.de",
+    "sources": [
+        "https://elisabeth-von-thadden-schule.de/impressum",
+        "https://elisabeth-von-thadden-schule.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2616"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "verified",
+    "custom-access-template": "access-evangelische-kirche",
+    "request-language": "de"
+}

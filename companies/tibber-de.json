@@ -1,0 +1,18 @@
+{
+    "slug": "tibber-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "Tibber Deutschland GmbH",
+    "address": "Strelitzer Str. 60\n10115 Berlin\nDeutschland",
+    "email": "hello@tibber.com",
+    "sources": [
+        "https://tibber.com/de/datenschutzerklarung/tibber-deutschland",
+        "https://tibber.com/de/datenschutzerklarung/ihre-rechte",
+        "https://github.com/datenanfragen/data/pull/2796"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,27 @@
+{
+    "slug": "eventim",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "CTS EVENTIM AG & Co. KGaA",
+    "runs": [
+        "fanSALE (www.fansale.de)"
+    ],
+    "address": "Contrescarpe 75-A\n28195 Bremen\nDeutschland",
+    "phone": "+49 421 20315511",
+    "email": "datenschutz@eventim.de",
+    "web": "https://www.eventim.de",
+    "sources": [
+        "https://www.eventim.de/help/data-protection/",
+        "https://www.eventim.de/help/imprint/",
+        "https://github.com/datenanfragen/data/issues/40",
+        "https://github.com/datenanfragen/data/pull/2058"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

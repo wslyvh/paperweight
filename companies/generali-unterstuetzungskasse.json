@@ -1,0 +1,19 @@
+{
+    "slug": "generali-unterstuetzungskasse",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Generali Unterstützungskasse e.V.",
+    "address": "Oeder Weg 151\n60318 Frankfurt\nDeutschland",
+    "phone": "+49 89 51210",
+    "fax": "+49 89 51211000",
+    "email": "konzerndatenschutz.de@generali.com",
+    "sources": [
+        "https://www.generali.de/resource/blob/93162/14a96322403ebe737ebea9a1dc59f2a3/Merkblatt_Hinweis_zum_Schutz_ihrer_Daten_GUK.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

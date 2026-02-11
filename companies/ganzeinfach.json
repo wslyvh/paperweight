@@ -1,0 +1,21 @@
+{
+    "slug": "ganzeinfach",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "categories": [
+        "commerce",
+        "ads"
+    ],
+    "name": "Ganz Einfach GmbH",
+    "address": "Wohlenbergstr. 16\n30179 Hannover\nDeutschland",
+    "phone": "+49 511 13221710",
+    "email": "info@ganzeinfach.de",
+    "web": "https://www.ganzeinfach.de",
+    "sources": [
+        "https://www.ganzeinfach.de/de/datenschutz.html"
+    ],
+    "quality": "verified"
+}

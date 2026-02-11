@@ -1,0 +1,21 @@
+{
+    "slug": "vr-bank-mitte-eg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "VR-Bank Mitte eG",
+    "address": "Westerstieg 5\n37115 Duderstadt\nDeutschland",
+    "phone": "+49 5527 8450",
+    "fax": "+49 5527 84517800",
+    "email": "datenschutz@vrbankmitte.de",
+    "web": "https://www.vrbankmitte.de",
+    "sources": [
+        "https://www.vrbankmitte.de/service/rechtliche-hinweise/datenschutzhinweis-zur-website.html",
+        "https://github.com/datenanfragen/data/pull/2738"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,17 @@
+{
+    "slug": "grammarly",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Grammarly Inc.",
+    "address": "c/o VeraSafe Ireland Ltd\nUnit 3D North Point House\nNorth Point Business Park\nNew Mallow Road\nCork T23AT2P\nIreland",
+    "phone": "+380 68 207 6118",
+    "email": "privacy@grammarly.com",
+    "web": "https://www.grammarly.com/",
+    "sources": [
+        "https://www.grammarly.com/privacy-policy",
+        "https://www.privacyshield.gov/participant?id=a2zt00000008UMfAAM"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

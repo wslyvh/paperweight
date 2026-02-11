@@ -1,0 +1,32 @@
+{
+    "slug": "sendinblue",
+    "relevant-countries": [
+        "fr",
+        "de",
+        "it",
+        "es",
+        "pt",
+        "gb"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Sendinblue SAS",
+    "runs": [
+        "Sendinblue GmbH",
+        "Sendinblue Inc."
+    ],
+    "address": "7 rue de Madrid\n75008 Paris\nFrance",
+    "email": "privacy@sendinblue.com",
+    "web": "https://www.sendinblue.com",
+    "sources": [
+        "https://www.sendinblue.com/legal/privacypolicy/",
+        "https://github.com/datenanfragen/data/pull/1135",
+        "https://de.sendinblue.com/legal/privacypolicy/"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "German address: Köpenicker Str. 126, 10179 Berlin, Germany"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "growbots",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "addresses",
+        "telecommunication"
+    ],
+    "name": "Growbots Inc.",
+    "address": "1015 Fillmore St\nPMB 18339\nSan Francisco, CA 94115\nUnited States of America",
+    "email": "privacy@growbots.com",
+    "web": "https://www.growbots.com/",
+    "sources": [
+        "https://www.growbots.com/privacy/",
+        "https://github.com/datenanfragen/data/pull/1761"
+    ],
+    "quality": "verified"
+}

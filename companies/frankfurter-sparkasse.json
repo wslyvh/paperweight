@@ -1,0 +1,22 @@
+{
+    "slug": "frankfurter-sparkasse",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Frankfurter Sparkasse",
+    "address": "Neue Mainzer Str. 47-53\n60311 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 26413686",
+    "fax": "+49 69 26412900",
+    "email": "datenschutz@frankfurter-sparkasse.de",
+    "web": "https://www.frankfurter-sparkasse.de/",
+    "sources": [
+        "https://www.frankfurter-sparkasse.de/de/home/toolbar/datenschutz.html",
+        "https://www.frankfurter-sparkasse.de/de/home/toolbar/impressum.html",
+        "https://github.com/datenanfragen/data/issues/564"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

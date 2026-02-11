@@ -1,0 +1,26 @@
+{
+    "slug": "twilio",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Twilio Ireland Limited",
+    "runs": [
+        "Twilio Inc.",
+        "Authy",
+        "Sendgrid"
+    ],
+    "address": "25 – 28 North Wall Quay\nNorth Wall\nDublin 1\nD01 H104\nIreland",
+    "phone": "+49 89 143777310",
+    "email": "privacy@twilio.com",
+    "web": "https://www.twilio.com",
+    "sources": [
+        "https://www.twilio.com/legal/privacy",
+        "https://github.com/datenanfragen/data/issues/671"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

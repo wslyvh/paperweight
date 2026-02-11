@@ -1,0 +1,35 @@
+{
+    "slug": "humblebundle",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce",
+        "entertainment"
+    ],
+    "name": "Humble Bundle, Inc.",
+    "address": "c/o Ziff Davis\nUnit. 3.1, Woodford Business Park\nSantry\nDublin 17\nIreland",
+    "email": "privacy@humblebundle.com",
+    "webform": "https://dsar.humblebundle.com/",
+    "web": "https://www.humblebundle.com/",
+    "sources": [
+        "https://www.humblebundle.com/privacy",
+        "https://github.com/datenanfragen/data/pull/2445"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "request-language": "en",
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

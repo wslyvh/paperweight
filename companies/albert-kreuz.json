@@ -1,0 +1,24 @@
+{
+    "slug": "albert-kreuz",
+    "relevant-countries": [
+        "de",
+        "gb",
+        "fr",
+        "it"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Albert Kreuz GmbH",
+    "address": "Rheinstr. 10a\n14513 Teltow\nDeutschland",
+    "phone": "+49 3328 3310370",
+    "fax": "+49 3328 3310371",
+    "email": "info@albert-kreuz.de",
+    "web": "https://www.albert-kreuz.de",
+    "sources": [
+        "https://www.albert-kreuz.de/Datenschutz/",
+        "https://www.albert-kreuz.de/Impressum/",
+        "https://github.com/datenanfragen/data/pull/2147"
+    ],
+    "quality": "verified"
+}

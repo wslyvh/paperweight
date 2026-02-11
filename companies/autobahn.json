@@ -1,0 +1,23 @@
+{
+    "slug": "autobahn",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "public body",
+        "travel",
+        "utility"
+    ],
+    "name": "Die Autobahn GmbH des Bundes",
+    "address": "Heidestr. 15\n10557 Berlin\nDeutschland",
+    "fax": "+49 30 03680810",
+    "email": "datenschutz@autobahn.de",
+    "web": "https://www.autobahn.de",
+    "sources": [
+        "https://www.autobahn.de/datenschutz/zustandserfassung",
+        "https://github.com/datenanfragen/data/pull/927"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

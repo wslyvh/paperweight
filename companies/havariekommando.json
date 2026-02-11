@@ -1,0 +1,20 @@
+{
+    "slug": "havariekommando",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Havariekommando, Gemeinsame Einrichtung des Bundes und der Küstenländer",
+    "address": "Am Alten Hafen 2\n27472 Cuxhaven\nDeutschland",
+    "phone": "+49 30 185420 2450",
+    "email": "Datenschutz@havariekommando.de",
+    "web": "https://www.havariekommando.de",
+    "sources": [
+        "https://www.havariekommando.de/DE/service/Datenschutz/datenschutz_node.html",
+        "https://www.havariekommando.de/DE/service/Impressum/impressum_node.html"
+    ],
+    "request-language": "de",
+    "quality": "verified"
+}

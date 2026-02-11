@@ -1,0 +1,32 @@
+{
+    "slug": "bitmaster-online",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Bitmaster Online B.V.",
+    "runs": [
+        "flirtemitmir.com",
+        "flirtgleich.com",
+        "provoziermich.com",
+        "MonSecretSensuel",
+        "versautesverlangen.com"
+    ],
+    "address": "Langeweg 1-D\n3233LM Oostvoorne\nThe Netherlands",
+    "phone": "+31 85 400 0176",
+    "email": "support@bitmaster-online.com",
+    "sources": [
+        "https://bitmaster-online.com/contact/",
+        "https://github.com/datenanfragen/data/pull/1019",
+        "https://www.flirtemitmir.com/privacy",
+        "https://www.flirtgleich.com/privacy",
+        "https://www.provoziermich.com/privacy",
+        "https://www.monsecretsensuel.com/privacy",
+        "https://www.versautesverlangen.com/company",
+        "https://github.com/datenanfragen/data/pull/2475"
+    ],
+    "quality": "verified",
+    "nsfw": true
+}

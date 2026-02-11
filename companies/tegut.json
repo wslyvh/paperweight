@@ -1,0 +1,22 @@
+{
+    "slug": "tegut",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "tegut... gute Lebensmittel GmbH & Co. KG",
+    "runs": [
+        "tebonus"
+    ],
+    "address": "Gerloser Weg 72\n36039 Fulda\nDeutschland",
+    "email": "datenschutzbeauftragter@tegut.com",
+    "web": "https://www.tegut.com",
+    "sources": [
+        "https://www.tegut.com/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/2806"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "creditplus-bank",
+    "categories": [
+        "finance",
+        "insurance"
+    ],
+    "name": "Creditplus Bank AG",
+    "address": "Augustenstraße 7\n70178 Stuttgart\nDeutschland",
+    "phone": "+49 711 66 06 60",
+    "fax": "+49 0711 66 06 874",
+    "email": "datenschutz@creditplus.de",
+    "web": "https://www.creditplus.de/",
+    "sources": [
+        "https://www.creditplus.de/service/datenschutz-und-datensicherheit/",
+        "https://www.creditplus.de/service/impressum/"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

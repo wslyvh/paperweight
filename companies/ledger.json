@@ -1,0 +1,18 @@
+{
+    "slug": "ledger",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Ledger SAS",
+    "address": "1 rue du Mail\n75002 Paris\nFrance",
+    "email": "privacy@ledger.fr",
+    "web": "https://www.ledger.com/",
+    "sources": [
+        "https://shop.ledger.com/pages/privacy-policy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

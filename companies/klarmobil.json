@@ -1,0 +1,30 @@
+{
+    "slug": "klarmobil",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "klarmobil GmbH",
+    "runs": [
+        "freenet mobile (www.freenetmobile.de)",
+        "DR.SIM (https://www.doktor-sim.de/)",
+        "Happy Sim (https://www.happy-sim.de/)"
+    ],
+    "address": "Hollerstraße 126\n24782 Büdelsdorf\nDeutschland",
+    "phone": "+49 40 348585300",
+    "email": "datenschutz@klarmobil.de",
+    "web": "https://www.klarmobil.de/",
+    "sources": [
+        "https://www.klarmobil.de/unternehmen/agb",
+        "https://www.klarmobil.de/unternehmen/impressum",
+        "https://www.klarmobil.de/service/kontakt",
+        "https://github.com/datenanfragen/data/pull/2817"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Telefonnummer ist für Vertragskunden. Alternative Nummer für Prepaidkunden: +49 40 34 8585 305"
+    ],
+    "quality": "verified"
+}

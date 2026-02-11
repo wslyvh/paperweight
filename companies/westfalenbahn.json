@@ -1,0 +1,19 @@
+{
+    "slug": "westfalenbahn",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "WestfalenBahn GmbH",
+    "address": "c/o KINAST Rechtsanwaltsgesellschaft mbH\nHohenzollernring 54\n50672 Köln\nDeutschland",
+    "phone": "+49 521 55777755",
+    "email": "mail@kinast.eu",
+    "web": "https://www.westfalenbahn.de",
+    "sources": [
+        "https://www.westfalenbahn.de/erreichbar/datenschutz/datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "marchex",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Marchex, Inc.",
+    "address": "520 Pike Street\nSuite 2000\nSeattle\nWA 98101\nUnited States of America",
+    "phone": "+1 206 331 3300",
+    "fax": "+1 206 331 3696",
+    "email": "privacy@marchex.com",
+    "web": "https://www.marchex.com/",
+    "sources": [
+        "https://www.marchex.com/privacy-policy"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

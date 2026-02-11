@@ -1,0 +1,20 @@
+{
+    "slug": "b2b-datenbank-de",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "addresses"
+    ],
+    "name": "b2b-datenbank.de",
+    "address": "Hamburger Str. 180\n22083 Hamburg\nDeutschland",
+    "phone": "+49 4109 2690225",
+    "email": "datenschutz@b2b-datenbank.de",
+    "web": "https://www.b2b-datenbank.de",
+    "sources": [
+        "https://www.b2b-datenbank.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/987"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

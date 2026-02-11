@@ -1,0 +1,20 @@
+{
+    "slug": "bpb-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundeszentrale für politische Bildung (BPB)",
+    "address": "Friedrichstraße 50 / Checkpoint Charlie\n10117 Berlin\nDeutschland",
+    "phone": "+49 228 99515 0",
+    "email": "datenschutz@bpb.de",
+    "web": "https://www.bpb.de/",
+    "sources": [
+        "https://www.bpb.de/269718/datenschutzerklaerung-fuer-bpb-de"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

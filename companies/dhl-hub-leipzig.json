@@ -1,0 +1,16 @@
+{
+    "slug": "dhl-hub-leipzig",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "DHL Hub Leipzig GmbH",
+    "address": "Hermann-Koehl-Str. 1\n04435 Schkeuditz\nDeutschland",
+    "email": "lejhubdatenschutz@dhl.com",
+    "web": "https://www.dhl.de",
+    "sources": [
+        "https://www.dhl.de/de/toolbar/footer/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/2091"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

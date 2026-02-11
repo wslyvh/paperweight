@@ -1,0 +1,25 @@
+{
+    "slug": "synnexcorp-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "TD SYNNEX Corporation",
+    "address": "Tech Data Dr.\nClearwater, FL 33760\nUnited States of America",
+    "email": "Privacy@TDSYNNEX.com",
+    "webform": "https://gdprrequest.tdsynnex.eu/",
+    "web": "https://www.tdsynnex.com/",
+    "sources": [
+        "https://www.tdsynnex.com/content/dam/tds-site/tds-site-shared/docs/privacy/2025/global/2025-global-privacy-statement-english.pdf"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        }
+    ],
+    "quality": "verified"
+}

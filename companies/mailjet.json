@@ -1,0 +1,18 @@
+{
+    "slug": "mailjet",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Mailjet SAS",
+    "address": "13-13 bis rue de l’Aubrac\n75012 Paris\nFrance",
+    "email": "privacy@mailgun.com",
+    "web": "https://www.mailjet.com/",
+    "sources": [
+        "https://www.mailjet.com/privacy-policy/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

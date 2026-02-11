@@ -1,0 +1,23 @@
+{
+    "slug": "kirchengemeinde-altenbrak-treseburg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Altenbrak-Treseburg",
+    "address": "Lange Straße 9\n38889 Blankenburg (Harz) OT Wienrode\nDeutschland",
+    "phone": "+49 3944 366581",
+    "fax": "+49 3944 366622",
+    "email": "wienrode.buero@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=713"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

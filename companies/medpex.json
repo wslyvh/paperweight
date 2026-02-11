@@ -1,0 +1,25 @@
+{
+    "slug": "medpex",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "medpex",
+    "address": "c/o DocMorris N.V.\nAvantisallee 152\n6422 RA Heerlen\nThe Netherlands",
+    "phone": "+49 800 6633739",
+    "fax": "+49 180 3 633739",
+    "email": "datenschutz@medpex.de",
+    "web": "https://www.medpex.de/",
+    "sources": [
+        "https://support.medpex.de/hc/de/articles/4405359036562-Datenschutz",
+        "https://support.medpex.de/hc/de/articles/4405359027218-Impressum",
+        "https://github.com/datenanfragen/data/pull/2214"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Achtung: Faxnummer kostenpflichtig (9 ct/Min. dt. Festnetz, max. 42 ct/Min. dt. Mobilfunknetz)!"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "blackbeards",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "blackbeards",
+    "address": "Eichfeldstraße 75a\n83026 Rosenheim\nDeutschland",
+    "phone": "+49 8031 222 05 25",
+    "fax": "+49 8031 222 05 20",
+    "email": "kontakt@blackbeards.de",
+    "web": "https://blackbeards.de/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/418",
+        "https://blackbeards.de/datenschutz"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "match-se",
+    "relevant-countries": [
+        "se"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Match.com Nordic AB",
+    "runs": [
+        "Match.se"
+    ],
+    "address": "c/o Deloitte\nBox 386\n201 23 Malmö\nSweden",
+    "email": "privacy@match.se",
+    "web": "https://se.match.com",
+    "sources": [
+        "https://se.match.com/pages/misc/privacy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

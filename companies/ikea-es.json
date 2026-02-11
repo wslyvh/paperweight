@@ -1,0 +1,35 @@
+{
+    "slug": "ikea-es",
+    "relevant-countries": [
+        "es"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "IKEA Ibérica SAU",
+    "runs": [
+        "IKEA Family"
+    ],
+    "address": "Matapiñonera 9\n28703 Madrid\nEspaña",
+    "phone": "+34 900 400 922",
+    "email": "tusdatos@ikea.com",
+    "web": "https://www.ikea.com",
+    "sources": [
+        "https://www.ikea.com/es/es/customer-service/privacy-policy/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Email",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "IKEA Family Number",
+            "type": "input",
+            "optional": true
+        }
+    ],
+    "needs-id-document": true,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

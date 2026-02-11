@@ -1,0 +1,19 @@
+{
+    "slug": "adhese",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Adhese",
+    "address": "Dulle-grietlaan 1/0001\n9050 Gentbrugge\nBelgium",
+    "phone": "+32 9 329 57 67",
+    "email": "info@adhese.com",
+    "web": "https://www.adhese.eu",
+    "sources": [
+        "https://www.adhese.eu/adheseanddata.html",
+        "https://github.com/datenanfragen/data/pull/1198"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,37 @@
+{
+    "slug": "fashionid",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Fashion ID GmbH & Co. KG",
+    "runs": [
+        "peek-cloppenburg.de",
+        "fashionid.de"
+    ],
+    "address": "Berliner Allee 2\n40212 Düsseldorf\nDeutschland",
+    "phone": "+49 800 7003100",
+    "fax": "+49 800 7003200",
+    "email": "datenschutz@peek-cloppenburg.de",
+    "web": "https://www.fashionid.de",
+    "sources": [
+        "https://www.fashionid.de/privacy",
+        "https://www.fashionid.de/impressum",
+        "https://www.peek-cloppenburg.de/privacy",
+        "https://github.com/datenanfragen/data/pull/1192"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

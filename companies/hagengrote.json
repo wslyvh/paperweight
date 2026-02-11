@@ -1,0 +1,21 @@
+{
+    "slug": "hagengrote",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Hagen Grote GmbH",
+    "address": "c/o ZB Datenschutz und -sicherheit GmbH & Co. KG\nHansestraße A1/79\n51149 Köln\nDeutschland",
+    "phone": "+49 2203 8984444",
+    "fax": "+49 2151 6070999",
+    "email": "dsb.hagengrote@zb-datenschutz.com",
+    "web": "https://www.hagengrote.de",
+    "sources": [
+        "https://www.hagengrote.de/datenschutz",
+        "https://www.hagengrote.de/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "tele2",
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Communication Services Tele2 GmbH",
+    "address": "In der Steele 39\n40599 Düsseldorf\nDeutschland",
+    "phone": "+49 211 4082 4082",
+    "fax": "+49 211 4082 4093",
+    "email": "datenschutz@tele2.com",
+    "web": "https://www.tele2.de/",
+    "sources": [
+        "https://www.tele2.de/Unternehmen/Datenschutz",
+        "https://www.tele2.de/Unternehmen/Impressum"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

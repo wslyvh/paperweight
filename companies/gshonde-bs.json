@@ -1,0 +1,23 @@
+{
+    "slug": "gshonde-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Grundschule Hondelage Braunschweig",
+    "address": "In den Heistern 1\n38108 Braunschweig\nDeutschland",
+    "phone": "+49 5309 5257",
+    "fax": "+49 5309 94 00 24",
+    "email": "gs.hondelage@braunschweig.de",
+    "web": "https://wordpress.nibis.de/gshonde",
+    "sources": [
+        "https://wordpress.nibis.de/gshonde/files/2018/10/2018_10_24-Informationsblatt-DGSVO-f%C3%BCr-Homepage.pdf",
+        "https://wordpress.nibis.de/gshonde/impressum/"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

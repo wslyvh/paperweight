@@ -1,0 +1,24 @@
+{
+    "slug": "eurocard",
+    "relevant-countries": [
+        "no",
+        "se",
+        "dk",
+        "fi"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Eurocard",
+    "address": "Eurocard, filial av Eurocard AB\nFilipstad Brygge 1\nPostboks 1672 Vika\n0120 Oslo\nNorway",
+    "phone": "+47 21 01 55 00",
+    "email": "eurocard@eurocard.no",
+    "web": "https://eurocard.no",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/48",
+        "https://eurocard.no/kundeservice/informasjon/om-eurocard/"
+    ],
+    "needs-id-document": true,
+    "suggested-transport-medium": "letter",
+    "quality": "verified"
+}

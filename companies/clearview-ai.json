@@ -1,0 +1,21 @@
+{
+    "slug": "clearview-ai",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "addresses"
+    ],
+    "name": "Clearview AI, Inc.",
+    "address": "418 Broadway STE N\nAlbany\nNY 12207\nUnited States of America",
+    "phone": "+1 866 637 0257",
+    "email": "legal-requests@clearview.ai",
+    "web": "https://clearview.ai/",
+    "sources": [
+        "https://www.clearview.ai/privacy-policy",
+        "https://opencorporates.com/companies/us_ny/5843067",
+        "https://github.com/datenanfragen/data/issues/552"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

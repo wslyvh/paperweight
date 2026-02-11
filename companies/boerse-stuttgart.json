@@ -1,0 +1,24 @@
+{
+    "slug": "boerse-stuttgart",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Boerse Stuttgart GmbH",
+    "address": "Börsenstraße 4\n70174 Stuttgart\nGermany",
+    "phone": "+49 711 2229850",
+    "email": "dsb@boerse-stuttgart.de",
+    "web": "https://www.boerse-stuttgart.de",
+    "sources": [
+        "https://www.boerse-stuttgart.de/de-de/legal/allgemeiner-datenschutzhinweis/",
+        "https://www.anlegerclub.de/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/1875"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "runs": [
+        "Börse Stuttgart Anlegerclub"
+    ]
+}

@@ -1,0 +1,34 @@
+{
+    "slug": "kickstarter",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce",
+        "social media"
+    ],
+    "name": "Kickstarter, PBC",
+    "runs": [
+        "Drip U.S., LLC",
+        "The Creative Independent, LLC"
+    ],
+    "address": "58 Kent Street\nBrooklyn\nNY 11222\nUnited States of America",
+    "email": "dpo@kickstarter.com",
+    "web": "https://www.kickstarter.com",
+    "sources": [
+        "https://www.kickstarter.com/privacy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

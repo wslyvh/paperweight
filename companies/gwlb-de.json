@@ -1,0 +1,19 @@
+{
+    "slug": "gwlb-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Gottfried Wilhelm Leibniz Bibliothek - Niedersächsische Landesbibliothek",
+    "address": "Waterloostraße 8\n30169 Hannover\nDeutschland",
+    "phone": "+49 511 12670",
+    "email": "datenschutz@gwlb.de",
+    "web": "https://www.gwlb.de/home",
+    "sources": [
+        "https://www.gwlb.de/datenschutz"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

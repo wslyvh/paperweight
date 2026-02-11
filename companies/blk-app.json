@@ -1,0 +1,18 @@
+{
+    "slug": "blk-app",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "BLK",
+    "address": "c/o Affinity Apps, LLC\n8750 N. Central Expressway\nSuite 1400\nDallas TX 75231\nUnited States of America",
+    "email": "privacy@support.blk-app.com",
+    "web": "https://www.blk-app.com",
+    "sources": [
+        "https://www.blk-app.com/en/privacy-policy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

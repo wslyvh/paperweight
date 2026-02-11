@@ -1,0 +1,22 @@
+{
+    "slug": "pvz-pressevertriebszentrale",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "PVZ Pressevertriebszentrale GmbH & Co. KG",
+    "address": "Bahndamm 9\n23617 Stockelsdorf\nDeutschland",
+    "phone": "+49 451 4906600",
+    "fax": "+49 451 4906670",
+    "email": "datenschutz@pvz.digital",
+    "web": "https://www.pvz.digital",
+    "sources": [
+        "https://www.pvz.digital/impressum",
+        "https://www.pvz.digital/datenschutzerklaerung",
+        "https://github.com/datenanfragen/data/pull/881"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Die PVZ hat uns mitgeteilt, dass sie in den meisten Fällen nur als Auftragsverarbeiterin handele und die meisten Anfragen zurückweise. Erfolgreicher sei eine Anfrage an die werbenden Unternehmen, die „namentlich auf der Auftragsbestätigung oder Rechnung genannt“ sind."
+    ],
+    "quality": "verified"
+}

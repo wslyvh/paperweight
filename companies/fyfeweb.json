@@ -1,0 +1,35 @@
+{
+    "slug": "fyfeweb",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "FyfeWeb Ltd",
+    "address": "44 Ashfield Park\nWhickham\nNewcastle Upon Tyne\nNE16 4SQ\nUnited Kingdom",
+    "email": "dpo@fyfeweb.com",
+    "webform": "https://portal.fyfeweb.com/submitticket.php?step=2&deptid=10",
+    "web": "https://fyfeweb.com",
+    "sources": [
+        "https://fyfeweb.com/downloads/legal/privacy-policy.pdf",
+        "https://github.com/datenanfragen/data/pull/897",
+        "https://github.com/datenanfragen/data/pull/1277"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        },
+        {
+            "desc": "Email Address",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

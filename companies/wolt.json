@@ -1,0 +1,35 @@
+{
+    "slug": "wolt",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Wolt Enterprise Oy",
+    "runs": [
+        "Wolt Česko s.r.o.",
+        "Wolt Polska sp. z o.o.",
+        "Wolt Technologies Greece S.A",
+        "Wolt Slovensko s. r. o.",
+        "Wolt Malta Limited",
+        "Wolt Norway AS",
+        "Wolt Latvija SIA",
+        "Wolt Eesti OÜ",
+        "Wolt Zagreb d.o.o.",
+        "Wolt Danmark ApS",
+        "Wolt Sverige AB",
+        "Wolt Cyprus Limited",
+        "Wolt Magyarország Kft",
+        "Wolt tehnologije d.o.o. Ljubljana",
+        "UAB Wolt LT"
+    ],
+    "address": "Arkadiankatu 6\n00100 Helsinki\nFinland",
+    "email": "support@wolt.com",
+    "web": "https://wolt.com/",
+    "sources": [
+        "https://wolt.com/en/terms",
+        "https://github.com/datenanfragen/data/pull/1567"
+    ],
+    "quality": "verified"
+}

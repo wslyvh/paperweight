@@ -1,0 +1,31 @@
+{
+    "slug": "n-ergie",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "N‑ERGIE Aktiengesellschaft",
+    "address": "Am Plärrer 43\n90429 Nürnberg\nDeutschland",
+    "phone": "+49 911 80201",
+    "email": "datenschutz@n-ergie.de",
+    "web": "https://www.n-ergie.de",
+    "sources": [
+        "https://www.n-ergie.de/privatkunden/footer/datenschutz",
+        "https://www.n-ergie.de/privatkunden/footer/impressum",
+        "https://github.com/datenanfragen/data/pull/781"
+    ],
+    "suggested-transport-medium": "email",
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "quality": "verified"
+}

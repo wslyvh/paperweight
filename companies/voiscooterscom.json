@@ -1,0 +1,43 @@
+{
+    "slug": "voiscooterscom",
+    "categories": [
+        "travel"
+    ],
+    "name": "Voi Technology AB",
+    "runs": [
+        "Voi Technology GmbH",
+        "Voi Technology Belgium BV",
+        "Voi Denmark ApS",
+        "Voi Technology Finland AB",
+        "Voi Technology SASU",
+        "Voi Technology Germany GmbH",
+        "Voi Technology Italia S.r.l",
+        "Voi Technology Norway AS",
+        "Voi Technology Switzerland AG",
+        "Voi Technology S.L.",
+        "Voi Technology UK Limited"
+    ],
+    "address": "Sveavägen 25\n111 34 Stockholm\nSweden",
+    "email": "dpo@voi.com",
+    "webform": "https://privacy.voi.com/?modal=take-control",
+    "web": "https://www.voi.com",
+    "sources": [
+        "https://www.voi.com/legal/voi-privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/2353"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "relevant-countries": [
+        "all"
+    ]
+}

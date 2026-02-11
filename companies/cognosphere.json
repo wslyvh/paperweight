@@ -1,0 +1,24 @@
+{
+    "slug": "cognosphere",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Cognosphere Pte. Ltd.",
+    "runs": [
+        "HoYoverse",
+        "Genshin Impact"
+    ],
+    "address": "6 Raffles Quay\n048580 Singapore\nRepublic of Singapore",
+    "email": "privacy@hoyoverse.com",
+    "web": "http://www.cognosphere.com/",
+    "sources": [
+        "https://account.hoyoverse.com/#/about/privacy",
+        "https://genshin.hoyoverse.com/en/company/privacy",
+        "https://github.com/datenanfragen/data/pull/1717"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

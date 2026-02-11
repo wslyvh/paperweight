@@ -1,0 +1,22 @@
+{
+    "slug": "kinderkrankenhaus-altonaer",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "AKK Altonaer Kinderkrankenhaus gGmbH",
+    "address": "Bleickenallee 38\n22763 Hamburg\nDeutschland",
+    "phone": "+49 40 889080",
+    "fax": "+49 40 88908366",
+    "email": "datenschutz@kinderkrankenhaus.net",
+    "web": "https://www.kinderkrankenhaus.net",
+    "sources": [
+        "https://www.kinderkrankenhaus.net/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/868",
+        "https://www.kinderkrankenhaus.net/impressum.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "uni-stuttgart",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Universität Stuttgart",
+    "address": "Breitscheidstr. 2\n70174 Stuttgart\nDeutschland",
+    "phone": "+49 711 68583687",
+    "fax": "+49 711 68583688",
+    "email": "datenschutz@uni-stuttgart.de",
+    "web": "https://www.uni-stuttgart.de",
+    "sources": [
+        "https://www.uni-stuttgart.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2173"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

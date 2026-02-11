@@ -1,0 +1,20 @@
+{
+    "slug": "real-inkasso",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "collection agency"
+    ],
+    "name": "REAL Solution Inkasso GmbH & Co. KG",
+    "address": "Normannenweg 32\n20537 Hamburg\nDeutschland",
+    "phone": "+49 40 37 47 58 0",
+    "fax": "+49 40 37 47 58 739",
+    "email": "datenschutz@real-solution.de",
+    "web": "https://www.real-solution.de/inkasso.html",
+    "sources": [
+        "https://www.real-solution.de/rsp_datenschutz.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

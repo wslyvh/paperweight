@@ -1,0 +1,65 @@
+{
+    "slug": "rewe-group-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "REWE-ZENTRALFINANZ eG",
+    "runs": [
+        "Dienstleistungszentrum Südmarkt GmbH & Co. OHG",
+        "Gebrüder Mayer Produktions- und Vertriebs GmbH",
+        "Glockenbrot Bäckerei GmbH & Co. oHG",
+        "HLS Handel und Lager Service GmbH",
+        "Penny Dienstleistung GmbH",
+        "Penny Markt GmbH",
+        "Penny Spedition GmbH",
+        "PRO-DATA Steuerberat.ges. mbH",
+        "REWE Berlin Logistik GmbH",
+        "REWE Deutscher Supermarkt AG & Co. KGaA",
+        "REWE Digital GmbH",
+        "REWE Digital Fulfilment GmbH",
+        "REWE Group Buying GmbH",
+        "REWE Group Fruchtlogistik GmbH",
+        "REWE Markt GmbH",
+        "REWE Partner GmbH",
+        "REWE Regiemarkt GmbH",
+        "REWE Spedition und Logistik GmbH",
+        "REWE Südmarkt GmbH",
+        "REWE Systems GmbH",
+        "REWE-Versicherungsdienst GmbH",
+        "REWE Wein online GmbH",
+        "REWE-Zentral-Aktiengesellschaft",
+        "REWE Zentrale – Business Organisation GmbH",
+        "REWE-Zentrale-Dienstleistungsgesellschaft mbH",
+        "REWE-Zentralfinanz eG",
+        "Südmarkt Olching GmbH & Co. KG OHG",
+        "Supermärkte Nord Vertriebs GmbH & Co. KG",
+        "toom Baumarkt GmbH",
+        "Wilhelm Brandenburg GmbH & Co. oHG",
+        "ZooRoyal GmbH"
+    ],
+    "address": "c/o datenschutz süd GmbH\nOskar-Jäger-Straße 50\n50825 Köln\nDeutschland",
+    "phone": "+49 221 1490",
+    "fax": "+49 221 1499000",
+    "email": "rewe-group@datenschutz-sued.de",
+    "web": "https://www.rewe-group.com",
+    "sources": [
+        "https://www.rewe-group.com/de/impressum",
+        "https://www.rewe-group.com/de/datenschutz-geschaeftliche-kontaktaufnahme",
+        "https://www.rewe-group.com/de/datenschutz"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

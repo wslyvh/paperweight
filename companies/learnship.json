@@ -1,0 +1,22 @@
+{
+    "slug": "learnship",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Learnship Networks GmbH",
+    "address": "Stolberger Str. 374\n50933 Köln\nGermany",
+    "phone": "+49 221 66954960",
+    "email": "DPO@learnship.com",
+    "web": "https://www.learnship.com",
+    "sources": [
+        "https://www.learnship.com/en/european-privacy-policy/",
+        "https://www.northdata.com/Learnship+Networks+GmbH,+K%C3%B6ln/HRB+61591",
+        "https://www.linkedin.com/company/learnship/",
+        "https://github.com/datenanfragen/data/pull/1034"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

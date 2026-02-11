@@ -1,0 +1,19 @@
+{
+    "slug": "lexfort-inkasso",
+    "categories": [
+        "collection agency"
+    ],
+    "name": "LexFort Inkasso GmbH",
+    "address": "Kreuztor 8\n38126 Braunschweig\nDeutschland",
+    "phone": "+49 531 70 73 40 20",
+    "fax": "+49 531 70 73 40 19",
+    "email": "info@lexfort.de",
+    "web": "https://www.lexfort.de",
+    "sources": [
+        "https://www.lexfort.de/info/impressum/"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "quality": "verified"
+}

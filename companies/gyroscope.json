@@ -1,0 +1,25 @@
+{
+    "slug": "gyroscope",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "Gyroscope Innovations, Inc.",
+    "address": "548 Market St #77142\nSan Francisco CA 94109\nUnited States of America",
+    "email": "support@gyrosco.pe",
+    "web": "https://gyrosco.pe/",
+    "sources": [
+        "https://gyrosco.pe/privacy/",
+        "https://opencorporates.com/companies/us_ca/3716797"
+    ],
+    "required-elements": [
+        {
+            "desc": "email",
+            "type": "name",
+            "optional": false
+        }
+    ],
+    "quality": "verified"
+}

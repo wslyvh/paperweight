@@ -1,0 +1,16 @@
+{
+    "slug": "boulderhaus-darmstadt",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "proseil GmbH",
+    "address": "Im Bosseldorn 25/1\n69126 Heidelberg\nDeutschland",
+    "phone": "+49 6151 6676674",
+    "email": "darmstadt@boulderhaus.de",
+    "web": "https://www.boulderhaus.net",
+    "sources": [
+        "https://188.webclimber.de/de/booking/privacy",
+        "https://github.com/datenanfragen/data/pull/1666"
+    ],
+    "quality": "verified"
+}

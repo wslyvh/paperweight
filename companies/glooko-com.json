@@ -1,0 +1,33 @@
+{
+    "slug": "glooko-com",
+    "relevant-countries": [
+        "de",
+        "fr",
+        "dk",
+        "gb",
+        "es",
+        "it",
+        "nl",
+        "no",
+        "sk",
+        "cz"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "Glooko AB",
+    "runs": [
+        "Glooko, Inc.",
+        "diasend.com"
+    ],
+    "address": "Nellickevägen 20\n412 63 Göteborg\nSweden",
+    "phone": "+1 650 720 5310",
+    "email": "privacy@glooko.com",
+    "web": "https://www-int.glooko.com/",
+    "sources": [
+        "https://www.glooko.com/privacy/",
+        "https://github.com/datenanfragen/data/pull/1130"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

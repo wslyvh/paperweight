@@ -1,0 +1,19 @@
+{
+    "slug": "advocard",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "ADVOCARD Rechtsschutzversicherung AG",
+    "address": "Überseering 2\n22297 Hamburg\nDeutschland",
+    "phone": "+49 40 237310",
+    "email": "datenschutzbeauftragter@advocard.de",
+    "web": "https://www.advocard.de",
+    "sources": [
+        "https://www.advocard.de/datenschutz/?file=files/userdata/content/pdf/datenschutz/891ar_beileger_datenschutz_0124_final_l0.pdf&cid=3178"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,23 @@
+{
+    "slug": "fau-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU)",
+    "address": "Schloßplatz 4\n91054 Erlangen\nDeutschland",
+    "phone": "+49 9131 8525860",
+    "email": "datenschutzbeauftragter@fau.de",
+    "web": "https://www.fau.de",
+    "sources": [
+        "https://www.fau.de/fau/leitung-und-gremien/gremien-und-beauftragte/beauftragte/datenschutzbeauftragter/",
+        "https://www.fau.de/impressum/",
+        "https://github.com/datenanfragen/data/issues/273",
+        "https://www.wordpress.rrze.fau.de/datenschutz/",
+        "https://github.com/datenanfragen/data/issues/274"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

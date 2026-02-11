@@ -1,0 +1,19 @@
+{
+    "slug": "uberspace",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Uberspace",
+    "address": "Kaiserstr. 15\n55116 Mainz\nDeutschland",
+    "phone": "+49 6131 3272841",
+    "email": "hallo@uberspace.de",
+    "web": "https://uberspace.de",
+    "sources": [
+        "https://uberspace.de/de/about/privacy",
+        "https://uberspace.de/de/about/imprint"
+    ],
+    "quality": "verified"
+}

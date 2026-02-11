@@ -1,0 +1,31 @@
+{
+    "slug": "skillshare",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Skillshare, Inc.",
+    "address": "35 E 21st Street\n5th Floor\nNew York\nNY 10012\nUnited States of America",
+    "email": "skillshare@gdpr-rep.com",
+    "web": "https://www.skillshare.com/",
+    "sources": [
+        "https://www.skillshare.com/ss/privacy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Alternative email address: help@skillshare.com"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,23 @@
+{
+    "slug": "krotus-computer-de",
+    "relevant-countries": [
+        "de",
+        "ch",
+        "at",
+        "gb"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Krotus Computer GmbH",
+    "address": "Wiemannskamp 5\n44805 Bochum\nDeutschland",
+    "phone": "+49 234 50719738",
+    "email": "shop@krotus-computer.de",
+    "web": "https://krotus-computer.de",
+    "sources": [
+        "https://krotus-computer.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2749"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

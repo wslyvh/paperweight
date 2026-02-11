@@ -1,0 +1,24 @@
+{
+    "slug": "rhs-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Gymnasium Ricarda-Huch-Schule Braunschweig",
+    "address": "Mendelssohnstraße 6\n38106 Braunschweig\nDeutschland",
+    "phone": "+49 531 38 70 03 0",
+    "fax": "+49 531 38 70 03 30",
+    "email": "datenschutz@rhs-bs.de",
+    "web": "https://www.rhs-bs.de/",
+    "sources": [
+        "https://www.rhs-bs.de/datenschutzerklaerung/",
+        "https://www.rhs-bs.de/impressum/"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "facet-group": "school"
+}

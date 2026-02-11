@@ -1,0 +1,61 @@
+{
+    "slug": "westermann",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "categories": [
+        "commerce",
+        "entertainment"
+    ],
+    "name": "Georg Westermann Verlag, Druckerei und Kartographische Anstalt GmbH & Co. KG",
+    "runs": [
+        "Antolin",
+        "BiBox",
+        "kapiert.de",
+        "Online-Diagnose Grundschule",
+        "Online-Diagnose",
+        "Schroedel aktuell",
+        "Mangahigh",
+        "GEORG",
+        "Diercke Weltatlas digital",
+        "EinFach Deutsch… verstehen",
+        "LÜK-App",
+        "GTR easy/CAS easy",
+        "Zoom App",
+        "Zahlenzorro App",
+        "myPrints",
+        "Diesterweg",
+        "Schöningh",
+        "Schroedel",
+        "Verlag E. DORNER",
+        "Verlag Jugend & Volk",
+        "Bildungsverlag EINS",
+        "Westermann Berufsbildung",
+        "Winklers",
+        "LOGO Lern-Spiel",
+        "Spectra Lehrmittel",
+        "Schubi Lernmedien-Verlag",
+        "Westermann Lernspiel",
+        "Arena Verlag",
+        "Audio Media Verlag",
+        "Westermann Druck",
+        "Westermann Druck Zwickau",
+        "pva, Druck und Medien-Dienstleistungen",
+        "Bildungshaus Schulbuchverlage Westermann Schroedel Diesterweg Schöningh Winklers GmbH"
+    ],
+    "address": "Georg-Westermann-Allee 66\n38104 Braunschweig\nDeutschland",
+    "phone": "+49 531 708 86 86",
+    "fax": "+49 531 708 127",
+    "email": "datenschutz@westermanngruppe.de",
+    "web": "https://www.westermanngruppe.de",
+    "sources": [
+        "https://www.westermanngruppe.de/de/ueber-uns/westermann-gruppe-digital/",
+        "https://www.westermanngruppe.de/de/geschaeftsbereiche/verlage/",
+        "https://www.westermanngruppe.de/de/geschaeftsbereiche/druckereien/",
+        "https://www.westermanngruppe.de/datenschutzerklaerung/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

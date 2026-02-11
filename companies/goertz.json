@@ -1,0 +1,13 @@
+{
+    "slug": "goertz",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Görtz Retail GmbH",
+    "address": "Brandstwiete 1 a\n20457 Hamburg\nDeutschland",
+    "sources": [
+        "https://www.northdata.de/G%C3%B6rtz%20Retail%20GmbH,%20Hamburg/HRB%2086142",
+        "https://github.com/datenanfragen/data/pull/2457"
+    ],
+    "quality": "verified"
+}

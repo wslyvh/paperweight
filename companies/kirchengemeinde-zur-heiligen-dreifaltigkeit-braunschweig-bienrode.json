@@ -1,0 +1,22 @@
+{
+    "slug": "kirchengemeinde-zur-heiligen-dreifaltigkeit-braunschweig-bienrode",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Zur Heiligen Dreifaltigkeit Braunschweig-Bienrode",
+    "address": "Dammwiese 8 A\n38110 Braunschweig\nDeutschland",
+    "phone": "+49 5307 5772",
+    "email": "bienrode.buero@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=821"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

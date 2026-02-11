@@ -1,0 +1,27 @@
+{
+    "slug": "aseag",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body",
+        "travel"
+    ],
+    "name": "Aachener Straßenbahn- und Energieversorgungs-AG (ASEAG)",
+    "runs": [
+        "movA"
+    ],
+    "address": "c/o HEC Harald Eul Consulting\nAuf der Höhe 34\n50321 Brühl\nDeutschland",
+    "phone": "+49 241 16883040",
+    "email": "datenschutz@aseag.de",
+    "web": "https://www.aseag.de/",
+    "sources": [
+        "https://www.aseag.de/datenschutz/",
+        "https://www.aseag.de/impressum",
+        "https://github.com/datenanfragen/data/pull/1684"
+    ],
+    "comments": [
+        "Alternative E-Mail: dsb@aseag.de"
+    ],
+    "quality": "verified"
+}

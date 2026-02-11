@@ -1,0 +1,20 @@
+{
+    "slug": "dnsimple",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "DNSimple Corporation",
+    "address": "2412 Irwin St\nMelbourne, FL 32901\nUnited States of America",
+    "email": "privacy@dnsimple.com",
+    "web": "https://dnsimple.com",
+    "sources": [
+        "https://dnsimple.com/privacy",
+        "https://dnsimple.com/terms",
+        "https://github.com/datenanfragen/data/pull/1868"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

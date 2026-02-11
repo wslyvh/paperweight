@@ -1,0 +1,20 @@
+{
+    "slug": "envivas",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Envivas Krankenversicherung AG",
+    "address": "Gereonswall 68\n50670 Köln\nDeutschland",
+    "phone": "+49 800 4252525",
+    "email": "datenschutz@envivas.de",
+    "web": "https://www.envivas.de/",
+    "sources": [
+        "https://www.envivas.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1630"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

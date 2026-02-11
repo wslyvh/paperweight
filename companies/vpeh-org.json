@@ -1,0 +1,22 @@
+{
+    "slug": "vpeh-org",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "nonprofit"
+    ],
+    "name": "Verband der privaten Erste Hilfe Schulen e. V.",
+    "address": "c/o DS Datenschutz Christoph Larsen\nNordring 35\n51647 Gummersbach\nDeutschland",
+    "phone": "+49 2261 560920",
+    "fax": "+49 351 264 419 39",
+    "email": "datenschutz@vpeh.org",
+    "web": "https://vpeh.org",
+    "sources": [
+        "https://vpeh.org/datenschutz",
+        "https://vpeh.org/impressum",
+        "https://github.com/datenanfragen/data/pull/1650"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

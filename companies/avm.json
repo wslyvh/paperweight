@@ -1,0 +1,30 @@
+{
+    "slug": "avm",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch",
+        "nl",
+        "es",
+        "it",
+        "pl",
+        "be",
+        "lu"
+    ],
+    "categories": [
+        "telecommunication",
+        "commerce"
+    ],
+    "name": "AVM Computersysteme Vertriebs GmbH",
+    "address": "Alt-Moabit 95\n10559 Berlin\nGermany",
+    "phone": "+49 30 399760",
+    "fax": "+49 30 39976299",
+    "email": "datenschutz@avm.de",
+    "web": "https://avm.de",
+    "sources": [
+        "https://avm.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1214"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

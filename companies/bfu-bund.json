@@ -1,0 +1,21 @@
+{
+    "slug": "bfu-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesstelle für Flugunfalluntersuchung (BFU)",
+    "address": "Hermann-Blenk-Straße 16\n38108 Braunschweig\nDeutschland",
+    "phone": "+49 531 3548 0",
+    "fax": "+49 531 3548 246",
+    "email": "datenschutz@bfu-web.de",
+    "web": "https://www.bfu-web.de",
+    "sources": [
+        "https://www.bfu-web.de/DE/Service/Datenschutz/datenschutz_node.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

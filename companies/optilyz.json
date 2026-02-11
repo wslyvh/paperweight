@@ -1,0 +1,20 @@
+{
+    "slug": "optilyz",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads",
+        "addresses"
+    ],
+    "name": "optilyz GmbH",
+    "address": "c/o ePrivacy GmbH\nGroße Bleichen 21\n20354 Hamburg\nDeutschland",
+    "email": "datenschutz@optilyz.com",
+    "web": "https://optilyz.com/de/",
+    "sources": [
+        "https://optilyz.com/de/datenschutzerklaerung/",
+        "https://github.com/datenanfragen/data/pull/2064"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,41 @@
+{
+    "slug": "eprimo",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "eprimo GmbH",
+    "runs": [
+        "mein eprimo",
+        "eprimoShop"
+    ],
+    "address": "Flughafenstraße 20\n63263 Neu-Isenburg\nDeutschland",
+    "phone": "+49 69 76700",
+    "fax": "+49 69 7670111",
+    "email": "datenschutz@eprimo.de",
+    "web": "https://www.eprimo.de/",
+    "sources": [
+        "https://www.eprimo.de/datenschutz-disclaimer",
+        "https://www.eprimo.de/impressum",
+        "https://github.com/datenanfragen/data/pull/2583"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        },
+        {
+            "desc": "Kundennummer",
+            "type": "input"
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

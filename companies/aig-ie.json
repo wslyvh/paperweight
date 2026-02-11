@@ -1,0 +1,22 @@
+{
+    "slug": "aig-ie",
+    "relevant-countries": [
+        "ie"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "AIG Europe S.A., Ireland Branch",
+    "runs": [
+        "American International Group, Inc."
+    ],
+    "address": "30 North Wall Quay\nInternational Financial Service Centre\nDublin 1\nIreland",
+    "phone": "+353 1 208 1400",
+    "email": "dataprotectionofficer.ie@aig.com",
+    "sources": [
+        "https://www.aig.ie/privacy-policy",
+        "https://github.com/datenanfragen/data/issues/568"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

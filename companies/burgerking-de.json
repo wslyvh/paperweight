@@ -1,0 +1,17 @@
+{
+    "slug": "burgerking-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Burger King Deutschland GmbH",
+    "address": "Adenauerallee 6\n30175 Hannover\nDeutschland",
+    "phone": "+49 511 28810700",
+    "email": "datenschutz@burgerking.de",
+    "web": "https://www.burgerking.de",
+    "sources": [
+        "https://www.burgerking.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1585"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

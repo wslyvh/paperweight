@@ -1,0 +1,23 @@
+{
+    "slug": "rlsb-osnabrueck",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body",
+        "school"
+    ],
+    "name": "Regionales Landesamt für Schule und Bildung Osnabrück",
+    "address": "Postfach 35 69\n49025 Osnabrück\nDeutschland",
+    "phone": "+49 541 77046 444",
+    "fax": "+49 541 77046 8111",
+    "email": "Datenschutz@rlsb-os.niedersachsen.de",
+    "web": "https://bildungsportal-niedersachsen.de/ueber-uns/rlsb/rlsb-osnabrueck",
+    "sources": [
+        "https://bildungsportal-niedersachsen.de/index.php?eID=dumpFile&t=f&f=11367&token=05f6f41be850147ff4c7a9d44ae769482ab6b46a",
+        "https://bildungsportal-niedersachsen.de/ueber-uns/rlsb/rlsb-osnabrueck"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

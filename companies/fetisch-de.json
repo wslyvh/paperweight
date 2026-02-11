@@ -1,0 +1,25 @@
+{
+    "slug": "fetisch-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "social media",
+        "entertainment"
+    ],
+    "name": "Fetisch.de",
+    "runs": [
+        "Ideawise Limited"
+    ],
+    "address": "c/o SmH ServiceCenter.de GmbH\nPostfach 20 04 34\n13514 Berlin\nDeutschland",
+    "phone": "+49 800 3335521",
+    "fax": "+49 30 338405 999",
+    "email": "datenschutz@fetisch.de",
+    "web": "https://www.fetisch.de",
+    "sources": [
+        "https://www.fetisch.de/policy/popup/true/",
+        "https://github.com/datenanfragen/data/pull/1114"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

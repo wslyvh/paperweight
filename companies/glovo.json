@@ -1,0 +1,39 @@
+{
+    "slug": "glovo",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Glovo S.L.",
+    "runs": [
+        "Glovo France, Sarl",
+        "Foodinho, S.R.L.",
+        "Restaurant Partner Polska Sp. z o.o.",
+        "Glovo Portugal Unipessoal LDA",
+        "GlovoappRo, S.R.L.."
+    ],
+    "address": "C/ Pallars 190\n08005, Barcelona\nSpain",
+    "phone": "+34 932 69 47 44",
+    "email": "gdpr@glovoapp.com",
+    "web": "https://glovoapp.com/",
+    "sources": [
+        "https://glovoapp.com/en/legal/privacy/",
+        "https://github.com/datenanfragen/data/pull/1149"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

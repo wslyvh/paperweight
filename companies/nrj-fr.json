@@ -1,0 +1,34 @@
+{
+    "slug": "nrj-fr",
+    "relevant-countries": [
+        "fr",
+        "be",
+        "de",
+        "at",
+        "bg",
+        "dk",
+        "fi",
+        "gr",
+        "no",
+        "se"
+    ],
+    "categories": [
+        "entertainment",
+        "telecommunication"
+    ],
+    "name": "e-NRJ",
+    "runs": [
+        "Nostalgie",
+        "Chérie FM",
+        "Rires et chansons"
+    ],
+    "address": "22 rue Boileau\n75 016 Paris\nFrance",
+    "webform": "https://www.nrj.fr/contact",
+    "web": "https://www.nrj.fr",
+    "sources": [
+        "https://www.nrj.fr/politique-confidentialite",
+        "https://www.nrj.fr/cgu",
+        "https://github.com/datenanfragen/data/issues/460"
+    ],
+    "quality": "verified"
+}

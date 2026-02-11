@@ -1,0 +1,47 @@
+{
+    "slug": "denns-biomarkt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "denn's Biomarkt GmbH",
+    "address": "Hofer Str. 11\n95183 Töpen\nDeutschland",
+    "phone": "+49 9295 180",
+    "email": "datenschutz@denns.de",
+    "web": "https://www.denns-biomarkt.de",
+    "sources": [
+        "https://www.denns-biomarkt.de/ueber-uns/impressum/",
+        "https://www.denns-biomarkt.de/ueber-uns/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/948"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "E-Mail-Adresse",
+            "type": "email"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": true
+        },
+        {
+            "desc": "Geburtsdatum",
+            "type": "birthdate",
+            "optional": true
+        },
+        {
+            "desc": "Kundennummer",
+            "type": "input",
+            "optional": true
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

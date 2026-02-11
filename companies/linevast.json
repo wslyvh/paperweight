@@ -1,0 +1,23 @@
+{
+    "slug": "linevast",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Droptop GmbH",
+    "runs": [
+        "Linevast Hosting (linevast.de)"
+    ],
+    "address": "Am Grashorn 8\n14548 Schwielowsee\nDeutschland",
+    "phone": "+49 3327 4372 551",
+    "fax": "+49 3327 4372 5510",
+    "email": "management@droptop.de",
+    "web": "https://linevast.de/",
+    "sources": [
+        "https://linevast.de/datenschutz.html",
+        "https://linevast.de/impressum.html"
+    ],
+    "quality": "verified"
+}

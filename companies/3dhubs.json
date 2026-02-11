@@ -1,0 +1,34 @@
+{
+    "slug": "3dhubs",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "3D Hubs B.V.",
+    "runs": [
+        "3D Hubs, Inc.",
+        "3D Hubs Manufacturing LLC"
+    ],
+    "address": "Danzigerkade 23A\n1013 AP Amsterdam\nThe Netherlands",
+    "phone": "+31 85 888 7380",
+    "email": "legal@3dhubs.com",
+    "web": "https://www.hubs.com/",
+    "sources": [
+        "https://www.hubs.com/privacy-policy/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

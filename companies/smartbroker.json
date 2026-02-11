@@ -1,0 +1,30 @@
+{
+    "slug": "smartbroker",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance",
+        "commerce"
+    ],
+    "name": "wallstreet:online capital AG",
+    "runs": [
+        "Smartbroker (smartbroker.de)",
+        "fondsdiscount.de",
+        "fondsdiscount.at",
+        "wo-capital.de",
+        "d:trader (d-trader.de)"
+    ],
+    "address": "Michaelkirchstr. 17/18\n10179 Berlin\nDeutschland",
+    "phone": "+49 30 275776200",
+    "fax": "+49 30 275776415",
+    "email": "datenschutzbeauftragter@wo-capital.de",
+    "web": "https://smartbroker.de/",
+    "sources": [
+        "https://smartbroker.de/datenschutz.php",
+        "https://smartbroker.de/impressum.php",
+        "https://github.com/datenanfragen/data/pull/983"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

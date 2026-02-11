@@ -1,0 +1,13 @@
+{
+    "slug": "fast-data-cover",
+    "relevant-countries": [
+        "es"
+    ],
+    "name": "Fast Data Cover S.L.",
+    "address": "CL Portal de L'angel 36\n08002 Barcelona\nSpain",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/1688",
+        "https://www.infoempresa.com/en-in/es/company/fast-data-cover-sl"
+    ],
+    "quality": "verified"
+}

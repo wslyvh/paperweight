@@ -1,0 +1,18 @@
+{
+    "slug": "morele-net",
+    "relevant-countries": [
+        "pl"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Morele.net Sp. z o.o.",
+    "address": "ul. Fabryczna 20A\n31-553 Kraków\nPoland",
+    "email": "iod@morele.net",
+    "web": "https://www.morele.net/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/221",
+        "https://download.morele.net/polityka_pryw_i_cookies_dla_Morelenet.pdf"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "dnb-at",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "credit agency"
+    ],
+    "name": "Dun & Bradstreet Austria GmbH",
+    "address": "Jakov-Lind Straße 4/1\n1020 Wien\nÖsterreich",
+    "phone": "+43 1 588610",
+    "fax": "+43 1 588613444",
+    "email": "eigenauskunft.at@dnb.com",
+    "webform": "https://www.dnb.com/de-at/datenschutz-eigenauskunft/beantragung-eigenauskunft-privatpersonen/",
+    "web": "https://www.dnb.com/de-at",
+    "sources": [
+        "https://www.dnb.com/de-at/datenschutz-eigenauskunft/beantragung-eigenauskunft-privatpersonen/",
+        "https://www.dnb.com/de-at/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

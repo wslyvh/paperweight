@@ -1,0 +1,24 @@
+{
+    "slug": "freenet-mobilfunk",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "freenet DLS GmbH",
+    "runs": [
+        "freenet FUNK"
+    ],
+    "address": "Hollerstr. 126\n24782 Büdelsdorf\nDeutschland",
+    "email": "datenschutz@freenet-mobilfunk.de",
+    "pgp-fingerprint": "39F6 D27A B8F9 DF55 F072  2A8B 9B10 FCCA C1B7 0D10",
+    "pgp-url": "https://media.mdm.freenet-group.de/latest?brand=bFN&type=pgpPrivacyOfficer",
+    "web": "https://www.freenet-mobilfunk.de",
+    "sources": [
+        "https://www.freenet-mobilfunk.de/legal/datenschutz/",
+        "https://www.freenet-funk.de/agb-datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2384"
+    ],
+    "quality": "verified"
+}

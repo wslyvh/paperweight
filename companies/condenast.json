@@ -1,0 +1,59 @@
+{
+    "slug": "condenast",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment",
+        "ads"
+    ],
+    "name": "Condé Nast Holdings Limited",
+    "runs": [
+        "Architectural Digest",
+        "Allure",
+        "Ars Technica",
+        "Bon Appétit",
+        "Condé Nast Johansens",
+        "Condé Nast Traveler",
+        "Epicurious",
+        "Glamour",
+        "GQ",
+        "GQ Style",
+        "House & Garden",
+        "La Cucina Italiana",
+        "Love",
+        "L'uomo",
+        "Pitchfork",
+        "Self",
+        "Tatler",
+        "Teen Vogue",
+        "Them",
+        "The New Yorker",
+        "The World of Interiors",
+        "Vanity Fair",
+        "Vogue",
+        "Vogue Business",
+        "Vogue Global Network",
+        "Wired"
+    ],
+    "address": "The Adelphi, 1-11 John Adam Street\nLondon\nWC2N 6HT\nUnited Kingdom",
+    "email": "dpo@condenast.com",
+    "web": "https://www.condenast.com",
+    "sources": [
+        "https://www.condenast.com/privacy-policy#notice-to-residents-of-the-european-economic-area",
+        "https://www.condenast.com/brands-and-markets/brands",
+        "https://github.com/datenanfragen/data/pull/1166"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

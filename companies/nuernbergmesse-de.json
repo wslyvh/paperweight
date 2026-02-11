@@ -1,0 +1,28 @@
+{
+    "slug": "nuernbergmesse-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "NürnbergMesse GmbH",
+    "address": "Messezentrum\n90471 Nürnberg\nDeutschland",
+    "phone": "+49 911 86060",
+    "fax": "+49 911 86068228",
+    "email": "datenschutz@nuernbergmesse.de",
+    "web": "https://www.nuernbergmesse.de",
+    "sources": [
+        "https://www.nuernbergmesse.de/de/datenschutz",
+        "https://www.nuernbergmesse.de/de/impressum"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

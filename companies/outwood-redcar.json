@@ -1,0 +1,18 @@
+{
+    "slug": "outwood-redcar",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Outwood Academy Redcar",
+    "address": "Kirkleatham Lane\nRedcar\nTS10 4AB\nUnited Kingdom",
+    "phone": "+44 1642 289211",
+    "web": "http://redcar.outwood.com",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/1156",
+        "https://www.redcar.outwood.com/contact"
+    ],
+    "quality": "verified"
+}

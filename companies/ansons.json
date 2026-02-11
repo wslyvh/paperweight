@@ -1,0 +1,32 @@
+{
+    "slug": "ansons",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Fashion ID GmbH & Co. KG",
+    "runs": [
+        "ansons.de"
+    ],
+    "address": "Berliner Allee 2\n40212 Düsseldorf\nDeutschland",
+    "email": "datenschutz@ansons.de",
+    "web": "https://www.ansons.de",
+    "sources": [
+        "https://www.ansons.de/privacy/",
+        "https://github.com/datenanfragen/data/pull/1192"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

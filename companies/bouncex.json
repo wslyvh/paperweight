@@ -1,0 +1,23 @@
+{
+    "slug": "bouncex",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Wunderkind Corporation",
+    "runs": [
+        "Bounce Exchange, Inc. (BounceX, formerly)"
+    ],
+    "address": "c/o ePrivacy Holding GmbH\nGroße Bleichen 21\n20354 Hamburg\nGermany",
+    "email": "privacyrequests@wunderkind.co",
+    "web": "https://www.wunderkind.co",
+    "sources": [
+        "https://www.wunderkind.co/uk/privacy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

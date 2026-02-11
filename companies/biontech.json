@@ -1,0 +1,21 @@
+{
+    "slug": "biontech",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "BioNTech SE",
+    "address": "An der Goldgrube 12\n55131 Mainz\nDeutschland",
+    "phone": "+49 6131 90841030",
+    "fax": "+49 6131 9084 390",
+    "email": "data.privacy@biontech.de",
+    "web": "https://biontech.de",
+    "sources": [
+        "https://biontech.de/data-privacy-policy",
+        "https://github.com/datenanfragen/data/pull/833"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-gebhardshagen-calbecht-engerode-in-salzgitter",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Gebhardshagen-Calbecht-Engerode in Salzgitter",
+    "address": "Pastorenberg 6\n38229 Salzgitter\nDeutschland",
+    "phone": "+49 5341 70179",
+    "fax": "+49 5341 871131",
+    "email": "gebhardshagen.pfa@lk-bs.de",
+    "web": "http://www.pfarrverband-gebhardshagen-calbecht-engerode.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=875"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

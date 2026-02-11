@@ -1,0 +1,29 @@
+{
+    "slug": "kinguin-net",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Kinguin Digital Limited",
+    "address": "5/F Chung Nam Building\n1 Lockhart Road\nWan Chai\nHong Kong",
+    "email": "gdpr@kinguin.net",
+    "web": "https://www.kinguin.net",
+    "sources": [
+        "https://www.kinguin.net/privacy-policy-cookie-restriction-mode",
+        "https://github.com/datenanfragen/data/pull/3302"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

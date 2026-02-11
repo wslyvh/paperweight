@@ -1,0 +1,23 @@
+{
+    "slug": "sony-music-entertainment-germany",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Sony Music Entertainment Germany",
+    "runs": [
+        "compilations.de",
+        "sampler.de"
+    ],
+    "address": "Balanstr. 73\nHaus 31\n81541 München\nDeutschland",
+    "email": "datenschutz@sonymusic.com",
+    "web": "https://www.sonymusic.de",
+    "sources": [
+        "https://www.sonymusic.de/Datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2603"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

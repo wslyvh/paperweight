@@ -1,0 +1,21 @@
+{
+    "slug": "visualdna",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "VisualDNA",
+    "address": "Nielsen House\nJohn Smith Drive\nOxford\nOX4 2WB\nUnited Kingdom",
+    "phone": "+44 203 865 7275",
+    "email": "nmcdata@nielsen.com",
+    "web": "https://www.visualdna.com/",
+    "sources": [
+        "https://www.visualdna.com/privacy-policy/",
+        "https://www.visualdna.com/contact/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "quality": "verified"
+}

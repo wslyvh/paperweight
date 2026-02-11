@@ -1,0 +1,20 @@
+{
+    "slug": "nurme-kool",
+    "relevant-countries": [
+        "ee"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Nurme Kool",
+    "address": "Tallinna 46\nPaide 72720\nEstonia",
+    "phone": "+372 5591 1088",
+    "email": "kool@nurmekool.edu.ee",
+    "web": "https://nurmekool.edu.ee/",
+    "sources": [
+        "https://nurmekool.edu.ee/et/kontakt",
+        "https://github.com/datenanfragen/data/pull/1943"
+    ],
+    "quality": "verified",
+    "facet-group": "school"
+}

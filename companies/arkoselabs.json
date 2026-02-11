@@ -1,0 +1,21 @@
+{
+    "slug": "arkoselabs",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Arkose Labs, Inc.",
+    "address": "250 Montgomery St\nLvl 10\nSan Francisco\nCA 94104\nUnited States of America",
+    "phone": "+1 800 604 3319",
+    "email": "privacy@arkoselabs.com",
+    "webform": "https://www.arkoselabs.com/privacy-request/",
+    "web": "https://www.arkoselabs.com/",
+    "sources": [
+        "https://www.arkoselabs.com/legal/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/839"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

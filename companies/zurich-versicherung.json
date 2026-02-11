@@ -1,0 +1,27 @@
+{
+    "slug": "zurich-versicherung",
+    "categories": [
+        "insurance"
+    ],
+    "name": "Zurich Deutscher Herold Lebensversicherung AG",
+    "runs": [
+        "Meine Zurich",
+        "Zürich Beteiligungs-Aktiengesellschaft",
+        "Zurich Service GmbH"
+    ],
+    "address": "53096 Bonn\nDeutschland",
+    "phone": "+49 69 7115 0",
+    "fax": "+49 69 7115 3358",
+    "email": "datenschutz@zurich.com",
+    "web": "https://www.zurich.de",
+    "sources": [
+        "https://www.zurich.de/de-de/ueber-uns/unternehmen/werte-und-verantwortung/datenschutz",
+        "https://www.zurich.de/_/media/dbe/germany/docs/ueber-uns/unternehmen/170906-verfvz-zdhl.pdf?la=de-de&hash=94C7BAC39EDB4A33D9872476FB55816B8928FE1F",
+        "https://www.zurich.de/de-de/services/impressum"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

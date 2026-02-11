@@ -1,0 +1,29 @@
+{
+    "slug": "focus-magazin",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce",
+        "entertainment"
+    ],
+    "name": "FOCUS Magazin Verlag GmbH",
+    "runs": [
+        "FOCUS FITMACHER-Event (www.focus-fitmacher.de)",
+        "FOCUS Inner Circle-Event (www.focus-inner-circle.de)",
+        "FOCUS Abo-Shop (focus-abo.de)",
+        "FOCUS E-Paper-Plattform (focus-epaper.de)"
+    ],
+    "address": "Arabellastraße 23\n81925 München\nDeutschland",
+    "phone": "+49 781 639 6100",
+    "fax": "+49 781 639 6101",
+    "email": "focus@datenschutzanfrage.de",
+    "webform": "https://www.focus-magazin.de/datenschutzanfrage-formular",
+    "web": "https://www.focus-magazin.de/",
+    "sources": [
+        "https://www.focus-magazin.de/datenschutz-web",
+        "https://focus-abo.de/Datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

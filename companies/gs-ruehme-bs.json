@@ -1,0 +1,22 @@
+{
+    "slug": "gs-ruehme-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Offene Ganztagsgrundschule Rühme Braunschweig",
+    "address": "Eichenstieg 6\n38112 Braunschweig\nDeutschland",
+    "phone": "+49 531 236 20 60",
+    "fax": "+49 531 236 20 99",
+    "email": "gs.ruehme@braunschweig.de",
+    "web": "https://www.gs-ruehme.de/",
+    "sources": [
+        "https://ogs-ruehme.de/impressum.html"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

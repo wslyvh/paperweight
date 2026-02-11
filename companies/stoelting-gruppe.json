@@ -1,0 +1,17 @@
+{
+    "slug": "stoelting-gruppe",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Stölting Service Group GmbH",
+    "address": "c/o Avallon GmbH\nJohannes-Rau-Allee 15-19\n45889 Gelsenkirchen\nDeutschland",
+    "phone": "+49 4941 9839078",
+    "email": "datenschutz@stoelting-gruppe.de",
+    "web": "https://www.stoelting-gruppe.de",
+    "sources": [
+        "https://www.stoelting-gruppe.de/datenschutzerklaerung/",
+        "https://github.com/datenanfragen/data/pull/2896"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

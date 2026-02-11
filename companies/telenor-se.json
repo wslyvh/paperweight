@@ -1,0 +1,19 @@
+{
+    "slug": "telenor-se",
+    "relevant-countries": [
+        "se"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Telenor Sverige AB",
+    "address": "Box 3081\n169 03 Solna\nSverige",
+    "phone": "+46 20 22 22 22",
+    "email": "personuppgifter@telenor.se",
+    "web": "https://www.telenor.se",
+    "sources": [
+        "https://www.telenor.se/support/integritet/integritetspolicy/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

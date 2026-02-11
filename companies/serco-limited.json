@@ -1,0 +1,21 @@
+{
+    "slug": "serco-limited",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "travel",
+        "utility"
+    ],
+    "name": "Serco Limited",
+    "address": "Enterprise House\n11 Bartley Wood Business Park\nBartley Way\nRG27 9XB\nUnited Kingdom",
+    "phone": "+44 1256 745900",
+    "email": "dpo@serco.com",
+    "web": "https://www.serco.com/",
+    "sources": [
+        "https://www.serco.com/uk/privacy-policy",
+        "https://github.com/datenanfragen/data/issues/302"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

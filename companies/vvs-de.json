@@ -1,0 +1,23 @@
+{
+    "slug": "vvs-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body",
+        "utility"
+    ],
+    "name": "Verkehrs‐ und Tarifverbund Stuttgart GmbH (VVS)",
+    "address": "Rotebühlstraße 121\n70178 Stuttgart\nDeutschland",
+    "phone": "+49 711 66060",
+    "fax": "+49 711 66062400",
+    "email": "datenschutz@vvs.de",
+    "web": "http://www.vvs.de",
+    "sources": [
+        "https://www.vvs.de/datenschutz",
+        "https://www.vvs.de/impressum",
+        "https://github.com/datenanfragen/data/pull/1773"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

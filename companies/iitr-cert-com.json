@@ -1,0 +1,30 @@
+{
+    "slug": "iitr-cert-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "IITR Cert GmbH",
+    "address": "Eschenrieder Str. 62c\n82194 Gröbenzell\nDeutschland",
+    "phone": "+49 89 18917360",
+    "email": "email@iitr.de",
+    "web": "https://www.iitr-cert.com",
+    "sources": [
+        "https://www.iitr-cert.com/datenschutz/",
+        "https://www.iitr-cert.com/impressum/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "quality": "verified"
+}

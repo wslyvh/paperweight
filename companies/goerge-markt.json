@@ -1,0 +1,20 @@
+{
+    "slug": "goerge-markt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Görge Discount GmbH",
+    "address": "c/o EDEKA Minden-Hannover Stiftung & Co. KG\nWittelsbacherallee 61\n32427 Minden\nDeutschland",
+    "phone": "+49 471 61945",
+    "email": "datenschutz@minden.edeka.de",
+    "web": "https://goerge-markt.de/",
+    "sources": [
+        "https://goerge-markt.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/787"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,34 @@
+{
+    "slug": "hs-albsig",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Hochschule Albstadt-Sigmaringen",
+    "runs": [
+        "Open Competence Center for Cyber Security (Open C³S, open-c3s.de)"
+    ],
+    "address": "Anton-Günther-Straße 51\n72488 Sigmaringen\nDeutschland",
+    "phone": "+49 7571 7320",
+    "email": "datenschutzbeauftragter@hs-albsig.de",
+    "web": "https://www.hs-albsig.de",
+    "sources": [
+        "https://www.hs-albsig.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1661"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

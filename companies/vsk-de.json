@@ -1,0 +1,18 @@
+{
+    "slug": "vsk-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Vermieterwelt GmbH",
+    "address": "Zettachring 10\n70567 Stuttgart\nDeutschland",
+    "phone": "+49 711 99760790",
+    "email": "datenschutz@mietercheck.de",
+    "web": "https://www.mietercheck.de/",
+    "sources": [
+        "https://mietercheck.de/footer-links/impressum.html",
+        "https://github.com/datenanfragen/data/issues/60",
+        "https://github.com/datenanfragen/data/pull/2200"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

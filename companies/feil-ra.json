@@ -1,0 +1,16 @@
+{
+    "slug": "feil-ra",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Feil Rechtsanwaltsgesellschaft mbH",
+    "address": "Döhrbruch 62\n30559 Hanover\nDeutschland",
+    "phone": "+49 511 4739060",
+    "email": "kanzlei@recht-freundlich.de",
+    "web": "https://www.recht-freundlich.de",
+    "sources": [
+        "https://www.recht-freundlich.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1267"
+    ],
+    "quality": "verified"
+}

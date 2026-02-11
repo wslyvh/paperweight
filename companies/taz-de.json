@@ -1,0 +1,24 @@
+{
+    "slug": "taz-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment",
+        "ads"
+    ],
+    "name": "taz Verlags u. Vertriebs GmbH",
+    "runs": [
+        "LE MONDE diplomatique"
+    ],
+    "address": "Friedrichstr. 21\n10969 Berlin\nDeutschland",
+    "email": "datenschutz@taz.de",
+    "web": "https://taz.de",
+    "sources": [
+        "https://taz.de/!166598/",
+        "https://taz.de/!112354/",
+        "https://monde-diplomatique.de/shop_content.php?coID=2"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

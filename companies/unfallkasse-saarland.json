@@ -1,0 +1,19 @@
+{
+    "slug": "unfallkasse-saarland",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Unfallkasse Saarland",
+    "address": "Beethovenstraße 41\n66125 Saarbrücken\nDeutschland",
+    "phone": "+49 6897 97330",
+    "fax": "+49 6897 973337",
+    "email": "datenschutz@uks.de",
+    "sources": [
+        "https://www.uks.de/footernavigation/datenschutzerklaerung",
+        "https://github.com/datenanfragen/data/pull/2759"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "tomtom",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce",
+        "entertainment"
+    ],
+    "name": "TomTom International B.V.",
+    "address": "De Ruijterkade 154\n1011 AC Amsterdam\nThe Netherlands",
+    "email": "privacy@tomtom.com",
+    "web": "https://www.tomtom.com/",
+    "sources": [
+        "https://help.tomtom.com/hc/en-gb/articles/360014059139-General-Data-Protection-Regulation-GDPR-What-does-it-mean-for-me",
+        "https://www.tomtom.com/de_de/privacy/general/",
+        "https://github.com/datenanfragen/data/pull/1515"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

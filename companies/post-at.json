@@ -1,0 +1,26 @@
+{
+    "slug": "post-at",
+    "relevant-countries": [
+        "de",
+        "at"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Österreichische Post AG",
+    "address": "Postkundenservice\nBahnsteggasse 17-23\n1210 Wien\nÖsterreich",
+    "phone": "+43 800 010100",
+    "fax": "+43 57 7672 2071",
+    "email": "team-datenschutz@post.at",
+    "webform": "https://www.post.at/k/f/kontaktformular?problem=DatenschutzAuskunft",
+    "web": "https://www.post.at/",
+    "sources": [
+        "https://www.post.at/co/c/datenschutz",
+        "https://www.post.at/co/c/impressum",
+        "https://a1deal.post.at/legal-notice",
+        "https://github.com/datenanfragen/data/pull/2495"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

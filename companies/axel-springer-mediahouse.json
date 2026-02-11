@@ -1,0 +1,27 @@
+{
+    "slug": "axel-springer-mediahouse",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Axel Springer Mediahouse Berlin GmbH",
+    "runs": [
+        "rollingstone.de",
+        "metal-hammer.de",
+        "musikexpress.de"
+    ],
+    "address": "Mehringdamm 33\n10961 Berlin\nDeutschland",
+    "phone": "+49 30 5858 5379",
+    "email": "datenschutz@rollingstone.de",
+    "web": "https://www.rollingstone.de/",
+    "webform": "https://www.rollingstone.de/formular-auskunftsersuchen-und-loeschersuchen/",
+    "sources": [
+        "https://www.rollingstone.de/datenschutz/",
+        "https://www.metal-hammer.de/datenschutz/",
+        "https://www.musikexpress.de/datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

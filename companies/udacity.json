@@ -1,0 +1,43 @@
+{
+    "slug": "udacity",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Udacity, Inc.",
+    "address": "2465 Latham Street, 3rd Floor\nMountain View\nCA 94040\nUnited States of America",
+    "email": "privacy@udacity.com",
+    "web": "https://www.udacity.com",
+    "sources": [
+        "https://www.udacity.com/legal/privacy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Username",
+            "type": "name"
+        },
+        {
+            "desc": "Email address",
+            "type": "input"
+        },
+        {
+            "desc": "Approximate date of account registration",
+            "type": "input"
+        },
+        {
+            "desc": "Country of residence",
+            "type": "input"
+        },
+        {
+            "desc": "Enrolled online courses (previous and current)",
+            "type": "input"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "According to their privacy policy, Udacity also want “A statement under penalty of perjury that all information in your request is truthful and that this is your User Account or that you have the authorization to make the request on behalf of the owner of the User Account” for requests and “Depending on the circumstances and the information you request, we may require additional methods of verification in our discretion.”"
+    ],
+    "quality": "verified"
+}

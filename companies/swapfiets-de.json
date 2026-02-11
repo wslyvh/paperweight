@@ -1,0 +1,21 @@
+{
+    "slug": "swapfiets-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Swaprad GmbH",
+    "runs": [
+        "Swapfiets"
+    ],
+    "address": "Pliniusstraße 8\n48488 Emsbüren\nDeutschland",
+    "phone": "+49 30 70014500",
+    "email": "privacy@pon.com",
+    "web": "https://swapfiets.de/",
+    "sources": [
+        "https://swapfiets.com/de-DE/privacy",
+        "https://swapfiets.de/impressum/",
+        "https://github.com/datenanfragen/data/pull/1165"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

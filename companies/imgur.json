@@ -1,0 +1,31 @@
+{
+    "slug": "imgur",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media",
+        "entertainment"
+    ],
+    "name": "Imgur",
+    "address": "c/o DP-Dock GmbH\nBallindamm 39\n20095 Hamburg\nGermany",
+    "email": "privacy@imgur.com",
+    "web": "https://imgur.com/",
+    "sources": [
+        "https://imgur.com/privacy",
+        "https://github.com/datenanfragen/data/issues/275",
+        "https://github.com/datenanfragen/data/pull/844"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

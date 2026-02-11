@@ -1,0 +1,19 @@
+{
+    "slug": "thehut-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "The Hut.com Ltd.",
+    "address": "Meridian House\nGadbrook Park\nCheshire\nCW9 7RA\nUnited Kingdom",
+    "phone": "+44 161 8131481",
+    "email": "customer.experience@thehutgroup.com",
+    "web": "https://www.thehut.com/",
+    "sources": [
+        "https://www.thehut.com/articles/privacy-policy.list",
+        "https://github.com/datenanfragen/data/issues/186"
+    ],
+    "quality": "verified"
+}

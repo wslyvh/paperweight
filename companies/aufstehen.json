@@ -1,0 +1,20 @@
+{
+    "slug": "aufstehen",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "political party"
+    ],
+    "name": "Aufstehen Trägerverein e.V.",
+    "address": "Friedrichstraße 171\n10117 Berlin\nDeutschland",
+    "phone": "+49 171 5545350",
+    "email": "datenschutz@aufstehen.de",
+    "web": "https://aufstehen.de/",
+    "sources": [
+        "https://aufstehen.de/web/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/852"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

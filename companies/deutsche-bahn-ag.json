@@ -1,0 +1,22 @@
+{
+    "slug": "deutsche-bahn-ag",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Deutsche Bahn AG",
+    "address": "Potsdamer Platz 2\n10785 Berlin\nDeutschland",
+    "fax": "+49 69 260913958",
+    "email": "konzerndatenschutz@deutschebahn.com",
+    "web": "https://www.deutschebahn.com",
+    "sources": [
+        "https://www.deutschebahn.com/de/impressum-6898126",
+        "https://www.deutschebahn.com/de/datenschutzgrundsatz-6898084",
+        "https://github.com/datenanfragen/data/pull/1433",
+        "https://github.com/datenanfragen/data/pull/3093"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

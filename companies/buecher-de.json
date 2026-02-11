@@ -1,0 +1,24 @@
+{
+    "slug": "buecher-de",
+    "categories": [
+        "commerce"
+    ],
+    "name": "buecher.de GmbH & Co. KG",
+    "address": "Steinerne Furt 65 a\n86167 Augsburg\nDeutschland",
+    "phone": "+49 821 4502 0",
+    "fax": "+49 821 4502 299",
+    "email": "datenschutz@buecher.de",
+    "web": "https://www.buecher.de/",
+    "sources": [
+        "https://www.buecher.de/go/service_topics/answers/session/6qp4jf6tkcbu3jpbl5l1dg4a95/id/08/",
+        "https://www.buecher.de/go/service_topics/answers/id/0905/"
+    ],
+    "comments": [
+        "Telefonnummer laut Impressum eigentlich +49 1806 001 579 (20 Ct./Anruf dt. Festnetz, max. 60 Ct./Anruf dt. Mobilfunk). Alternative Nummer übernommen von: https://www.0180.info/suche.html?s=01806001579"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

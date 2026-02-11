@@ -1,0 +1,49 @@
+{
+    "slug": "springer-nature",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Springer-Verlag GmbH",
+    "runs": [
+        "https://www.springernature.com/",
+        "https://www.nature.com/",
+        "https://www.springer.com/",
+        "https://www.biomedcentral.com/",
+        "https://www.palgrave.com/",
+        "https://www.heinrich-vogel-shop.de/",
+        "https://www.springermedizin.de/",
+        "https://springerhealthcare.com/",
+        "https://www.springernature.com/gp/macmillaneducation",
+        "https://www.scientificamerican.com/"
+    ],
+    "address": "Tiergartenstrasse 17\n69121 Heidelberg\nDeutschland",
+    "phone": "+49 6221 4870",
+    "email": "dataprotection@springernature.com",
+    "web": "https://www.springernature.com/",
+    "sources": [
+        "https://www.springernature.com/gp/legal/privacy-statement",
+        "https://www.nature.com/info/privacy",
+        "https://www.springer.com/gp/privacy-policy",
+        "https://www.biomedcentral.com/privacy-statement",
+        "https://www.palgrave.com/gp/services/legal",
+        "https://www.heinrich-vogel-shop.de/datenschutz.html",
+        "https://www.springermedizin.de/datenschutz/45574",
+        "https://springerhealthcare.com/privacy-cookies/",
+        "https://www.springernature.com/gp/macmillaneducation/legal/privacy-statement/17964152",
+        "https://www.scientificamerican.com/page/privacy-policy/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

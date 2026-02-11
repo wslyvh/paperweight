@@ -1,0 +1,22 @@
+{
+    "slug": "haspa",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Hamburger Sparkasse AG",
+    "address": "20454 Hamburg\nDeutschland",
+    "phone": "+49 40 35780",
+    "fax": "+49 40 357893418",
+    "email": "datenschutz@haspa.de",
+    "web": "https://haspa.de",
+    "sources": [
+        "https://www.haspa.de/de/home/toolbar/datenschutz.html?n=true",
+        "https://www.haspa.de/de/home/toolbar/impressum.html?n=true",
+        "https://github.com/datenanfragen/data/pull/1304"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

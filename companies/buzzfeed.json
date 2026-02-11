@@ -1,0 +1,38 @@
+{
+    "slug": "buzzfeed",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "BuzzFeed, Inc.",
+    "runs": [
+        "BuzzFeed UK Ltd.",
+        "BuzzFeed France SARL",
+        "BuzzFeed GmbH",
+        "BuzzFeed Spain, S.L.",
+        "BuzzFeed Canada, Inc.",
+        "BuzzFeed India Private Ltd.",
+        "BuzzFeed PTY, Ltd.",
+        "BuzzFeed Japan Corporation",
+        "BuzzFeed do Brasil Internet Ltda",
+        "Entertainment Contents Online Mexico, S.A. de C.V.",
+        "BuzzFeed Motion Pictures Inc.",
+        "Product Labs, Inc.",
+        "The HuffingtonPost.com, Inc. (HuffPost)",
+        "Torando Labs, Inc.",
+        "Lexland Studios, Inc.",
+        "BFMP Video, Inc. (formerly)"
+    ],
+    "address": "111 E. 18th Street\n13th Floor\nNew York\nNY 10003\nUnited States of America",
+    "email": "data-privacy@buzzfeed.com",
+    "web": "https://www.buzzfeed.com",
+    "sources": [
+        "https://www.buzzfeed.com/about/privacy",
+        "https://www.buzzfeed.com/about/contact",
+        "https://www.huffpost.com/static/privacy-policy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

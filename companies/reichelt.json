@@ -1,0 +1,34 @@
+{
+    "slug": "reichelt",
+    "categories": [
+        "commerce"
+    ],
+    "name": "reichelt elektronik GmbH & Co. KG",
+    "address": "Elektronikring 1\n26452 Sande\nDeutschland",
+    "phone": "+49 4422 955 333",
+    "fax": "+49 4422 955 211",
+    "email": "datenschutz@reichelt.de",
+    "web": "https://www.reichelt.de/",
+    "sources": [
+        "https://www.reichelt.de/Infocenter/Datenschutz/12/63/index.html?ACTION=12&LA=0&PAGE=63&SID=92WrHQzKwQAT4AADKpzw87b85bcc251e843bf0cfe1d0c4d301db4",
+        "https://www.reichelt.de/Infocenter/Impressum/12/42/index.html?ACTION=12&LA=12&PAGE=42"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "E-Mail-Adresse",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

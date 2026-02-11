@@ -1,0 +1,16 @@
+{
+    "slug": "telestream",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Telestream, LLC",
+    "address": "848 Gold Flat Road\nNevada City, CA 95959\nUnited States of America",
+    "email": "gdpr@telestream.net",
+    "web": "http://www.telestream.net",
+    "sources": [
+        "http://www.telestream.net/company/privacy.htm#EU",
+        "https://github.com/datenanfragen/data/pull/1869"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

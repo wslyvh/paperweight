@@ -1,0 +1,20 @@
+{
+    "slug": "feedly",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment",
+        "social media"
+    ],
+    "name": "Feedly, Inc.",
+    "address": "285 Hamilton Avenue\nSuite 250\nPalo Alto\nCA 94301\nUnited States of America",
+    "email": "privacy@feedly.com",
+    "web": "https://feedly.com",
+    "sources": [
+        "https://feedly.com/i/legal/privacy"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

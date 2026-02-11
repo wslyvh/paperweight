@@ -1,0 +1,20 @@
+{
+    "slug": "socialdeal-nl",
+    "relevant-countries": [
+        "nl"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Social Deal B.V.",
+    "address": "Magistratenlaan 70\n5223 MD 's-Hertogenbosch\nNoord-Brabant\nThe Netherlands",
+    "phone": "+31 88 205 0505",
+    "email": "privacy@socialdeal.nl",
+    "web": "https://socialdeal.nl/",
+    "sources": [
+        "https://www.socialdeal.nl/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/840"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

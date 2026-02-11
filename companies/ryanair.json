@@ -1,0 +1,26 @@
+{
+    "slug": "ryanair",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Ryanair DAC.",
+    "runs": [
+        "Ryanair App",
+        "myRyanair"
+    ],
+    "address": "Corporate Head Office\nAirside Business Park\nSwords\nCo. Dublin\nIreland",
+    "email": "DPO@ryanair.com",
+    "web": "https://www.ryanair.com",
+    "sources": [
+        "https://www.ryanair.com/de/de/CorporateLinks/datenschutzbestimmung",
+        "https://www.ryanair.com/de/de/CorporateLinks/unternehmensadresse-und-steuer-identifikationsnummer",
+        "https://www.ryanair.com/de/de/nutzliche-infos/service-center/haufige-fragen/-Kontakt#0-0",
+        "https://www.ryanair.com/gb/en/useful-info/help-centre/faq-overview/contact-us/contacting-customer-service"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

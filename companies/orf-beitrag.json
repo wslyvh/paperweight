@@ -1,0 +1,24 @@
+{
+    "slug": "orf-beitrag",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "ORF-Beitrags Service GmbH",
+    "runs": [
+        "OBS"
+    ],
+    "address": "Postfach 1000\n1051 Wien\nÖsterreich",
+    "phone": "+43 50 200 800",
+    "email": "datenschutz@orf.beitrag.at",
+    "web": "https://orf.beitrag.at/",
+    "sources": [
+        "https://orf.beitrag.at/impressum",
+        "https://orf.beitrag.at/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2537"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

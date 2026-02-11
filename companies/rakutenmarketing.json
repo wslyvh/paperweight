@@ -1,0 +1,22 @@
+{
+    "slug": "rakutenmarketing",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Rakuten Marketing Europe Ltd.",
+    "runs": [
+        "Rakuten Marketing LLC"
+    ],
+    "address": "71 Queen Victoria Street\n7th Floor\nLondon\nEC4V 4AY\nUnited Kingdom",
+    "email": "rm-privacy@mail.rakuten.com",
+    "web": "https://rakutenmarketing.com/",
+    "sources": [
+        "https://go.rakutenadvertising.com/hubfs/Website-Privacy-Policy-English.pdf"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

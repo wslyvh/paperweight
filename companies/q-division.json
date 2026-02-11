@@ -1,0 +1,21 @@
+{
+    "slug": "q-division",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Q division GmbH",
+    "address": "Walther-von-Cronberg-Platz 13\n60594 Frankfurt am Main\nGermany",
+    "phone": "+49 69 255349465",
+    "email": "datenschutz@q-division.de",
+    "web": "https://q-division.de/",
+    "sources": [
+        "https://q-division.de/dsgvo/datenschutz/"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

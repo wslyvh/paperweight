@@ -1,0 +1,20 @@
+{
+    "slug": "darmstadt-meldebehoerde",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Wissenschaftsstadt Darmstadt, Meldebehörde",
+    "address": "Bürger- und Ordnungsamt\nAbt. Einwohnerwesen\nGrafenstr. 30\n64283 Darmstadt\nDeutschland",
+    "phone": "+49 6151 133222",
+    "fax": "+49 6151 133006",
+    "email": "meldeamt@darmstadt.de",
+    "web": "https://rathaus.darmstadt.de/public/index.php?l=1&mr=20&smr=200&o=92",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/643",
+        "https://rathaus.darmstadt.de/public/getfile.php?iID=2562&cHash=da94070328b9e9744938d8851c6c219d"
+    ],
+    "quality": "verified"
+}

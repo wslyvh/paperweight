@@ -1,0 +1,21 @@
+{
+    "slug": "moebel-de",
+    "categories": [
+        "commerce"
+    ],
+    "name": "moebel.de Einrichten & Wohnen AG",
+    "address": "Gertrudenstraße 3\n20095 Hamburg\nDeutschland",
+    "phone": "+49 40 210 910 710",
+    "fax": "+49 40 210 910 101",
+    "email": "datenschutz@moebel.de",
+    "web": "https://www.moebel.de/",
+    "sources": [
+        "https://www.moebel.de/datenschutz",
+        "https://www.moebel.de/impressum"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

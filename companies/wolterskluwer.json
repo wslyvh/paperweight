@@ -1,0 +1,26 @@
+{
+    "slug": "wolterskluwer",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Wolterskluwer Deutschland GmbH",
+    "runs": [
+        "Akademische Arbeitsgemeinschaft Verlagsgesellschaft mbH"
+    ],
+    "address": "c/o TÜV IT, IT Security & Privacy\nLangemarckstr. 20\n45141 Essen\nDeutschland",
+    "phone": "+49 201 8999899",
+    "fax": "+49 201 8999666",
+    "email": "dsb@wolterskluwer.de",
+    "webform": "https://www.wolterskluwer.com/de-de/privacy-cookies/inquiry",
+    "web": "https://www.wolterskluwer.de",
+    "sources": [
+        "https://www.wolterskluwer.com/de-de/privacy-cookies",
+        "https://www.steuertipps.de/datenschutz",
+        "https://github.com/datenanfragen/data/issues/445"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

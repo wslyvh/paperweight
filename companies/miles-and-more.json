@@ -1,0 +1,25 @@
+{
+    "slug": "miles-and-more",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel",
+        "ads",
+        "finance"
+    ],
+    "name": "Miles & More GmbH",
+    "address": "MAC Main Airport Center\nUnterschweinstiege 8\n60549 Frankfurt/Main\nDeutschland",
+    "email": "datenschutz@dlh.de",
+    "web": "https://www.miles-and-more.com",
+    "sources": [
+        "https://www.miles-and-more.com/de/de/general-information/privacy-statement.html",
+        "https://www.miles-and-more.com/de/de/general-information/privacy-statement/privacy-statement-of-the-miles-and-more-programme.html",
+        "https://www.miles-and-more.com/de/de/general-information/privacy-statement/data-protection-policy-of-the-miles-and-more-website-app-communication-media.html",
+        "https://www.miles-and-more.com/de/de/general-information/imprint.html",
+        "https://www.miles-and-more.com/de/de/general-information/co-editor-miles-and-more.html",
+        "https://github.com/datenanfragen/data/issues/256"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

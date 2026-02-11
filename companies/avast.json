@@ -1,0 +1,59 @@
+{
+    "slug": "avast",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads",
+        "telecommunication",
+        "commerce"
+    ],
+    "name": "AVAST Software s.r.o",
+    "runs": [
+        "Avast AntiVirus",
+        "AVG AntiVirus",
+        "Piriform",
+        "CCleaner",
+        "Privax Ltd",
+        "HideMyAss!",
+        "TuneUp Software GmbH",
+        "Jumpshot, Inc.",
+        "Avast CommunityIQ",
+        "Avast File Reputation Service (FileRep)",
+        "CyberCapture",
+        "Avast CleanUp",
+        "Avast Secure Browser",
+        "Avast Passwords",
+        "Avast SafePrice",
+        "Avast BackUp",
+        "Avast AntiTheft",
+        "Avast Call Blocker",
+        "Avast Wi-Fi Finder",
+        "Avast Battery Saver",
+        "Avast Family Shield",
+        "Avast Mobile Campaign and News Feed",
+        "AVG Alarm Clock",
+        "AVG Gallery"
+    ],
+    "address": "Pikrtova 1737/1a\n140 00 Prag 4\nCzech Republic",
+    "email": "dpo@avast.com",
+    "web": "https://www.avast.com/",
+    "sources": [
+        "https://www.avast.com/de-de/privacy-policy",
+        "https://www.avast.com/en-gb/privacy-policy",
+        "https://github.com/datenanfragen/data/issues/133",
+        "https://www.avg.com/en-ww/privacy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

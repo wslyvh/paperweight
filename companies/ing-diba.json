@@ -1,0 +1,35 @@
+{
+    "slug": "ing-diba",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "ING-DiBa AG",
+    "address": "Theodor-Heuss-Allee 2\n60486 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 50509069",
+    "email": "datenschutz@ing.de",
+    "web": "https://www.ing.de",
+    "sources": [
+        "https://www.ing.de/datenschutz/",
+        "https://www.ing.de/ueber-uns/unternehmen/impressum/",
+        "https://github.com/datenanfragen/data/pull/1108"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Geburtsdatum",
+            "type": "birthdate"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,43 @@
+{
+    "slug": "elv",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "ELV Elektronik AG",
+    "runs": [
+        "at.elv.com",
+        "ch.elv.com",
+        "de.elv.com"
+    ],
+    "address": "Maiburger Straße 29 – 36\n26789 Leer\nDeutschland",
+    "phone": "+49 491 600888",
+    "fax": "+49 491 7016",
+    "email": "datenschutz@elv.com",
+    "web": "https://www.elv.com",
+    "sources": [
+        "https://de.elv.com/sicherheit-datenschutz",
+        "https://de.elv.com/i.-kontakt-und-ihre-rechte",
+        "https://github.com/datenanfragen/data/pull/1327",
+        "https://github.com/datenanfragen/data/pull/2383"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

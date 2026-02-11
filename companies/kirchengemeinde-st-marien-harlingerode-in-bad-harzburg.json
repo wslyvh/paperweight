@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-st-marien-harlingerode-in-bad-harzburg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde St. Marien Harlingerode in Bad Harzburg",
+    "address": "Meinigstraße 43\n38667 Bad Harzburg\nDeutschland",
+    "phone": "+49 5322 81586",
+    "fax": "+49 5322 877994",
+    "email": "harlingerode.buero@lk-bs.de",
+    "web": "http://www.st.-marien-harlingerode.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=708"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

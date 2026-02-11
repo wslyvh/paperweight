@@ -1,0 +1,21 @@
+{
+    "slug": "wirmachendruck",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "WIRmachenDRUCK GmbH",
+    "address": "Mühlbachstraße 7\n71522 Backnang\nDeutschland",
+    "phone": "+49 711 995 982 20",
+    "fax": "+49 711 995 982 21",
+    "email": "datenschutz@wir-machen-druck.de",
+    "web": "https://www.wir-machen-druck.de/",
+    "sources": [
+        "https://www.wir-machen-druck.de/Datenschutzerklaerung.html",
+        "https://www.wir-machen-druck.de/impressum.htm"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

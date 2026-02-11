@@ -1,0 +1,31 @@
+{
+    "slug": "owncloud-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "ownCloud GmbH",
+    "address": "Rathsbergstr. 17\n90411 Nürnberg\nGermany",
+    "phone": "+49 911 14888690",
+    "fax": "+49 911 56981566",
+    "email": "info@owncloud.com",
+    "web": "https://owncloud.com",
+    "sources": [
+        "https://owncloud.com/privacy-statement/",
+        "https://owncloud.com/imprint/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "quality": "verified"
+}

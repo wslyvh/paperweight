@@ -1,0 +1,21 @@
+{
+    "slug": "dhl-paket-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "DHL Paket GmbH",
+    "runs": [
+        "DHL Packstation"
+    ],
+    "address": "Sträßchensweg 10\n53113 Bonn\nDeutschland",
+    "phone": "+49 228 1820",
+    "email": "datenschutz@dpdhl.com",
+    "webform": "https://www.dhl.de/de/privatkunden/hilfe-kundenservice/themenauswahl/formulare/formular-datenschutz.html",
+    "web": "https://www.dhl.de/",
+    "sources": [
+        "https://www.dhl.de/de/toolbar/footer/datenschutz.html",
+        "https://www.dhl.de/de/toolbar/footer/impressum/dhlpaket.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

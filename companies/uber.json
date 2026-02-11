@@ -1,0 +1,36 @@
+{
+    "slug": "uber",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Uber Technologies Inc.",
+    "address": "Burgerweeshuispad 301\n1076 HR Amsterdam\nThe Netherlands",
+    "webform": "https://uber.com/privacy-dpo",
+    "web": "https://www.uber.com",
+    "sources": [
+        "https://www.uber.com/legal/en/document/?name=privacy-notice&country=germany&lang=en",
+        "https://github.com/datenanfragen/data/pull/2632"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "Adress",
+            "type": "address",
+            "optional": true
+        }
+    ],
+    "quality": "verified",
+    "suggested-transport-medium": "webform"
+}

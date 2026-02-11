@@ -1,0 +1,20 @@
+{
+    "slug": "only-fans",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Fenix International Limited",
+    "runs": [
+        "OnlyFans"
+    ],
+    "address": "c/o DAPR sp. z oo\nZurawia 47 Street\n00-680 Warsaw\nPoland",
+    "email": "privacy@onlyfans.com",
+    "sources": [
+        "https://onlyfans.com/privacy",
+        "https://github.com/datenanfragen/data/pull/2714"
+    ],
+    "quality": "verified"
+}

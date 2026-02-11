@@ -1,0 +1,20 @@
+{
+    "slug": "demandbase",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Demandbase, Inc.",
+    "address": "680 Folsom Street #400\nSan Francisco\nCA 94107\nUnited States of America",
+    "email": "privacy@demandbase.com",
+    "web": "https://www.demandbase.com/",
+    "sources": [
+        "https://www.demandbase.com/privacy-policy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

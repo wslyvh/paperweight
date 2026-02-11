@@ -1,0 +1,21 @@
+{
+    "slug": "david-lloyd-leisure",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "health",
+        "entertainment",
+        "travel"
+    ],
+    "name": "David Lloyd Leisure Limited",
+    "address": "The Hangar\nMosquito Way\nHatfield Business Park\nHatfield, Hertfordshire\nAL10 9AX\nUnited Kingdom",
+    "email": "privacy@davidlloyd.co.uk",
+    "web": "https://www.davidlloyd.co.uk",
+    "sources": [
+        "https://www.davidlloyd.co.uk/policy/privacy-policy",
+        "https://github.com/datenanfragen/data/issues/219"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

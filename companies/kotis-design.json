@@ -1,0 +1,20 @@
+{
+    "slug": "kotis-design",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Kotis Design, LLC",
+    "runs": [
+        "college.kotisdesign.com",
+        "go.kotisdesign.com",
+        "stores.kotisdesign.com"
+    ],
+    "address": "2101 N 34th St\n#200, Seattle\nWA 98103\nUnited States of America",
+    "email": "info@kotisdesign.com",
+    "web": "https://kotisdesign.com/",
+    "sources": [
+        "https://go.kotisdesign.com/privacy-policy/",
+        "https://github.com/datenanfragen/data/issues/409"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "cinecitta",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "CINECITTA' Multiplexkino GmbH & Co. KG",
+    "address": "c/o Rechtsanwaltskanzlei Costard\nLina-Ammon-Straße 9\n90471 Nürnberg\nDeutschland",
+    "phone": "+49 911 7903034",
+    "fax": "+49 911 7903035",
+    "email": "info@it-rechtsberater.de",
+    "web": "https://www.cinecitta.de",
+    "sources": [
+        "https://www.cinecitta.de/de/Datenschutzerklaerung-4889,560649.html",
+        "https://github.com/datenanfragen/data/issues/461"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

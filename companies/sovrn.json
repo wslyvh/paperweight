@@ -1,0 +1,25 @@
+{
+    "slug": "sovrn",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Sovrn Holdings, Inc.",
+    "runs": [
+        "Lijit"
+    ],
+    "address": "4th Floor Newland House\n40 Berners Street\nFitzrovia, London\nW1T 3NA\nUnited Kingdom",
+    "email": "privacy@sovrn.com",
+    "web": "https://www.sovrn.com/",
+    "sources": [
+        "https://www.sovrn.com/privacy-policy/#pills-1",
+        "https://knowledge.sovrn.com/kb/what-is-the-lijit-ad-serving-domain",
+        "https://github.com/datenanfragen/data/pull/2938"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

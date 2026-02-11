@@ -1,0 +1,24 @@
+{
+    "slug": "rubiconproject",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "The Rubicon Project Ltd.",
+    "runs": [
+        "The Rubicon Project, Inc."
+    ],
+    "address": "Walmar House\n5th Floor\n296 Regent St.\nLondon\nW1B 3HR\nUnited Kingdom",
+    "phone": "+44 20 3206 2400",
+    "email": "privacy@rubiconproject.com",
+    "web": "https://rubiconproject.com/",
+    "sources": [
+        "https://rubiconproject.com/privacy/",
+        "https://rubiconproject.com/contactus/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

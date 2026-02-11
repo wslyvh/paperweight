@@ -1,0 +1,20 @@
+{
+    "slug": "hawesko",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Hanseatisches Wein- und Sekt-Kontor Hawesko GmbH",
+    "address": "Friesenweg 4, Haus 14\n22763 Hamburg\nDeutschland",
+    "phone": "+49 4122 504433",
+    "email": "datenschutz@hawesko.de",
+    "web": "https://www.hawesko.de/",
+    "sources": [
+        "https://www.hawesko.de/rechtliches/datenschutz",
+        "https://www.hawesko.de/rechtliches/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

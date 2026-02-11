@@ -1,0 +1,24 @@
+{
+    "slug": "clicksco",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Havas SA",
+    "runs": [
+        "Clicksco Digital Limited"
+    ],
+    "address": "Sutton Yard\n65 Goswell Road\nLondon EC1V 7EN\nUnited Kingdom",
+    "phone": "+44 20 3330 7000",
+    "email": "data.protectionuk@havas.com",
+    "web": "https://www.clicksco.com/",
+    "sources": [
+        "https://www.clicksco.com/privacy/",
+        "https://github.com/datenanfragen/data/pull/1642"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

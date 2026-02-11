@@ -1,0 +1,20 @@
+{
+    "slug": "pc-king",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "PC-King",
+    "address": "Luisenstr. 86 A-B\n53721 Siegburg\nDeutschland",
+    "phone": "+49 2241 397370",
+    "fax": "+49 2241 3973711",
+    "email": "order@pc-king.de",
+    "web": "https://www.pcking.de",
+    "sources": [
+        "https://www.pcking.de/eshop.php?eslink=1&action=page&page_type=privacy_statement",
+        "https://github.com/datenanfragen/data/pull/2794"
+    ],
+    "quality": "verified"
+}

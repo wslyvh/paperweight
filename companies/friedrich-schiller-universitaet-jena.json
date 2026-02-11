@@ -1,0 +1,19 @@
+{
+    "slug": "friedrich-schiller-universitaet-jena",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Friedrich-Schiller-Universität Jena",
+    "address": "Fürstengraben 27\n07743 Jena\nDeutschland",
+    "email": "datenschutz@uni-jena.de",
+    "web": "https://www.uni-jena.de",
+    "sources": [
+        "https://www.uni-jena.de/20095/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2802"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

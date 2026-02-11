@@ -1,0 +1,23 @@
+{
+    "slug": "gis-at",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "telecommunication",
+        "public body",
+        "utility"
+    ],
+    "name": "GIS Gebühren Info Service GmbH",
+    "address": "Operngasse 20 B\n1040 Wien\nÖsterreich",
+    "phone": "+43 50 200",
+    "fax": "+43 50 200 300",
+    "email": "kundenservice@gis.at",
+    "web": "https://www.gis.at",
+    "sources": [
+        "https://www.gis.at/impressum",
+        "https://github.com/datenanfragen/data/issues/505",
+        "https://www.gis.at/hinweise-sicherheit-datenschutz"
+    ],
+    "quality": "verified"
+}

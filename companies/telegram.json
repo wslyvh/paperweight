@@ -1,0 +1,22 @@
+{
+    "slug": "telegram",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Telegram UK Holdings Ltd.",
+    "runs": [
+        "Telegram Group Inc.",
+        "Telegram FZ-LLC"
+    ],
+    "address": "71–75 Shelton Street\nCovent Garden\nLondon\nWC2H 9JQ\nUnited Kingdom",
+    "webform": "https://telegram.org/support",
+    "web": "https://telegram.org/",
+    "sources": [
+        "https://telegram.org/privacy"
+    ],
+    "request-language": "en",
+    "quality": "verified"
+}

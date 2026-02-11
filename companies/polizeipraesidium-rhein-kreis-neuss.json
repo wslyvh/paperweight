@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-rhein-kreis-neuss",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Der Landrat des Rhein-Kreises Neuss als Kreispolizeibehörde",
+    "address": "Jülicher Landstraße 178\n41464 Neuss\nDeutschland",
+    "phone": "+49 2131 3000",
+    "fax": "+49 2131 30021219",
+    "email": "datenschutz.rhein-kreis-neuss@polizei.nrw.de",
+    "web": "https://rhein-kreis-neuss.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

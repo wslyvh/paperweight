@@ -1,0 +1,25 @@
+{
+      "slug": "nextdoor",
+      "relevant-countries": [
+          "de",
+          "dk",
+          "es",
+          "fr",
+          "it",
+          "nl",
+          "se"
+      ],
+      "categories": [
+          "social media"
+      ],
+      "name": "Nextdoor EMEA Limited",
+      "address": "Digital Depot\nThomas Street West\nDublin 8\nIreland",
+      "email": "privacy@nextdoor.com",
+      "web": "https://nextdoor.com/",
+      "sources": [
+          "https://legal.nextdoor.com/us-privacy-policy-2021/",
+          "https://legal.nextdoor.com/es-privacy-policy-2021/",
+          "https://legal.nextdoor.com/de-privacy-policy-2021/"
+      ],
+      "quality": "verified"
+  }

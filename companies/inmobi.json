@@ -1,0 +1,21 @@
+{
+    "slug": "inmobi",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "InMobi Pte Ltd",
+    "address": "1 Ebenezer St\nHoxton\nLondon\nEC1V 1NR\nUnited Kingdom",
+    "email": "dsr@inmobi.com",
+    "web": "https://www.inmobi.com/",
+    "sources": [
+        "https://www.inmobi.com/privacy-policy-for-eea/",
+        "https://www.inmobi.com/gdpr-subject-access-request-policy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

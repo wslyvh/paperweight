@@ -1,0 +1,49 @@
+{
+    "slug": "lka-nds",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Landeskriminalamt Niedersachsen",
+    "address": "Am Waterlooplatz 11\n30169 Hannover\nDeutschland",
+    "phone": "+49 511 98730",
+    "fax": "+49 511 9695609786",
+    "email": "dsb@lka.polizei.niedersachsen.de",
+    "web": "https://www.lka.polizei-nds.de",
+    "sources": [
+        "https://www.lka.polizei-nds.de/wir_ueber_uns/datenschutzerklaerung-113019.html",
+        "https://www.lka.polizei-nds.de/wir_ueber_uns/kontakt-landeskriminalamt-niedersachsen-13.html",
+        "https://github.com/datenanfragen/data/pull/2277"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Geburtsdatum",
+            "type": "birthdate",
+            "optional": false
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": false
+        },
+        {
+            "desc": "Geburtsort",
+            "type": "input"
+        }
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-lka-nds",
+    "needs-id-document": true,
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Auf der Ausweiskopie müssen die folgenden Daten ersichtlich sein: Name, Vorname, Geburtsdatum, Geburtsort, Unterschrift\n\nAlle sonstigen Daten können und sollten geschwärzt werden."
+    ],
+    "quality": "verified"
+}

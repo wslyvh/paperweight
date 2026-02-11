@@ -1,0 +1,18 @@
+{
+    "slug": "verimi",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Verimi GmbH",
+    "address": "Oranienstraße 91\n10969 Berlin\nDeutschland",
+    "phone": "+49 30 259 244 720",
+    "email": "service@verimi.com",
+    "sources": [
+        "https://verimi.de/datenschutzerklaerung/",
+        "https://github.com/datenanfragen/data/pull/2386"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "badenia-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Deutsche Bausparkasse Badenia AG",
+    "address": "Badeniaplatz 1\n76114 Karlsruhe\nDeutschland",
+    "phone": "+49 721 9950",
+    "email": "datenschutz@badenia.de",
+    "web": "https://www.badenia.de",
+    "sources": [
+        "https://www.badenia.de/datenschutz"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

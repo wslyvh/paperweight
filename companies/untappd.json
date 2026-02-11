@@ -1,0 +1,39 @@
+{
+    "slug": "untappd",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media",
+        "commerce"
+    ],
+    "name": "Next Glass, Inc.",
+    "runs": [
+        "Untappd, Inc.",
+        "Untappd for Business",
+        "Untappd Store"
+    ],
+    "address": "21 S Front St\nWilmington, NC\nUnited States of America",
+    "email": "privacy@nextglass.co",
+    "web": "https://untappd.com",
+    "sources": [
+        "https://untappd.com/privacy",
+        "https://untappd.com/terms",
+        "https://github.com/datenanfragen/data/pull/779"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

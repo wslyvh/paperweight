@@ -1,0 +1,19 @@
+{
+    "slug": "resonate-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Resonate Networks, Inc.",
+    "address": "11720 Plaza America Drive\n3rd Floor\nReston\nVA 20190\nUnited States of America",
+    "email": "info@resonate.com",
+    "web": "https://www.resonate.com/",
+    "sources": [
+        "https://www.resonate.com/privacy-policy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "quality": "verified"
+}

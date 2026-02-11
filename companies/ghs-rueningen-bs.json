@@ -1,0 +1,23 @@
+{
+    "slug": "ghs-rueningen-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Grund- und Hauptschule Rüningen Braunschweig",
+    "address": "Thiedestraße 24a\n38122 Braunschweig\nDeutschland",
+    "phone": "+49 531 2875030",
+    "fax": "+49 531 28750330",
+    "email": "datenschutz@ghs-rueningen.de",
+    "web": "https://www.ghs-rueningen.de",
+    "sources": [
+        "https://www.ghs-rueningen.de/datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

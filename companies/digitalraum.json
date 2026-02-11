@@ -1,0 +1,17 @@
+{
+    "slug": "digitalraum",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads",
+        "social media"
+    ],
+    "name": "Digitalraum GmbH",
+    "address": "Nägelsbachstr. 26\n91052 Erlangen\nDeutschland",
+    "sources": [
+        "https://www.northdata.de/Digitalraum%20GmbH,%20Erlangen/Amtsgericht%20F%C3%BCrth%20HRB%2019684",
+        "https://github.com/datenanfragen/data/issues/441"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "digitize-ie",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Digitize New Media Ltd.",
+    "address": "1st Floor\n61 Thomas St\nD08 W250\nDublin 8\nIreland",
+    "phone": "+353 1 662 2380",
+    "email": "privacy@digitize.ie",
+    "web": "https://www.digitize.ie/",
+    "sources": [
+        "https://www.digitize.ie/privacy-policy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,23 @@
+{
+    "slug": "kirchengemeinde-liebenburg-klein-mahner",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Liebenburg - Klein Mahner",
+    "address": "Martin-Luther-Straße 1\n38704 Liebenburg\nDeutschland",
+    "phone": "+49 5346 91119",
+    "fax": "+49 5346 91118",
+    "email": "liebenburg.pfa@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=883"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

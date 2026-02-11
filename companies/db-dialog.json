@@ -1,0 +1,22 @@
+{
+    "slug": "db-dialog",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "DB Dialog GmbH",
+    "runs": [
+        "Servicecenter Fahrgastrechte"
+    ],
+    "address": "Salzufer 6\n10587 Berlin\nGermany",
+    "email": "info@dbdialog.de",
+    "web": "https://www.dbdialog.de",
+    "sources": [
+        "https://www.dbdialog.de/db-dialog-de/DBD_Datenschutz-9180660",
+        "https://www.bahn.de/faq/an-wen-kann-ich-mich-wenden-wenn-ich-mit-einer-entscheidung-des-servicecenter-fahrgastrechte-nicht-einverstanden-bin",
+        "https://github.com/datenanfragen/data/pull/1245"
+    ],
+    "quality": "verified"
+}

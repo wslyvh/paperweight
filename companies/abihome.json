@@ -1,0 +1,24 @@
+{
+    "slug": "abihome",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Abihome GmbH",
+    "runs": [
+        "Gradoo"
+    ],
+    "address": "c/o heyData GmbH\nSchützenstraße 5\n10117 Berlin\nDeutschland",
+    "phone": "+49 800 3 77 22 44",
+    "email": "datenschutz@heydata.eu",
+    "web": "https://gradoo.com/",
+    "sources": [
+        "https://gradoo.com/pages/datenschutz",
+        "https://github.com/datenanfragen/data/pull/848",
+        "https://we-help-you.de/datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

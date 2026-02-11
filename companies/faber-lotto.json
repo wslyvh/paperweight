@@ -1,0 +1,17 @@
+{
+    "slug": "faber-lotto",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "FABER Lotto GmbH & Co. KG",
+    "address": "Markstraße 79\n44801 Bochum\nDeutschland",
+    "phone": "+49 234 9383333",
+    "email": "datenschutz@faber.de",
+    "web": "https://www.faber.de",
+    "sources": [
+        "https://www.faber.de/service/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1181"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

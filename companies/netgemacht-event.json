@@ -1,0 +1,19 @@
+{
+    "slug": "netgemacht-event",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "NETgemacht EVENT UG (haftungsbeschränkt)",
+    "address": "Kölner Weg 4\n50670 Köln\nDeutschland",
+    "phone": "+49 221 67776950",
+    "email": "tiger@os-golfcup.de",
+    "sources": [
+        "https://os-golfcup.de/datenschutzerklaerung/",
+        "https://os-golfcup.de/impressum/",
+        "https://github.com/datenanfragen/data/pull/1725"
+    ],
+    "quality": "verified"
+}

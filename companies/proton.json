@@ -1,0 +1,25 @@
+{
+    "slug": "proton",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Proton AG",
+    "runs": [
+        "Proton Mail",
+        "Proton Calendar",
+        "Proton Drive",
+        "Proton VPN",
+        "Proton Pass"
+    ],
+    "address": "Route de la Galaise 32\n1228 Plan-les-Ouates\nGeneva\nSwitzerland",
+    "webform": "https://proton.me/support/contact",
+    "web": "https://proton.me",
+    "sources": [
+        "https://proton.me/legal/privacy",
+        "https://github.com/datenanfragen/data/pull/2281"
+    ],
+    "quality": "verified"
+}

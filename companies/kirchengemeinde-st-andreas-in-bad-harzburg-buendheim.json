@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-st-andreas-in-bad-harzburg-buendheim",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde St. Andreas in Bad Harzburg (Bündheim)",
+    "address": "An der Kirche 14\n38667 Bad Harzburg\nDeutschland",
+    "phone": "+49 5322 3124",
+    "fax": "+49 5322 29117552",
+    "email": "buendheim.buero@lk-bs.de",
+    "web": "http://www.st-andreas-buendheim.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=703"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

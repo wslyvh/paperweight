@@ -1,0 +1,16 @@
+{
+    "slug": "jurpc-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "JurPC",
+    "address": "Patrickstraße 43\n65191 Wiesbaden\nDeutschland",
+    "fax": "+49 611 9578228",
+    "email": "mail@jurpc.de",
+    "web": "https://www.jurpc.de",
+    "sources": [
+        "https://www.jurpc.de/wp/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1270"
+    ],
+    "quality": "verified"
+}

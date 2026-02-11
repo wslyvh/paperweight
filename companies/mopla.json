@@ -1,0 +1,19 @@
+{
+    "slug": "mopla",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "MoPla Solutions GmbH",
+    "address": "Alte Landstraße 7\n86502 Laugna\nDeutschland",
+    "email": "datenschutz@mopla.solutions",
+    "web": "https://www.mopla.solutions",
+    "sources": [
+        "https://www.mopla.solutions/de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/3288"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+  "slug": "ladenzeile-de",
+  "relevant-countries": [
+    "de"
+  ],
+  "categories": [
+    "commerce"
+  ],
+  "name": "Visual Meta GmbH",
+  "address": "Zimmerstraße 50\nc/o Schützenstraße 15-17\n10117 Berlin\nDeutschland",
+  "phone": "+49 30 609 84 88 98",
+  "fax": "+49 30 609 84 88 99",
+  "email": "privacy@visual-meta.com",
+  "web": "https://www.ladenzeile.de",
+  "sources": [
+    "https://www.ladenzeile.de/datenschutzerklaerung.html"
+  ],
+  "suggested-transport-medium": "email",
+  "quality": "verified"
+}

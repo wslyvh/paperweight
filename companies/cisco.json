@@ -1,0 +1,47 @@
+{
+    "slug": "cisco",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce",
+        "telecommunication"
+    ],
+    "name": "Cisco Systems, Inc.",
+    "runs": [
+        "Cisco.com",
+        "Cisco Certifications",
+        "Cisco Cloudlock & Umbrella",
+        "Cisco Commerce Workspace (CCW)",
+        "Cisco Communities",
+        "Cisco DevNet",
+        "Cisco Duo",
+        "Cisco Learning Network",
+        "Cisco Live",
+        "Cisco Meraki",
+        "Cisco Networking Academy",
+        "Cisco Registered Envelope Service (CRES)",
+        "Cisco Voicea",
+        "Cisco Webex",
+        "Cisco Digital Lifecycle Journeys",
+        "Cisco DNA Spaces",
+        "Immunet",
+        "Cisco Job Applicant Systems",
+        "Cisco Marketing Databases",
+        "Cisco Partner Databases",
+        "Phishtank",
+        "Cisco Sales Connect",
+        "All known Cisco databases"
+    ],
+    "address": "Haarlerbergweg 13-19\n1101 CH Amsterdam-Zuidoost\nThe Netherlands",
+    "phone": "+1 408 906 2726",
+    "fax": "+49 89 516571001",
+    "webform": "https://privacyrequest.cisco.com/",
+    "web": "https://www.cisco.com",
+    "sources": [
+        "https://www.cisco.com/c/en/us/about/legal/privacy-full.html",
+        "https://www.cisco.com/c/m/de_de/impressum.html",
+        "https://meraki.cisco.com/support/#policies:privacy"
+    ],
+    "quality": "verified"
+}

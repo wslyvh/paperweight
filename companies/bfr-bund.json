@@ -1,0 +1,21 @@
+{
+    "slug": "bfr-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesinstitut für Risikobewertung (BfR)",
+    "address": "Max-Dohrn-Straße 8 – 10\n10589 Berlin\nDeutschland",
+    "phone": "+49 30 18412 0",
+    "fax": "+49 30 18412 4741",
+    "email": "dsb@bfr.bund.de",
+    "web": "https://www.bfr.bund.de",
+    "sources": [
+        "https://www.bfr.bund.de/de/datenschutzerklaerung-107546.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

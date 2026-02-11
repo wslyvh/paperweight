@@ -1,0 +1,21 @@
+{
+    "slug": "globus-hitseller",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "GLOBUS hitseller GmbH",
+    "runs": [
+        "globus-baumarkt.de"
+    ],
+    "address": "Leipziger Str. 8\n66606 St. Wendel\nDeutschland",
+    "email": "datenschutz@globus-fachmaerkte.de",
+    "web": "https://www.globus-baumarkt.de",
+    "sources": [
+        "https://www.globus-baumarkt.de/datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "caravan-owandner",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch",
+        "it",
+        "fr"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Caravan Center Jürgen Owandner e.K.",
+    "address": "Hermann Neuner Str. 8\n88299 Leutkirch\nDeutschland",
+    "phone": "+49 7561 9852780",
+    "fax": "+49 7561 9852788",
+    "email": "cco-onlineshop@gmx.de",
+    "web": "https://caravan-owandner.de",
+    "sources": [
+        "https://caravan-owandner.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1133"
+    ],
+    "quality": "verified"
+}

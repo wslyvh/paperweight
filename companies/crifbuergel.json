@@ -1,0 +1,39 @@
+{
+    "slug": "crifbuergel",
+    "categories": [
+        "credit agency",
+        "addresses"
+    ],
+    "name": "CRIF GmbH",
+    "runs": [
+        "HYBRIGHT",
+        "KYC MORE",
+        "CRIF Bürgel (ehem.)"
+    ],
+    "address": "Leopoldstraße 244\n80807 München\nDeutschland",
+    "phone": "+49 40 89803 0",
+    "fax": "+49 40 89803 309",
+    "email": "datenschutz.de@crif.com",
+    "web": "https://www.crif.de",
+    "sources": [
+        "https://www.crif.de/konsumenten/selbstauskunft/",
+        "https://www.crif.de/datenschutz",
+        "https://github.com/datenanfragen/data/issues/636"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

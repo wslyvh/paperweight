@@ -1,0 +1,17 @@
+{
+    "slug": "hamburg",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "hamburg.de GmbH",
+    "address": "Rothenbaumchaussee 80b\n20148 Hamburg\nDeutschland",
+    "phone": "+49 40 688757600",
+    "email": "datenschutz@hamburg.de",
+    "web": "https://www.hamburg.de",
+    "sources": [
+        "https://www.hamburg.de/datenschutz-dsgvo-66302",
+        "https://github.com/datenanfragen/data/pull/1253"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

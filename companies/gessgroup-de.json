@@ -1,0 +1,21 @@
+{
+    "slug": "gessgroup-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "GESS Gesellschaft für Software in der Sozialforschung mbH",
+    "address": "Waterloohain 6-8\n22769 Hamburg\nDeutschland",
+    "phone": "+49 40 8537530",
+    "fax": "+49 40 85375333",
+    "email": "datenschutz_s@gessgroup.de",
+    "web": "https://gessgroup.de",
+    "sources": [
+        "https://gessgroup.de/datenschutzerklaerung/",
+        "https://github.com/datenanfragen/data/pull/2671"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

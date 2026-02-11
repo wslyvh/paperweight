@@ -1,0 +1,30 @@
+{
+    "slug": "innogames",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "InnoGames GmbH",
+    "runs": [
+        "Forge of Empires",
+        "Elvenar",
+        "Warlords of Aternum",
+        "God Kings",
+        "Grepolis",
+        "Tribal Wars 2",
+        "Die Stämme",
+        "The West"
+    ],
+    "address": "Friesenstraße 13\n20097 Hamburg\nDeutschland",
+    "fax": "+49 40 7889335200",
+    "email": "privacy@innogames.com",
+    "web": "https://www.innogames.com",
+    "sources": [
+        "https://legal.innogames.com/portal/de/privacy",
+        "https://legal.innogames.com/portal/de/imprint"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,25 @@
+{
+    "slug": "gruener-fisher",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Fisher Investments GmbH",
+    "runs": [
+        "Grüner Fisher Investments (ehem.)"
+    ],
+    "address": "Sportstraße 2 a\n67688 Rodenbach\nDeutschland",
+    "phone": "+49 6374 99110",
+    "fax": "+49 6374 9911800",
+    "email": "datenschutz@fisherinvestments.de",
+    "web": "https://www.fisherinvestments.com/de-de",
+    "sources": [
+        "https://www.fisherinvestments.com/de-de/datenschutz-und-cookies",
+        "https://www.fondsprofessionell.de/news/finanzprofis/headline/gruener-fisher-mit-neuem-namen-und-geschaeftsfuehrer-239932/",
+        "https://github.com/datenanfragen/data/pull/700"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

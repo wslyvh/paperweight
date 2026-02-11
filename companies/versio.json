@@ -1,0 +1,31 @@
+{
+    "slug": "versio",
+    "relevant-countries": [
+        "nl",
+        "be",
+        "gb"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Versio B.V.",
+    "address": "Francois Haverschmidtwei 2\n8914 BC Leeuwarden\nThe Netherlands",
+    "fax": "+31 84 873 7447",
+    "email": "support@versio.nl",
+    "web": "https://versio.nl/",
+    "sources": [
+        "https://www.versio.uk/privacystatement.pdf",
+        "https://github.com/datenanfragen/data/issues/447"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "quality": "verified"
+}

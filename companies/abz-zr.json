@@ -1,0 +1,22 @@
+{
+    "slug": "abz-zr",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "ABZ Zahnärztliches Rechenzentrum für Bayern GmbH",
+    "address": "Oppelner Straße 3\n82194 Gröbenzell\nDeutschland",
+    "phone": "+49 8142 65206",
+    "fax": "+49 8142 6520892",
+    "email": "datenschutz@abz-zr.de",
+    "web": "https://www.abz-zr.de/",
+    "sources": [
+        "https://www.abz-zr.de/datenschutz",
+        "https://www.abz-zr.de/impressum",
+        "https://github.com/datenanfragen/data/pull/2204"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

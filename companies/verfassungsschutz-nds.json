@@ -1,0 +1,23 @@
+{
+    "slug": "verfassungsschutz-nds",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Niedersächsisches Ministerium für Inneres und Sport – Abteilung Verfassungsschutz",
+    "address": "Büttnerstraße 28\n30165 Hannover\nDeutschland",
+    "phone": "+49 511 6709217",
+    "fax": "+49 511 6709388",
+    "email": "datenschutz@verfassungsschutz.niedersachsen.de",
+    "web": "https://www.verfassungsschutz.niedersachsen.de",
+    "sources": [
+        "https://www.verfassungsschutz.niedersachsen.de/aktuelles_service/impressum/datenschutzerklaerung-nach-dsgvo-171680.html",
+        "https://www.verfassungsschutz.niedersachsen.de/aktuelles_service/impressum/impressum-54334.html",
+        "https://www.verfassungsschutz.niedersachsen.de/aktuelles_service/kontakt/kontakt-54332.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

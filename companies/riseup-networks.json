@@ -1,0 +1,20 @@
+{
+    "slug": "riseup-networks",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication",
+        "nonprofit"
+    ],
+    "name": "Riseup Networks",
+    "address": "PO Box 3027\nLacey, WA 98509\nUnited States of America",
+    "email": "collective@riseup.net",
+    "webform": "https://support.riseup.net/",
+    "web": "https://riseup.net/",
+    "sources": [
+        "https://www.riseup.net/en/about-us/contact",
+        "https://github.com/datenanfragen/data/pull/2560"
+    ],
+    "quality": "verified"
+}

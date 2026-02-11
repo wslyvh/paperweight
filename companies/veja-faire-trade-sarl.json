@@ -1,0 +1,18 @@
+{
+    "slug": "veja-faire-trade-sarl",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Veja Faire Trade SARL",
+    "address": "146 rue du Faubourg Poissonnière\n75010 Paris\nFrance",
+    "email": "service-clients@veja-store.com",
+    "web": "https://www.veja-store.com",
+    "sources": [
+        "https://www.veja-store.com/de_de/privacy",
+        "https://github.com/datenanfragen/data/pull/2417"
+    ],
+    "quality": "verified"
+}

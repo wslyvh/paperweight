@@ -1,0 +1,20 @@
+{
+    "slug": "berliner-volksbank",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Berliner Volksbank eG",
+    "address": "Bundesallee 206\n10717 Berlin\nDeutschland",
+    "phone": "+49 30 30633300",
+    "fax": "+49 30 30634400",
+    "email": "datenschutz@berliner-volksbank.de",
+    "sources": [
+        "https://www.berliner-volksbank.de/datenschutzhinweis.html",
+        "https://github.com/datenanfragen/data/pull/2765"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

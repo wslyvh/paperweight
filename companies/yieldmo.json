@@ -1,0 +1,20 @@
+{
+    "slug": "yieldmo",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Yieldmo, Inc.",
+    "address": "218 West 18th St.\n2nd Floor\nNew York\nNY 10011\nUnited States of America",
+    "email": "privacy@yieldmo.com",
+    "web": "https://www.yieldmo.com/",
+    "sources": [
+        "https://www.yieldmo.com/privacy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "nanointeractive",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Nano Interactive GmbH",
+    "address": "Lindwurmstr. 27\n80337 München\nGermany",
+    "email": "privacy@nanointeractive.com",
+    "web": "https://www.nanointeractive.com/",
+    "sources": [
+        "https://www.nanointeractive.com/privacy-statement/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

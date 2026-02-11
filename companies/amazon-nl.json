@@ -1,0 +1,40 @@
+{
+    "slug": "amazon-nl",
+    "relevant-countries": [
+        "nl"
+    ],
+    "categories": [
+        "commerce",
+        "entertainment"
+    ],
+    "name": "Amazon Europe Core SARL",
+    "runs": [
+        "amazon.nl",
+        "Amazon EU SARL",
+        "Amazon Services Europe SARL",
+        "Amazon Media EU SARL",
+        "Amazon Digital UK Limited",
+        "Amazon Kindle",
+        "Kindle Direct Publishing",
+        "Amazon Warehouse Deals",
+        "Amazon Marketplace"
+    ],
+    "address": "38 avenue John F. Kennedy\nL-1855, Luxembourg\nLuxembourg",
+    "email": "privacy@amazon.nl",
+    "web": "https://www.amazon.nl/",
+    "sources": [
+        "https://www.amazon.nl/gp/help/customer/display.html?ie=UTF8&nodeId=201547550"
+    ],
+    "required-elements": [
+        {
+            "desc": "Naam",
+            "type": "name"
+        },
+        {
+            "desc": "E-mail",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

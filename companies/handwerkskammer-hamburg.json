@@ -1,0 +1,22 @@
+{
+    "slug": "handwerkskammer-hamburg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Handwerkskammer Hamburg",
+    "address": "c/o GLENDE.CONSULTING GmbH & Co. KG\nHolstenwall 12\n20355 Hamburg\nDeutschland",
+    "phone": "+49 40 359050",
+    "fax": "+49 40 35905208",
+    "email": "datenschutz@hwk-hamburg.de",
+    "web": "https://www.hwk-hamburg.de",
+    "sources": [
+        "https://www.hwk-hamburg.de/artikel/impressum-93,8,8.html",
+        "https://www.hwk-hamburg.de/artikel/datenschutz-7-93,29,7.html",
+        "https://github.com/datenanfragen/data/pull/1427"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

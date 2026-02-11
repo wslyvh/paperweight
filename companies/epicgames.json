@@ -1,0 +1,32 @@
+{
+    "slug": "epicgames",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads",
+        "commerce",
+        "entertainment"
+    ],
+    "name": "Epic Games International S.à r.l.",
+    "runs": [
+        "Fortnite",
+        "Epic Games, Inc.",
+        "Epic Games Store",
+        "Battle Breaker",
+        "Spyjinx"
+    ],
+    "address": "Atrium Business Park\n33 rue du Puits Romain\nL-8070 Bertrange\nLuxembourg",
+    "email": "dpo@support.epicgames.com",
+    "web": "https://www.epicgames.com",
+    "sources": [
+        "https://www.epicgames.com/site/en-US/privacypolicy",
+        "https://github.com/datenanfragen/data/pull/1145",
+        "https://github.com/datenanfragen/data/pull/1706"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Address of Epic Games, Inc.: 620 Crossroads Blvd., Cary, NC 27518, United States of America"
+    ],
+    "quality": "verified"
+}

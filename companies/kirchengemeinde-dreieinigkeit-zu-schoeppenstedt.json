@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-dreieinigkeit-zu-schoeppenstedt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Dreieinigkeit zu Schöppenstedt",
+    "address": "An der Kirche 1\n38170 Schöppenstedt\nDeutschland",
+    "phone": "+49 5332 968040",
+    "fax": "+49 5332 968033",
+    "email": "schoeppenstedt.buero@lk-bs.de",
+    "web": "https://www.dreieinigkeit-schoeppenstedt.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=946"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

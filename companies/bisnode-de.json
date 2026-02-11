@@ -1,0 +1,21 @@
+{
+    "slug": "bisnode-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "credit agency"
+    ],
+    "name": "Bisnode Deutschland GmbH",
+    "address": "Robert-Bosch-Straße 11\n64293 Darmstadt\nDeutschland",
+    "phone": "+49 6151 3800",
+    "fax": "+49 6151 380360",
+    "email": "datenschutz.de@bisnode.com",
+    "web": "https://www.bisnode.de/",
+    "sources": [
+        "https://www.bisnode.de/globalassets/germany/pdf-dokumente/datenschutzhinweise/datenschutzhinweise_fur_personen-im-auskunftsdatenbestand_final.pdf",
+        "https://github.com/datenanfragen/data/issues/426"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

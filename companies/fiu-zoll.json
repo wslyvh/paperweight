@@ -1,0 +1,24 @@
+{
+    "slug": "fiu-zoll",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Zentralstelle für Finanztransaktionsuntersuchungen",
+    "runs": [
+        "Financial Intelligence Unit (FIU)"
+    ],
+    "address": "Postfach 85 05 55\n51030 Köln\nDeutschland",
+    "phone": "+49 351 44834556",
+    "fax": "+49 228 30398539",
+    "email": "info.fiu@zoll.de",
+    "web": "https://www.zoll.de/DE/FIU/fiu_node.html",
+    "sources": [
+        "https://www.zoll.de/DE/FIU/Kontakt/kontakt_node.html",
+        "https://www.bfdi.bund.de/DE/Buerger/Inhalte/Polizei-Strafjustiz/National/FIU.html"
+    ],
+    "request-language": "de",
+    "quality": "verified"
+}

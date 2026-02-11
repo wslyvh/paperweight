@@ -1,0 +1,22 @@
+{
+    "slug": "rmv",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Rhein-Main-Verkehrsverbund GmbH",
+    "address": "Alte Bleiche 5\n65719 Hofheim am Taunus\nDeutschland",
+    "phone": "+49 6192 2940",
+    "fax": "+49 6192 294900",
+    "email": "datenschutz@rmv.de",
+    "web": "https://www.rmv.de",
+    "sources": [
+        "https://www.rmv.de/c/de/rechtliche-hinweise/datenschutz",
+        "https://www.rmv.de/c/de/rechtliche-hinweise/impressum",
+        "https://github.com/datenanfragen/data/pull/2408"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

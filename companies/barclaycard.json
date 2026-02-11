@@ -1,0 +1,31 @@
+{
+    "slug": "barclaycard",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance",
+        "insurance"
+    ],
+    "name": "Barclays Bank Ireland PLC Hamburg Branch",
+    "address": "Gasstraße 4c\n22761 Hamburg\nDeutschland",
+    "phone": "+49 40 890 99 866",
+    "fax": "+49 40 89647 0",
+    "email": "datenschutz@barclays.de",
+    "web": "https://www.barclays.de/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/20",
+        "https://github.com/datenanfragen/data/issues/94",
+        "https://www.barclays.de/datenschutz-sicherheit/",
+        "https://www.barclays.de/impressum/",
+        "https://github.com/datenanfragen/data/pull/1641"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Anfragen werden nur mit vorhandener Unterschrift bearbeitet."
+    ],
+    "comments": [
+        "Werbewidersprüche an impressum@barclays.de senden."
+    ],
+    "quality": "verified"
+}

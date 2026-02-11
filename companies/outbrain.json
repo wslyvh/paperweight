@@ -1,0 +1,28 @@
+{
+    "slug": "outbrain",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Outbrain UK Limited",
+    "runs": [
+        "Outbrain Amplify",
+        "Outbrain Engage",
+        "Ligatus (formerly)",
+        "Teads Holding Co."
+    ],
+    "address": "First Floor\nCraven House\n121 Kingsway\nLondon\nWC2B 6PA\nUnited Kingdom",
+    "email": "ob-privacy@tead.com",
+    "web": "https://www.outbrain.com/",
+    "sources": [
+        "https://www.outbrain.com/privacy/user-policy/",
+        "https://find-and-update.company-information.service.gov.uk/company/07479183",
+        "https://github.com/datenanfragen/data/pull/1109",
+        "https://github.com/datenanfragen/data/issues/1510"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

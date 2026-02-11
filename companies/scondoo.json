@@ -1,0 +1,22 @@
+{
+    "slug": "scondoo",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "scondoo GmbH",
+    "address": "Friedrichstraße 153a\n10117 Berlin\nDeutschland",
+    "phone": "+49 30 65212 0088",
+    "fax": "+49 30 65212 0089",
+    "email": "datenschutzbeauftragter@datenschutzexperte.de",
+    "web": "https://scondoo.de/",
+    "sources": [
+        "https://scondoo.de/wp/datenschutz/",
+        "https://scondoo.de/wp/impressum/",
+        "https://github.com/datenanfragen/data/issues/84"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

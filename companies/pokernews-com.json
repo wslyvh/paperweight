@@ -1,0 +1,22 @@
+{
+    "slug": "pokernews-com",
+    "relevant-countries": [
+        "ee",
+        "de",
+        "lv",
+        "lt"
+    ],
+    "name": "iBus Media Limited",
+    "runs": [
+        "Pokernews.com"
+    ],
+    "address": "33-37 Athol Street\nDouglas\nIM1 1LB\nIsle of Man",
+    "email": "privacy@ibusmedia.com",
+    "web": "https://www.pokernews.com/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/136",
+        "https://www.pokernews.com/privacy-policy.htm"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

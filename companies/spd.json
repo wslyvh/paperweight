@@ -1,0 +1,22 @@
+{
+    "slug": "spd",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "political party"
+    ],
+    "name": "Sozialdemokratische Partei Deutschlands (SPD)",
+    "address": "Wilhelmstraße 141\n10963 Berlin\nDeutschland",
+    "phone": "+49 30 25991500",
+    "fax": "+49 30 25991375",
+    "email": "datenschutzbeauftragter@spd.de",
+    "web": "https://www.spd.de/",
+    "sources": [
+        "https://www.spd.de/site/datenschutz/",
+        "https://www.spd.de/site/impressum/",
+        "https://github.com/datenanfragen/data/issues/144"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

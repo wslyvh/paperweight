@@ -1,0 +1,27 @@
+{
+    "slug": "afterpay",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Riverty GmbH",
+    "runs": [
+        "Arvato Payment Solutions GmbH (ehem.)",
+        "Afterpay (ehem.)"
+    ],
+    "address": "Gütersloher Str. 123\n33415 Verl\nDeutschland",
+    "phone": "+49 30 76239239",
+    "email": "datenschutz@riverty.de",
+    "web": "https://riverty.app/de-de/",
+    "sources": [
+        "https://documents.riverty.com/app/app_privacy_statement/de_de/",
+        "https://de.riverty.support/hc/en-de/articles/26284157308177-Imprint",
+        "https://www.riverty.com/de/campaigns/2022/changing-perspective/",
+        "https://www.northdata.de/Riverty%20GmbH,%20Verl/Amtsgericht%20G%C3%BCtersloh%20HRB%209923",
+        "https://github.com/datenanfragen/data/pull/887"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

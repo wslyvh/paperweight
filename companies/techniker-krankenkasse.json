@@ -1,0 +1,39 @@
+{
+    "slug": "techniker-krankenkasse",
+    "categories": [
+        "insurance"
+    ],
+    "name": "Techniker Krankenkasse",
+    "runs": [
+        "Meine TK",
+        "TK-GesundheitsCoach"
+    ],
+    "address": "Bramfelder Straße 140\n22305 Hamburg\nDeutschland",
+    "phone": "+49 800 285 85 85",
+    "fax": "+49 40 69 09 26 15",
+    "email": "datenschutz@tk.de",
+    "web": "https://www.tk.de/techniker",
+    "sources": [
+        "https://www.tk.de/techniker/unternehmensseiten/datenschutz/datenschutzerklaerung-2012452",
+        "https://www.tk.de/techniker/unternehmensseiten/datenschutz/datenschutzerklaerung-meine-tk-2013048",
+        "https://www.tk.de/techniker/unternehmensseiten/datenschutz/datenschutzerklaerung-fuer-den-tk-gesundheitscoach-2013050",
+        "https://www.tk.de/techniker/unternehmensseiten/datenschutz/datenschutzbeauftragter-2013054",
+        "https://www.tk.de/techniker/impressum-2013112"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

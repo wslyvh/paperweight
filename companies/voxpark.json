@@ -1,0 +1,18 @@
+{
+    "slug": "voxpark",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "voxpark GmbH",
+    "address": "Großbeerenstraße 2-10\n12107 Berlin\nDeutschland",
+    "phone": "+49 30 206143723",
+    "fax": "+49 30 700108394",
+    "email": "datenschutz@voxpark.de",
+    "web": "https://www.voxpark.de/",
+    "sources": [
+        "https://www.voxpark.de/#modal-76",
+        "https://github.com/datenanfragen/data/pull/1170"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

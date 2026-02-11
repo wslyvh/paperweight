@@ -1,0 +1,22 @@
+{
+    "slug": "easybell",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "easybell GmbH",
+    "address": "Brückenstraße 5a\n10179 Berlin\nDeutschland",
+    "phone": "+49 30 80 95 1081",
+    "fax": "+49 30 80 95 1009",
+    "email": "datenschutz@easybell.de",
+    "web": "https://www.easybell.de/",
+    "sources": [
+        "https://www.easybell.de/datenschutz.html",
+        "https://www.easybell.de/impressum.html",
+        "https://github.com/datenanfragen/data/issues/99"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

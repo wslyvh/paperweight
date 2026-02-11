@@ -1,0 +1,36 @@
+{
+    "slug": "pirckheimer-gymnasium",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "PGN Pirckheimer-Gymnasium Nürnberg",
+    "address": "Gibitzenhofstraße 151\n90443 Nürnberg\nDeutschland",
+    "phone": "+49 911 23114033",
+    "fax": "+49 911 4249318",
+    "email": "sekretariat@pirckheimer-gymnasium.de",
+    "web": "https://www.pirckheimer-gymnasium.de",
+    "sources": [
+        "https://www.pirckheimer-gymnasium.de/seite/kontakt",
+        "https://www.pirckheimer-gymnasium.de/seite/datenschutzhinweise",
+        "https://github.com/datenanfragen/data/issues/458"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "quality": "verified",
+    "facet-group": "school"
+}

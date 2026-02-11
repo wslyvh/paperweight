@@ -1,0 +1,21 @@
+{
+    "slug": "heizoel-totalenergies",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "TotalEnergies Wärme&Kraftstoff Deutschland GmbH",
+    "address": "Am Blumenkampshof 55\n47059 Duisburg\nDeutschland",
+    "phone": "+49 30 202760",
+    "email": "ms.datenschutz-germany@totalenergies.com",
+    "web": "https://energieshop.totalenergies.de/",
+    "sources": [
+        "https://energieshop.totalenergies.de/datenschutz/",
+        "https://energieshop.totalenergies.de/impressum/",
+        "https://github.com/datenanfragen/data/pull/1566"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

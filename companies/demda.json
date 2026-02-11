@@ -1,0 +1,22 @@
+{
+    "relevant-countries": [
+        "de"
+    ],
+    "slug": "demda",
+    "categories": [
+        "credit agency"
+    ],
+    "name": "DEMDA Deutsche Mieter Datenbank GmbH & Co. KG",
+    "address": "Langenstraße 52 – 54\n28195 Bremen\nDeutschland",
+    "phone": "+49 800 6060260",
+    "fax": "+49 421 380 105 0",
+    "email": "info@demda.de",
+    "webform": "https://www.demda.de/eigenauskunft.php",
+    "web": "https://www.demda.de/",
+    "sources": [
+        "https://www.demda.de/index.php?ids=24",
+        "https://www.demda.de/datenschutzerklaerung.php",
+        "https://github.com/datenanfragen/data/issues/61"
+    ],
+    "quality": "verified"
+}

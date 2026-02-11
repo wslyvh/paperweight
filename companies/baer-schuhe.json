@@ -1,0 +1,39 @@
+{
+    "slug": "baer-schuhe",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "BÄR GmbH",
+    "address": "c/o ITWerk Giessen GmbH\nSiemensstrasse 7\n35394 Giessen\nDeutschland",
+    "phone": "+49 641 969930",
+    "fax": "+49 7142 956622",
+    "email": "datenschutz@baer-schuhe.de",
+    "web": "https://www.baer-schuhe.de/",
+    "sources": [
+        "https://www.baer-schuhe.de/rechtliches-impressum/",
+        "https://github.com/datenanfragen/data/pull/793",
+        "https://www.baer-schuhe.de/rechtliches-datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "Address",
+            "type": "address",
+            "optional": false
+        }
+    ],
+    "quality": "tested"
+}

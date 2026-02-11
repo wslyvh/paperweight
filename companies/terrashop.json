@@ -1,0 +1,30 @@
+{
+    "slug": "terrashop",
+    "categories": [
+        "commerce"
+    ],
+    "name": "terrashop GmbH",
+    "address": "Lise-Meitner-Straße 8\n53332 Bornheim\nDeutschland",
+    "phone": "+49 2227 9292 25",
+    "fax": "+49 2227 9292 12",
+    "email": "service@terrashop.de",
+    "web": "https://www.terrashop.de/",
+    "sources": [
+        "https://www.terrashop.de/sicherheit_datenschutz.php",
+        "https://www.terrashop.de/impressum.php"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "quality": "verified"
+}

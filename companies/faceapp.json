@@ -1,0 +1,26 @@
+{
+    "slug": "faceapp",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Wireless Lab OOO",
+    "runs": [
+        "FaceApp"
+    ],
+    "address": "16 Avtovskaya 401\nSaint-Petersburg, 198096\nRussia",
+    "phone": "+1 302 5044205",
+    "email": "support@faceapp.com",
+    "web": "https://www.faceapp.com",
+    "sources": [
+        "https://www.faceapp.com/privacy",
+        "https://www.faceapp.com/terms"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

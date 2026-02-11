@@ -1,0 +1,17 @@
+{
+    "slug": "mheducation",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "McGraw Hill",
+    "address": "1325 Ave. of the Americas\nNew York\nNY 10019\nUnited States of America",
+    "phone": "+1 646 766 3199",
+    "email": "privacy@mheducation.com",
+    "web": "https://www.mheducation.com",
+    "sources": [
+        "https://www.mheducation.com/about-us/trust-center/privacy",
+        "https://github.com/datenanfragen/data/pull/1640"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

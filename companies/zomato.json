@@ -1,0 +1,20 @@
+{
+    "slug": "zomato",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Zomato Media Portugal, Unipessoal LDA",
+    "runs": [
+        "Zomato USA LLC",
+        "Zomato Media Private Limited"
+    ],
+    "address": "Avenida 24 de Julho\nN 102-E, 1200-870 Lisboa\nPortugal",
+    "email": "privacy@zomato.com",
+    "web": "https://www.zomato.com",
+    "sources": [
+        "https://www.zomato.com/privacy",
+        "https://github.com/datenanfragen/data/issues/429"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

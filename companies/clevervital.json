@@ -1,0 +1,20 @@
+{
+    "slug": "clevervital",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Clever Vital",
+    "address": "Eiswerderstraße 20a\n13585 Berlin\nDeutschland",
+    "phone": "+49 30 965340622",
+    "email": "bd@apriljune.com",
+    "web": "https://www.clevervital.com/",
+    "sources": [
+        "https://www.clevervital.com/datenschutzerklaerung/",
+        "https://github.com/datenanfragen/data/pull/1557"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

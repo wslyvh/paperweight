@@ -1,0 +1,20 @@
+{
+    "slug": "jobcenter-consulting",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Jobcenter Consulting GmbH",
+    "runs": [
+        "JobNETZWERK (www.jobnetzwerk.de)"
+    ],
+    "address": "Harkortstraße 5\n04107 Leipzig\nDeutschland",
+    "phone": "+49 341 2171794",
+    "email": "datenschutz@jobnetzwerk.de",
+    "web": "https://www.jobcenter-consulting.de",
+    "sources": [
+        "https://www.jobnetzwerk.de/jobnet/pt/jnw/datenschutz.php?sid=jnw",
+        "https://github.com/datenanfragen/data/pull/1494"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

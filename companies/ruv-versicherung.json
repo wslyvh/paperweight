@@ -1,0 +1,25 @@
+{
+    "slug": "ruv-versicherung",
+    "categories": [
+        "insurance"
+    ],
+    "name": "R+V Versicherungsgruppe",
+    "runs": [
+        "Meine R+V",
+        "R+V Allgemeine Versicherung AG"
+    ],
+    "address": "Raiffeisenplatz 1\n65189 Wiesbaden\nDeutschland",
+    "phone": "+49 611 533 5074",
+    "fax": "+49 611 533 775074",
+    "email": "datenschutz@ruv.de",
+    "web": "https://www.ruv.de",
+    "sources": [
+        "https://www.ruv.de/datenschutz",
+        "https://www.ruv.de/impressum"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

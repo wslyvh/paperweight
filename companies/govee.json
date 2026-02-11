@@ -1,0 +1,15 @@
+{
+    "slug": "govee",
+    "relevant-countries": [
+        "all"
+    ],
+    "address": "c/o GOVEE MOMENTS (DE) HANDEL GmbH\nZunftstraße 13\nRaum 205\n50374 Erftstadt\nGermany",
+    "email": "support@govee.com",
+    "sources": [
+        "https://eu.govee.com/de-de/policies/privacy-policy",
+        "https://eu.govee.com/de-de/pages/contact-us",
+        "https://github.com/datenanfragen/data/pull/2787"
+    ],
+    "quality": "verified",
+    "name": "Govee"
+}

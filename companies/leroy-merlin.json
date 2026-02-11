@@ -1,0 +1,20 @@
+{
+    "slug": "leroy-merlin",
+    "relevant-countries": [
+        "fr"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Leroy Merlin",
+    "address": "Rue Chanzy - Lezennes\n59 712 LILLE CEDEX 9\nFrance",
+    "email": "dpo@leroymerlin.fr",
+    "webform": "https://www.leroymerlin.fr/contact/?type=PERSONAL_DATAS",
+    "web": "https://www.leroymerlin.fr/",
+    "sources": [
+        "https://assets.ctfassets.net/8q8qvv8j6cpk/7osjO5HYCVRumRsPno6Xhs/470f789dcfb80b0982e942e1425a8f2f/LEROY_MERLIN_-_Politique_G__n__rale_Donn__es_Personnelles_2022_11_23.pdf",
+        "https://github.com/datenanfragen/data/pull/2547"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

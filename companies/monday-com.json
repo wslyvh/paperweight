@@ -1,0 +1,24 @@
+{
+    "slug": "monday-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "monday.com Ltd",
+    "address": "6 Yitzhak Sadeh St\nTel Aviv 6777506\nIsrael",
+    "email": "dpo@monday.com",
+    "web": "https://monday.com/",
+    "sources": [
+        "https://monday.com/terms/privacy",
+        "https://monday.com/l/privacy/monday-com-is-gdpr-ready/",
+        "https://github.com/datenanfragen/data/pull/1581"
+    ],
+    "required-elements": [
+        {
+            "desc": "Email",
+            "type": "name",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

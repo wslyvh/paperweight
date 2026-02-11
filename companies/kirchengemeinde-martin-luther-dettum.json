@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-martin-luther-dettum",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Martin-Luther Dettum",
+    "address": "Hauptstraße 1\n38173 Dettum\nDeutschland",
+    "phone": "+49 5333 316",
+    "fax": "+49 5333 312",
+    "email": "dettum.buero@lk-bs.de",
+    "web": "http://www.kirche-dettum.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=921"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

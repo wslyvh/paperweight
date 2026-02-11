@@ -1,0 +1,23 @@
+{
+    "slug": "exoscale",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Akenes SA",
+    "runs": [
+        "Exoscale"
+    ],
+    "address": "Boulevard de Grancy 19A\n1006 – Lausanne\nSwitzerland",
+    "phone": "+41 58 255 00 66",
+    "email": "privacy@exoscale.com",
+    "web": "https://www.exoscale.com/",
+    "sources": [
+        "https://www.exoscale.com/privacy/",
+        "https://www.exoscale.com/contact/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

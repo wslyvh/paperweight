@@ -1,0 +1,20 @@
+{
+    "slug": "pkgator",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "PKGator.com",
+    "address": "Valencia Mall\nSunrise Road\nValencia Town\nLahore\nPakistan",
+    "phone": "+92 300 4235757",
+    "email": "info@pkgator.com",
+    "web": "https://www.pkgator.com/",
+    "sources": [
+        "https://www.pkgator.com/pages/contact-us",
+        "https://github.com/datenanfragen/data/pull/882"
+    ],
+    "needs-id-document": false,
+    "quality": "verified"
+}

@@ -1,0 +1,29 @@
+{
+    "slug": "lynxbroker-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "LYNX B.V. Germany Branch",
+    "runs": [
+        "lynxbroker.de",
+        "lynxbroker.at",
+        "lynxbroker.ch",
+        "lynx-training.de",
+        "trader-workstation.online"
+    ],
+    "address": "Charlottenstraße 68\n10117 Berlin\nDeutschland",
+    "phone": "+49 30 303286690",
+    "fax": "+49 30 303286699",
+    "email": "datenschutz@lynxbroker.de",
+    "web": "https://www.lynxbroker.de/",
+    "sources": [
+        "https://www.lynxbroker.de/info/datenschutz/",
+        "https://www.lynxbroker.de/info/impressum/",
+        "https://github.com/datenanfragen/data/pull/2106"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

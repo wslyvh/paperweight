@@ -1,0 +1,57 @@
+{
+    "slug": "lime",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Lime",
+    "runs": [
+        "Lime GmbH",
+        "Lime Network",
+        "Lime Technology EOOD",
+        "Lime (Cyprus) Company Ltd.",
+        "Lime Network s.r.o.",
+        "Lime Technology ApS",
+        "Lime SARL",
+        "Lime Technology Oy",
+        "LimeBike Germany GmbH",
+        "Lime Transportation Technology, LLC",
+        "Lime Technology KFT",
+        "Lime Technology S.R.L.",
+        "Lime Norway AS",
+        "Lime Network B.V.",
+        "Lime Technology sp. z o.o.",
+        "Lime Technology SL",
+        "Lime AB",
+        "LimeBike Switzerland AG",
+        "Lime Technology Limited",
+        "Lime Technology Network S.R.L",
+        "Neutronnet SA"
+    ],
+    "address": "c/o Neutron Holdings, Inc.\n85 2nd Street\nSuite 100\nSan Francisco, CA 94105\nUnited States of America",
+    "phone": "+1 888 546 3345",
+    "email": "privacy@li.me",
+    "webform": "https://privacy.li.me/",
+    "web": "https://www.li.me",
+    "sources": [
+        "https://www.li.me/legal/privacy-policy",
+        "https://www.li.me/myinformation",
+        "https://www.li.me/imprint"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

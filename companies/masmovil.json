@@ -1,0 +1,22 @@
+{
+    "slug": "masmovil",
+    "relevant-countries": [
+        "es"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Xfera Móviles, S.A.U",
+    "runs": [
+        "MÁSMÓVIL"
+    ],
+    "address": "Avda. de Bruselas, 38\n28108 Alcobendas\nEspaña",
+    "email": "dpo@masmovil.com",
+    "web": "https://www.masmovil.es",
+    "sources": [
+        "https://www.masmovil.es/static/pdf/proteccion-datos-usuarios-mm.pdf",
+        "https://github.com/datenanfragen/data/pull/2075"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,25 @@
+{
+    "slug": "computerbild",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "COMPUTER BILD Digital GmbH",
+    "runs": [
+        "COMPUTER BILD",
+        "AUDIO VIDEO FOTO BILD",
+        "TEST BILD",
+        "COMPUTER BILD eHome"
+    ],
+    "address": "Überseeallee 1\n20457 Hamburg\nDeutschland",
+    "email": "datenschutz@computerbild.de",
+    "web": "https://www.computerbild.de/cb-Heft-2498.html",
+    "sources": [
+        "https://www.computerbild.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1288"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

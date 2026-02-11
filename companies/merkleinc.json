@@ -1,0 +1,20 @@
+{
+    "slug": "merkleinc",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Merkle UK One Ltd",
+    "address": "10 Triton Street\nRegents Place\nLondon\nNW1 3BF\nUnited Kingdom",
+    "phone": "+44 330 060 6065",
+    "email": "dpouk@merkleinc.com",
+    "web": "https://www.merkleinc.com",
+    "sources": [
+        "https://www.merkleinc.com/emea/privacy"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

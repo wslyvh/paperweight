@@ -1,0 +1,21 @@
+{
+    "slug": "heine-shop",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Heinrich Heine GmbH",
+    "address": "Windeckstraße 15\n76135 Karlsruhe\nDeutschland",
+    "phone": "+49 721 9910",
+    "fax": "+49 721 9911919",
+    "email": "datenschutz@heine.de",
+    "webform": "https://www.heine.de/contact",
+    "web": "https://www.heine.de",
+    "sources": [
+        "https://www.heine.de/content/datenschutzhinweise"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

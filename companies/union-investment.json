@@ -1,0 +1,43 @@
+{
+    "slug": "union-investment",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Union Investment Privatfonds GmbH",
+    "address": "Weißfrauenstraße 7\n60311 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 25670",
+    "email": "datenschutz@union-investment.de",
+    "web": "https://www.union-investment.de/",
+    "sources": [
+        "https://www.union-investment.de/datenschutz",
+        "https://www.union-investment.de/impressum-UIP",
+        "https://github.com/datenanfragen/data/pull/780"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Adress",
+            "type": "address",
+            "optional": false
+        },
+        {
+            "desc": "Geburtsdatum",
+            "type": "birthdate",
+            "optional": false
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email",
+            "optional": true
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

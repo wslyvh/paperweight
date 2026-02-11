@@ -1,0 +1,29 @@
+{
+    "slug": "hireright",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "HireRight",
+    "address": "15 Westferry Circus\nCanary Wharf\nLondon\nE14 4HD\nUnited Kingdom",
+    "phone": "+44 20 7767 2400",
+    "email": "dpo@hireright.com",
+    "web": "https://www.hireright.com/",
+    "sources": [
+        "https://www.hireright.com/legal/privacy-policy/emea-and-apac-candidate-policy",
+        "https://github.com/datenanfragen/data/pull/1065"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Date of birth",
+            "type": "birthdate",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

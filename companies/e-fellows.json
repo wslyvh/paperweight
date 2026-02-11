@@ -1,0 +1,27 @@
+{
+    "slug": "e-fellows",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "e-fellows.net GmbH & Co. KG",
+    "address": "Franziskanerstraße 14\n81669 München\nDeutschland",
+    "phone": "+49 89 232320",
+    "email": "datenschutz@e-fellows.net",
+    "web": "https://www.e-fellows.net/",
+    "sources": [
+        "https://www.e-fellows.net/Datenschutzinformationen",
+        "https://github.com/datenanfragen/data/pull/696"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

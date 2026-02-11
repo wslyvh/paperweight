@@ -1,0 +1,19 @@
+{
+    "slug": "ifttt",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "IFTTT Inc.",
+    "address": "923 Market Street\nSuite #400\nSan Francisco\nCA 94103\nUnited States of America",
+    "phone": "+49 40 999993430",
+    "fax": "+49 40 999993332",
+    "email": "IFTTT@gdpr-rep.com",
+    "web": "https://ifttt.com/",
+    "sources": [
+        "https://ifttt.com/terms",
+        "https://github.com/datenanfragen/data/issues/212",
+        "https://github.com/datenanfragen/data/issues/525"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

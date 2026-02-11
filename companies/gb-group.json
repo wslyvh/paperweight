@@ -1,0 +1,26 @@
+{
+    "slug": "gb-group",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "addresses",
+        "credit agency"
+    ],
+    "name": "GB Group Plc",
+    "runs": [
+        "GBG"
+    ],
+    "address": "The Foundation\nHerons Way\nChester Business Park\nChester\nCH4 9GB\nUnited Kingdom",
+    "phone": "+44 1244 657 277",
+    "email": "DPO@gbgplc.com",
+    "webform": "https://www.gbgplc.com/en/contact/general-enquiry/individual-data-enquiry/",
+    "web": "https://www.gbgplc.com",
+    "sources": [
+        "https://www.gbgplc.com/privacy-policy/",
+        "https://www.gbgplc.com/en/legal-and-regulatory/cookie-policy/"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

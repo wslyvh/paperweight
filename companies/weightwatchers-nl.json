@@ -1,0 +1,21 @@
+{
+    "slug": "weightwatchers-nl",
+    "relevant-countries": [
+        "nl"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "WW Netherlands B.V.",
+    "runs": [
+        "Weight Watchers"
+    ],
+    "address": "Bijster 12\n4817 HX Breda\nThe Netherlands",
+    "email": "info.nl@ww.com",
+    "web": "https://www.weightwatchers.com/nl/",
+    "sources": [
+        "https://www.weightwatchers.com/nl/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/1955"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,31 @@
+{
+    "slug": "efficientip-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "EfficientIP, SAS",
+    "address": "90 Boulevard National\n92250 La Garenne Colombes\nFrance",
+    "phone": "+33 1 75 84 88 98",
+    "email": "info@efficientip.com",
+    "web": "https://www.efficientip.com",
+    "sources": [
+        "https://www.efficientip.com/de/kontakt/",
+        "https://www.efficientip.com/legals/",
+        "https://www.efficientip.com/privacy/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "quality": "verified"
+}

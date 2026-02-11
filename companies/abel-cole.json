@@ -1,0 +1,20 @@
+{
+    "slug": "abel-cole",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Abel & Cole",
+    "address": "The Riverside Building\nLivingstone Road\nHessle\nEast Yorkshire\nHU13 0DZ\nUnited Kingdom",
+    "phone": "+44 345 262 6262",
+    "email": "privacy@abelandcole.co.uk",
+    "web": "https://www.abelandcole.co.uk/",
+    "sources": [
+        "https://www.abelandcole.co.uk/ContentPage?folder=gdpr&file=privacy_policy.htm",
+        "https://github.com/datenanfragen/data/issues/443"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

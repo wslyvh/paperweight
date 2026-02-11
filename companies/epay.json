@@ -1,0 +1,29 @@
+{
+    "slug": "epay",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "transact Elektronische Zahlungssysteme GmbH",
+    "runs": [
+        "epay",
+        "REWE Kartenwelt (kartenwelt.rewe.de)",
+        "Euronet Payment Serviced LTD",
+        "Penny Kartenwelt (kartenwelt.penny.de)"
+    ],
+    "address": "Fraunhoferstr. 10\n82152 Martinsried\nDeutschland",
+    "phone": "+49 89 899 64 3 0",
+    "fax": "+49 89 899 64 3 21",
+    "email": "DPO_DE@epayworldwide.com",
+    "web": "https://epay.de/",
+    "sources": [
+        "https://epay.de/de/datenschutzbestimmungen/",
+        "https://github.com/datenanfragen/data/pull/918",
+        "https://kartenwelt.penny.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2134"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,25 @@
+{
+    "slug": "dwd-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Deutscher Wetterdienst",
+    "runs": [
+        "WarnWetter-App"
+    ],
+    "address": "Frankfurter Straße 135\n63067 Offenbach\nDeutschland",
+    "phone": "+49 69 80620",
+    "fax": "+49 69 80624484",
+    "email": "datenschutz@dwd.de",
+    "web": "https://www.dwd.de",
+    "sources": [
+        "https://www.dwd.de/DE/service/datenschutz/datenschutz_node.html",
+        "https://www.warnwetterapp.de/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/2429"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

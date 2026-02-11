@@ -1,0 +1,22 @@
+{
+    "slug": "brooksrunning",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Brooks Sports, B.V.",
+    "runs": [
+        "Brooks Sports, Inc."
+    ],
+    "address": "Olympic Stadium 33\n1076 DE Amsterdam\nThe Netherlands",
+    "email": "privacy@brooksrunning.com",
+    "web": "https://www.brooksrunning.com",
+    "sources": [
+        "https://www.brooksrunning.com/en_us/privacy/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/1914"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-st-petrus-zu-lichtenberg-in-salzgitter",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde St. Petrus zu Lichtenberg in Salzgitter",
+    "address": "Fredener Straße 14 A\n38228 Salzgitter\nDeutschland",
+    "phone": "+49 5341 58250",
+    "fax": "+49 5341 1861518",
+    "email": "lichtenberg.pfa@lk-bs.de",
+    "web": "http://www.evangelisch-in-lichtenberg.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=901"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

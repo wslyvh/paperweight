@@ -1,0 +1,21 @@
+{
+    "slug": "fernsehlotterie",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Deutsche Fernsehlotterie gemeinnützige GmbH",
+    "address": "Axel-Springer-Platz 3\n20355 Hamburg\nDeutschland",
+    "phone": "+49 40 414104 35",
+    "fax": "+49 40 414104 14",
+    "email": "datenschutz@fernsehlotterie.de",
+    "web": "https://www.fernsehlotterie.de",
+    "sources": [
+        "https://www.fernsehlotterie.de/datenschutz"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

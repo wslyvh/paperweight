@@ -1,0 +1,43 @@
+{
+    "slug": "awin",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "AWIN AG",
+    "runs": [
+        "affilinet GmbH",
+        "affilinet Austria GmbH",
+        "affilinet Benelux B.V.",
+        "affilinet espana SL",
+        "affilinet France SAS",
+        "affilinet Ltd.",
+        "affilinet Schweiz GmbH",
+        "AWIN AB",
+        "AWIN B.V.",
+        "AWIN Global Affiliate Network S.L.",
+        "AWIN INC., DBA IN CALIFORNIA AS AWIN GLOBAL AFFILIATE NETWORK",
+        "AWIN Ltd.",
+        "AWIN s.r.l.",
+        "AWIN SAS",
+        "AWIN Sp.z.o.o.",
+        "AWIN VEICULAÇÃO DE PUBLICIDADE NA INTERNET LTDA",
+        "Zanox (ehemals)"
+    ],
+    "address": "Eichhornstraße 3\n10785 Berlin\nGermany",
+    "phone": "+49 30 5096910",
+    "fax": "+49 30 50969199",
+    "email": "global-privacy@awin.com",
+    "web": "https://www.awin.com",
+    "sources": [
+        "https://www.awin.com/gb/legal/privacy-policy-gb",
+        "https://www.awin.com/gb/imprint",
+        "https://www.awin.com/de/news-und-events/awin-news/rebranding-zanox-wird-zu-awin-umbenannt",
+        "https://github.com/datenanfragen/data/pull/1334"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

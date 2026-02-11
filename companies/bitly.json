@@ -1,0 +1,31 @@
+{
+    "slug": "bitly",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Bitly Europe GmbH",
+    "runs": [
+        "Bitly, Inc."
+    ],
+    "address": "c/o BK Wirtschaftstreuhand GmbH\nSpichernstraße 1\n10777 Berlin\nGermany",
+    "phone": "+1 646 678 5610",
+    "email": "privacy-eu@bit.ly",
+    "web": "https://bitly.com/",
+    "sources": [
+        "https://bitly.com/pages/privacy",
+        "https://www.bloomberg.com/profiles/companies/8167727Z:US-bitly-inc",
+        "https://github.com/datenanfragen/data/issues/683"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

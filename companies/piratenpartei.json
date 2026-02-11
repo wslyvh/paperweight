@@ -1,0 +1,21 @@
+{
+    "slug": "piratenpartei",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "political party"
+    ],
+    "name": "Piratenpartei Deutschland",
+    "address": "Pflugstraße 9a\n10115 Berlin\nDeutschland",
+    "phone": "+49 30 27572040",
+    "fax": "+49 30 609897517",
+    "email": "datenschutzbeauftragter@piratenpartei.de",
+    "web": "https://www.piratenpartei.de/",
+    "sources": [
+        "https://www.piratenpartei.de/kontakt/datenschutzerklaerung/",
+        "https://www.piratenpartei.de/kontakt/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

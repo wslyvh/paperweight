@@ -1,0 +1,26 @@
+{
+    "slug": "gameforge",
+    "relevant-countries": [
+        "de",
+        "it",
+        "fr",
+        "es",
+        "gb"
+    ],
+    "categories": [
+        "entertainment",
+        "ads"
+    ],
+    "name": "Gameforge AG",
+    "address": "Albert-Nestler-Straße 8\n76131 Karlsruhe\nGermany",
+    "phone": "+49 721 3548080",
+    "fax": "+49 721 354808159",
+    "email": "datenschutz@gameforge.com",
+    "web": "https://corporate.gameforge.com",
+    "sources": [
+        "https://agbserver.gameforge.com/enGB-Privacy-Gameforge-AG.html",
+        "https://github.com/datenanfragen/data/issues/489"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

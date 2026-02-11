@@ -1,0 +1,18 @@
+{
+    "slug": "oskar-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Oskar.de GmbH",
+    "address": "Greschbachstraße 6a\n76229 Karlsruhe\nDeutschland",
+    "email": "datenschutzanfragen@xdsb.de",
+    "web": "https://www.oskar.de/",
+    "sources": [
+        "https://www.oskar.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1535"
+    ],
+    "quality": "verified"
+}

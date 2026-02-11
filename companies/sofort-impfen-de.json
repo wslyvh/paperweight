@@ -1,0 +1,31 @@
+{
+    "slug": "sofort-impfen-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "sofort-impfen.de",
+    "address": "Keuslinstraße 3\n80798 München\nDeutschland",
+    "email": "datenschutz@sofort-impfen.de",
+    "web": "https://sofort-impfen.de",
+    "sources": [
+        "https://sofort-impfen.de/privacy-policy",
+        "https://sofort-impfen.de/imprint",
+        "https://github.com/datenanfragen/data/pull/1106"
+    ],
+    "required-elements": [
+        {
+            "desc": "E-Mail",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "PLZ",
+            "type": "input"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "relevant-countries": [
+        "ch",
+        "de",
+        "at"
+    ],
+    "slug": "semsea",
+    "name": "SEMSEA Suchmaschinenmarketing AG",
+    "address": "Schulhausstrasse 41\n8002 Zürich\nSchweiz",
+    "phone": "+41 44 515 33 22",
+    "fax": "+41 44 515 33 20",
+    "email": "ads@semsea.ch",
+    "web": "https://www.semsea.ch",
+    "sources": [
+        "https://www.semsea.ch/semsea/google-ads-agentur/office-zuerich.html",
+        "https://www.semsea.ch/impressum.html",
+        "https://www.semsea.ch/semsea-zuerich.html",
+        "https://www.semsea.ch/datenschutz.html"
+    ],
+    "quality": "verified"
+}

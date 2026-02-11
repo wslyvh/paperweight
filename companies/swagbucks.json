@@ -1,0 +1,25 @@
+{
+    "slug": "swagbucks",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Swagbucks GmbH",
+    "runs": [
+        "Swagbucks",
+        "InboxDollars",
+        "InboxPounds",
+        "MyPoints",
+        "Upromise",
+        "Tada",
+        "ySense",
+        "Prodege"
+    ],
+    "address": "Paul-Linke-Ufer 41\n10999 Berlin\nGermany",
+    "webform": "https://privacyportal.onetrust.com/webform/279c0a62-1a98-4312-9ff9-02aac3e8bc21/fcfeb826-1e99-47c5-a9e8-3e9621d46e1a",
+    "web": "https://www.prodege.com/",
+    "sources": [
+        "https://www.prodege.com/privacy-policy-intl/",
+        "https://github.com/datenanfragen/data/pull/1489"
+    ],
+    "quality": "verified"
+}

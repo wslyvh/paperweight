@@ -1,0 +1,15 @@
+{
+    "slug": "deepl",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "DeepL SE",
+    "address": "Maarweg 165\n50825 Cologne\nGermany",
+    "email": "privacy@deepl.com",
+    "sources": [
+        "https://www.deepl.com/de/privacy",
+        "https://github.com/datenanfragen/data/pull/2855"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

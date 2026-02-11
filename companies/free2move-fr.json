@@ -1,0 +1,20 @@
+{
+    "slug": "free2move-fr",
+    "relevant-countries": [
+        "fr"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Free2move SAS",
+    "address": "45 Rue Chaussée d’Antin\n75009 Paris\nFrance",
+    "phone": "+33 1 87 21 19 98",
+    "email": "privacy@free2move.com",
+    "sources": [
+        "https://share-now.assetbank-server.com/assetbank-share-now/assetfile/16418.pdf",
+        "https://www.free2move.com/fr/en/legal/#imprint"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "web": "https://www.free2move.com/fr"
+}

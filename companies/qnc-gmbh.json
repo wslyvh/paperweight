@@ -1,0 +1,21 @@
+{
+    "slug": "qnc-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "QNC GmbH",
+    "runs": [
+        "frag-einen-anwalt.de",
+        "123recht.de"
+    ],
+    "address": "c/o Notix Datenschutz GmbH\nSchwarzer Bär 4\n30449 Hannover\nDeutschland",
+    "phone": "+49 511 12356730",
+    "fax": "+49 511 12356739",
+    "email": "datenschutz@qnc.de",
+    "sources": [
+        "https://www.frag-einen-anwalt.de/info.asp?id=datenschutz",
+        "https://github.com/datenanfragen/data/pull/1029"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

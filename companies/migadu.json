@@ -1,0 +1,34 @@
+{
+    "slug": "migadu",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Migadu-Mail GmbH",
+    "address": "Rohnen 587\n9414 Schachen\nSwitzerland",
+    "email": "contact@migadu.com",
+    "web": "https://migadu.com",
+    "sources": [
+        "https://www.migadu.com/privacy/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "Domain name",
+            "type": "input",
+            "optional": true
+        }
+    ],
+    "quality": "verified"
+}

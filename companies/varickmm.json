@@ -1,0 +1,20 @@
+{
+    "slug": "varickmm",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Varick",
+    "address": "711 3rd Ave\n2nd Floor\nNew York\nNY 10017\nUnited States of America",
+    "phone": "+1 646 902 6610",
+    "email": "info@varickmm.com",
+    "web": "https://varickmm.com/",
+    "sources": [
+        "https://varickmm.com/privacy/",
+        "https://varickmm.com/contact/"
+    ],
+    "custom-access-template": "access-tracking",
+    "quality": "verified"
+}

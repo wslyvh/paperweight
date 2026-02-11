@@ -1,0 +1,29 @@
+{
+    "slug": "wearemiq",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "MiQ Digital Ltd.",
+    "runs": [
+        "MiQ Digital USA, Inc.",
+        "MiQ Digital Canada, Inc.",
+        "MiQ Digital Singapore PTE Ltd.",
+        "MiQ Digital Australia PTY Ltd.",
+        "Media iQ Digital India Pvt Ltd."
+    ],
+    "address": "c/o ePrivacy GmbH\nGrosse Bleichen 21\n20354 Hamburg\nGermany",
+    "phone": "+44 207 280 4400",
+    "email": "privacy@miqdigital.com",
+    "web": "https://www.wearemiq.com/",
+    "sources": [
+        "https://www.wearemiq.com/privacy-and-compliance/privacy-policy/",
+        "https://www.wearemiq.com/contact/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

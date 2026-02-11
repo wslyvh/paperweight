@@ -1,0 +1,21 @@
+{
+    "slug": "deutscher-motoryachtverband",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "nonprofit",
+        "travel"
+    ],
+    "name": "Deutscher Motoryachtverband e. V.",
+    "address": "Vinckeufer 12-14\n47119 Duisburg\nDeutschland",
+    "phone": "+49 203 809580",
+    "fax": "+49 203 8095815",
+    "email": "info@dmyv.de",
+    "sources": [
+        "https://www.dmyv.de/impressum/",
+        "https://www.dmyv.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1481"
+    ],
+    "quality": "verified"
+}

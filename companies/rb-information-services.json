@@ -1,0 +1,19 @@
+{
+    "slug": "rb-information-services",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "addresses"
+    ],
+    "name": "RB Information Services",
+    "address": "Wiener Straße 79\n60599 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 655273",
+    "email": "contact@rbinformationservices.de",
+    "web": "https://rbinformationservices.de",
+    "sources": [
+        "https://rbinformationservices.de/datenschutz.html",
+        "https://github.com/datenanfragen/data/issues/532"
+    ],
+    "quality": "verified"
+}

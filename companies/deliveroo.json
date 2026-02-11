@@ -1,0 +1,46 @@
+{
+    "slug": "deliveroo",
+    "relevant-countries": [
+        "gb",
+        "nl",
+        "fr",
+        "be",
+        "ie",
+        "es",
+        "it",
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Roofoods Limited",
+    "runs": [
+        "Deliveroo",
+        "Roofoods Spain S.L.U",
+        "Deliveroo Germany GmbH",
+        "Deliveroo Italy",
+        "Deliveroo France SAS",
+        "Deliveroo Netherlands B.V."
+    ],
+    "address": "The River Building, 1 Cousin Lane\nLondon\nEC4R 3TE\nUnited Kingdom",
+    "email": "dpo@deliveroo.com",
+    "web": "https://deliveroo.co.uk",
+    "sources": [
+        "https://deliveroo.co.uk/privacy",
+        "https://deliveroo.es/es/privacy",
+        "https://deliveroo.de/de/privacy",
+        "https://deliveroo.fr/fr/privacy",
+        "https://deliveroo.it/it/privacy",
+        "https://deliveroo.nl/nl/privacy",
+        "https://github.com/datenanfragen/data/pull/1150"
+    ],
+    "required-elements": [
+        {
+            "desc": "Email",
+            "type": "name",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

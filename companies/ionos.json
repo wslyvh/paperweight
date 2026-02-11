@@ -1,0 +1,22 @@
+{
+    "slug": "ionos",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "IONOS SE",
+    "address": "Elgendorfer Straße 57\n56410 Montabaur\nGermany",
+    "phone": "+49 721 1705522",
+    "email": "datenschutz@ionos.de",
+    "webform": "https://www.ionos.de/hilfe/datenschutz/allgemeine-informationen-zur-datenschutz-grundverordnung-dsgvo/datenauskunft",
+    "web": "https://www.ionos.de",
+    "sources": [
+        "https://www.ionos.de/impressum",
+        "https://www.ionos.de/terms-gtc/terms-privacy",
+        "https://github.com/datenanfragen/data/pull/1242"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

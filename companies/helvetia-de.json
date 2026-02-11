@@ -1,0 +1,21 @@
+{
+    "slug": "helvetia-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Helvetia Schweizerische Versicherungsgesellschaft AG",
+    "address": "Berliner Str. 56-58\n60311 Frankfurt\nDeutschland",
+    "phone": "+49 69 13320",
+    "fax": "+49 69 1332474",
+    "email": "datenschutz@helvetia.de",
+    "web": "https://www.helvetia.com/",
+    "sources": [
+        "https://www.helvetia.com/de/web/de/ueber-uns/service/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/2325"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

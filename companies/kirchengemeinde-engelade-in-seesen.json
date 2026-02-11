@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-engelade-in-seesen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Engelade in Seesen",
+    "address": "Hinter der Kirche 1 A\n38723 Seesen\nDeutschland",
+    "phone": "+49 5381 942929",
+    "fax": "+49 5381 942917",
+    "email": "herrhausen.buero@lk-bs.de",
+    "web": "http://www.kirche-herrhausen.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=975"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

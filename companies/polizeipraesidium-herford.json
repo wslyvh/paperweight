@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-herford",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Der Landrat als Kreispolizeibehörde Herford",
+    "address": "Hansastraße 54\n32049 Herford\nDeutschland",
+    "phone": "+49 5221 8880",
+    "fax": "+49 5221 8881209",
+    "email": "datenschutz.herford@polizei.nrw.de",
+    "web": "https://herford.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

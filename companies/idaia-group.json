@@ -1,0 +1,23 @@
+{
+    "slug": "idaia-group",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "IDAIA",
+    "runs": [
+        "Cartégie"
+    ],
+    "address": "3 Rue Christian Franceries\nParc Chavailles 2\n33520 Bruges\nBelgium",
+    "email": "dpo@cartegie.com",
+    "web": "https://www.idaia.group/",
+    "sources": [
+        "https://www.idaia.group/fr/donnees-personnelles",
+        "https://www.cartegie.com/donnees-personnelles",
+        "https://github.com/datenanfragen/data/pull/1010"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

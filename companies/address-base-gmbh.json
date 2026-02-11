@@ -1,0 +1,18 @@
+{
+    "slug": "address-base-gmbh",
+    "relevant-countries": [
+        "at",
+        "ch",
+        "de"
+    ],
+    "name": "Address-Base GmbH & Co. KG",
+    "address": "Ettishofer Straße 10c\n88250 Weingarten\nDeutschland",
+    "phone": "+49 751 56849799",
+    "email": "datenschutz@address-base.de",
+    "web": "https://www.address-base.de",
+    "sources": [
+        "https://www.address-base.de/Privatsphaere-und-Datenschutz:_:2.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

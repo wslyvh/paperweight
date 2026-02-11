@@ -1,0 +1,29 @@
+{
+    "slug": "vanderstorm-ventures-gmbh-co-kg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Vanderstorm Ventures GmbH & Co. KG",
+    "runs": [
+        "JAN VANDERSTORM",
+        "Charles Colby",
+        "SHIRTMASTER"
+    ],
+    "address": "c/o HB E-Commerce Rechtsanwaltsgesellschaft mbH\nKohlgartenstraße 11-13\n04315 Leipzig\nDeutschland",
+    "phone": "+49 341 962500",
+    "fax": "+49 341 9625100",
+    "email": "vanderstorm@datenschutz.hb-ecommerce.eu",
+    "web": "https://vanderstorm-ventures.com/",
+    "sources": [
+        "https://vanderstorm-ventures.com/datenschutzerklaerung/",
+        "https://www.janvanderstorm.de/datenschutz/",
+        "https://www.charles-colby.com/datenschutz",
+        "https://www.shirtmaster.com/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1981"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

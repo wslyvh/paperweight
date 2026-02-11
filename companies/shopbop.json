@@ -1,0 +1,26 @@
+{
+    "slug": "shopbop",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "BOP LLC",
+    "runs": [
+        "Shopbop (www.shopbop.com)",
+        "EAST DANE (www.eastdane.com)"
+    ],
+    "address": "1245 E Washington Ave\nSuite 300\nMadison\nWI 53703\nUnited States of America",
+    "phone": "+1 608 270 3930",
+    "email": "service@shopbop.com",
+    "web": "https://www.shopbop.com/",
+    "sources": [
+        "https://www.shopbop.com/ci/aboutShopBop/privacypolicy.html",
+        "https://www.shopbop.com/ci/aboutShopBop/conditions.html",
+        "https://www.eastdane.com/ci/aboutShopBop/privacypolicy.html",
+        "https://www.eastdane.com/ci/aboutShopBop/conditions.html",
+        "https://www.shopbop.com/ci/aboutShopBop/customerservice.html"
+    ],
+    "quality": "verified"
+}

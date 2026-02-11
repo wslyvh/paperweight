@@ -1,0 +1,51 @@
+{
+    "slug": "godaddy",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "GoDaddy.com, LLC",
+    "runs": [
+        "GoDaddy Inc.",
+        "GoDaddy Deutschland GmbH"
+    ],
+    "address": "5th Floor\nThe Shipping Building, Old Vinyl Factory\n252-254 Blyth Road\nHayes\nUB3 1HA\nUnited Kingdom",
+    "phone": "+49 89 21 094 807",
+    "email": "privacy@godaddy.com",
+    "web": "https://godaddy.com",
+    "sources": [
+        "https://de.godaddy.com/legal/agreements/privacy-policy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "Preferred method of contact",
+            "type": "input",
+            "optional": false
+        },
+        {
+            "desc": "GoDaddy Customer No.",
+            "type": "input",
+            "optional": false
+        },
+        {
+            "desc": "GoDaddy Shopper PIN",
+            "type": "input",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

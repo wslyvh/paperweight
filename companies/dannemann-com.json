@@ -1,0 +1,39 @@
+{
+    "slug": "dannemann-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "DANNEMANN EL NOBLE CIGARRO GmbH",
+    "runs": [
+        "Kreis der Genießer",
+        "botschafter.moods.de",
+        "fan.moods.de",
+        "produkttester.moods.de",
+        "Burger Holding AG"
+    ],
+    "address": "Rahdener Straße 147\n32312 Lübbecke\nDeutschland",
+    "phone": "+49 5741 3260",
+    "email": "datenschutz@dannemann.com",
+    "web": "https://www.dannemann.com",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/405",
+        "https://dannemann-group.com/imprint-amp-privacy-policy/",
+        "https://www.kreis-der-geniesser.com/datenschutz"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

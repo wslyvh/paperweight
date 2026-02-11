@@ -1,0 +1,53 @@
+{
+    "slug": "1und1-gmx",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "GMX",
+    "runs": [
+        "GMX Mail",
+        "GMX MailCheck",
+        "GMX Mail App",
+        "GMX Premium Postfach",
+        "GMX FreeMessage",
+        "GMX MediaCenter",
+        "GMX Tresor",
+        "GMX Internet Browser"
+    ],
+    "address": "c/o 1&1 Mail & Media GmbH\nElgendorfer Straße 57\n56410 Montabaur\nDeutschland",
+    "phone": "+49 180 3 000 832",
+    "fax": "+49 180 5 001 485",
+    "email": "datenschutz@gmxnet.de",
+    "web": "https://www.gmx.net",
+    "sources": [
+        "https://agb-server.gmx.net/datenschutz",
+        "https://www.gmx.net/impressum/",
+        "https://hilfe.gmx.net/kontakt/kontakt.html#topmenu_help_suche",
+        "https://www.gmx.at/impressum/",
+        "https://www.gmx.ch/impressum/",
+        "https://www.gmx.fr/entreprise/a-propos-de-gmx/",
+        "https://www.gmx.com/company/about/",
+        "https://github.com/datenanfragen/data/issues/21"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "request-language": "de",
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Achtung: Telefonnummer ist kostenpflichtig (9 ct/Min. aus dem Dt. Festnetz, Mobilfunk höchstens 42 ct/Min.)!",
+        "Achtung: Faxnummer ist kostenpflichtig (14 ct/Min. aus dem Dt. Festnetz, Mobilfunk höchstens 42 ct/Min.)!"
+    ],
+    "quality": "tested"
+}

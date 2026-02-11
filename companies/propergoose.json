@@ -1,0 +1,37 @@
+{
+    "slug": "propergoose",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Proper Goose Ltd",
+    "runs": [
+        "Proper Goose (propergoose.com)",
+        "Bark and Rock (barkandrock.com)"
+    ],
+    "address": "Karno House\nHampton Court Road\nEast Molesey\nKT8 9BP\nUnited Kingdom",
+    "phone": "+44 20 8941 3481",
+    "email": "hello@propergoose.com",
+    "web": "https://www.propergoose.com/",
+    "sources": [
+        "https://www.propergoose.com/pages/terms-policies",
+        "https://www.barkandrock.com/pages/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/1045",
+        "https://github.com/datenanfragen/data/pull/1047"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "quality": "verified"
+}

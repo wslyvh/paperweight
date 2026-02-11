@@ -1,0 +1,42 @@
+{
+    "slug": "bbc",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "British Broadcasting Corporation (BBC)",
+    "runs": [
+        "BBC Media Applications Technologies Limited",
+        "BBC World Service",
+        "BBC Studios",
+        "BBC Studioworks",
+        "BBC Global News",
+        "BBC Media Applications Technology",
+        "BBC World Service Trading",
+        "TV Licensing"
+    ],
+    "address": "BC2 A4\n201 Wood Lane\nLondon W12 7TP\nUnited Kingdom",
+    "email": "dpa.officer@bbc.co.uk",
+    "web": "https://www.bbc.com",
+    "sources": [
+        "https://www.bbc.co.uk/usingthebbc/privacy/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/1442"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

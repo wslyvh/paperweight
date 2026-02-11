@@ -1,0 +1,25 @@
+{
+    "slug": "startmail",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "StartMail BV",
+    "address": "Boulevard 11\n3707 BK Zeist\nThe Netherlands",
+    "email": "privacypolicy@startmail.com",
+    "web": "https://www.startmail.com",
+    "sources": [
+        "https://www.startmail.com/en/privacy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Email",
+            "type": "name",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

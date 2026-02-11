@@ -1,0 +1,21 @@
+{
+    "slug": "tamo-lt",
+    "relevant-countries": [
+        "lt"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "UAB „Tavo mokykla“",
+    "runs": [
+        "TAMO e. dienynas"
+    ],
+    "address": "Kareivių g. 11B\nLT-09108 Vilnius\nLithuania",
+    "email": "info@tamo.lt",
+    "web": "https://www.tamo.lt/",
+    "sources": [
+        "https://www.tamo.lt/privatumo-politika/",
+        "https://github.com/datenanfragen/data/issues/192"
+    ],
+    "quality": "verified"
+}

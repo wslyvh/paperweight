@@ -1,0 +1,39 @@
+{
+    "slug": "videobuster",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Netleih GmbH & Co. KG",
+    "runs": [
+        "VIDEOBUSTER.de"
+    ],
+    "address": "c/o tacticx Consulting GmbH\nWalbecker Straße 53\n47608 Geldern\nDeutschland",
+    "phone": "+49 5381 74929898",
+    "fax": "+49 5381 74929899",
+    "email": "datenschutz@videobuster.de",
+    "web": "https://www.videobuster.de",
+    "sources": [
+        "https://www.videobuster.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1254",
+        "https://www.videobuster.de/impressum",
+        "https://github.com/datenanfragen/data/pull/2375"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

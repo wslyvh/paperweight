@@ -1,0 +1,21 @@
+{
+    "slug": "apotheke-am-engelbecken",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health",
+        "commerce"
+    ],
+    "name": "Apotheke am Engelbecken",
+    "address": "Heinrich-Heine-Str. 15\n10179 Berlin-Mitte\nDeutschland",
+    "phone": "+49 30 27560275",
+    "fax": "+49 30 27560276",
+    "email": "gesundheit@apotheke-am-engelbecken.de",
+    "web": "https://www.apotheke-am-engelbecken.de",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/574",
+        "https://www.apotheke-am-engelbecken.de/info/impressum/"
+    ],
+    "quality": "verified"
+}

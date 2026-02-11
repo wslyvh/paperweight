@@ -1,0 +1,24 @@
+{
+    "slug": "pulpo",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Entravision Communications Corporation",
+    "runs": [
+        "Pulpo Media, Inc. (formerly)"
+    ],
+    "address": "2425 Olympic Boulevard\nSuite 6000 West\nSanta Monica, CA 90404\nUnited States of America",
+    "email": "privacy@entravision.com",
+    "web": "https://entravision.com",
+    "sources": [
+        "https://entravision.com/privacy-policy/",
+        "https://www.prnewswire.com/news-releases/entravision-communications-corporation-acquires-digital-advertising-services-and-solutions-provider-pulpo-media-263874011.html"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "custom-access-template": "access-tracking",
+    "quality": "verified"
+}

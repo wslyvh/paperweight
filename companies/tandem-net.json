@@ -1,0 +1,23 @@
+{
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media",
+        "school"
+    ],
+    "name": "Tripod Technology GmbH",
+    "runs": [
+        "Tandem app"
+    ],
+    "address": "c/o ePrivacy GmbH\nGroße Bleichen 21\n20354 Hamburg\nGermany",
+    "email": "privacy@tandem.net",
+    "web": "https://www.tandem.net",
+    "sources": [
+        "https://www.tandem.net/privacy",
+        "https://github.com/datenanfragen/data/pull/1757"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "slug": "tandem-net"
+}

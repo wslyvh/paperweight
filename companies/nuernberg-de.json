@@ -1,0 +1,30 @@
+{
+    "slug": "nuernberg-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Stadt Nürnberg",
+    "address": "Fünferplatz 2\n90403 Nürnberg\nDeutschland",
+    "phone": "+49 911 2310",
+    "email": "datenschutz@stadt.nuernberg.de",
+    "web": "https://www.nuernberg.de",
+    "sources": [
+        "https://www.nuernberg.de/imperia/md/zentral/dokumente/diverse/dsgvo_allgemein_kast.pdf",
+        "https://www.nuernberg.de/internet/stadtportal/datenschutz.html"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

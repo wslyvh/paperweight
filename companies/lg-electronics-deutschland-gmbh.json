@@ -1,0 +1,15 @@
+{
+    "slug": "lg-electronics-deutschland-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "LG Electronics Deutschland GmbH",
+    "address": "Alfred-Herrhausen-Allee 3 - 5\n65760 Eschborn\nDeutschland",
+    "email": "datenschutz@lge.de",
+    "sources": [
+        "https://www.lg.com/de/privacy/",
+        "https://github.com/datenanfragen/data/pull/2769"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

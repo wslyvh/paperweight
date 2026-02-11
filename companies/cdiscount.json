@@ -1,0 +1,37 @@
+{
+    "slug": "cdiscount",
+    "relevant-countries": [
+        "fr",
+        "be",
+        "it",
+        "de",
+        "es",
+        "lu"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Cdiscount.com / SGPN",
+    "address": "BP 90200\n93472 Neuilly Sur Marne\nFrance",
+    "email": "informatique-et-libertes@cdiscount.com",
+    "web": "https://www.cdiscount.com/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/437",
+        "https://www.cdiscount.com/vie-privee-et-cookies.html",
+        "https://i6.cdscdn.com/resources/imagesok/cgv/ml.pdf"
+    ],
+    "required-elements": [
+        {
+            "desc": "Nom",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse e-mail",
+            "type": "email"
+        }
+    ],
+    "request-language": "fr",
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

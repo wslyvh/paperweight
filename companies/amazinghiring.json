@@ -1,0 +1,37 @@
+{
+    "slug": "amazinghiring",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "addresses",
+        "social media"
+    ],
+    "name": "AmazingHiring",
+    "address": "541 Jefferson Avenue\nSuite 100\nRedwood City\nCA 94063\nUnited States of America",
+    "phone": "+31 85 001 3890",
+    "email": "dpo@amazinghiring.com",
+    "web": "https://amazinghiring.com/",
+    "sources": [
+        "https://amazinghiring.com/privacy/",
+        "https://help.amazinghiring.com/en/articles/2976470-how-could-i-remove-my-data-from-the-search",
+        "https://github.com/datenanfragen/data/pull/1747"
+    ],
+    "required-elements": [
+        {
+            "desc": "E-mail",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": true
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Alternative UK phone no.: +44 14 51600787"
+    ],
+    "quality": "verified"
+}

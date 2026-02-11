@@ -1,0 +1,21 @@
+{
+    "slug": "ptb-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Physikalisch-Technische Bundesanstalt (PTB)",
+    "address": "Bundesallee 100\n38116 Braunschweig\nDeutschland",
+    "phone": "+49 531 592 9085",
+    "fax": "+49 531 592 9108",
+    "email": "datenschutz@ptb.de",
+    "web": "https://www.ptb.de",
+    "sources": [
+        "https://www.ptb.de/cms/service-seiten/datenschutz.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

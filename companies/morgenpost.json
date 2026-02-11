@@ -1,0 +1,20 @@
+{
+    "slug": "morgenpost",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Berliner Morgenpost GmbH",
+    "address": "Kurfürstendamm 22\n10719 Berlin\nDeutschland",
+    "phone": "+49 30 8872 77 887",
+    "email": "datenschutz@morgenpost.de",
+    "web": "https://www.morgenpost.de/",
+    "sources": [
+        "https://www.morgenpost.de/impressum/article214357651/Datenschutzerklaerung.html",
+        "https://www.morgenpost.de/impressum/article205294571/Impressum.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "chartboost",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Chartboost, Inc.",
+    "address": "185 Clara Street\nRoom 101B\nSan Francisco CA 94107\nUnited States of America",
+    "email": "privacy@chartboost.com",
+    "web": "https://www.chartboost.com/",
+    "sources": [
+        "https://answers.chartboost.com/en-us/articles/200780269",
+        "https://www.bloomberg.com/profile/company/0341819Z:US"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

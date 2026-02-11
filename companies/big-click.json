@@ -1,0 +1,36 @@
+{
+    "slug": "big-click",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "BigClick GmbH & Co.KG",
+    "runs": [
+        "alltagz.de",
+        "schulferien.orgabird.de"
+    ],
+    "address": "Marktstraße 23/25\n99084 Erfurt\nDeutschland",
+    "phone": "+49 361 6447352",
+    "email": "datenschutz@big-click.com",
+    "web": "https://big-click.com",
+    "sources": [
+        "https://big-click.com/datenschutz.html",
+        "https://www.alltagz.de/content/datenschutz.html",
+        "https://schulferien.orgabird.de/content/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/2171"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

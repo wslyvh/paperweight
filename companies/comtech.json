@@ -1,0 +1,19 @@
+{
+    "slug": "comtech",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "comtech GmbH",
+    "address": "c/o Schultze & Braun GmbH & Co. KG\nEisenbahnstraße 19-23\n77855 Achern\nDeutschland",
+    "phone": "+49 7841 7080",
+    "email": "dsb@schultze-braun.de",
+    "sources": [
+        "https://www.schultze-braun.de/leistungen/insolvenzverwaltung/comtech-gmbh/",
+        "https://www.schultze-braun.de/rechtliches/datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

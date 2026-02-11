@@ -1,0 +1,22 @@
+{
+    "slug": "sociomantic",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "dunnhumby Limited",
+    "address": "Gresham House\nMarine Road\nDun Laoghaire Co\nDublin\nIreland",
+    "phone": "+44 20 3986 5499",
+    "email": "individualrights@dunnhumby.com",
+    "web": "https://www.dunnhumby.com",
+    "sources": [
+        "https://www.dunnhumby.com/privacy-notice/",
+        "https://www.dunnhumby.com/terms-and-conditions/",
+        "https://www.dunnhumby.com/contact/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "quality": "verified"
+}

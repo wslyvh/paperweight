@@ -1,0 +1,21 @@
+{
+    "slug": "kreissparkasse-ludwigsburg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Kreissparkasse Ludwigsburg",
+    "address": "Schillerplatz 6\n71638 Ludwigsburg\nDeutschland",
+    "phone": "+49 7141 1480",
+    "fax": "+49 7141 1485100",
+    "email": "datenschutzbeauftragter@ksklb.de",
+    "web": "https://www.ksklb.de",
+    "sources": [
+        "https://www.ksklb.de/de/home/toolbar/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/2040"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,23 @@
+{
+    "slug": "kirchengemeinde-badenhausen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Badenhausen",
+    "address": "Thüringer Straße 239\n37539 Bad Grund (Harz)\nDeutschland",
+    "phone": "+49 5522 83088",
+    "email": "badenhausen.pfa@lk-bs.de",
+    "web": "https://www.ek-bdh-wdh.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=966"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

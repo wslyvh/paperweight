@@ -1,0 +1,19 @@
+{
+    "slug": "banque-france",
+    "relevant-countries": [
+        "fr"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Banque de France",
+    "address": "UA-1047 Service de la Communication Institutionnelle et Digitale\n75049 Paris Cedex 01\nFrance",
+    "email": "1200-DPD-delegue-ut@banque-france.fr",
+    "web": "https://www.banque-france.fr/en",
+    "sources": [
+        "https://www.banque-france.fr/en/privacy-policy",
+        "https://github.com/datenanfragen/data/issues/169"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

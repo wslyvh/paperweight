@@ -1,0 +1,20 @@
+{
+    "slug": "gamblizard",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Gamblizard",
+    "address": "Börsenstrasse 2-4\n5th Floor\nFrankfurt 60313\nGermany",
+    "email": "support@gamblizard.de",
+    "sources": [
+        "https://gamblizard.de/datenschutzrichtlinie/",
+        "https://github.com/datenanfragen/data/pull/2676"
+    ],
+    "quality": "verified",
+    "nsfw": true
+}

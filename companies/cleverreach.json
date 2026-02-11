@@ -1,0 +1,22 @@
+{
+    "slug": "cleverreach",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads",
+        "telecommunication"
+    ],
+    "name": "CleverReach GmbH & Co. KG",
+    "address": "//CRASH Building\nSchafjückenweg 2\n26180 Rastede\nDeutschland",
+    "phone": "+49 4402 9739000",
+    "fax": "+49 4402 9739099",
+    "email": "info@cleverreach.com",
+    "web": "https://www.cleverreach.com/",
+    "sources": [
+        "https://www.cleverreach.com/de/datenschutz/",
+        "https://www.cleverreach.com/de/impressum/",
+        "https://github.com/datenanfragen/data/pull/1600"
+    ],
+    "quality": "verified"
+}

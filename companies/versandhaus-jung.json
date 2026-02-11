@@ -1,0 +1,24 @@
+{
+    "slug": "versandhaus-jung",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Karlheinz Jung GmbH",
+    "runs": [
+        "Versandhaus Jung"
+    ],
+    "address": "Remchinger Straße 1\n75196 Remchingen\nDeutschland",
+    "phone": "+49 7232 36540",
+    "fax": "+49 7232 365444",
+    "email": "an@versandhaus-jung.de",
+    "web": "https://www.versandhaus-jung.de",
+    "sources": [
+        "https://www.versandhaus-jung.de/Datenschutz",
+        "https://www.versandhaus-jung.de/Impressum",
+        "https://github.com/datenanfragen/data/pull/1286"
+    ],
+    "quality": "verified"
+}

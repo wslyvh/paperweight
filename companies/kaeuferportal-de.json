@@ -1,0 +1,23 @@
+{
+    "slug": "kaeuferportal-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "be Around GmbH",
+    "runs": [
+        "Aroundhome.de"
+    ],
+    "address": "Potsdamer Platz 11\n10785 Berlin\nDeutschland",
+    "phone": "+49 800 2929294",
+    "fax": "+49 30 29045535",
+    "email": "datenschutz@aroundhome.de",
+    "web": "https://www.aroundhome.de/",
+    "sources": [
+        "https://www.aroundhome.de/datenschutzerklaerung/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,23 @@
+{
+    "slug": "wise",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Wise Europe SA",
+    "runs": [
+        "TransferWise (formerly)",
+        "Wise"
+    ],
+    "address": "Avenue Louise 54\nRoom s52\n1050 Brussels\nBelgium",
+    "email": "privacy@wise.com",
+    "web": "https://wise.com/",
+    "sources": [
+        "https://wise.com/de/legal/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/1843"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,39 @@
+{
+    "slug": "avira",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication",
+        "commerce"
+    ],
+    "name": "Avira Holding GmbH & Co. KG",
+    "runs": [
+        "Avira Operations GmbH & Co. KG",
+        "Avira GmbH & Co. KG",
+        "Avira, Inc.",
+        "Avira Soft srl",
+        "Avira Security Suite (Anti Virus)",
+        "Avira Connect",
+        "Avira Phantom VPN",
+        "Avira SafeSearch",
+        "Avira URL Cloud",
+        "Avira Protection Cloud",
+        "Avira Home Guard",
+        "Avira Safe Things",
+        "Avira Safe Shopping",
+        "Avira Software Updater",
+        "Avira Password Manager",
+        "Avira Identity Scanner",
+        "Avira Prime"
+    ],
+    "address": "c/o Pembroke Privacy Ltd.\n4 Upper Pembroke Street\nDublin 2\nIreland",
+    "email": "data-privacy@avira.com",
+    "web": "https://www.avira.com",
+    "sources": [
+        "https://www.avira.com/en/privacy-policy/contact",
+        "https://github.com/datenanfragen/data/issues/49"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

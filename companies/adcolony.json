@@ -1,0 +1,25 @@
+{
+    "slug": "adcolony",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Digital Turbine, Inc.",
+    "runs": [
+        "AdColony, Inc. (adcolony.com) (formerly)",
+        "Fyber N.V. (formerly)"
+    ],
+    "address": "110 San Antonio St., Ste 160\nAustin, TX 78701\nUnited States of America",
+    "email": "privacy@digitalturbine.com",
+    "web": "https://www.digitalturbine.com",
+    "sources": [
+        "https://www.digitalturbine.com/legal/privacy-policy",
+        "https://ir.digitalturbine.com/company-information/faq",
+        "https://ir.digitalturbine.com/news-events/press-releases/detail/610/digital-turbine-announces-completion-of-acquisition-of"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "deutsche-bank-ag",
+    "categories": [
+        "finance"
+    ],
+    "name": "Deutsche Bank AG",
+    "address": "Taunusanlage 12\n60325 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 910 10000",
+    "fax": "+49 069 910 10001",
+    "email": "datenschutz.db@db.com",
+    "web": "https://www.deutsche-bank.de",
+    "sources": [
+        "https://www.deutsche-bank.de/pfb/content/pk-datenschutz.html",
+        "https://www.deutsche-bank.de/pfb/content/pk-rechtliche-hinweise.html?pfb_toggle=34735-34741",
+        "https://www.deutsche-bank.de/pfb/data/docs/ser-DB_EU-Datenschutzhinweise_AG.pdf"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

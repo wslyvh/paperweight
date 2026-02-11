@@ -1,0 +1,31 @@
+{
+    "slug": "dgvt-erlangen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health",
+        "school"
+    ],
+    "name": "DGVT Aus- und Weiterbildungszentrum Erlangen-Nürnberg GmbH",
+    "address": "Nägelsbachstr. 49c\n91052 Erlangen\nDeutschland",
+    "phone": "+49 9131 9430600",
+    "fax": "+49 9131 9236276",
+    "email": "info@dgvt-erlangen.de",
+    "web": "https://www.dgvt-erlangen.de",
+    "sources": [
+        "https://www.dgvt-erlangen.de/impressum.html",
+        "https://github.com/datenanfragen/data/pull/2263"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "quality": "verified"
+}

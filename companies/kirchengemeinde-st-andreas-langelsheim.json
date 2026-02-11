@@ -1,0 +1,23 @@
+{
+    "slug": "kirchengemeinde-st-andreas-langelsheim",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde St. Andreas Langelsheim",
+    "address": "Kirchstraße 5\n38685 Langelsheim\nDeutschland",
+    "phone": "+49 5326 2023",
+    "fax": "+49 5326 3109",
+    "email": "langelsheim.pfa@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=981"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

@@ -1,0 +1,25 @@
+{
+    "slug": "ups",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "UPS Europe SA",
+    "runs": [
+        "UPS Paketdienst",
+        "UPS My Choice"
+    ],
+    "address": "Ave Ariane 5\n1200 Brussels\nBelgium",
+    "email": "germandpo@ups.com",
+    "webform": "https://privacyportal.onetrust.com/webform/cff9470e-ab7d-4e8a-8a45-14391b299f19/f3f16aeb-9070-4a81-816c-7b20e5ebd65a",
+    "web": "https://www.ups.com",
+    "sources": [
+        "https://www.ups.com/de/de/help-center/legal-terms-conditions/privacy-notice.page",
+        "https://www.ups.com/assets/resources/webcontent/de_DE/UPS_EEA_Controllers_List.pdf",
+        "https://github.com/datenanfragen/data/pull/2913"
+    ],
+    "suggested-transport-medium": "webform",
+    "quality": "verified"
+}

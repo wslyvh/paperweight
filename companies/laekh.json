@@ -1,0 +1,22 @@
+{
+    "slug": "laekh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Landesärztekammer Hessen",
+    "address": "Im Vogelsgesang 3\n60488 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 97672 313",
+    "fax": "+49 69 97672 128",
+    "email": "datenschutz@laekh.de",
+    "web": "https://www.laekh.de",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/47",
+        "https://www.laekh.de/datenschutz",
+        "https://www.laekh.de/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

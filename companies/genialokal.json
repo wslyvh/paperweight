@@ -1,0 +1,19 @@
+{
+    "slug": "genialokal",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "genialokal.de GmbH",
+    "address": "Wieblinger Weg 92a\n69123 Heidelberg\nDeutschland",
+    "phone": "+49 6221 6479490",
+    "email": "datenschutz@genialokal.de",
+    "web": "https://www.genialokal.de/",
+    "sources": [
+        "https://www.genialokal.de/Datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

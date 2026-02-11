@@ -1,0 +1,16 @@
+{
+    "relevant-countries": [
+        "ch"
+    ],
+    "name": "Experian Switzerland AG",
+    "address": "Thurgauerstraße 101a\n8152 Glattpark (Opfikon)\nSchweiz",
+    "email": "DACH-BDN-data-information@experian.com",
+    "web": "https://www.experian.ch/",
+    "sources": [
+        "https://www.experian.ch/legal/datenschutz",
+        "https://www.experian.ch/legal/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "slug": "experian-ch"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "grundschule-ilmenau-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Grundschule Ilmenaustraße Braunschweig",
+    "address": "Ilmenaustraße 29\n38120 Braunschweig\nDeutschland",
+    "phone": "+49 531 284 500 0",
+    "fax": "+49 531 284 500 20",
+    "email": "gs.ilmenaustrasse@braunschweig.de",
+    "web": "https://www.grundschule-ilmenau.de/",
+    "sources": [
+        "https://www.grundschule-ilmenau.de/impressum/"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

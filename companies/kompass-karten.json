@@ -1,0 +1,24 @@
+{
+    "slug": "kompass-karten",
+    "relevant-countries": [
+        "de",
+        "at"
+    ],
+    "name": "KOMPASS-Karten GmbH",
+    "runs": [
+        "https://www.kompass.at"
+    ],
+    "address": "Karl-Kapfererstraße 5\n6020 Innsbruck\nÖsterreich",
+    "phone": "+43 512 265561 0",
+    "fax": "+43 512 265561 8",
+    "email": "datenschutz@kompass.at",
+    "web": "https://www.kompass.de",
+    "sources": [
+        "https://www.kompass.de/service/datenschutz/",
+        "https://www.kompass.de/service/impressum/",
+        "https://github.com/datenanfragen/data/issues/65"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

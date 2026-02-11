@@ -1,0 +1,20 @@
+{
+    "slug": "rhythmone",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "RhythmOne, LLC.",
+    "address": "1177 Avenue of the Americas\n9th Floor\nNew York, NY 10036\nUnited States of America",
+    "email": "privacy@tremorinternational.com",
+    "web": "https://www.rhythmone.com/",
+    "sources": [
+        "https://www.rhythmone.com/privacy-policy"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,18 @@
+{
+    "slug": "top-itservices-com",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "top itservices AG",
+    "address": "c/o activeMind AG\nPotsdamer Str. 3\n80802 München\nDeutschland",
+    "phone": "+49 89 919294900",
+    "fax": "+49 89 95468199",
+    "email": "datenschutz@top-itservices.com",
+    "web": "https://www.top-itservices.com",
+    "sources": [
+        "https://www.top-itservices.com/datenschutz/",
+        "https://github.com/datenanfragen/data/issues/646"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

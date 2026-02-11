@@ -1,0 +1,24 @@
+{
+    "slug": "s-broker",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "S Broker AG & Co. KG",
+    "runs": [
+        "Sparkassen Broker"
+    ],
+    "address": "Carl-Bosch-Straße 10\n65203 Wiesbaden\nDeutschland",
+    "phone": "+49 611 2044 1911",
+    "email": "datenschutz@sbroker.de",
+    "web": "https://www.sbroker.de",
+    "sources": [
+        "https://www.sbroker.de/sbl/home/ds",
+        "https://www.sbroker.de/sbl/home/impressum",
+        "https://github.com/datenanfragen/data/pull/1268"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,36 @@
+{
+    "slug": "ratp",
+    "relevant-countries": [
+        "fr"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Régie Autonome des Transports Parisiens (RATP)",
+    "address": "54, quai de la Rapée\n75599 Paris CEDEX 12\nFrance",
+    "email": "protection-donnees@ratp.fr",
+    "web": "https://ratp.fr",
+    "sources": [
+        "https://www.ratp.fr/en/ratp-general-privacy-policy",
+        "https://github.com/datenanfragen/data/pull/1373"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "ID of Navigo pass (if holder)",
+            "type": "input",
+            "optional": true
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

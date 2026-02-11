@@ -1,0 +1,20 @@
+{
+    "slug": "circuit-laundry",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "Circuit Launderette Services Limited",
+    "address": "Meadowcroft Lane\nHalifax Lane\nRipponden\nWest Yorkshire\nHX6 4AJ\nUnited Kingdom",
+    "email": "dataprotection@jla.com",
+    "web": "https://www.circuit.co.uk",
+    "sources": [
+        "https://www.circuit.co.uk/privacy-and-cookies/",
+        "https://www.circuit.co.uk/terms-and-conditions/",
+        "https://github.com/datenanfragen/data/issues/164"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "audible-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce",
+        "entertainment"
+    ],
+    "name": "Audible GmbH",
+    "address": "Schumannstraße 6\n10117 Berlin\nGermany",
+    "phone": "+49 800 58900 73",
+    "email": "privacy-eu@audible.de",
+    "web": "https://www.audible.de",
+    "sources": [
+        "https://www.audible.de/legal-terms/privacy-policy?moduleId=201648650",
+        "https://www.audible.de/mt/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

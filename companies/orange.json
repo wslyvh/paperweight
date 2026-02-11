@@ -1,0 +1,25 @@
+{
+    "slug": "orange",
+    "relevant-countries": [
+        "fr",
+        "be",
+        "es",
+        "lu",
+        "pl",
+        "ro",
+        "sk"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Orange SA",
+    "address": "111, quai du Président Roosevelt\nCS 70222\n92449 Issy-les-Moulineaux CEDEX\nFrance",
+    "phone": "+33 1 44 44 22 22",
+    "web": "https://www.orange.com/",
+    "sources": [
+        "https://www.orange.com/en/privacy-notice-protecting-your-personal-data",
+        "https://www.orange.com/en/legal-matters",
+        "https://github.com/datenanfragen/data/issues/432"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-denstorf-klein-und-gross-gleidingen-in-vechelde",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Denstorf-Klein und Groß Gleidingen in Vechelde",
+    "address": "St.-Johannes-Straße 7\n38159 Vechelde\nDeutschland",
+    "phone": "+49 5302 1408",
+    "fax": "+49 5302 902971",
+    "email": "denstorf.pfa@lk-bs.de",
+    "web": "http://www.denstorf.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=112385"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

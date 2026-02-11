@@ -1,0 +1,21 @@
+{
+    "slug": "ranger-marketing-vertriebs-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads",
+        "telecommunication"
+    ],
+    "name": "Ranger Marketing & Vertriebs GmbH",
+    "address": "Parsevalstraße 11\n40468 Düsseldorf\nDeutschland",
+    "phone": "+49 211 20008300",
+    "email": "datenschutz@ranger.de",
+    "web": "https://www.ranger.de/",
+    "sources": [
+        "https://www.ranger.de/datenschutz",
+        "https://github.com/datenanfragen/data/issues/466"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

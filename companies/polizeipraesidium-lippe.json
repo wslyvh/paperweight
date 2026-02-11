@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-lippe",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Kreispolizeibehörde Lippe",
+    "address": "Bielefelder Straße 90\n32758 Detmold\nDeutschland",
+    "phone": "+49 5231 6090",
+    "fax": "+49 5231 6091190",
+    "email": "datenschutz.lippe@polizei.nrw.de",
+    "web": "https://lippe.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

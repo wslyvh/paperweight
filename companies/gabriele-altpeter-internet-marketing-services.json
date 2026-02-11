@@ -1,0 +1,33 @@
+{
+    "slug": "gabriele-altpeter-internet-marketing-services",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads",
+        "entertainment"
+    ],
+    "name": "Gabriele Altpeter, Internet Marketing-Services",
+    "runs": [
+        "kochfokus.de",
+        "deliciouslygabi.com",
+        "SomePublisher",
+        "Damnick Verlag"
+    ],
+    "address": "Schreinerweg 6\n38126 Braunschweig\nDeutschland",
+    "phone": "+49 531 615 4 710",
+    "fax": "+49 531 615 4 288",
+    "email": "datenschutz@gabriele-altpeter.info",
+    "pgp-fingerprint": "BCA8 A5F2 2F7F D05A ED67  EE2B FE5B E03D 78C1 CF0F",
+    "pgp-url": "https://gabriele-altpeter.info/pgp-key-privacy.asc",
+    "web": "https://gabriele-altpeter.info",
+    "sources": [
+        "https://gabriele-altpeter.info/privacy.html",
+        "https://kochfokus.de/privacy/",
+        "https://deliciouslygabi.com/privacy/",
+        "https://somepublisher.com/privacy/",
+        "https://damnick.de/datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

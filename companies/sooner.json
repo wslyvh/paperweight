@@ -1,0 +1,22 @@
+{
+    "slug": "sooner",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "EYZ Media GmbH",
+    "runs": [
+        "Sooner"
+    ],
+    "address": "Alte Jakobstraße 76\n10179 Berlin\nDeutschland",
+    "email": "privacy@sooner.de",
+    "web": "https://sooner.de",
+    "sources": [
+        "https://www.iubenda.com/privacy-policy/48737131?lang=de",
+        "https://github.com/datenanfragen/data/pull/1117"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

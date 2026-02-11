@@ -1,0 +1,19 @@
+{
+    "slug": "financescout24",
+    "categories": [
+        "finance"
+    ],
+    "name": "FinanceScout24",
+    "address": "c/o Scout24 Services GmbH\nBothestraße 11 – 15\n81675 München\nDeutschland",
+    "fax": "+49 89 444 56 2199",
+    "email": "widerspruch@financescout24.de",
+    "web": "https://www.financescout24.de/",
+    "sources": [
+        "https://www.financescout24.de/unternehmen/datenschutz",
+        "https://www.financescout24.de/unternehmen/impressum"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "quality": "verified"
+}

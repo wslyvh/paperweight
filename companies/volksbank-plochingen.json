@@ -1,0 +1,29 @@
+{
+    "slug": "volksbank-plochingen",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Volksbank Plochingen eG",
+    "runs": [
+        "Denkendorfer Bank",
+        "Altbacher Bank",
+        "Deizisauer Bank",
+        "Zeller Bank",
+        "Wernauer Bank",
+        "Volksbank Reichenbach",
+        "Hochdorfer Bank"
+    ],
+    "address": "Am Fischbrunnen 8\n73207 Plochingen\nDeutschland",
+    "phone": "+49 7153 706277",
+    "fax": "+49 7153 706146",
+    "email": "datenschutz@volksbank-plochingen.de",
+    "web": "https://www.volksbank-plochingen.de",
+    "sources": [
+        "https://www.volksbank-plochingen.de/service/rechtliche-hinweise/datenschutzhinweis-zur-website.html",
+        "https://github.com/datenanfragen/data/pull/734",
+        "https://www.volksbank-plochingen.de/wir-fuer-sie/filialen-ansprechpartner/filialen/neue-oeffnungszeiten.html",
+        "https://www.volksbank-plochingen.de/content/dam/f0037-0/Dokumente/rechtliche_hinweise/0037-Datenschutzhinweise.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

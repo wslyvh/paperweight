@@ -1,0 +1,24 @@
+{
+    "slug": "sykes-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Sykes Enterprises Bochum GmbH & Co. KG",
+    "runs": [
+        "SYKES Berlin"
+    ],
+    "address": "Bessemerstr. 85\n44793 Bochum\nDeutschland",
+    "phone": "+49 234 5398000",
+    "email": "Datenschutz@sykes.com",
+    "web": "https://www.sykes.com",
+    "sources": [
+        "https://www.sykes.com/germany/kontakt/",
+        "https://github.com/datenanfragen/data/pull/1218",
+        "https://www.sykes.com/privacy-policy/gdpr-privacy-statement/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

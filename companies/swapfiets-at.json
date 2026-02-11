@@ -1,0 +1,16 @@
+{
+    "slug": "swapfiets-at",
+    "relevant-countries": [
+        "at"
+    ],
+    "name": "Swapfiets Austria GmbH",
+    "address": "Stubenring 24\n1010 Wien\nÖsterreich",
+    "email": "privacy@pon.com",
+    "web": "https://swapfiets.at/",
+    "sources": [
+        "https://swapfiets.at/privacy",
+        "https://www.northdata.de/Swapfiets%20Austria%20GmbH,%20Wien/553087p"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,32 @@
+{
+    "slug": "hr-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Hessischer Rundfunk",
+    "runs": [
+        "hessenschau.de (www.hessenschau.de)",
+        "hr1 (www.hr1.de)",
+        "hr2-kultur (www.hr2.de)",
+        "hr3 (www.hr3.de)",
+        "hr4 (www.hr4.de)",
+        "hr-iNFO (www.hr-inforadio.de)",
+        "YOU FM (www.you-fm.de)",
+        "hr-fernsehen (www.hr-fernsehen.de)",
+        "hr-Sinfonieorchester (www.hr-sinfonieorchester.de)",
+        "hr-Bigband (www.hr-bigband.de)"
+    ],
+    "address": "Bertramstraße 8\n60320 Frankfurt\nDeutschland",
+    "phone": "+49 69 155 2091",
+    "fax": "+49 69 155 4175",
+    "email": "Datenschutz@hr.de",
+    "web": "https://www.hr.de",
+    "sources": [
+        "https://www.hr.de/datenschutz/index.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

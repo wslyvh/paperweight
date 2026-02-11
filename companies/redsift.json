@@ -1,0 +1,29 @@
+{
+    "slug": "redsift",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Redsift Limited",
+    "runs": [
+        "Red Sift OnDMARC",
+        "Red Sift Brand Trust",
+        "Red Sift Certificates",
+        "Hardenize"
+    ],
+    "address": "21A Noel Street\nLondon\nW1F 8GR\nUnited Kingdom",
+    "email": "privacy@redsift.io",
+    "web": "https://redsift.com",
+    "sources": [
+        "https://redsift.com/privacy",
+        "https://github.com/datenanfragen/data/pull/3008"
+    ],
+    "required-elements": [
+        {
+            "desc": "Email",
+            "type": "name",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

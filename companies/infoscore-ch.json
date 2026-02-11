@@ -1,0 +1,18 @@
+{
+    "slug": "infoscore-ch",
+    "relevant-countries": [
+        "ch"
+    ],
+    "categories": [
+        "collection agency"
+    ],
+    "name": "infoscore AG",
+    "address": "Ifangstrasse 8\n8952 Schlieren\nSchweiz",
+    "email": "dataprotection@infoscore.ch",
+    "web": "https://www.infoscoreag.ch/",
+    "sources": [
+        "https://www.infoscoreag.ch/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

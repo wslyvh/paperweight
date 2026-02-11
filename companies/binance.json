@@ -1,0 +1,28 @@
+{
+    "slug": "binance",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Binance (Services Holdings) Limited",
+    "runs": [
+        "Binance Open Platform",
+        "Binance Launchpad",
+        "Binance Labs",
+        "Binance Charity",
+        "Binance DEX",
+        "Binance X",
+        "JEX"
+    ],
+    "address": "6th Floor, South Bank House\nBarrow Street\n4 Dublin\nIreland",
+    "email": "dpo@binance.com",
+    "web": "https://www.binance.com/",
+    "sources": [
+        "https://www.binance.com/en/privacy",
+        "https://github.com/datenanfragen/data/pull/1874"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

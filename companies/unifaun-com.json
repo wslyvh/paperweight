@@ -1,0 +1,32 @@
+{
+    "slug": "unifaun-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Unifaun AB",
+    "address": "Tegnérgatan 34\n113 59 Stockholm\nSweden",
+    "phone": "+46 8 729 88 50",
+    "email": "dpo@unifaun.com",
+    "web": "https://www.unifaun.com",
+    "sources": [
+        "https://www.unifaun.com/integrity_policy/",
+        "https://www.unifaun.com/about-us/contact/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

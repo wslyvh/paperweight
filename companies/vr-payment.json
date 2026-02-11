@@ -1,0 +1,22 @@
+{
+    "slug": "vr-payment",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "VR Payment GmbH",
+    "address": "Platz der Republik\n60325 Frankfurt am Main\nDeutschland",
+    "fax": "+49 721 12096692",
+    "email": "datenschutz@vr-payment.de",
+    "web": "https://www.vr-payment.de/",
+    "sources": [
+        "https://www.vr-payment.de/datenschutz-haftung",
+        "https://www.vr-payment.de/impressum",
+        "https://github.com/datenanfragen/data/pull/3016"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "phone": "+49 69 500610"
+}

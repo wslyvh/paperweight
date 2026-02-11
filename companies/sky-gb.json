@@ -1,0 +1,26 @@
+{
+    "slug": "sky-gb",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "telecommunication",
+        "entertainment"
+    ],
+    "name": "Sky UK Limited",
+    "runs": [
+        "Sky Subscribers Services Limited",
+        "Sky In-Home Service Limited",
+        "Sky Retail Stores Limited",
+        "NOW"
+    ],
+    "address": "PO Box 43\nLivingston\nEH54 7DD\nUnited Kingdom",
+    "email": "dp.department@sky.uk",
+    "web": "https://www.sky.com",
+    "sources": [
+        "https://www.sky.com/help/articles/privacy-hub-privacy",
+        "https://github.com/datenanfragen/data/pull/2259"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

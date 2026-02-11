@@ -1,0 +1,27 @@
+{
+    "slug": "firmenhai",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "ads",
+        "addresses"
+    ],
+    "name": "Talenthai e.U.",
+    "runs": [
+        "firmenhai.at",
+        "talenthai.at"
+    ],
+    "address": "Softwarepark 21 / 1 / 2.1\nA – 4232 Hagenberg im Mühlkreis\nÖsterreich",
+    "phone": "+43 720 518180",
+    "email": "office@firmenhai.at",
+    "web": "https://firmenhai.at",
+    "sources": [
+        "https://firmenhai.at/datenschutzerklaerung",
+        "https://github.com/datenanfragen/data/pull/985",
+        "https://firmenhai.at/impressum/"
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

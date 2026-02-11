@@ -1,0 +1,19 @@
+{
+    "slug": "indomio",
+    "relevant-countries": [
+        "de",
+        "hr"
+    ],
+    "name": "INDOMIO d.o.o.",
+    "runs": [
+        "Crozilla"
+    ],
+    "address": "Ulica grada Vukovara 284\n10 000 Zagreb\nCroatia",
+    "phone": "+385 1 7888 352",
+    "email": "info@crozilla.com",
+    "web": "https://www.crozilla.com",
+    "sources": [
+        "https://www.crozilla.com/de/seite/datenschutzBestimmungen"
+    ],
+    "quality": "verified"
+}

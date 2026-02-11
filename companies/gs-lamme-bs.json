@@ -1,0 +1,22 @@
+{
+    "slug": "gs-lamme-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Grundschule Lamme Braunschweig",
+    "address": "Lammer Heide 9\n38116 Braunschweig\nDeutschland",
+    "phone": "+49 531 5160759",
+    "fax": "+49 531 5168665",
+    "email": "gs.lamme@braunschweig.de",
+    "web": "https://www.gs-lamme.de/",
+    "sources": [
+        "https://www.braunschweig.de/leben/schule_bildung/schulportal/schulen/schulen/gs-lamme.html"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

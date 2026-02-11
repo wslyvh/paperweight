@@ -1,0 +1,33 @@
+{
+    "slug": "digitalcourage",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "nonprofit"
+    ],
+    "name": "Digitalcourage e.V.",
+    "runs": [
+        "bigbrotherawards.de",
+        "kidsdigitalgenial.de",
+        "privacy-captcha.net",
+        "frankgehtran.de",
+        "socialswarm.net",
+        "lesen-gegen-ueberwachung.de",
+        "neuzustellen.de"
+    ],
+    "address": "Marktstraße 18\n33602 Bielefeld\nDeutschland",
+    "phone": "+49 521 16391639",
+    "fax": "+49 521 61172",
+    "email": "datenschutz@digitalcourage.de",
+    "pgp-fingerprint": "0601 FA74 1F58 FB90 F4BA  8CFB 97B4 BBE4 721C 11E1",
+    "pgp-url": "https://digitalcourage.de/sites/default/files/2021-12/datenschutz@digitalcourage.de%200x97B4BBE4721C11E1%20pub.asc",
+    "web": "https://digitalcourage.de/",
+    "sources": [
+        "https://digitalcourage.de/datenschutz-bei-digitalcourage",
+        "https://digitalcourage.de/kontakt",
+        "https://github.com/datenanfragen/data/pull/2601"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

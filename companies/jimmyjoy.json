@@ -1,0 +1,22 @@
+{
+    "slug": "jimmyjoy",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "runs": [
+        "Jimmy Joy"
+    ],
+    "address": "Archangelkade 17D\n1013BE Amsterdam\nThe Netherlands",
+    "email": "love@jimmyjoy.com",
+    "web": "https://jimmyjoy.com/",
+    "sources": [
+        "https://jimmyjoy.com/de/pages/privacy-policy",
+        "https://jimmyjoy.com/pages/contact",
+        "https://github.com/datenanfragen/data/pull/2355"
+    ],
+    "quality": "verified",
+    "name": "itizi B.V."
+}

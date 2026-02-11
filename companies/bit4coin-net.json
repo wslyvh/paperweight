@@ -1,0 +1,37 @@
+{
+    "slug": "bit4coin-net",
+    "relevant-countries": [
+        "gb",
+        "nl",
+        "de",
+        "es",
+        "fr",
+        "it"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "bit4coin BV",
+    "address": "Johan Huizingalaan 763a\n1066 VH Amsterdam\nThe Netherlands",
+    "email": "support@bit4coin.net",
+    "web": "https://bit4coin.net",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/397",
+        "https://bit4coin.net/de/privacy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,31 @@
+{
+    "slug": "dpunkt-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "dpunkt.verlag GmbH",
+    "address": "Wieblinger Weg 17\n69123 Heidelberg\nDeutschland",
+    "phone": "+49 6221 148323",
+    "fax": "+49 6221 148399",
+    "email": "datenschutz@dpunkt.de",
+    "web": "https://dpunkt.de",
+    "sources": [
+        "https://dpunkt.de/datenschutzerklaerung",
+        "https://github.com/datenanfragen/data/pull/1269",
+        "https://github.com/datenanfragen/data/pull/1413"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

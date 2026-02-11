@@ -1,0 +1,21 @@
+{
+    "slug": "sparkasse-karlsruhe",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Sparkasse Karlsruhe",
+    "address": "Kaiserstr. 223\n76133 Karlsruhe\nDeutschland",
+    "phone": "+49 721 1460",
+    "fax": "+49 721 1461255",
+    "email": "datenschutzbeauftragter@spk-ka.de",
+    "web": "https://www.sparkasse-karlsruhe.de/",
+    "sources": [
+        "https://www.sparkasse-karlsruhe.de/de/home/toolbar/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/2010"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

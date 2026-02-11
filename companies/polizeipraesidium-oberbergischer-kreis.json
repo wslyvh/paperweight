@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-oberbergischer-kreis",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Kreispolizeibehörde Oberbergischer Kreis",
+    "address": "Hubert-Sülzer-Straße 2\n51643 Gummersbach\nDeutschland",
+    "phone": "+49 2261 81990",
+    "fax": "+49 2261 8199209",
+    "email": "datenschutz.oberbergischer-kreis@polizei.nrw.de",
+    "web": "https://oberbergischer-kreis.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

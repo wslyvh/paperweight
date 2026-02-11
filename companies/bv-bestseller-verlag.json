@@ -1,0 +1,25 @@
+{
+    "slug": "bv-bestseller-verlag",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "BV Bestseller Verlag GmbH",
+    "runs": [
+        "dirkkreuter.com"
+    ],
+    "address": "c/o nextindex GmbH & Co. KG\nDSB Ruhr\nGrabenstr. 12\n44787 Bochum\nDeutschland",
+    "phone": "+49 234 96 29 050",
+    "fax": "+49 234 96 29 0519",
+    "email": "grihn@dsb.ruhr",
+    "web": "https://bestseller-verlag.com/",
+    "sources": [
+        "https://dirkkreuter.com/impressum/",
+        "https://github.com/datenanfragen/data/issues/608",
+        "https://bestseller-verlag.com/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

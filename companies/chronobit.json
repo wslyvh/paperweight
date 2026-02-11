@@ -1,0 +1,19 @@
+{
+    "slug": "chronobit",
+    "relevant-countries": [
+        "de",
+        "at"
+    ],
+    "name": "ChronoBit by MainLevel e.U.",
+    "address": "Waldertgasse 11\n8020 Graz\nÖsterreich",
+    "phone": "+43 720 900044",
+    "fax": "+43 1 34242990465",
+    "email": "info@chronobit.net",
+    "web": "https://chronobit.net/",
+    "sources": [
+        "https://chronobit.net/privacypolicy",
+        "https://chronobit.net/legalnotice",
+        "https://github.com/datenanfragen/data/issues/142"
+    ],
+    "quality": "verified"
+}

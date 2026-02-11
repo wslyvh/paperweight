@@ -1,0 +1,39 @@
+{
+    "slug": "bancopichincha-es",
+    "relevant-countries": [
+        "es"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Banco Pichincha España S.A",
+    "address": "Calle Lagasca 4\n28001, Madrid\nEspaña",
+    "phone": "+34 914 36 25 94",
+    "email": "dpo@bancopichincha.es",
+    "sources": [
+        "https://www.bancopichincha.es/politica-privacidad/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Nombre",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Dirección",
+            "type": "address",
+            "optional": false
+        },
+        {
+            "desc": "NIF/DNI",
+            "type": "input",
+            "optional": false
+        }
+    ],
+    "comments": [
+        "No olvides adjuntar copia del NIF/DNI a tu solicitud."
+    ],
+    "needs-id-document": true,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "sparkasse-hannover",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Sparkasse Hannover",
+    "address": "Raschplatz 4\n30161 Hannover\nDeutschland",
+    "email": "datenschutzbeauftragter@sparkasse-hannover.de",
+    "web": "https://www.sparkasse-hannover.de",
+    "sources": [
+        "https://www.sparkasse-hannover.de/de/home/toolbar/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/1271"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

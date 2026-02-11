@@ -1,0 +1,18 @@
+{
+    "slug": "kliemannsland",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Kliemannsland GmbH",
+    "address": "Eichenstr. 14\n27404 Rüspel\nDeutschland",
+    "email": "info@kliemannsland.de",
+    "web": "https://www.kliemannsland.de/",
+    "sources": [
+        "https://www.kliemannsland.de/policies/legal-notice",
+        "https://github.com/datenanfragen/data/pull/1729"
+    ],
+    "quality": "verified"
+}

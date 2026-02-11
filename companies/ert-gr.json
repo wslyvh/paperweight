@@ -1,0 +1,32 @@
+{
+    "slug": "ert-gr",
+    "relevant-countries": [
+        "gr"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Ελληνική Ραδιοφωνία Τηλεόραση Α.Ε.",
+    "runs": [
+        "ERTFLIX",
+        "EΡT 1",
+        "EΡT 2",
+        "EΡT 3",
+        "EΡT World",
+        "Πρώτο Πρόγραμμα",
+        "Δεύτερο Πρόγραμμα",
+        "Τρίτο Πρόγραμμα",
+        "ΕΡΑ Σπορ",
+        "KOSMOS 93.6"
+    ],
+    "address": "Μεσογείων 432\nΑγία Παρασκευή\nGreece",
+    "email": "dpo@ert.gr",
+    "web": "https://www.ert.gr/",
+    "sources": [
+        "https://www.ert.gr/episimansi-politikis-prostasias-dedomenon/",
+        "https://github.com/datenanfragen/data/pull/1077"
+    ],
+    "request-language": "el",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

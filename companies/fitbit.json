@@ -1,0 +1,22 @@
+{
+    "slug": "fitbit",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "Fitbit International Limited",
+    "address": "76 Lower Baggot Street\nDublin 2\nIreland",
+    "email": "privacy@fitbit.com",
+    "web": "https://www.fitbit.com",
+    "sources": [
+        "https://www.fitbit.com/global/us/legal/privacy-policy#contact-us",
+        "https://github.com/datenanfragen/data/pull/1197"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Alternative email: data-protection-office@fitbit.com"
+    ],
+    "quality": "verified"
+}

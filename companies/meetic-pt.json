@@ -1,0 +1,20 @@
+{
+    "slug": "meetic-pt",
+    "relevant-countries": [
+        "pt"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Meetic SAS",
+    "runs": [
+        "Meetic.pt"
+    ],
+    "address": "53 rue de Châteaudun\nParis 9\nFrance",
+    "webform": "https://www.meetic.pt/faq/#privacyRequest",
+    "web": "https://www.meetic.pt",
+    "sources": [
+        "https://www.meetic.pt/pages/misc/privacy"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,31 @@
+{
+    "slug": "datenanfragen",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "nonprofit"
+    ],
+    "name": "Datenanfragen.de e. V.",
+    "runs": [
+        "Datenanfragen.de",
+        "datarequests.org",
+        "pedidodedados.org",
+        "demandetesdonnees.fr",
+        "solicituddedatos.es"
+    ],
+    "address": "Schreinerweg 6\n38126 Braunschweig\nDeutschland",
+    "phone": "+49 531 20929935",
+    "fax": "+49 531 20929936",
+    "email": "datenschutz@datenanfragen.de",
+    "pgp-fingerprint": "CC13 973A F8FD 11D1 4D94  98A8 0269 92F0 CF2C BB2E",
+    "pgp-url": "https://www.datenanfragen.de/pgp/CF2CBB2E.asc",
+    "web": "https://verein.datenanfragen.de",
+    "sources": [
+        "https://verein.datenanfragen.de/datenschutz",
+        "https://github.com/datenanfragen/data/issues/595",
+        "https://github.com/datenanfragen/data/pull/968"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

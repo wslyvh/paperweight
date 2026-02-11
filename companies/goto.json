@@ -1,0 +1,35 @@
+{
+    "slug": "goto",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "GoTo Technologies Ireland Unlimited Company",
+    "runs": [
+        "GoTo Connect",
+        "GoTo Contact Center",
+        "GoTo Meeting",
+        "GoTo Webinar",
+        "GoTo Room",
+        "GoTo Training",
+        "GoToMyPC",
+        "LogMeIn Rescue",
+        "LogMeIn Resolve",
+        "LogMeIn Central",
+        "LogMeIn Pro",
+        "LogMeIn Miradore"
+    ],
+    "address": "77 Sir John Rogerson's Quay, Block C, Suite 207\nGrand Canal Docklands\nDublin 2\nD02 VK60\nIreland",
+    "email": "privacy@goto.com",
+    "webform": "https://privacyportal.onetrust.com/webform/e7308dd3-b090-4f6a-822b-df7ed5e567e4/191e6154-2276-4186-a982-edc617305fe4",
+    "web": "https://www.goto.com",
+    "sources": [
+        "https://www.goto.com/company/legal/privacy",
+        "https://www.goto.com/company/legal/impressum",
+        "https://github.com/datenanfragen/data/pull/3030"
+    ],
+    "suggested-transport-medium": "webform",
+    "quality": "verified"
+}

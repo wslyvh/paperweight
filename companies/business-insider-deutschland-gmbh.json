@@ -1,0 +1,16 @@
+{
+    "slug": "business-insider-deutschland-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Business Insider Deutschland GmbH",
+    "address": "Axel-Springer-Straße 65\n10888 Berlin\nDeutschland",
+    "phone": "+49 030 2591 79732",
+    "email": "datenschutz_bi@businessinsider.de",
+    "web": "https://www.businessinsider.de/",
+    "sources": [
+        "https://www.businessinsider.de/informationen/datenschutz/"
+    ],
+    "request-language": "de",
+    "quality": "verified"
+}

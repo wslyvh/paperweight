@@ -1,0 +1,30 @@
+{
+    "slug": "nuernberger-versicherung",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "NÜRNBERGER Versicherung",
+    "runs": [
+        "NÜRNBERGER Lebensversicherung AG",
+        "NÜRNBERGER Allgemeine Versicherungs-AG",
+        "NÜRNBERGER Krankenversicherung AG",
+        "NÜRNBERGER Beamten Allgemeine Versicherung AG",
+        "NÜRNBERGER Pensionsfonds AG",
+        "NÜRNBERGER Pensionskasse AG",
+        "GARANTA Versicherungs-AG",
+        "Neue Rechtsschutz-Versicherungsgesellschaft AG"
+    ],
+    "address": "Ostendstraße 100\n90334 Nürnberg\nDeutschland",
+    "phone": "+49 911 5315",
+    "fax": "+49 911 531 3206",
+    "email": "datenschutzbeauftragter@nuernberger.de",
+    "web": "https://www.nuernberger.de",
+    "sources": [
+        "https://www.nuernberger.de/medien/4allportal/is023_001_p.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

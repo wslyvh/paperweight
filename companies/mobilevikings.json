@@ -1,0 +1,23 @@
+{
+    "slug": "mobilevikings",
+    "relevant-countries": [
+        "be"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Mobile Vikings NV",
+    "runs": [
+        "JIM Mobile"
+    ],
+    "address": "Kempische Steenweg 309/1\n3500 Hasselt\nBelgium",
+    "email": "privacy@mobilevikings.be",
+    "web": "https://mobilevikings.be",
+    "sources": [
+        "https://mobilevikings.be/en/terms-of-use/overview/",
+        "https://fakta.mobilevikings.be/legal-documents/mv/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/1513"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

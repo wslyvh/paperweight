@@ -1,0 +1,16 @@
+{
+    "slug": "wws-security",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Westfälischer Wachschutz GmbH & Co. KG",
+    "address": "Herzogswall 30\n45657 Recklinghausen\nDeutschland",
+    "email": "c.bendig@wws-security.de",
+    "web": "https://www.wws-security.de",
+    "sources": [
+        "https://www.wws-security.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2895"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

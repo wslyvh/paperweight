@@ -1,0 +1,22 @@
+{
+    "slug": "hs-sophienstrasse-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Hauptschule Sophienstraße Braunschweig",
+    "address": "Sophienstraße 17\n38118 Braunschweig\nDeutschland",
+    "phone": "+49 531 892392",
+    "fax": "+49 531 2809676",
+    "email": "hs.sophienstrasse@braunschweig.de",
+    "web": "https://hssophienstrasse.de",
+    "sources": [
+        "https://hssophienstrasse.de/datenschutz-hauptschule-sophienstrasse/"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

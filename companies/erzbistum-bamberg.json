@@ -1,0 +1,27 @@
+{
+    "slug": "erzbistum-bamberg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Erzbistum Bamberg",
+    "address": "Stabsstelle Weltliches Recht des Erzbistums Bamberg\nDomplatz 4\n96049 Bamberg\nDeutschland",
+    "phone": "+49 951 5021520",
+    "fax": "+49 951 5021529",
+    "email": "JJoachimski@eomuc.de",
+    "web": "https://erzbistum-bamberg.de",
+    "sources": [
+        "https://erzbistum.erzbistum-bamberg.de/kontakt/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2252"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-katholische-kirche",
+    "custom-erasure-template": "erasure-katholische-kirche",
+    "custom-rectification-template": "rectification-katholische-kirche",
+    "custom-objection-template": "objection-katholische-kirche",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "facet-group": "church"
+}

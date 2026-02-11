@@ -1,0 +1,22 @@
+{
+    "slug": "soundhound",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "SoundHound Inc.",
+    "runs": [
+        "Powered by Houndify"
+    ],
+    "address": "5400 Betsy Ross Drive\nSanta Clara\nCA 95054\nUnited States of America",
+    "email": "privacy@soundhound.com",
+    "web": "https://www.soundhound.com",
+    "sources": [
+        "https://www.soundhound.com/en/privacy",
+        "https://github.com/datenanfragen/data/issues/641"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

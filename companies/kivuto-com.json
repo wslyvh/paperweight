@@ -1,0 +1,29 @@
+{
+    "slug": "kivuto-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Kivuto Solutions Inc.",
+    "address": "126 York St. Suite 200\nOttawa\nON K1N 5T5\nCanada",
+    "phone": "+1 613 526 3005",
+    "fax": "+1 613 526 3891",
+    "email": "privacy@kivuto.com",
+    "web": "https://kivuto.com",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/408",
+        "https://kivuto.com/privacy-policy-index/privacy-policy-de-de/",
+        "https://kivuto.com/contact/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

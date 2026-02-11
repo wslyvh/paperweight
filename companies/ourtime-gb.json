@@ -1,0 +1,17 @@
+{
+    "slug": "ourtime-gb",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Ourtime.co.uk",
+    "address": "c/o MTCH Technology Services Limited\n10 Earlsfort Terrace\nD02 T380\nIreland",
+    "webform": "https://www.ourtime.co.uk/faq/#privacyRequest",
+    "web": "https://www.ourtime.co.uk",
+    "sources": [
+        "https://www.ourtime.co.uk/pages/misc/privacy"
+    ],
+    "quality": "verified"
+}

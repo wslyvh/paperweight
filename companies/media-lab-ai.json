@@ -1,0 +1,21 @@
+{
+    "slug": "media-lab-ai",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "MediaLab.Ai",
+    "runs": [
+        "Kik Messenger"
+    ],
+    "address": "1222 6th St\nSanta Monica, CA 90401\nUnited States of America",
+    "webform": "https://kikhelpcenter.zendesk.com/hc/en-us/requests/new",
+    "web": "https://www.kik.com/",
+    "sources": [
+        "https://kik.com/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/2595"
+    ],
+    "quality": "verified"
+}

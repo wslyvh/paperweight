@@ -1,0 +1,16 @@
+{
+    "slug": "chasedebt-co",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Chase Debt Ltd",
+    "address": "1st Floor\n54 Watling Street\nRadlett\nWD7 7NN\nUnited Kingdom",
+    "sources": [
+        "https://find-and-update.company-information.service.gov.uk/company/07414263",
+        "https://github.com/datenanfragen/data/pull/821"
+    ],
+    "quality": "verified"
+}

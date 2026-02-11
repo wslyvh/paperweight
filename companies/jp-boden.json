@@ -1,0 +1,20 @@
+{
+    "slug": "jp-boden",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "J. P. Boden (Netherlands) B.V.",
+    "address": "Konnetlaantje 4\n1435HW Rijsenhout\nThe Netherlands",
+    "phone": "+44 330 333 0000",
+    "email": "DPO@boden.com",
+    "web": "https://boden.com",
+    "sources": [
+        "https://www.bodendirect.de/de-de/impressum/datenschutzerklarung#Footer",
+        "https://github.com/datenanfragen/data/pull/1021"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

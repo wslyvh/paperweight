@@ -1,0 +1,59 @@
+{
+    "slug": "informa-his",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "credit agency"
+    ],
+    "name": "Besurance HIS GmbH",
+    "runs": [
+        "Hinweis- und Informationssystem der deutschen Versicherungswirtschaft (HIS)"
+    ],
+    "address": "Daimlerring 4\n65205 Wiesbaden\nDeutschland",
+    "phone": "+49 1515 0691844",
+    "email": "datenschutz@besurance-his.de",
+    "webform": "https://besurance-his.de/selbstauskunft",
+    "web": "https://www.informa-his.de",
+    "sources": [
+        "https://besurance-his.de/datenschutz",
+        "https://besurance-his.de/selbstauskunft",
+        "https://besurance-his.de/kontakt"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        },
+        {
+            "desc": "Geburtsdatum",
+            "type": "birthdate"
+        },
+        {
+            "desc": "Vorherige Adresse(n)",
+            "type": "address",
+            "optional": true
+        },
+        {
+            "desc": "Fahrzeugidentifikationsnummer (FIN)",
+            "type": "input",
+            "optional": true
+        },
+        {
+            "desc": "Kfz-Kennzeichen",
+            "type": "input",
+            "optional": true
+        }
+    ],
+    "request-language": "de",
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Bitten um Angabe der vorherigen Adressen für die letzten fünf Jahre, um vollständigere Auskunft erteilen zu können."
+    ],
+    "quality": "verified"
+}

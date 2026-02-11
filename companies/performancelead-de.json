@@ -1,0 +1,19 @@
+{
+    "slug": "performancelead-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Performance Lead GmbH",
+    "address": "Hauptstrasse 223\n65760 Eschborn\nDeutschland",
+    "email": "datenschutz@performancelead.de",
+    "web": "https://www.performancelead.de/",
+    "sources": [
+        "https://www.performancelead.de/datenschutz.html"
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

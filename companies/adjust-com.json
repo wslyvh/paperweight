@@ -1,0 +1,20 @@
+{
+    "slug": "adjust-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Adjust GmbH",
+    "address": "Saarbrücker Str. 37a\n10405 Berlin\nGermany",
+    "phone": "+49 173 801 480 5",
+    "email": "privacy@adjust.com",
+    "web": "https://www.adjust.com/",
+    "sources": [
+        "https://www.adjust.com/terms/privacy-policy/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

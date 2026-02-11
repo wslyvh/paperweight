@@ -1,0 +1,36 @@
+{
+    "slug": "verizon-media",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads",
+        "entertainment",
+        "social media",
+        "telecommunication"
+    ],
+    "name": "Yahoo EMEA Limited",
+    "runs": [
+        "Flurry Mobile App Analytics (www.flurry.com)",
+        "Yahoo (www.yahoo.com)",
+        "Yahoo Mail (mail.yahoo.com)",
+        "Aol. (www.aol.com)",
+        "TechCrunch (techcrunch.com)",
+        "Engadget (www.engadget.com)",
+        "Autoblog (www.autoblog.com)",
+        "In The Know (www.intheknow.com)",
+        "Rivals (www.rivals.com)",
+        "Built by Girls (www.builtbygirls.com)"
+    ],
+    "address": "5-7 Point Square\nNorth Wall Quay\nDublin 1\nIreland",
+    "phone": "+353 1 866 3100",
+    "email": "dpo-contact@yahooinc.com",
+    "webform": "https://legal.yahoo.com/ie/en/yahoo/privacy/yourprivacycontrols/index.html",
+    "web": "https://yahoo.com/",
+    "sources": [
+        "https://legal.yahoo.com/ie/en/yahoo/privacy/index.html",
+        "https://www.yahooinc.com/our-brands/",
+        "https://github.com/datenanfragen/data/pull/2162"
+    ],
+    "quality": "verified"
+}

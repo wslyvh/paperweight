@@ -1,0 +1,32 @@
+{
+    "slug": "mygimi",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "MyGimi GmbH",
+    "address": "Rödingsmarkt 9\n20459 Hamburg\nDeutschland",
+    "email": "privacy@mygimi.com",
+    "web": "https://www.mygimi.com",
+    "sources": [
+        "https://www.mygimi.com/cgi-bin/sc.pl?todo=cp_mygimi#imprint",
+        "https://www.mygimi.com/cgi-bin/sc.pl?todo=cp_mygimi#data_protection",
+        "https://github.com/datenanfragen/data/issues/55"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Antwort kommt von Talk2 GmbH, Rheinstraße 22, 64283 Darmstadt"
+    ],
+    "quality": "verified"
+}

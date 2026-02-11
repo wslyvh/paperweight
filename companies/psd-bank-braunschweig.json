@@ -1,0 +1,21 @@
+{
+    "slug": "psd-bank-braunschweig",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance",
+        "insurance"
+    ],
+    "name": "PSD Bank Braunschweig eG",
+    "address": "Altstadtmarkt 11\n38100 Braunschweig\nDeutschland",
+    "phone": "+49 531 4712345",
+    "fax": "+49 531 4712349",
+    "email": "datenschutz@psd-braunschweig.de",
+    "web": "https://www.psd-braunschweig.de",
+    "sources": [
+        "https://www.psd-braunschweig.de/datenschutz.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

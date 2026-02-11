@@ -1,0 +1,23 @@
+{
+    "slug": "captify",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Captify Technologies Ltd.",
+    "runs": [
+        "Captify Technologies, Inc."
+    ],
+    "address": "5 Langley Street\nLondon\nWC2H 9JA\nUnited Kingdom",
+    "email": "privacy@captify.co.uk",
+    "web": "https://www.captify.co.uk/",
+    "sources": [
+        "https://www.captify.co.uk/privacy-policy-opt/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

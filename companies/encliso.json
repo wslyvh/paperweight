@@ -1,0 +1,34 @@
+{
+    "slug": "encliso",
+    "relevant-countries": [
+        "de",
+        "nl",
+        "at",
+        "sk",
+        "bg"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "encliso GmbH",
+    "address": "Schillerstraße 3\n33415 Verl\nDeutschland",
+    "phone": "+49 5246 9359199",
+    "email": "info@encliso.de",
+    "web": "http://www.encliso.de",
+    "sources": [
+        "https://www.encliso.de/privacy-policy",
+        "https://www.encliso.de/legal-disclosure",
+        "https://github.com/datenanfragen/data/pull/1162"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "quality": "verified"
+}

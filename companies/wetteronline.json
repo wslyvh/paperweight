@@ -1,0 +1,22 @@
+{
+    "slug": "wetteronline",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "WetterOnline Meteorologische Dienstleistungen GmbH",
+    "runs": [
+        "RegenRadar mit Unwetterwarnung"
+    ],
+    "address": "Karl-Legien-Straße 194a\n53117 Bonn\nGermany",
+    "phone": "+49 228 55937990",
+    "fax": "+49 228 5593780",
+    "email": "datenschutz@wetteronline.de",
+    "web": "https://www.wetteronline.de",
+    "sources": [
+        "https://www.wetteronline.de/datenschutz",
+        "https://play.google.com/store/apps/details?id=de.wetteronline.regenradar",
+        "https://github.com/datenanfragen/data/pull/3133"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

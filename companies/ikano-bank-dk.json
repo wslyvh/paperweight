@@ -1,0 +1,32 @@
+{
+    "slug": "ikano-bank-dk",
+    "relevant-countries": [
+        "dk"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Ikano Bank DK",
+    "address": "Stationsparken 24\n2600 Glostrup\nDenmark",
+    "phone": "+45 43 55 66 00",
+    "email": "persondatabeskyttelse@ikano.dk",
+    "web": "https://ikanobank.dk/",
+    "sources": [
+        "https://ikanobank.dk/persondatapolitik",
+        "https://github.com/datenanfragen/data/pull/1056"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

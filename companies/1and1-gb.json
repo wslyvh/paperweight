@@ -1,0 +1,26 @@
+{
+    "slug": "1and1-gb",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "telecommunication",
+        "commerce"
+    ],
+    "name": "IONOS Cloud Ltd.",
+    "runs": [
+        "1&1 Internet Ltd. (formerly)"
+    ],
+    "address": "No.2 Cathedral Walk\nThe Forum\nGloucester\nGL1 1AU\nUnited Kingdom",
+    "phone": "+44 800 021 1693",
+    "email": "privacypolicy@ionos.co.uk",
+    "web": "https://www.ionos.co.uk/",
+    "sources": [
+        "https://www.ionos.co.uk/terms-gtc/privacy-policy/",
+        "https://www.ionos.co.uk/contact",
+        "https://find-and-update.company-information.service.gov.uk/company/03953678"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

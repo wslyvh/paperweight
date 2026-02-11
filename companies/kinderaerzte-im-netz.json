@@ -1,0 +1,34 @@
+{
+    "slug": "kinderaerzte-im-netz",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "Dr. med. univ. Michael Torbahn Facharzt für Kinder- und Jugendmedizin",
+    "address": "Merianstraße 45\n90409 Nürnberg\nDeutschland",
+    "phone": "+49 911 351166",
+    "fax": "+49 911 567909818",
+    "email": "kinder-jugendpraxis@gmx.de",
+    "web": "https://www.kinderaerzte-im-netz.de/aerzte/n%C3%BCrnberg/torbahn/startseite.html",
+    "sources": [
+        "https://www.kinderaerzte-im-netz.de/aerzte/n%C3%BCrnberg/torbahn/startseite.html",
+        "https://github.com/datenanfragen/data/pull/2446"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        },
+        {
+            "desc": "Geburtsdatum",
+            "type": "birthdate"
+        }
+    ],
+    "quality": "verified"
+}

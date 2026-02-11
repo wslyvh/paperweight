@@ -1,0 +1,26 @@
+{
+    "slug": "octo-telematics",
+    "relevant-countries": [
+        "it",
+        "es",
+        "de",
+        "gb",
+        "pl"
+    ],
+    "categories": [
+        "telecommunication",
+        "commerce"
+    ],
+    "name": "Octo Group s.p.a.",
+    "address": "Via Vincenzo Lamaro 51\n00173 Rome\nItaly",
+    "phone": "+39 06 726 5341",
+    "fax": "+39 06 729 0145",
+    "email": "dpo@octotelematics.com",
+    "web": "https://www.octotelematics.com/",
+    "sources": [
+        "https://www.octotelematics.com/",
+        "https://www.octotelematics.com/privacy-and-cookie-policy/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

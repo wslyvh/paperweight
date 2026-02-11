@@ -1,0 +1,20 @@
+{
+    "slug": "seghorn-inkasso",
+    "categories": [
+        "collection agency"
+    ],
+    "name": "Seghorn AG",
+    "address": "Legienstraße 1\n28188 Bremen\nDeutschland",
+    "phone": "+49 421 4391 09",
+    "fax": "+49 421 4391 216",
+    "email": "info@seghorn.de",
+    "web": "http://www.seghorn.de/",
+    "sources": [
+        "http://www.seghorn.de/footer-other-sites/datenschutz.html",
+        "http://www.seghorn.de/footer-other-sites/impressum.html"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "quality": "verified"
+}

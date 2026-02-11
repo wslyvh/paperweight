@@ -1,0 +1,21 @@
+{
+    "slug": "degussa-goldhandel",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Degussa Sonne/Mond Goldhandel GmbH",
+    "address": "c/o @-yet GmbH\nSchloss Eicherhof\n42799 Leichlingen\nDeutschland",
+    "phone": "+49 2175 16550",
+    "fax": "+49 69 860068 222",
+    "email": "datenschutz@degussa-goldhandel.de",
+    "web": "https://shop.degussa-goldhandel.de/",
+    "sources": [
+        "https://www.degussa-goldhandel.de/infos/datenschutz/",
+        "https://www.degussa-goldhandel.de/infos/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

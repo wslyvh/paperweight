@@ -1,0 +1,39 @@
+{
+    "slug": "bigpoint",
+    "relevant-countries": [
+        "bg",
+        "cz",
+        "dk",
+        "de",
+        "gr",
+        "gb",
+        "es",
+        "fi",
+        "fr",
+        "hu",
+        "it",
+        "nl",
+        "no",
+        "pl",
+        "pt",
+        "ro",
+        "sk",
+        "se"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Bigpoint GmbH",
+    "address": "Sachsenstraße 20\n20097 Hamburg\nGermany",
+    "phone": "+49 40 881413 0",
+    "fax": "+49 40 881413 906",
+    "email": "privacy@bigpoint.net",
+    "web": "https://www.bigpoint.net/",
+    "sources": [
+        "https://legal.bigpoint.com/DE/privacy-policy/de-DE",
+        "https://www.bigpoint.net/imprint/"
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

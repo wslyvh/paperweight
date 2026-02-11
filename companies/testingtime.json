@@ -1,0 +1,19 @@
+{
+    "slug": "testingtime",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "TestingTime Deutschland GmbH",
+    "runs": [
+        "TestingTime AG"
+    ],
+    "address": "Widdersdorfer Str. 246\n50825 Köln\nDeutschland",
+    "email": "dpo@norstatgroup.com",
+    "web": "https://www.testingtime.com",
+    "sources": [
+        "https://www.testingtime.com/en/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/1775"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "hallo-vegan-de",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "hallo-vegan.de",
+    "address": "Limmerstr. 80\n30451 Hannover\nDeutschland",
+    "phone": "+49 511 67919427",
+    "fax": "+49 511 21905962",
+    "email": "datenschutz@hallo-vegan.de",
+    "web": "https://www.hallo-vegan.de",
+    "sources": [
+        "https://www.hallo-vegan.de/Datenschutzerklaerung",
+        "https://www.hallo-vegan.de/Liefer-und-Versandkosten"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

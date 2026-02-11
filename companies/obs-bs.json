@@ -1,0 +1,23 @@
+{
+    "slug": "obs-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Oswald-Berkhan-Schule Braunschweig",
+    "address": "Oswald-Berkhan-Straße 4\n38118 Braunschweig\nDeutschland",
+    "phone": "+49 531 58 11 6 0",
+    "fax": "+49 531 58 11 6 58",
+    "email": "datenschutz@obs-bs.de",
+    "web": "https://bs-obs.de/",
+    "sources": [
+        "https://bs-obs.de/datenschutzerklaerung/"
+    ],
+    "suggested-transport-medium": "email",
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

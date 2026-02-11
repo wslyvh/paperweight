@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-steinfurt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Kreispolizeibehörde Steinfurt",
+    "address": "Liedekerker Straße 70\n48565 Steinfurt\nDeutschland",
+    "phone": "+49 2551 150",
+    "fax": "+49 2551 154019",
+    "email": "datenschutz.steinfurt@polizei.nrw.de",
+    "web": "https://steinfurt.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,18 @@
+{
+    "slug": "terhaag-partner-ra",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Terhaag und Partner Rechtsanwälte",
+    "address": "Graf-Adolf-Straße 70\n40210 Düsseldorf\nDeutschland",
+    "phone": "+49 211 16888600",
+    "fax": "+49 211 16888601",
+    "email": "anwalt@aufrecht.de",
+    "web": "https://www.aufrecht.de",
+    "sources": [
+        "https://www.aufrecht.de/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/1235",
+        "https://www.aufrecht.de/impressum.html"
+    ],
+    "quality": "verified"
+}

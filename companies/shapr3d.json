@@ -1,0 +1,18 @@
+{
+    "slug": "shapr3d",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Shapr3D Zrt.",
+    "runs": [
+        "Shapr3D"
+    ],
+    "address": "H-1051 Budapest\nBajcsy-Zsilinszky út 12.\nHungary",
+    "email": "userdata@shapr3d.com",
+    "web": "https://www.shapr3d.com/",
+    "sources": [
+        "https://www.shapr3d.com/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/1606"
+    ],
+    "quality": "verified"
+}

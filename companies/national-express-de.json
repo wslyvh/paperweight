@@ -1,0 +1,19 @@
+{
+    "slug": "national-express-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "National Express Rail GmbH",
+    "address": "c/o Althammer & Kill GmbH & Co. KG\nRoscherstr. 7\n30161 Hannover\nDeutschland",
+    "phone": "+49 511 33060390",
+    "email": "kontakt-dsb@althammer-kill.de",
+    "web": "https://nationalexpress.de",
+    "sources": [
+        "https://nationalexpress.de/de/datenschutz"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

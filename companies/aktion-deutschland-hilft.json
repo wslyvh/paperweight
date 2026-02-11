@@ -1,0 +1,20 @@
+{
+    "slug": "aktion-deutschland-hilft",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "nonprofit"
+    ],
+    "name": "Aktion Deutschland Hilft e. V.",
+    "address": "Willy-Brandt-Allee 10-12\n53113 Bonn\nDeutschland",
+    "phone": "+49 228 24292444",
+    "email": "datenschutz@aktion-deutschland-hilft.de",
+    "web": "https://www.aktion-deutschland-hilft.de/",
+    "sources": [
+        "https://www.aktion-deutschland-hilft.de/de/wir-ueber-uns/datenschutz-und-sicherheit/",
+        "https://github.com/datenanfragen/data/pull/2920"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

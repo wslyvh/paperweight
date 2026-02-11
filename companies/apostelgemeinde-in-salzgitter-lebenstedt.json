@@ -1,0 +1,22 @@
+{
+    "slug": "apostelgemeinde-in-salzgitter-lebenstedt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Apostelgemeinde in Salzgitter-Lebenstedt",
+    "address": "Neißestraße 33-35\n38226 Salzgitter\nDeutschland",
+    "phone": "+49 5341 61140",
+    "email": "apostelgemeinde.sz.buero@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=897"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

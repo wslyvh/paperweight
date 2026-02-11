@@ -1,0 +1,34 @@
+{
+    "slug": "readdle",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "Readdle",
+    "runs": [
+        "PDF Expert",
+        "Spark",
+        "Scanner Pro",
+        "Calendars 5",
+        "Printer Pro",
+        "PDF Converter",
+        "Documents",
+        "Fluix"
+    ],
+    "address": "Stresemannstrasse 123\n10963 Berlin\nDeutschland",
+    "email": "dpo@readdle.com",
+    "web": "https://readdle.com",
+    "sources": [
+        "https://readdle.com/privacy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

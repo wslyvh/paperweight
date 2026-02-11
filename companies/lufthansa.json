@@ -1,0 +1,25 @@
+{
+    "slug": "lufthansa",
+    "categories": [
+        "travel"
+    ],
+    "name": "Deutsche Lufthansa AG",
+    "runs": [
+        "Lufthansa iD",
+        "Lufthansa App",
+        "Miles & More Programm"
+    ],
+    "address": "FRA CJ/D\n60546 Frankfurt\nDeutschland",
+    "phone": "+49 69 86799799",
+    "email": "datenauskunft@dlh.de",
+    "web": "https://www.lufthansa.com",
+    "sources": [
+        "https://www.lufthansa.com/de/de/Informationen-zum-Datenschutz",
+        "https://www.lufthansa.com/de/de/support/contact"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

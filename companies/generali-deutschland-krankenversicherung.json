@@ -1,0 +1,19 @@
+{
+    "slug": "generali-deutschland-krankenversicherung",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Generali Deutschland Krankenversicherung AG",
+    "address": "Adenauering 7\n81737 München\nDeutschland",
+    "phone": "+49 89 51212138",
+    "email": "datenschutz-gesundheit@generali.com",
+    "web": "https://www.generali.de/ueber-uns/gesellschaften-marken/generali-deutschland-versicherungen/krankenversicherung-ag",
+    "sources": [
+        "https://www.generali.de/resource/blob/37544/c3287ecdafb7bae20e50b9f29055697b/TA%2040%20231107%20DSGVO%20GEDK_G.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "coeo-inkasso",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "collection agency"
+    ],
+    "name": "coeo Inkasso GmbH",
+    "address": "Kieler Straße 16\n41540 Dormagen\nDeutschland",
+    "phone": "+49 2133 2463 0",
+    "fax": "+49 2133 2463 18",
+    "email": "datenschutz@coeo-inkasso.de",
+    "web": "http://www.coeo-inkasso.de",
+    "sources": [
+        "https://www.coeo-inkasso.de/privacy",
+        "https://www.coeo-inkasso.de/legal-notice"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

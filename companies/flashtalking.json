@@ -1,0 +1,25 @@
+{
+    "slug": "flashtalking",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Simplicity Marketing Ltd.",
+    "runs": [
+        "Flashtalking"
+    ],
+    "address": "Suite 1\n3rd Floor\n11–12 St. James's Square\nLondon\nSW1Y 4LB\nUnited Kingdom",
+    "email": "privacy@flashtalking.com",
+    "web": "http://www.flashtalking.com/",
+    "sources": [
+        "http://www.flashtalking.com/privacypolicy/",
+        "http://www.flashtalking.com/modern-slavery-policy/",
+        "https://beta.companieshouse.gov.uk/company/04339257"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

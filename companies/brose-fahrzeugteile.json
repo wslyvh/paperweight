@@ -1,0 +1,16 @@
+{
+    "slug": "brose-fahrzeugteile",
+    "name": "Brose Fahrzeugteile SE & Co. KG",
+    "address": "Max-Brose-Straße 1\n96450 Coburg\nGermany",
+    "email": "datenschutz@brose.com",
+    "web": "https://www.brose.com",
+    "sources": [
+        "https://www.brose.com/de-de/datenschutzerklaerung.html",
+        "https://github.com/datenanfragen/data/pull/2339"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "relevant-countries": [
+        "all"
+    ]
+}

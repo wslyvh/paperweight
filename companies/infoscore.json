@@ -1,0 +1,47 @@
+{
+    "slug": "infoscore",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "credit agency"
+    ],
+    "name": "infoscore Consumer Data GmbH",
+    "runs": [
+        "Creditreform Boniversum GmbH (ehem.)"
+    ],
+    "address": "Rheinstraße 99\n76532 Baden-Baden\nDeutschland",
+    "email": "ICD-Datenschutz@experian.com",
+    "web": "https://www.experian.de/",
+    "sources": [
+        "https://www.experian.de/selbstauskunft",
+        "https://www.experian.de/icd-artikel-13",
+        "https://www.northdata.de/?id=4887812606001152",
+        "https://github.com/datenanfragen/data/issues/100",
+        "https://github.com/datenanfragen/data/issues/637",
+        "https://github.com/datenanfragen/data/pull/2201",
+        "https://github.com/datenanfragen/data/pull/3210"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        },
+        {
+            "desc": "Geburtsdatum",
+            "type": "birthdate"
+        },
+        {
+            "desc": "Vorherige Adresse",
+            "type": "address",
+            "optional": true
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

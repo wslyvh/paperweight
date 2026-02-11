@@ -1,0 +1,15 @@
+{
+    "slug": "excelerate-technical-management-bv",
+    "relevant-countries": [
+        "be"
+    ],
+    "name": "Excelerate Technical Management BV",
+    "address": "Bordeauxstraat 14\n2000 Antwerpen\nBelgium",
+    "phone": "+32 3 202 86 00",
+    "web": "https://excelerateenergy.com",
+    "sources": [
+        "https://excelerateenergy.com/contact-us/",
+        "https://github.com/datenanfragen/data/pull/1768"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,25 @@
+{
+    "slug": "condor",
+    "categories": [
+        "travel"
+    ],
+    "name": "Condor Flugdienst GmbH",
+    "address": "Condor Platz\n60549 Frankfurt am Main\nDeutschland",
+    "phone": "+49 6171 6988 988",
+    "email": "datenschutz@condor.com",
+    "web": "https://www.condor.com",
+    "sources": [
+        "https://www.condor.com/de/hilfe-kontakt/datenschutzerklaerung.jsp",
+        "https://www.condor.com/de/hilfe-kontakt/datenschutzerklaerung/verfahrensverzeichnis-des-datenschutzbeauftragten.jsp",
+        "https://www.condor.com/de/hilfe-kontakt/impressum.jsp",
+        "https://www.condor.com/de/hilfe-kontakt/datenschutzerklaerung/datenauskunft.jsp"
+    ],
+    "comments": [
+        "Telefonnummer eigentlich +49 180 6 767767 (0,20 €/Anruf aus dem deutschen Festnetz, Mobilfunk max. 0,60 €/Anruf). Alternative Nummer übernommen von: https://www.0180.info/suche.html?s=01806767767"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

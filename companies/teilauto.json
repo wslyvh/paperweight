@@ -1,0 +1,20 @@
+{
+    "slug": "teilauto",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "teilAuto eG",
+    "runs": [
+        "cityflitzer"
+    ],
+    "address": "Peterssteinweg 18\n04107 Leipzig\nDeutschland",
+    "phone": "+49 345 445000",
+    "email": "datenschutz@teilauto.net",
+    "web": "https://teilauto.net/",
+    "sources": [
+        "https://teilauto.net/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2778"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

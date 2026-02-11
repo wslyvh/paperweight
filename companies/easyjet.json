@@ -1,0 +1,20 @@
+{
+    "slug": "easyjet",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "easyJet Group",
+    "address": "Hangar 89\nLondon Luton Airport\nLuton, Bedfordshire\nLU2 9PF\nUnited Kingdom",
+    "email": "data.protection@easyjet.com",
+    "web": "https://www.easyjet.com/en/",
+    "sources": [
+        "https://www.easyjet.com/en/policy/privacy-promise",
+        "https://www.easyjet.com/de/politik/datenschutzversprechen",
+        "https://github.com/datenanfragen/data/pull/926"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

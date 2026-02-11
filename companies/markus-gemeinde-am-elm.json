@@ -1,0 +1,24 @@
+{
+    "slug": "markus-gemeinde-am-elm",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Markus-Gemeinde am Elm",
+    "address": "Pastorentwete 2\n38173 Evessen\nDeutschland",
+    "phone": "+49 5333 425",
+    "fax": "+49 5333 1090",
+    "email": "evessen.buero@lk-bs.de",
+    "web": "http://www.markus-gemeinde-am-elm.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=925"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

@@ -1,0 +1,26 @@
+{
+    "slug": "apollo-io",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "addresses",
+        "ads"
+    ],
+    "name": "Apollo.io",
+    "runs": [
+        "ZenLeads Inc.",
+        "ZenProspect (formerly)"
+    ],
+    "address": "440 N Barranca Ave #4750\nCovina\nCA 91723-1722\nUnited States of America",
+    "email": "privacy@apollo.io",
+    "webform": "https://www.apollo.io/company/privacy-center",
+    "web": "https://apollo.io",
+    "sources": [
+        "https://www.apollo.io/privacy-policy",
+        "https://techcrunch.com/2018/06/26/yc-grad-zenprospect-rebrands-as-apollo-lands-7-m-series-a/",
+        "https://github.com/datenanfragen/data/issues/582"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,40 @@
+{
+    "slug": "blsk-bank",
+    "categories": [
+        "finance"
+    ],
+    "name": "Braunschweigische Landessparkasse",
+    "address": "c/o Norddeutsche Landesbank Girozentrale\nFriedrichswall 10\n30159 Hannover\nDeutschland",
+    "phone": "+49 531 487 0",
+    "fax": "+49 511 361 982808",
+    "email": "datenschutz@nordlb.de",
+    "web": "https://www.blsk.de/de/home.html",
+    "sources": [
+        "https://www.blsk.de/content/dam/myif/blsk/work/dokumente/pdf/vertragsbedingungen/datenschutzhinweise.pdf?n=true",
+        "https://www.nordlb.de/rechtliches/datenschutz/",
+        "https://www.blsk.de/de/home/toolbar/impressum.html?n=true&stref=footer"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Geburtsdatum",
+            "type": "birthdate"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "comments": [
+        "Die BLSK selbst sitzt: Friedrich-Wilhelm-Platz, 38100 Braunschweig, Deutschland."
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

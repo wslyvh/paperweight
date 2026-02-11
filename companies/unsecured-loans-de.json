@@ -1,0 +1,18 @@
+{
+    "slug": "unsecured-loans-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Unsecured-Loans.de",
+    "address": "Mohrenstraße 65\n10117 Berlin\nDeutschland",
+    "phone": "+49 305 679 5538",
+    "web": "https://www.unsecured-loans.de/",
+    "sources": [
+        "https://www.unsecured-loans.de/impressum.php",
+        "https://github.com/datenanfragen/data/issues/193"
+    ],
+    "quality": "verified"
+}

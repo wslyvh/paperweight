@@ -1,0 +1,21 @@
+{
+    "slug": "stadtbibliothek-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body",
+        "entertainment"
+    ],
+    "name": "Stadtbibliothek Braunschweig",
+    "address": "Schlossplatz 2\n38100 Braunschweig\nDeutschland",
+    "phone": "+49 531 4706801",
+    "fax": "+49 531 4706899",
+    "email": "stadtbibliothek@braunschweig.de",
+    "web": "https://www.braunschweig.de/kultur/bibliotheken_archive/stadtbibliothek/index.html",
+    "sources": [
+        "https://www.braunschweig.de/kultur/bibliotheken_archive/stadtbibliothek/kontaktdaten.html"
+    ],
+    "request-language": "de",
+    "quality": "verified"
+}

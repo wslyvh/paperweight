@@ -1,0 +1,20 @@
+{
+    "slug": "revcontent",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Revcontent, LLC",
+    "address": "1689 2nd Street\nSarasota FL 34236\nUnited States of America",
+    "email": "dpo@revcontent.com",
+    "web": "https://www.revcontent.com/",
+    "sources": [
+        "https://www.revcontent.com/policy/privacy-policy"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

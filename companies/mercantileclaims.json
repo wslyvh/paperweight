@@ -1,0 +1,26 @@
+{
+    "slug": "mercantileclaims",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Mercantile Claims Management Solutions Ltd.",
+    "runs": [
+        "Timeshare Finance Claims",
+        "Claim Experts 4 U"
+    ],
+    "address": "Fort Dunlop\nFort Parkway\nBirmingham\nB24 9FE\nUnited Kingdom",
+    "phone": "+44 121 516 9600",
+    "email": "info@mercantileclaims.com",
+    "web": "https://mercantileclaims.com",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/979",
+        "https://mercantileclaims.com/privacy-policy/",
+        "https://timesharefinanceclaims.com/privacy-policy/",
+        "https://claimexperts4u.com/contact/",
+        "https://github.com/datenanfragen/data/pull/1073"
+    ],
+    "quality": "verified"
+}

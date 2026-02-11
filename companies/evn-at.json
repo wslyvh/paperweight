@@ -1,0 +1,25 @@
+{
+    "slug": "evn-at",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "EVN AG",
+    "address": "EVN Platz\n2344 Maria Enzersdorf\nÖsterreich",
+    "phone": "+43 2236 200 0",
+    "fax": "+43 2236 200 2030",
+    "email": "datenschutz@evn.at",
+    "web": "https://www.evn.at",
+    "sources": [
+        "https://www.evn.at/SpecialPages/FooterLinks/Datenschutzerklarung/EVN-AG.aspx",
+        "https://www.evn.at/impressum.aspx",
+        "https://github.com/datenanfragen/data/issues/162"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Aufsichtsbehörde: E-Control"
+    ],
+    "quality": "verified"
+}

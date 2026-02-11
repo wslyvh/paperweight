@@ -1,0 +1,19 @@
+{
+    "slug": "stuzubi",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Stuzubi GmbH",
+    "address": "c/o blueDatex Health GmbH\nKantstr. 30\n10623 Berlin\nDeutschland",
+    "phone": "+49 30 88712453",
+    "email": "kontakt@bluedatex.de",
+    "web": "https://stuzubi.de",
+    "sources": [
+        "https://stuzubi.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1655"
+    ],
+    "quality": "verified"
+}

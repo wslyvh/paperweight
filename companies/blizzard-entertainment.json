@@ -1,0 +1,25 @@
+{
+    "slug": "blizzard-entertainment",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Blizzard Entertainment Ireland Limited",
+    "runs": [
+        "Battle.net",
+        "Blizzard Entertainment, Inc."
+    ],
+    "address": "Blackpool Retail Park, Co.\nCo. Cork\nCork\nIreland",
+    "email": "DPO@blizzard.com",
+    "webform": "https://eu.support.blizzard.com/en/help/product/services/1327",
+    "web": "https://www.blizzard.com",
+    "sources": [
+        "https://www.blizzard.com/legal/8c41e7e6-0b61-42c4-a674-c91d8e8d68d3/blizzard-entertainment-online-privacy-policy",
+        "https://github.com/datenanfragen/data/issues/265",
+        "https://github.com/datenanfragen/data/pull/3290"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,37 @@
+{
+    "slug": "talanx",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "HDI AG",
+    "runs": [
+        "HDI Lebensversicherung AG",
+        "HDI Versicherung AG",
+        "Talanx AG",
+        "Lifestyle Protection AG",
+        "Lifestyle Protection Lebensversicherung AG",
+        "LPV Lebensversicherung AG",
+        "neue leben Lebensversicherung AG",
+        "neue leben Unfallversicherung AG",
+        "neue leben Pensionskasse AG",
+        "neue leben Holding AG",
+        "TARGO Versicherung AG",
+        "TARGO Lebensversicherung AG"
+    ],
+    "address": "HDI-Platz 1\n30659 Hannover\nDeutschland",
+    "email": "privacy@talanx.com",
+    "web": "https://www.hdi.de/",
+    "sources": [
+        "https://www.hdi.de/datenschutz/",
+        "https://www.talanx.com/de/datenschutz",
+        "https://www.lifestyle-protection.com/datenschutz",
+        "https://www.neueleben.de/datenschutz.html",
+        "https://www.neueleben.de/impressum.html",
+        "https://www.targoversicherung.de/html/Datenschutz.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "sekretariat-des-bundesrates",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Sekretariat des Bundesrates",
+    "address": "Leipziger Straße 3 - 4\n10117 Berlin\nDeutschland",
+    "phone": "+49 30 1891000",
+    "email": "datenschutzbeauftragter@bundesrat.de",
+    "sources": [
+        "https://www.bundesrat.de/DE/service-navi/datenschutz/datenschutz-node.html",
+        "https://github.com/datenanfragen/data/pull/2766"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,47 @@
+{
+    "slug": "thomsonreuters",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment",
+        "finance"
+    ],
+    "name": "Thomson Reuters (Professional) UK Ltd.",
+    "runs": [
+        "Reuters.com",
+        "EU Competition Law Online",
+        "Lawtel",
+        "OJ OnlinePlus",
+        "OnePass",
+        "Peer Monitor",
+        "Solcara Legal Search",
+        "Westlaw IE",
+        "West LegalEdcenter",
+        "Reuters Connect",
+        "Media Express",
+        "Checkpoint UK",
+        "Checkpoint World",
+        "ONESOURCE Indirect Tax Data File Integrator",
+        "ONESOURCE Indirect Tax Determination",
+        "ONESOURCE Indirect Tax Rates",
+        "ONESOURCE Tax Provision Platform",
+        "ONESOURCE Workpapers"
+    ],
+    "address": "30 South Colonnade-Canary Wharf\nLondon\nE14 5EP\nUnited Kingdom",
+    "phone": "+44 20 7250 1122",
+    "email": "privacy.enquiries@tr.com",
+    "webform": "https://privacyportal-cdn.onetrust.com/dsarwebform/dbf5ae8a-0a6a-4f4b-b527-7f94d0de6bbc/5dc91c0f-f1b7-4b6e-9d42-76043adaf72d.html",
+    "web": "https://reuters.com",
+    "sources": [
+        "https://www.thomsonreuters.com/en/privacy-statement.html",
+        "https://www.thomsonreuters.com/content/dam/ewp-m/documents/thomsonreuters/en/pdf/fact-sheets/thomson-reuters-as-a-controller-of-personal-information-product-list.pdf",
+        "https://www.thomsonreuters.com/en/contact-us.html"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Email of the data privacy officer (for escalated requests): dpprivacyofficer@tr.com"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "bkg-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesamt für Kartographie und Geodäsie (BKG)",
+    "address": "Richard-Strauss-Allee 11\n60598 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 6333 1",
+    "fax": "+49 69 6333 235",
+    "email": "dsb@bkg.bund.de",
+    "web": "https://www.bkg.bund.de",
+    "sources": [
+        "https://www.bkg.bund.de/DE/Service/Datenschutz/datenschutz.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

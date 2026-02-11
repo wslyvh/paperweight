@@ -1,0 +1,19 @@
+{
+    "slug": "gfk-gb",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "GfK UK Limited",
+    "address": "7th Floor\nBlue Fin Building\n110 Southwark Street\nLondon SE1 0SU\nUnited Kingdom",
+    "email": "DataProtectionOfficerGfKUK.LON@gfk.com",
+    "web": "https://www.gfk.com",
+    "sources": [
+        "https://www.gfk.com/privacy-notice",
+        "https://github.com/datenanfragen/data/pull/2152"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

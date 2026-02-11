@@ -1,0 +1,23 @@
+{
+    "slug": "gs-klint-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Grundschule Klint Braunschweig",
+    "address": "Klint 26\n38100 Braunschweig\nDeutschland",
+    "phone": "+49 531 470 3420",
+    "fax": "+49 531 470 3429",
+    "email": "info@gs-klint.de",
+    "web": "https://wordpress.nibis.de/gs-klint",
+    "sources": [
+        "https://wordpress.nibis.de/gs-klint/datenschutz/",
+        "https://wordpress.nibis.de/gs-klint/impressum/"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

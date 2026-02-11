@@ -1,0 +1,23 @@
+{
+    "slug": "starbucks-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "AmRest Coffee Deutschland Sp. z o. o. & Co. KG",
+    "runs": [
+        "Starbucks"
+    ],
+    "address": "c/o IITR GmbH\nEschenrieder Str. 62c\n82194 Gröbenzell\nDeutschland",
+    "phone": "+49 89 551 555 990",
+    "email": "privacy@starbucks.com",
+    "sources": [
+        "https://www.starbucks.de/impressum",
+        "https://github.com/datenanfragen/data/pull/795",
+        "https://www.starbucks.de/privacy-statement"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

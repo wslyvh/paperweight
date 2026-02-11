@@ -1,0 +1,20 @@
+{
+    "slug": "ciando",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "ciando GmbH",
+    "address": "Engelhardstr. 6\n81369 München\nDeutschland",
+    "phone": "+49 89 520575950",
+    "fax": "+49 89 520575959",
+    "email": "datenschutz@ciando.com",
+    "web": "https://www.ciando.com",
+    "sources": [
+        "https://www.ciando.com/service/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1330"
+    ],
+    "quality": "verified"
+}

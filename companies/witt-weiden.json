@@ -1,0 +1,27 @@
+{
+    "slug": "witt-weiden",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Josef WITT GmbH",
+    "runs": [
+        "Witt (www.witt-weiden.de)"
+    ],
+    "address": "Schillerstraße 4 – 12\n92637 Weiden\nDeutschland",
+    "phone": "+49 961 4009595",
+    "fax": "+49 180 5 212101",
+    "email": "kundenservice@witt-weiden.de",
+    "web": "https://www.witt-weiden.de/",
+    "sources": [
+        "https://www.witt-weiden.de/content/datenschutzhinweise",
+        "https://www.witt-weiden.de/contact",
+        "https://github.com/datenanfragen/data/pull/3129"
+    ],
+    "comments": [
+        "Kosten für die Faxnummer: 14 Cent/Min. aus allen deutschen Netzen"
+    ],
+    "quality": "verified"
+}

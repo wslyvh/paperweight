@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-allrode",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Allrode",
+    "address": "Blumenaustraße 7\n38899 Oberharz am Brocken\nDeutschland",
+    "phone": "+49 39459 71371",
+    "fax": "+49 39459 18845",
+    "email": "hasselfelde.buero@lk-bs.de",
+    "web": "http://www.hasselfelde-evangelisch.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=721"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

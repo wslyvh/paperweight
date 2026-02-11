@@ -1,0 +1,20 @@
+{
+    "slug": "arbeitsagentur-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesagentur für Arbeit (BA)",
+    "address": "Regensburger Straße 104\n90478 Nürnberg\nDeutschland",
+    "phone": "+49 911 179 0",
+    "fax": "+49 911 179 2123",
+    "web": "https://www.arbeitsagentur.de",
+    "sources": [
+        "https://www.arbeitsagentur.de/datenschutz",
+        "https://www.arbeitsagentur.de/impressum"
+    ],
+    "request-language": "de",
+    "quality": "verified"
+}

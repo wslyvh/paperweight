@@ -1,0 +1,22 @@
+{
+    "slug": "movieparkgermany",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Movie Park Germany GmbH",
+    "address": "Warner-Allee 1\n46244 Bottrop\nDeutschland",
+    "phone": "+49 2045 899899",
+    "fax": "+49 2045 899712",
+    "email": "datenschutz@moviepark.de",
+    "web": "https://www.movieparkgermany.de",
+    "sources": [
+        "https://www.movieparkgermany.de/impressum",
+        "https://github.com/datenanfragen/data/issues/520",
+        "https://www.movieparkgermany.de/datenschutzerklaerung-der-movie-park-germany-gmbh"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

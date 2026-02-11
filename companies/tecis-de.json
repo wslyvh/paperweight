@@ -1,0 +1,22 @@
+{
+    "slug": "tecis-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "tecis Finanzdienstleistungen AG",
+    "address": "Alter Teichweg 17\n22081 Hamburg\nDeutschland",
+    "fax": "+49 40 69696979",
+    "email": "Datenschutz@tecis.de",
+    "pgp-fingerprint": "4BDC 2EEB 9DA9 5B01 DD3F  210B 8A16 B391 303B ACD8",
+    "pgp-url": "https://www.tecis.de/datenschutz/_jcr_content/sections/simple_section_19435/content/container_basic/content/download.download.pgp/tecis_PGP_Domain_Key_Public.pgp",
+    "web": "https://www.tecis.de/",
+    "sources": [
+        "https://www.tecis.de/datenschutz.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

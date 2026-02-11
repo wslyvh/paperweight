@@ -1,0 +1,21 @@
+{
+    "slug": "misterspex",
+    "categories": [
+        "commerce"
+    ],
+    "name": "Mister Spex GmbH",
+    "address": "Greifswalder Straße 156\n10409 Berlin\nDeutschland",
+    "phone": "+49 800 810 8090",
+    "fax": "+49 30 4431230 25",
+    "email": "datenschutz@misterspex.de",
+    "web": "https://www.misterspex.de/",
+    "sources": [
+        "https://www.misterspex.de/rechtliche-hinweise/datenschutzbestimmung",
+        "https://www.misterspex.de/rechtliche-hinweise/impressum"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

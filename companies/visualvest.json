@@ -1,0 +1,18 @@
+{
+    "slug": "visualvest",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "VisualVest GmbH",
+    "address": "Weißfrauenstraße 7\n60311 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 962355001",
+    "email": "Datenschutz@visualvest.de",
+    "web": "https://www.visualvest.de/",
+    "sources": [
+        "https://geldanlage.visualvest.de/datenschutz/"
+    ],
+    "quality": "verified"
+}

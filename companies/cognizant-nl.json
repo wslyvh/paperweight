@@ -1,0 +1,18 @@
+{
+    "slug": "cognizant-nl",
+    "relevant-countries": [
+        "nl"
+    ],
+    "name": "Cognizant Technology Solutions Benelux BV",
+    "address": "Cognizant Digital Studio\nPaul van Vlissingenstraat 10\n1096 BK Amsterdam\nThe Netherlands",
+    "phone": "+31 20 595 0550",
+    "email": "SAR@cognizant.com",
+    "web": "https://www.cognizant.com/nl-nl/",
+    "sources": [
+        "https://www.cognizant.com/privacy-statement",
+        "https://www.cognizant.com/nl/en/about-cognizant",
+        "https://github.com/datenanfragen/data/issues/129"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

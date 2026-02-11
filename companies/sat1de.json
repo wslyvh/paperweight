@@ -1,0 +1,20 @@
+{
+    "slug": "sat1de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "SAT1.de",
+    "address": "c/o ProSiebenSat.1 Digital GmbH\nMedienallee 4\n85774 Unterföhring\nDeutschland",
+    "phone": "+49 89 950710",
+    "email": "datenschutz@sat1.de",
+    "web": "https://www.sat1.de",
+    "sources": [
+        "https://www.sat1.de/service/agb/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1241"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

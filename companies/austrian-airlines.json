@@ -1,0 +1,24 @@
+{
+    "slug": "austrian-airlines",
+    "relevant-countries": [
+        "at",
+        "de",
+        "ch"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Austrian Airlines AG",
+    "address": "Office Park 2\nPostbox 100\n1300 Wien-Flughafen\nÖsterreich",
+    "phone": "+43 517 661000",
+    "email": "impressum@austrian.com",
+    "webform": "https://www.austrian.com/de/de/betroffenenrechte-anfrage.html",
+    "web": "https://www.austrian.com",
+    "sources": [
+        "https://www.austrian.com/de/de/datenschutz",
+        "https://www.austrian.com/de/de/impressum",
+        "https://github.com/datenanfragen/data/issues/255"
+    ],
+    "needs-id-document": true,
+    "quality": "verified"
+}

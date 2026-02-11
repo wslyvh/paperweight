@@ -1,0 +1,23 @@
+{
+    "slug": "aspirantic",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "addresses",
+        "ads",
+        "social media"
+    ],
+    "name": "Aspirantic",
+    "address": "Zeppelinstraße 4\n58313 Herdecke\nDeutschland",
+    "phone": "+49 2330 8928697",
+    "email": "privacy@aspirantic.com",
+    "web": "https://aspirantic.com",
+    "sources": [
+        "https://www.aspirantic.com/legal/privacy-policy/",
+        "https://github.com/datenanfragen/data/issues/196",
+        "https://www.aspirantic.com/legal/notice/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

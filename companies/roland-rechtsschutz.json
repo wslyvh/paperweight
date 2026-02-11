@@ -1,0 +1,27 @@
+{
+    "slug": "roland-rechtsschutz",
+    "categories": [
+        "insurance"
+    ],
+    "name": "ROLAND-Gruppe",
+    "runs": [
+        "ROLAND Rechtsschutz-Versicherungs-AG",
+        "ROLAND Schutzbrief-Versicherung AG",
+        "ROLAND Assistance GmbH",
+        "ROLAND AssistancePartner GmbH"
+    ],
+    "address": "Deutz-Kalker Straße 46\n50679 Köln\nDeutschland",
+    "phone": "+49 221 8277 500",
+    "fax": "+49 221 8277 460",
+    "email": "datenschutz@roland-ag.de",
+    "web": "https://www.roland-rechtsschutz.de",
+    "sources": [
+        "https://www.roland-rechtsschutz.de/datenschutz/datenschutz.html",
+        "https://www.roland-rechtsschutz.de/impressum/impressum.html"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

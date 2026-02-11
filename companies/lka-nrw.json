@@ -1,0 +1,21 @@
+{
+    "slug": "lka-nrw",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Landeskriminalamt Nordrhein-Westfalen",
+    "address": "Völklinger Straße 49\n40221 Düsseldorf\nDeutschland",
+    "phone": "+49 211 9390",
+    "fax": "+49 211 9396599",
+    "email": "datenschutz.lka@polizei.nrw.de",
+    "web": "https://lka.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

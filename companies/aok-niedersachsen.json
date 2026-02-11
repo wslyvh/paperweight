@@ -1,0 +1,23 @@
+{
+    "slug": "aok-niedersachsen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "AOK Niedersachsen",
+    "address": "Hildesheimer Straße 273\n30519 Hannover\nDeutschland",
+    "phone": "+49 511 87010",
+    "fax": "+49 511 870115989",
+    "email": "Datenschutz@nds.aok.de",
+    "webform": "https://www.aok.de/pk/rechtliches/kontakt-datenschutzbeauftragter/",
+    "web": "https://www.aok.de/pk/niedersachsen/",
+    "sources": [
+        "https://www.aok.de/pk/niedersachsen/inhalt/informationen-zur-datenverarbeitung-2/",
+        "https://www.aok.de/karriere/datenschutzrechte/",
+        "https://github.com/datenanfragen/data/issues/82"
+    ],
+    "needs-id-document": false,
+    "quality": "verified"
+}

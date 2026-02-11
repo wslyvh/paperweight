@@ -1,0 +1,20 @@
+{
+    "slug": "etoro",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "eToro (Europe) Limited",
+    "address": "Kanika International Business Center, 7th Floor\n4 Profiti Ilias Street\nGermasogia 4046\nLimassol\nCyprus",
+    "email": "privacy@etoro.com",
+    "web": "https://www.etoro.com/",
+    "sources": [
+        "https://www.etoro.com/wp-content/uploads/2022/08/eToro-EU-Terms-and-Conditions-30-August-2022.pdf",
+        "https://www.etoro.com/wp-content/uploads/2022/06/eToro-Privacy-Policy-June-2022-Clean.pdf",
+        "https://github.com/datenanfragen/data/pull/1852"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Requests can also be submitted here:\nhttps://www.etoro.com/customer-service/?deepLink=type/account/account_subtype/privacy"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,23 @@
+{
+    "slug": "adagio",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Onfocus SAS",
+    "runs": [
+        "Adagio"
+    ],
+    "address": "450 Rue Baden Powell\n34000 Montpellier\nFrance",
+    "email": "dpo@adagio.io",
+    "web": "https://adagio.io",
+    "sources": [
+        "https://adagio.io/privacy",
+        "https://github.com/datenanfragen/data/pull/2926"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

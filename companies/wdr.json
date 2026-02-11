@@ -1,0 +1,51 @@
+{
+    "slug": "wdr",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Westdeutscher Rundfunk Köln",
+    "runs": [
+        "ard-morgenmagazin.de",
+        "daserste.de/information/politik-weltgeschehen/morgenmagazin",
+        "kinder.wdr.de",
+        "planet-wissen.de",
+        "sportschau.de",
+        "wdrmaus.de"
+    ],
+    "address": "Appellhofplatz 1\n50667 Köln\nDeutschland",
+    "phone": "+49 221 2204207",
+    "fax": "+49 221 2208533",
+    "email": "datenschutz@wdr.de",
+    "web": "https://www1.wdr.de",
+    "sources": [
+        "https://www1.wdr.de/hilfe/datenschutz102.html",
+        "http://www.ard.de/kinder/Datenschutz/3436692/index.html",
+        "https://www.daserste.de/information/politik-weltgeschehen/morgenmagazin/index.html",
+        "https://kinder.wdr.de/impressum/datenschutz-kinder-100.html",
+        "https://www.sportschau.de/sportschau-datenschutz-100.html",
+        "https://www.planet-wissen.de/datenschutz/datenschutz316.html",
+        "https://www.wdrmaus.de/datenschutz.php5",
+        "https://github.com/datenanfragen/data/pull/1256",
+        "https://github.com/datenanfragen/data/pull/1508",
+        "https://github.com/datenanfragen/data/pull/2222",
+        "https://github.com/datenanfragen/data/pull/2590",
+        "https://github.com/datenanfragen/data/pull/2594",
+        "https://github.com/datenanfragen/data/pull/2617"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

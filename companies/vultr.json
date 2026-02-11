@@ -1,0 +1,19 @@
+{
+    "slug": "vultr",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "The Constant Company, LLC",
+    "runs": [
+        "Vultr"
+    ],
+    "address": "319 Clematis Street Suite 900\nWest Palm Beach, FL 33401\nUnited States of America",
+    "email": "legal@vultr.com",
+    "web": "https://www.vultr.com/",
+    "sources": [
+        "https://www.vultr.com/legal/tos/",
+        "https://github.com/datenanfragen/data/pull/2251"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "boesche-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads",
+        "commerce"
+    ],
+    "name": "Boesche KG",
+    "address": "c/o HABEWI GmbH & Co. KG\nPalmaille 96\n22767 Hamburg\nDeutschland",
+    "phone": "+49 40 42236925",
+    "fax": "+49 40 42236926",
+    "email": "service@boesche.de",
+    "web": "https://www.boesche.de",
+    "sources": [
+        "https://www.boesche.de/impressum",
+        "https://github.com/datenanfragen/data/pull/1074",
+        "https://www.boesche.de/datenschutz"
+    ],
+    "quality": "verified"
+}

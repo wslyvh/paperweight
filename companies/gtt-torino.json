@@ -1,0 +1,18 @@
+{
+    "slug": "gtt-torino",
+    "relevant-countries": [
+        "it"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "GTT S.p.A.",
+    "address": "Corso Turati 19/6\n10128 Torino\nItalia",
+    "email": "titolare.privacy@gtt.to.it",
+    "web": "https://www.gtt.to.it/cms/",
+    "sources": [
+        "https://www.gtt.to.it/cms/risorse/gruppo/privacy/Ref_027.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

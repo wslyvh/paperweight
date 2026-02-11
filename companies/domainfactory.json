@@ -1,0 +1,24 @@
+{
+    "slug": "domainfactory",
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "domainfactory GmbH",
+    "address": "Oskar-Messter-Straße 33\n85737 Ismaning\nDeutschland",
+    "phone": "+49 89 55 266 230",
+    "fax": "+49 89 55 266 222",
+    "email": "datenschutz@df.eu",
+    "web": "https://www.df.eu/",
+    "sources": [
+        "https://www.df.eu/de/datenschutz/",
+        "https://www.df.eu/de/impressum/"
+    ],
+    "comments": [
+        "Externe Datenschutzbeauftragte laut Impressum: Kinast & Partner Rechtsanwälte, Venloer Straße 24, 50672 Köln, Deutschland."
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

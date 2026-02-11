@@ -1,0 +1,17 @@
+{
+    "slug": "idenfy",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "UAB iDenfy",
+    "address": "Baršausko street 59\n51423 Kaunas\nLithuania",
+    "phone": "+370 640 84466",
+    "email": "dpo@idenfy.com",
+    "web": "https://www.idenfy.com",
+    "sources": [
+        "https://www.idenfy.com/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/1896"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

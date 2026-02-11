@@ -1,0 +1,22 @@
+{
+    "slug": "bam-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesanstalt für Materialforschung und -prüfung (BAM)",
+    "address": "Rudower Chaussee 11\n12489 Berlin\nDeutschland",
+    "phone": "+49 30 8104 3773",
+    "fax": "+49 30 8104 7 2222",
+    "email": "datenschutz@bam.de",
+    "web": "https://www.bam.de",
+    "sources": [
+        "https://www.bam.de/Navigation/DE/Services/Datenschutz/datenschutz.html",
+        "https://www.bam.de/Navigation/DE/Services/Impressum/impressum.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

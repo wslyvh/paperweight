@@ -1,0 +1,24 @@
+{
+    "slug": "undertone",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Perion Network Ltd.",
+    "runs": [
+        "Undertone (formerly)"
+    ],
+    "address": "c/o Rickert Rechtsanwaltsgesellschaft mbH\nColmantstraße 15\n53115 Bonn\nGermany",
+    "email": "privacy@perion.com",
+    "web": "https://perion.com/",
+    "sources": [
+        "https://perion.com/privacy-policy/",
+        "https://perion.com/press/perion-announces-transformational-perion-one-strategy-unifying-all-of-its-technologies-and-brands/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

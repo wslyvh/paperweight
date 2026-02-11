@@ -1,0 +1,48 @@
+{
+    "slug": "bild-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Axel Springer Deutschland GmbH",
+    "runs": [
+        "BILD",
+        "BILD.de",
+        "ComputerBILD.de",
+        "AutoBILD.de",
+        "SportBILD.de",
+        "TestBILD.de",
+        "myHOMEBOOK.de",
+        "FITBOOK.de",
+        "TECHBOOK.de",
+        "TRAVELBOOK.de",
+        "STYLEBOOK.de",
+        "bz-berlin.de",
+        "Axel Springer Academy of Journalism & Technology",
+        "Mein BILD",
+        "BILDsmart",
+        "BILDplus"
+    ],
+    "address": "Axel-Springer-Straße 65\n10888 Berlin\nDeutschland",
+    "phone": "+49 30 25910",
+    "email": "datenschutz@axelspringer.de",
+    "webform": "https://www.axelspringer.com/de/datenschutzerklaerung/formular-auskunftsersuchen-und-loeschersuchen",
+    "web": "https://www.bild.de",
+    "sources": [
+        "https://www.bild.de/corporate/site/datenschutz/artikel-datenschutz-54485502.bild.html",
+        "https://sportbild.bild.de/corporate-site/2023/service-datenschutzerklaerung-83041970.sport.html",
+        "https://www.computerbild.de/datenschutz/",
+        "https://www.autobild.de/datenschutz/",
+        "https://www.myhomebook.de/datenschutzerklaerung",
+        "https://www.fitbook.de/datenschutzerklaerung",
+        "https://www.techbook.de/datenschutzerklaerung",
+        "https://www.travelbook.de/datenschutzerklaerung",
+        "https://www.stylebook.de/datenschutzerklaerung",
+        "https://www.axelspringeracademy.com/datenschutz/",
+        "https://www.bz-berlin.de/datenschutzerklaerung"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

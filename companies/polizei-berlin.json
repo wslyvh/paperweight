@@ -1,0 +1,20 @@
+{
+    "slug": "polizei-berlin",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Polizei Berlin",
+    "address": "Keibelstr. 36\n10178 Berlin\nDeutschland",
+    "phone": "+49 30 46640",
+    "email": "justiziariat@polizei.berlin.de",
+    "web": "https://www.berlin.de/polizei/",
+    "sources": [
+        "https://www.berlin.de/polizei/datenschutzerklaerung.700498.php",
+        "https://www.berlin.de/polizei/allgemeine-seiten/artikel.40141.php",
+        "https://github.com/datenanfragen/data/pull/1760"
+    ],
+    "quality": "verified"
+}

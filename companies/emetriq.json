@@ -1,0 +1,21 @@
+{
+    "slug": "emetriq",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "emetriq GmbH",
+    "address": "Vorsetzen 35\n20459 Hamburg\nDeutschland",
+    "phone": "+49 40 80813 7100",
+    "fax": "+49 40 80813 7199",
+    "email": "datenschutz@telekom.de",
+    "web": "https://www.emetriq.com/",
+    "sources": [
+        "https://www.emetriq.com/datenschutz/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

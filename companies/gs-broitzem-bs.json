@@ -1,0 +1,22 @@
+{
+    "slug": "gs-broitzem-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Grundschule Broitzem Braunschweig",
+    "address": "Kruckweg\n38122 Braunschweig\nDeutschland",
+    "phone": "+49 531 87 57 10",
+    "fax": "+49 531 287 30 97",
+    "email": "gs.broitzem@braunschweig.de",
+    "web": "http://www.gs-broitzem.de/",
+    "sources": [
+        "http://www.gs-broitzem.de/index.php?module=content&func=view&pid=36"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

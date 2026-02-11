@@ -1,0 +1,19 @@
+{
+    "slug": "redhat",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Red Hat Limited",
+    "address": "6700 Cork Airport Business Park\nPhase II 1st Floor\nCork\nIreland",
+    "email": "privacy@redhat.com",
+    "webform": "https://www.redhat.com/en/about/personal-data-request",
+    "web": "https://www.redhat.com",
+    "sources": [
+        "https://www.redhat.com/en/about/privacy-policy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

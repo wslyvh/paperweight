@@ -1,0 +1,19 @@
+{
+    "slug": "clockwise-inc",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Clockwise Inc",
+    "address": "2021 Fillmore St #126\nSan Francisco\nCA 94115\nUnited States of America",
+    "phone": "+1 888 720 9788",
+    "email": "support@getclockwise.com",
+    "web": "https://www.getclockwise.com/",
+    "sources": [
+        "https://www.getclockwise.com/privacy",
+        "https://github.com/datenanfragen/data/pull/1383"
+    ],
+    "quality": "verified"
+}

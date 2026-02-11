@@ -1,0 +1,22 @@
+{
+    "slug": "vungle",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Vungle Limited",
+    "runs": [
+        "Vungle, Inc."
+    ],
+    "address": "4th Floor\nFarringdon Point\n33 Farringdon Road\nLondon\nEC1M 3JF\nUnited Kingdom",
+    "email": "privacy@vungle.com",
+    "web": "https://vungle.com/",
+    "sources": [
+        "https://vungle.com/privacy/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

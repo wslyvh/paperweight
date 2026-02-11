@@ -1,0 +1,19 @@
+{
+    "slug": "grenke-bank",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "grenke Bank AG",
+    "address": "Neuer Markt 2\n76532 Baden-Baden\nDeutschland",
+    "phone": "+49 7221 50077200",
+    "email": "datenschutz@grenkebank.de",
+    "web": "https://www.grenke.de/unternehmen/grenke-deutschland/geschaeftsfelder/bank/",
+    "sources": [
+        "https://media.grenke.com/download/downloadgateway.dll/getfile?p_inst_id=32279944&p_session_id=&p_obt_id=3810587&p_spec_id=1"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

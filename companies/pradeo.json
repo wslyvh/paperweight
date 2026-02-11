@@ -1,0 +1,20 @@
+{
+    "slug": "pradeo",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "PRADEO Security Systems SAS",
+    "address": "71 Place Vauban\n34000 Montpellier\nFrance",
+    "phone": "+33 4 67 20 99 11",
+    "email": "dataprivacy@pradeo.com",
+    "web": "https://pradeo.com/",
+    "sources": [
+        "https://pradeo.com/wp-content/uploads/2023/10/Personal-data-protection-policy-www.pradeo.com_.pdf",
+        "https://github.com/datenanfragen/data/pull/1863"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

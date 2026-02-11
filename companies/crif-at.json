@@ -1,0 +1,25 @@
+{
+    "slug": "crif-at",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "credit agency",
+        "finance",
+        "ads"
+    ],
+    "name": "CRIF GmbH",
+    "address": "Rothschildplatz 3/Top 3.06.B\n1020 Wien\nÖsterreich",
+    "phone": "+43 1 89742440",
+    "fax": "+43 1 8974244831",
+    "email": "auskunft@crif.com",
+    "web": "https://www.crif.at/",
+    "sources": [
+        "https://www.crif.at/datenschutzerklaerung-auskunftei-und-adressverlag/",
+        "https://www.crif.at/impressum/",
+        "https://github.com/datenanfragen/data/issues/119",
+        "https://github.com/datenanfragen/data/issues/153"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

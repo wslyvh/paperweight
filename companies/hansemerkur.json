@@ -1,0 +1,32 @@
+{
+    "slug": "hansemerkur",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "HanseMerkur Versicherungsgruppe",
+    "runs": [
+        "HanseMerkur RechnungsApp",
+        "HanseMerkur Krankenversicherung AG",
+        "HanseMerkur Krankenversicherung auf Gegenseitigkeit",
+        "HanseMerkur Lebensversicherung AG",
+        "HanseMerkur Allgemeine Versicherung AG",
+        "HanseMerkur Reiseversicherung AG",
+        "HanseMerkur Speziale Krankenversicherung AG",
+        "HanseMerkur24 Lebensversicherung AG",
+        "HanseMerkur Holding AG"
+    ],
+    "address": "Siegfried-Wedells-Platz 1\n20352 Hamburg\nDeutschland",
+    "phone": "+49 40 4119 0",
+    "fax": "+49 40 4119 3257",
+    "email": "datenschutz@hansemerkur.de",
+    "web": "https://www.hansemerkur.de/",
+    "sources": [
+        "https://www.hansemerkur.de/datenschutz",
+        "https://www.hansemerkur.de/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

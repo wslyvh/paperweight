@@ -1,0 +1,22 @@
+{
+    "slug": "haendelhaus",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment",
+        "nonprofit"
+    ],
+    "name": "Stiftung Händel-Haus Halle",
+    "address": "Große Nikolaistraße 5\n06108 Halle (Saale)\nGermany",
+    "phone": "+49 345 500900",
+    "fax": "+49 345 50090416",
+    "email": "stiftung@haendelhaus.de",
+    "web": "https://haendelhaus.de",
+    "sources": [
+        "https://haendelhaus.de/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "needs-id-document": false,
+    "quality": "verified"
+}

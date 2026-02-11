@@ -1,0 +1,33 @@
+{
+    "slug": "newegg",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Newegg Inc.",
+    "address": "17560 Rowland Street\nCity of Industry, CA 91748\nUnited States of America",
+    "phone": "+1 800 390 1119",
+    "email": "privacy@newegg.com",
+    "web": "https://www.newegg.com",
+    "sources": [
+        "https://kb.newegg.com/knowledge-base/privacy-policy-newegg/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "request-language": "en",
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

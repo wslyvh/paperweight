@@ -1,0 +1,23 @@
+{
+    "slug": "technische-universitaet-muenchen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Technische Universität München",
+    "address": "Arcisstr. 21\n80333 München\nDeutschland",
+    "phone": "+49 89 28917052",
+    "fax": "+49 89 28922000",
+    "email": "beauftragter@datenschutz.tum.de",
+    "web": "https://www.tum.de/",
+    "sources": [
+        "https://www.tum.de/spezialseiten/datenschutz",
+        "https://www.tum.de/ueber-die-tum/kontakt-und-anfahrt/impressum",
+        "https://github.com/datenanfragen/data/pull/1832"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

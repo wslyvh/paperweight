@@ -1,0 +1,22 @@
+{
+    "slug": "polizeipraesidium-aachen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Polizeipräsidium Aachen",
+    "address": "Trierer Straße 501\n52078 Aachen\nDeutschland",
+    "phone": "+49 241 95770",
+    "fax": "+49 241 957720555",
+    "email": "datenschutz.aachen@polizei.nrw.de",
+    "web": "https://aachen.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung",
+        "https://github.com/datenanfragen/data/issues/514"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

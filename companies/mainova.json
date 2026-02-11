@@ -1,0 +1,19 @@
+{
+    "slug": "mainova",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "Mainova AG",
+    "address": "Solmsstraße 38\n60486 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 21302",
+    "email": "datenschutz@mainova.de",
+    "web": "https://www.mainova.de",
+    "sources": [
+        "https://www.mainova.de/de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2312"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,69 @@
+{
+    "slug": "zoho",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Zoho Corporation B.V.",
+    "runs": [
+        "Zoho Analytics",
+        "Zoho Assist",
+        "Zoho Backstage",
+        "Zoho Bookings / Orchestly",
+        "Zoho CRM",
+        "Zoho Campaigns",
+        "Zoho Cliq",
+        "Zoho Connect",
+        "Zoho Creator",
+        "Zoho Desk",
+        "Zoho Finance Plus",
+        "Zoho Flow",
+        "Zoho Forms",
+        "Zoho Mail",
+        "Zoho One",
+        "Zoho PageSense",
+        "Zoho People",
+        "Zoho Projects",
+        "Zoho Recruit",
+        "Zoho SalesIQ",
+        "Zoho Sign",
+        "Zoho Sites",
+        "Zoho Social",
+        "Zoho Survey",
+        "Zoho Vault",
+        "Zoho Writer",
+        "ManageEngine",
+        "Site24x7",
+        "WebNMX"
+    ],
+    "address": "Beneluxlaan 4B\n3527 HT Utrecht\nThe Netherlands",
+    "phone": "+31 85 066 6700",
+    "email": "privacy@zohocorp.com",
+    "web": "https://www.zoho.com",
+    "sources": [
+        "https://www.zoho.com/gdpr.html",
+        "https://www.zoho.com/privacy.html",
+        "https://www.zoho.com/contactus.html"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "Zoho ID",
+            "type": "input",
+            "optional": true
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

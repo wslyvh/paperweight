@@ -1,0 +1,32 @@
+{
+    "slug": "cyon",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication",
+        "commerce"
+    ],
+    "name": "cyon GmbH",
+    "address": "Brunngässlein 12\n4052 Basel\nSwitzerland",
+    "email": "privacy@cyon.ch",
+    "web": "https://www.cyon.ch",
+    "sources": [
+        "https://www.cyon.ch/legal/datenschutzerklaerung",
+        "https://github.com/datenanfragen/data/pull/1194"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

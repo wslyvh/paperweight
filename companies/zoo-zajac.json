@@ -1,0 +1,20 @@
+{
+    "slug": "zoo-zajac",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Zoo Zajac GmbH",
+    "address": "Konrad-Adenauer-Ring 6\n47167 Duisburg\nDeutschland",
+    "phone": "+49 203 450450",
+    "fax": "+49 203 4504545",
+    "email": "info@zajac.de",
+    "web": "https://www.zajac.de/",
+    "sources": [
+        "https://www.zajac.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1687"
+    ],
+    "quality": "verified"
+}

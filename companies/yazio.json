@@ -1,0 +1,24 @@
+{
+    "slug": "yazio",
+    "relevant-countries": [
+        "de",
+        "gb",
+        "fr",
+        "it",
+        "pt",
+        "es"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "YAZIO GmbH",
+    "address": "Kartäuserstraße 13a\n99084 Erfurt\nDeutschland",
+    "email": "help@yazio.com",
+    "web": "https://www.yazio.com",
+    "sources": [
+        "https://www.yazio.com/de/kontakt",
+        "https://github.com/datenanfragen/data/issues/37",
+        "https://help.yazio.com/hc/de/articles/203444951"
+    ],
+    "quality": "verified"
+}

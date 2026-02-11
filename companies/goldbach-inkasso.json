@@ -1,0 +1,20 @@
+{
+    "slug": "goldbach-inkasso",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "collection agency"
+    ],
+    "name": "goldbach financial GmbH",
+    "address": "Seligenstädter Straße 100\n63791 Karlstein\nDeutschland",
+    "phone": "+49 6188 306300",
+    "fax": "+49 6188 3063010",
+    "email": "datenschutz@goldbach-financial.com",
+    "web": "https://goldbach-financial.com",
+    "sources": [
+        "https://goldbach-financial.com/datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

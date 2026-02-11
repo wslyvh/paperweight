@@ -1,0 +1,31 @@
+{
+    "slug": "welt-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "WELT",
+    "runs": [
+        "WELT Digital",
+        "FOODBARN (www.foodbarn.com)",
+        "WELT Kompakt",
+        "WELT am Sonntag",
+        "PS WELT",
+        "WELT-bietet.de (www.welt-bietet.de)",
+        "ICONIST"
+    ],
+    "address": "c/o Axel Springer SE\nAxel-Springer-Straße 65\n10888 Berlin\nDeutschland",
+    "phone": "+49 30 2591 0",
+    "fax": "+49 30 2591 71606",
+    "email": "datenschutz@welt.de",
+    "web": "https://www.welt.de/",
+    "sources": [
+        "https://www.welt.de/services/article157550705/Datenschutzerklaerung-WELT-DIGITAL.html",
+        "https://www.foodbarn.com/datenschutz",
+        "https://www.welt.de/services/article7893735/Impressum.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

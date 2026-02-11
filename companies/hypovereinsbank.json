@@ -1,0 +1,23 @@
+{
+    "slug": "hypovereinsbank",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "UniCredit Bank AG",
+    "runs": [
+        "HypoVereinsbank"
+    ],
+    "address": "80311 München\nDeutschland",
+    "phone": "+49 89 3780",
+    "email": "datenschutzrechte@unicredit.de",
+    "web": "https://www.hypovereinsbank.de",
+    "sources": [
+        "https://www.hypovereinsbank.de/hvb/footer/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2050"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

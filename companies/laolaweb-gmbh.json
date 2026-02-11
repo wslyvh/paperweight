@@ -1,0 +1,17 @@
+{
+    "slug": "laolaweb-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "laOlaWeb GmbH",
+    "address": "Grassistr. 20\n04107 Leipzig\nDeutschland",
+    "phone": "+49 341 52983474",
+    "email": "info@laolaweb.com",
+    "web": "https://laolaweb.com/",
+    "sources": [
+        "https://laolaweb.com/datenschutzerklaerung/",
+        "https://github.com/datenanfragen/data/pull/1810"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

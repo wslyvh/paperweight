@@ -1,0 +1,25 @@
+{
+    "slug": "datapart-factoring",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "collection agency",
+        "finance"
+    ],
+    "name": "DATAPART Factoring GmbH",
+    "address": "Schwieberdinger Straße 60\n71636 Ludwigsburg\nDeutschland",
+    "phone": "+49 7141 934610",
+    "fax": "+49 7141 934609",
+    "email": "datenschutz@datapart-factoring.de",
+    "web": "https://www.datapart-factoring.de/",
+    "sources": [
+        "https://www.datapart-factoring.de/transparenz-info/",
+        "https://github.com/datenanfragen/data/issues/199"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Die DATAPART Factoring GmbH erwirbt auf der Grundlage eines Factoringvertrages von Fahrschulen Forderungen aus bestehenden und künftigen Ausbildungsverträgen mit Fahrschülern sowie aus der Verauslagung von Gebühren und Kosten."
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,23 @@
+{
+    "slug": "hvf-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Gymnasium Hoffmann-von-Fallersleben-Schule Braunschweig",
+    "address": "Sackring 15\n38118 Braunschweig\nDeutschland",
+    "phone": "+49 531 25619 0",
+    "fax": "+49 531 25619 12",
+    "email": "datenschutz643@hvf-ld.net",
+    "web": "https://www.hvf-bs.net/",
+    "sources": [
+        "https://www.hvf-bs.net/index.php?id=38"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "facet-group": "school"
+}

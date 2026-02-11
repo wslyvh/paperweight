@@ -1,0 +1,20 @@
+{
+    "slug": "polizeipraesidium-bielefeld",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Polizeipräsidium Bielefeld",
+    "address": "Kurt-Schumacher-Straße 46\n33615 Bielefeld\nDeutschland",
+    "phone": "+49 521 5450",
+    "email": "datenschutz.bielefeld@polizei.nrw.de",
+    "web": "https://bielefeld.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

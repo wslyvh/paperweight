@@ -1,0 +1,25 @@
+{
+    "slug": "telenordigital",
+    "relevant-countries": [
+        "no",
+        "fi",
+        "se",
+        "dk"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Telenor Digital AS",
+    "runs": [
+        "Millom"
+    ],
+    "address": "Snarøyveien 30\n1331 Fornebu\nNorway",
+    "phone": "+47 810 77 000",
+    "email": "DPO@telenordigital.com",
+    "web": "https://www.telenordigital.com",
+    "sources": [
+        "https://www.telenordigital.com/privacy-notice/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

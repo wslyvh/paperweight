@@ -1,0 +1,22 @@
+{
+    "slug": "viessmann",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Viessmann Climate Solutions SE",
+    "runs": [
+        "Viessmann Deutschland GmbH",
+        "Viessmann Climate Solutions Berlin GmbH"
+    ],
+    "address": "Viessmannstraße 1\n35108 Allendorf (Eder)\nGermany",
+    "phone": "+49 6452 700",
+    "fax": "+49 6452 702780",
+    "email": "datenschutz@viessmann.com",
+    "web": "https://www.viessmann.de/",
+    "sources": [
+        "https://www.viessmann.de/de/datenschutzerklaerung.html",
+        "https://github.com/datenanfragen/data/pull/2722"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

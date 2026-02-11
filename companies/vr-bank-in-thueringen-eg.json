@@ -1,0 +1,19 @@
+{
+    "slug": "vr-bank-in-thueringen-eg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "VR Bank in Thüringen eG",
+    "address": "Obermarkt 17\n99974 Mühlhausen\nDeutschland",
+    "phone": "+49 3631 6550",
+    "fax": "+49 3631 655655",
+    "email": "datenschutz@vrbank-in-thueringen.de",
+    "sources": [
+        "https://www.vrbank-in-thueringen.de/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/2762"
+    ],
+    "quality": "verified"
+}

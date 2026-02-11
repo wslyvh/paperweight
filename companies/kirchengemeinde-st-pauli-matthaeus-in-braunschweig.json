@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-st-pauli-matthaeus-in-braunschweig",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde St. Pauli-Matthäus in Braunschweig",
+    "address": "Herzogin-Elisabeth-Str. 80 A\n38104 Braunschweig\nDeutschland",
+    "phone": "+49 531 341344",
+    "fax": "+49 531 39079889",
+    "email": "braunschweigost.pfa@lk-bs.de",
+    "web": "http://www.pauli-matthaeus.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=753"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

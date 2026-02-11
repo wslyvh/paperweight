@@ -1,0 +1,26 @@
+{
+    "slug": "bgv-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "BGV Badische Versicherungen",
+    "runs": [
+        "Badischer Gemeinde-Versicherungs-Verband",
+        "BGV-Versicherung AG",
+        "Badische Rechtsschutzversicherung AG"
+    ],
+    "address": "Durlacher Allee 56\n76131 Karlsruhe\nDeutschland",
+    "phone": "+49 721 6600",
+    "fax": "+49 721 6601688",
+    "email": "datenschutzbeauftragter@bgv.de",
+    "web": "https://www.bgv.de/",
+    "sources": [
+        "https://www.bgv.de/ueber-den-bgv/rechtliches/datenschutz/",
+        "https://www.bgv.de/ueber-den-bgv/rechtliches/impressum/",
+        "https://github.com/datenanfragen/data/pull/2329"
+    ],
+    "quality": "verified"
+}

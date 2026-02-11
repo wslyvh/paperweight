@@ -1,0 +1,20 @@
+{
+    "slug": "ethikbank",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "EthikBank eG, Zwgndl. der Volksbank Eisenberg eG",
+    "address": "Martin-Luther-Straße 2\n07607 Eisenberg\nDeutschland",
+    "phone": "+49 36691 862345",
+    "email": "datenschutzbeauftragter@ethikbank.de",
+    "web": "https://www.ethikbank.de",
+    "sources": [
+        "https://www.ethikbank.de/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/2433"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

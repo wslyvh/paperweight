@@ -1,0 +1,17 @@
+{
+    "slug": "rosettastone",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Rosetta Stone",
+    "address": "135 West Market Street\nHarrisonburg, VA 22801\nUnited States of America",
+    "email": "privacyofficer@rosettastone.com",
+    "webform": "https://privacyportal-cdn.onetrust.com/dsarwebform/27aac3ab-c36e-4457-81d4-9773ba27887e/f1e6ce28-8f84-4cae-9bdd-bc40113d5ee0.html",
+    "web": "https://www.rosettastone.com",
+    "sources": [
+        "https://www.rosettastone.com/legal/dataprivacyandsecurity/",
+        "https://www.rosettastone.com/privacy/",
+        "https://github.com/datenanfragen/data/pull/1811"
+    ],
+    "quality": "verified"
+}

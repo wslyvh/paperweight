@@ -1,0 +1,19 @@
+{
+    "slug": "unterkunft-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "unterkunft.de",
+    "address": "c/o MABACH GmbH & Co. KG\nWeimarer Straße 21\n36039 Fulda\nDeutschland",
+    "phone": "+49 661 29191419",
+    "fax": "+49 661 29191420",
+    "email": "unterkunft@mabach.info",
+    "web": "https://www.unterkunft.de",
+    "sources": [
+        "https://www.unterkunft.de/datenschutz"
+    ],
+    "quality": "verified"
+}

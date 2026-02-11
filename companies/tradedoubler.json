@@ -1,0 +1,28 @@
+{
+    "slug": "tradedoubler",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Tradedoubler AB",
+    "runs": [
+        "Tradedoubler GmbH",
+        "Adnologies",
+        "Interactive Marketing Works Ltd"
+    ],
+    "address": "Birger Jarlsgatan 57A\n113 56 Stockholm\nSweden",
+    "phone": "+46 8 405 08 00",
+    "email": "privacy@tradedoubler.com",
+    "web": "https://www.tradedoubler.com",
+    "sources": [
+        "http://performancein.com/news/2015/01/26/tradedoubler-completes-deal-adnologies/",
+        "https://en.wikipedia.org/wiki/Tradedoubler",
+        "https://www.tradedoubler.com/en/privacy-policy/",
+        "https://www.tradedoubler.com/en/about-us/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

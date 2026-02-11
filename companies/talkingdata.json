@@ -1,0 +1,25 @@
+{
+    "slug": "talkingdata",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Beijing Tendcloud Tianxia Technology Co., Ltd",
+    "runs": [
+        "TalkingData"
+    ],
+    "address": "Room302, Aviation Services Plaza, Building #2\nNo.39 DongZhiMenWai Street\nDongcheng District\nBeijing\nChina",
+    "phone": "+86 400 870 1230",
+    "email": "td_legal@tendcloud.com",
+    "web": "https://www.talkingdata.com/",
+    "sources": [
+        "https://www.talkingdata.com/privacy.jsp?languagetype=en_us",
+        "https://www.talkingdata.com/contact.jsp?languagetype=en_us"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "custom-access-template": "access-tracking"
+}

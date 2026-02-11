@@ -1,0 +1,19 @@
+{
+    "slug": "molotov",
+    "relevant-countries": [
+        "fr"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Molotov",
+    "address": "103, rue de Grenelle\n75007 Paris\nFrance",
+    "email": "mesdonnees@molotov.tv",
+    "web": "https://www.molotov.tv/",
+    "sources": [
+        "https://www.molotov.tv/legal/privacy",
+        "https://github.com/datenanfragen/data/pull/2548"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

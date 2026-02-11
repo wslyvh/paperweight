@@ -1,0 +1,18 @@
+{
+    "slug": "digineo",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Digineo GmbH",
+    "address": "Fahrenheitstr. 15\n28359 Bremen\nDeutschland",
+    "phone": "+49 421 16766090",
+    "fax": "+49 421 16766099",
+    "email": "datenschutz@digineo.de",
+    "web": "https://www.digineo.de",
+    "sources": [
+        "https://www.digineo.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1003"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-christus-kirche-gustedt-in-elbe",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Christus-Kirche Gustedt in Elbe",
+    "address": "Am Pfarrgarten 5\n38274 Elbe\nDeutschland",
+    "phone": "+49 5345 330",
+    "fax": "+49 5345 1773",
+    "email": "elbe.buero@lk-bs.de",
+    "web": "http://www.kirche-in-elbe.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=781"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

@@ -1,0 +1,27 @@
+{
+    "slug": "opentable-de",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "OpenTable GmbH",
+    "runs": [
+        "OpenTable International Limited",
+        "OpenTable Godo Kaisha",
+        "OpenTable, Inc."
+    ],
+    "address": "c/o Fieldfisher Tech Rechtsanwaltsgesellschaft mbH\nAm Sandtorkai 68\n20457 Hamburg\nDeutschland",
+    "phone": "+49 800 3638466",
+    "fax": "+49 69 25577665",
+    "email": "privacy@opentable.com",
+    "webform": "https://www.opentable.de/user/legal/forms/request-data",
+    "sources": [
+        "https://www.opentable.de/legal/privacy-policy",
+        "https://www.opentable.de/legal/corporate-contact-information",
+        "https://github.com/datenanfragen/data/pull/2609"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

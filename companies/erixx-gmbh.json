@@ -1,0 +1,19 @@
+{
+    "slug": "erixx-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "erixx GmbH",
+    "address": "Biermannstraße 33\n29221 Celle\nDeutschland",
+    "phone": "+49 581 97164183",
+    "email": "info@erixx.de",
+    "web": "https://www.erixx.de",
+    "sources": [
+        "https://www.erixx.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1434"
+    ],
+    "quality": "verified"
+}

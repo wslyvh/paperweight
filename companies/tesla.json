@@ -1,0 +1,15 @@
+{
+    "slug": "tesla",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Tesla International B.V.",
+    "address": "Burgemeester Stramanweg 122\n1101 EN Amsterdam\nThe Netherlands",
+    "email": "privacy@tesla.com",
+    "web": "https://www.tesla.com/",
+    "sources": [
+        "https://www.tesla.com/en_eu/legal/privacy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

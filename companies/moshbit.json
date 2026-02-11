@@ -1,0 +1,21 @@
+{
+    "slug": "moshbit",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Moshbit GmbH",
+    "address": "Joanneumring 3\n8010 Graz\nÖsterreich",
+    "phone": "+43 664 8351081",
+    "email": "datenschutz@moshbit.com",
+    "web": "https://moshbit.com",
+    "sources": [
+        "https://moshbit.com/privacy-policy",
+        "https://github.com/datenanfragen/data/issues/206",
+        "https://github.com/datenanfragen/data/pull/916"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

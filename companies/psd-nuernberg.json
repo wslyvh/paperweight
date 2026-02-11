@@ -1,0 +1,21 @@
+{
+    "slug": "psd-nuernberg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "PSD Bank Nürnberg eG",
+    "address": "Willy-Brandt-Platz 8\n90402 Nürnberg\nDeutschland",
+    "phone": "+49 800 2385555",
+    "fax": "+49 911 2385299",
+    "email": "datenschutz@psd-nuernberg.de",
+    "web": "https://www.psd-nuernberg.de",
+    "sources": [
+        "https://www.psd-nuernberg.de/service/rechtliche-hinweise/datenschutzhinweis.html",
+        "https://github.com/datenanfragen/data/pull/1295"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

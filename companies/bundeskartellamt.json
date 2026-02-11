@@ -1,0 +1,22 @@
+{
+    "slug": "bundeskartellamt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundeskartellamt",
+    "address": "Kaiser-Friedrich-Straße 16\n53113 Bonn\nDeutschland",
+    "phone": "+49 228 9499 0",
+    "fax": "+49 228 9499 400",
+    "email": "datenschutzanfragen@bundeskartellamt.bund.de",
+    "web": "https://www.bundeskartellamt.de",
+    "sources": [
+        "https://www.bundeskartellamt.de/DE/Service/Datenschutz/datenschutz_node.html",
+        "https://www.bundeskartellamt.de/DE/Service/Impressum/impressum_node.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

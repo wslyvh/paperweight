@@ -1,0 +1,18 @@
+{
+    "slug": "affinity-gb",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Affinity.co.uk",
+    "address": "MIL\nc/o Skadden\n40 Bank Street\nCanary Wharf\nLondon\nE14 5DS\nUnited Kingdom",
+    "email": "privacy@affiny.co.uk",
+    "web": "https://www.affiny.co.uk/",
+    "sources": [
+        "https://www.affiny.co.uk/pages/misc/privacy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

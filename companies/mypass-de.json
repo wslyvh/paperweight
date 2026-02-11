@@ -1,0 +1,22 @@
+{
+  "slug": "mypass-de",
+  "relevant-countries": [
+    "de"
+  ],
+  "categories": [
+    "commerce"
+  ],
+  "name": "Axel Springer SE",
+  "runs": [
+    "MyPass (mypass.de)"
+  ],
+  "address": "Axel Springer Straße 65\n10888 Berlin\nDeutschland",
+  "phone": "+49 30 2591 0",
+  "email": "datenschutz@mypass.de",
+  "web": "https://www.mypass.de",
+  "sources": [
+    "https://www.mypass.de/datenschutz"
+  ],
+  "suggested-transport-medium": "email",
+  "quality": "verified"
+}

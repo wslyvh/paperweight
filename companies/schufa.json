@@ -1,0 +1,37 @@
+{
+    "slug": "schufa",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "credit agency"
+    ],
+    "name": "SCHUFA Holding AG",
+    "address": "Kormoranweg 5\n65201 Wiesbaden\nDeutschland",
+    "phone": "+49 611 92780",
+    "fax": "+49 611 9278109",
+    "email": "datenschutz@schufa.de",
+    "web": "https://www.schufa.de",
+    "sources": [
+        "https://www.schufa.de/de/datenschutz/",
+        "https://www.schufa.de/de/impressum/",
+        "https://github.com/datenanfragen/data/pull/3031"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Frühere Adresse nur angeben, wenn sie sich in den letzten 12 Monaten geändert hat.",
+        "Entgegen der Angaben im Formular der Schufa ist in aller Regel keine Kopie des Personalausweises oder Reisepasses nötig."
+    ],
+    "quality": "verified"
+}

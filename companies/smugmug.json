@@ -1,0 +1,23 @@
+{
+    "slug": "smugmug",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media",
+        "entertainment"
+    ],
+    "name": "SmugMug Inc.",
+    "runs": [
+        "Flickr, Inc. (www.flickr.com)"
+    ],
+    "address": "Suite 200\n67 E Evelyn Avenue\nMountain View\nCA 94041\nUnited States of America",
+    "phone": "+1 650 265 0396",
+    "email": "help@SmugMug.com",
+    "web": "https://www.smugmug.com/",
+    "sources": [
+        "https://www.flickr.com/help/privacy",
+        "https://www.smugmug.com/about/privacy"
+    ],
+    "quality": "verified"
+}

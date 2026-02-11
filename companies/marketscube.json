@@ -1,0 +1,25 @@
+{
+    "slug": "marketscube",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Prisma Global Ltd.",
+    "runs": [
+        "MarketsCube",
+        "PayOpt Services Ltd."
+    ],
+    "address": "Ajeltake Road\nAjeltake Island\nMajuro\nMH96960\nMarshall Islands",
+    "phone": "+353 1 437 8872",
+    "email": "support@marketscube.email",
+    "web": "https://www.marketscube.com/",
+    "sources": [
+        "https://www.fca.org.uk/news/warnings/markets-cube",
+        "https://github.com/datenanfragen/data/issues/650",
+        "https://www.marketscube.com/privacy-policy",
+        "https://www.marketscube.com/contact-us"
+    ],
+    "quality": "verified"
+}

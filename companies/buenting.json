@@ -1,0 +1,25 @@
+{
+    "slug": "buenting",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Bünting E-Commerce GmbH & Co. KG",
+    "runs": [
+        "myTime.de"
+    ],
+    "address": "Johann-Bünting-Str. 1\n26845 Nortmoor\nDeutschland",
+    "phone": "+49 800 500 22 00",
+    "fax": "+49 91 808 61 33",
+    "email": "datenschutzbeauftragte@buenting.de",
+    "web": "https://www.buenting.de",
+    "sources": [
+        "https://www.mytime.de/datenschutz",
+        "https://www.mytime.de/impressum",
+        "https://www.buenting.de/impressumdatenschutz/datenschutz.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

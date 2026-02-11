@@ -1,0 +1,19 @@
+{
+    "slug": "c24-bank-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "C24 Bank GmbH",
+    "address": "Neue Mainzer Straße 14-18\n60311 Frankfurt am Main\nDeutschland",
+    "email": "datenschutz@c24.de",
+    "web": "https://www.c24.de",
+    "sources": [
+        "https://api.c24.de/api/documents/privacy_policy/download/",
+        "https://github.com/datenanfragen/data/pull/2742"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

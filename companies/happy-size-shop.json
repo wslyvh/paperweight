@@ -1,0 +1,22 @@
+{
+    "slug": "happy-size-shop",
+    "relevant-countries": [
+        "de",
+        "at"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Popken Fashion GmbH",
+    "runs": [
+        "Happy Size Connect GmbH"
+    ],
+    "address": "Am Waldrand 19\n26180 Rastede\nDeutschland",
+    "phone": "+49 4402 8622020",
+    "email": "service@happy-size.de",
+    "web": "https://www.happy-size.de/",
+    "sources": [
+        "https://www.happy-size.de/de/datenschutz"
+    ],
+    "quality": "verified"
+}

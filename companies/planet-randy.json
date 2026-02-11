@@ -1,0 +1,21 @@
+{
+    "slug": "planet-randy",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Sunset Connect S.L",
+    "runs": [
+        "Planet-Randy"
+    ],
+    "address": "Calle Aragon 28 1-1\n07006 Palma de Mallorca\nSpain",
+    "email": "support@planet-randy.com",
+    "web": "https://planet-randy.com/",
+    "sources": [
+        "https://planet-randy.com/datenschutz.php",
+        "https://github.com/datenanfragen/data/pull/1970"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "bombora",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Bombora, Inc.",
+    "address": "257 Park Avenue South\nFloor 6\nNew York\nNY 10010\nUnited States of America",
+    "email": "privacy@bombora.com",
+    "web": "https://bombora.com/",
+    "sources": [
+        "https://bombora.com/privacy/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

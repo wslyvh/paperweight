@@ -1,0 +1,18 @@
+{
+    "slug": "matchaffinity-ie",
+    "relevant-countries": [
+        "ie"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "MatchAffinity.ie",
+    "address": "MIL\nc/o Skadden\n40 Bank Street\nCanary Wharf\nLondon\nE14 5DS\nUnited Kingdom",
+    "email": "privacy@matchaffinity.com",
+    "web": "https://www.matchaffinity.ie",
+    "sources": [
+        "https://www.matchaffinity.ie/pages/misc/privacy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

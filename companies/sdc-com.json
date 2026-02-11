@@ -1,0 +1,19 @@
+{
+    "slug": "sdc-com",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "SDC Ventures LTD",
+    "address": "‘t Woud 45B\n3232 LN Brielle\nThe Netherlands",
+    "phone": "+1 866 417 9956",
+    "email": "helpdesk@sdc.com",
+    "sources": [
+        "https://www.sdc.com/about-us/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/1973"
+    ],
+    "quality": "verified",
+    "nsfw": true
+}

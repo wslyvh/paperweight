@@ -1,0 +1,23 @@
+{
+    "slug": "houseofkaizen",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "House of Kaizen Ltd.",
+    "runs": [
+        "NETexponent LLC DBA House of Kaizen"
+    ],
+    "address": "50 Buttesland Street\nHoffman Square\nLondon\nN1 6BY\nUnited Kingdom",
+    "phone": "+44 207 253 4133",
+    "email": "justask@houseofkaizen.com",
+    "web": "https://www.houseofkaizen.com/",
+    "sources": [
+        "https://houseofkaizen.com/privacy-policy"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "quality": "verified"
+}

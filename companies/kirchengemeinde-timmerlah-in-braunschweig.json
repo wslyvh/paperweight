@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-timmerlah-in-braunschweig",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Timmerlah in Braunschweig",
+    "address": "Kirchstraße 12\n38120 Braunschweig\nDeutschland",
+    "phone": "+49 531 842208",
+    "fax": "+49 531 842205",
+    "email": "timmerlah.pfa@lk-bs.de",
+    "web": "http://www.kitiso.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=1011"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

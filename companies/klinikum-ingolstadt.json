@@ -1,0 +1,19 @@
+{
+    "slug": "klinikum-ingolstadt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "Klinikum Ingolstadt GmbH",
+    "address": "Krumenauerstraße 25\n85049 Ingolstadt\nDeutschland",
+    "phone": "+49 841 8801055",
+    "email": "datenschutz@klinikum-ingolstadt.de",
+    "web": "https://klinikum-ingolstadt.de/datenschutzerklaerung/",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/2387"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

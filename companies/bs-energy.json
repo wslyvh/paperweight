@@ -1,0 +1,26 @@
+{
+    "slug": "bs-energy",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "Braunschweiger Versorgungs-AG & Co. KG (BS|ENERGY)",
+    "runs": [
+        "BS|Servicepartner24",
+        "MEIN|PORTAL"
+    ],
+    "address": "Taubenstraße 7\n38106 Braunschweig\nDeutschland",
+    "phone": "+49 531 3838000",
+    "fax": "+49 531 3832644",
+    "email": "datenschutz@bs-energy.de",
+    "web": "https://www.bs-energy.de",
+    "sources": [
+        "https://www.bs-energy.de/rechtliches/datenschutz/",
+        "https://www.bs-energy.de/rechtliches/impressum/",
+        "https://github.com/datenanfragen/data/pull/2521"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

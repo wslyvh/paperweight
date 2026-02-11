@@ -1,0 +1,19 @@
+{
+    "slug": "dorfnetz-li",
+    "relevant-countries": [
+        "li"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "TV-COM AG",
+    "address": "Wirtschaftspark 31\n9492 Eschen\nLiechtenstein",
+    "phone": "+423 377 38 80",
+    "fax": "+423 377 38 89",
+    "email": "info@tv-com.li",
+    "web": "https://dorfnetz.li/",
+    "sources": [
+        "https://dorfnetz.li/datenschutz/"
+    ],
+    "quality": "verified"
+}

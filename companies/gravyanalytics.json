@@ -1,0 +1,20 @@
+{
+    "slug": "gravyanalytics",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Gravy Analytics Inc.",
+    "address": "45610 Woodland Rd\nSuite 100\nSterling, VA 20166\nUnited States of America",
+    "email": "privacy@gravyanalytics.com",
+    "web": "https://gravyanalytics.com",
+    "sources": [
+        "https://gravyanalytics.com/request-your-information/",
+        "https://github.com/datenanfragen/data/pull/1872"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

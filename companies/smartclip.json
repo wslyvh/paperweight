@@ -1,0 +1,24 @@
+{
+    "slug": "smartclip",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "smartclip Europe GmbH",
+    "runs": [
+        "SpotX Europe GmbH (formerly)"
+    ],
+    "address": "Überseeallee 10\n20457 Hamburg\nGermany",
+    "phone": "+49 40 286686 100",
+    "email": "privacy@smartclip.tv",
+    "web": "http://www.smartclip.com/",
+    "sources": [
+        "http://privacy-portal.smartclip.net",
+        "https://www.northdata.de/smartclip%20Europe%20GmbH,%20Hamburg/Amtsgericht%20D%C3%BCsseldorf%20HRB%2084451"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

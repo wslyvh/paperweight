@@ -1,0 +1,22 @@
+{
+    "slug": "ble-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesanstalt für Landwirtschaft und Ernährung (BLE)",
+    "address": "Deichmanns Aue 29\n53179 Bonn\nDeutschland",
+    "phone": "+49 228 6845 3340",
+    "fax": "+49 30 1810 6845 3444",
+    "email": "datenschutz@ble.de",
+    "web": "https://www.ble.de",
+    "sources": [
+        "https://www.ble.de/DE/Service/Datenschutz/datenschutz_node.html",
+        "https://www.ble.de/DE/Service/Impressum/impressum_node.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

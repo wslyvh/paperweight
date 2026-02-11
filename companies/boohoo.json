@@ -1,0 +1,21 @@
+{
+    "slug": "boohoo",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "boohoo.com UK Ltd.",
+    "runs": [
+        "boohoo app"
+    ],
+    "address": "49 – 51 Dale Street\nManchester\nM1 2HF\nUnited Kingdom",
+    "email": "DPO@boohoo.com",
+    "web": "https://www.boohoo.com",
+    "sources": [
+        "https://www.boohoo.com/page/privacy-notice.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

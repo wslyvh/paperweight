@@ -1,0 +1,21 @@
+{
+    "slug": "skoda-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "ŠKODA AUTO Deutschland GmbH",
+    "address": "Max-Planck-Straße 3-5\n64331 Weiterstadt\nDeutschland",
+    "phone": "+49 6150 1330",
+    "fax": "+49 6150 133199",
+    "email": "datenschutz@skoda-auto.de",
+    "web": "https://www.skoda-auto.de/",
+    "sources": [
+        "https://www.skoda-auto.de/unternehmen/datenschutz",
+        "https://github.com/datenanfragen/data/issues/399"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "bundesgesundheitsministerium",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesministerium für Gesundheit",
+    "address": "11055 Berlin\nDeutschland",
+    "phone": "+49 228 994410",
+    "email": "DSB@bmg.bund.de",
+    "web": "https://www.bundesgesundheitsministerium.de",
+    "sources": [
+        "https://www.bundesgesundheitsministerium.de/service/kontakt.html",
+        "https://github.com/datenanfragen/data/pull/2043"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

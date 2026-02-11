@@ -1,0 +1,33 @@
+{
+    "slug": "hostrado",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "verosent.com",
+    "runs": [
+        "hostrado.com (ehem.)"
+    ],
+    "address": "Martin-Luther-Straße 27\n91207 Lauf a.d. Pegnitz\nDeutschland",
+    "phone": "+49 176 47612688",
+    "email": "info@verosent.com",
+    "web": "https://www.verosent.com",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/706",
+        "https://www.verosent.com/de/datenschutzerklaerung",
+        "https://www.verosent.com/de/impressum"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "quality": "verified"
+}

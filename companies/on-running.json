@@ -1,0 +1,27 @@
+{
+    "slug": "on-running",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "On AG",
+    "address": "Pfingstweidstrasse 106\n8005 Zürich\nSwitzerland",
+    "phone": "+41 44 225 15 77",
+    "fax": "+41 44 225 15 56",
+    "email": "dpo@on-running.com",
+    "sources": [
+        "https://customer-service.on-running.com/en-ch/privacy_policy",
+        "https://customer-service.on-running.com/en-ch/company_information"
+    ],
+    "required-elements": [
+        {
+            "desc": "Email",
+            "type": "name",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

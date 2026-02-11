@@ -1,0 +1,28 @@
+{
+    "slug": "yello-strom",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "Yello Strom GmbH",
+    "runs": [
+        "Mein Yello",
+        "kWhapp",
+        "NaturEnergie+ Deutschland GmbH (ehem.)"
+    ],
+    "address": "Siegburger Straße 229\n50679 Köln\nDeutschland",
+    "phone": "+49 221 27 11 7777",
+    "fax": "+49 221 27 11 7001",
+    "email": "datenschutz@yello.de",
+    "web": "https://www.yello.de/",
+    "sources": [
+        "https://www.yello.de/datenschutz/",
+        "https://www.yello.de/impressum/",
+        "https://www.yello.de/ueber-yello/presse-und-medien/naturenergieplus-wird-teil-von-yello/",
+        "https://www.yello.de/service/app-kwhapp/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

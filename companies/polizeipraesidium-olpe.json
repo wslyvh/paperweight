@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-olpe",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Der Landrat als Kreispolizeibehörde Olpe",
+    "address": "Kortemickestraße 2\n57462 Olpe\nDeutschland",
+    "phone": "+49 2761 92690",
+    "fax": "+49 2761 92693390",
+    "email": "datenschutz.olpe@polizei.nrw.de",
+    "web": "https://olpe.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

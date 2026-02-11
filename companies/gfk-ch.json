@@ -1,0 +1,19 @@
+{
+    "slug": "gfk-ch",
+    "relevant-countries": [
+        "ch"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "GfK Switzerland AG",
+    "address": "Suurstoffi 18\nRotkreuz 6343\nSwitzerland",
+    "email": "dpo.ch@gfk.com",
+    "web": "https://www.gfk.com",
+    "sources": [
+        "https://www.gfk.com/privacy-notice",
+        "https://github.com/datenanfragen/data/pull/2153"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

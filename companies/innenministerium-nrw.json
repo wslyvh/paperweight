@@ -1,0 +1,21 @@
+{
+    "slug": "innenministerium-nrw",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Ministerium des Innern des Landes Nordrhein-Westfalen",
+    "address": "Friedrichstraße 62 – 80\n40217 Düsseldorf\nDeutschland",
+    "phone": "+49 211 87101",
+    "fax": "+49 211 8713355",
+    "email": "datenschutzbeauftragter@im.nrw.de",
+    "web": "https://www.im.nrw/",
+    "sources": [
+        "https://www.im.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

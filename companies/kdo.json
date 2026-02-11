@@ -1,0 +1,23 @@
+{
+    "slug": "kdo",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Zweckverband Kommunale Datenverarbeitung Oldenburg (KDO)",
+    "runs": [
+        "KDO Service GmbH",
+        "KOM:in"
+    ],
+    "address": "Elsässer Straße 66\n26121 Oldenburg\nDeutschland",
+    "phone": "+49 441 97140",
+    "fax": "+49 441 9714148",
+    "email": "datenschutzbeauftragter@kdo.de",
+    "web": "https://www.kdo.de/",
+    "sources": [
+        "https://www.kdo.de/datenschutz",
+        "https://www.kdo.de/impressum",
+        "https://github.com/datenanfragen/data/pull/1904"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "bird-rides-europe",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Bird Rides Europe, B.V.",
+    "runs": [
+        "Bird Rides, Inc.",
+        "Circ (formerly)"
+    ],
+    "address": "Rokin 92\n1012KZ Amsterdam\nThe Netherlands",
+    "phone": "+1 866 205 2442",
+    "email": "privacy@bird.co",
+    "web": "https://www.bird.co/",
+    "sources": [
+        "https://www.bird.co/privacy/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

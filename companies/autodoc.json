@@ -1,0 +1,41 @@
+{
+    "slug": "autodoc",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "AUTODOC AG",
+    "runs": [
+        "Autoteile-Meile.de"
+    ],
+    "address": "Josef-Orlopp-Straße 55\n10365 Berlin\nDeutschland",
+    "email": "privacy-policy@autodoc.de",
+    "web": "https://www.autodoc.de",
+    "sources": [
+        "https://www.autodoc.de/services/datenschutz",
+        "https://www.autoteile-meile.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1276"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "Address",
+            "type": "address",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

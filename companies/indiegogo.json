@@ -1,0 +1,30 @@
+{
+    "slug": "indiegogo",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce",
+        "social media"
+    ],
+    "name": "Indiegogo, Inc.",
+    "address": "965 Mission Street\nSan Francisco\nCA 94103\nUnited States of America",
+    "email": "privacy@indiegogo.com",
+    "web": "https://www.indiegogo.com",
+    "sources": [
+        "https://learn.indiegogo.com/privacy-policy-en/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

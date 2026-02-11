@@ -1,0 +1,21 @@
+{
+    "slug": "dzvhae",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "Deutscher Zentralverein homöopathischer Ärzte e.V.",
+    "address": "Axel-Springer-Str. 54 B\n10117 Berlin\nDeutschland",
+    "phone": "+49 30 32597340",
+    "fax": "+49 30 325973419",
+    "email": "datenschutz@dzvhae.de",
+    "web": "https://www.dzvhae.de",
+    "sources": [
+        "https://www.dzvhae.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1103"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

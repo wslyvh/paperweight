@@ -1,0 +1,36 @@
+{
+    "slug": "reddit",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Reddit Netherlands B.V.",
+    "runs": [
+        "Reddit, Inc.",
+        "Reddit UK Limited"
+    ],
+    "address": "Euro Business Center\nKeizersgracht 62\n1015CS Amsterdam\nThe Netherlands",
+    "email": "redditdatarequests@reddit.com",
+    "webform": "https://www.reddit.com/settings/data-request",
+    "web": "https://www.reddit.com/",
+    "sources": [
+        "https://www.reddit.com/policies/privacy-policy",
+        "https://github.com/datenanfragen/data/issues/669",
+        "https://github.com/datenanfragen/data/pull/893",
+        "https://github.com/datenanfragen/data/pull/2551"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Username",
+            "type": "input"
+        }
+    ],
+    "request-language": "en",
+    "quality": "verified"
+}

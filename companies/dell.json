@@ -1,0 +1,24 @@
+{
+    "slug": "dell",
+    "categories": [
+        "commerce"
+    ],
+    "name": "Dell GmbH",
+    "runs": [
+        "Dell Premier"
+    ],
+    "address": "c/o Rechtsabteilung\nUnterschweinstiege 10\n60549 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 9792 0",
+    "fax": "+49 69 34824 8000",
+    "email": "privacy@dell.com",
+    "web": "http://www.dell.com/de-de",
+    "sources": [
+        "http://www.dell.com/learn/de/de/decorp1/policies-privacy",
+        "http://www.dell.com/learn/de/de/decorp1/legal-notices?s=corp"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

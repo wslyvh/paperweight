@@ -1,0 +1,19 @@
+{
+    "slug": "mega-io",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Mega Limited",
+    "runs": [
+        "MEGA.io"
+    ],
+    "address": "Level 21\nHuawei Centre\n120 Albert Street\nAuckland\nNew Zealand",
+    "email": "privacy@mega.nz",
+    "web": "https://mega.io/",
+    "sources": [
+        "https://mega.io/privacy",
+        "https://github.com/datenanfragen/data/pull/2558"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,40 @@
+{
+    "slug": "deutsche-messe",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Deutsche Messe AG",
+    "runs": [
+        "HANNOVER MESSE",
+        "DOMOTEX",
+        "INTERSCHUTZ",
+        "LIGNA"
+    ],
+    "address": "Messegelände\n30521 Hannover\nDeutschland",
+    "phone": "+49 511 890",
+    "fax": "+49 511 8932626",
+    "email": "datenschutz@messe.de",
+    "web": "http://www.messe.de",
+    "sources": [
+        "https://www.messe.de/de/deutsche-messe/datenschutz",
+        "https://www.messe.de/de/deutsche-messe/",
+        "https://www.hannovermesse.de/de/deutsche-messe/datenschutz/",
+        "https://www.domotex.de/de/deutsche-messe/datenschutz/",
+        "https://www.interschutz.de/de/deutsche-messe/datenschutz/",
+        "https://www.ligna.de/de/deutsche-messe/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1656"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

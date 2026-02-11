@@ -1,0 +1,22 @@
+{
+    "slug": "drei-at",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Hutchison Drei Austria GmbH",
+    "address": "Brünner Straße 52\n1210 Wien\nÖsterreich",
+    "phone": "+43 660 303030",
+    "fax": "+43 660 303031",
+    "email": "dpo@drei.com",
+    "web": "https://www.drei.at",
+    "sources": [
+        "https://www.drei.at/de/footernavigation/impressum/",
+        "https://github.com/datenanfragen/data/issues/439",
+        "https://www.drei.at/de/footernavigation/datenschutz/index-2.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

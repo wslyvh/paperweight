@@ -1,0 +1,39 @@
+{
+    "slug": "kraken-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Kraken",
+    "runs": [
+        "Payward Ireland Limited",
+        "Payward Europe Digital Solutions (CY) Limited",
+        "Kraken Continuance, Inc.",
+        "Payward Trading Ltd",
+        "Payward Commercial Ltd."
+    ],
+    "address": "70 Sir John Rogerson’s Quay\nDublin Docklands\nDublin 2\nD02 R296\nIreland",
+    "webform": "https://support.kraken.com/hc/en-us/forms/648008",
+    "web": "https://www.kraken.com",
+    "sources": [
+        "https://www.kraken.com/en-de/legal/privacy",
+        "https://www.kraken.com/en-de/legal/eea-terms"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "quality": "verified"
+}

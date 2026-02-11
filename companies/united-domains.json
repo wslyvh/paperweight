@@ -1,0 +1,18 @@
+{
+    "slug": "united-domains",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "united-domains AG",
+    "address": "Gautinger Straße 10\n82319 Starnberg\nDeutschland",
+    "phone": "+49 8151 368670",
+    "email": "datenschutz@united-domains.de",
+    "web": "https://www.united-domains.de",
+    "sources": [
+        "https://www.united-domains.de/unternehmen/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1926",
+        "https://github.com/datenanfragen/data/pull/2283"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

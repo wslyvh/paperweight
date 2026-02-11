@@ -1,0 +1,23 @@
+{
+    "slug": "bethesda",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "ZeniMax Europe Ltd.",
+    "runs": [
+        "Bethesda",
+        "ZeniMax Media Inc."
+    ],
+    "address": "Haymarket House\n29-29 Haymarket\nLondon\nSW1Y 4SP\nUnited Kingdom",
+    "email": "privacy@support.zenimax.com",
+    "web": "https://bethesda.net/",
+    "sources": [
+        "https://bethesda.net/en/document/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/712"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "ancestry-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Ancestry Ireland Unlimited Company",
+    "runs": [
+        "AncestryDNA",
+        "Fold3 (www.fold3.com)",
+        "Newspapers.com (www.newspapers.com)"
+    ],
+    "address": "52–55 Sir John Rogerson’s Quay\nDublin D02 NA07\nIreland",
+    "phone": "+353 1800 303 667",
+    "email": "dpo@ancestry.com",
+    "web": "https://www.ancestry.com",
+    "sources": [
+        "https://www.ancestry.com/cs/legal/privacystatement"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "List of international phone numbers: https://support.ancestry.com/s/phonesupport"
+    ],
+    "quality": "verified"
+}

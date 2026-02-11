@@ -1,0 +1,23 @@
+{
+    "slug": "kirchengemeinde-st-bartholomaeus-dorstadt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde St. Bartholomäus Dorstadt",
+    "address": "Harzburger Straße 13\n38304 Wolfenbüttel\nDeutschland",
+    "phone": "+49 5331 61423",
+    "fax": "+49 5331 966667",
+    "email": "halchter.pfa@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=1066"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "suno-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Suno, Inc.",
+    "address": "17 Dunster Street\nFloor 4\nCambridge, MA 02138\nUnited States of America",
+    "email": "privacy@suno.ai",
+    "web": "https://suno.com",
+    "sources": [
+        "https://suno.com/terms",
+        "https://suno.com/privacy",
+        "https://github.com/datenanfragen/data/pull/2623"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

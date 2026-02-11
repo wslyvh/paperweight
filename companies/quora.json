@@ -1,0 +1,30 @@
+{
+    "slug": "quora",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Quora, Inc.",
+    "address": "605 Castro Street\nMountain View CA 94041\nUnited States of America",
+    "email": "privacy@quora.com",
+    "web": "https://www.quora.com",
+    "sources": [
+        "https://www.quora.com/about/privacy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

@@ -1,0 +1,35 @@
+{
+    "slug": "shl-telemedizin",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "SHL Telemedizin GmbH",
+    "runs": [
+        "almeda GmbH",
+        "jumedi GmbH",
+        "Gesellschaft für Patientenhilfe DGP mbH"
+    ],
+    "address": "Balanstraße 69b\n81541 München\nDeutschland",
+    "phone": "+49 89 480590",
+    "email": "datenschutz@shltm.de",
+    "web": "https://www.shl-telemedizin.de",
+    "sources": [
+        "https://www.shl-telemedizin.de/datenschutz/",
+        "https://github.com/datenanfragen/data/issues/664"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

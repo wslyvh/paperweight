@@ -1,0 +1,36 @@
+{
+    "slug": "deutscher-bundestag",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Deutscher Bundestag",
+    "runs": [
+        "Parlamentsarchiv des Deutschen Bundestages",
+        "E-Petitionen (epetitionen.bundestag.de)"
+    ],
+    "address": "Platz der Republik 1\n11011 Berlin\nDeutschland",
+    "phone": "+49 30 2270",
+    "fax": "+49 30 22736979",
+    "email": "datenschutz.bdb@bundestag.de",
+    "web": "https://www.bundestag.de/",
+    "sources": [
+        "https://www.bundestag.de/datenschutz",
+        "https://www.bundestag.de/services/impressum/"
+    ],
+    "needs-id-document": false,
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

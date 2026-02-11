@@ -1,0 +1,23 @@
+{
+    "slug": "bader-shop",
+    "categories": [
+        "commerce"
+    ],
+    "name": "BRUNO BADER GmbH + Co. KG",
+    "address": "Maximilianstraße 48\n75172 Pforzheim\nDeutschland",
+    "phone": "+49 7231 303 0",
+    "fax": "+49 7231 303 777",
+    "email": "service@bader.de",
+    "web": "https://www.bader.de/",
+    "sources": [
+        "https://www.bader.de/datenschutz",
+        "https://www.bader.de/impressum"
+    ],
+    "comments": [
+        "Faxnummer laut Impressum eigentlich +49 1806 222 777 (Pro Sendung aus dem Festnetz 20 Cent inkl. MwSt.). Alternative Nummer übernommen von: https://www.0180.info/suche.html?s=01806222777"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "quality": "verified"
+}

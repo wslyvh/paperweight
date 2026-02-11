@@ -1,0 +1,23 @@
+{
+    "slug": "nibelungen-realschule-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Nibelungen-Realschule Braunschweig",
+    "address": "Ortwinstraße 2\n38112 Braunschweig\nDeutschland",
+    "phone": "+49 531 23014 0",
+    "fax": "+49 531 23014 99",
+    "email": "info@rsnibelungen.de",
+    "web": "http://www.nibelungen-realschule.de/",
+    "sources": [
+        "http://www.nibelungen-realschule.de/index.php/privacy-policy",
+        "http://www.nibelungen-realschule.de/index.php/impressum"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

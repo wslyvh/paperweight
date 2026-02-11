@@ -1,0 +1,21 @@
+{
+    "slug": "careerbuilder-germany-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Kariera Germany GmbH",
+    "runs": [
+        "jobs.de"
+    ],
+    "address": "Konrad-Zuse-Platz 8\n81829 München\nDeutschland",
+    "phone": "+49 800 6645730",
+    "email": "info@jobs.de",
+    "web": "https://www.jobs.de/",
+    "sources": [
+        "https://www.jobs.de/de/datenschutz",
+        "https://www.jobs.de/de/impressum",
+        "https://www.jobs.de/p/help",
+        "https://github.com/datenanfragen/data/pull/1699"
+    ],
+    "quality": "verified"
+}

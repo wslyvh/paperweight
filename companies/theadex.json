@@ -1,0 +1,37 @@
+{
+    "slug": "theadex",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Virtual Minds GmbH",
+    "runs": [
+        "The ADEX"
+    ],
+    "address": "Ellen-Gottlieb-Straße 16\n79106 Freiburg im Breisgau\nDeutschland",
+    "phone": "+49 761 881470",
+    "email": "legal@theadex.com",
+    "web": "https://www.theadex.com/",
+    "sources": [
+        "https://www.theadex.com/privacy-opt-out/",
+        "https://www.theadex.com/imprint/",
+        "https://github.com/datenanfragen/data/pull/2230"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "User ID",
+            "type": "input"
+        }
+    ],
+    "comments": [
+        "The User ID can be found in section “III. Your Rights” of the privacy policy (https://www.theadex.com/privacy-opt-out/)."
+    ],
+    "quality": "verified"
+}

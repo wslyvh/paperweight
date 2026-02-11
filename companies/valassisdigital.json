@@ -1,0 +1,25 @@
+{
+    "slug": "valassisdigital",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Valassis Digital Corp.",
+    "runs": [
+        "Valassis Communications, Inc."
+    ],
+    "address": "35 East 62nd Street\n6th Floor\nNew York, NY 10065\nUnited States of America",
+    "phone": "+1 800 437 0479",
+    "email": "privacyrequests@valassis.com",
+    "web": "https://valassis.com/",
+    "sources": [
+        "https://valassis.com/legal/privacy-policy/",
+        "https://valassis.com/about/locations/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

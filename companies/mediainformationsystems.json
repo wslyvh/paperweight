@@ -1,0 +1,36 @@
+{
+    "slug": "mediainformationsystems",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "addresses",
+        "ads"
+    ],
+    "name": "Media Information Systems Deutschland GmbH",
+    "address": "Fritz-Kneidl-Str. 5a\n82031 Grünwald\nDeutschland",
+    "phone": "+49 89 54197883",
+    "fax": "+49 89 54197884",
+    "email": "datenschutz@mismail.de",
+    "web": "https://mediainformationsystems.de",
+    "sources": [
+        "https://mediainformationsystems.de/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/851",
+        "https://github.com/datenanfragen/data/pull/1622",
+        "https://github.com/datenanfragen/data/pull/1944"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

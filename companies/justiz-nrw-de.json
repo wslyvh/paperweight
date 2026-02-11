@@ -1,0 +1,24 @@
+{
+    "slug": "justiz-nrw-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Ministerium der Justiz des Landes Nordrhein-Westfalen",
+    "runs": [
+        "Handelsregister.de",
+        "Justizportal des Bundes und der Länder"
+    ],
+    "address": "Martin-Luther-Platz 40\n40212 Düsseldorf\nDeutschland",
+    "phone": "+49 211 87920",
+    "email": "justiz-online@jm.nrw.de",
+    "web": "https://www.justiz.nrw.de/JM",
+    "sources": [
+        "https://www.justiz.nrw.de/Service/datenschutz",
+        "https://www.handelsregister.de/rp_web/welcome.xhtml",
+        "https://justiz.de/impressum/index.php"
+    ],
+    "quality": "verified"
+}

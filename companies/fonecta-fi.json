@@ -1,0 +1,20 @@
+{
+    "slug": "fonecta-fi",
+    "relevant-countries": [
+        "fi"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Fonecta Oy",
+    "address": "PL 202\n00241 Helsinki\nFinland",
+    "phone": "+358 20 692999",
+    "email": "tietosuoja@fonecta.com",
+    "web": "https://www.fonecta.fi/",
+    "sources": [
+        "https://www.fonecta.fi/ehdot-ja-tietosuoja/tietosuoja#english"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

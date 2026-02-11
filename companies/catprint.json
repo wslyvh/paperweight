@@ -1,0 +1,20 @@
+{
+    "slug": "catprint",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Catprint Media GmbH",
+    "address": "Postfach 12 01 09\n30808 Garbsen\nDeutschland",
+    "phone": "+49 5131 9066835",
+    "fax": "+49 5131 9066837",
+    "email": "info@catprint.de",
+    "web": "http://www.catprint.de",
+    "sources": [
+        "https://www.catprint.de/kontakt/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1342"
+    ],
+    "quality": "verified"
+}

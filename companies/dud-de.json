@@ -1,0 +1,40 @@
+{
+    "slug": "dud-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "addresses",
+        "ads"
+    ],
+    "name": "Dun & Bradstreet Deutschland GmbH",
+    "address": "Brüsseler Straße 1-3\n60327 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 204460000",
+    "email": "datenschutz.de@dnb.com",
+    "webform": "https://www-prod.dnb.com/de-de/datenschutz/ihre-rechte-als-betroffener/selbstauskunft-widerspruch/",
+    "web": "https://www.dnb.com/de-de/",
+    "sources": [
+        "https://www.dnb.com/de-de/warum-dnb/datenschutz/ihre-rechte-als-betroffener/selbstauskunft-widerspruch/selbstauskunft-privatperson.html",
+        "https://www.dnb.com/de-de/impressum.html"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "E-Mail-Adresse",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": false
+        }
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

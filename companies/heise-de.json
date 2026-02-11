@@ -1,0 +1,35 @@
+{
+    "slug": "heise-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Heise Medien GmbH & Co. KG",
+    "runs": [
+        "heise Academy",
+        "Heise Business Services (HBS)",
+        "heise-events.de",
+        "jobs.heise.de",
+        "shop.heise.de",
+        "techstage.de",
+        "telepolis.de"
+    ],
+    "address": "Karl-Wiechert-Allee 10\n30625 Hannover\nDeutschland",
+    "phone": "+49 511 53520",
+    "fax": "+49 511 5352129",
+    "email": "datenschutz@heise.de",
+    "web": "https://www.heise.de",
+    "sources": [
+        "https://www.heise.de/impressum.html",
+        "https://www.heise.de/Datenschutzerklaerung-der-Heise-Medien-GmbH-Co-KG-4860.html",
+        "https://www.heise.de/Individuelle-Datenschutzinformationen-fuer-heise-Academy-und-heise-Academy-Events-4058183.html",
+        "https://www.heise.de/Individuelle-Datenschutzinformationen-fuer-Heise-Business-Services-7099857.html",
+        "https://www.heise.de/Individuelle-Datenschutzinformationen-fuer-heise-jobs-6014870.html",
+        "https://www.heise.de/Individuelle-Datenschutzinformationen-fuer-heise-online-und-Telepolis-4058147.html",
+        "https://www.heise.de/Individuelle-Datenschutzinformationen-fuer-mobile-Apps-4058239.html",
+        "https://www.heise.de/Individuelle-Datenschutzinformationen-fuer-den-heise-shop-und-Abonnements-4058176.html",
+        "https://www.heise.de/Individuelle-Datenschutzinformationen-fuer-TechStage-4058219.html",
+        "https://github.com/datenanfragen/data/pull/2217"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,29 @@
+{
+    "slug": "netto-discount",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Netto Marken-Discount AG & Co. KG",
+    "runs": [
+        "Netto Filialen",
+        "Netto Gewinnspiele",
+        "Netto Newsletter"
+    ],
+    "address": "Industriepark Ponholz 1\n93142 Maxhütte-Haidhof\nDeutschland",
+    "phone": "+49 9471 3200",
+    "fax": "+49 9471 320149",
+    "email": "datenschutzbeauftragter@netto-online.de",
+    "web": "https://www.netto-online.de/",
+    "sources": [
+        "https://www.netto-online.de/impressum",
+        "https://github.com/datenanfragen/data/pull/796",
+        "https://www.netto-online.de/datenschutz",
+        "https://www.netto-online.de/unternehmen/ponholz",
+        "https://www.netto-reisen.de/ueber-uns/datenschutzbestimmung/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

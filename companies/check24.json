@@ -1,0 +1,63 @@
+{
+    "slug": "check24",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads",
+        "insurance",
+        "finance",
+        "commerce",
+        "telecommunication"
+    ],
+    "name": "CHECK24 Vergleichsportal GmbH",
+    "runs": [
+        "CHECK24 App",
+        "CHECK24 Media GmbH",
+        "CHECK24 Vergleichsportal für Versicherungsprodukte GmbH",
+        "CHECK24 Vergleichsportal für Kfz-Versicherungen GmbH",
+        "CHECK24 Vergleichsportal für Sachversicherungen GmbH",
+        "CHECK24 Vergleichsportal für Krankenversicherungen GmbH",
+        "CHECK24 Vergleichsportal für Vorsorgeversicherungen GmbH",
+        "CHECK24 Vergleichsportal für Versicherungen GmbH",
+        "CHECK24 Versicherungsservice GmbH",
+        "CHECK24 Vergleichsportal Finanzen GmbH",
+        "CHECK24 Vergleichsportal Energie GmbH",
+        "CHECK24 Vergleichsportal Telekommunikationsdienste GmbH",
+        "CHECK24 Vergleichsportal Mobilfunk GmbH",
+        "CHECK24 Vergleichsportal Mietwagen GmbH",
+        "CHECK24 Vergleichsportal Reise GmbH",
+        "CHECK24 Vergleichsportal Hotel GmbH",
+        "CHECK24 Vergleichsportal Shopping GmbH",
+        "CHECK24 Vergleichsportal Möbel GmbH",
+        "CHECK24 Vergleichsportal Karten & Konten GmbH",
+        "CHECK24 Services GmbH",
+        "CHECK24 Services Personal GmbH",
+        "CHECK24 Vergleichsportal Autoteile GmbH",
+        "CHECK24 Vergleichsportal Elektronik & Haushalt GmbH",
+        "CHECK24 Vergleichsportal Fashion GmbH",
+        "CHECK24 Comparon GmbH",
+        "CHECK24 Finanzservice GmbH",
+        "CHECK24 Kontomanager GmbH",
+        "CHECK24 GmbH",
+        "TARIF CHECK24 GmbH",
+        "CHECK24 Zahlungssysteme GmbH",
+        "CHECK24 Vergleichsportal Profis GmbH",
+        "CHECK24 Vergleichsportal Ärzte GmbH",
+        "CHECK24 Vergleichsportal Baufinanzierung GmbH",
+        "CHECK24 International GmbH"
+    ],
+    "address": "Erika-Mann-Str. 62 – 66\n80636 München\nDeutschland",
+    "phone": "+49 89 2000471010",
+    "fax": "+49 89 2000471011",
+    "email": "kundenmanagement_datenschutz@check24.de",
+    "web": "https://www.check24.de/",
+    "sources": [
+        "https://www.check24.de/popup/datenschutz-check24-gmbh/",
+        "https://www.check24.de/unternehmen/impressum/",
+        "https://github.com/datenanfragen/data/pull/697",
+        "https://github.com/datenanfragen/data/pull/2056"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

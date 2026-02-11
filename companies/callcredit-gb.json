@@ -1,0 +1,35 @@
+{
+    "slug": "callcredit-gb",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "credit agency",
+        "addresses"
+    ],
+    "name": "Callcredit Information Group",
+    "runs": [
+        "Callcredit Information Group Ltd.",
+        "Callcredit Ltd.",
+        "Callcredit Marketing Ltd.",
+        "Callcredit Consumer Ltd.",
+        "Callcredit Data Solutions Ltd.",
+        "Callcredit Lead Generation Ltd.",
+        "DecisionMetrics Ltd.",
+        "Recipero Ltd.",
+        "Callcredit Public Sector Ltd.",
+        "Latitude Digital Marketing Ltd.",
+        "process benchmarking Ltd.",
+        "Smart Analytics Ltd."
+    ],
+    "address": "One Park Lane\nLeeds\nWest Yorkshire\nLS3 1EP\nUnited Kingdom",
+    "phone": "+44 330 024 7574",
+    "email": "dpo@callcreditgroup.com",
+    "web": "https://www.callcredit.co.uk/",
+    "sources": [
+        "https://www.callcredit.co.uk/legal-information/general-privacy-notice"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

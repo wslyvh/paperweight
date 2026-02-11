@@ -1,0 +1,18 @@
+{
+    "slug": "swapfiets-dk",
+    "relevant-countries": [
+        "dk"
+    ],
+    "name": "Swapfiets Demark ApS",
+    "address": "Nordre Fasanvej 17\n2000 Frederiksberg\nDenmark",
+    "phone": "+45 78 79 31 58",
+    "email": "privacy@pon.com",
+    "web": "https://swapfiets.dk/",
+    "sources": [
+        "https://swapfiets.dk/en-DK/privacy",
+        "https://swapfiets.dk/en-DK/terms",
+        "https://help.swapfiets.dk/hc/en-gb"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

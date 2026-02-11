@@ -1,0 +1,25 @@
+{
+    "slug": "waipu-tv",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "EXARING AG",
+    "runs": [
+        "Waipu.tv"
+    ],
+    "address": "c/o ePrivacy GmbH\nGroße Bleichen 21\n20354 Hamburg\nDeutschland",
+    "phone": "+49 89 215462470",
+    "fax": "+49 89 215462444",
+    "email": "datenschutz@exaring.de",
+    "web": "https://www.waipu.tv/",
+    "sources": [
+        "https://microsite.waipu.tv/waipu/dse",
+        "https://www.waipu.tv/impressum",
+        "https://github.com/datenanfragen/data/pull/1878"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

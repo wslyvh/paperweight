@@ -1,0 +1,25 @@
+{
+    "slug": "leiki",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "DoubleVerify, Inc.",
+    "runs": [
+        "Leiki (formerly)"
+    ],
+    "address": "462 Broadway\nNew York, NY 10013\nUnited States of America",
+    "email": "privacy-policy@doubleverify.com",
+    "webform": "https://doubleverify.com/opt-out/",
+    "web": "https://doubleverify.com",
+    "sources": [
+        "https://doubleverify.com/privacy-notice/",
+        "https://doubleverify.com/newsroom/doubleverify-acquires-leiki-leading-contextual-intelligence-platform/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

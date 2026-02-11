@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-hamm",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Polizeipräsidium Hamm",
+    "address": "Grünstraße 10\n59065 Hamm\nDeutschland",
+    "phone": "+49 2381 9160",
+    "fax": "+49 2381 9161199",
+    "email": "datenschutz.hamm@polizei.nrw.de",
+    "web": "https://hamm.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

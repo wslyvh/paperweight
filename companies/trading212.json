@@ -1,0 +1,43 @@
+{
+    "slug": "trading212",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Trading 212 Ltd",
+    "runs": [
+        "Trading 212 UK Ltd",
+        "Trading 212 Group Limited",
+        "Trading 212 Markets Ltd"
+    ],
+    "address": "3 Lachezar Stanchev Str.\nLitex Tower, floor 10\nSofia 1797\nBulgaria",
+    "phone": "+359 800 46 049",
+    "email": "dpo@trading212.com",
+    "web": "https://trading212.com",
+    "sources": [
+        "https://www.trading212.com/legal-documentation/privacy-policy-cy",
+        "https://github.com/datenanfragen/data/pull/1586"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        },
+        {
+            "desc": "Birthdate",
+            "type": "birthdate"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

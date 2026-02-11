@@ -1,0 +1,38 @@
+{
+    "slug": "franzis",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "FRANZIS GmbH",
+    "address": "Richard-Reitzner-Allee 2\n85540 Haar\nDeutschland",
+    "phone": "+49 89 255561000",
+    "fax": "+49 89 255561696",
+    "email": "datenschutz_franzis@wekanet.de",
+    "web": "https://www.franzis.de",
+    "sources": [
+        "https://www.franzis.de/impressum",
+        "https://www.franzis.de/datenschutz",
+        "https://github.com/datenanfragen/data/issues/581",
+        "https://github.com/datenanfragen/data/pull/2928"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": true
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

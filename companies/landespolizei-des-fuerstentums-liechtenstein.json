@@ -1,0 +1,19 @@
+{
+    "slug": "landespolizei-des-fuerstentums-liechtenstein",
+    "relevant-countries": [
+        "li"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Landespolizei des Fürstentums Liechtenstein",
+    "address": "Gewerbeweg 4\nPostfach 684\n9490 Vaduz\nLiechtenstein",
+    "phone": "+423 236 71 11",
+    "email": "Datenschutz@regierung.li",
+    "web": "https://www.landespolizei.li/",
+    "sources": [
+        "https://www.landespolizei.li/Datenschutz.aspx"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

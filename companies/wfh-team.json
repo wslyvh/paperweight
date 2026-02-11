@@ -1,0 +1,26 @@
+{
+    "slug": "wfh-team",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "WFH, Inc.",
+    "address": "301 King St #1400\nSan Francisco, CA 94158\nUnited States of America",
+    "email": "support@wfh.team",
+    "web": "https://wfh.team/",
+    "sources": [
+        "https://wfh.team/privacy-policy",
+        "https://wfh.team/terms-of-service"
+    ],
+    "required-elements": [
+        {
+            "desc": "Email",
+            "type": "name",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "quality": "tested"
+}

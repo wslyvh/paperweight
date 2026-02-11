@@ -1,0 +1,29 @@
+{
+    "slug": "quentn",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Quentn.com GmbH",
+    "address": "Friedrich-Ebert-Straße 51\n14469 Potsdam\nDeutschland",
+    "phone": "+49 331 23184399",
+    "email": "datenschutz@quentn.com",
+    "web": "https://quentn.com/datenschutz",
+    "sources": [
+        "https://quentn.com/datenschutz"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

@@ -1,0 +1,23 @@
+{
+    "slug": "cohost",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Anti Software Software Club LLC",
+    "runs": [
+        "cohost"
+    ],
+    "address": "8001 14th Ave NE, Ste A\nSeattle, WA 98115-4316\nUnited States of America",
+    "email": "privacy@cohost.org",
+    "web": "https://cohost.org",
+    "sources": [
+        "https://cohost.org/rc/content/privacy",
+        "https://opencorporates.com/companies/us_wa/604559323",
+        "https://github.com/datenanfragen/data/pull/1963"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

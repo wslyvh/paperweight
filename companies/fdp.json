@@ -1,0 +1,21 @@
+{
+    "slug": "fdp",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "political party"
+    ],
+    "name": "Freie Demokratische Partei (FDP)",
+    "address": "Reinhardtstraße 14\n10117 Berlin\nDeutschland",
+    "phone": "+49 30 2849580",
+    "email": "datenschutz@fdp.de",
+    "web": "https://www.fdp.de/",
+    "sources": [
+        "https://www.fdp.de/content/datenschutzerklaerung",
+        "https://www.fdp.de/content/impressum",
+        "https://github.com/datenanfragen/data/issues/148"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

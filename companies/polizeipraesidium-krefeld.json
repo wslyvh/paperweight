@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-krefeld",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Polizeipräsidium Krefeld",
+    "address": "Nordwall 1 – 3\n47798 Krefeld\nDeutschland",
+    "phone": "+49 2151 6340",
+    "fax": "+49 2151 6341029",
+    "email": "datenschutz.krefeld@polizei.nrw.de",
+    "web": "https://krefeld.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,23 @@
+{
+    "slug": "johannesgemeinde-schladen-werla",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Johannesgemeinde Schladen-Werla",
+    "address": "Westendorf 1\n38315 Werlaburgdorf\nDeutschland",
+    "phone": "+49 5335 343",
+    "fax": "+49 5335 905184",
+    "email": "schladen-werla.buero@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=962"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

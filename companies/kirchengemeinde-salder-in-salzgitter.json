@@ -1,0 +1,23 @@
+{
+    "slug": "kirchengemeinde-salder-in-salzgitter",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Salder in Salzgitter",
+    "address": "Museumstraße 9\n38229 Salzgitter\nDeutschland",
+    "phone": "+49 5341 41113",
+    "email": "salder.pfa@lk-bs.de",
+    "web": "http://www.kircheinsalder.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=902"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "norisbank",
+    "categories": [
+        "finance",
+        "insurance"
+    ],
+    "name": "norisbank GmbH",
+    "address": "10910 Berlin\nDeutschland",
+    "phone": "+49 30 310 66 000",
+    "email": "service@norisbank.de",
+    "web": "https://www.norisbank.de/",
+    "sources": [
+        "https://www.norisbank.de/service/rechtliches.html",
+        "https://www.norisbank.de/ueberuns/impressum.html"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "quality": "verified"
+}

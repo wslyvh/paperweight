@@ -1,0 +1,21 @@
+{
+    "slug": "adu-inkasso",
+    "categories": [
+        "collection agency"
+    ],
+    "name": "Allgemeiner Debitoren- und Inkassodienst GmbH",
+    "address": "Eduard-Pestel-Straße 7\n49080 Osnabrück\nDeutschland",
+    "phone": "+49 541 80018 155",
+    "fax": "+49 541 80018 55",
+    "email": "datenschutz@adu-inkasso.de",
+    "web": "https://www.adu-inkasso.de",
+    "sources": [
+        "https://www.adu-inkasso.de/impressum/datenschutz/",
+        "https://www.adu-inkasso.de/Impressum/"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

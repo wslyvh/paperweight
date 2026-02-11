@@ -1,0 +1,22 @@
+{
+    "slug": "onlinetvrecorder",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Internet TV AG",
+    "runs": [
+        "onlinetvrecorder.com"
+    ],
+    "address": "306 Victoria House\nVictoria Mahe\nSeychelles",
+    "phone": "+1 510 984 5218",
+    "email": "webmaster@onlinetvrecorder.com",
+    "web": "http://www.onlinetvrecorder.com",
+    "sources": [
+        "https://www.onlinetvrecorder.com/v2/contact/gdpr",
+        "https://github.com/datenanfragen/data/pull/1350"
+    ],
+    "quality": "verified"
+}

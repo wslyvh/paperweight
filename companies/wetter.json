@@ -1,0 +1,20 @@
+{
+    "slug": "wetter",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "wetter.com GmbH",
+    "runs": [
+        "weather24"
+    ],
+    "address": "Reichenaustraße 19a\n78467 Konstanz\nGermany",
+    "email": "datenschutz@wetter.com",
+    "web": "https://www.wetter.com",
+    "sources": [
+        "https://www.wetter.com/datenschutz/adsb/",
+        "https://www.weather24.co.uk/_files/ugd/c8f76f_ff6817d387d243a4aadfb98867c99aae.pdf",
+        "https://github.com/datenanfragen/data/pull/3134"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

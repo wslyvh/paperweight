@@ -1,0 +1,22 @@
+{
+    "slug": "autoscout24",
+    "categories": [
+        "commerce",
+        "finance",
+        "insurance"
+    ],
+    "name": "AutoScout24 GmbH",
+    "address": "Bothestraße 11 – 15\n81675 München\nDeutschland",
+    "phone": "+49 89 444 56 1666",
+    "email": "widerspruch@autoscout24.de",
+    "web": "https://www.autoscout24.de/",
+    "sources": [
+        "http://about.autoscout24.com/de-de/au-company/au-company-privacy.aspx?genlnk=foot&genlnkorigin=de-all-all-home",
+        "http://about.autoscout24.com/de-de/au-company/au-company-imprint.aspx?genlnk=foot&genlnkorigin=de-vm-custom-b2c-lp-autokreditvergleich"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

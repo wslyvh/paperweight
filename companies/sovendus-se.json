@@ -1,0 +1,18 @@
+{
+    "slug": "sovendus-se",
+    "relevant-countries": [
+        "se"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Sovendus AB",
+    "address": "Kungsgatan 37\n111 56 Stockholm\nSweden",
+    "email": "data-protection@sovendus.com",
+    "web": "https://sovendus.com/se/",
+    "sources": [
+        "https://online.sovendus.com/se/integritetspolicy/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

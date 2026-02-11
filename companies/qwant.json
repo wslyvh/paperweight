@@ -1,0 +1,21 @@
+{
+    "slug": "qwant",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Qwant SAS",
+    "address": "Immeuble Crystal Park\n63 Rue de Villiers\n92200 Neuilly-sur-Seine\nFrance",
+    "phone": "+33 1 83 64 89 37",
+    "email": "dpo@qwant.com",
+    "web": "https://www.qwant.com/",
+    "sources": [
+        "https://about.qwant.com/fr/legal/confidentialite/",
+        "https://about.qwant.com/legal/mentions-legales/",
+        "https://github.com/datenanfragen/data/issues/449"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

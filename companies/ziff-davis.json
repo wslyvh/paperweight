@@ -1,0 +1,23 @@
+{
+    "slug": "ziff-davis",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Ziff Davis, LLC",
+    "address": "114 Fifth Avenue\n15th Floor\nNew York\nNY 10011\nUnited States of America",
+    "fax": "+1 212 503 3500",
+    "email": "dpo@ziffdavis.com",
+    "webform": "https://dsar.ziffdavis.com",
+    "web": "https://www.ziffdavis.com/",
+    "sources": [
+        "https://www.ziffdavis.com/privacy-policy",
+        "https://www.ziffdavis.com/#contact-us"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

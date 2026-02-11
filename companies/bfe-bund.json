@@ -1,0 +1,23 @@
+{
+    "slug": "bfe-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesamt für kerntechnische Entsorgungssicherheit (BFE)",
+    "address": "Willy-Brandt-Straße 5\n38226 Salzgitter\nDeutschland",
+    "phone": "+49 3018 333 1944",
+    "email": "datenschutzbeauftragter@bfe.bund.de",
+    "web": "https://www.bfe.bund.de",
+    "sources": [
+        "https://www.bfe.bund.de/DE/service/datenschutz/datenschutz_node.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Eigentliche Adresse: Krausenstraße 17 – 18, 10117 Berlin, Deutschland"
+    ],
+    "quality": "verified"
+}

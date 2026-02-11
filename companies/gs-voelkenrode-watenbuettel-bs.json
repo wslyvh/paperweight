@@ -1,0 +1,22 @@
+{
+    "slug": "gs-voelkenrode-watenbuettel-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Grundschule Völkenrode/Watenbüttel Braunschweig",
+    "address": "Peiner Straße 124\n38112 Braunschweig\nDeutschland",
+    "phone": "+49 531 513128",
+    "fax": "+49 531 2512941",
+    "email": "gs.voelkenrode-watenbuettel@braunschweig.de",
+    "web": "https://www.gs-voelkenrode-watenbuettel.de/",
+    "sources": [
+        "https://www.gs-voelkenrode-watenbuettel.de/impressum/"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

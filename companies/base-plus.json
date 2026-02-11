@@ -1,0 +1,24 @@
+{
+    "slug": "base-plus",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Base Plus SAS",
+    "runs": [
+        "Europrogrès SAS"
+    ],
+    "address": "13 Rue Jacobi Netter\n67200 Strasbourg\nFrance",
+    "email": "dpo@base-plus.fr",
+    "web": "https://www.base-plus.fr",
+    "sources": [
+        "https://www.base-plus.fr/politique-de-donnees-personnelles.html",
+        "https://www.base-plus.fr/mentions-legales.html",
+        "https://www.europrogres.fr/politique-donnees-personnelles/",
+        "https://www.europrogres.fr/mentions-legales/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

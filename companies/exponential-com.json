@@ -1,0 +1,21 @@
+{
+    "slug": "exponential-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Exponential Interactive, Inc.",
+    "address": "30 Stamford Street\nLondon\nSE19LQ\nUnited Kingdom",
+    "phone": "+1 510 250 5500",
+    "fax": "+1 510 250 5700",
+    "email": "privacy@exponential.com",
+    "web": "http://exponential.com/",
+    "sources": [
+        "http://exponential.com/privacy/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,35 @@
+{
+    "slug": "weekday-com",
+    "relevant-countries": [
+        "at",
+        "be",
+        "cz",
+        "dk",
+        "fi",
+        "fr",
+        "de",
+        "hu",
+        "ie",
+        "it",
+        "nl",
+        "pl",
+        "pt",
+        "sk",
+        "es",
+        "se",
+        "gb"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Weekday.com",
+    "address": "c/o H & M Hennes & Mauritz GBC AB\nMäster Samuelsgatan 46\n106 38 Stockholm\nSweden",
+    "phone": "+44 20 3514 7777",
+    "email": "customerservice@weekday.com",
+    "web": "https://www.weekday.com",
+    "sources": [
+        "https://www.weekday.com/en_gbp/help/help/privacy-notice.html",
+        "https://www.weekday.com/en_gbp/help/help/contact.html"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,32 @@
+{
+    "slug": "1und1",
+    "relevant-countries": [
+        "de",
+        "at",
+        "it"
+    ],
+    "categories": [
+        "telecommunication",
+        "commerce"
+    ],
+    "name": "1&1 Internet SE",
+    "runs": [
+        "1&1 Telecom GmbH",
+        "1&1 Telecommunication SE"
+    ],
+    "address": "Elgendorfer Straße 57\n56410 Montabaur\nDeutschland",
+    "phone": "+49 721 9600",
+    "fax": "+49 721 9608132",
+    "email": "datenschutz@1und1.de",
+    "web": "https://www.1und1.de/",
+    "sources": [
+        "https://www.1und1.de/DatenschutzTelecomGmbH",
+        "https://hosting.1und1.de/terms-gtc/terms-privacy/",
+        "https://unternehmen.1und1.de/impressum/",
+        "https://www.1und1.at/",
+        "https://www.1and1.it/terms-gtc/fileadmin/Terms/PDF_IT/2018_01_IT_Privacy_MD.pdf",
+        "https://github.com/datenanfragen/data/issues/485"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

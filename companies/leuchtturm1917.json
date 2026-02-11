@@ -1,0 +1,25 @@
+{
+    "slug": "leuchtturm1917",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "LEUCHTTURM GRUPPE GMBH & CO. KG",
+    "runs": [
+        "LEUCHTTURM1917"
+    ],
+    "address": "Am Spakenberg 45\n21502 Geesthacht\nDeutschland",
+    "phone": "+49 4152 8010",
+    "fax": "+49 4152 801222",
+    "email": "service@leuchtturm.de",
+    "web": "https://www.leuchtturm.de/",
+    "sources": [
+        "https://www.leuchtturm.de/datenschutz/",
+        "https://www.leuchtturm1917.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2536",
+        "https://github.com/datenanfragen/data/pull/2993"
+    ],
+    "quality": "verified"
+}

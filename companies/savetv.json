@@ -1,0 +1,17 @@
+{
+    "slug": "savetv",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Save.TV GmbH",
+    "address": "Friedrich-List-Platz 1\n04103 Leipzig\nDeutschland",
+    "phone": "+49 341 30213021",
+    "email": "info@save.tv",
+    "web": "https://www.save.tv",
+    "sources": [
+        "https://www.save.tv/stv/s/misc/policy.cfm",
+        "https://www.save.tv/stv/s/misc/impressum.cfm",
+        "https://github.com/datenanfragen/data/issues/182"
+    ],
+    "quality": "verified"
+}

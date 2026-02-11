@@ -1,0 +1,19 @@
+{
+    "slug": "vivid-money",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Vivid Money GmbH",
+    "address": "Zimmerstrasse 78\n10117 Berlin\nGermany",
+    "email": "privacy@vivid.money",
+    "web": "https://vivid.money/",
+    "sources": [
+        "https://website-static.vivid.money/static/legal-docs/en/privacy-notice-group.pdf",
+        "https://github.com/datenanfragen/data/pull/3128"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

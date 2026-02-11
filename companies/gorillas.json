@@ -1,0 +1,18 @@
+{
+    "slug": "gorillas",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Getir Germany GmbH",
+    "address": "Prenzlauer Allee 242-247\n10405 Berlin\nGermany",
+    "email": "privacy@getir.com",
+    "web": "https://getir.com/",
+    "sources": [
+        "https://getir.com/de/privacy-policy/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

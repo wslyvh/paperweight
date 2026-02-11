@@ -1,0 +1,18 @@
+{
+    "slug": "matchaffinity-se",
+    "relevant-countries": [
+        "se"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "MatchAffinity.se",
+    "address": "Match.com Nordic AB\nc/o Deloitte\nBox 386\n201 23 Malmö\nSweden",
+    "email": "privacy@matchaffinity.se",
+    "web": "https://www.matchaffinity.se",
+    "sources": [
+        "https://www.matchaffinity.se/pages/misc/privacy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

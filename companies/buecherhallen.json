@@ -1,0 +1,36 @@
+{
+    "slug": "buecherhallen",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Stiftung Hamburger Öffentliche Bücherhallen",
+    "runs": [
+        "Bücherhallen Hamburg"
+    ],
+    "address": "Hühnerposten 1\n20097 Hamburg\nDeutschland",
+    "email": "office@datenschutz-nord.de",
+    "web": "https://www.buecherhallen.de",
+    "sources": [
+        "https://www.buecherhallen.de/datenschutz.html",
+        "https://www.buecherhallen.de/impressum.html",
+        "https://github.com/datenanfragen/data/pull/1402"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "Nummer Ihrer Kundenkarte",
+            "type": "input",
+            "optional": false
+        }
+    ],
+    "quality": "verified"
+}

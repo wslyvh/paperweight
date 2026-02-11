@@ -1,0 +1,17 @@
+{
+    "slug": "schlichtungsstelle-energie-e-v",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "nonprofit"
+    ],
+    "name": "Schlichtungsstelle Energie e.V.",
+    "address": "Friedrichstraße 133\n10117 Berlin\nDeutschland",
+    "email": "datenschutz@schlichtungsstelle-energie.de",
+    "sources": [
+        "https://www.schlichtungsstelle-energie.de/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/2743"
+    ],
+    "quality": "verified"
+}

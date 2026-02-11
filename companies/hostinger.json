@@ -1,0 +1,22 @@
+{
+    "slug": "hostinger",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Hostinger International, Ltd",
+    "runs": [
+        "HOSTINGER, UAB"
+    ],
+    "address": "61 Lordou Vironos Street\n6023 Larnaca\nCyprus",
+    "email": "gdpr@hostinger.com",
+    "web": "https://www.hostinger.com/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/585",
+        "https://www.hostinger.com/privacy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

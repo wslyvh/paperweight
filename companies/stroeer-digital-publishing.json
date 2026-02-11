@@ -1,0 +1,30 @@
+{
+    "slug": "stroeer-digital-publishing",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads",
+        "entertainment",
+        "telecommunication"
+    ],
+    "name": "Ströer Digital Publishing GmbH",
+    "runs": [
+        "t-online.de",
+        "t-online App",
+        "Wetter von t-online App"
+    ],
+    "address": "Ströer-Allee 1\n50999 Köln\nDeutschland",
+    "phone": "+49 69 921017610",
+    "email": "sdp-datenschutz@stroeer.de",
+    "web": "https://www.t-online.de",
+    "sources": [
+        "https://www.t-online.de/datenschutz/",
+        "https://www.t-online.de/impressum/id_12511434/index",
+        "https://www.t-online.de/unternehmen/",
+        "https://www.stroeer.de/konvergenz-konzepte/konzept-content/plattformen-portale/stroeer-digital-publishing.html",
+        "https://github.com/datenanfragen/data/pull/1336"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

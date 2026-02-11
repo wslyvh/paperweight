@@ -1,0 +1,19 @@
+{
+    "slug": "american-express",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "American Express Europe S.A.",
+    "address": "Theodor-Heuss-Allee 112\n60486 Frankfurt a.M\nGermany",
+    "email": "DPO-Europe@aexp.com",
+    "web": "https://www.americanexpress.com",
+    "sources": [
+        "https://www.americanexpress.com/de-de/firma/legal/datenschutz-center/online-datenschutzerklarung/",
+        "https://github.com/datenanfragen/data/pull/2301"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

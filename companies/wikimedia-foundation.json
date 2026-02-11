@@ -1,0 +1,40 @@
+{
+    "slug": "wikimedia-foundation",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "nonprofit"
+    ],
+    "name": "Wikimedia Foundation, Inc.",
+    "runs": [
+        "Wikipedia (wikipedia.org)",
+        "MediaWiki",
+        "Wikimedia Commons",
+        "Wikispecies",
+        "Wikidata",
+        "Wikimania",
+        "Wikinews",
+        "Wikiquote",
+        "Wikiversity",
+        "Wikivoyage",
+        "Wiktionary",
+        "Meta Wikimedia",
+        "Wikitech",
+        "Wikimedia Enterprise"
+    ],
+    "address": "c/o Bird & Bird GDPR Representative Ireland\n29 Earlsfort Terrace\nDublin 2\nD02 AY28\nIreland",
+    "phone": "+1 415 839 6885",
+    "fax": "+1 415 882 0495",
+    "email": "EUrepresentative.Wikimedia@twobirds.com",
+    "web": "https://wikimediafoundation.org/",
+    "sources": [
+        "https://foundation.wikimedia.org/wiki/Privacy_policy",
+        "https://github.com/datenanfragen/data/issues/438",
+        "https://github.com/datenanfragen/data/pull/1272",
+        "https://github.com/datenanfragen/data/pull/1602"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

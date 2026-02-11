@@ -1,0 +1,23 @@
+{
+    "slug": "aponeo",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health",
+        "commerce"
+    ],
+    "name": "APONEO – Mehr als Apotheke",
+    "address": "Plauener Str. 163-165\n13053 Berlin\nDeutschland",
+    "phone": "+49 800 44 00 200",
+    "fax": "+49 800 44 00 210",
+    "email": "datenschutz@aponeo.de",
+    "web": "https://www.aponeo.de",
+    "sources": [
+        "https://www.aponeo.de/informationen/rechtliches/impressum/",
+        "https://www.aponeo.de/informationen/rechtliches/datenschutz/",
+        "https://github.com/datenanfragen/data/issues/261"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,37 @@
+{
+    "slug": "joinclubhouse",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Alpha Exploration Co.",
+    "runs": [
+        "Clubhouse"
+    ],
+    "address": "548 Market St\nPMB 72878\nSan Francisco, California 94104-5401\nUnited States of America",
+    "email": "privacy@clubhouse.com",
+    "web": "https://www.clubhouse.com/",
+    "sources": [
+        "https://privacy.clubhouse.com",
+        "https://github.com/datenanfragen/data/pull/934",
+        "https://github.com/datenanfragen/data/pull/995",
+        "https://github.com/datenanfragen/data/pull/1505"
+    ],
+    "required-elements": [
+        {
+            "desc": "Email",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Phone Number",
+            "type": "textarea",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

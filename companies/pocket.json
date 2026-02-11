@@ -1,0 +1,32 @@
+{
+    "slug": "pocket",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Read It Later, Inc.",
+    "runs": [
+        "Pocket (getpocket.com)"
+    ],
+    "address": "233 Sansome\nSuite 1200\nSan Francisco\nCA 94104\nUnited States of America",
+    "email": "privacy@getpocket.com",
+    "web": "https://getpocket.com/",
+    "sources": [
+        "https://getpocket.com/privacy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

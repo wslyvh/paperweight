@@ -1,0 +1,24 @@
+{
+    "slug": "flotte-berlin",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "nonprofit"
+    ],
+    "name": "Allgemeiner Deutscher Fahrrad-Club Berlin e.V.",
+    "runs": [
+        "fLotte Berlin"
+    ],
+    "address": "Yorckstraße 25\n10965 Berlin\nDeutschland",
+    "phone": "+49 30 4484724",
+    "fax": "+49 30 44340520",
+    "email": "kontakt@adfc-berlin.de",
+    "web": "https://flotte-berlin.de/",
+    "sources": [
+        "https://flotte-berlin.de/datenschutzerklaerung/",
+        "https://flotte-berlin.de/ueber-uns/impressum/",
+        "https://github.com/datenanfragen/data/pull/939"
+    ],
+    "quality": "verified"
+}

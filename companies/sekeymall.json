@@ -1,0 +1,22 @@
+{
+    "slug": "sekeymall",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Salcar GmbH",
+    "runs": [
+        "SEKEYMALL"
+    ],
+    "address": "An der Hebemärchte 6\n04316 Leipzig\nDeutschland",
+    "phone": "+49 341 25257850",
+    "email": "info@sekeymall.com",
+    "web": "https://www.sekeymall.com",
+    "sources": [
+        "https://sekeymall.com/pages/impressum",
+        "https://github.com/datenanfragen/data/pull/1974"
+    ],
+    "quality": "verified"
+}

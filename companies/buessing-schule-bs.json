@@ -1,0 +1,24 @@
+{
+    "slug": "buessing-schule-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Heinrich-Büssing-Schule Braunschweig",
+    "address": "Salzdahlumer Straße 85\n38126 Braunschweig\nDeutschland",
+    "phone": "+49 531 470 7700",
+    "fax": "+49 531 470 7799",
+    "email": "datenschutz@buessing.schule",
+    "web": "https://buessing.schule",
+    "sources": [
+        "https://buessing.schule/datenschutz",
+        "https://buessing.schule/impressum"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "facet-group": "school"
+}

@@ -1,0 +1,32 @@
+{
+    "slug": "supercell",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Supercell Oy",
+    "runs": [
+        "Boom Beach",
+        "Brawl Stars",
+        "Clash of Clans",
+        "Clash Royale",
+        "Hay Day"
+    ],
+    "address": "Jätkäsaarenlaituri 1\n00180 Helsinki\nFinland",
+    "email": "legal-requests@supercell.com",
+    "web": "https://supercell.com",
+    "sources": [
+        "https://supercell.com/en/privacy-policy/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Email",
+            "type": "name",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

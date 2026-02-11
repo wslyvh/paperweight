@@ -1,0 +1,21 @@
+{
+    "slug": "douglas",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Parfümerie Douglas GmbH & Co. KG",
+    "address": "Luise-Rainer-Straße 7 – 11\n40235 Düsseldorf\nDeutschland",
+    "phone": "+49 800 690 690 5",
+    "fax": "+49 2331 6907178",
+    "email": "datenschutz@douglas.de",
+    "web": "https://www.douglas.de/",
+    "sources": [
+        "https://www.douglas.de/de/cp/helpv2informationdatapolicy/help-dataprotection",
+        "https://www.douglas.de/de/cp/helpv2imprint/help-imprint"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

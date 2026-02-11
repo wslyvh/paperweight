@@ -1,0 +1,21 @@
+{
+    "slug": "canadalife-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Canada Life Assurance Europe plc",
+    "address": "Siemensstraße 8\n63263 Neu-Isenburg\nDeutschland",
+    "phone": "+49 6102 3061800",
+    "fax": "+49 6102 3061801",
+    "email": "CLE_Datenschutz@canadalife.de",
+    "web": "https://www.canadalife.de",
+    "sources": [
+        "https://www.canadalife.de/media/datenschutzhinweise-bei-beantragung-eines-versicherungsvertrags-gemaess-artikel-13-dsgvo.pdf",
+        "https://github.com/datenanfragen/data/pull/2070"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

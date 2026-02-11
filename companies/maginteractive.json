@@ -1,0 +1,24 @@
+{
+    "slug": "maginteractive",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "MAG Interactive AB",
+    "runs": [
+        "Quiz Duel",
+        "Ruzzle",
+        "WordBrain",
+        "Adventure"
+    ],
+    "address": "Drottninggatan 95A\n113 60 Stockholm\nSweden",
+    "email": "privacy@maginteractive.com",
+    "web": "https://www.maginteractive.com",
+    "sources": [
+        "https://www.maginteractive.com/mag-policy-and-service/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/2552"
+    ],
+    "quality": "verified"
+}

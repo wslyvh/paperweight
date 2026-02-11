@@ -1,0 +1,24 @@
+{
+    "slug": "interamt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "DVZ Datenverarbeitungszentrum Mecklenburg-Vorpommern GmbH",
+    "runs": [
+        "Interamt"
+    ],
+    "address": "Lübecker Straße 283\n19059 Schwerin\nDeutschland",
+    "phone": "+49 385 48 00 257",
+    "email": "datenschutz@dvz-mv.de",
+    "web": "https://www.dvz-mv.de/",
+    "sources": [
+        "https://interamt.de/cms/legal/Datenschutzerklaerung.html",
+        "https://interamt.de/cms/legal/impressum.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

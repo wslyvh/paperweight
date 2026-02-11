@@ -1,0 +1,21 @@
+{
+    "slug": "odgersberndtson",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Odgers Berndtson",
+    "runs": [
+        "Berwick Partners",
+        "Odgers Interim",
+        "Odgers Connect"
+    ],
+    "address": "20 Cannon Street\nLondon\nEC4M 6XD\nUnited Kingdom",
+    "email": "data.administrator@odgersberndtson.com",
+    "web": "https://www.odgersberndtson.com",
+    "sources": [
+        "https://www.odgersberndtson.com/legal-notices/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/2436"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

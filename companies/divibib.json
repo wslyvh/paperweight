@@ -1,0 +1,22 @@
+{
+    "slug": "divibib",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "divibib GmbH",
+    "runs": [
+        "Onleihe"
+    ],
+    "address": "Bismarckstr. 3\n72764 Reutlingen\nDeutschland",
+    "email": "Datenschutz@ekz.de",
+    "web": "https://www.divibib.com",
+    "sources": [
+        "https://www.divibib.com/divibib-gmbh/datenschutzerklaerung-der-divibib-gmbh/c-1710",
+        "https://github.com/datenanfragen/data/pull/2807"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "deejay",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "deejay.de e.K.",
+    "address": "Hofer Str. 32\n95182 Döhlau\nDeutschland",
+    "phone": "+49 9286 95550",
+    "fax": "+49 9286 955599",
+    "email": "datenschutz@deejay.de",
+    "web": "https://deejay.de",
+    "sources": [
+        "https://deejay.de/m_Info/sm_Datenschutz",
+        "https://github.com/datenanfragen/data/pull/2212"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

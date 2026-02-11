@@ -1,0 +1,19 @@
+{
+    "slug": "thueringer-allgemeine",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Thüringer Allgemeine",
+    "address": "c/o FUNKE Medien Thüringen GmbH\nJuri-Gagarin-Ring 86-88\n99084 Erfurt\nDeutschland",
+    "email": "datenschutz.thueringen@funkemedien.de",
+    "web": "https://www.thueringer-allgemeine.de",
+    "sources": [
+        "https://www.thueringer-allgemeine.de/service/datenschutzerklaerung/",
+        "https://github.com/datenanfragen/data/pull/3065"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

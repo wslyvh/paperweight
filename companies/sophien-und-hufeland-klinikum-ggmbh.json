@@ -1,0 +1,25 @@
+{
+    "slug": "sophien-und-hufeland-klinikum-ggmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "nonprofit",
+        "utility"
+    ],
+    "name": "Sophien- und Hufeland-Klinikum gGmbH",
+    "address": "Henry-van-de-Velde-Straße 2\n99425 Weimar\nDeutschland",
+    "phone": "+49 361 6646170",
+    "fax": "+49 3643 572002",
+    "email": "dsb@klinikum-weimar.de",
+    "sources": [
+        "https://www.klinikum-weimar.de/web/de/content/content.php?areaID=1&menuID=38&contentID=152&hidden=true",
+        "https://github.com/datenanfragen/data/pull/2719"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,27 @@
+{
+    "slug": "kkh-krankenkasse",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health",
+        "insurance"
+    ],
+    "name": "KKH Kaufmännische Krankenkasse",
+    "runs": [
+        "Meine KKH",
+        "KKH App",
+        "KKH Newsletter",
+        "Mitgliedermagazin aktiv+"
+    ],
+    "address": "Karl-Wiechert-Allee 61\n30625 Hannover\nDeutschland",
+    "phone": "+49 800 5548640554",
+    "email": "datenschutzservice@kkh.de",
+    "web": "https://www.kkh.de",
+    "sources": [
+        "https://www.kkh.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1105"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,15 @@
+{
+    "slug": "trellis-law",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Trellis Research Inc.",
+    "address": "2036 Armacost Ave\nLos Angeles, CA 90025\nUnited States of America",
+    "email": "support@trellis.law",
+    "web": "https://trellis.law",
+    "sources": [
+        "https://trellis.law/privacy-policy",
+        "https://github.com/datenanfragen/data/issues/195"
+    ],
+    "quality": "verified"
+}

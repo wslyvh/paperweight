@@ -1,0 +1,22 @@
+{
+    "slug": "moebel-boss-online",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "SB-Möbel BOSS Onlineshop GmbH & Co. KG",
+    "address": "Bakenweg 16 – 20\n32457 Porta Westfalica\nDeutschland",
+    "phone": "+49 5731 609 861",
+    "fax": "+49 34602 255 89",
+    "email": "widerruf@moebel-boss.de",
+    "web": "https://moebel-boss.de/",
+    "sources": [
+        "https://moebel-boss.de/privacy",
+        "https://moebel-boss.de/impressum",
+        "https://moebel-boss.de/termsAndConditions"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

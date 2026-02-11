@@ -1,0 +1,24 @@
+{
+    "slug": "bvl-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesamt für Verbraucherschutz und Lebensmittelsicherheit (BVL)",
+    "address": "Mauerstraße 39 – 42\n10117 Berlin\nDeutschland",
+    "phone": "+49 30 18445 7141",
+    "fax": "+49 531 21497 299",
+    "email": "datenschutz@bvl.bund.de",
+    "web": "https://www.bvl.bund.de",
+    "sources": [
+        "https://www.bvl.bund.de/DE/Meta/Datenschutz/datenschutz_node.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Eigentliche Adresse: Bundesallee 35, 38116 Braunschweig, Deutschland"
+    ],
+    "quality": "verified"
+}

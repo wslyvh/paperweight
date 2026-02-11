@@ -1,0 +1,24 @@
+{
+    "slug": "skanetrafiken-se",
+    "relevant-countries": [
+        "se",
+        "dk"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Region Skåne",
+    "runs": [
+        "Skånetrafiken"
+    ],
+    "address": "291 89 Kristianstad\nSweden",
+    "phone": "+46 44 309 30 00",
+    "fax": "+46 44 309 32 98",
+    "email": "region@skane.se",
+    "web": "https://www.skanetrafiken.se/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/167",
+        "https://www.skanetrafiken.se/sa-reser-du-med-oss/villkor/personuppgifter/"
+    ],
+    "quality": "verified"
+}

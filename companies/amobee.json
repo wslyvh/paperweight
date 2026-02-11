@@ -1,0 +1,28 @@
+{
+    "slug": "amobee",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Amobee, Inc.",
+    "runs": [
+        "Turn, Inc.",
+        "Videology, Inc. (formerly)"
+    ],
+    "address": "1st Floor, Hogarth House\n135 High Holborn\nLondon\nWC1V 6PX\nUnited Kingdom",
+    "phone": "+44 20 3301 5555",
+    "email": "amobeeprivacy@amobee.com",
+    "web": "https://www.amobee.com/",
+    "webform": "https://www.amobee.com/gdpr/",
+    "sources": [
+        "https://www.amobee.com/trust/privacy-guidelines/",
+        "https://www.amobee.com/company/",
+        "https://www.amobee.com/newsroom/amobee-completes-acquisition-of-videology-expands-advanced-tv-and-video-advertising-capabilities/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "webform",
+    "quality": "verified"
+}

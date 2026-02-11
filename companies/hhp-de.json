@@ -1,0 +1,16 @@
+{
+    "slug": "hhp-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "hhp GmbH",
+    "address": "Sophienstraße 15 – 17\n76133 Karlsruhe\nDeutschland",
+    "fax": "+49 721 1614399",
+    "email": "info@hhp.de",
+    "web": "https://www.hhp.de",
+    "sources": [
+        "https://www.hhp.de/unternehmen-hhp/datenschutzbestimmungen",
+        "https://github.com/datenanfragen/data/issues/74"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "fit-plus",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "FIT PLUS Fitness Center GmbH",
+    "address": "Altdorfer Straße 38\n84030 Landshut\nDeutschland",
+    "phone": "+49 8781 7489869",
+    "email": "datenschutz@fit-plus.info",
+    "web": "https://fit-plus.info/",
+    "sources": [
+        "https://fit-plus.info/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1819"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "topmedia",
+    "relevant-countries": [
+        "nl"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Topmedia B.V.",
+    "address": "Nijverheidsweg-Noord 81\n3812 PL Amersfoort, Utrecht\nThe Netherlands",
+    "phone": "+31 30 670 0583",
+    "email": "privacy@topmedia.nl",
+    "web": "https://www.topmedia.nl",
+    "sources": [
+        "https://www.topmedia.nl/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/1250",
+        "https://www.topmedia.nl/en-gb/service/contact"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

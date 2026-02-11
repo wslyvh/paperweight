@@ -1,0 +1,24 @@
+{
+    "slug": "hackclub",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "nonprofit"
+    ],
+    "name": "The Hack Foundation",
+    "runs": [
+        "Hack Club"
+    ],
+    "address": "8605 Santa Monica Blvd #86294\nWest Hollywood, CA 90069\nUnited States of America",
+    "email": "team@hackclub.com",
+    "web": "https://hackclub.com",
+    "sources": [
+        "https://hackfoundation.org",
+        "https://hackclub.com",
+        "https://github.com/hackclub",
+        "https://opencorporates.com/companies/us_ca/3913576",
+        "https://github.com/datenanfragen/data/pull/1542"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "ycombinator-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Y Combinator Management, LLC",
+    "runs": [
+        "Hacker News (news.ycombinator.com)"
+    ],
+    "address": "335 Pioneer Way\nMountain View\nCA 94041\nUnited States of America",
+    "email": "hn@ycombinator.com",
+    "web": "https://ycombinator.com/",
+    "sources": [
+        "https://www.ycombinator.com/legal/#privacy",
+        "https://apply.ycombinator.com/events/78",
+        "https://www.startus.cc/company/y-combinator"
+    ],
+    "quality": "verified"
+}

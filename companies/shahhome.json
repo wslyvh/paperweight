@@ -1,0 +1,16 @@
+{
+    "slug": "shahhome",
+    "relevant-countries": [
+        "gb"
+    ],
+    "name": "Shah Home Ltd",
+    "address": "207 Lightbowne Road\nManchester\nM40 9DD\nUnited Kingdom",
+    "phone": "+44 161 947 0700",
+    "email": "info@shahhome.co.uk",
+    "web": "https://shahhome.uk/",
+    "sources": [
+        "https://shahhome.co.uk/contact-us/",
+        "https://github.com/datenanfragen/data/pull/1447"
+    ],
+    "quality": "verified"
+}

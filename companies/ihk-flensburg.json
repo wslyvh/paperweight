@@ -1,0 +1,21 @@
+{
+    "slug": "ihk-flensburg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce",
+        "public body"
+    ],
+    "name": "IHK Flensburg",
+    "address": "Heinrichstraße 28–34\n24937 Flensburg\nDeutschland",
+    "phone": "+49 461 806 806",
+    "fax": "+49 461 806 9806",
+    "email": "datenschutz@flensburg.ihk.de",
+    "sources": [
+        "https://www.ihk-schleswig-holstein.de/produktmarken/ihre-ihk/ueber-uns/pflichtinformationen-dsgvo-fl-4292270",
+        "https://github.com/datenanfragen/data/pull/1425"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

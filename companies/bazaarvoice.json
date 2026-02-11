@@ -1,0 +1,19 @@
+{
+    "slug": "bazaarvoice",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Bazaarvoice, Inc.",
+    "address": "10901 Stonelake Blvd\nAustin\nTX 78759\nUnited States of America",
+    "email": "privacy@bazaarvoice.com",
+    "web": "https://www.bazaarvoice.com/",
+    "sources": [
+        "https://www.bazaarvoice.com/legal/privacy-policy/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "dataxtrade",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "dataXtrade GmbH",
+    "address": "Dachauer Str. 15c\n80335 München\nGermany",
+    "phone": "+49 89 200068364",
+    "email": "privacy@dataxtrade.com",
+    "web": "https://dataxtrade.com/",
+    "sources": [
+        "https://dataxtrade.com/de/privacy.html",
+        "https://github.com/datenanfragen/data/pull/2228"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

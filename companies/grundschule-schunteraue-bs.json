@@ -1,0 +1,22 @@
+{
+    "slug": "grundschule-schunteraue-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Grundschule Schunteraue Braunschweig",
+    "address": "Albert-Schweitzer-Straße 10\n38108 Braunschweig\nDeutschland",
+    "phone": "+49 531 351579",
+    "fax": "+49 531 2351665",
+    "email": "gs.schunteraue@braunschweig.de",
+    "web": "http://grundschule-schunteraue.de/",
+    "sources": [
+        "http://grundschule-schunteraue.de/kontakt/impressum/"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

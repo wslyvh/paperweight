@@ -1,0 +1,20 @@
+{
+    "slug": "ikea",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "IKEA Deutschland GmbH & Co. KG",
+    "address": "Am Wandersmann 2 – 4\n65719 Hofheim-Wallau\nDeutschland",
+    "phone": "+49 6192 9399999",
+    "email": "dsb@ikea.com",
+    "web": "https://www.ikea.com/de/de/",
+    "sources": [
+        "https://www.ikea.com/de/de/customer-service/privacy-policy/",
+        "https://www.ikea.com/de/de/customer-service/impressum-pub8c45c280/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

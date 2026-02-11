@@ -1,0 +1,26 @@
+{
+    "slug": "sport1",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "categories": [
+        "ads",
+        "entertainment",
+        "social media"
+    ],
+    "name": "SPORT1 GmbH",
+    "address": "Münchener Straße 101 g\n85737 Ismaning\nDeutschland",
+    "phone": "+49 89 960 66 0",
+    "fax": "+49 89 960 66 1009",
+    "email": "datenschutz@sport1.de",
+    "web": "https://www.sport1.de",
+    "sources": [
+        "https://www.sport1.de/unternehmen/impressum",
+        "https://www.sport1.de/unternehmen/datenschutz",
+        "https://github.com/datenanfragen/data/issues/38"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

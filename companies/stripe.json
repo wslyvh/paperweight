@@ -1,0 +1,18 @@
+{
+    "slug": "stripe",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Stripe Inc.",
+    "address": "510 Townsend Street\nSan Francisco\nCA 94103\nUnited States of America",
+    "email": "privacy@stripe.com",
+    "sources": [
+        "https://stripe.com/de/privacy",
+        "https://github.com/datenanfragen/data/pull/888"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

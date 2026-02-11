@@ -1,0 +1,22 @@
+{
+    "slug": "tapjoy",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Tapjoy Ltd.",
+    "address": "International Buildings\n5th floor\n71 Kingsway\nLondon\nWC2B 6ST\nUnited Kingdom",
+    "phone": "+1 415 766 6900",
+    "email": "privacy@tapjoy.com",
+    "web": "https://www.tapjoy.com/",
+    "webform": "https://www.tapjoy.com/dataprivacyrequests/",
+    "sources": [
+        "https://www.tapjoy.com/legal/players/privacy-policy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "webform",
+    "quality": "verified"
+}

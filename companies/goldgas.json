@@ -1,0 +1,21 @@
+{
+    "slug": "goldgas",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "goldgas GmbH",
+    "address": "Rahmannstraße 1\n65760 Eschborn\nDeutschland",
+    "phone": "+49 6196 77400",
+    "fax": "+49 6196 7740200",
+    "email": "datenschutz@goldgas.de",
+    "web": "https://www.goldgas.de",
+    "sources": [
+        "https://www.goldgas.de/fileadmin/Dokumente/Downloads/Datenschutz/goldgas-Informationen-zum-Datenschutz-Kunden.pdf",
+        "https://github.com/datenanfragen/data/pull/1102"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

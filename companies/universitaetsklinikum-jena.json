@@ -1,0 +1,20 @@
+{
+    "slug": "universitaetsklinikum-jena",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "Universitätsklinikum Jena",
+    "address": "Bachstraße 18\n07743 Jena\nDeutschland",
+    "phone": "+49 3641 9325624",
+    "fax": "+49 3641 9399925",
+    "email": "datenschutzbeauftragter@med.uni-jena.de",
+    "sources": [
+        "https://www.uniklinikum-jena.de/Datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/2803"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

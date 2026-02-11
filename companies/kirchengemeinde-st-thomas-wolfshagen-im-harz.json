@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-st-thomas-wolfshagen-im-harz",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde St. Thomas Wolfshagen im Harz",
+    "address": "Heinrich-Steinweg-Straße 16\n38685 Langelsheim\nDeutschland",
+    "phone": "+49 5326 969208",
+    "fax": "+49 5326 969345",
+    "email": "wolfshagen.pfa@lk-bs.de",
+    "web": "http://www.kirche-wolfshagen.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=991"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

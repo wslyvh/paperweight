@@ -1,0 +1,33 @@
+{
+    "slug": "paypal-fr",
+    "relevant-countries": [
+        "fr"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "PayPal (Europe) S.à r.l. et Cie, S.C.A.",
+    "address": "22 – 24 Boulevard Royal\nL-2449 Luxembourg\nLuxembourg",
+    "phone": "+33 800 942 890",
+    "webform": "https://www.paypal.com/fr/smarthelp/contact-us/privacy",
+    "web": "https://www.paypal.com/fr",
+    "sources": [
+        "https://www.paypal.com/webapps/mpp/ua/privacy-full",
+        "https://www.paypal.com/fr/smarthelp/contact-us"
+    ],
+    "required-elements": [
+        {
+            "desc": "Nom",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        },
+        {
+            "desc": "Email du compte PayPal",
+            "type": "input"
+        }
+    ],
+    "quality": "verified"
+}

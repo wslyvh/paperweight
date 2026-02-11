@@ -1,0 +1,20 @@
+{
+    "slug": "ratepay",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "RatePAY GmbH",
+    "address": "Ritterstr. 12-14\n10969 Berlin\nDeutschland",
+    "email": "datenschutz@ratepay.de",
+    "web": "https://www.ratepay.com",
+    "sources": [
+        "https://www.ratepay.com/datenschutz/",
+        "https://www.ratepay.com/impressum/",
+        "https://github.com/datenanfragen/data/issues/165"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

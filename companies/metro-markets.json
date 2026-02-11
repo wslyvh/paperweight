@@ -1,0 +1,16 @@
+{
+    "slug": "metro-markets",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "METRO Markets GmbH",
+    "address": "Ria-Thiele-Str. 2a\n40549 Düsseldorf\nDeutschland",
+    "email": "datenschutz@metro-markets.de",
+    "web": "https://www.metro.de/marktplatz/",
+    "sources": [
+        "https://www.metro.de/unternehmen/datenschutzhinweise/marktplatz",
+        "https://github.com/datenanfragen/data/pull/1408"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

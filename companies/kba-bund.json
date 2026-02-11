@@ -1,0 +1,59 @@
+{
+    "slug": "kba-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Kraftfahrt-Bundesamt (KBA)",
+    "runs": [
+        "Zentrales Fahrzeugregister (ZFZR)",
+        "Fahreignungsregister (FAER)",
+        "Zentrales Fahrerlaubnisregister (ZFER)",
+        "Fahrtenschreiberkartenregister (FKR)"
+    ],
+    "address": "24932 Flensburg\nDeutschland",
+    "phone": "+49 461 316 0",
+    "fax": "+49 461 316 1650",
+    "email": "Datenschutz@kba.de",
+    "web": "https://www.kba.de",
+    "sources": [
+        "https://www.kba.de/DE/Service/Hinweise/Datenschutz/datenschutz_node.html"
+    ],
+    "required-elements": [
+        {
+            "desc": "Vollständiger Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Geburtsname",
+            "type": "input",
+            "optional": false
+        },
+        {
+            "desc": "Geburtsdatum",
+            "type": "birthdate",
+            "optional": false
+        },
+        {
+            "desc": "Geburtsort",
+            "type": "input",
+            "optional": false
+        },
+        {
+            "desc": "Zustellfähige Anschrift",
+            "type": "address",
+            "optional": false
+        }
+    ],
+    "request-language": "de",
+    "needs-id-document": true,
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Alternative Faxnummer: +49 461 316 1495",
+        "Entgegen der Angaben im Antwortschreiben dürfen Schwärzungen des Ausweisdokuments vorgenommen werden. Die Ausweiskopie muss lediglich die Angaben enthalten, die laut Antwortschreiben zur Identifikation nötig sind. Alle anderen Angaben sollten geschwärzt werden."
+    ],
+    "quality": "verified"
+}

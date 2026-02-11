@@ -1,0 +1,33 @@
+{
+    "slug": "riskified-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance",
+        "commerce"
+    ],
+    "name": "Riskified Ltd.",
+    "address": "30 Kalischer Street\n6525724 Tel Aviv\nIsrael",
+    "email": "privacy@riskified.com",
+    "web": "https://www.riskified.com",
+    "sources": [
+        "https://www.riskified.com/privacy/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

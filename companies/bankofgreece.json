@@ -1,0 +1,18 @@
+{
+    "slug": "bankofgreece",
+    "relevant-countries": [
+        "gr"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Bank of Greece",
+    "address": "21, E. Venizelos Avenue\n10250 Athens\nGreece",
+    "email": "dpo@bankofgreece.gr",
+    "web": "https://www.bankofgreece.gr/",
+    "sources": [
+        "https://www.bankofgreece.gr/en/useful-links/privacy-policy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

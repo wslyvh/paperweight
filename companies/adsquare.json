@@ -1,0 +1,23 @@
+{
+    "slug": "adsquare",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "adsquare GmbH",
+    "address": "Saarbrücker Str. 36\n10405 Berlin\nGermany",
+    "phone": "+49 30 208498140",
+    "fax": "+49 30 208498150",
+    "email": "privacy@adsquare.com",
+    "webform": "https://adsquare.com/privacy/#goto-contact-us",
+    "web": "https://adsquare.com/",
+    "sources": [
+        "https://adsquare.com/privacy/platform_privacy_policy/",
+        "https://adsquare.com/imprint/",
+        "https://github.com/datenanfragen/data/pull/2227"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "netflix",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Netflix International B.V.",
+    "address": "Karperstraat 8-10\n1075 KZ Amsterdam\nThe Netherlands",
+    "email": "privacy@netflix.com",
+    "web": "https://www.netflix.com",
+    "sources": [
+        "https://help.netflix.com/legal/privacy",
+        "https://help.netflix.com/en/node/68708/de",
+        "https://github.com/datenanfragen/data/pull/2862"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

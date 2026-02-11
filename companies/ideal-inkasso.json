@@ -1,0 +1,21 @@
+{
+    "slug": "ideal-inkasso",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "collection agency"
+    ],
+    "name": "IDEAL-INKASSO",
+    "address": "c/o IDEAL-FULLSERVICE GmbH\nPfaffenstraße 49\n74078 Heilbronn\nDeutschland",
+    "phone": "+49 7131 26 28 300",
+    "fax": "+49 7131 8980511",
+    "email": "datenschutz@ideal-fullservice.de",
+    "web": "https://www.ideal-fullservice.de/inkasso.html",
+    "sources": [
+        "https://www.ideal-fullservice.de/datenschutz.html",
+        "https://github.com/datenanfragen/data/issues/88"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

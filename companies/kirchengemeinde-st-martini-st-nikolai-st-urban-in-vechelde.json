@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-st-martini-st-nikolai-st-urban-in-vechelde",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde St. Martini-St. Nikolai-St. Urban in Vechelde",
+    "address": "St.-Martins-Straße 9\n38159 Vechelde\nDeutschland",
+    "phone": "+49 5300 363",
+    "fax": "+49 5300 933630",
+    "email": "vallstedt.pfa@lk-bs.de",
+    "web": "https://www.kirche-vallstedt.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=1013"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

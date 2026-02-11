@@ -1,0 +1,40 @@
+{
+    "slug": "cosmosdirekt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "CosmosDirekt",
+    "runs": [
+        "Cosmos Lebensversicherungs-AG",
+        "Cosmos Versicherung AG",
+        "Cosmos Finanzservice GmbH"
+    ],
+    "address": "66101 Saarbrücken\nDeutschland",
+    "phone": "+49 681 9666666",
+    "email": "datenschutz@cosmosdirekt.de",
+    "web": "https://www.cosmosdirekt.de/",
+    "sources": [
+        "https://www.cosmosdirekt.de/datenschutz/",
+        "https://www.cosmosdirekt.de/impressum/",
+        "https://github.com/datenanfragen/data/pull/3069"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Geburtsdatum",
+            "type": "birthdate"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

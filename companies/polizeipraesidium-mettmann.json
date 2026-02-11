@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-mettmann",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Der Landrat als Kreispolizeibehörde Mettmann",
+    "address": "Adalbert-Bach-Platz 1\n40822 Mettmann\nDeutschland",
+    "phone": "+49 2104 9820",
+    "fax": "+49 2104 9821018",
+    "email": "datenschutz.mettmann@polizei.nrw.de",
+    "web": "https://mettmann.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

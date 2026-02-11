@@ -1,0 +1,20 @@
+{
+    "slug": "limango",
+    "categories": [
+        "commerce"
+    ],
+    "name": "limango GmbH",
+    "address": "Georg-Muche-Straße 1\n80807 München\nDeutschland",
+    "phone": "+49 800 54 99 800",
+    "fax": "+49 89 2 48 85 1259",
+    "email": "support@limango.de",
+    "web": "https://www.limango.de/",
+    "sources": [
+        "https://www.limango.de/datenschutz",
+        "https://www.limango.de/legal-information"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "quality": "verified"
+}

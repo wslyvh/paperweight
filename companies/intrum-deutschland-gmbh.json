@@ -1,0 +1,22 @@
+{
+    "slug": "intrum-deutschland-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "collection agency"
+    ],
+    "name": "Intrum Deutschland GmbH",
+    "address": "Donnersbergstraße 1\n64646 Heppenheim\nDeutschland",
+    "phone": "+49 6252 6720",
+    "fax": "+49 6252 672230",
+    "email": "datenschutz.de@intrum.com",
+    "webform": "https://www.intrum.de/zahlungserinnerung-erhalten/uber-intrum/datenschutz/rechte-der-betroffenen-person/",
+    "web": "https://www.intrum.de/zahlungserinnerung-erhalten/",
+    "sources": [
+        "https://www.intrum.de/zahlungserinnerung-erhalten/uber-intrum/datenschutz/datenschutzerklarung/",
+        "https://github.com/datenanfragen/data/pull/3267"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

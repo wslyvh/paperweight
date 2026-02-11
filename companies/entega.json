@@ -1,0 +1,24 @@
+{
+    "slug": "entega",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "ENTEGA Plus GmbH",
+    "runs": [
+        "ENTEGA Medianet GmbH"
+    ],
+    "address": "Frankfurter Straße 100\n64293 Darmstadt\nDeutschland",
+    "phone": "+49 800 4800888",
+    "email": "datenschutz@entega.de",
+    "web": "https://www.entega.de",
+    "sources": [
+        "https://www.entega.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1540",
+        "https://www.entega.de/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

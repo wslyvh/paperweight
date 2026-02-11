@@ -1,0 +1,28 @@
+{
+    "slug": "qnniu",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "JOICOM Corporation",
+    "runs": [
+        "Feelfit-Health Fitness Tool"
+    ],
+    "address": "2985 E. Miraloma Ave\nSuite H\nAnaheim, CA 92806\nUnited States of America",
+    "phone": "+86 400 998 2913",
+    "web": "http://www.qnniu.com/",
+    "sources": [
+        "https://play.google.com/store/apps/details?id=com.qingniu.feelfit&hl=en&gl=US",
+        "https://oversea-h5.yolanda.hk/privacy/Feelfit/index.html?lang=en",
+        "https://github.com/datenanfragen/data/pull/1175"
+    ],
+    "required-elements": [
+        {
+            "desc": "Email",
+            "type": "name"
+        }
+    ],
+    "quality": "verified"
+}

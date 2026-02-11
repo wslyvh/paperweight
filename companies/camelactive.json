@@ -1,0 +1,23 @@
+{
+    "slug": "camelactive",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Bültel Worldwide Fashion GmbH & Co. KG",
+    "runs": [
+        "camel active"
+    ],
+    "address": "Rheiner Str. 28\n48499 Salzbergen\nDeutschland",
+    "phone": "+49 5976 27700",
+    "email": "Datenschutz@bueltel.com",
+    "web": "https://www.camelactive.com/",
+    "sources": [
+        "https://www.camelactive.com/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2584"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

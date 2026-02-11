@@ -1,0 +1,32 @@
+{
+    "slug": "wildbit",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Wildbit, LLC",
+    "runs": [
+        "Postmark",
+        "DMARC Digests",
+        "Beanstalk",
+        "People-First Jobs"
+    ],
+    "address": "2400 Market Street\nNo. 200, Suite 235B\nPhiladelphia PA 19103\nUnited States of America",
+    "phone": "+1 215 203 0488",
+    "email": "privacy@wildbit.com",
+    "web": "https://wildbit.com",
+    "sources": [
+        "https://wildbit.com/privacy-policy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Email",
+            "type": "name",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

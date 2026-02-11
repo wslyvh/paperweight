@@ -1,0 +1,21 @@
+{
+    "slug": "senfcall",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication",
+        "nonprofit"
+    ],
+    "name": "Senfcall",
+    "address": "c/o Computerwerk Darmstadt e.V.\nKarolinenplatz 5\n64289 Darmstadt\nGermany",
+    "email": "datenschutz@senfcall.de",
+    "pgp-fingerprint": "136D CE90 AE63 4307 2534  D344 43FC 1ABE 9DF9 A273",
+    "pgp-url": "https://senfcall.de/dsbsenfcallpub.asc",
+    "web": "https://www.senfcall.de/",
+    "sources": [
+        "https://www.senfcall.de/gdpr"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

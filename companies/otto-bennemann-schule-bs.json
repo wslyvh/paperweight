@@ -1,0 +1,24 @@
+{
+    "slug": "otto-bennemann-schule-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Otto-Bennemann-Schule Braunschweig",
+    "address": "Alte Waage 2 – 3\n38100 Braunschweig\nDeutschland",
+    "phone": "+49 531 470 7800",
+    "fax": "+49 531 470 7822",
+    "email": "datenschutz@obsbs.de",
+    "web": "https://www.otto-bennemann-schule.de",
+    "sources": [
+        "https://otto-bennemann-schule.de/kontakt/datenschutzerklaerung/",
+        "https://otto-bennemann-schule.de/kontakt/impressum/"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "facet-group": "school"
+}

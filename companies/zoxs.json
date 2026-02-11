@@ -1,0 +1,24 @@
+{
+    "slug": "zoxs",
+    "categories": [
+        "commerce"
+    ],
+    "name": "ZOXS GmbH",
+    "runs": [
+        "buyZOXS (www.buyzoxs.de)"
+    ],
+    "address": "Am Schornacker 51\n46485 Wesel\nDeutschland",
+    "phone": "+49 281 16 39 79 99",
+    "fax": "+49 281 16 39 79 97",
+    "email": "verkaufen@zoxs.de",
+    "web": "https://www.zoxs.de",
+    "sources": [
+        "https://www.zoxs.de/datenschutz.html",
+        "https://www.zoxs.de/impressum.html",
+        "https://www.buyzoxs.de/impressum4.html"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "hootsuite",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Hootsuite Inc.",
+    "address": "5 East 8th Avenue\nVancouver, BC V5T 1R6\nCanada",
+    "email": "privacy@hootsuite.com",
+    "web": "https://hootsuite.com",
+    "sources": [
+        "https://hootsuite.com/legal/privacy"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

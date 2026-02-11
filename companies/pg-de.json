@@ -1,0 +1,36 @@
+{
+    "slug": "pg-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Procter & Gamble Service GmbH",
+    "runs": [
+        "Pampers",
+        "Ariel",
+        "Lenor",
+        "Always",
+        "Gillette",
+        "Braun",
+        "Head & Shoulders",
+        "Pantene",
+        "Herbal Essences",
+        "Fairy",
+        "Febreze",
+        "Swiffer",
+        "Meister Proper",
+        "Oral-B",
+        "blend-a-med"
+    ],
+    "address": "Sulzbacher Straße 40,\n65824 Schwalbach am Taunus\nDeutschland",
+    "phone": "+49 6196 8901",
+    "email": "datenschutz.im@pg.com",
+    "sources": [
+        "https://privacypolicy.pg.com/de-DE/",
+        "https://github.com/datenanfragen/data/pull/2790"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,14 @@
+{
+    "slug": "deloitte-nl",
+    "relevant-countries": [
+        "nl"
+    ],
+    "name": "Deloitte Holding B.V.",
+    "address": "Stadionplein 12\n1076CM\nAmsterdam\nThe Netherlands",
+    "web": "https://www2.deloitte.com/nl/nl",
+    "sources": [
+        "https://www2.deloitte.com/nl/nl/footerlinks/contact.html",
+        "https://github.com/datenanfragen/data/issues/130"
+    ],
+    "quality": "verified"
+}

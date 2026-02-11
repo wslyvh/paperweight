@@ -1,0 +1,20 @@
+{
+    "slug": "dak-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "DAK-Gesundheit",
+    "address": "Nagelsweg 27 - 31\n20097 Hamburg\nDeutschland",
+    "phone": "+49 40 23648550",
+    "email": "datenschutz@dak.de",
+    "web": "https://dak.de/",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/866",
+        "https://www.dak.de/dak/unternehmen/verantwortliche-und-datenschutzbeauftragte-2371596.html#/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

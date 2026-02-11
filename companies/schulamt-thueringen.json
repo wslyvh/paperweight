@@ -1,0 +1,21 @@
+{
+    "slug": "schulamt-thueringen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Staatliches Schulamt Südthüringen",
+    "address": "Hölderlinstraße 1\n98527 Suhl\nDeutschland",
+    "phone": "+49 3681 734100",
+    "fax": "+49 3681 734109",
+    "email": "datenschutz.suedthueringen@schulamt.thueringen.de",
+    "web": "https://schulamt.thueringen.de/sued",
+    "sources": [
+        "https://schulamt.thueringen.de/sued/impressum",
+        "https://github.com/datenanfragen/data/pull/1802"
+    ],
+    "quality": "verified",
+    "suggested-transport-medium": "email"
+}

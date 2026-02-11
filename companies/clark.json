@@ -1,0 +1,21 @@
+{
+    "slug": "clark",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Clark Germany GmbH",
+    "address": "Goethestraße 10\n60313 Frankfurt\nDeutschland",
+    "phone": "+49 69 153229339",
+    "email": "datenschutz@clark.de",
+    "web": "https://www.clark.de",
+    "sources": [
+        "https://www.clark.de/de/impressum",
+        "https://github.com/datenanfragen/data/issues/157",
+        "https://www.clark.de/de/datenschutz"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

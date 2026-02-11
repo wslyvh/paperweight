@@ -1,0 +1,22 @@
+{
+    "slug": "kirchengemeinde-westerlinde-in-burgdorf",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Westerlinde in Burgdorf",
+    "address": "Kasselberg 1\n38272 Burgdorf\nDeutschland",
+    "phone": "+49 5347 1917",
+    "email": "westerlinde.pfa@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=912"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

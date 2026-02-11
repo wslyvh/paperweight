@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-zobbenitz",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Zobbenitz",
+    "address": "An der Kirche 1\n39359 Calvörde\nDeutschland",
+    "phone": "+49 39051 259",
+    "fax": "+49 39051 98225",
+    "email": "calvoerde.pfa@lk-bs.de",
+    "web": "https://www.pfarrverband-calvoerde-uthmoeden.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=1050"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

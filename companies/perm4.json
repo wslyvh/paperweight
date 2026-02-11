@@ -1,0 +1,22 @@
+{
+    "slug": "perm4",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "PERM4 | Permanent Recruiting GmbH",
+    "address": "c/o activeMind AG\nKurfürstendamm 56\n10707 Berlin\nDeutschland",
+    "phone": "+49 30 333063100",
+    "fax": "+49 30 333063149",
+    "email": "datenschutz@perm4.com",
+    "web": "https://www.perm4.com/",
+    "sources": [
+        "https://www.perm4.com/impressum/",
+        "https://github.com/datenanfragen/data/issues/511",
+        "https://www.perm4.com/datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

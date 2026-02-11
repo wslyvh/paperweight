@@ -1,0 +1,17 @@
+{
+    "relevant-countries": [
+        "ch"
+    ],
+    "slug": "svit",
+    "name": "SVIT Schweiz",
+    "address": "Giessereistrasse 18\n8005 Zürich\nSchweiz",
+    "phone": "+41 44 434 78 88",
+    "fax": "+41 44 434 78 99",
+    "email": "info@svit.ch",
+    "web": "https://www.svit.ch",
+    "sources": [
+        "https://www.svit.ch/de/datenschutz",
+        "https://www.svit.ch/de/impressum-svit-schweiz"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "generali-deutschland-gesellschaft-fuer-bav",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Generali Deutschland Gesellschaft für bAV mbH",
+    "address": "AachenMünchener-Platz 1\n52064 Aachen\nDeutschland",
+    "phone": "+49 241 4563501",
+    "fax": "+49 241 456753501",
+    "email": "datenschutzbeauftragter.de@generali.com",
+    "web": "https://www.generali.de/privatkunden/vorsorge-finanzen/direktversicherung",
+    "sources": [
+        "https://www.generali.de/resource/blob/48966/c7064d6b1eaa9766175829c8b8fe4dd9/Datenschutzhinweise,%20Stand%2007-2021.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-dueren",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Der Landrat als Kreispolizeibehörde Düren",
+    "address": "Aachener Straße 28\n52349 Düren\nDeutschland",
+    "phone": "+49 2421 9490",
+    "fax": "+49 2421 9492099",
+    "email": "datenschutz.dueren@polizei.nrw.de",
+    "web": "https://dueren.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "applovin",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "AppLovin Corporation",
+    "address": "1100 Page Mill Road\nPalo Alto CA 94304\nUnited States of America",
+    "email": "dataprotection@applovin.com",
+    "web": "https://www.applovin.com/",
+    "sources": [
+        "https://www.applovin.com/privacy/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-othfresen-heissum",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Othfresen-Heißum",
+    "address": "Sölg 4\n38704 Liebenburg\nDeutschland",
+    "phone": "+49 5346 4355",
+    "fax": "+49 5346 5635",
+    "email": "othfresen.pfa@lk-bs.de",
+    "web": "http://www.kircheothfresen.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=789"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

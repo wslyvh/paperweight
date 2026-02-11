@@ -1,0 +1,35 @@
+{
+    "slug": "europro",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "credit agency",
+        "addresses"
+    ],
+    "name": "EURO-PRO Ges. für Data Processing mbH",
+    "address": "Lindenhof 1 – 3\n61279 Grävenwiesbach\nDeutschland",
+    "phone": "+49 6086 3988 0",
+    "fax": "+49 6086 3988 10",
+    "email": "datenschutz@europro.de",
+    "web": "https://www.europro.de/",
+    "sources": [
+        "https://www.europro.de/datenschutz/",
+        "https://www.europro.de/impressum/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

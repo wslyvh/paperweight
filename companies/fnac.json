@@ -1,0 +1,48 @@
+{
+    "slug": "fnac",
+    "relevant-countries": [
+        "fr",
+        "es",
+        "pt",
+        "be",
+        "ch",
+        "lu"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "FNAC DARTY",
+    "address": "Le Flavia\n9, rue des Bateaux Lavoirs\n94768 Ivry sur Seine\nFrance",
+    "phone": "+33 1 55 21 57 93",
+    "email": "dpo@fnacdarty.com",
+    "web": "https://www.fnac.com/",
+    "sources": [
+        "https://www.fnac.com/Help/donneesPersonnelles",
+        "https://www.fnac.com/entreprise/mentions_legales.aspx",
+        "https://github.com/datenanfragen/data/issues/436"
+    ],
+    "required-elements": [
+        {
+            "desc": "Nom",
+            "type": "name",
+            "optional": true
+        },
+        {
+            "desc": "Adresse e-mail",
+            "type": "email",
+            "optional": true
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": true
+        },
+        {
+            "desc": "Enseigne visée (Fnac, Darty)",
+            "type": "input",
+            "optional": true
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

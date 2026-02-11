@@ -1,0 +1,40 @@
+{
+    "slug": "dwp-gov-uk",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Department for Work and Pensions",
+    "runs": [
+        "DWP",
+        "Universal Credit"
+    ],
+    "address": "Mail Handling Site A\nWolverhampton\nWV98 2EF\nUnited Kingdom",
+    "email": "rightofaccess.requests@dwp.gov.uk",
+    "webform": "https://secure.dwp.gov.uk/personal-information-request/name",
+    "web": "https://www.gov.uk/government/organisations/department-for-work-pensions",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/548",
+        "https://www.gov.uk/government/organisations/department-for-work-pensions/about/personal-information-charter",
+        "https://www.gov.uk/guidance/request-your-personal-information-from-the-department-for-work-and-pensions",
+        "https://www.gov.uk/government/publications/framework-generic-guidance-provider-guidance/chapter-8-information-security#right-of-access-requests",
+        "https://github.com/datenanfragen/data/pull/2255",
+        "https://github.com/datenanfragen/data/pull/2332"
+    ],
+    "required-elements": [
+        {
+            "desc": "Full name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "National insurance number (NINO)",
+            "type": "input",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "vr-bank",
+    "categories": [
+        "finance"
+    ],
+    "name": "Bundesverband der Deutschen Volksbanken und Raiffeisenbanken e.V. (BVR)",
+    "address": "Schellingstraße 4\n10785 Berlin\nDeutschland",
+    "phone": "+49 30 2021 0",
+    "fax": "+49 30 2021 1900",
+    "email": "info@bvr.de",
+    "web": "https://www.vr.de/privatkunden.html",
+    "sources": [
+        "https://www.vr.de/privatkunden/service/datenschutz.html",
+        "https://www.vr.de/privatkunden/service/impressum.html"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "quality": "verified"
+}

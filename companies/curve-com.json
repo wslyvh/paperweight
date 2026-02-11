@@ -1,0 +1,24 @@
+{
+    "slug": "curve-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Curve Europe UAB",
+    "runs": [
+        "Curve OS Ltd.",
+        "Curve Credit Ltd.",
+        "Curve US Inc."
+    ],
+    "address": "Jogailos g. 9\nLT-01116 Vilnius\nLithuania",
+    "email": "dpo@imaginecurve.com",
+    "web": "https://www.curve.com/",
+    "sources": [
+        "https://www.curve.com/legal/privacy/",
+        "https://github.com/datenanfragen/data/pull/1196"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

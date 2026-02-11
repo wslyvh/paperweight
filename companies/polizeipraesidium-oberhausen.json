@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-oberhausen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Polizeipräsidium Oberhausen",
+    "address": "Friedensplatz 2 – 5\n46045 Oberhausen\nDeutschland",
+    "phone": "+49 208 8260",
+    "fax": "+49 208 8263350",
+    "email": "datenschutz.oberhausen@polizei.nrw.de",
+    "web": "https://oberhausen.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

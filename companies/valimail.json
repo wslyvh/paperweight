@@ -1,0 +1,20 @@
+{
+    "slug": "valimail",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Valimail Inc.",
+    "address": "180 Montgomery Street, 20th Floor\nSan Francisco CA 94104\nUnited States of America",
+    "email": "privacy@valimail.com",
+    "web": "https://www.valimail.com",
+    "sources": [
+        "https://www.valimail.com/privacy/",
+        "https://github.com/datenanfragen/data/pull/993"
+    ],
+    "suggested-transport-medium": "email",
+    "needs-id-document": false,
+    "quality": "verified"
+}

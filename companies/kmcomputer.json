@@ -1,0 +1,19 @@
+{
+    "slug": "kmcomputer",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "K&M Computer GmbH & Co.KG",
+    "address": "Nordendstraße 23\n80801 München\nDeutschland",
+    "email": "datenschutz@kmcomputer.de",
+    "web": "http://www.kmcomputer.de",
+    "sources": [
+        "https://www.kmcomputer.de/custom/index/sCustom/79",
+        "https://github.com/datenanfragen/data/pull/1351"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

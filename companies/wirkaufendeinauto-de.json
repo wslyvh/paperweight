@@ -1,0 +1,28 @@
+{
+    "slug": "wirkaufendeinauto-de",
+    "relevant-countries": [
+        "de",
+        "at",
+        "es",
+        "fr",
+        "be",
+        "it",
+        "li",
+        "se",
+        "pt"
+    ],
+    "name": "WKDA GmbH",
+    "runs": [
+        "wirkaufendeinauto.de"
+    ],
+    "address": "Schleiermacherstraße 25\n10961 Berlin\nGermany",
+    "phone": "+49 30 20163290",
+    "email": "datenschutz@wirkaufendeinauto.de",
+    "web": "https://www.wirkaufendeinauto.de",
+    "sources": [
+        "https://content.wirkaufendeinauto.de/static/car_images/CLEAN_WKDA_German_Update_Nr_7_20230711.docx.pdf",
+        "https://github.com/datenanfragen/data/pull/1778"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

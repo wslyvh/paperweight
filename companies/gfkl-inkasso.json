@@ -1,0 +1,40 @@
+{
+    "slug": "gfkl-inkasso",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "collection agency"
+    ],
+    "name": "Lowell Financial Services GmbH",
+    "runs": [
+        "Deutsche Multiauskunftei GmbH",
+        "GFKL Collections GmbH",
+        "GFKL PayProtect GmbH",
+        "INKASSO BECKER Wuppertal GmbH & Co. KG",
+        "Lowell Digital Hub GmbH",
+        "Lowell Group Management GmbH",
+        "Lowell Holding GmbH",
+        "Lowell Inkaso Servis d. o. o.",
+        "Lowell Inkasso Service GmbH",
+        "Lowell Investment GmbH",
+        "Lowell Portfoliomanagement GmbH",
+        "Lowell Service Center GmbH",
+        "Proceed Collection Services GmbH",
+        "Sirius Inkasso GmbH",
+        "Tesch Inkasso Finance GmbH",
+        "Tesch Inkasso Forderungsmanagement GmbH",
+        "Tesch Service GmbH",
+        "Zyklop Inkasso Deutschland GmbH"
+    ],
+    "address": "Am Europa-Center 1b\n45145 Essen\nDeutschland",
+    "phone": "+49 201 1020",
+    "fax": "+49 201 1021199",
+    "email": "datenschutz@lowellgroup.de",
+    "web": "https://www.lowellgroup.de",
+    "sources": [
+        "https://www.lowellgroup.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1891"
+    ],
+    "quality": "verified"
+}

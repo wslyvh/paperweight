@@ -1,0 +1,20 @@
+{
+    "slug": "karma-response",
+    "relevant-countries": [
+        "it",
+        "es"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "KARMA RESPONSE, S.L.",
+    "address": "Carrer Breton de los Herreros 9\n08012 Barcelona\nSpain",
+    "email": "dpo@karmaresponse.com",
+    "web": "http://karmaresponse.com/",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/1248",
+        "http://karmaresponse.com/#privacy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

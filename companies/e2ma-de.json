@@ -1,0 +1,20 @@
+{
+    "slug": "e2ma-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads",
+        "addresses"
+    ],
+    "name": "E2Ma GmbH",
+    "address": "Große Theaterstraße 7\n20354 Hamburg\nDeutschland",
+    "email": "datenschutz@e2ma.de",
+    "sources": [
+        "https://e2ma.de/datenschutz-2/",
+        "https://github.com/datenanfragen/data/issues/87"
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

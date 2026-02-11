@@ -1,0 +1,22 @@
+{
+    "slug": "dzbank",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "DZ BANK AG, Deutsche Zentral-Genossenschaftsbank, Deutsche Zentral-Genossenschaftsbank, Frankfurt am Main",
+    "address": "Platz der Republik\n60325 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 744701",
+    "fax": "+49 69 74471685",
+    "email": "datenschutz@dzbank.de",
+    "web": "https://www.dzbank.de",
+    "sources": [
+        "https://www.dzbank.de/content/dzbank/de/home/footer/rechtliche-hinweise/impressum.html",
+        "https://www.dzbank.de/content/dzbank/de/home/footer/rechtliche-hinweise/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/1300"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "goflink-com",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Flink SE",
+    "address": "Brunnenstraße 19-21\n10119 Berlin\nDeutschland",
+    "email": "gdpr@goflink.com",
+    "web": "https://www.goflink.com",
+    "sources": [
+        "https://www.goflink.com/en/privacy/",
+        "https://github.com/datenanfragen/data/pull/1611"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

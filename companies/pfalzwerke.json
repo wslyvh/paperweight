@@ -1,0 +1,38 @@
+{
+    "slug": "pfalzwerke",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "PFALZWERKE AKTIENGESELLSCHAFT",
+    "runs": [
+        "123energie",
+        "ALDI Grünstrom"
+    ],
+    "address": "Wredestraße 35\n67059 Ludwigshafen\nDeutschland",
+    "phone": "+49 621 570572585",
+    "fax": "+49 621 5853388",
+    "email": "datenschutz@pfalzwerke.de",
+    "web": "https://www.pfalzwerke.de",
+    "sources": [
+        "https://www.pfalzwerke.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/834",
+        "https://github.com/datenanfragen/data/pull/2033"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

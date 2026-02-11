@@ -1,0 +1,21 @@
+{
+    "slug": "nissan-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "NISSAN Center Europe GmbH",
+    "address": "Renault-Nissan-Str. 6-10\n50321 Brühl\nDeutschland",
+    "phone": "+49 800 5894987",
+    "email": "datenschutzbeauftragter.deutschland@nissan.de",
+    "web": "https://www.nissan.de/",
+    "quality": "verified",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/732",
+        "https://www.nissan.de/rechtliches/hinweise-datenschutz.html",
+        "https://www.nissan.de/rechtliches/impressum.html"
+    ],
+    "suggested-transport-medium": "email"
+}

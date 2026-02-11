@@ -1,0 +1,22 @@
+{
+    "slug": "betterworldbooks",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Qumpus, Inc.",
+    "runs": [
+        "Better World Books"
+    ],
+    "address": "55740 Currant Road\nMishawaka\nIndiana 46545\nUnited States of America",
+    "email": "privacy@betterworldbooks.com",
+    "web": "https://www.betterworldbooks.com/",
+    "sources": [
+        "https://www.betterworldbooks.com/go/privacy"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

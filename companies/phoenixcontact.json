@@ -1,0 +1,23 @@
+{
+    "slug": "phoenixcontact",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Phoenix Contact GmbH & Co. KG",
+    "runs": [
+        "PHOENIX CONTACT Deutschland GmbH"
+    ],
+    "address": "Flachsmarktstraße 8\n32825 Blomberg\nDeutschland",
+    "phone": "+49 5235 300",
+    "email": "datenschutz@phoenixcontact.com",
+    "web": "https://www.phoenixcontact.com/de-de",
+    "sources": [
+        "https://www.phoenixcontact.com/de-de/rechtliche-hinweise/datenschutz/data-protection-officer",
+        "https://github.com/datenanfragen/data/pull/1161"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

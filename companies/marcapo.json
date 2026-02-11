@@ -1,0 +1,19 @@
+{
+    "slug": "marcapo",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "marcapo GmbH",
+    "address": "Bahnhofstraße 4\n96106 Ebern\nDeutschland",
+    "phone": "+49 9531 92200",
+    "email": "kontakt@marcapo.com",
+    "web": "https://www.marcapo.com/",
+    "sources": [
+        "https://www.marcapo.com/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/2051"
+    ],
+    "quality": "verified"
+}

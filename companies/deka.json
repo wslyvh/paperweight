@@ -1,0 +1,33 @@
+{
+    "slug": "deka",
+    "relevant-countries": [
+        "de",
+        "lu"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "DekaBank - Deutsche Girozentrale",
+    "runs": [
+        "Deka Investment GmbH",
+        "Deka Immobilien Investment GmbH",
+        "WestInvest Gesellschaft für Investmentfonds mbH",
+        "Deka Vermögensmanagement GmbH",
+        "bevestor GmbH",
+        "Deka International S.A. (Luxembourg)",
+        "Deka Management Company Luxembourg S.A.",
+        "Deka Real Estate Lending K.K. (Tokyo)",
+        "Deka Real Estate Services USA Inc.",
+        "Deka Far East Pte. Ltd."
+    ],
+    "address": "Mainzer Landstraße 16\n60325 Frankfurt am Main\nDeutschland",
+    "email": "datenschutz@deka.de",
+    "web": "https://www.deka.de",
+    "sources": [
+        "https://www.deka.de/privatkunden/impressum",
+        "https://www.deka.de/privatkunden/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1377"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

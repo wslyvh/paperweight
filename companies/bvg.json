@@ -1,0 +1,29 @@
+{
+    "slug": "bvg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body",
+        "travel"
+    ],
+    "name": "Berliner Verkehrsbetriebe (BVG)",
+    "runs": [
+        "URBANIS GmbH",
+        "BT Berlin Transport GmbH (BT)",
+        "IOB Internationale Omnibusbahnhof-Betreibergesellschaft mbH",
+        "BVG Projekt GmbH",
+        "BVG Beteiligungsholding Verwaltungsgesellschaft mbH",
+        "BVG Beteiligungsholding GmbH & Co. KG"
+    ],
+    "address": "Holzmarktstraße 15-17\n10179 Berlin\nDeutschland",
+    "email": "datenschutz@bvg.de",
+    "web": "https://www.bvg.de/",
+    "sources": [
+        "https://www.bvg.de/de/Serviceseiten/Impressum",
+        "https://www.bvg.de/de/Serviceseiten/Datenschutzhinweise"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

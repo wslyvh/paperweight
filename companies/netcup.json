@@ -1,0 +1,23 @@
+{
+    "slug": "netcup",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "netcup GmbH",
+    "address": "Emmy-Noether-Straße 10\n76131 Karlsruhe\nDeutschland",
+    "phone": "+49 721 75407550",
+    "fax": "+49 721 75407559",
+    "email": "mail@netcup.de",
+    "web": "https://www.netcup.com/",
+    "sources": [
+        "https://www.netcup.de/kontakt/datenschutzerklaerung.php",
+        "https://www.netcup.de/kontakt/impressum.php",
+        "https://github.com/datenanfragen/data/issues/644",
+        "https://github.com/datenanfragen/data/pull/3176",
+        "https://github.com/datenanfragen/data/pull/3178"
+    ],
+    "quality": "verified"
+}

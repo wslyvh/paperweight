@@ -1,0 +1,18 @@
+{
+    "slug": "w2ssolutions",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "W2S Solutions",
+    "address": "9820 Ivalenes Hope DR\nAustin, TX 78717\nUnited States of America",
+    "phone": "+91 73387 73388",
+    "email": "bd@w2ssolutions.com",
+    "webform": "https://www.w2ssolutions.com/contact",
+    "web": "https://www.w2ssolutions.com/",
+    "sources": [
+        "https://www.w2ssolutions.com/privacy-policy",
+        "https://www.w2ssolutions.com/contact",
+        "https://github.com/datenanfragen/data/pull/2176"
+    ],
+    "quality": "verified"
+}

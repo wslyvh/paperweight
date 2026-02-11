@@ -1,0 +1,31 @@
+{
+    "slug": "quizlet",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Quizlet, Inc.",
+    "address": "123 Townsend Street, Suite 600\nSan Francisco, CA 94107\nUnited States of America",
+    "phone": "+1 510 495 6550",
+    "email": "privacy-eu@quizlet.com",
+    "webform": "https://quizlet.com/your-privacy-choices",
+    "web": "https://quizlet.com",
+    "sources": [
+        "https://quizlet.com/privacy",
+        "https://github.com/datenanfragen/data/pull/1204"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

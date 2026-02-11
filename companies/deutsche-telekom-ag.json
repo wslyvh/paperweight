@@ -1,0 +1,21 @@
+{
+    "slug": "deutsche-telekom-ag",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Deutsche Telekom AG",
+    "address": "Friedrich-Ebert-Allee 140\n53113 Bonn\nDeutschland",
+    "phone": "+49 228 1810",
+    "email": "datenschutz@telekom.de",
+    "webform": "https://www.telekom.de/kontakt/e-mail-kontakt/unternehmen/datenschutz",
+    "web": "https://www.telekom.com",
+    "sources": [
+        "https://www.telekom.com/de/telekom/datenschutzhinweis-1808",
+        "https://github.com/datenanfragen/data/pull/3363"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

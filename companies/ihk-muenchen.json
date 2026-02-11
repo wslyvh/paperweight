@@ -1,0 +1,22 @@
+{
+    "slug": "ihk-muenchen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce",
+        "public body"
+    ],
+    "name": "Industrie- und Handelskammer für München und Oberbayern",
+    "address": "Max-Joseph-Straße 2\n80333 München\nDeutschland",
+    "phone": "+49 89 51161683",
+    "fax": "+49 89 511681683",
+    "email": "datenschutzbeauftragter@muenchen.ihk.de",
+    "web": "https://www.ihk-muenchen.de",
+    "sources": [
+        "https://www.ihk-muenchen.de/de/%C3%9Cber-uns/Informationspflichten-Datenschutz/mitgliedsunternehmen.html",
+        "https://github.com/datenanfragen/data/pull/1421"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

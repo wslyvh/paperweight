@@ -1,0 +1,21 @@
+{
+    "slug": "audibkk",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Audi BKK",
+    "address": "Postfach 100 160\n85001 Ingolstadt\nDeutschland",
+    "phone": "+49 841 887887",
+    "fax": "+49 841 887109",
+    "email": "datenschutz@audibkk.de",
+    "web": "https://www.audibkk.de/",
+    "sources": [
+        "https://www.audibkk.de/datenschutz/",
+        "https://www.audibkk.de/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-st-barbara-in-wittmar",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde St. Barbara in Wittmar",
+    "address": "Im Kirchwinkel 4\n38319 Remlingen\nDeutschland",
+    "phone": "+49 5336 397",
+    "fax": "+49 5336 948214",
+    "email": "asse.pfa@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=964",
+        "https://github.com/datenanfragen/data/pull/3081"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "verified",
+    "facet-group": "church"
+}

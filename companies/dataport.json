@@ -1,0 +1,21 @@
+{
+    "slug": "dataport",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication",
+        "public body"
+    ],
+    "name": "Dataport AöR",
+    "address": "Altenholzer Straße 10-14\n24161 Altenholz\nDeutschland",
+    "phone": "+49 40 428466912",
+    "email": "dataportdatenschutzbeauftragter@dataport.de",
+    "web": "https://www.dataport.de",
+    "sources": [
+        "https://www.dataport.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1436"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

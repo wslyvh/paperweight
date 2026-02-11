@@ -1,0 +1,25 @@
+{
+    "slug": "doccheck-com",
+    "relevant-countries": [
+        "de",
+        "at"
+    ],
+    "name": "DocCheck Community GmbH",
+    "runs": [
+        "doccheck.com",
+        "doccheckshop.de"
+    ],
+    "address": "Vogelsanger Str. 66\n50823 Köln\nDeutschland",
+    "phone": "+49 221 920530",
+    "email": "datenschutz@doccheck.com",
+    "web": "https://www.doccheck.com/",
+    "sources": [
+        "https://more.doccheck.com/de/privacy",
+        "https://github.com/datenanfragen/data/pull/2740"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "categories": [
+        "health"
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "guenstiger-reisen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Günstiger Reisen Reisebüro GmbH",
+    "address": "Mariendorfer Damm 147\n12107 Berlin\nDeutschland",
+    "phone": "+49 30 994040181",
+    "fax": "+49 30 994040183",
+    "email": "datenschutz@günstiger-reisen.de",
+    "web": "https://www.günstiger-reisen.de",
+    "sources": [
+        "https://www.günstiger-reisen.de/datenschutz",
+        "https://www.günstiger-reisen.de/impressum",
+        "https://github.com/datenanfragen/data/issues/363"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

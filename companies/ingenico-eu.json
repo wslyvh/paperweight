@@ -1,0 +1,22 @@
+{
+    "slug": "ingenico-eu",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "INGENICO",
+    "address": "13/17 Rue Pagès\n92150 Suresnes\nFrance",
+    "phone": "+33 1 58 01 91 35",
+    "email": "dataprivacy@ingenico.com",
+    "webform": "https://privacyportal-de.onetrust.com/webform/07da248a-8a27-43a5-9d95-75c59edd9aa7/cbb643be-b7a0-4324-b1af-3e02c33b91e1",
+    "web": "https://www.ingenico.com",
+    "sources": [
+        "https://ingenico.com/en/legal/privacy-policy",
+        "https://ingenico.com/en/contact",
+        "https://github.com/datenanfragen/data/pull/2338"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

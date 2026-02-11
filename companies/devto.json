@@ -1,0 +1,26 @@
+{
+    "slug": "devto",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "DEV Community Inc.",
+    "address": "228 Park Ave S, PMB 72192\nNY 10003\nUnited States of America",
+    "email": "support@dev.to",
+    "web": "https://dev.to",
+    "sources": [
+        "https://dev.to/privacy",
+        "https://opencorporates.com/companies/us_ny/5609743",
+        "https://github.com/datenanfragen/data/issues/398"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "quality": "verified"
+}

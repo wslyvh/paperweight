@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-hornburg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Hornburg",
+    "address": "Pfarrhofstraße 3\n38315 Hornburg\nDeutschland",
+    "phone": "+49 5334 1328",
+    "fax": "+49 5334 2780",
+    "email": "hornburg.buero@lk-bs.de",
+    "web": "http://www.kirchehornburg.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=948"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

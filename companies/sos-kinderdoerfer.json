@@ -1,0 +1,32 @@
+{
+    "slug": "sos-kinderdoerfer",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "nonprofit"
+    ],
+    "name": "SOS-Kinderdörfer weltweit Hermann-Gmeiner-Fonds Deutschland e.V.",
+    "address": "Ridlerstraße 55\n80339 München\nDeutschland",
+    "phone": "+49 89 179140",
+    "fax": "+49 89 17914100",
+    "email": "info@sos-kinderdoerfer.de",
+    "web": "https://www.sos-kinderdoerfer.de/",
+    "sources": [
+        "https://www.sos-kinderdoerfer.de/extra/datenschutz"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "quality": "tested"
+}

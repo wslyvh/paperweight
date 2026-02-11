@@ -1,0 +1,17 @@
+{
+    "slug": "activeroom-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Activeroom GmbH",
+    "address": "c/o IBS data protection services and consulting GmbH\nZirkusweg 1\n20359 Hamburg\nDeutschland",
+    "phone": "+49 40 30954391",
+    "email": "datenschutz@activeroom.de",
+    "web": "https://www.activeroom.de/",
+    "sources": [
+        "https://www.activeroom.de/datenschutzerklaerung/",
+        "https://github.com/datenanfragen/data/pull/2048"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

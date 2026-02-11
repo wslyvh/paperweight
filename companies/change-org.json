@@ -1,0 +1,19 @@
+{
+    "slug": "change-org",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Change.org, Servicios Promocionales España, S.L.",
+    "runs": [
+        "CHANGE.ORG, PBC"
+    ],
+    "address": "Carrer de Santaló, 10\n1st Floor\n08021 Barcelona\nSpain",
+    "email": "dpt@change.org",
+    "web": "https://www.change.org/",
+    "sources": [
+        "https://www.change.org/policies/privacy",
+        "https://github.com/datenanfragen/data/pull/841"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

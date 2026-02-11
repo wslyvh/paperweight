@@ -1,0 +1,37 @@
+{
+    "slug": "zeit-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment",
+        "commerce",
+        "travel"
+    ],
+    "name": "ZEIT Online GmbH",
+    "runs": [
+        "Abonnement von „DIE ZEIT“ (abo.zeit.de)",
+        "Meine Zeit (meine.zeit.de)",
+        "ZEIT-Shop (shop.zeit.de)",
+        "ZEIT SSO-Account",
+        "Z+",
+        "Studiums-Interessentest („SIT“)",
+        "ZEIT-Stellenmarkt (jobs.zeit.de)",
+        "ZEIT Community",
+        "ZEIT Akademie (www.zeitakademie.de)",
+        "ZEIT Reisen (www.zeitreisen.de)",
+        "Freunde der ZEIT",
+        "ZEIT Campus Berufsorientierungsangebot („BOA“)",
+        "ZEIT Gewinnspiele"
+    ],
+    "address": "Buceriusstraße\nEingang Speersort 1\n20095 Hamburg\nDeutschland",
+    "phone": "+49 40 32 80 0",
+    "fax": "+49 40 32 71 11",
+    "email": "dsb@zeit.de",
+    "web": "https://www.zeit.de",
+    "sources": [
+        "https://www.zeit.de/hilfe/datenschutz"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

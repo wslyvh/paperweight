@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-unna",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Kreispolizeibehörde Unna",
+    "address": "Obere Husemannstraße 14\n59423 Unna\nDeutschland",
+    "phone": "+49 2303 9210",
+    "fax": "+49 2303 9212155",
+    "email": "datenschutz.unna@polizei.nrw.de",
+    "web": "https://unna.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

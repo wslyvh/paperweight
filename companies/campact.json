@@ -1,0 +1,23 @@
+{
+    "slug": "campact",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Campact e.V.",
+    "runs": [
+        "WeAct - die Petitionsplattform von Campact"
+    ],
+    "address": "Artilleriestr. 6\n27283 Verden / Aller\nDeutschland",
+    "phone": "+49 421 6966320",
+    "fax": "+49 4231 957499",
+    "email": "datenschutz@campact.de",
+    "web": "https://campact.de",
+    "sources": [
+        "https://weact.campact.de/media",
+        "https://github.com/datenanfragen/data/issues/407",
+        "https://www.campact.de/campact/ueber-campact/datenschutz/",
+        "https://www.campact.de/campact/ueber-campact/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

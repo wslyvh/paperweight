@@ -1,0 +1,20 @@
+{
+    "slug": "tippland",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Tippland GmbH",
+    "runs": [
+        "tippland.de"
+    ],
+    "address": "Borsteler Chaussee 53\n22453 Hamburg\nDeutschland",
+    "phone": "+49 40 361118555",
+    "fax": "+49 40 36160439",
+    "email": "datenschutz@tippland.de",
+    "web": "https://www.tippland.de",
+    "sources": [
+        "https://www.tippland.de/informationen/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2486"
+    ],
+    "quality": "verified"
+}

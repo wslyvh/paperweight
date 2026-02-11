@@ -1,0 +1,27 @@
+{
+    "slug": "worldline",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Wordline",
+    "runs": [
+        "Wordline S.A."
+    ],
+    "address": "River Ouest 80\nQuai Voltaire\n95870 Bezons\nFrance",
+    "phone": "+33 173 260000",
+    "email": "dataprotection@worldline.com",
+    "web": "https://worldline.com",
+    "sources": [
+        "https://de.worldline.com/de/privacy.html",
+        "https://de.worldline.com/de/home/impressum.html",
+        "https://investors.worldline.com/content/investors-worldline-com/en/home/governance.html"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Payment Service Provider for Banking (e.g. Credit Card Fraud Checks) and Merchants (e.g. Online Payments)"
+    ],
+    "quality": "verified"
+}

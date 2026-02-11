@@ -1,0 +1,17 @@
+{
+    "slug": "informationgroup",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Better Information Group Ltd",
+    "address": "32, Flat 298 Creedwell Orchard\nMilverton\nTaunton\nTA4 1JY\nUnited Kingdom",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/544",
+        "https://github.com/datenanfragen/data/issues/555",
+        "https://find-and-update.company-information.service.gov.uk/company/10543466"
+    ],
+    "quality": "verified"
+}

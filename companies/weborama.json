@@ -1,0 +1,22 @@
+{
+    "slug": "weborama",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Weborama",
+    "address": "37 Bd des Capucines\n75002 Paris\nFrance",
+    "phone": "+33 1 40 15 12 90",
+    "fax": "+33 1 53 19 21 41",
+    "email": "privacy@weborama.com",
+    "web": "https://weborama.com/",
+    "sources": [
+        "https://weborama.com/respect-de-la-vie-privee-2-2/",
+        "https://weborama.com/contact-us/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

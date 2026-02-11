@@ -1,0 +1,21 @@
+{
+    "slug": "funidelai",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Funiglobal Development S.L.",
+    "runs": [
+        "Funidelia"
+    ],
+    "address": "Calle Bari, 28. Nave H\nPlataforma Logística Plaza\n50197 Zaragoza\nSpain",
+    "web": "https://www.funidelia.info/",
+    "sources": [
+        "https://www.funidelia.de/content/2-impressum-und-agb",
+        "https://github.com/datenanfragen/data/issues/101",
+        "https://www.funidelia.de/content/7-datenschutz"
+    ],
+    "quality": "verified"
+}

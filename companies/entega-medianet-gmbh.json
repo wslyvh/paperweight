@@ -1,0 +1,19 @@
+{
+    "slug": "entega-medianet-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "ENTEGA Medianet GmbH",
+    "address": "c/o ENTEGA Plus GmbH\nFrankfurter Straße 100\n64293 Darmstadt\nDeutschland",
+    "email": "datenschutz@entega.de",
+    "web": "https://www.entega.de",
+    "sources": [
+        "https://www.entega.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1541"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

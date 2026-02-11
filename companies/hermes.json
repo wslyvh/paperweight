@@ -1,0 +1,32 @@
+{
+    "slug": "hermes",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Hermes Germany GmbH",
+    "address": "Essener Straße 89\n22419 Hamburg\nDeutschland",
+    "phone": "+49 40 53755 0",
+    "fax": "+49 40 53754 870",
+    "email": "datenschutz@hermesworld.com",
+    "web": "https://www.myhermes.de/",
+    "sources": [
+        "https://www.myhermes.de/datenschutz/",
+        "https://www.myhermes.de/impressum/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

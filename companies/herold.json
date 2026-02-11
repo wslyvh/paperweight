@@ -1,0 +1,21 @@
+{
+    "slug": "herold",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "addresses",
+        "ads"
+    ],
+    "name": "HEROLD Business Data GmbH",
+    "address": "Guntramsdorfer Straße 105\n2340 Mödling\nÖsterreich",
+    "phone": "+43 2236 4010",
+    "fax": "+43 2236 4018",
+    "email": "office@herold.at",
+    "web": "https://www.herold.at",
+    "sources": [
+        "https://www.ichbinderherold.at/impressum",
+        "https://github.com/datenanfragen/data/issues/218"
+    ],
+    "quality": "verified"
+}

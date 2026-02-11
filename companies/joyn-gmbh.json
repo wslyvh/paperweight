@@ -1,0 +1,23 @@
+{
+    "slug": "joyn-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Joyn",
+    "runs": [
+        "sixx.de"
+    ],
+    "address": "c/o Seven.One Entertainment Group GmbH\nMedienallee 7\n85774 Unterföhring\nGermany",
+    "phone": "+49 800 4395696",
+    "email": "datenschutz@joyn.de",
+    "web": "https://www.joyn.de",
+    "sources": [
+        "https://www.joyn.de/datenschutz",
+        "https://www.joyn.de/mediatheken/sixx"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "appsflyer",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "AppsFlyer Germany GmbH",
+    "address": "Kurfürstendamm 11\nc/o WeWork\n10719 Berlin\nGermany",
+    "phone": "+49 30 31199129",
+    "email": "privacy@appsflyer.com",
+    "web": "https://www.appsflyer.com/",
+    "sources": [
+        "https://www.appsflyer.com/services-privacy-policy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

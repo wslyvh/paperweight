@@ -1,0 +1,19 @@
+{
+    "slug": "onthatass-de",
+    "categories": [
+        "commerce"
+    ],
+    "name": "ON THAT ASS INTERNATIONAL B.V.",
+    "address": "Graafsebaan 135 A\n5248 NL Rosmalen\nThe Netherlands",
+    "phone": "+31 73 303 5855",
+    "email": "hello-de@onthatass.com",
+    "web": "https://onthatass.com/de-de/",
+    "sources": [
+        "https://onthatass.com/de-de/imprint",
+        "https://github.com/datenanfragen/data/pull/1969"
+    ],
+    "quality": "verified",
+    "relevant-countries": [
+        "de"
+    ]
+}

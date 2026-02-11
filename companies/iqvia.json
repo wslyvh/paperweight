@@ -1,0 +1,18 @@
+{
+    "slug": "iqvia",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "IQVIA Inc.",
+    "address": "83 Wooster Heights Road\nDanbury, CT 06810\nUnited States of America",
+    "email": "PrivacyOfficer@IQVIA.com",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/1751",
+        "https://www.iqvia.com/about-us/privacy/online-privacy-policy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

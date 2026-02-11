@@ -1,0 +1,17 @@
+{
+    "slug": "cifas",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "credit agency"
+    ],
+    "name": "Cifas",
+    "address": "6th Floor\nLynton House\n7—12 Tavistock Square\nLondon\nWC1H 9LT\nUnited Kingdom",
+    "web": "https://www.cifas.org.uk/",
+    "sources": [
+        "https://www.cifas.org.uk/privacy-notice"
+    ],
+    "request-language": "en",
+    "quality": "verified"
+}

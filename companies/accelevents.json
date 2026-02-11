@@ -1,0 +1,20 @@
+{
+    "slug": "accelevents",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Accelevents, Inc.",
+    "address": "10 Post Office Square\nSuite 800 South\nBoston, MA 02109\nUnited States of America",
+    "phone": "+1 857 254 8035",
+    "email": "privacy@accelevents.com",
+    "web": "https://accelevents.com",
+    "sources": [
+        "https://www.accelevents.com/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/1278"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

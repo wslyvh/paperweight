@@ -1,0 +1,52 @@
+{
+    "slug": "saturn-shop",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Saturn.de",
+    "runs": [
+        "mySaturn",
+        "mySaturn+",
+        "Saturn Card (ehem.)",
+        "Saturn online GmbH (ehem.)",
+        "Media-Saturn Deutschland GmbH"
+    ],
+    "address": "c/o MediaMarktSaturn Retail Group GmbH\nMedia-Saturn-Straße 1\n85053 Ingolstadt\nDeutschland",
+    "phone": "+49 221 22243333",
+    "email": "datenschutz@saturn.de",
+    "web": "http://www.saturn.de/",
+    "sources": [
+        "https://www.saturn.de/de/legal/datenschutzhinweise",
+        "https://www.saturn.de/de/legal/datenschutzhinweise/my-saturn",
+        "https://github.com/datenanfragen/data/pull/2401",
+        "https://github.com/datenanfragen/data/pull/2400",
+        "https://www.saturn.de/de/legal/impressum"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Anmelde-E-Mail-Adresse",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "Anschrift",
+            "type": "address",
+            "optional": false
+        },
+        {
+            "desc": "Geburtsdatum (nur falls Saturn bekannt)",
+            "type": "birthdate",
+            "optional": true
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

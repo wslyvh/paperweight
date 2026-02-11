@@ -1,0 +1,18 @@
+{
+    "slug": "atm-milano",
+    "relevant-countries": [
+        "it"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Azienda Trasporti Milanesi S.p.A.",
+    "address": "Foro Buonaparte 61\n20121 Milano\nItalia",
+    "email": "rpd@atm.it",
+    "web": "https://www.atm.it",
+    "sources": [
+        "https://www.atm.it/it/Pagine/PrivacyPolicy.aspx"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

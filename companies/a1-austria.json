@@ -1,0 +1,21 @@
+{
+    "slug": "a1-austria",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "A1 Telekom Austria AG",
+    "address": "Lassallestraße 9\n1020 Wien\nÖsterreich",
+    "phone": "+43 050 664 0",
+    "web": "https://www.a1.net",
+    "sources": [
+        "https://cdn12.a1.net/m/resources/media/pdf/Informationspflichten-und-Zustimmungserklaerung-A1.pdf",
+        "https://www.a1.net/impressum"
+    ],
+    "request-language": "de",
+    "needs-id-document": true,
+    "suggested-transport-medium": "letter",
+    "quality": "verified"
+}

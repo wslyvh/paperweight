@@ -1,0 +1,22 @@
+{
+    "slug": "xl-mobile-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "XL mobile GmbH",
+    "runs": [
+        "SimDiscount.de"
+    ],
+    "address": "Herrmann-Grafe-Str. 43\n01662 Meissen\nDeutschland",
+    "email": "service@xlmobile.de",
+    "web": "https://www.xlmobile.de",
+    "sources": [
+        "https://www.xlmobile.de/datenschutz/",
+        "https://www.xlmobile.de/kontakt/",
+        "https://www.simdiscount.de/datenschutz.html"
+    ],
+    "quality": "verified"
+}

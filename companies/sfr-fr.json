@@ -1,0 +1,31 @@
+{
+    "slug": "sfr-fr",
+    "relevant-countries": [
+        "fr"
+    ],
+    "name": "SFR",
+    "runs": [
+        "Altice France"
+    ],
+    "address": "Service client SFR\nTSA 10101\n69947 LYON CEDEX 20\nFrance",
+    "phone": "+33 1 85 06 00 00",
+    "web": "https://www.sfr.fr/",
+    "sources": [
+        "https://www.sfr.fr/mentions-legales.html",
+        "https://www.sfr.fr/politique-de-protection-des-donnees-personnelles.html",
+        "https://github.com/datenanfragen/data/issues/435"
+    ],
+    "required-elements": [
+        {
+            "desc": "Nom",
+            "type": "name"
+        },
+        {
+            "desc": "Numéro d'appel",
+            "type": "input"
+        }
+    ],
+    "needs-id-document": true,
+    "suggested-transport-medium": "letter",
+    "quality": "verified"
+}

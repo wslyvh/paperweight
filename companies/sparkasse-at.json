@@ -1,0 +1,25 @@
+{
+    "slug": "sparkasse-at",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Erste Bank der oesterreichischen Sparkassen AG",
+    "runs": [
+        "Georg-App"
+    ],
+    "address": "Am Belvedere 1\n1100 Wien\nÖsterreich",
+    "phone": "+43 50 1002 0111",
+    "fax": "+43 50 1009 10100",
+    "email": "DSGVO-Support@erstebank.at",
+    "web": "https://www.sparkasse.at",
+    "sources": [
+        "https://www.sparkasse.at/erstebank/wir-ueber-uns/impressum",
+        "https://github.com/datenanfragen/data/issues/404",
+        "https://www.sparkasse.at/sgruppe/wir-ueber-uns/datenschutz-sicherheit"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

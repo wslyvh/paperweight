@@ -1,0 +1,18 @@
+{
+    "slug": "pp-trading",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "PP-Trading",
+    "address": "Unter den Eichen 20\n29559 Wrestedt\nDeutschland",
+    "phone": "+49 581 97319952",
+    "email": "info@pp-trading.de",
+    "sources": [
+        "https://www.pp-trading.de/Datenschutz",
+        "https://github.com/datenanfragen/data/pull/2528"
+    ],
+    "quality": "verified"
+}

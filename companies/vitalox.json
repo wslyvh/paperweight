@@ -1,0 +1,22 @@
+{
+    "slug": "vitalox",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "vitalox Informationssysteme GmbH",
+    "address": "Pfaffenweg 15\n53227 Bonn\nDeutschland",
+    "phone": "+49 228 286 950 57",
+    "email": "datenschutz@vitalox.de",
+    "web": "https://www.vitalox.de",
+    "sources": [
+        "https://www.vitalox.de/impressum/",
+        "https://github.com/datenanfragen/data/pull/871",
+        "https://www.vitalox.de/datenschutz/"
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

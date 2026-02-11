@@ -1,0 +1,18 @@
+{
+    "slug": "capera-immobilien",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "CAPERA Immobilien Service GmbH",
+    "address": "Schülerstraße 40\n07545 Gera\nDeutschland",
+    "phone": "+49 365 55214344",
+    "fax": "+49 6102 8154419101",
+    "email": "datenschutz@capera-immoblien.de",
+    "web": "https://www.capera-immobilien.de",
+    "sources": [
+        "https://capera-immobilien.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2271"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

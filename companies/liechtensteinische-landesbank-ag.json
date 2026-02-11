@@ -1,0 +1,22 @@
+{
+    "slug": "liechtensteinische-landesbank-ag",
+    "relevant-countries": [
+        "li",
+        "ch",
+        "de",
+        "at"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Liechtensteinische Landesbank AG",
+    "address": "Städtle 44\n9490 Vaduz\nLiechtenstein",
+    "phone": "+423 236 88 11",
+    "email": "datenschutz@llb.li",
+    "web": "https://llb.li/",
+    "sources": [
+        "https://llb.li/de/datenschutz/kunden-interessenten"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

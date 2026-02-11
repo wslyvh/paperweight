@@ -1,0 +1,20 @@
+{
+    "slug": "abstimmung21",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "nonprofit"
+    ],
+    "name": "ABSTIMMUNG21 e.V.",
+    "address": "c/o datenschutz nord GmbH\nNiederlassung Berlin\nKurfürstendamm 212\n10719 Berlin\nDeutschland",
+    "email": "office@datenschutz-nord.de",
+    "web": "https://abstimmung21.de",
+    "sources": [
+        "https://abstimmung21.de/datenschutzerklaerung/",
+        "https://abstimmung21.de/impressum/",
+        "https://github.com/datenanfragen/data/pull/1215"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

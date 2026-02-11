@@ -1,0 +1,22 @@
+{
+    "slug": "geminidirect",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "GEMINI DIRECT marketing solutions GmbH",
+    "address": "Black-u.-Decker-Straße 17c\n65510 Idstein\nDeutschland",
+    "phone": "+49 6126 9519610",
+    "fax": "+49 6126 9519629",
+    "email": "datenschutz@geminidirect.de",
+    "web": "https://geminidirect.de",
+    "sources": [
+        "https://geminidirect.de/kontakt.htm",
+        "https://geminidirect.de/datenschutz.htm",
+        "https://github.com/datenanfragen/data/issues/155"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

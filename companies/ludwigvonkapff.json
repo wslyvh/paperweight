@@ -1,0 +1,21 @@
+{
+    "slug": "ludwigvonkapff",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Ludwig von Kapff GmbH",
+    "address": "Speicher I\nKonsul-Smidt-Str. 8 J\n28217 Bremen\nDeutschland",
+    "phone": "+49 421 3994317",
+    "fax": "+49 421 3994301",
+    "email": "datenschutz@egfra.de",
+    "web": "https://www.ludwig-von-kapff.de/",
+    "sources": [
+        "https://www.ludwig-von-kapff.de/impressum",
+        "https://www.ludwig-von-kapff.de/datenschutz"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

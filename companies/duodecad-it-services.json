@@ -1,0 +1,27 @@
+{
+    "slug": "duodecad-it-services",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Duodecad IT Services Luxembourg S.à.r.l.",
+    "runs": [
+        "Livejasmin.com",
+        "Jasmin IP S.à r.l.",
+        "Docler Services S.à r.l.",
+        "Docler IP S.à r.l.",
+        "Docler SSC Kft",
+        "Escalion S.à r.l."
+    ],
+    "address": "44 Avenue John F. Kennedy\nL-1855, Luxembourg\nLuxembourg",
+    "phone": "+352 26 11 18 1",
+    "email": "dpo@livejasmin.com",
+    "sources": [
+        "https://www.livejasmin.com/en/privacy-policy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "nsfw": true
+}

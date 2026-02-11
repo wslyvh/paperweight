@@ -1,0 +1,20 @@
+{
+    "slug": "govdata",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Geschäfts- und Koordinierungsstelle GovData",
+    "address": "Senatskanzlei\nRathausmarkt 1\n20095 Hamburg\nDeutschland",
+    "phone": "+49 40 428 31 2500",
+    "email": "behoerdlicherdatenschutz@sk.hamburg.de",
+    "web": "https://www.govdata.de/",
+    "sources": [
+        "https://www.govdata.de/web/guest/datenschutz"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,48 @@
+{
+    "slug": "gfk",
+    "relevant-countries": [
+        "be",
+        "bg",
+        "dk",
+        "de",
+        "ee",
+        "fi",
+        "fr",
+        "gr",
+        "ie",
+        "is",
+        "it",
+        "hr",
+        "lv",
+        "li",
+        "lt",
+        "lu",
+        "mt",
+        "nl",
+        "no",
+        "at",
+        "pl",
+        "pt",
+        "ro",
+        "se",
+        "sk",
+        "si",
+        "es",
+        "cz",
+        "hu",
+        "cy"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "GfK SE",
+    "address": "Sophie-Germain-Strasse 3-5\n90443 Nuremberg\nGermany",
+    "email": "dpo@gfk.com",
+    "web": "https://www.gfk.com",
+    "sources": [
+        "https://www.gfk.com/privacy-notice",
+        "https://github.com/datenanfragen/data/pull/2151"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

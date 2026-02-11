@@ -1,0 +1,41 @@
+{
+    "slug": "stw-uni-heidelberg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body",
+        "school"
+    ],
+    "name": "Studierendenwerk Heidelberg AöR",
+    "address": "Marstallhof 1\n69117 Heidelberg\nDeutschland",
+    "phone": "+49 6221 543925",
+    "fax": "+49 6221 545401",
+    "email": "dsb@stw.uni-heidelberg.de",
+    "web": "https://www.stw.uni-heidelberg.de",
+    "sources": [
+        "https://www.stw.uni-heidelberg.de/de/impressum",
+        "https://github.com/datenanfragen/data/pull/943"
+    ],
+    "required-elements": [
+        {
+            "desc": "E-Mail-Adresse",
+            "type": "email"
+        },
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        },
+        {
+            "desc": "Matrikelnummer",
+            "type": "input",
+            "optional": true
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

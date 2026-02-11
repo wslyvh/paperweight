@@ -1,0 +1,21 @@
+{
+    "slug": "sparda-hessen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Sparda-Bank Hessen eG",
+    "address": "Osloer Straße 2\n60327 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 7537500",
+    "fax": "+49 69 75379500",
+    "email": "datenschutz@sparda-hessen.de",
+    "web": "https://www.sparda-hessen.de",
+    "sources": [
+        "https://www.sparda-hessen.de/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/856"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

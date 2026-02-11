@@ -1,0 +1,18 @@
+{
+    "slug": "swapfiets-uk",
+    "relevant-countries": [
+        "gb"
+    ],
+    "name": "Swapfiets Limited",
+    "address": "58 Commercial Street\nLondon\nE1 6LT\nUnited Kingdom",
+    "phone": "+44 20 3808 0005",
+    "email": "privacy@pon.com",
+    "web": "https://swapfiets.co.uk/",
+    "sources": [
+        "https://swapfiets.co.uk/en-GB/privacy",
+        "https://help.swapfiets.co.uk/hc/en-gb",
+        "https://swapfiets.co.uk/en-GB/terms"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

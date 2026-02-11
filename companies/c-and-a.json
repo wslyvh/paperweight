@@ -1,0 +1,21 @@
+{
+    "slug": "c-and-a",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "C&A Mode GmbH & Co. KG",
+    "address": "Wanheimer Straße 70\n40468 Düsseldorf\nDeutschland",
+    "phone": "+49 211 9872 0",
+    "email": "DataProtectionOnline@canda.com",
+    "web": "https://www.c-and-a.com/de/de/shop",
+    "sources": [
+        "https://www.c-and-a.com/de/de/shop/service/datenschutz",
+        "https://www.c-and-a.com/de/de/shop/service/impressum",
+        "https://github.com/datenanfragen/data/pull/2202"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

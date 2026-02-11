@@ -1,0 +1,23 @@
+{
+    "slug": "gs-gliesmarode-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Grundschule Gliesmarode Braunschweig",
+    "address": "Paul-Jonas-Meier-Straße 28\n38104 Braunschweig\nDeutschland",
+    "phone": "+49 531 370 84 0",
+    "fax": "+49 531 370 84 23",
+    "email": "gs.gliesmarode@braunschweig.de",
+    "web": "http://grundschule-gliesmarode.de/",
+    "sources": [
+        "http://grundschule-gliesmarode.de/download/informationsblatt-datenschutzgrundverordnung/?wpdmdl=10784",
+        "http://grundschule-gliesmarode.de/kontakt-2/kontakt/"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

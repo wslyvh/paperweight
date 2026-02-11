@@ -1,0 +1,20 @@
+{
+    "slug": "allianz",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Allianz SE",
+    "address": "Königinstraße 28\n80802 München\nDeutschland",
+    "phone": "+49 89 3800 0",
+    "email": "goodprivacy@allianz.com",
+    "web": "https://www.allianz.com",
+    "sources": [
+        "https://www.allianz.com/de/datenschutzprinzipien.html#Datenschutzerklaerung",
+        "https://www.allianz.com/de/impressum-allianz-se.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

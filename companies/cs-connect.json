@@ -1,0 +1,33 @@
+{
+    "slug": "cs-connect",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "credit agency"
+    ],
+    "name": "CS Connect GmbH & Co. KG",
+    "address": "Kormoranweg 5\n65201 Wiesbaden\nDeutschland",
+    "phone": "+49 611 53269470",
+    "email": "datenschutz@cs-connect.de",
+    "webform": "https://www.cs-connect.de/kontakt/",
+    "web": "https://www.cs-connect.de",
+    "sources": [
+        "https://www.cs-connect.de/datenschutz.jsp",
+        "https://www.cs-connect.de/impressum.jsp"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "request-language": "de",
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

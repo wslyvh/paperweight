@@ -1,0 +1,21 @@
+{
+    "slug": "bid-inkasso",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "collection agency"
+    ],
+    "name": "BID Bayerischer Inkasso Dienst AG",
+    "address": "Weichengereuth 26\n96450 Coburg\nDeutschland",
+    "phone": "+49 9561 8060 0",
+    "fax": "+49 9561 8060 805",
+    "email": "datenschutz@bid-coburg.de",
+    "web": "http://www.bid-coburg.de/",
+    "sources": [
+        "http://www.bid-coburg.de/impressum/#datenschutz",
+        "http://www.bid-coburg.de/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

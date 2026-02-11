@@ -1,0 +1,26 @@
+{
+    "slug": "homeserve",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "HomeServe Membership Ltd",
+    "runs": [
+        "Checkatrade",
+        "HomeServe Connect",
+        "BOXT Limited",
+        "Ding"
+    ],
+    "address": "Cable Drive\nWalsall\nWS2 7BN\nUnited Kingdom",
+    "phone": "+44 330 024 7999",
+    "email": "Privacy@homeserve.co.uk",
+    "web": "https://www.homeserve.co.uk/",
+    "sources": [
+        "https://www.homeserve.co.uk/about/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/1855"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

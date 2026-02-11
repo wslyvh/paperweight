@@ -1,0 +1,40 @@
+{
+    "slug": "amazon-fr",
+    "relevant-countries": [
+        "fr"
+    ],
+    "categories": [
+        "commerce",
+        "entertainment"
+    ],
+    "name": "Amazon Europe Core SARL",
+    "runs": [
+        "amazon.fr",
+        "Amazon EU SARL",
+        "Amazon Services Europe SARL",
+        "Amazon Media EU SARL",
+        "Amazon Digital UK Limited",
+        "Amazon Kindle",
+        "Kindle Direct Publishing",
+        "Amazon Offres Reconditionnées",
+        "Amazon Marketplace"
+    ],
+    "address": "38 avenue John F. Kennedy\nL-1855, Luxembourg\nLuxembourg",
+    "email": "eu-privacy@amazon.fr",
+    "web": "https://www.amazon.fr",
+    "sources": [
+        "https://www.amazon.fr/gp/help/customer/display.html?ie=UTF8&nodeId=201909010"
+    ],
+    "required-elements": [
+        {
+            "desc": "Nom",
+            "type": "name"
+        },
+        {
+            "desc": "E-mail",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

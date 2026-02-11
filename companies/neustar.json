@@ -1,0 +1,29 @@
+{
+    "slug": "neustar",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads",
+        "commerce",
+        "credit agency",
+        "telecommunication"
+    ],
+    "name": "Neustar, Inc.",
+    "runs": [
+        "Neustar (UK) Ltd."
+    ],
+    "address": "c/o Neustar (UK) Ltd./MarketShare Partners EMEA Ltd.\n21 Palmer Street\nLondon\nSW1H 0AD\nUnited Kingdom",
+    "phone": "+44 1784 448 444",
+    "email": "privacy@team.neustar",
+    "web": "https://www.home.neustar/",
+    "sources": [
+        "https://www.home.neustar/privacy",
+        "https://www.home.neustar/privacy/privacy-policy",
+        "https://www.home.neustar/contact-us"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

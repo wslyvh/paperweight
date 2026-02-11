@@ -1,0 +1,23 @@
+{
+    "slug": "rlsb-hannover",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body",
+        "school"
+    ],
+    "name": "Regionales Landesamt für Schule und Bildung Hannover",
+    "address": "Postfach 11 01 22\n30856 Laatzen\nDeutschland",
+    "phone": "+49 511 106 6000",
+    "fax": "+49 511 106 992870",
+    "email": "Datenschutz@rlsb-h.niedersachsen.de",
+    "web": "https://bildungsportal-niedersachsen.de/ueber-uns/rlsb/rlsb-hannover",
+    "sources": [
+        "https://bildungsportal-niedersachsen.de/index.php?eID=dumpFile&t=f&f=11368&token=0a78b5f488f695de9795f50406a630129f61d6cb",
+        "https://bildungsportal-niedersachsen.de/ueber-uns/rlsb/rlsb-hannover"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "enercity",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "enercity AG",
+    "address": "Braunstraße 25\n30169 Hannover\nDeutschland",
+    "phone": "+49 511 4300",
+    "fax": "+49 511 4302650",
+    "email": "datenschutz@enercity.de",
+    "web": "https://www.enercity.de/",
+    "sources": [
+        "https://www.enercity.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2243"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

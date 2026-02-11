@@ -1,0 +1,29 @@
+{
+    "slug": "fuerth-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Stadt Fürth",
+    "address": "Schwabacher Straße 170\n90763 Fürth\nDeutschland",
+    "phone": "+49 911 9740",
+    "email": "dsb@fuerth.de",
+    "web": "https://www.fuerth.de",
+    "sources": [
+        "https://www.fuerth.de/Home/fuerther-rathaus/tabid-1275/hinweis-zum-datenschutz.aspx"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

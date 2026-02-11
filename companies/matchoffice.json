@@ -1,0 +1,17 @@
+{
+    "slug": "matchoffice",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "MatchOffice",
+    "address": "Ewaldsgade 7, 3\n2200 Copenhagen\nDenmark",
+    "phone": "+45 39 45 85 58",
+    "email": "info@matchoffice.com",
+    "web": "https://www.matchoffice.com/",
+    "quality": "verified",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/709",
+        "https://www.matchoffice.com/privacy",
+        "https://www.matchoffice.com/about-us/contact-us"
+    ]
+}

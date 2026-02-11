@@ -1,0 +1,22 @@
+{
+    "slug": "gsheidberg-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Grundschule Heidberg Braunschweig",
+    "address": "Dresdenstraße 139\n38124 Braunschweig\nDeutschland",
+    "phone": "+49 531 6 31 17",
+    "fax": "+49 531 2 62 13 63",
+    "email": "gs.heidberg@braunschweig.de",
+    "web": "http://www.gsheidberg.de/",
+    "sources": [
+        "http://www.gsheidberg.de/kontakt"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

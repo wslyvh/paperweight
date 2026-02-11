@@ -1,0 +1,22 @@
+{
+    "slug": "ogsbuerger-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Offene Ganztagsschule Bürgerstraße Braunschweig",
+    "address": "Bürgerstraße 2\n38118 Braunschweig\nDeutschland",
+    "phone": "+49 531 5804930",
+    "fax": "+49 531 577729",
+    "email": "gs.buergerstrasse@braunschweig.de",
+    "web": "http://www.ogsbuerger.de/",
+    "sources": [
+        "http://www.ogsbuerger.de/datenschutz/index.php"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

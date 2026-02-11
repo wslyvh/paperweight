@@ -1,0 +1,21 @@
+{
+    "slug": "volkswagen-ag",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel",
+        "commerce"
+    ],
+    "name": "Volkswagen AG",
+    "address": "Berliner Ring 2\n38440 Wolfsburg\nGermany",
+    "phone": "+49 800 8932836724889",
+    "email": "datenschutz@volkswagen.de",
+    "web": "https://www.volkswagenag.com/",
+    "sources": [
+        "https://datenschutz.volkswagen.de/impressum",
+        "https://datenschutz.volkswagen.de/rechtliches/datenschutz?lang=en-gb"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "kfzteile24-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "kfzteile24 GmbH",
+    "address": "Am Treptower Park 28-30\n12435 Berlin\nDeutschland",
+    "phone": "+49 30 4050400",
+    "email": "info@kfzteile24.de",
+    "web": "https://www.kfzteile24.de/",
+    "sources": [
+        "https://www.kfzteile24.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2870"
+    ],
+    "quality": "verified"
+}

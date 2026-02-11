@@ -1,0 +1,64 @@
+{
+    "slug": "adp-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "ADP, LLC",
+    "runs": [
+        "ADP (Suisse) SA",
+        "ADP Broker-Dealer, Inc.",
+        "ADP Credit Corp.",
+        "ADP Employer Services Belgium BVBA",
+        "ADP Employer Services Ceska Republika a.s.",
+        "ADP Employer Services Denmark ApS",
+        "ADP Employer Services GmbH-2",
+        "ADP Employer Services Iberia, S.L.U.",
+        "ADP Employer Services Italia SPA",
+        "ADP Employer Services Sweden AB",
+        "ADP Europe, S.A.S.",
+        "ADP France SAS",
+        "ADP Gestion des Paiements SAS",
+        "ADP GlobalView B.V.",
+        "ADP GSI France SAS",
+        "ADP Human Resources Service Company Limited",
+        "ADP Indemnity, Inc.",
+        "ADP International Services BV",
+        "ADP Nederland B.V.",
+        "ADP Outsourcing Italia SRL",
+        "ADP Payroll Services, Inc.",
+        "ADP Polska Sp. zo.o.",
+        "ADP Private Limited",
+        "ADP Residential Real Estate Services, LLC",
+        "ADP RPO UK Limited",
+        "ADP RPO, LLC",
+        "ADP Screening and Selection Services, Inc.",
+        "ADP Slovakia s.r.o.",
+        "ADP Software Solutions Italia SRL",
+        "ADP Strategic Plan Services, LLC",
+        "ADP Tax Services, Inc."
+    ],
+    "address": "31 Avenue Jules Quentin\n92000 Nanterre\nFrance",
+    "email": "DataProtectionOfficer.ADPEMEA@adp.com",
+    "web": "https://www.adp.com",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/395",
+        "https://www.adp.com/privacy/pdf/A2CoBDC.pdf",
+        "https://www.adp.com/privacy.aspx"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

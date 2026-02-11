@@ -1,0 +1,43 @@
+{
+    "slug": "mymuesli",
+    "relevant-countries": [
+        "de",
+        "ch",
+        "nl",
+        "be",
+        "gb",
+        "se",
+        "pl",
+        "fr",
+        "at"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "mymuesli AG",
+    "address": "Sailerwöhr 16\n94032 Passau\nGermany",
+    "email": "support@mymuesli.com",
+    "web": "https://www.mymuesli.com",
+    "sources": [
+        "https://www.mymuesli.com/policies/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/952"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "Address",
+            "type": "address",
+            "optional": true
+        }
+    ],
+    "quality": "verified"
+}

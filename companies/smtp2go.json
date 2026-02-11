@@ -1,0 +1,19 @@
+{
+    "slug": "smtp2go",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "SMTP2GO",
+    "address": "c/o Sand Dune Mail Ltd\n96-106 Manchester Street\nChristchurch 8011\nNew Zealand",
+    "phone": "+64 3 668 5138",
+    "email": "ticket@smtp2go.com",
+    "web": "https://www.smtp2go.com/",
+    "sources": [
+        "https://www.smtp2go.com/privacy/",
+        "https://www.smtp2go.com/contact/"
+    ],
+    "quality": "verified"
+}

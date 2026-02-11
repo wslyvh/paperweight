@@ -1,0 +1,29 @@
+{
+    "slug": "klinikum-nuernberg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "Klinikum Nürnberg",
+    "address": "Prof.-Ernst-Nathan-Straße 1\n90419 Nürnberg\nDeutschland",
+    "email": "datenschutz@klinikum-nuernberg.de",
+    "web": "https://www.klinikum-nuernberg.de",
+    "sources": [
+        "https://www.klinikum-nuernberg.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2264"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "kabeleinsdoku",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Kabel Eins Doku",
+    "address": "c/o Seven.One Entertainment Group GmbH\nMedienallee 7\n85774 Unterföhring\nGermany",
+    "phone": "+49 89 950710",
+    "email": "datenschutz@kabeleinsdoku.de",
+    "web": "https://www.kabeleinsdoku.de/",
+    "sources": [
+        "https://www.kabeleinsdoku.de/service/datenschutzhinweise"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

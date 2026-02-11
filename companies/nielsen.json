@@ -1,0 +1,18 @@
+{
+    "slug": "nielsen",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Nielsen",
+    "address": "14 Riverwalk, National Digital Park\nCitywest Business Campus\nDublin 24\nD24 XN32\nIreland",
+    "email": "privacy.department@nielsen.com",
+    "web": "https://www.nielsen.com",
+    "sources": [
+        "https://www.nielsen.com/legal/privacy-principles/website-privacy-statement/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

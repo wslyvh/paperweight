@@ -1,0 +1,23 @@
+{
+    "slug": "lessinggymnasium-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Lessinggymnasium Braunschweig",
+    "address": "Heideblick 20\n38110 Braunschweig\nDeutschland",
+    "phone": "+49 5307 92150",
+    "fax": "+49 5307 921529",
+    "email": "datenschutz@lg-bs.de",
+    "web": "http://www.lessinggymnasium.de/",
+    "sources": [
+        "http://www.lessinggymnasium.de/index.php/datenschutzerklaerung"
+    ],
+    "suggested-transport-medium": "email",
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "elektroshopwagner",
+    "categories": [
+        "commerce"
+    ],
+    "name": "Handelshaus Wagner GmbH",
+    "runs": [
+        "Elektroshop Wagner (www.elektroshopwagner.de)"
+    ],
+    "address": "Ludwigstraße 43\n63667 Nidda\nDeutschland",
+    "phone": "+49 6043 4031 100",
+    "fax": "+49 6043 4031 999",
+    "email": "datenschutz@elektroshopwagner.de",
+    "web": "https://www.elektroshopwagner.de/",
+    "sources": [
+        "https://www.elektroshopwagner.de/shop_content.php/coID/2/content/Datenschutz",
+        "https://www.elektroshopwagner.de/shop_content.php/coID/4/content/Impressum"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

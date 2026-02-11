@@ -1,0 +1,21 @@
+{
+    "slug": "navabi",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "navabi GmbH",
+    "address": "Jülicher Straße 344\n52070 Aachen\nDeutschland",
+    "phone": "+49 89 1891 7360",
+    "fax": "+49 241 900 53 37 20",
+    "email": "privacy@navabi.de",
+    "web": "https://www.navabi.de",
+    "sources": [
+        "https://www.navabi.de/datenschutz/",
+        "https://github.com/datenanfragen/data/issues/163"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

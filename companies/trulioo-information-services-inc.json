@@ -1,0 +1,25 @@
+{
+    "slug": "trulioo-information-services-inc",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "addresses"
+    ],
+    "name": "Trulioo (Ireland) Limited",
+    "runs": [
+        "Trulioo Information Services Inc."
+    ],
+    "address": "Scotch House\n3rd Floor, 6-7 Burgh Quay\nDublin D02 VK44\nIreland",
+    "phone": "+1 888 773 0179",
+    "email": "privacy@trulioo.com",
+    "web": "https://www.trulioo.com/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/591",
+        "https://www.trulioo.com/services-privacy-policy",
+        "https://github.com/datenanfragen/data/pull/3301"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

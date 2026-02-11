@@ -1,0 +1,17 @@
+{
+    "slug": "smart-vision",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Smart Vision Europe Ltd",
+    "address": "25 Elm Hill\nNorwich\nNR3 1HN\nUnited Kingdom",
+    "phone": "+44 20 7786 3568",
+    "email": "info@sv-europe.com",
+    "web": "https://sv-europe.com",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/122",
+        "https://www.sv-europe.com/privacy-policy/"
+    ],
+    "needs-id-document": false,
+    "quality": "verified"
+}

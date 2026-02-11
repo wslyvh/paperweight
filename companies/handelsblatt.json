@@ -1,0 +1,30 @@
+{
+    "slug": "handelsblatt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Handelsblatt GmbH",
+    "runs": [
+        "handelsblatt.com",
+        "wiwo.de",
+        "www.karriere.de",
+        "vhb.de",
+        "handelsblattgroup.com",
+        "health-i.de",
+        "holtzbrinck-schule.de",
+        "der-deutsche-innovationspreis.de"
+    ],
+    "address": "Toulouser Allee 27\n40211 Düsseldorf\nDeutschland",
+    "phone": "+49 211 8870",
+    "email": "datenschutz@handelsblattgroup.com",
+    "web": "https://www.handelsblatt.com/",
+    "sources": [
+        "https://handelsblattgroup.com/datenschutz/",
+        "https://handelsblattgroup.com/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

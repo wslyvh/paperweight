@@ -1,0 +1,20 @@
+{
+    "slug": "brands4friends",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Private Sale GmbH",
+    "runs": [
+        "www.brands4friends.de"
+    ],
+    "address": "Einsteinring 28\n85 609 Aschheim\nDeutschland",
+    "email": "service@brands4friends.de",
+    "web": "https://www.brands4friends.de/",
+    "sources": [
+        "https://www.brands4friends.de/"
+    ],
+    "quality": "verified"
+}

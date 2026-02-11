@@ -1,0 +1,23 @@
+{
+    "slug": "verse",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "DECENTRALIZED GLOBAL PAYMENTS, S.L.",
+    "runs": [
+        "VERSE PAYMENTS LITHUANIA, UAB"
+    ],
+    "address": "Plaza de Catalunya, 21\n08002 Barcelona\nSpain",
+    "phone": "+34 93 122 4175",
+    "email": "dpo@verse.me",
+    "web": "https://verse.me",
+    "sources": [
+        "https://verse.me/en/privacy",
+        "https://github.com/datenanfragen/data/issues/446"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

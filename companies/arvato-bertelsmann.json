@@ -1,0 +1,18 @@
+{
+    "slug": "arvato-bertelsmann",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Bertelsmann SE & Co. KGaA",
+    "address": "Carl-Bertelsmann-Straße 270\n33311 Gütersloh\nDeutschland",
+    "phone": "+49 5241 80 0",
+    "fax": "+49 5241 80 62321",
+    "email": "datenschutz@bertelsmann.de",
+    "web": "https://www.bertelsmann.de",
+    "sources": [
+        "https://www.bertelsmann.de/meta/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/798"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "headspace",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "health",
+        "entertainment"
+    ],
+    "name": "Headspace, Inc.",
+    "address": "425 California Street\n2nd Floor\nSan Francisco\nCA 94104\nUnited States of America",
+    "phone": "+1 855 432 3822",
+    "email": "help@headspace.com",
+    "web": "https://www.headspace.com/",
+    "sources": [
+        "https://www.headspace.com/contact-us",
+        "https://github.com/datenanfragen/data/issues/566",
+        "https://www.headspace.com/privacy-policy"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "newlook-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "New Look Retailers Ltd.",
+    "address": "New Look House\nMercery Road\nWeymouth\nDorset\nDT3 5HJ\nUnited Kingdom",
+    "email": "privacy@newlook.com",
+    "web": "https://www.newlook.com",
+    "sources": [
+        "https://help-uk.newlook.com/hc/en-gb/articles/360018841831-Privacy"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

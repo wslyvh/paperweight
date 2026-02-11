@@ -1,0 +1,19 @@
+{
+    "slug": "foxnews",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Fox News Network, LLC",
+    "address": "1211 Avenue of the Americas\n15th Floor\nNew York\nNY 10036\nUnited States of America",
+    "email": "ldepartment@foxnews.com",
+    "web": "https://www.foxnews.com/",
+    "sources": [
+        "https://www.foxnews.com/privacy-policy"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

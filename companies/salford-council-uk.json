@@ -1,0 +1,20 @@
+{
+    "slug": "salford-council-uk",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Salford City Council",
+    "address": "Civic Centre\nChorley Road\nSwinton\nM27 5DA\nUnited Kingdom",
+    "phone": "+44 161 793 2500",
+    "email": "infogovernance@salford.gov.uk",
+    "web": "https://salford.gov.uk",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/672",
+        "https://www.salford.gov.uk/your-council/council-and-decision-making/data-protection-legislation/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

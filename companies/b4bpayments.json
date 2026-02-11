@@ -1,0 +1,23 @@
+{
+    "slug": "b4bpayments",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "UAB “B4B PAYMENTS EUROPE”",
+    "runs": [
+        "Bread4Scrap",
+        "Payment Card Solutions (UK) Ltd.",
+        "B4B Payments (USA) Inc"
+    ],
+    "address": "Lvovo g. 105A\nLT-08104 Vilnius\nLithuania",
+    "email": "data@b4bpayments.com",
+    "sources": [
+        "https://www.b4bpayments.com/prepaid/privacy/",
+        "https://github.com/datenanfragen/data/pull/872"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

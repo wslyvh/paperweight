@@ -1,0 +1,16 @@
+{
+    "slug": "lovoo",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "LOOVO",
+    "address": "c/o PE Digital GmbH\nSpeersort 10\n20095 Hamburg\nDeutschland",
+    "email": "datenschutz@lovoo.com",
+    "web": "https://www.lovoo.com/",
+    "sources": [
+        "https://about.lovoo.com/support/legal/privacy-policy-de/",
+        "https://github.com/datenanfragen/data/pull/2453"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

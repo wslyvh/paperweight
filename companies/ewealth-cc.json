@@ -1,0 +1,24 @@
+{
+    "slug": "ewealth-cc",
+    "relevant-countries": [
+        "gb",
+        "de",
+        "it",
+        "es"
+    ],
+    "categories": [
+        "ads",
+        "finance"
+    ],
+    "name": "Ewealth.cc",
+    "address": "c/o Advertising.R\nObzor street\nTown of Ruse 7000\nRegion Ruse\nMunicipality of Ruse 10\nBulgaria",
+    "phone": "+44 20 8089 0220",
+    "email": "support@ewealth.cc",
+    "web": "https://ewealth.cc/",
+    "sources": [
+        "https://ewealth.cc/terms-and-conditions/",
+        "https://github.com/datenanfragen/data/pull/814",
+        "https://ewealth.cc/support-center/"
+    ],
+    "quality": "verified"
+}

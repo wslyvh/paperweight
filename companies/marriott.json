@@ -1,0 +1,41 @@
+{
+    "slug": "marriott",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Marriott International, Inc.",
+    "address": "c/o Luxury Reservations Limited\n10 Earlsfort Terrace\nDublin D02 T380\nIreland",
+    "email": "privacy@marriott.com",
+    "webform": "https://privacyportal-cdn.onetrust.com/dsarwebform/0894cd2c-85ba-4d0b-8ec1-e18f3735e0e0/e4eef8ab-3071-4679-a374-5847fbe290de.html",
+    "web": "https://www.marriott.com/",
+    "sources": [
+        "https://www.marriott.com/about/privacy.mi"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "Bonvoy Number",
+            "type": "input",
+            "optional": false
+        },
+        {
+            "desc": "Address",
+            "type": "address",
+            "optional": false
+        }
+    ],
+    "needs-id-document": true,
+    "quality": "tested"
+}

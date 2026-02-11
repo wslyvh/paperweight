@@ -1,0 +1,49 @@
+{
+    "slug": "uni-mainz-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Johannes Gutenberg-Universität Mainz",
+    "address": "Saarstr. 21\n55122 Mainz\nDeutschland",
+    "phone": "+49 6131 3920065",
+    "fax": "+49 6131 3952202",
+    "email": "datenschutz@uni-mainz.de",
+    "web": "http://www.uni-mainz.de/",
+    "sources": [
+        "https://www.uni-mainz.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2021"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Anschrift",
+            "type": "address",
+            "optional": false
+        },
+        {
+            "desc": "Geburtsdatum",
+            "type": "birthdate",
+            "optional": false
+        },
+        {
+            "desc": "Verhältnis zur JGU (Beispielsweise Studierende, Mitarbeiterin, etc.)",
+            "type": "input",
+            "optional": false
+        },
+        {
+            "desc": "Matrikelnummer (bei Studierenden)",
+            "type": "input",
+            "optional": true
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

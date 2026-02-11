@@ -1,0 +1,21 @@
+{
+    "slug": "coinlist",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Amalgamated Token Services Inc.",
+    "runs": [
+        "Coinlist"
+    ],
+    "address": "850 Montgomery Street #350\nSan Francisco, CA 94133\nUnited States of America",
+    "email": "privacy@coinlist.co",
+    "web": "https://coinlist.co/",
+    "sources": [
+        "https://coinlist.co/documents/coinlist_privacy_policy_september_2021.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

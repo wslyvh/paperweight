@@ -1,0 +1,19 @@
+{
+    "slug": "von-poll",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "von Poll Immobilien GmbH",
+    "address": "Feldbergstraße 35\n60323 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 2691570",
+    "fax": "+49 69 26915711",
+    "email": "datenschutz@von-poll.com",
+    "web": "https://www.von-poll.com/de/",
+    "sources": [
+        "https://www.von-poll.com/de/datenschutz",
+        "https://www.von-poll.com/de/impressum",
+        "https://github.com/datenanfragen/data/pull/2562"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

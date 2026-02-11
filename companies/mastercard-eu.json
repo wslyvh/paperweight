@@ -1,0 +1,22 @@
+{
+    "slug": "mastercard-eu",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Mastercard Europe SA",
+    "address": "Chaussée de Tervuren 198A\n1410 Waterloo\nBelgium",
+    "phone": "+32 2 352 51 11",
+    "fax": "+32 2 352 58 07",
+    "email": "privacyanddataprotection@mastercard.com",
+    "web": "https://www.mastercard.de",
+    "sources": [
+        "https://www.mastercard.de/de-de/datenschutz.html",
+        "https://www.mastercard.de/de-de/datenschutz/impressum.html",
+        "https://github.com/datenanfragen/data/pull/3000"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

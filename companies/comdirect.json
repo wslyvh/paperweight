@@ -1,0 +1,35 @@
+{
+    "slug": "comdirect",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "comdirect",
+    "address": "c/o Commerzbank AG\nPascalkehre 15\n25451 Quickborn\nDeutschland",
+    "phone": "+49 4106 7040",
+    "fax": "+49 4106 7082585",
+    "email": "datenschutz@comdirect.de",
+    "webform": "https://kunde.comdirect.de/itx/kontakt",
+    "web": "https://www.comdirect.de",
+    "sources": [
+        "https://www.comdirect.de/cms/hilfe-service-sicherheit-datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/3102"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Geburtsdatum",
+            "type": "birthdate"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "quality": "verified"
+}

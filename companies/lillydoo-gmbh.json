@@ -1,0 +1,17 @@
+{
+    "slug": "lillydoo-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Lillydoo GmbH",
+    "address": "Hanauer Landstraße 147-149\n60314 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 64357420",
+    "email": "privacy@lillydoo.com",
+    "web": "https://lillydoo.com",
+    "sources": [
+        "https://lillydoo.com/pages/datenschutzerklaerung",
+        "https://github.com/datenanfragen/data/pull/2792"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

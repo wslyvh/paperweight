@@ -1,0 +1,20 @@
+{
+    "slug": "deutsche-bank-privat-geschaeftskunden",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Deutsche Bank AG",
+    "address": "Taunusanlage 12\n60325 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 910 10000",
+    "fax": "+49 69 910 10001",
+    "email": "datenschutz.db@db.com",
+    "web": "https://www.deutsche-bank.de",
+    "sources": [
+        "https://www.deutsche-bank.de/dam/deutschebank/de/shared/pdf/ser-DB_EU-Datenschutzhinweise_AG.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

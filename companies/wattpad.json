@@ -1,0 +1,19 @@
+{
+    "slug": "wattpad",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Wattpad Corp.",
+    "address": "36 Wellington St. E.\nSuite 200\nToronto, ON, M5E 1C7\nCanada",
+    "email": "privacy@wattpad.com",
+    "web": "https://www.wattpad.com/",
+    "sources": [
+        "https://policies.wattpad.com/privacy/",
+        "https://github.com/datenanfragen/data/pull/1631"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

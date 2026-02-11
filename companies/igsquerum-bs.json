@@ -1,0 +1,22 @@
+{
+    "slug": "igsquerum-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "IGS Querum Braunschweig",
+    "address": "Essener Straße 85\n38108 Braunschweig\nDeutschland",
+    "phone": "+49 531 470 5200",
+    "fax": "+49 531 470 5240",
+    "email": "datenschutzbeauftragter@igsquerum.de",
+    "web": "https://igsquerum.net/",
+    "sources": [
+        "https://igsquerum.net/service/datenschutz/",
+        "https://igsquerum.net/service/impressum/"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

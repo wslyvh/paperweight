@@ -1,0 +1,27 @@
+{
+    "slug": "spiegel-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment",
+        "commerce",
+        "ads"
+    ],
+    "name": "DER SPIEGEL GmbH & Co. KG",
+    "runs": [
+        "DER SPIEGEL (online) (www.spiegel.de)"
+    ],
+    "address": "Ericusspitze 1\n20459 Hamburg\nDeutschland",
+    "phone": "+49 40 3007 0",
+    "fax": "+49 40 3007 2247",
+    "email": "datenschutz@spiegelgruppe.de",
+    "web": "https://www.spiegel.de",
+    "sources": [
+        "https://www.spiegel.de/datenschutz-spiegel",
+        "https://www.spiegel.de/impressum",
+        "https://github.com/datenanfragen/data/pull/1453"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

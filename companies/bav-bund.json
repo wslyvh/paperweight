@@ -1,0 +1,20 @@
+{
+    "slug": "bav-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesanstalt für Verwaltungsdienstleistungen (BAV)",
+    "address": "Schloßplatz 9\n26603 Aurich\nDeutschland",
+    "phone": "+49 4941 602 495",
+    "email": "datenschutz@bav.bund.de",
+    "web": "https://www.bav.bund.de",
+    "sources": [
+        "https://www.bav.bund.de/DE/6_Service/Datenschutz/datenschutz_node.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

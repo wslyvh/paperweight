@@ -1,0 +1,35 @@
+{
+    "slug": "tucows",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Tucows",
+    "runs": [
+        "Hover",
+        "OpenSRS"
+    ],
+    "address": "c/o Rickert Rechtsanwaltsgesellschaft m.b.H\nKaiserplatz 7 - 9\n53113 Bonn\nGermany",
+    "email": "dpo@tucows.com",
+    "web": "https://www.tucows.com",
+    "sources": [
+        "https://www.hover.com/privacy",
+        "https://opensrs.com/privacy-policy/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Username",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

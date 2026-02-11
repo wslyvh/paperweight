@@ -1,0 +1,23 @@
+{
+    "slug": "kirchengemeinde-heckenbeck-in-bad-gandersheim",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Heckenbeck in Bad Gandersheim",
+    "address": "Stiftsfreiheit 1\n37581 Bad Gandersheim\nDeutschland",
+    "phone": "+49 5382 2714",
+    "fax": "+49 5382 790416",
+    "email": "gandersheim.pfa@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=674"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

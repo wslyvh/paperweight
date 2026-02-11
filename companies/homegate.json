@@ -1,0 +1,16 @@
+{
+    "relevant-countries": [
+        "ch"
+    ],
+    "slug": "homegate",
+    "name": "homegate AG",
+    "address": "Werdstrasse 21\n8004 Zürich\nSchweiz",
+    "phone": "+41 848 100 100",
+    "email": "info@homegate.ch",
+    "web": "https://www.homegate.ch",
+    "sources": [
+        "https://www.homegate.ch/ueber-uns/rechtliches/privacy-policy",
+        "https://www.homegate.ch/ueber-uns/rechtliches/impressum"
+    ],
+    "quality": "verified"
+}

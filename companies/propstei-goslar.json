@@ -1,0 +1,24 @@
+{
+    "slug": "propstei-goslar",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Propstei Goslar",
+    "address": "Kaiserbleek 4\n38640 Goslar\nDeutschland",
+    "phone": "+49 5321 22921",
+    "fax": "+49 5321 41979",
+    "email": "goslar.pr@lk-bs.de",
+    "web": "http://www.propsteigoslar.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/goslar.html"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

@@ -1,0 +1,27 @@
+{
+    "slug": "klarna",
+    "categories": [
+        "finance"
+    ],
+    "name": "Klarna Bank AB (publ)",
+    "runs": [
+        "Sofortüberweisung (Sofort GmbH)"
+    ],
+    "address": "Sveavägen 46\n111 34 Stockholm\nSweden",
+    "phone": "+46 8 120 120 00",
+    "fax": "+46 8 120 120 99",
+    "email": "datenschutz@klarna.de",
+    "web": "https://www.klarna.com",
+    "sources": [
+        "https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/privacy",
+        "https://www.klarna.com/de/impressum/"
+    ],
+    "comments": [
+        "Niederlassung in Deutschland: Klarna GmbH, Theresienhöhe 12, 80339 München, Deutschland.\nTelefon Rezeption: +49 221 669 501 00"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,34 @@
+{
+    "slug": "freelancer-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce",
+        "finance"
+    ],
+    "name": "Freelancer International Pty Ltd",
+    "runs": [
+        "Freelancer Ltd."
+    ],
+    "address": "Level 20\nWorld Square\n680 George Street\nSydney NSW 2000\nAustralia",
+    "email": "privacy-officer@freelancer.com",
+    "web": "https://www.freelancer.com/",
+    "sources": [
+        "https://www.freelancer.com/about/privacy",
+        "https://www.freelancer.com/about/terms"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

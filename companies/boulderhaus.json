@@ -1,0 +1,17 @@
+{
+    "slug": "boulderhaus",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "boulderhaus GmbH",
+    "address": "Im Bosseldorn 25/1\n69126 Heidelberg\nDeutschland",
+    "phone": "+49 6221 8729627",
+    "email": "heidelberg@boulderhaus.de",
+    "web": "https://www.boulderhaus.net",
+    "sources": [
+        "https://187.webclimber.de/de/booking/privacy",
+        "https://www.boulderhaus.net/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1665"
+    ],
+    "quality": "verified"
+}

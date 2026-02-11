@@ -1,0 +1,22 @@
+{
+    "slug": "uktv",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "UKTV Media Limited",
+    "runs": [
+        "UKTV Digital Services"
+    ],
+    "address": "PO Box 6996\nCardiff\nCF15 5DS\nUnited Kingdom",
+    "phone": "+44 20 3192 0504",
+    "email": "viewers@uktv.co.uk",
+    "web": "https://network.uktv.co.uk/",
+    "sources": [
+        "https://network.uktv.co.uk/article/privacy-policy/"
+    ],
+    "request-language": "en",
+    "quality": "verified"
+}

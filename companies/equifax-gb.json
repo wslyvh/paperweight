@@ -1,0 +1,20 @@
+{
+    "slug": "equifax-gb",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "addresses",
+        "credit agency"
+    ],
+    "name": "Equifax Ltd.",
+    "address": "PO Box 10036\nLeicester\nLE3 4FS\nUnited Kingdom",
+    "phone": "+44 800 014 2955",
+    "email": "UKDPO@equifax.com",
+    "web": "https://www.equifax.co.uk/",
+    "sources": [
+        "https://www.equifax.co.uk/privacy-hub/privacy-notice"
+    ],
+    "request-language": "en",
+    "quality": "verified"
+}

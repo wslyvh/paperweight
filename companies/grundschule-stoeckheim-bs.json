@@ -1,0 +1,23 @@
+{
+    "slug": "grundschule-stoeckheim-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Grundschule Stöckheim Braunschweig",
+    "address": "Rüninger Weg 11\n38124 Braunschweig\nDeutschland",
+    "phone": "+49 531 61 15 68 0",
+    "fax": "+49 531 61 15 68 20",
+    "email": "gs.stoeckheim@braunschweig.de",
+    "web": "http://www.grundschule-stoeckheim.de/",
+    "sources": [
+        "http://www.grundschule-stoeckheim.de/informationen/impressum-datenschutz/",
+        "https://www.braunschweig.de/leben/schule_bildung/schulportal/schulen/schulen/gs-stoeckheim.html"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

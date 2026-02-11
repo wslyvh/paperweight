@@ -1,0 +1,40 @@
+{
+    "slug": "tuev-thueringen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body",
+        "school",
+        "telecommunication",
+        "travel",
+        "commerce",
+        "utility",
+        "nonprofit",
+        "health"
+    ],
+    "name": "TÜV Thüringen-Gruppe",
+    "runs": [
+        "TÜV Thüringen e.V.",
+        "Akademie für Gesundheits- und Sozialberufe gemeinnützige GmbH",
+        "Technische Servicegesellschaft mbH",
+        "TÜV Akademie GmbH Unternehmensgruppe TÜV Thüringen",
+        "TÜV Thüringen Anlagentechnik GmbH & Co. KG",
+        "TÜV Thüringen Fahrzeug GmbH & Co. KG"
+    ],
+    "address": "Melchendorfer Straße 64\n99096 Erfurt\nDeutschland",
+    "phone": "+49 361 42830",
+    "fax": "+49 361 4283260",
+    "email": "datenschutz@tuev-thueringen.de",
+    "web": "https://www.tuev-thueringen.de",
+    "sources": [
+        "https://www.tuev-thueringen.de/unternehmen/kontakt/datenschutzerklaerung/",
+        "https://www.tuev-thueringen.de/fileadmin/user_upload/tuev/Downloads/allgemein/180522_Datenschutz-Information_AGSB.pdf",
+        "https://www.tuev-thueringen.de/fileadmin/user_upload/tuev/Downloads/allgemein/180522_Datenschutz-Information_TSG.pdf",
+        "https://www.tuev-thueringen.de/fileadmin/user_upload/tuev/Downloads/allgemein/180522_Datenschutz-Information_TTAka.pdf",
+        "https://www.tuev-thueringen.de/fileadmin/user_upload/tuev/Downloads/allgemein/180522_Datenschutz-Information_TTAT.pdf",
+        "https://www.tuev-thueringen.de/fileadmin/user_upload/tuev/Downloads/allgemein/180522_Datenschutz-Information_TTFzg.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

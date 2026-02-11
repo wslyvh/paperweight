@@ -1,0 +1,42 @@
+{
+    "slug": "idealo",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads",
+        "travel",
+        "commerce"
+    ],
+    "name": "idealo internet GmbH",
+    "runs": [
+        "idealo Shopping",
+        "idealo Hotel",
+        "idealo Flug",
+        "Mein idealo"
+    ],
+    "address": "Ritterstraße 11\n10969 Berlin\nDeutschland",
+    "phone": "+49 800 72 40 831",
+    "fax": "+49 30 80 09 70 50 2",
+    "email": "privacy@idealo.de",
+    "web": "https://www.idealo.de/",
+    "sources": [
+        "https://www.idealo.de/preisvergleich/Datenschutz.html",
+        "https://www.idealo.de/preisvergleich/AGB.html"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "E-Mail-Adresse",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "unity3d",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads",
+        "entertainment"
+    ],
+    "name": "Unity Technologies ApS",
+    "address": "Niels Hemmingsens Gade 24\n1153 Copenhagen\nDenmark",
+    "email": "DPO@unity3d.com",
+    "web": "https://unity.com/",
+    "sources": [
+        "https://unity3d.com/legal/privacy-policy"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

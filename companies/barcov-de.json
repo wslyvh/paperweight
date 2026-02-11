@@ -1,0 +1,16 @@
+{
+    "slug": "barcov-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "KnowHau Media e.K.",
+    "runs": [
+        "BarCov"
+    ],
+    "address": "Kolpingstrasse 36\n56729 Ettringen\nDeutschland",
+    "web": "https://www.knowhau.media/",
+    "sources": [
+        "https://www.knowhau.media/"
+    ],
+    "quality": "verified"
+}

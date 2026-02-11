@@ -1,0 +1,32 @@
+{
+    "slug": "myfujifilm",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "ip.labs GmbH",
+    "runs": [
+        "myFUJIFILM"
+    ],
+    "address": "Schwertberger Straße 14-16\n53177 Bonn\nDeutschland",
+    "phone": "+49 800 7238 654",
+    "email": "kundendienst@myfujifilm.de",
+    "web": "https://www.myfujifilm.de",
+    "sources": [
+        "https://www.myfujifilm.de/datenschutz",
+        "https://www.myfujifilm.de/impressum"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "quality": "verified"
+}

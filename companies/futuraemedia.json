@@ -1,0 +1,41 @@
+{
+    "slug": "futuraemedia",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Futurae Media Ltd",
+    "runs": [
+        "Energy Tech Summit (energytechsummit.com)",
+        "Energy Tech Network (energytechnetwork.com)",
+        "Food Tech Congress (foodtechcongress.com)",
+        "Food Tech Challengers (foodtechchallengers.com)",
+        "Alternative Investment Forum (altinvestforum.com)"
+    ],
+    "address": "Kemp House City Road 152 – 160\nLondon\nEC1V 2NX\nUnited Kingdom",
+    "phone": "+44 7451 204362",
+    "email": "info@futuraemedia.com",
+    "web": "https://www.futuraemedia.com",
+    "sources": [
+        "https://www.futuraemedia.com/cookie-policy/",
+        "https://energytechsummit.com/privacy-policy/",
+        "https://foodtechcongress.com/privacy-policy/",
+        "https://altinvestforum.com/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/1069"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "quality": "verified"
+}

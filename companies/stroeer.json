@@ -1,0 +1,19 @@
+{
+    "slug": "stroeer",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Ströer SE & Co. KGaA",
+    "runs": [
+        "TankenApp",
+        "Herzrasen Fußball Live Ticker"
+    ],
+    "address": "Ströer Allee 1\n50999 Köln\nDeutschland",
+    "email": "datenschutzbeauftragter@stroeer.de",
+    "web": "https://www.stroeer.de",
+    "sources": [
+        "https://www.stroeer.de/service/datenschutz.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

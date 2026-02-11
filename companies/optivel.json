@@ -1,0 +1,26 @@
+{
+    "slug": "optivel",
+    "relevant-countries": [
+        "de",
+        "ch",
+        "fr",
+        "at"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "optivel AG",
+    "runs": [
+        "cpx online active AG",
+        "Entertainment Media GmbH"
+    ],
+    "address": "Bahnhofstr. 52\n8001 Zürich\nSwitzerland",
+    "phone": "+41 44 214 67 65",
+    "email": "datenschutz@optivel.com",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/491",
+        "https://www.optivel.com/datenschutz"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

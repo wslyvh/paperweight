@@ -1,0 +1,21 @@
+{
+    "slug": "tagesspiegel",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Verlag Der Tagesspiegel GmbH",
+    "address": "Askanischer Platz 3\n10961 Berlin\nDeutschland",
+    "phone": "+49 30 29021 0",
+    "fax": "+49 30 29021 12090",
+    "email": "datenschutz@tagesspiegel.de",
+    "web": "https://www.tagesspiegel.de/",
+    "sources": [
+        "https://www.tagesspiegel.de/service/verlag-der-tagesspiegel-datenschutzerklaerung/22603436.html",
+        "https://www.tagesspiegel.de/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,25 @@
+{
+    "slug": "boersenmedien-ag",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Börsenmedien AG",
+    "runs": [
+        "DER AKTIONÄR",
+        "BÖRSE ONLINE"
+    ],
+    "address": "c/o BGfD Bayreuther Gesellschaft für Datenschutz mbH\nTelemannstraße 1\n95444 Bayreuth\nDeutschland",
+    "phone": "+49 921 16324540",
+    "fax": "+49 9221 90514000",
+    "email": "info@datenschutz-bayreuth.de",
+    "web": "https://www.boersenmedien.de",
+    "sources": [
+        "https://www.boersenmedien.de/datenschutz.html",
+        "https://www.deraktionaer.de/datenschutz.html",
+        "https://www.boerse-online.de/datenschutz.html",
+        "https://www.boersenmedien.de/impressum.html",
+        "https://github.com/datenanfragen/data/pull/1860"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

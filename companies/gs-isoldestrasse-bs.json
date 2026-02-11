@@ -1,0 +1,21 @@
+{
+    "slug": "gs-isoldestrasse-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Grundschule Isoldestraße Braunschweig",
+    "address": "Isoldestraße 60\n38106 Braunschweig\nDeutschland",
+    "phone": "+49 531 321749",
+    "fax": "+49 531 2322722",
+    "email": "gs.isoldestrasse@braunschweig.de",
+    "sources": [
+        "https://www.braunschweig.de/leben/schule_bildung/schulportal/schulen/schulen/gs-isoldestrasse.html"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

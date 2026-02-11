@@ -1,0 +1,19 @@
+{
+    "slug": "bueso",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "political party"
+    ],
+    "name": "Bürgerrechtsbewegung Solidarität (BüSo)",
+    "address": "Postfach 221128\n55050 Mainz\nDeutschland",
+    "phone": "+49 6131 237384",
+    "email": "datenschutz@bueso.de",
+    "web": "https://www.bueso.de/",
+    "sources": [
+        "https://www.bueso.de/datenschutzerklaerung"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

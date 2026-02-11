@@ -1,0 +1,24 @@
+{
+    "slug": "henneo-media-es",
+    "relevant-countries": [
+        "es"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Henneo Media, S.A.",
+    "runs": [
+        "Axel Springer España, S.A. (formerly)"
+    ],
+    "address": "Paseo de la Independencia 29\n50001 Zaragoza\nEspaña",
+    "phone": "+34 976 76 50 00",
+    "fax": "+34 976 76 50 03",
+    "email": "dpo@henneo.com",
+    "web": "https://www.henneo.com/",
+    "sources": [
+        "https://www.henneo.com/en/privacy-policy/",
+        "https://www.henneo.com/en/legal-notice/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

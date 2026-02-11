@@ -1,0 +1,21 @@
+{
+    "slug": "autohero-com",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Autohero GmbH",
+    "address": "Bergmannstr. 72\n10961 Berlin\nDeutschland",
+    "email": "datenschutz@autohero.com",
+    "web": "https://www.autohero.com/",
+    "sources": [
+        "https://www.northdata.de/Autohero+GmbH,+Berlin/Amtsgericht+Charlottenburg+%28Berlin%29+HRB+201002+B",
+        "https://github.com/datenanfragen/data/pull/2524",
+        "https://content.autohero.com/static/car_images/Autohero_German_Update-Nr14_2023-11_CLEAN.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "phone": "+49 800 6646640"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "creative-labs",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Creative Technology Ltd",
+    "address": "31 International Business Park\n#03-01\nSingapore 609921\nRepublic of Singapore",
+    "webform": "https://creative.com/contactus/",
+    "web": "https://creative.com/",
+    "sources": [
+        "https://de.creative.com/home/gdpr",
+        "https://github.com/datenanfragen/data/pull/1848"
+    ],
+    "suggested-transport-medium": "webform",
+    "quality": "verified"
+}

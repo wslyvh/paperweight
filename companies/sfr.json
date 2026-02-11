@@ -1,0 +1,43 @@
+{
+    "slug": "sfr",
+    "relevant-countries": [
+        "fr"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "SFR",
+    "runs": [
+        "Red by SFR"
+    ],
+    "address": "TSA 10101\n69947 Lyon CEDEX 20\nFrance",
+    "web": "https://www.sfr.fr",
+    "sources": [
+        "https://assistance.sfr.fr/nc/acces-a-vos-donnees-personnelles.html",
+        "https://www.sfr.fr/politique-de-protection-des-donnees-personnelles.html",
+        "https://github.com/datenanfragen/data/pull/1064"
+    ],
+    "required-elements": [
+        {
+            "desc": "Nom",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Numéro de ligne téléphonique",
+            "type": "input",
+            "optional": false
+        },
+        {
+            "desc": "Numéro de contrat",
+            "type": "input",
+            "optional": false
+        }
+    ],
+    "needs-id-document": true,
+    "suggested-transport-medium": "letter",
+    "comments": [
+        "Vous pouvez exercer vos droits à tout moment en vous rendant dans votre espace client dans la rubrique « Contact et données personnelles »."
+    ],
+    "quality": "verified"
+}

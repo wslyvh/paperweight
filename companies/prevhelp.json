@@ -1,0 +1,23 @@
+{
+    "slug": "prevhelp",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch",
+        "fr",
+        "es"
+    ],
+    "name": "sevDesk GmbH",
+    "address": "Hauptstr. 115\n77652 Offenburg\nDeutschland",
+    "phone": "+49 781 12550810",
+    "email": "privacy@sevdesk.de",
+    "web": "https://sevdesk.de",
+    "sources": [
+        "https://sevdesk.de/sicherheit-datenschutz/",
+        "https://sevdesk.imgix.net/34060/1634578443-20211018datenschutzerklarungwebsitesevdesk.pdf",
+        "https://github.com/datenanfragen/data/pull/1667",
+        "https://github.com/datenanfragen/data/pull/1769"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

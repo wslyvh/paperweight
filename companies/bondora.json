@@ -1,0 +1,23 @@
+{
+    "slug": "bondora",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Bondora Capital OÜ",
+    "address": "A. H. Tammsaare tee 47\nTallinn 11316\nEstonia",
+    "web": "https://www.bondora.com/en/",
+    "sources": [
+        "https://www.bondora.com/en/terms#privacy-policy",
+        "https://github.com/datenanfragen/data/pull/1652"
+    ],
+    "required-elements": [
+        {
+            "desc": "Username",
+            "type": "name"
+        }
+    ],
+    "quality": "verified"
+}

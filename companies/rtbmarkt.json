@@ -1,0 +1,18 @@
+{
+    "slug": "rtbmarkt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "EASYmedia GmbH",
+    "address": "Löhner Str. 12d\n44652 Herne\nDeutschland",
+    "email": "info@easymedia-gmbh.de",
+    "web": "https://www.rtbmarkt.de",
+    "sources": [
+        "https://login.rtbmarket.com/gdpr",
+        "https://github.com/datenanfragen/data/pull/1006"
+    ],
+    "quality": "verified"
+}

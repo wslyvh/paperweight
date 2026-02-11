@@ -1,0 +1,22 @@
+{
+    "slug": "vonovia",
+    "name": "Vonovia SE",
+    "runs": [
+        "Vonovia Kundenservice GmbH"
+    ],
+    "address": "Philippstraße 3\n44803 Bochum\nDeutschland",
+    "phone": "+49 234 314 0",
+    "fax": "+49 234 314 888 4414",
+    "email": "datenschutz@vonovia.de",
+    "web": "https://www.vonovia.de/",
+    "sources": [
+        "https://www.vonovia.de/datenschutz",
+        "https://www.vonovia.de/impressum",
+        "https://github.com/datenanfragen/data/issues/14"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

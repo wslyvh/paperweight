@@ -1,0 +1,21 @@
+{
+    "slug": "helpshift",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Helpshift, Inc.",
+    "address": "c/o GDPREP.ORG\nSuite 10357\n5 Fitzwilliam Square\nDublin 2\nD02 R744\nIreland",
+    "phone": "+44 7810 883333",
+    "email": "privacy@helpshift.com",
+    "web": "https://www.helpshift.com/",
+    "sources": [
+        "https://www.helpshift.com/legal/privacy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

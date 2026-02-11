@@ -1,0 +1,24 @@
+{
+    "slug": "covimedical",
+    "relevant-countries": [
+        "de",
+        "es"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "CoviMedical GmbH",
+    "runs": [
+        "15minutentest.de"
+    ],
+    "address": "Steinwiese 18\n35685 Dillenburg\nDeutschland",
+    "phone": "+49 2771 4278962",
+    "email": "email@covimedical.de",
+    "web": "https://covimedical.de",
+    "sources": [
+        "https://15minutentest.de/de/de/datenschutz",
+        "https://covimedical.de/policies/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/1140"
+    ],
+    "quality": "verified"
+}

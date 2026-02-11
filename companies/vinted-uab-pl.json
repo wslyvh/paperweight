@@ -1,0 +1,18 @@
+{
+    "slug": "vinted-uab-pl",
+    "relevant-countries": [
+        "pl"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Vinted UAB",
+    "address": "Švitrigailos Str. 13\nLT-03228 Vilnius\nLithuania",
+    "email": "dpo@vinted.pl",
+    "web": "https://www.vinted.pl/",
+    "sources": [
+        "https://www.kleiderkreisel.de/privacy-policy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

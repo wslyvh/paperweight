@@ -1,0 +1,22 @@
+{
+    "slug": "myspace",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Myspace LLC",
+    "address": "6100 Center Dr., Ste 800\nLos Angeles\nCalifornia 90045\nUnited States of America",
+    "email": "dpo@myspace.com",
+    "web": "https://myspace.com",
+    "sources": [
+        "https://www.computerhope.com/comp/myspace.htm",
+        "https://en.m.wikipedia.org/wiki/Myspace",
+        "https://github.com/datenanfragen/data/issues/158",
+        "https://myspace.com/pages/privacy",
+        "https://myspace.com/pages/eeaprivacy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

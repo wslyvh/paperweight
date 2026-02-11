@@ -1,0 +1,27 @@
+{
+    "slug": "isppro",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "ISPpro Internet KG",
+    "runs": [
+        "KOS-Online",
+        "EUserv",
+        "keepfree.de"
+    ],
+    "address": "Otto-Schott-Str. 13\n07745 Jena\nDeutschland",
+    "phone": "+49 3641 50440",
+    "email": "info@isppro.de",
+    "web": "https://isppro.de/",
+    "sources": [
+        "https://www.isppro.de/unternehmen/datenschutz.php",
+        "https://ssl.kos-online.de/unternehmen/datenschutz.php",
+        "https://www.euserv.com/de/unternehmen/datenschutz.php",
+        "https://www.keepfree.de/keepfree_de/ueberuns/datenschutz.php",
+        "https://github.com/datenanfragen/data/pull/2012"
+    ],
+    "quality": "verified"
+}

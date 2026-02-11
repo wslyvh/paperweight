@@ -1,0 +1,30 @@
+{
+    "slug": "disqus",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Disqus, Inc.",
+    "address": "3 Park Avenue\n33rd Floor\nNew York\nNY 10016\nUnited States of America",
+    "phone": "+1 415 738 8848",
+    "email": "privacy@disqus.com",
+    "web": "https://disqus.com/",
+    "sources": [
+        "https://help.disqus.com/en/articles/1717103-disqus-privacy-policy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

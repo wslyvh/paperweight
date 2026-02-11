@@ -1,0 +1,22 @@
+{
+    "slug": "labor-becker",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "Labor Becker MVZ GbR",
+    "address": "Führichstraße 70\n81671 München\nDeutschland",
+    "phone": "+49 89 4509170",
+    "fax": "+49 89 4509176400",
+    "email": "datenschutz@labor-becker.de",
+    "web": "https://labor-becker.de/",
+    "sources": [
+        "https://labor-becker.de/datenschutzerklaerung",
+        "https://labor-becker.de/impressum",
+        "https://github.com/datenanfragen/data/pull/1787"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

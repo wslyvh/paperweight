@@ -1,0 +1,19 @@
+{
+    "slug": "docusign",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "DocuSign International (EMEA) Ltd",
+    "runs": [
+        "DocuSign Inc.",
+        "DocuSign France SAS"
+    ],
+    "address": "5 Hanover Quay\nGround Floor\nDublin 2\nIreland",
+    "email": "privacy@docusign.com",
+    "web": "https://www.docusign.com/",
+    "sources": [
+        "https://www.docusign.com/company/privacy-policy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

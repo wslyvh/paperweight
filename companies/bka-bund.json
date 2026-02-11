@@ -1,0 +1,34 @@
+{
+    "slug": "bka-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundeskriminalamt (BKA)",
+    "runs": [
+        "Polizeiliches Informationssystem (INPOL)",
+        "Schengener Informationssytem (SIS)",
+        "Antiterrordatei (ATD)",
+        "Fluggastdatenzentrale"
+    ],
+    "address": "65173 Wiesbaden\nDeutschland",
+    "phone": "+49 611 55 0",
+    "fax": "+49 611 55 45641",
+    "email": "ds-petenten@bka.bund.de",
+    "webform": "https://www.bka.de/DE/KontaktAufnehmen/DatenschutzIFG/DatenschutzIFG_node.html",
+    "web": "https://www.bka.de",
+    "sources": [
+        "https://www.bka.de/DE/Service/Datenschutzerklaerung/datenschutz_node.html",
+        "https://www.bka.de/DE/KontaktAufnehmen/DatenschutzIFG/AuskunftserteilungSpeicherungenInPolizeilichenDateien/auskunftserteilungspeicherungeninpolizeilichendateien_node.html",
+        "https://www.bka.de/DE/KontaktAufnehmen/DatenschutzIFG/AuskunftserteilungSIS/auskunftserteilungSIS_node.html",
+        "https://www.bka.de/DE/KontaktAufnehmen/DatenschutzIFG/Fluggastdaten/fluggastdaten_node.html",
+        "https://www.bfdi.bund.de/DE/Buerger/Inhalte/Polizei-Strafjustiz/National/ATD.html",
+        "https://www.bfdi.bund.de/DE/Buerger/Inhalte/Polizei-Strafjustiz/National/DasPolizeilicheInformationssystem-INPOL.html"
+    ],
+    "request-language": "de",
+    "needs-id-document": true,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

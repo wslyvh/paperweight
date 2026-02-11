@@ -1,0 +1,32 @@
+{
+    "slug": "match-group",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "MTCH Technology Services Ltd.",
+    "runs": [
+        "Tinder (tinder.com)",
+        "Plenty of Fish (pof.com)",
+        "Hinge (hinge.co)",
+        "Hawaya (hawaya.com)",
+        "Match Group, LLC",
+        "MG Japan Services GK",
+        "Plentyoffish Media ULC",
+        "Hinge, Inc.",
+        "Harmonica IT, Inc."
+    ],
+    "address": "WeWork Charlemont Exchange\n42 Charlemont Street\nDublin 2, D02 R593\nIreland",
+    "web": "http://mtch.com",
+    "sources": [
+        "https://policies.tinder.com/privacy/intl/en",
+        "https://hinge.co/privacy",
+        "https://www.hawaya.com/privacy.php",
+        "https://www.pof.com/privacypolicy",
+        "https://github.com/datenanfragen/data/pull/1977"
+    ],
+    "request-language": "en",
+    "quality": "verified"
+}

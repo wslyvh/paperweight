@@ -1,0 +1,24 @@
+{
+    "slug": "isic-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "rds Reisedienst Deutscher Studentenschaften GmbH",
+    "runs": [
+        "International Student Identity Card (ISIC)"
+    ],
+    "address": "Grindelallee 41\n20146 Hamburg\nDeutschland",
+    "phone": "+49 40 4146490",
+    "fax": "+49 40 41464944",
+    "email": "datenschutz@isic.de",
+    "web": "https://www.isic.de/",
+    "sources": [
+        "https://www.isic.de/de/hinweise/datenschutzerklaerung/",
+        "https://www.isic.de/de/hinweise/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

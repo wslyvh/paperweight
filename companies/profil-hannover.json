@@ -1,0 +1,22 @@
+{
+    "slug": "profil-hannover",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "PROFIL GmbH",
+    "address": "Gerhardtstraße 3\n30167 Hannover\nDeutschland",
+    "phone": "+49 511 1316853",
+    "fax": "+49 511 1316856",
+    "email": "rh@profil-hannover.de",
+    "web": "https://www.profil-hannover.de",
+    "sources": [
+        "https://www.profil-hannover.de/datenschutz.html",
+        "https://www.profil-hannover.de/impressum.html",
+        "https://github.com/datenanfragen/data/pull/1492"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,40 @@
+{
+    "slug": "deutsche-post",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Deutsche Post AG",
+    "runs": [
+        "shop.deutschepost.de",
+        "E-POST",
+        "Internetmarke (internetmarke.de)",
+        "Portokasse (portokasse.deutschepost.de)",
+        "POSTIDENT"
+    ],
+    "address": "Charles-de-Gaulle-Straße 20\n53113 Bonn\nDeutschland",
+    "phone": "+49 228 1820",
+    "email": "datenschutz@dpdhl.com",
+    "webform": "https://www.deutschepost.de/de/hilfe-kundenservice/formulare/datenschutz.html",
+    "web": "https://www.deutschepost.de",
+    "sources": [
+        "https://www.deutschepost.de/de/f/footer/datenschutz.html",
+        "https://www.deutschepost.de/de/f/footer/impressum.html",
+        "https://github.com/datenanfragen/data/pull/1697",
+        "https://github.com/datenanfragen/data/pull/2890",
+        "https://github.com/datenanfragen/data/pull/2918"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

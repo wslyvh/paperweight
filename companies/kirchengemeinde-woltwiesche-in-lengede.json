@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-woltwiesche-in-lengede",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Woltwiesche in Lengede",
+    "address": "Große Straße 12\n38268 Lengede\nDeutschland",
+    "phone": "+49 5344 7155",
+    "fax": "+49 5344 915450",
+    "email": "woltwiesche.pfa@lk-bs.de",
+    "web": "http://www.kirchewoltwiesche.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=916"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

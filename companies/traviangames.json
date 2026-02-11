@@ -1,0 +1,32 @@
+{
+    "slug": "traviangames",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Travian Games GmbH",
+    "runs": [
+        "Travian Kingdoms",
+        "Miramagia",
+        "Goalunited Legends",
+        "Travian: Legends",
+        "Admirals: Carribean Empires",
+        "Arkheim: Realms at War",
+        "Rail Nation",
+        "4Sight",
+        "Hyperdrome"
+    ],
+    "address": "Moosacher Str. 70\n80809 München\nDeutschland",
+    "phone": "+49 89 3249150",
+    "fax": "+49 89 324915970",
+    "email": "privacy@traviangames.com",
+    "web": "https://www.traviangames.com",
+    "sources": [
+        "https://www.traviangames.com/de/privacy-policy",
+        "https://www.traviangames.com/de/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

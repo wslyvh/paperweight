@@ -1,0 +1,21 @@
+{
+    "slug": "nokia",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Nokia Corporation",
+    "address": "Karakaari 7\nP.O. Box 226\nFI-00045 Nokia Group\nFinland",
+    "phone": "+358 10 44 88 000",
+    "fax": "+358 10 44 81 002",
+    "webform": "https://www.nokia.com/contact-us/",
+    "web": "https://www.nokia.com/",
+    "sources": [
+        "https://www.nokia.com/notices/privacy/",
+        "https://www.nokia.com/contact-us/",
+        "https://github.com/datenanfragen/data/pull/1258"
+    ],
+    "quality": "verified"
+}

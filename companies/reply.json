@@ -1,0 +1,22 @@
+{
+    "slug": "reply",
+    "relevant-countries": [
+        "de",
+        "it",
+        "gb",
+        "hr",
+        "pl",
+        "fr",
+        "be"
+    ],
+    "name": "Reply S.p.A.",
+    "address": "Corso Francia, 110\n10143 Torino\nItalia",
+    "email": "marketing.privacy@reply.com",
+    "web": "https://www.reply.com",
+    "sources": [
+        "https://www.reply.com/en/privacy-policy",
+        "https://www.reply.com/en/Shared%20Documents/Privacy/Privacy_Policy_eng.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "adguard",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "AdGuard Software Limited",
+    "runs": [
+        "AdGuard DNS"
+    ],
+    "address": "Klimentos 41-43\nKlimentos Tower\nFlat/Office 25\n1061 Nicosia\nCyprus",
+    "email": "privacy@adguard.com",
+    "web": "https://adguard.com",
+    "sources": [
+        "https://adguard-dns.io/en/privacy.html",
+        "https://adguard.com/en/privacy.html",
+        "https://github.com/datenanfragen/data/pull/2557"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

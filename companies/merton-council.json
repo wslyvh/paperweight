@@ -1,0 +1,52 @@
+{
+    "slug": "merton-council",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Merton Council",
+    "address": "Merton Civic Centre\nLondon Road\nMorden\nSM4 5DX\nUnited Kingdom",
+    "email": "data.protection@merton.gov.uk",
+    "web": "https://www.merton.gov.uk/",
+    "sources": [
+        "https://www.merton.gov.uk/council-and-local-democracy/data-protection-and-freedom-of-information/ask-for-information-we-hold-about-you",
+        "https://www.merton.gov.uk/system/files?file=1408_pi-request-form.pdf",
+        "https://github.com/datenanfragen/data/pull/2448"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Address",
+            "type": "textarea",
+            "optional": false
+        },
+        {
+            "desc": "Previous address",
+            "type": "address",
+            "optional": true
+        },
+        {
+            "desc": "Date of birth",
+            "type": "birthdate",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": true
+        },
+        {
+            "desc": "Phone number",
+            "type": "input",
+            "optional": true
+        }
+    ],
+    "needs-id-document": true,
+    "quality": "verified"
+}

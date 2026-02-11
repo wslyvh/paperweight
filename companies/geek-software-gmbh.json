@@ -1,0 +1,20 @@
+{
+    "slug": "geek-software-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "geek Software GmbH",
+    "runs": [
+        "PDF24"
+    ],
+    "address": "Friedrichstr. 171\n10117 Berlin\nDeutschland",
+    "email": "team@pdf24.org",
+    "sources": [
+        "https://www.pdf24.org/de/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/2735"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,16 @@
+{
+    "slug": "typeform",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "TYPEFORM, S.L.",
+    "address": "C/Bac de Roda, 163\n08018 Barcelona\nSpain",
+    "email": "dpo@typeform.com",
+    "web": "https://www.typeform.com/",
+    "sources": [
+        "https://admin.typeform.com/to/dwk6gt",
+        "https://github.com/datenanfragen/data/pull/1644"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

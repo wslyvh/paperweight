@@ -1,0 +1,30 @@
+{
+    "slug": "mobile-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads",
+        "commerce"
+    ],
+    "name": "mobile.de GmbH",
+    "runs": [
+        "MOTOR-TALK.de",
+        "MOTORTALK.net",
+        "motoragent.de",
+        "motorblogs.de",
+        "motortests.de",
+        "motorbasar.de"
+    ],
+    "address": "Albert-Einstein-Ring 2 – 6\n14532 Kleinmachnow\nDeutschland",
+    "phone": "+49 30 81097 601",
+    "email": "datenschutz@team.mobile.de",
+    "web": "https://www.mobile.de/",
+    "sources": [
+        "https://www.mobile.de/service/privacyPolicy",
+        "https://www.mobile.de/service/imprint?lang=de",
+        "https://www.motor-talk.de/info/datenschutz"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

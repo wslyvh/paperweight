@@ -1,0 +1,20 @@
+{
+    "slug": "stepstone",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "StepStone Deutschland GmbH",
+    "runs": [
+        "HotelCareer.de"
+    ],
+    "address": "Völklinger Straße 1\n40219 Düsseldorf\nDeutschland",
+    "phone": "+49 211 934930",
+    "email": "datenschutz@stepstone.de",
+    "web": "https://www.stepstone.de",
+    "sources": [
+        "https://www.stepstone.de/Ueber-StepStone/datenschutzerklaerung/",
+        "https://www.hotelcareer.de/datenschutzerkl%C3%A4rung"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

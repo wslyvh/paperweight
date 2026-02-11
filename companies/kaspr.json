@@ -1,0 +1,29 @@
+{
+    "slug": "kaspr",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "addresses"
+    ],
+    "name": "KASPR SAS",
+    "address": "38 Rue Dunois\n75013 Paris\nFrance",
+    "email": "privacy@kaspr.io",
+    "web": "https://www.kaspr.io/",
+    "sources": [
+        "https://www.kaspr.io/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/1964"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

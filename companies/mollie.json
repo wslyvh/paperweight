@@ -1,0 +1,20 @@
+{
+    "slug": "mollie",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Mollie B.V.",
+    "address": "Keizersgracht 313\n1016 EE Amsterdam\nThe Netherlands",
+    "phone": "+31 20 820 20 70",
+    "email": "dpo@mollie.com",
+    "web": "https://www.mollie.com",
+    "sources": [
+        "https://www.mollie.com/en/privacy",
+        "https://www.mollie.com/de/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

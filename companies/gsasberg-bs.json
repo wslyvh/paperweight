@@ -1,0 +1,24 @@
+{
+    "slug": "gsasberg-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Grundschule Am Schwarzen Berge Braunschweig",
+    "address": "Am Schwarzen Berge 73\n38112 Braunschweig\nDeutschland",
+    "phone": "+49 531 32 21 30",
+    "fax": "+49 531 23 22 721",
+    "email": "datenschutz@gs-asb.de",
+    "web": "https://wordpress.nibis.de/gsasberg/",
+    "sources": [
+        "https://wordpress.nibis.de/gsasberg/files/2018/11/GSASB_Info_DGSVO.pdf",
+        "https://wordpress.nibis.de/gsasberg/impressum/"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "facet-group": "school"
+}

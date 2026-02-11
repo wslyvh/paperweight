@@ -1,0 +1,18 @@
+{
+    "slug": "signal-messenger",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "nonprofit"
+    ],
+    "name": "Signal Messenger LLC.",
+    "address": "650 Castro Street\nSuite 120-223 Mountain View\nCA 94041\nUnited States of America",
+    "email": "privacy@signal.org",
+    "web": "https://signal.org",
+    "sources": [
+        "https://signal.org/legal"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

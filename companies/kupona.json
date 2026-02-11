@@ -1,0 +1,25 @@
+{
+    "slug": "kupona",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "KUPONA GmbH",
+    "address": "Frankfurter Straße 8\n36043 Fulda\nDeutschland",
+    "phone": "+49 661 480 275 11",
+    "fax": "+49 661 480 275 69",
+    "email": "datenschutz@kupona.de",
+    "web": "https://www.kupona.de/",
+    "sources": [
+        "https://www.kupona.de/datenschutz",
+        "https://www.kupona.de/dsgvo/",
+        "https://www.kupona.de/dsgvo/cookieabfrage/",
+        "https://www.kupona.de/impressum"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

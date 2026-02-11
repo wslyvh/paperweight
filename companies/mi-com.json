@@ -1,0 +1,33 @@
+{
+    "slug": "mi-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Xiaomi Communications Co., Ltd.",
+    "runs": [
+        "Xiaomi Technology Netherlands B.V.",
+        "Xiaomi Singapore Pte. Ltd."
+    ],
+    "address": "Prinses Beatrixlaan 582\n2595BM The Hague\nThe Netherlands",
+    "email": "grievance.officer@xiaomi.com",
+    "web": "https://www.mi.com",
+    "sources": [
+        "https://privacy.mi.com/all/de_DE/",
+        "https://www.wework.com/buildings/strawinskylaan-4117--amsterdam"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "techgur-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Techgur GmbH",
+    "address": "Closweg 2\n67346 Speyer\nDeutschland",
+    "fax": "+49 621 490965095",
+    "email": "info@techgur.com",
+    "web": "https://techgur.com/",
+    "sources": [
+        "https://techgur.com/de/impressum/",
+        "https://github.com/datenanfragen/data/pull/2039"
+    ],
+    "comments": [
+        "Ggf. noch eine c/o-Zeile der Postadresse mit Vor- und Nachnamen von https://techgur.com/de/impressum/ ergänzen."
+    ],
+    "quality": "verified"
+}

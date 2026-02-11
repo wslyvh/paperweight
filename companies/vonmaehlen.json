@@ -1,0 +1,20 @@
+{
+    "slug": "vonmaehlen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Vonmählen GmbH",
+    "address": "Vor dem Bardowicker Tore 49\n21339 Lüneburg\nDeutschland",
+    "phone": "+49 4131 2209577",
+    "email": "datenschutz@vonmaehlen.com",
+    "web": "https://www.vonmaehlen.com",
+    "sources": [
+        "https://www.vonmaehlen.com/custom/index/sCustom/107",
+        "https://github.com/datenanfragen/data/pull/1653"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

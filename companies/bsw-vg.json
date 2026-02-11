@@ -1,0 +1,19 @@
+{
+    "slug": "bsw-vg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "political party"
+    ],
+    "name": "Bündnis Sahra Wagenknecht – Vernunft und Gerechtigkeit",
+    "address": "Glinkastr. 32\n10117 Berlin\nDeutschland",
+    "email": "datenschutz@bsw-vg.de",
+    "web": "https://bsw-vg.de",
+    "sources": [
+        "https://bsw-vg.de/datenschutz/#m3",
+        "https://github.com/datenanfragen/data/pull/2912"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

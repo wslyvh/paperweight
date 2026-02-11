@@ -1,0 +1,21 @@
+{
+    "slug": "coinmarketcap",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "CoinMarketCap OpCo, LLC",
+    "address": "251 Little Falls Drive\nWilmington\nNew Castle, DE 19808\nUnited States of America",
+    "email": "legal@coinmarketcap.com",
+    "web": "https://coinmarketcap.com",
+    "sources": [
+        "https://coinmarketcap.com/privacy/",
+        "https://coinmarketcap.com/terms/",
+        "https://opencorporates.com/companies/us_de/6831908",
+        "https://github.com/datenanfragen/data/pull/2098"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

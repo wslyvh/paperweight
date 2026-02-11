@@ -1,0 +1,21 @@
+{
+    "slug": "monkee",
+    "relevant-countries": [
+        "de",
+        "at"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Monkee GmbH",
+    "address": "Gartenweg 30e\n6063 Rum\nÖsterreich",
+    "phone": "+43 720 883215",
+    "email": "datenschutz@monkee.app",
+    "web": "https://monkee.rocks/",
+    "sources": [
+        "https://monkee.rocks/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2648"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

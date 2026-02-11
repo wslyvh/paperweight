@@ -1,0 +1,23 @@
+{
+    "slug": "kms-inkasso",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "collection agency"
+    ],
+    "name": "KMS Inkasso GmbH",
+    "address": "Wiener Straße 331a\n8051 Graz\nÖsterreich",
+    "phone": "+43 316 32 37 72",
+    "fax": "+43 316 32 37 72 22",
+    "email": "office@kms-inkasso.at",
+    "web": "https://www.kms-inkasso.at",
+    "sources": [
+        "https://www.kms-inkasso.at/index.php?id=kontakt",
+        "https://www.kms-inkasso.at/index.php?id=datenschutzerklaerung",
+        "https://github.com/datenanfragen/data/issues/152"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "letter",
+    "quality": "verified"
+}

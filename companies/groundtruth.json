@@ -1,0 +1,23 @@
+{
+    "slug": "groundtruth",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "xAd, Inc.",
+    "runs": [
+        "GroundTruth"
+    ],
+    "address": "One World Trade\n60th Floor\nNew York\nNY 10007\nUnited States of America",
+    "email": "privacy@groundtruth.com",
+    "web": "https://www.groundtruth.com/",
+    "sources": [
+        "https://www.groundtruth.com/privacy-policy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,23 @@
+{
+    "slug": "rlsb-braunschweig",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body",
+        "school"
+    ],
+    "name": "Regionales Landesamt für Schule und Bildung Braunschweig",
+    "address": "Postfach 30 51\n38020 Braunschweig\nDeutschland",
+    "phone": "+49 531 484 3333",
+    "fax": "+49 531 484 3216",
+    "email": "Datenschutz@rlsb-bs.niedersachsen.de",
+    "web": "https://bildungsportal-niedersachsen.de/ueber-uns/rlsb/rlsb-braunschweig",
+    "sources": [
+        "https://bildungsportal-niedersachsen.de/index.php?eID=dumpFile&t=f&f=11366&token=6463f00779cf2b4cdef6541015c0c48e9cdcd8d5",
+        "https://bildungsportal-niedersachsen.de/ueber-uns/rlsb/rlsb-braunschweig"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

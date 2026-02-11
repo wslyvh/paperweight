@@ -1,0 +1,16 @@
+{
+    "slug": "unilever",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Unilever N.V.",
+    "address": "Weena 455\nPO Box 760\n3000 DK Rotterdam\nThe Netherlands",
+    "email": "unilever.privacy@unilever.com",
+    "web": "https://www.unilever.com/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/393",
+        "https://www.unilevernotices.com/global/en_gb/privacy-notice/notice.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

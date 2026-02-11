@@ -1,0 +1,35 @@
+{
+    "slug": "peekundcloppenburg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Peek & Cloppenburg KG",
+    "runs": [
+        "VAN GRAAF GmbH"
+    ],
+    "address": "Mönckebergstraße 8\n20095 Hamburg\nDeutschland",
+    "phone": "+49 800 8020809",
+    "fax": "+49 800 3444777",
+    "email": "datenschutz@peek-und-cloppenburg.de",
+    "web": "https://www.peek-und-cloppenburg.de",
+    "sources": [
+        "https://www.peek-und-cloppenburg.de/datenschutz",
+        "https://www.peek-und-cloppenburg.de/impressum",
+        "https://de.wikipedia.org/wiki/Peek_%26_Cloppenburg_(Hamburg)"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,13 @@
+{
+    "slug": "klexhub",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "KlexHub UG (haftungsbeschränkt)",
+    "address": "Kurt-Schumacher-Str. 2\n89343 Jettingen-Scheppach\nDeutschland",
+    "sources": [
+        "https://www.northdata.de/KlexHub%20UG,%20Jettingen-Scheppach/Amtsgericht%20Memmingen%20HRB%2018195",
+        "https://github.com/datenanfragen/data/issues/214"
+    ],
+    "quality": "verified"
+}

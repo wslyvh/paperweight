@@ -1,0 +1,22 @@
+{
+    "slug": "zoll-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Generalzolldirektion",
+    "address": "Am Propsthof 78 a\n53121 Bonn\nDeutschland",
+    "phone": "+49 228 303 12200",
+    "fax": "+49 351 44834 590",
+    "email": "datenschutz.gzd@zoll.bund.de",
+    "web": "https://www.zoll.de",
+    "sources": [
+        "https://www.zoll.de/DE/Service_II/Datenschutz/datenschutz_node.html",
+        "https://www.zoll.de/DE/Service_II/Impressum/impressum_node.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

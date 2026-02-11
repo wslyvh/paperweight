@@ -1,0 +1,22 @@
+{
+    "slug": "vexcash",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Vexcash AG",
+    "address": "Heinrich Heine Platz 10\n10179 Berlin\nDeutschland",
+    "phone": "+49 30 8507055 70",
+    "fax": "+49 30 8507055 30",
+    "email": "datenschutz@vexcash.com",
+    "web": "https://www.vexcash.com/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/106",
+        "https://www.vexcash.com/Info/Datenschutz",
+        "https://www.vexcash.com/info/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

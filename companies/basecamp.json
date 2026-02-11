@@ -1,0 +1,40 @@
+{
+    "slug": "basecamp",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Basecamp LLC",
+    "runs": [
+        "Basecamp",
+        "HEY",
+        "Highrise",
+        "Campfire",
+        "Backpack",
+        "Ta-da List",
+        "Writeboard"
+    ],
+    "address": "2045 W Grand Ave Ste B\nPMB 53289\nChicago IL 60612\nUnited States of America",
+    "email": "privacy@basecamp.com",
+    "web": "https://basecamp.com",
+    "sources": [
+        "https://basecamp.com/about/policies/privacy",
+        "https://basecamp.com/about/policies/privacy/regulations"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

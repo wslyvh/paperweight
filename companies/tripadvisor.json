@@ -1,0 +1,19 @@
+{
+    "slug": "tripadvisor",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Tripadvisor Ireland Limited",
+    "address": "C/O Matheson\n70 Sir John Rogerson's Quay\nDublin 2\nD02 R296\nIreland",
+    "webform": "https://privacyportal-cdn.onetrust.com/dsarwebform/da774af3-e615-4e8c-8a28-3d13e98367c5/d294c536-2b05-4be5-b3dc-22f11e5c9d19.html",
+    "web": "https://www.tripadvisor.com",
+    "sources": [
+        "https://tripadvisor.mediaroom.com/uk-privacy-policy",
+        "https://tripadvisor.mediaroom.com/de-privacy-policy",
+        "https://github.com/datenanfragen/data/pull/1956"
+    ],
+    "quality": "verified"
+}

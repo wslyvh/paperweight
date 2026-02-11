@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-rhein-erft-kreis",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Der Landrat des Rhein-Erft-Kreises als Kreispolizeibehörde",
+    "address": "Willy-Brandt-Platz 1\n50126 Bergheim\nDeutschland",
+    "phone": "+49 2233 520",
+    "fax": "+49 2233 523409",
+    "email": "datenschutz.rhein-erft-kreis@polizei.nrw.de",
+    "web": "https://rhein-erft-kreis.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

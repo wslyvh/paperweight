@@ -1,0 +1,23 @@
+{
+    "slug": "kirchengemeinde-st-jakobus-im-ambergau",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde St. Jakobus im Ambergau",
+    "address": "Georgsberg 5\n31167 Bockenem\nDeutschland",
+    "phone": "+49 5067 2263",
+    "fax": "+49 5067 246513",
+    "email": "jakobus-ambergau.buero@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=989"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

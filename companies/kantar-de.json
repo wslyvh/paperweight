@@ -1,0 +1,17 @@
+{
+    "slug": "kantar-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Kantar GmbH",
+    "address": "Landsberger Straße 284\n80687 München\nDeutschland",
+    "phone": "+49 89 56001176",
+    "email": "datenschutz@kantar.com",
+    "web": "https://www.kantar.com/de",
+    "sources": [
+        "https://www.kantar.com/de/-/media/project/kantar/germany/datenschutz/datenschutzerklaerung-markt-sozialforschung.pdf",
+        "https://github.com/datenanfragen/data/pull/2234"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

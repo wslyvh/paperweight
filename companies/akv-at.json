@@ -1,0 +1,21 @@
+{
+    "slug": "akv-at",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "credit agency"
+    ],
+    "name": "AKV EUROPA – Alpenländischer Kreditorenverband",
+    "address": "Schleifmühlgasse 2\n1040 Wien\nÖsterreich",
+    "phone": "+43 50 41000",
+    "fax": "+43 50 4100 1522",
+    "email": "datenschutz@akveuropa.at",
+    "web": "https://www.akv.at/",
+    "sources": [
+        "https://www.akv.at/datenschutz",
+        "https://www.akv.at/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

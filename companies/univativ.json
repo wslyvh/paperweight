@@ -1,0 +1,18 @@
+{
+    "slug": "univativ",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "univativ GmbH",
+    "address": "Robert-Bosch-Str. 7\n64293 Darmstadt\nDeutschland",
+    "phone": "+49 6151 3841020",
+    "fax": "+49 6151 7865483",
+    "email": "datenschutz@univativ.de",
+    "web": "https://www.univativ.de/",
+    "sources": [
+        "https://www.univativ.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2379"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

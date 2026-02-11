@@ -1,0 +1,27 @@
+{
+    "slug": "bold-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Auxiliant S.à.r.l",
+    "runs": [
+        "Zety.com",
+        "LiveCareer.com",
+        "MyPerfectResume.com",
+        "MightyRecruiter.com",
+        "BOLD LLC"
+    ],
+    "address": "1A, rue Thomas Edison\n445 Strassen\nLuxembourg",
+    "email": "privacy@bold.com",
+    "web": "https://www.bold.com/",
+    "sources": [
+        "https://www.bold.com/privacy-policy/",
+        "https://zety.com/privacy-policy",
+        "https://www.livecareer.com/privacy-policy",
+        "https://www.myperfectresume.com/privacy-policy",
+        "https://recruiter.mightyrecruiter.com/privacy/PrivacyPolicy"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

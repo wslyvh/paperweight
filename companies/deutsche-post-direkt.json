@@ -1,0 +1,34 @@
+{
+    "slug": "deutsche-post-direkt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "addresses",
+        "ads"
+    ],
+    "name": "Deutsche Post Direkt GmbH",
+    "address": "Junkersring 57\n53844 Troisdorf\nDeutschland",
+    "phone": "+49 228 189 1599 0",
+    "fax": "+49 69 653015 00072",
+    "email": "datenschutz@postdirekt.de",
+    "webform": "https://www.deutschepost.de/de/d/deutsche-post-direkt/kontakt-auswahl/kontakt-datenschutz.html",
+    "web": "https://service.postdirekt.de/portal/",
+    "sources": [
+        "https://service.postdirekt.de/portal/datenschutz",
+        "https://service.postdirekt.de/portal/impressum"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

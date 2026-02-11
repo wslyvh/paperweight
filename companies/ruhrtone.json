@@ -1,0 +1,23 @@
+{
+    "slug": "ruhrtone",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "RUHRTONE MUSIC MANAGEMENT GMBH",
+    "runs": [
+        "atb-music.com"
+    ],
+    "address": "Kortumstr. 61\n44787 Bochum\nDeutschland",
+    "phone": "+49 234 92565399",
+    "email": "info@ruhrtone.com",
+    "web": "http://ruhrtone.com",
+    "sources": [
+        "https://atb-music.com/privacy-statement/",
+        "https://atb-music.com/contact/",
+        "https://github.com/datenanfragen/data/pull/1922"
+    ],
+    "quality": "verified"
+}

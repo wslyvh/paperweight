@@ -1,0 +1,24 @@
+{
+    "slug": "bafin-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesanstalt für Finanzdienstleistungsaufsicht (BaFin)",
+    "address": "Graurheindorfer Straße 108\n53117 Bonn\nDeutschland",
+    "phone": "+49 228 4108 0",
+    "fax": "+49 228 4108 1550",
+    "email": "Datenschutz@bafin.de",
+    "pgp-fingerprint": "C405 89EC 0009 6F77 712B  AC85 863D 1529 CEC5 FDFD",
+    "pgp-url": "https://www.bafin.de/SharedDocs/Downloads/DE/dl_bafin_PGP_Domaenenzertifikat_asc.asc?__blob=publicationFile",
+    "web": "https://www.bafin.de",
+    "sources": [
+        "https://www.bafin.de/DE/DieBaFin/Datenschutz/Datenschutz_node.html",
+        "https://www.bafin.de/DE/DieBaFin/Kontakt/GesicherteKommunikation/gesicherte_kommunikation_artikel.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

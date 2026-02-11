@@ -1,0 +1,22 @@
+{
+    "slug": "dpma-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Deutsches Patent- und Markenamt (DPMA)",
+    "address": "Zweibrückenstraße 12\n80331 München\nDeutschland",
+    "phone": "+49 89 2195 3333",
+    "fax": "+49 89 2195 2221",
+    "email": "datenschutz@dpma.de",
+    "web": "https://www.dpma.de",
+    "sources": [
+        "https://www.dpma.de/dpma/recht_und_gesetz/datenschutzerklaerung/datenschutzbeauftragte/index.html",
+        "https://www.dpma.de/dpma/recht_und_gesetz/datenschutzerklaerung/verantwortlichestelle/index.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

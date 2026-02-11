@@ -1,0 +1,18 @@
+{
+    "slug": "meeticaffinity-it",
+    "relevant-countries": [
+        "it"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Meetic Affinity IT",
+    "address": "c/o Meetic SAS\n53 rue de Châteaudun\nParis 9\nFrance",
+    "email": "privacy@meeticaffinity.it",
+    "web": "https://www.meeticaffinity.it",
+    "sources": [
+        "https://www.meeticaffinity.it/pages/misc/privacy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

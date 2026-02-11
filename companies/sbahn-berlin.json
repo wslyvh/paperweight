@@ -1,0 +1,20 @@
+{
+    "slug": "sbahn-berlin",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "S-Bahn Berlin GmbH",
+    "address": "Elisabeth-Schwarzhaupt-Platz 1\n10115 Berlin\nDeutschland",
+    "phone": "+49 30 29743333",
+    "email": "Datenschutz.Regio@deutschebahn.com",
+    "sources": [
+        "https://sbahn.berlin/datenschutz/",
+        "https://sbahn.berlin/impressum/"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

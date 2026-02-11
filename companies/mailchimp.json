@@ -1,0 +1,25 @@
+{
+    "slug": "mailchimp",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads",
+        "telecommunication"
+    ],
+    "name": "The Rocket Science Group LLC",
+    "runs": [
+        "MailChimp (mailchimp.com)"
+    ],
+    "address": "675 Ponce de Leon Ave NE\nSuite 5000\nAtlanta\nGA 30308\nUnited States of America",
+    "email": "personaldatarequests@mailchimp.com",
+    "webform": "https://mailchimp.com/privacy-rights/",
+    "web": "https://mailchimp.com",
+    "sources": [
+        "https://mailchimp.com/legal/privacy/",
+        "https://github.com/datenanfragen/data/issues/653"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "nrjmobile",
+    "relevant-countries": [
+        "fr"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Bouygues Telecom S.A",
+    "runs": [
+        "NRJ Mobile"
+    ],
+    "address": "13/15 avenue du Maréchal Juin\n92360 Meudon-la-Forêt\nFrance",
+    "email": "data@bouyguestelecom.fr",
+    "web": "https://www.nrjmobile.fr/",
+    "sources": [
+        "https://www.nrjmobile.fr/pdf/politiquedonneespersonnelles_nrjmobile.pdf",
+        "https://github.com/datenanfragen/data/pull/1487"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

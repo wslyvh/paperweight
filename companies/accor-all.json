@@ -1,0 +1,44 @@
+{
+    "slug": "accor-all",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Accor S.A.",
+    "runs": [
+        "Raffles",
+        "Sofitel Legend",
+        "Fairmont",
+        "Sofitel",
+        "onefinestay",
+        "Rixos",
+        "MGallery",
+        "Pullman",
+        "Swissôtel",
+        "25hours Hotels",
+        "Novotel",
+        "Mercure",
+        "Mama Shelter",
+        "Adagio",
+        "JO&JOE",
+        "ibis",
+        "ibis Styles",
+        "ibis budget",
+        "Grand Mercure",
+        "The Sebel",
+        "hotelF1",
+        "SO/"
+    ],
+    "address": "82 rue Henri Farman\n92130 Issy-les-Moulineaux\nFrance",
+    "phone": "+1 877 856 1464",
+    "email": "data.privacy@accor.com",
+    "web": "https://all.accor.com",
+    "sources": [
+        "https://all.accor.com/information/legal/data-protection.de.shtml",
+        "https://github.com/datenanfragen/data/pull/2077"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

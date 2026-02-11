@@ -1,0 +1,20 @@
+{
+    "slug": "commerzbank",
+    "categories": [
+        "finance"
+    ],
+    "name": "Commerzbank AG",
+    "address": "Kaiserplatz\n60261 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 98 66 02 08",
+    "email": "datenschutzbeauftragter@commerzbank.com",
+    "web": "https://www.commerzbank.de/",
+    "sources": [
+        "https://www.commerzbank.de/portal/de/footer1/datenschutzhinweise/Datenschutzhinweise.html",
+        "https://www.commerzbank.de/portal/de/footer1/impressum/impressum_1.html"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

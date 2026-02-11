@@ -1,0 +1,22 @@
+{
+    "slug": "sipgate",
+    "relevant-countries": [
+        "de",
+        "gb"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "sipgate GmbH",
+    "address": "Gladbacher Straße 74\n40219 Düsseldorf\nDeutschland",
+    "phone": "+49 211 6355550",
+    "fax": "+49 211 63555522",
+    "email": "datenschutz@sipgate.de",
+    "web": "https://www.sipgate.de/",
+    "sources": [
+        "https://www.sipgate.de/datenschutz",
+        "https://www.sipgate.de/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

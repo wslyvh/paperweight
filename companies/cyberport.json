@@ -1,0 +1,22 @@
+{
+    "slug": "cyberport",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Cyberport SE",
+    "address": "Am Brauhaus 5\n01099 Dresden\nDeutschland",
+    "phone": "+49 351 3164678",
+    "fax": "+49 351 3164859",
+    "email": "datenschutzanfrage@cyberport.de",
+    "webform": "https://www.cyberport.de/service/rechtliches/datenschutz.html#formular",
+    "web": "https://www.cyberport.de/",
+    "sources": [
+        "https://www.cyberport.de/service/rechtliches/datenschutz.html",
+        "https://www.cyberport.de/service/rechtliches/impressum.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

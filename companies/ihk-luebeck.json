@@ -1,0 +1,21 @@
+{
+    "slug": "ihk-luebeck",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce",
+        "public body"
+    ],
+    "name": "IHK zu Lübeck",
+    "address": "c/o UIMC DR. VOSSBEIN GmbH & Co KG\nOtto-Hausmann-Ring 113\n42115 Wuppertal\nDeutschland",
+    "phone": "+49 202 9467726200",
+    "fax": "+49 202 94677269200",
+    "email": "datenschutz.ihk-luebeck@uimc.de",
+    "sources": [
+        "https://www.ihk-schleswig-holstein.de/produktmarken/ihre-ihk/ueber-uns/hl-pflichtinformationen-dsgvo-4292276",
+        "https://github.com/datenanfragen/data/pull/1425"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

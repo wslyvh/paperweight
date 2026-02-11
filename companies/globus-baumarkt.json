@@ -1,0 +1,19 @@
+{
+    "slug": "globus-baumarkt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Globus Fachmärkte GmbH & Co. KG",
+    "address": "Leipziger Str. 8\n66606 St. Wendel\nDeutschland",
+    "email": "datenschutz@globus-fachmaerkte.de",
+    "web": "https://www.globus-baumarkt.de/alle-maerkte/",
+    "sources": [
+        "https://www.globus-baumarkt.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2805"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,27 @@
+{
+    "slug": "sovendus",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Sovendus GmbH",
+    "runs": [
+        "Sovendus UK Ltd.",
+        "Sovendus B.V."
+    ],
+    "address": "Hermann-Veit-Str. 6\n76135 Karlsruhe\nDeutschland",
+    "phone": "+49 721 9578460",
+    "fax": "+49 721 957846129",
+    "email": "data-protection@sovendus.com",
+    "web": "https://www.sovendus.com",
+    "sources": [
+        "https://www.sovendus.de/de/impressum/",
+        "https://online.sovendus.com/online-datenschutzhinweise/",
+        "https://online.sovendus.com/en/online-privacy-notice/",
+        "https://github.com/datenanfragen/data/pull/1905"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,23 @@
+{
+    "slug": "shutterstock",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Shutterstock Ireland Limited",
+    "runs": [
+        "Bigstock",
+        "Shutterstock, Inc."
+    ],
+    "address": "6th Floor, South Bank House\nBarrow Street\nDublin 4\nIreland",
+    "phone": "+1 646 419 4452",
+    "email": "privacy@shutterstock.com",
+    "webform": "https://shutterstock.my.site.com/support/s/privacyrequest",
+    "web": "https://www.shutterstock.com/",
+    "sources": [
+        "https://www.shutterstock.com/privacy",
+        "https://www.bigstockphoto.com/privacy.html",
+        "https://github.com/datenanfragen/data/pull/694"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

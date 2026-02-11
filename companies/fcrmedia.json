@@ -1,0 +1,18 @@
+{
+    "slug": "fcrmedia",
+    "relevant-countries": [
+        "be"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "FCR Media Belgium NV",
+    "address": "Uitbreidingstraat 82\n2600 Antwerpen\nBelgium",
+    "email": "info@fcrmedia.be",
+    "web": "https://fcrmedia.be/",
+    "sources": [
+        "https://fcrmedia.be/privacybeleid",
+        "https://github.com/datenanfragen/data/issues/154"
+    ],
+    "quality": "verified"
+}

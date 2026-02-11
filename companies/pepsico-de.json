@@ -1,0 +1,27 @@
+{
+    "slug": "pepsico-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "PepsiCo Deutschland GmbH",
+    "runs": [
+        "rockstarenergydrink.de",
+        "PepsiCo, Inc."
+    ],
+    "address": "Hugenottenallee 173\n63263 Neu-Isenburg\nGermany",
+    "phone": "+49 6102 7490",
+    "fax": "+49 6102 749200",
+    "email": "europe.privacy@pepsico.com",
+    "webform": "https://submit-irm.trustarc.com/services/validation/8f38f40b-bff7-46f6-bf19-2b1065558443",
+    "web": "https://www.pepsico.de",
+    "sources": [
+        "https://pepsicoprivacypolicy.com/de",
+        "https://www.pepsico.de/impressum",
+        "https://github.com/datenanfragen/data/pull/989"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

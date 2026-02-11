@@ -1,0 +1,20 @@
+{
+    "slug": "zoom",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media",
+        "telecommunication"
+    ],
+    "name": "Zoom Video Communications, Inc.",
+    "address": "55 Almaden Blvd\nSuite 600\nSan Jose\nCA 95113\nUnited States of America",
+    "phone": "+1 888 799 9666",
+    "email": "privacy@zoom.us",
+    "web": "https://zoom.us/",
+    "sources": [
+        "https://zoom.us/privacy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

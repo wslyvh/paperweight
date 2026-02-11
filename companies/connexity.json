@@ -1,0 +1,19 @@
+{
+    "slug": "connexity",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Connexity, Inc.",
+    "address": "2120 Colorado Ave.\nSuite 400\nSanta Monica\nCA 90404\nUnited States of America",
+    "email": "dataprotection@connexity.com",
+    "web": "https://connexity.com",
+    "sources": [
+        "https://connexity.com/privacy-policy/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

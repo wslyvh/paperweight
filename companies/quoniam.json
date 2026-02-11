@@ -1,0 +1,21 @@
+{
+    "slug": "quoniam",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Quoniam Asset Management GmbH",
+    "address": "Westhafenplatz 1\n60327 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 743840",
+    "fax": "+49 69 74384288",
+    "email": "dataprotection@quoniam.com",
+    "web": "https://www.quoniam.com",
+    "sources": [
+        "https://www.quoniam.com/datenschutzerklaerung/",
+        "https://www.quoniam.com/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

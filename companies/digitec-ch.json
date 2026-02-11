@@ -1,0 +1,18 @@
+{
+    "slug": "digitec-ch",
+    "relevant-countries": [
+        "ch"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Digitec Galaxus AG",
+    "address": "Pfingstweidstrasse 60b\n8005 Zürich\nSchweiz",
+    "email": "datenschutz@digitecgalaxus.ch",
+    "web": "https://www.digitec.ch",
+    "sources": [
+        "https://www.digitec.ch/de/guide/22"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

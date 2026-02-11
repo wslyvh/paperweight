@@ -1,0 +1,27 @@
+{
+    "slug": "historische-s-bahn-hamburg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "nonprofit",
+        "travel"
+    ],
+    "name": "Historische S-Bahn Hamburg e.V. (HiSH)",
+    "address": "Hammerbrookstraße 44\n20097 Hamburg\nDeutschland",
+    "phone": "+49 40 35714871",
+    "email": "geschaeftsstelle@historische-s-bahn.hamburg",
+    "web": "https://historische-s-bahn.hamburg",
+    "sources": [
+        "https://historische-s-bahn.hamburg/der-verein-stellt-sich-vor/kontakt/datenschutzerklaerung/",
+        "https://github.com/datenanfragen/data/pull/1406"
+    ],
+    "required-elements": [
+        {
+            "desc": "Email",
+            "type": "name",
+            "optional": false
+        }
+    ],
+    "quality": "verified"
+}

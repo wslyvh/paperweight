@@ -1,0 +1,23 @@
+{
+    "slug": "asmodee-digital",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Financière Amuse BidCo",
+    "runs": [
+        "My Asmodee"
+    ],
+    "address": "Quartier Villaroy\n18 rue Jacqueline Auriol\n78280 Guyancourt\nFrance",
+    "phone": "+33 1 76 21 80 20",
+    "email": "DPO@asmodee.com",
+    "web": "https://www.asmodee-digital.com",
+    "sources": [
+        "https://account.asmodee.net/en/legal/privacy",
+        "https://account.asmodee.net/en/legal/notice"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,23 @@
+{
+    "slug": "catalina",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Catalina Marketing Corporation",
+    "runs": [
+        "Catalina Deutschland GmbH"
+    ],
+    "address": "200 Carillon Parkway\nSt. Petersburg\nFL 33716\nUnited States of America",
+    "email": "privacyteam@catalina.com",
+    "webform": "https://privacyportal.onetrust.com/webform/7665c53e-aae8-4a03-9dd3-66fb6bce8f55/6c428920-a20e-4932-a5c9-a16f4a7abea2",
+    "web": "https://www.catalina.com",
+    "sources": [
+        "https://www.catalina.com/legal"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

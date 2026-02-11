@@ -1,0 +1,25 @@
+{
+    "slug": "docsity",
+    "relevant-countries": [
+        "fr",
+        "it"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Ladybird S.r.l",
+    "runs": [
+        "Docsity",
+        "Koofers (formerly)"
+    ],
+    "address": "Via Leonardo da Vinci, 16\n10126 Torino\nItaly",
+    "phone": "+39 011 693 8436",
+    "email": "dpo@docsity.com",
+    "web": "https://www.docsity.com",
+    "sources": [
+        "https://www.docsity.com/fr/pag/privacy/",
+        "https://github.com/datenanfragen/data/pull/1007"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

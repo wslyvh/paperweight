@@ -1,0 +1,39 @@
+{
+    "slug": "primastrom",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility",
+        "telecommunication"
+    ],
+    "name": "primastrom GmbH",
+    "address": "Großbeerenstraße 2-10\n12107 Berlin\nDeutschland",
+    "phone": "+49 30 206143723",
+    "email": "datenschutz@primastrom.de",
+    "web": "https://primastrom.de/",
+    "sources": [
+        "https://primastrom.de/media/pdf/Datenschutzerklaerung_der_primastrom_GmbH_01062021.pdf",
+        "https://github.com/datenanfragen/data/pull/2581",
+        "https://github.com/datenanfragen/data/pull/2853"
+    ],
+    "required-elements": [
+        {
+            "desc": "Kundennummer",
+            "type": "input",
+            "optional": false
+        },
+        {
+            "desc": "Vertragsnummer",
+            "type": "input",
+            "optional": true
+        },
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": true
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

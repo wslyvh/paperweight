@@ -1,0 +1,29 @@
+{
+    "slug": "deutsche-wohnen",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Deutsche Wohnen SE",
+    "address": "c/o Vonovia Kundenservice GmbH\nPostfach\n44784 Bochum\nDeutschland",
+    "phone": "+49 234 414700000",
+    "email": "datenschutz@deuwo.com",
+    "web": "https://www.deutsche-wohnen.com/",
+    "sources": [
+        "https://www.deutsche-wohnen.com/datenschutz/",
+        "https://www.deutsche-wohnen.com/footer/impressum/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

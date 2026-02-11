@@ -1,0 +1,19 @@
+{
+    "slug": "adkernel",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Adkernel",
+    "address": "30 Montgomery St\nSuite 440\nJersey City, NJ 07302\nUnited States of America",
+    "phone": "+1 888 654 8826",
+    "email": "contact@adkernel.com",
+    "web": "https://adkernel.com",
+    "sources": [
+        "https://adkernel.com/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/1200"
+    ],
+    "quality": "verified"
+}

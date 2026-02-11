@@ -1,0 +1,33 @@
+{
+    "slug": "ww-ag-com",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Wüstenrot & Württembergische AG",
+    "runs": [
+        "Wüstenrot Bausparkasse AG"
+    ],
+    "address": "Wüstenrotstraße 1\n71638 Ludwigsburg\nDeutschland",
+    "phone": "+49 7141 160",
+    "email": "dsb@ww-ag.com",
+    "web": "https://www.ww-ag.com",
+    "sources": [
+        "https://www.wuestenrot.de/de/datenschutz.html",
+        "https://www.ww-ag.com/de/datenschutz.html"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

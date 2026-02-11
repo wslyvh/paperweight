@@ -1,0 +1,47 @@
+{
+    "slug": "stroeermediabrands",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Ströer Media Brands GmbH",
+    "runs": [
+        "desired.de",
+        "GIGA.de",
+        "familie.de",
+        "kino.de",
+        "kraloyun.com",
+        "mytest.de",
+        "spielaffe.de",
+        "winload.de (ehem.)"
+    ],
+    "address": "Torstraße 49\n10119 Berlin\nDeutschland",
+    "email": "smb-datenschutzbeauftragter@stroeer.de",
+    "webform": "https://stroeer-requests.my.onetrust.com/webform/5223f5cf-ed85-4b3d-a37c-2f49312cbd78/bc6191dc-5ebe-4e19-8413-d330dff68a18",
+    "web": "https://www.stroeermediabrands.de",
+    "sources": [
+        "https://www.stroeermediabrands.de/impressum",
+        "https://www.stroeermediabrands.de/datenschutz",
+        "https://www.stroeermediabrands.de/marken/",
+        "https://www.giga.de/datenschutz/",
+        "https://www.giga.de/info/impressum",
+        "https://www.kraloyun.com/Sabit/Veri-Koruma-Kurallari",
+        "https://www.spielaffe.de/Statisch/Datenschutz",
+        "https://github.com/datenanfragen/data/pull/1338",
+        "https://github.com/datenanfragen/data/pull/1924",
+        "https://github.com/datenanfragen/data/pull/2391",
+        "https://github.com/datenanfragen/data/pull/2390",
+        "https://github.com/datenanfragen/data/pull/2525"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "webform",
+    "quality": "verified"
+}

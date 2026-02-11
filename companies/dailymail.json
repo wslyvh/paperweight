@@ -1,0 +1,42 @@
+{
+    "slug": "dailymail",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment",
+        "travel",
+        "finance",
+        "insurance"
+    ],
+    "name": "Associated Newspapers Ltd.",
+    "runs": [
+        "Daily Mail",
+        "MyMail (www.mymail.co.uk)",
+        "The Mail on Sunday",
+        "Mail Online (www.dailymail.co.uk)",
+        "Metro.co.uk",
+        "Mail Plus (www.dailymailplus.co.uk)",
+        "Mail Shop (www.mailshop.co.uk)",
+        "Mail Travel (www.mailtravel.co.uk)",
+        "Mail Finance (www.mailfinance.co.uk)",
+        "This is Money (www.thisismoney.co.uk)"
+    ],
+    "address": "Northcliffe House\n9 Derry Street\nLondon\nW8 5HY\nUnited Kingdom",
+    "phone": "+44 330 100 0601",
+    "email": "dataprotection@dmgmedia.co.uk",
+    "web": "https://www.dailymail.co.uk",
+    "sources": [
+        "https://www.dailymail.co.uk/privacy",
+        "https://www.mymailaccount.co.uk/pages/mymail/privacyAndCookiesPolicy",
+        "https://metro.co.uk/privacypolicy/",
+        "https://www.mailtravel.co.uk/privacy-policy-and-cookies",
+        "https://www.mailfinance.co.uk/about/privacy-policy/",
+        "https://www.thisismoney.co.uk/home/article-1388040/Privacy-Policy-Cookies.html",
+        "https://www.dmgmedia.co.uk/privacy-cookies-policy/",
+        "https://www.dmgmedia.co.uk/contact/"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

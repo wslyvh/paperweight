@@ -1,0 +1,33 @@
+{
+    "slug": "mcdonalds-at",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "McDonald's Werbegesellschaft mbH",
+    "address": "Campus 21\nLiebermannstrasse, A01601\n2345 Brunn am Gebirge\nÖsterreich",
+    "phone": "+43 2236 30700",
+    "email": "datenschutz@at.mcd.com",
+    "web": "https://www.mcdonalds.at/",
+    "sources": [
+        "https://www.mcdonalds.at/kontakt",
+        "https://www.mcdonalds.at/datenschutz#oesterreich",
+        "https://www.mcdonalds.at/impressum",
+        "https://corporate.mcdonalds.com/corpmcd/gdpr-rights-center.html",
+        "https://github.com/datenanfragen/data/issues/518"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail-Adresse",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

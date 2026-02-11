@@ -1,0 +1,17 @@
+{
+    "slug": "infynd",
+    "relevant-countries": [
+        "gb"
+    ],
+    "name": "InFynd",
+    "address": "c/o Prominent Contact Ltd.\nGateshead International Business Centre\nMulgrave Terrace\nGateshead\nNE8 1AN\nUnited Kingdom",
+    "phone": "+44 333 898 0725",
+    "email": "compliance@infynd.com",
+    "web": "https://www.infynd.com/",
+    "sources": [
+        "https://www.infynd.com/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/2479"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

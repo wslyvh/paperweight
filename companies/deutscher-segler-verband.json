@@ -1,0 +1,21 @@
+{
+    "slug": "deutscher-segler-verband",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "nonprofit",
+        "travel"
+    ],
+    "name": "Deutscher Segler-Verband e. V.",
+    "address": "Gründgensstraße 18\n22309 Hamburg\nDeutschland",
+    "phone": "+49 40 6320090",
+    "fax": "+49 40 63200928",
+    "email": "datenschutz@dsv.org",
+    "sources": [
+        "https://www.dsv.org/datenschutz/datenschutzerklaerung/",
+        "https://github.com/datenanfragen/data/pull/1480"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

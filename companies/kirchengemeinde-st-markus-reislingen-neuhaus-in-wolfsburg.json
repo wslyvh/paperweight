@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-st-markus-reislingen-neuhaus-in-wolfsburg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde St. Markus Reislingen-Neuhaus in Wolfsburg",
+    "address": "Kantor-Wurm-Straße 1\n38446 Wolfsburg\nDeutschland",
+    "phone": "+49 5363 4134",
+    "fax": "+49 5363 1887",
+    "email": "markus-reislingen.buero@lk-bs.de",
+    "web": "http://www.kirche-reislingen-neuhaus.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=1044"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

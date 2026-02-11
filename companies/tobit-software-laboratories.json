@@ -1,0 +1,21 @@
+{
+    "slug": "tobit-software-laboratories",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Tobit Software Laboratories AG",
+    "runs": [
+        "chayns",
+        "djukebox",
+        "Tobit Chat"
+    ],
+    "address": "Parallelstraße 41\n48683 Ahaus\nGermany",
+    "email": "datenschutz@tobit.com",
+    "web": "https://tobit.com/",
+    "sources": [
+        "https://tobit.com/impressum",
+        "https://github.com/datenanfragen/data/pull/2068"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

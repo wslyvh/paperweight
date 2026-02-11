@@ -1,0 +1,22 @@
+{
+    "slug": "britishgas-co",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "Centrica Plc",
+    "runs": [
+        "British Gas"
+    ],
+    "address": "Millstream\nMaidenhead Road\nWindsor\nBerkshire\nSL4 5GD\nUnited Kingdom",
+    "email": "privacy@centrica.com",
+    "web": "https://www.britishgas.co.uk",
+    "sources": [
+        "https://www.britishgas.co.uk/privacy-policy.html",
+        "https://github.com/datenanfragen/data/pull/2071"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

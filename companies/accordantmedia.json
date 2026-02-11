@@ -1,0 +1,20 @@
+{
+    "slug": "accordantmedia",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Accordant Media, LLC",
+    "address": "150 E 42nd St.\n12th Floor\nNew York\nNY 10017\nUnited States of America",
+    "email": "privacy@accordantmedia.com",
+    "web": "https://accordantmedia.com/",
+    "sources": [
+        "https://accordantmedia.com/privacy-policy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-friedenskirche-in-salzgitter-lebenstedt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Friedenskirche in Salzgitter-Lebenstedt",
+    "address": "Spitzwegpassage 30\n38228 Salzgitter\nDeutschland",
+    "phone": "+49 5341 85370",
+    "fax": "+49 5341 853725",
+    "email": "friedenskirche.sz.buero@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen?user_lkbsaddress_pi2%5Bid%5D=891",
+        "https://github.com/datenanfragen/data/pull/3264"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "verified",
+    "facet-group": "church"
+}

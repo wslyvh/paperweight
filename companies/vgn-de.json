@@ -1,0 +1,36 @@
+{
+    "slug": "vgn-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "VGN Verkehrsbund Großraum Nürnberg GmbH",
+    "address": "Rothenburger Straße 9\n90443 Nürnberg\nDeutschland",
+    "phone": "+49 911 270 75 0",
+    "fax": "+49 911 270 75 50",
+    "email": "datenschutz@vgn.de",
+    "web": "https://www.vgn.de",
+    "sources": [
+        "https://www.vgn.de/datenschutz/",
+        "https://github.com/datenanfragen/data/issues/227",
+        "https://github.com/datenanfragen/data/issues/599"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Geburtsdatum",
+            "type": "birthdate"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

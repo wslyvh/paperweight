@@ -1,0 +1,24 @@
+{
+    "slug": "vivacom",
+    "relevant-countries": [
+        "bg"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Vivacom",
+    "address": "Bulevard Tsarigradsko Shose 115 I\nMladost\n1784 Sofia\nBulgaria",
+    "phone": "+359 2 949 6079",
+    "email": "dpo@vivacom.bg",
+    "web": "https://www.vivacom.bg/",
+    "sources": [
+        "https://www.vivacom.bg/bg/files/7639-politika-za-poveritelnost.pdf",
+        "https://github.com/datenanfragen/data/pull/1090"
+    ],
+    "needs-id-document": true,
+    "suggested-transport-medium": "email",
+    "comments": [
+        "The request should be digitally signed."
+    ],
+    "quality": "verified"
+}

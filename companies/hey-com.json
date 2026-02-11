@@ -1,0 +1,21 @@
+{
+    "slug": "hey-com",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "HEYCOM GmbH & Co. KG",
+    "address": "Neulehenstr. 8c\n33790 Halle (Westf.)\nDeutschland",
+    "phone": "+49 5201 1804100",
+    "fax": "+49 5201 18041023",
+    "email": "info@hey-com.de",
+    "web": "https://www.hey-com.de/",
+    "sources": [
+        "https://www.hey-com.de/index.php/de/datenschutz",
+        "https://www.hey-com.de/index.php/de/impressum",
+        "https://github.com/datenanfragen/data/pull/2641"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "one-com",
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "B-one FZ-LLC",
+    "runs": [
+        "Webhoster one.com (www.one.com)"
+    ],
+    "address": "PO Box 500401\nDubai\nUnited Arab Emirates",
+    "phone": "+49 201 4879 3511",
+    "email": "support@de.one.com",
+    "web": "https://www.one.com",
+    "sources": [
+        "https://www.one.com/de/info/datenschutzrichtlinie",
+        "https://www.one.com/de/info/impressum"
+    ],
+    "relevant-countries": [
+        "all"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-recklinghausen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Polizeipräsidium Recklinghausen",
+    "address": "Westerholter Weg 27\n45657 Recklinghausen\nDeutschland",
+    "phone": "+49 2361 550",
+    "fax": "+49 2361 551019",
+    "email": "datenschutz.recklinghausen@polizei.nrw.de",
+    "web": "https://recklinghausen.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

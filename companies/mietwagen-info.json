@@ -1,0 +1,19 @@
+{
+    "slug": "mietwagen-info",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Mietwagen.info",
+    "address": "c/o Triplemind GmbH\nBerliner Strasse 2\n63065 Offenbach am Main\nDeutschland",
+    "phone": "+49 69 82367670",
+    "fax": "+49 69 82367654",
+    "email": "info@mietwagen.info",
+    "web": "https://www.mietwagen.info",
+    "sources": [
+        "https://www.mietwagen.info/datenschutz/"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "bundeswehr",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesministerium der Verteidigung",
+    "address": "Fontainengraben 150\n52123 Bonn\nDeutschland",
+    "phone": "+49 30 2004 0",
+    "email": "BfDBw@bmvg.bund.de",
+    "web": "https://www.bundeswehr.de",
+    "sources": [
+        "https://www.bundeswehr.de/de/datenschutzerklaerung",
+        "https://www.bundeswehr.de/de/impressum"
+    ],
+    "request-language": "de",
+    "comments": [
+        "Eigentliche Adresse der Behörde: Stauffenbergstraße 18, 10785 Berlin, Deutschland"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

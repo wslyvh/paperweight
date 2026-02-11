@@ -1,0 +1,22 @@
+{
+    "slug": "bisp-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesinstitut für Sportwissenschaft (BISp)",
+    "address": "Graurheindorfer Straße 198\n53117 Bonn\nDeutschland",
+    "phone": "+49 228 99 640 9023",
+    "fax": "+49 228 9910 640 9008",
+    "email": "datenschutzbeauftragter@bisp.de",
+    "web": "https://www.bisp.de",
+    "sources": [
+        "https://www.bisp.de/DE/Service/Datenschutz/datenschutz_node.html",
+        "https://www.bisp.de/DE/Service/Impressum/impressum_node.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

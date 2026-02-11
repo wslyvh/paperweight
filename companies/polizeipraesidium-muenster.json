@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-muenster",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Polizeipräsidium Münster",
+    "address": "Friesenring 43\n48147 Münster\nDeutschland",
+    "phone": "+49 251 2750",
+    "fax": "+49 251 2752196",
+    "email": "datenschutz.muenster@polizei.nrw.de",
+    "web": "https://muenster.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

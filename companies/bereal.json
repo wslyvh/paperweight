@@ -1,0 +1,25 @@
+{
+    "slug": "bereal",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment",
+        "social media"
+    ],
+    "name": "BeReal",
+    "address": "30/32 Boulevard de Sébastopol\n75004 Paris\nFrance",
+    "email": "contact@bere.al",
+    "web": "https://bere.al/",
+    "sources": [
+        "https://bere.al/en/privacy"
+    ],
+    "required-elements": [
+        {
+            "desc": "username",
+            "type": "name",
+            "optional": false
+        }
+    ],
+    "quality": "tested"
+}

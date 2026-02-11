@@ -1,0 +1,25 @@
+{
+    "slug": "ccpgames",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "CCP hf.",
+    "runs": [
+        "EVE Online",
+        "Gunjack",
+        "EVE: Valkyrie",
+        "Sparc"
+    ],
+    "address": "Grandagardur 8\n101 Reykjavik\nIceland",
+    "email": "request@privacy.ccpgames.com",
+    "web": "https://www.ccpgames.com/",
+    "sources": [
+        "https://www.ccpgames.com/privacy-policy",
+        "https://github.com/datenanfragen/data/issues/131"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

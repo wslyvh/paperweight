@@ -1,0 +1,20 @@
+{
+    "slug": "bazaarofmagic",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Bazaar of Magic",
+    "address": "Rotterdamseweg 370 A9\n2629 HG Delft\nThe Netherlands",
+    "phone": "+31 15 737 0224",
+    "email": "support@bazaarofmagic.eu",
+    "webform": "https://www.bazaarofmagic.eu/en-WW/contact",
+    "web": "https://www.bazaarofmagic.eu/en-WW",
+    "sources": [
+        "https://www.bazaarofmagic.eu/en-WW/contact",
+        "https://github.com/datenanfragen/data/pull/2608"
+    ],
+    "quality": "verified"
+}

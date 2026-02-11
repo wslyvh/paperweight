@@ -1,0 +1,24 @@
+{
+    "slug": "dsg-retail",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "DSG Retail Limited",
+    "runs": [
+        "Currys PC World",
+        "Dixons Travel",
+        "Team Knowhow"
+    ],
+    "address": "Dixons Carphone SAR\nPO Box 689\nSalford\nM5 OPD\nUnited Kingdom",
+    "email": "dpo@dixonscarphone.com",
+    "web": "https://www.currys.co.uk",
+    "sources": [
+        "https://www.currys.co.uk/gbuk/privacy-on-currys-321-commercial.html",
+        "https://github.com/datenanfragen/data/issues/488"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

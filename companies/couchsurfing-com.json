@@ -1,0 +1,29 @@
+{
+    "slug": "couchsurfing-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Couchsurfing International, Inc.",
+    "address": "PO Box 7775 ECM 86600\nSan Francisco\nCA 94120\nUnited States of America",
+    "email": "couchsurfing@datarep.com",
+    "web": "https://www.couchsurfing.com",
+    "sources": [
+        "https://www.couchsurfing.com/about/privacy-policy/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "bag-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesamt für Logistik und Mobilität",
+    "address": "Werderstraße 34\n50672 Köln\nDeutschland",
+    "phone": "+49 221 5776 2700",
+    "fax": "+49 221 5776 1777",
+    "email": "datenschutz@balm.bund.de",
+    "web": "https://www.bag.bund.de",
+    "sources": [
+        "https://www.balm.bund.de/DE/Service/Datenschutz/datenschutz_node.html",
+        "https://www.balm.bund.de/DE/Service/Impressum_BALM/impressum_node.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

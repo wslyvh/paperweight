@@ -1,0 +1,19 @@
+{
+    "slug": "ao-shop",
+    "categories": [
+        "commerce"
+    ],
+    "name": "AO Deutschland Limited",
+    "address": "Ben-Cammmarata-Straße 2\n50126 Bergheim\nDeutschland",
+    "phone": "+49 2271 906 3000",
+    "email": "hallo@ao.de",
+    "web": "https://www.ao.de/",
+    "sources": [
+        "https://www.ao.de/hilfe-service/rechtliches/datenschutzerkl%C3%A4rung",
+        "https://www.ao.de/hilfe-service/rechtliches/impressum"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "quality": "verified"
+}

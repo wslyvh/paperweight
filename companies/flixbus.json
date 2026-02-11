@@ -1,0 +1,46 @@
+{
+    "slug": "flixbus",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Flix S.E.",
+    "address": "Friedenheimer Brücke 16\n80639 München\nDeutschland",
+    "phone": "+49 30 300137300",
+    "email": "data.protection@flixbus.com",
+    "web": "https://www.flixbus.de/",
+    "sources": [
+        "https://www.flixbus.de/datenschutz",
+        "https://www.flixbus.de/abb-auswahl",
+        "https://www.flixtrain.de/datenschutz",
+        "https://github.com/datenanfragen/data/issues/561",
+        "https://github.com/datenanfragen/data/pull/2060"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "runs": [
+        "FlixBus B.V.",
+        "Flix Chile SpA",
+        "FlixBus CEE South d.o.o.",
+        "FlixBus CZ",
+        "FlixBus DACH GmbH",
+        "FlixBus Danmark ApS",
+        "FlixBus Estonia OÜ",
+        "FlixBus France SARL",
+        "FlixBus Hungary Kft.",
+        "FlixBus Inc.",
+        "FlixBus Italia S.r.l.",
+        "FlixBus North GmbH CEE",
+        "FlixBus Polska Sp. z.o.o.",
+        "FlixBus Portugal, Unipessoal Lda",
+        "FlixBus RO SRL",
+        "FlixBus RUS LLC",
+        "FlixBus Sverige AB",
+        "FlixBus UK Inc.",
+        "FlixTrain GmbH",
+        "Rodbillet ApS",
+        "Swebus Express AB"
+    ]
+}

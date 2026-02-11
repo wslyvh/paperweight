@@ -1,0 +1,23 @@
+{
+    "slug": "amorelie",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Sonoma Internet GmbH",
+    "runs": [
+        "amorelie.de"
+    ],
+    "address": "Wattstraße 11-13\n13355 Berlin\nDeutschland",
+    "phone": "+49 30 20847388",
+    "email": "datenschutz@amorelie.com",
+    "web": "https://www.amorelie.de/",
+    "sources": [
+        "https://www.amorelie.de/datenschutz/",
+        "https://github.com/datenanfragen/data/issues/522"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

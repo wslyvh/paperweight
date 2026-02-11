@@ -1,0 +1,26 @@
+{
+    "slug": "vonza",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Vonza HQ",
+    "address": "12600 Deerfield Pkwy, Suite 100\nAlpharetta, GA 30004\nUnited States of America",
+    "phone": "+1 888 640 2951",
+    "email": "info@vonza.com",
+    "web": "https://vonza.com/",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/1171",
+        "https://vonza.com/privacypolicy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "quality": "verified"
+}

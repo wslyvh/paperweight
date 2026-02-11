@@ -1,0 +1,39 @@
+{
+    "slug": "momox",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "momox SE",
+    "runs": [
+        "Medimops (www.medimops.de)",
+        "Momox Medienankauf (www.momox.de)",
+        "Momox Fashion (www.momoxfashion.com/)"
+    ],
+    "address": "c/o PROLIANCE GmbH\nLeopoldstr. 21\n80802 München\nDeutschland",
+    "phone": "+49 30 488 288 100",
+    "email": "datenschutzbeauftragter@datenschutzexperte.de",
+    "web": "https://www.momox.de",
+    "sources": [
+        "https://www.momox.de/impressum/",
+        "https://www.momox.de/datenschutz/",
+        "https://www.medimops.de/Impressum/",
+        "https://www.medimops.de/Datenschutz/",
+        "https://www.momoxfashion.com/de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2063"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

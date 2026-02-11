@@ -1,0 +1,19 @@
+{
+    "slug": "free-fr",
+    "relevant-countries": [
+        "fr"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Free SAS",
+    "address": "8 rue de la Ville l’Évêque\n75008 Paris\nFrance",
+    "phone": "+33 32 44",
+    "web": "https://www.free.fr/",
+    "sources": [
+        "https://www.free.fr/",
+        "https://github.com/datenanfragen/data/issues/434",
+        "https://www.free.fr/freebox/informations/politique-de-confidentialite/"
+    ],
+    "quality": "verified"
+}

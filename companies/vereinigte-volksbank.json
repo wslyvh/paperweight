@@ -1,0 +1,45 @@
+{
+    "slug": "vereinigte-volksbank",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Vereinigte Volksbank eG",
+    "runs": [
+        "Volksbank Böblingen",
+        "Volksbank Calw",
+        "Volksbank Schönaich",
+        "Volksbank Sindelfingen",
+        "Volksbank Weil der Stadt",
+        "Volksbank Althengstett",
+        "Volksbank Bad Liebenzell",
+        "Volksbank Dagersheim",
+        "Volksbank Darmsheim",
+        "Volksbank Diezenhalde",
+        "Volksbank Döffingen",
+        "Volksbank Ehningen",
+        "Volksbank Hildrizhausen",
+        "Volksbank Holzgerlingen",
+        "Volksbank Kimmichwiesen",
+        "Volksbank Liebenaustraße",
+        "Volksbank Maichingen",
+        "Volksbank Malmsheim",
+        "Volksbank Merklingen",
+        "Volksbank Musberg",
+        "Volksbank Nürtinger Straße",
+        "Volksbank Spitzholz",
+        "Volksbank Stammheim",
+        "Volksbank Steinenbronn"
+    ],
+    "address": "Friedrich-List-Platz 1\n71032 Böblingen\nDeutschland",
+    "phone": "+49 7031 8642202",
+    "fax": "+49 7031 86499800",
+    "email": "datenschutzbeauftragter@diebank.de",
+    "web": "https://www.diebank.de/",
+    "sources": [
+        "https://www.diebank.de/content/dam/f0032-0/PDF_neu/DSGVO-Formular/Datenschutzhinweis_20518.pdf",
+        "https://github.com/datenanfragen/data/pull/733",
+        "https://www.diebank.de/wir-fuer-sie/filialen-geldautomaten/filialen/uebersicht-filialen.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

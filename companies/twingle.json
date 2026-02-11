@@ -1,0 +1,19 @@
+{
+    "slug": "twingle",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "twingle GmbH",
+    "address": "Prinzenallee 74\n13357 Berlin\nDeutschland",
+    "phone": "+49 30 98323777",
+    "email": "info@twingle.de",
+    "web": "https://www.twingle.de",
+    "sources": [
+        "https://www.twingle.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/931"
+    ],
+    "quality": "verified"
+}

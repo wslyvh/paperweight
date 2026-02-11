@@ -1,0 +1,21 @@
+{
+    "slug": "quantyoo",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "quantyoo",
+    "address": "c/o IITR Datenschutz GmbH\nMarienplatz 2\n80331 München\nDeutschland",
+    "phone": "+49 89 693107230",
+    "email": "privacy@quantyoo.de",
+    "web": "https://quantyoo.de",
+    "sources": [
+        "https://quantyoo.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/876",
+        "https://quantyoo.de/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

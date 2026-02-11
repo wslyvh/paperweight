@@ -1,0 +1,19 @@
+{
+    "slug": "hivesocial",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Hive Social, Inc.",
+    "address": "17595 Harvard Ave\nSte C-854\nIrvine, CA 92614\nUnited States of America",
+    "email": "support@hivesocial.app",
+    "web": "https://www.hivesocial.app",
+    "sources": [
+        "https://www.hivesocial.app/privacy",
+        "https://www.hivesocial.app/contact",
+        "https://github.com/datenanfragen/data/pull/1957"
+    ],
+    "quality": "verified"
+}

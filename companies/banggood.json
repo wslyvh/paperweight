@@ -1,0 +1,31 @@
+{
+    "slug": "banggood",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Banggood",
+    "runs": [
+        "Hong Kong Tai Long Ltd.",
+        "Guangzhou Yuanjuren Trading Company Inc.",
+        "Hong Kong Yi Si Ke Ltd.",
+        "Rarlong Technology Ltd.",
+        "Hong Kong Shun Heng Ltd.",
+        "Hong Kong Xumuyang Co. Ltd."
+    ],
+    "address": "Office 102\nIonos No.6\n2406 Egkomi\nNicosia\nCyprus",
+    "phone": "+852 8192 9309",
+    "email": "data@banggood.com",
+    "web": "https://www.banggood.com",
+    "sources": [
+        "https://www.banggood.com/help_center/question_category.html?catid=196&artid=2426",
+        "https://www.banggood.com/help_center/question_category.html?catid=288&artid=1604",
+        "https://www.banggood.com/help_center/question_category.html?catid=264&artid=2425",
+        "https://www.banggood.com/help_center/question_category.html?catid=226&artid=2427"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

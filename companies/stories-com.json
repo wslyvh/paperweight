@@ -1,0 +1,38 @@
+{
+    "slug": "stories-com",
+    "relevant-countries": [
+        "at",
+        "be",
+        "cz",
+        "dk",
+        "fi",
+        "fr",
+        "de",
+        "hu",
+        "ie",
+        "it",
+        "nl",
+        "pl",
+        "pt",
+        "sk",
+        "es",
+        "se",
+        "gb"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Stories.com",
+    "address": "c/o H & M Hennes & Mauritz GBC AB\nMäster Samuelsgatan 46\n106 38 Stockholm\nSweden",
+    "phone": "+44 344 736 9088",
+    "email": "customerservice@stories.com",
+    "web": "https://www.stories.com",
+    "sources": [
+        "https://www.stories.com/en_gbp/customer-service/privacy-notice.html",
+        "https://www.stories.com/en_gbp/customer-service/contact.html"
+    ],
+    "comments": [
+        "Phone numbers from other countries available at: https://www.stories.com/en_gbp/customer-service/contact.html"
+    ],
+    "quality": "verified"
+}

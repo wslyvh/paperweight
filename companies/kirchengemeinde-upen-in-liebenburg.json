@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-upen-in-liebenburg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Upen in Liebenburg",
+    "address": "Ringstraße 11\n38704 Liebenburg\nDeutschland",
+    "phone": "+49 5346 4280",
+    "fax": "+49 5346 6137",
+    "email": "doernten.pfa@lk-bs.de",
+    "web": "https://www.kirchengemeinde-doernten-ostharingen-upen.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=792"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

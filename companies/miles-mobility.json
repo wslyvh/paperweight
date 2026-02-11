@@ -1,0 +1,33 @@
+{
+    "slug": "miles-mobility",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "MILES Mobility GmbH",
+    "address": "Leibnizstraße 49\n10629 Berlin\nDeutschland",
+    "phone": "+49 30 83799699",
+    "email": "data-protection@miles-mobility.com",
+    "web": "https://miles-mobility.com/",
+    "sources": [
+        "https://miles-mobility.com/datenschutz",
+        "https://miles-mobility.com/de/impressum",
+        "https://github.com/datenanfragen/data/pull/1844"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

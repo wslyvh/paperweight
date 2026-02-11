@@ -1,0 +1,19 @@
+{
+    "slug": "unfallkasse-nord",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Unfallkasse Nord",
+    "address": "Seekoppelweg 5a\n24113 Kiel\nDeutschland",
+    "phone": "+49 431 64070",
+    "email": "datenschutz@uk-nord.de",
+    "sources": [
+        "https://www.uk-nord.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2757"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

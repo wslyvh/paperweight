@@ -1,0 +1,21 @@
+{
+    "slug": "bva-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesverwaltungsamt (BVA)",
+    "address": "DGZ-Ring 12\n13086 Berlin\nDeutschland",
+    "phone": "+49 228 99358 681234",
+    "fax": "+49 228 99358 2823",
+    "email": "datenschutzbeauftragter@bva.bund.de",
+    "web": "https://www.bva.bund.de",
+    "sources": [
+        "https://www.bva.bund.de/DE/Service/Datenschutz/datenschutz_node.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

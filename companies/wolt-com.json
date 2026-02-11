@@ -1,0 +1,24 @@
+{
+    "slug": "wolt-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Wolt Enterprises Oy",
+    "runs": [
+        "Wolt Enterprises Deutschland GmbH"
+    ],
+    "address": "Pohjoinen Rautatiekatu 21\n00100 Helsinki\nFinland",
+    "email": "privacy@wolt.com",
+    "web": "https://wolt.com/de/",
+    "sources": [
+        "https://wolt.com/pages/de/deu/impressum",
+        "https://wolt.com/pages/de/deu/privacy",
+        "https://github.com/datenanfragen/data/pull/1567",
+        "https://github.com/datenanfragen/data/pull/2499"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "baby-walz",
+    "categories": [
+        "commerce"
+    ],
+    "name": "baby-walz GmbH",
+    "address": "Steinstraße 28\n88339 Bad Waldsee\nDeutschland",
+    "phone": "+49 7524 703 307",
+    "email": "datenschutz@walz.de",
+    "web": "https://www.baby-walz.de/",
+    "sources": [
+        "https://www.baby-walz.de/datenschutz/",
+        "https://www.baby-walz.de/impressum/"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "quelle-shop",
+    "categories": [
+        "commerce"
+    ],
+    "name": "Quelle GmbH",
+    "address": "Bahnhofstraße 10\n96224 Burgkunstadt\nDeutschland",
+    "phone": "+49 180 6 111 100",
+    "fax": "+49 180 5 311 552",
+    "email": "online-team@quelle.de",
+    "web": "https://www.quelle.de/",
+    "sources": [
+        "https://www.quelle.de/service-hilfe/ueber-uns/datenschutz/",
+        "https://www.quelle.de/service-hilfe/ueber-uns/impressum/"
+    ],
+    "comments": [
+        "Achtung: Telefonnummer ist kostenpflichtig (Festnetz 20 Cent/Verbindung inkl. MwSt., Mobilfunk max. 60 Cent/Verbindung inkl. MwSt.)!",
+        "Achtung: Faxnummer ist kostenpflichtig!"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "quality": "verified"
+}

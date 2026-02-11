@@ -1,0 +1,21 @@
+{
+    "slug": "epsilon-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Epsilon International UK Ltd",
+    "address": "2 Television Centre\n101 Wood Lane\nLondon\nW12 7FR\nUnited Kingdom",
+    "email": "privacy@epsilon.com",
+    "web": "https://www.epsilon.com/emea",
+    "sources": [
+        "https://legal.epsilon.com/eu/privacy-policy-services",
+        "https://legal.epsilon.com/general-privacy-request/",
+        "https://www.epsilon.com/emea/about-us/our-locations"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "aklamio",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "aklamio GmbH",
+    "address": "Hauptstraße 27-29\nHaus 9 (Neubau) Aufgang N\n10827 Berlin\nGermany",
+    "phone": "+44 20 8068 9760",
+    "email": "datenschutzbeauftragter@datenschutzexperte.de",
+    "web": "https://www.aklamio.com",
+    "sources": [
+        "https://www.aklamio.com/community/privacy?locale=de",
+        "https://github.com/datenanfragen/data/pull/1523"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

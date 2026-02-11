@@ -1,0 +1,31 @@
+{
+    "slug": "beck",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce",
+        "school"
+    ],
+    "name": "Verlag C.H. Beck GmbH & Co. KG",
+    "runs": [
+        "beck-online.DIE DATENBANK",
+        "beck-shop.de",
+        "chbeck.de",
+        "BECK Stellenmarkt",
+        "BeckAkademie Seminare"
+    ],
+    "address": "Postfach 40 03 40\n80703 München\nDeutschland",
+    "phone": "+49 89 381890",
+    "email": "datenschutzauskunft@beck.de",
+    "web": "https://www.beck.de/",
+    "sources": [
+        "https://rsw.beck.de/beck-online-service/datenschutz",
+        "https://www.beck-shop.de/datenschutz/content/4952/",
+        "https://www.chbeck.de/meta/datenschutz/",
+        "https://www.beck-stellenmarkt.de/datenschutz",
+        "https://www.beck-seminare.de/content/datenschutzerklaerung"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

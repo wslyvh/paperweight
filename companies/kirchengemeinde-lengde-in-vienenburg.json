@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-lengde-in-vienenburg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Lengde in Vienenburg",
+    "address": "Bismarckstraße 13\n38690 Goslar\nDeutschland",
+    "phone": "+49 5324 2245",
+    "fax": "+49 5324 2059",
+    "email": "harz-harly.pfa@lk-bs.de",
+    "web": "https://www.kirche-harz-harly.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=718"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

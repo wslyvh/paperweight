@@ -1,0 +1,18 @@
+{
+    "slug": "gartenpartei",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "political party"
+    ],
+    "name": "Gartenpartei",
+    "address": "Othrichstraße 7\n39128 Magdeburg\nDeutschland",
+    "phone": "+49 175 7519190",
+    "email": "kontakt@gartenpartei.eu",
+    "web": "https://gartenpartei.eu/",
+    "sources": [
+        "https://gartenpartei.eu/datenschutzerklaerung/"
+    ],
+    "quality": "verified"
+}

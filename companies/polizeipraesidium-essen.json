@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-essen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Polizeipräsidium Essen",
+    "address": "Büscherstraße 2 – 6\n45131 Essen\nDeutschland",
+    "phone": "+49 201 8290",
+    "fax": "+49 201 8292849",
+    "email": "datenschutz.essen@polizei.nrw.de",
+    "web": "https://essen.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

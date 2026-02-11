@@ -1,0 +1,29 @@
+{
+    "slug": "improvmx",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Reflectiv SAS",
+    "runs": [
+        "ImprovMX"
+    ],
+    "address": "128 Rue la Boétie\n75008 Paris\nFrance",
+    "email": "support@improvmx.com",
+    "web": "https://improvmx.com/",
+    "sources": [
+        "https://improvmx.com/privacy-policy/",
+        "https://improvmx.com/terms-of-service/",
+        "https://improvmx.com/gdpr-compliance/"
+    ],
+    "required-elements": [
+        {
+            "desc": "email",
+            "type": "name",
+            "optional": false
+        }
+    ],
+    "quality": "verified"
+}

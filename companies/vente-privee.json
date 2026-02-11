@@ -1,0 +1,22 @@
+{
+    "slug": "vente-privee",
+    "categories": [
+        "commerce"
+    ],
+    "name": "VENTE-PRIVEE.COM",
+    "address": "249, avenue du Président Wilson\n93210 La Plaine Saint Denis\nFrance",
+    "phone": "+49 800 627 0154",
+    "email": "aenderungen@vente-privee.com",
+    "web": "https://secure.de.vente-privee.com/authentication/Portal/DE",
+    "sources": [
+        "https://secure.de.vente-privee.com/Privacy%20policy/de-DE/Politique_de_confidentialite.pdf",
+        "https://secure.de.vente-privee.com/registration/Impressum?CountryCode=DE"
+    ],
+    "comments": [
+        "Adresse der Mitgliederbetreuung laut Impressum: vente-privee.com Deutschland GmbH, Speditionsstraße 17, 40221 Düsseldorf, Deutschland."
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "quality": "verified"
+}

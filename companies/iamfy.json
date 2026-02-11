@@ -1,0 +1,23 @@
+{
+    "slug": "iamfy",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Project J UG",
+    "runs": [
+        "Fy!",
+        "Project J Ltd."
+    ],
+    "address": "Glogauer Straße 5\nHinterhof Rechts\n4. OG\n10999 Berlin\nDeutschland",
+    "email": "dataprotection@iamfy.co",
+    "web": "https://www.iamfy.co/",
+    "sources": [
+        "https://www.iamfy.co/privacy"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

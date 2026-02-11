@@ -1,0 +1,20 @@
+{
+    "slug": "lgt-bank",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "LGT Group Holding Ltd.",
+    "address": "Herrengasse 12\n9490 Vaduz\nLiechtenstein",
+    "phone": "+423 235 11 22",
+    "email": "lgt.datenschutz@lgt.com",
+    "webform": "https://www.lgt.com/global-en/data-privacy-notice/contact",
+    "web": "https://www.lgt.li/",
+    "sources": [
+        "https://www.lgt.com/global-en/data-privacy-notice"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

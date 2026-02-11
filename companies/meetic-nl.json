@@ -1,0 +1,21 @@
+{
+    "slug": "meetic-nl",
+    "relevant-countries": [
+        "nl"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Meetic SAS",
+    "runs": [
+        "Meetic.nl"
+    ],
+    "address": "53 rue de Châteaudun\n75009 Paris\nFrance",
+    "webform": "https://nl.meetic.be/faq/#privacyRequest",
+    "web": "https://nl.meetic.be/",
+    "sources": [
+        "https://nl.meetic.be/pages/misc/privacy",
+        "https://github.com/datenanfragen/data/pull/3127"
+    ],
+    "quality": "verified"
+}

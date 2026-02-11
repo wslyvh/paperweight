@@ -1,0 +1,25 @@
+{
+    "slug": "galeria-kaufhof",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "GALERIA S.à r.l. & Co. KG",
+    "runs": [
+        "GALERIA Kaufhof GmbH (ehem.)",
+        "Karstadt Warenhaus GmbH (ehem.)",
+        "GALERIA Karstadt Kaufhof (ehem)."
+    ],
+    "address": "Völklinger Straße 4\n40219 Düsseldorf\nDeutschland",
+    "phone": "+49 201 7270",
+    "fax": "+49 211 46800000",
+    "email": "datenschutz@galeria.de",
+    "web": "https://www.galeria.de",
+    "sources": [
+        "https://www.galeria.de/datenschutz"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

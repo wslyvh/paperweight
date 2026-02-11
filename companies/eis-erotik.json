@@ -1,0 +1,25 @@
+{
+    "slug": "eis-erotik",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "EIS GmbH",
+    "runs": [
+        "Triple A Sales GmbH"
+    ],
+    "address": "Am Lenkwerk 3\n33609 Bielefeld\nDeutschland",
+    "phone": "+49 521 1639 5972",
+    "fax": "+49 521 3046863",
+    "email": "datenschutz@eis.de",
+    "web": "https://www.eis.de/",
+    "sources": [
+        "https://www.eis.de/datenschutz",
+        "https://www.eis.de/impressum",
+        "https://github.com/datenanfragen/data/pull/2076"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

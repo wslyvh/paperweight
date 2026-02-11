@@ -1,0 +1,17 @@
+{
+    "slug": "canva",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Canva Pty Ltd",
+    "address": "110 Kippax St\nSurry Hills\nNSW 2010\nAustralia",
+    "email": "privacy@canva.com",
+    "web": "https://www.canva.com/",
+    "sources": [
+        "https://about.canva.com/privacy-policy/",
+        "https://about.canva.com/terms-of-use/"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

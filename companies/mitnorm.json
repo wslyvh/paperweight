@@ -1,0 +1,20 @@
+{
+    "slug": "mitnorm",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "mitNORM GmbH",
+    "address": "Rendsburger Straße 14\n30659 Hannover\nDeutschland",
+    "phone": "+49 511 56365720",
+    "email": "datenschutz@mitnorm.com",
+    "web": "https://mitnorm.de",
+    "sources": [
+        "https://mitnorm.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1774"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

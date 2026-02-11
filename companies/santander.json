@@ -1,0 +1,21 @@
+{
+    "slug": "santander",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Santander Consumer Bank AG",
+    "address": "Santander Platz 1\n41061 Mönchengladbach\nDeutschland",
+    "phone": "+49 2161 90 60 599",
+    "fax": "+49 2161 90 65 598",
+    "email": "datenschutz@santander.de",
+    "web": "https://www.santander.de",
+    "sources": [
+        "https://www.santander.de/privatkunden/service-kontakt/datenschutz/",
+        "https://www.santander.de/privatkunden/service-kontakt/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

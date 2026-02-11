@@ -1,0 +1,32 @@
+{
+    "slug": "abis",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "addresses"
+    ],
+    "name": "ABIS GmbH",
+    "address": "Lyoner Str. 20\n60528 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 7920090",
+    "fax": "+49 69 79200920",
+    "email": "datenschutz@abis-online.de",
+    "sources": [
+        "https://www.abis-online.de/betroffenenanfrage/",
+        "https://www.abis-online.de/impressum/",
+        "https://github.com/datenanfragen/data/pull/812"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

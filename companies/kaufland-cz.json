@@ -1,0 +1,19 @@
+{
+    "slug": "kaufland-cz",
+    "relevant-countries": [
+        "cz"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Kaufland Česká republika v.o.s.",
+    "address": "Bělohorská 2428/203\n169 00 Praha 6\nCzech Republic",
+    "phone": "+420 800 165 894",
+    "email": "oou@kaufland.cz",
+    "web": "https://www.kaufland.cz",
+    "sources": [
+        "https://prodejny.kaufland.cz/ochrana-osobnich-udaju.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

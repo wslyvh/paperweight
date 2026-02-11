@@ -1,0 +1,22 @@
+{
+    "slug": "bzga-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundeszentrale für gesundheitliche Aufklärung (BZgA)",
+    "address": "Maarweg 149 – 161\n50825 Köln\nDeutschland",
+    "phone": "+49 221 8992 0",
+    "fax": "+49 221 8992 300",
+    "email": "datenschutzbeauftragter@bzga.de",
+    "web": "https://www.bzga.de/",
+    "sources": [
+        "https://www.bzga.de/datenschutz/",
+        "https://www.bzga.de/impressum/"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

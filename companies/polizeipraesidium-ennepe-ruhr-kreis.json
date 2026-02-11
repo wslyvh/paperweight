@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-ennepe-ruhr-kreis",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Der Landrat des Ennepe-Ruhr-Kreises als Kreispolizeibehörde",
+    "address": "Hauptstraße 92\n58332 Schwelm\nDeutschland",
+    "phone": "+49 2336 91660",
+    "fax": "+49 2336 91662799",
+    "email": "datenschutz.ennepe-ruhr-kreis@polizei.nrw.de",
+    "web": "https://ennepe-ruhr-kreis.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

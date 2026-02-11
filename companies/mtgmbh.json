@@ -1,0 +1,19 @@
+{
+    "slug": "mtgmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "MTG Miettreuhandgesellschaft mbH",
+    "address": "c/o LMS Law Management Service UG (haftungsbeschränkt)\nWolfgang-Heinze-Straße 18\n04416 Markkleeberg\nDeutschland",
+    "phone": "+49 341 1495015",
+    "fax": "+49 341 7100314",
+    "email": "datenschutz@dvk-immobilien.de",
+    "web": "https://www.mtgmbh.de",
+    "sources": [
+        "https://www.mtgmbh.de/datenschutz.php",
+        "https://www.mtgmbh.de/impressum.php",
+        "https://github.com/datenanfragen/data/pull/2460"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

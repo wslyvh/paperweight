@@ -1,0 +1,33 @@
+{
+    "slug": "apollo-optik",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce",
+        "ads"
+    ],
+    "name": "Apollo-Optik Holding GmbH & Co. KG",
+    "address": "Wallenrodstraße 3\n91126 Schwabach\nDeutschland",
+    "phone": "+49 800 2765566",
+    "email": "datenschutz@apollo-optik.com",
+    "web": "https://www.apollo.de/",
+    "sources": [
+        "https://www.apollo.de/datenschutz"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "needs-id-document": false,
+    "quality": "tested"
+}

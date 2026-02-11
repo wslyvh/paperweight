@@ -1,0 +1,28 @@
+{
+    "slug": "digitalocean",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "DigitalOcean, LLC.",
+    "address": "105 Edgeview Drive, Ste. 425\nBroomfield\nCO 80021\nUnited States of America",
+    "email": "privacy@digitalocean.com",
+    "web": "https://www.digitalocean.com/",
+    "sources": [
+        "https://www.digitalocean.com/legal/privacy/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

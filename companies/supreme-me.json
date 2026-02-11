@@ -1,0 +1,20 @@
+{
+    "slug": "supreme-me",
+    "relevant-countries": [
+        "de",
+        "ch"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Supreme Media AG",
+    "address": "Steigstrasse 16a\n9444 Diepoldsau\nSchweiz",
+    "email": "datenschutz@supreme.me",
+    "web": "https://supreme.me",
+    "sources": [
+        "https://supreme.me/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2470"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

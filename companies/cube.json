@@ -1,0 +1,23 @@
+{
+    "slug": "cube",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Pending System GmbH & Co. KG",
+    "runs": [
+        "CUBE Bikes"
+    ],
+    "address": "c/o ENS Privacy & Consulting GmbH\nBayreuther Str. 11\n95615 Marktredwitz\nDeutschland",
+    "phone": "+49 9231 9700780",
+    "email": "privacy@ensedv.de",
+    "sources": [
+        "https://www.cube.eu/de-de/datenschutz",
+        "https://www.cube.eu/de-de/impressum",
+        "https://github.com/datenanfragen/data/pull/2727"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

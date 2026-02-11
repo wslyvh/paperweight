@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-st-vincenz-und-st-lorenz-in-schoeningen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde St. Vincenz und St. Lorenz in Schöningen",
+    "address": "Niedernstraße 47\n38364 Schöningen\nDeutschland",
+    "phone": "+49 5352 4764",
+    "fax": "+49 5352 4745",
+    "email": "helmstedt-sued.pfa@lk-bs.de",
+    "web": "http://www.stvincenz-schoeningen.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=819"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

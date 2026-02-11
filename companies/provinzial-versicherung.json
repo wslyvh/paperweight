@@ -1,0 +1,23 @@
+{
+    "slug": "provinzial-versicherung",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Westfälische Provinzial Versicherung AG",
+    "address": "Provinzial-Allee 1\n48159 Münster\nDeutschland",
+    "phone": "+49 251 2190",
+    "fax": "+49 251 2192300",
+    "email": "datenschutz@provinzial.de",
+    "web": "https://www.provinzial-online.de",
+    "sources": [
+        "https://www.provinzial-online.de/content/privat/service/datenschutz/index.html",
+        "https://www.provinzial-nordwest.de/export/sites/pkp/_resources/download/meta/Hinweise_zum_Datenschutz.pdf",
+        "https://www.provinzial-online.de/content/privat/service/impressum/index.html",
+        "https://github.com/datenanfragen/data/pull/2575"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,41 @@
+{
+    "slug": "tuifly",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "TUI Deutschland GmbH",
+    "runs": [
+        "Hapag-Lloyd Kreuzfahrten GmbH",
+        "L’tur GmbH",
+        "Robinson Club GmbH",
+        "TUI 4U GmbH",
+        "TUI AG",
+        "TUI Austria Holding GmbH",
+        "TUI Business Service GmbH",
+        "TUI Cruises GmbH",
+        "TUI Customer Operations GmbH",
+        "TUI SPAIN S.L.U.",
+        "TUI Hotel Betriebsgesellschaft mbH",
+        "TUI InfoTec GmbH",
+        "TUI Magic Life GmbH",
+        "TUI Österreich GmbH",
+        "TUI Service AG",
+        "TUI Suisse Ltd",
+        "TUIfly GmbH",
+        "TUIfly Vermarktungs GmbH",
+        "Gebeco  - Gesellschaft für internationale Begegnung und Cooperation mbH & Co. KG"
+    ],
+    "address": "Karl-Wiechert-Allee 23\n30625 Hannover\nDeutschland",
+    "phone": "+49 511 56 78 600",
+    "email": "datenschutz@tui.de",
+    "web": "https://www.tui.com",
+    "sources": [
+        "https://www.tui.com/datenschutz-hinweis/",
+        "https://www.tui.com/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

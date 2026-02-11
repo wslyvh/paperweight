@@ -1,0 +1,21 @@
+{
+    "slug": "shop-hannover96",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Hannover 96 Sales & Service GmbH & Co.KG",
+    "address": "Robert-Enke-Str. 1\n30169 Hannover\nDeutschland",
+    "phone": "+49 511 9690096",
+    "fax": "+49 511 96900796",
+    "email": "datenschutz@hannover96.de",
+    "web": "https://shop.hannover96.de",
+    "sources": [
+        "https://shop.hannover96.de/datenschutzerklaerung",
+        "https://github.com/datenanfragen/data/pull/1311"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

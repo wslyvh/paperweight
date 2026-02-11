@@ -1,0 +1,19 @@
+{
+    "slug": "einsaperformance",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "einsaperformance GmbH",
+    "address": "Therese-Huber-Straße 24\n37085 Göttingen\nDeutschland",
+    "email": "datenschutz@einsaperformance.de",
+    "sources": [
+        "https://www.einsaperformance.de/datenschutz.php",
+        "https://github.com/datenanfragen/data/issues/80"
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

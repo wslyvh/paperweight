@@ -1,0 +1,20 @@
+{
+    "slug": "dstillery",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Dstillery, Inc.",
+    "address": "470 Park Ave S.\nFloor 5S\nNew York\nNY 10016\nUnited States of America",
+    "email": "privacy@dstillery.com",
+    "web": "https://dstillery.com/",
+    "sources": [
+        "https://dstillery.com/privacy-policy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

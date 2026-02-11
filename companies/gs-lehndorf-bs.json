@@ -1,0 +1,21 @@
+{
+    "slug": "gs-lehndorf-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Grundschule Lehndorf Braunschweig",
+    "address": "Saarplatz 2\n38116 Braunschweig\nDeutschland",
+    "phone": "+49 531 577919",
+    "fax": "+49 531 578139",
+    "email": "gs.lehndorf@braunschweig.de",
+    "sources": [
+        "https://www.braunschweig.de/leben/schule_bildung/schulportal/schulen/schulen/gs_lehndorf.html"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

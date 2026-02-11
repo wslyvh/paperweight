@@ -1,0 +1,34 @@
+{
+    "slug": "mindfactory",
+    "categories": [
+        "commerce"
+    ],
+    "name": "Mindfactory AG",
+    "address": "Preußenstraße 14 a – c\n26388 Wilhelmshaven\nDeutschland",
+    "phone": "+49 4421 91 31 010",
+    "fax": "+49 4421 91 31 019",
+    "email": "datenschutz@mindfactory.de",
+    "web": "https://www.mindfactory.de/",
+    "sources": [
+        "https://www.mindfactory.de/info_center.php/icID/60",
+        "https://www.mindfactory.de/info_center.php/icID/72"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "E-Mail-Adresse",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

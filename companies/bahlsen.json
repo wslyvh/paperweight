@@ -1,0 +1,22 @@
+{
+    "slug": "bahlsen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "BAHLSEN GmbH & Co. KG",
+    "address": "Podbielskistraße 11\n30163 Hannover\nDeutschland",
+    "phone": "+49 511 960 0",
+    "fax": "+49 511 960 27 49",
+    "email": "datenschutz@Bahlsen.com",
+    "web": "https://www.bahlsen.com",
+    "sources": [
+        "https://www.bahlsen.com/de/de/datenschutzerklaerung?hideCookieModal=true",
+        "https://www.bahlsen.com/de/de/impressum?hideCookieModal=true",
+        "https://github.com/datenanfragen/data/pull/1720"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

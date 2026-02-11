@@ -1,0 +1,34 @@
+{
+    "slug": "oko-inkasso-co-at",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "collection agency"
+    ],
+    "name": "OKO Inkasso-Auskünfte GmbH & Co KG",
+    "runs": [
+        "OKO Inkasso-Auskünfte Beteiligungs GmbH"
+    ],
+    "address": "Waldeggstr. 16\n4020 Linz\nÖsterreich",
+    "phone": "+43 732 656242",
+    "fax": "+43 732 656242 100",
+    "email": "datenschutz@oko-inkasso.co.at",
+    "web": "https://www.oko-inkasso.co.at",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/390",
+        "https://www.oko-inkasso.co.at/datenschutzerklaerung.aspx"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

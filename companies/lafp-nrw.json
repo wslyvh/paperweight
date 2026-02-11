@@ -1,0 +1,21 @@
+{
+    "slug": "lafp-nrw",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Landesamt für Ausbildung, Fortbildung und Personalangelegenheiten der Polizei NRW",
+    "address": "Im Sundern 1\n59739 Selm\nDeutschland",
+    "phone": "+49 2592 680",
+    "fax": "+49 2592 686299",
+    "email": "datenschutz.lafp@polizei.nrw.de",
+    "web": "https://lafp.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

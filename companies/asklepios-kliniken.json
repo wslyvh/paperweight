@@ -1,0 +1,19 @@
+{
+    "slug": "asklepios-kliniken",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Asklepios Kliniken GmbH & Co. KGaA",
+    "address": "Rübenkamp 226\n22307 Hamburg\nDeutschland",
+    "email": "zentrale@asklepios.com",
+    "web": "https://www.asklepios.com/",
+    "sources": [
+        "https://www.asklepios.com/konzern/unternehmen/impressum/",
+        "https://www.asklepios.com/konzern/unternehmen/datenschutzerklaerung/",
+        "https://github.com/datenanfragen/data/pull/1444"
+    ],
+    "comments": [
+        "Den Datenschutzbeauftragten erreichen Sie hier: https://www.asklepios.com/details/kontakt~ref=6f92d3f9-08b4-4759-94a4-2a0d2ac8fd2e~prId=500116~"
+    ],
+    "quality": "verified"
+}

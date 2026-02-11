@@ -1,0 +1,17 @@
+{
+    "slug": "nfumutual-co",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "NFU Mutual",
+    "address": "Tiddington Road\nStratford-Upon-Avon\nCV37 7BJ\nUnited Kingdom",
+    "web": "https://www.nfumutual.co.uk",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/1011",
+        "https://www.nfumutual.co.uk/"
+    ],
+    "quality": "verified"
+}

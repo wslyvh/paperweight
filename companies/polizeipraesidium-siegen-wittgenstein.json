@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-siegen-wittgenstein",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Der Landrat als Kreispolizeibehörde Siegen-Wittgenstein",
+    "address": "Weidenauer Straße 231\n57076 Siegen\nDeutschland",
+    "phone": "+49 271 70990",
+    "fax": "+49 271 70994444",
+    "email": "datenschutz.siegen-wittgenstein@polizei.nrw.de",
+    "web": "https://siegen-wittgenstein.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

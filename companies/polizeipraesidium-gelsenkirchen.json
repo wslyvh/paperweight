@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-gelsenkirchen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Polizeipräsidium Gelsenkirchen",
+    "address": "Rathausplatz 4\n45894 Gelsenkirchen\nDeutschland",
+    "phone": "+49 209 3650",
+    "fax": "+49 209 3652019",
+    "email": "datenschutz.gelsenkirchen@polizei.nrw.de",
+    "web": "https://gelsenkirchen.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

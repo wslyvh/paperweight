@@ -1,0 +1,32 @@
+{
+    "slug": "adpublisher",
+    "categories": [
+        "ads"
+    ],
+    "name": "adpublisher AG",
+    "address": "Industriering 3\n9491 Ruggell\nLiechtenstein",
+    "phone": "+423 399 47 80",
+    "fax": "+423 399 47 89",
+    "email": "datenschutz@adpublisher.com",
+    "web": "https://www.adpublisher.com",
+    "sources": [
+        "https://www.adpublisher.com/de/datenschutz.html",
+        "https://www.adpublisher.com/de/impressum.html"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

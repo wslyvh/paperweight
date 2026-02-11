@@ -1,0 +1,17 @@
+{
+    "slug": "ourtime-nl",
+    "relevant-countries": [
+        "nl"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Ourtime.nl",
+    "address": "c/o Meetic SAS\n53 rue de Châteaudun\nParis 9\nFrance",
+    "webform": "https://www.ourtime.nl/faq/#privacyRequest",
+    "web": "https://www.ourtime.nl",
+    "sources": [
+        "https://www.ourtime.nl/pages/misc/privacy"
+    ],
+    "quality": "verified"
+}

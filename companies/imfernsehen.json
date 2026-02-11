@@ -1,0 +1,26 @@
+{
+    "slug": "imfernsehen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "imfernsehen GmbH & Co. KG",
+    "runs": [
+        "fernsehserien.de",
+        "wunschliste.de",
+        "tvforen.de",
+        "retro-tv.de",
+        "tv-kult.de"
+    ],
+    "address": "Aachener Straße 364-370\n50933 Köln\nDeutschland",
+    "phone": "+49 32 121443795",
+    "email": "kontakt@imfernsehen.de",
+    "web": "https://www.imfernsehen.de",
+    "sources": [
+        "https://www.imfernsehen.de/home/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1290"
+    ],
+    "quality": "verified"
+}

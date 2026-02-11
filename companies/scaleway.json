@@ -1,0 +1,19 @@
+{
+    "slug": "scaleway",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Scaleway",
+    "address": "8 rue de la Ville l’Evêque\n75008 Paris 8\nFrance",
+    "email": "privacy@scaleway.com",
+    "web": "https://www.scaleway.com",
+    "sources": [
+        "https://www.scaleway.com/en/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/1086"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

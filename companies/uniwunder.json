@@ -1,0 +1,25 @@
+{
+    "slug": "uniwunder",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Uniwunder GmbH",
+    "runs": [
+        "Talentagent",
+        "Hochschulinitiative Deutschland"
+    ],
+    "address": "Bergstraße 29\n01069 Dresden\nDeutschland",
+    "phone": "+49 351 79903384",
+    "email": "info@uniwunder.com",
+    "web": "https://uniwunder.com/",
+    "sources": [
+        "https://uniwunder.com/datenschutz/",
+        "https://hochschulinitiative-deutschland.de/datenschutz",
+        "https://talentagent.de/privacy",
+        "https://github.com/datenanfragen/data/pull/1948"
+    ],
+    "quality": "verified"
+}

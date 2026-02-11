@@ -1,0 +1,22 @@
+{
+    "slug": "ihk-lueneburg-wolfsburg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce",
+        "public body"
+    ],
+    "name": "IHK Lüneburg-Wolfsburg",
+    "address": "Am Sande 1\n21335 Lüneburg\nDeutschland",
+    "phone": "+49 4131 7420",
+    "fax": "+49 4131 742200",
+    "email": "datenschutz@ihklw.de",
+    "web": "https://www.ihk-lueneburg.de",
+    "sources": [
+        "https://www.ihk-lueneburg.de/service/ueber-uns/datenschutz-851580",
+        "https://github.com/datenanfragen/data/pull/1423"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

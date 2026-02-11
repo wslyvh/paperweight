@@ -1,0 +1,22 @@
+{
+    "slug": "mvg-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "Münchner Verkehrsgesellschaft mbH (MVG)",
+    "address": "Emmy-Noether-Straße 2\n80992 München\nDeutschland",
+    "phone": "+49 89 21910",
+    "fax": "+49 89 2191703386",
+    "email": "datenschutz@swm.de",
+    "web": "https://www.mvg.de/",
+    "sources": [
+        "https://www.mvg.de/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/910",
+        "https://www.mvg.de/impressum.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

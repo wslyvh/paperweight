@@ -1,0 +1,23 @@
+{
+    "slug": "rlsb-lueneburg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body",
+        "school"
+    ],
+    "name": "Regionales Landesamt für Schule und Bildung Lüneburg",
+    "address": "Postfach 21 20\n21311 Lüneburg\nDeutschland",
+    "phone": "+49 4131 15 2222",
+    "fax": "+49 4131 15 452220",
+    "email": "Datenschutz@rlsb-lg.niedersachsen.de",
+    "web": "https://bildungsportal-niedersachsen.de/ueber-uns/rlsb/rlsb-lueneburg",
+    "sources": [
+        "https://bildungsportal-niedersachsen.de/index.php?eID=dumpFile&t=f&f=11369&token=0502df036f62ad26700978341f7b62e9ffdc49c7",
+        "https://bildungsportal-niedersachsen.de/ueber-uns/rlsb/rlsb-lueneburg"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

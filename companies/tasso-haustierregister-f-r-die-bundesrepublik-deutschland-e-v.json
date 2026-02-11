@@ -1,0 +1,23 @@
+{
+    "slug": "tasso-haustierregister-f-r-die-bundesrepublik-deutschland-e-v",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "nonprofit"
+    ],
+    "name": "TASSO-Haustierregister für die Bundesrepublik Deutschland e.V.",
+    "runs": [
+        "TASSO e.V."
+    ],
+    "address": "Ludwig-Erhard-Str. 30-34\n65760 Eschborn\nDeutschland",
+    "phone": "+49 6190 937300",
+    "fax": "+49 6190 937400",
+    "email": "datenschutz@tasso.net",
+    "sources": [
+        "https://www.tasso.net/Datenschutz",
+        "https://github.com/datenanfragen/data/pull/2795"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

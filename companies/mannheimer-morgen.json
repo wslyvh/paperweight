@@ -1,0 +1,17 @@
+{
+    "slug": "mannheimer-morgen",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Mannheimer Morgen Großdruckerei und Verlag GmbH",
+    "address": "c/o conreri digital development GmbH\nVon-Kurtzrock-Ring 16\n22391 Hamburg\nDeutschland",
+    "phone": "+49 1516 1728308",
+    "email": "datenschutz@mamo.de",
+    "web": "https://www.mannheimer-morgen.de",
+    "sources": [
+        "https://www.mannheimer-morgen.de/datenschutzerklaerung.html",
+        "https://github.com/datenanfragen/data/pull/2412"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

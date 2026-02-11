@@ -1,0 +1,24 @@
+{
+    "slug": "propstei-schoeppenstedt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Propstei Schöppenstedt",
+    "address": "An der Kirche 1\n38170 Schöppenstedt\nDeutschland",
+    "phone": "+49 5332 968030",
+    "fax": "+49 5332 968033",
+    "email": "schoeppenstedt.pr@lk-bs.de",
+    "web": "http://www.propstei-schoeppenstedt.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/schoeppenstedt.html"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

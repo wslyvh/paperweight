@@ -1,0 +1,19 @@
+{
+    "slug": "adjoe",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Adjoe GmbH",
+    "address": "An der Alster 42\n20099 Hamburg\nDeutschland",
+    "email": "privacy@adjoe.io",
+    "sources": [
+        "https://adjoe.io/privacy/",
+        "https://github.com/datenanfragen/data/pull/2772"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

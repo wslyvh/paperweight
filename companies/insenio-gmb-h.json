@@ -1,0 +1,22 @@
+{
+    "slug": "insenio-gmb-h",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "INSENIO GmbH",
+    "runs": [
+        "ClaraVital"
+    ],
+    "address": "Reinhardtstraße 47a\n10117 Berlin\nDeutschland",
+    "phone": "+49 30 2062176150",
+    "email": "datenschutz@insenio.de",
+    "sources": [
+        "https://www.claravital.de/Rechtliches-Datenschutz",
+        "https://github.com/datenanfragen/data/pull/2737"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

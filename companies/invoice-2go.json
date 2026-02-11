@@ -1,0 +1,23 @@
+{
+    "slug": "invoice-2go",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Invoice2go, Inc.",
+    "runs": [
+        "Invoice2go",
+        "Cimrid Pty Ltd"
+    ],
+    "address": "555 Bryant St. #263\nPalo Alto CA 94301\nUnited States of America",
+    "email": "legal@invoice2go.com",
+    "web": "https://invoice.2go.com",
+    "sources": [
+        "https://invoice.2go.com/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/1607"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

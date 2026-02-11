@@ -1,0 +1,32 @@
+{
+    "slug": "dbrs-morningstar",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "DBRS Morningstar",
+    "runs": [
+        "DBRS Limited",
+        "DBRS, Inc.",
+        "DBRS Ratings Limited",
+        "DBRS Ratings GmbH",
+        "Morningstar Credit Ratings, LLC (MCR)"
+    ],
+    "address": "DBRS Tower\n181 University Avenue\nSuite 700\nToronto\nON M5H 3M7\nCanada",
+    "phone": "+1 416 593 5577",
+    "fax": "+1 416 593 8432",
+    "email": "privacy@dbrsmorningstar.com",
+    "web": "https://www.dbrs.com/",
+    "sources": [
+        "https://www.dbrs.com/about/",
+        "https://www.dbrs.com/contact/",
+        "https://www.dbrsmorningstar.com/privacy-policy/"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Phone numbers and addresses for different regions available at: https://www.dbrs.com/contact/"
+    ],
+    "quality": "verified"
+}

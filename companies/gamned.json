@@ -1,0 +1,21 @@
+{
+    "slug": "gamned",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Gamned SAS",
+    "address": "9 quai Rive Neuve\n13001 Marseille\nFrance",
+    "phone": "+33 1 85 09 13 50",
+    "email": "privacy@gamned.com",
+    "web": "https://www.gamned.com/",
+    "sources": [
+        "https://www.gamned.com/privacy-policy/",
+        "https://www.gamned.com/legal-notices/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

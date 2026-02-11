@@ -1,0 +1,22 @@
+{
+    "slug": "apostelkirchengemeinde-frellstedt-wolsdorf",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Apostelkirchengemeinde Frellstedt-Wolsdorf",
+    "address": "Elmstraße 1\n38373 Frellstedt\nDeutschland",
+    "phone": "+49 5355 1656",
+    "email": "frellstedt.pfa@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=834"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

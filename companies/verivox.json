@@ -1,0 +1,51 @@
+{
+    "slug": "verivox",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads",
+        "finance",
+        "insurance",
+        "commerce",
+        "telecommunication"
+    ],
+    "name": "Verivox GmbH",
+    "runs": [
+        "Vertragswechselservice Verivox „prime“",
+        "Verivox Finanzvergleich GmbH",
+        "Verivox Versicherungsvergleich GmbH",
+        "Preis24.de (ehem.)",
+        "TopTarif.de (ehem.)"
+    ],
+    "address": "Max-Jarecki-Straße 21\n69115 Heidelberg\nDeutschland",
+    "phone": "+49 6221 7961100",
+    "fax": "+49 6221 79618669",
+    "email": "service@verivox.de",
+    "web": "https://www.verivox.de/",
+    "sources": [
+        "https://www.verivox.de/company/datenschutz/",
+        "https://www.verivox.de/company/datenschutz-finanzvergleich/",
+        "https://www.verivox.de/company/datenschutz-versicherungsvergleich/",
+        "https://www.preis24.de/",
+        "https://www.toptarif.de/",
+        "https://www.verivox.de/company/impressum/",
+        "https://github.com/datenanfragen/data/pull/1859"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        },
+        {
+            "desc": "E-Mail-Adresse",
+            "type": "input",
+            "optional": true
+        }
+    ],
+    "quality": "verified"
+}

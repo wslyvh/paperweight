@@ -1,0 +1,17 @@
+{
+    "slug": "gbs-sls",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Gemeinnützige Bau- und Siedlungs-GmbH Saarlouis",
+    "address": "c/o GesMIT mbH\nBruchbrunnenstraße 19\n66123 Saarbrücken\nDeutschland",
+    "phone": "+49 681 96021420",
+    "email": "info@datenschutz.gesmit.de",
+    "web": "https://www.gbs-sls.de",
+    "sources": [
+        "https://www.gbs-sls.de/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/2273"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

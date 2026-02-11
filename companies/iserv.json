@@ -1,0 +1,22 @@
+{
+    "slug": "iserv",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication",
+        "social media"
+    ],
+    "name": "IServ GmbH",
+    "address": "Vossenkamp 6\n38104 Braunschweig\nDeutschland",
+    "phone": "+49 531 3882102",
+    "fax": "+49 531 38821999",
+    "email": "info@iserv.de",
+    "web": "https://iserv.de/",
+    "sources": [
+        "https://iserv.de/legal/privacy",
+        "https://iserv.de/legal",
+        "https://github.com/datenanfragen/data/pull/2907"
+    ],
+    "quality": "verified"
+}

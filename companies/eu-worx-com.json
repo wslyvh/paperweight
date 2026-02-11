@@ -1,0 +1,27 @@
+{
+    "slug": "eu-worx-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Positec Germany GmbH",
+    "runs": [
+        "Worx",
+        "Kress"
+    ],
+    "address": "Schanzenstrasse 22\n51063 Köln\nDeutschland",
+    "phone": "+49 221 1306560",
+    "email": "datenschutzeu@positecgroup.com",
+    "web": "https://eu.worx.com",
+    "sources": [
+        "https://eu.worx.com/en/privacy-policy/",
+        "https://eu.worx.com/en/imprint/",
+        "https://github.com/datenanfragen/data/pull/2019",
+        "https://www.kress.com/de-de/datenschutzrichtlinie/",
+        "https://github.com/datenanfragen/data/pull/3011"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

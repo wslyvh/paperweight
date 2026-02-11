@@ -1,0 +1,21 @@
+{
+    "slug": "dlrg-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "nonprofit",
+        "health"
+    ],
+    "name": "Deutsche Lebens-Rettungs-Gesellschaft (DLRG)",
+    "address": "Im Niedernfeld 1-3\n31542 Bad Nenndorf\nDeutschland",
+    "phone": "+49 5723 955443",
+    "email": "hilde.oberlehberg@bgst.dlrg.de",
+    "web": "https://www.dlrg.de",
+    "sources": [
+        "https://www.dlrg.de/datenschutzerklaerung/",
+        "https://github.com/datenanfragen/data/pull/2721"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

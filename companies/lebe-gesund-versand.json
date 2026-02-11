@@ -1,0 +1,23 @@
+{
+    "slug": "lebe-gesund-versand",
+    "relevant-countries": [
+        "de",
+        "at"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Lebe Gesund-Versand GmbH",
+    "address": "Mühlenweg 2\n56235 Ransbach-Baumbach\nDeutschland",
+    "phone": "+49 2623 9264550",
+    "fax": "+49 800 1224009",
+    "email": "cs@sus-group.de",
+    "web": "https://www.lebegesund.de",
+    "sources": [
+        "https://www.lebegesund.de/impressum-bildnachweis",
+        "https://github.com/datenanfragen/data/issues/682",
+        "https://www.lebegesund.de/datenschutzerklaerung"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "pornhub",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "MG Freesites Ltd",
+    "runs": [
+        "Pornhub (www.pornhub.com)",
+        "Pornhub Premium (www.pornhubpremium.com)"
+    ],
+    "address": "195-197 Old Nicosia-Limassol Road\nDali Industrial Zone\nNicosia, 2540\nCyprus",
+    "email": "dpo@pornhub.com",
+    "sources": [
+        "https://www.pornhub.com/information/privacy",
+        "https://github.com/datenanfragen/data/pull/1762"
+    ],
+    "quality": "verified",
+    "nsfw": true
+}

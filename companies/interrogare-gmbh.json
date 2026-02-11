@@ -1,0 +1,16 @@
+{
+    "slug": "interrogare-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Interrogare GmbH",
+    "address": "Karl-Eilers-Str. 14-18\n33602 Bielefeld\nDeutschland",
+    "phone": "+49 521 5578100",
+    "email": "datenschutz@interrogare.de",
+    "sources": [
+        "https://www.interrogare.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2771"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

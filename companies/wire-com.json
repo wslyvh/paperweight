@@ -1,0 +1,36 @@
+{
+    "slug": "wire-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Wire Swiss GmbH",
+    "address": "Untermüli 9\n6300 Zug\nSwitzerland",
+    "email": "privacy@wire.com",
+    "web": "https://wire.com",
+    "sources": [
+        "https://wire.com/en/legal/#privacy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Username",
+            "type": "input"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        },
+        {
+            "desc": "Phone",
+            "type": "input"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

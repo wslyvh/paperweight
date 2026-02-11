@@ -1,0 +1,13 @@
+{
+    "slug": "infovergleich99",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "InfoVergleich99 UG",
+    "address": "Großbeerenstr. 2 - 10\n12107 Berlin\nDeutschland",
+    "sources": [
+        "https://www.northdata.de/InfoVergleich99%20UG,%20Berlin/Amtsgericht%20Charlottenburg%20(Berlin)%20HRB%20222100%20B",
+        "https://github.com/datenanfragen/data/pull/1206"
+    ],
+    "quality": "verified"
+}

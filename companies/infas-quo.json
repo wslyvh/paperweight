@@ -1,0 +1,23 @@
+{
+    "slug": "infas-quo",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "infas quo GmbH",
+    "runs": [
+        "quo FINANCE",
+        "quo PEOPLE",
+        "quo RETAIL",
+        "quo TRAVEL"
+    ],
+    "address": "Prinzregentenufer 3\n90489 Nürnberg\nDeutschland",
+    "phone": "+49 911 580 561 0",
+    "email": "datenschutz@infas-quo.de",
+    "web": "https://infas-quo.de",
+    "sources": [
+        "https://infas-quo.de/datenschutz/",
+        "https://infas-quo.de/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "rki-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body",
+        "health"
+    ],
+    "name": "Robert Koch-Institut (RKI)",
+    "address": "Nordufer 20\n13353 Berlin\nDeutschland",
+    "phone": "+49 30 187540",
+    "email": "datenschutz@rki.de",
+    "webform": "https://www.rki.de/SharedDocs/Kontaktformulare/D/Datenschutz/DatenschutzIntegrator.html?nn=4976162",
+    "web": "https://www.rki.de",
+    "sources": [
+        "https://www.rki.de/DE/Service/Datenschutz/datenschutz_node.html",
+        "https://www.rki.de/DE/Service/Impressum/impressum_node.html",
+        "https://github.com/datenanfragen/data/issues/612"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

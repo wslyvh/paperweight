@@ -1,0 +1,30 @@
+{
+    "slug": "tibush",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment",
+        "social media"
+    ],
+    "name": "tibush GmbH",
+    "runs": [
+        "SpaceHey"
+    ],
+    "address": "Oberhaldenweg 32\n72793 Pfullingen\nGermany",
+    "phone": "+49 7121 7492534",
+    "email": "info@tibush.com",
+    "web": "https://spacehey.com/",
+    "sources": [
+        "https://tibush.com/imprint/",
+        "https://spacehey.com/privacy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Email",
+            "type": "name",
+            "optional": false
+        }
+    ],
+    "quality": "verified"
+}

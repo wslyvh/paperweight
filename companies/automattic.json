@@ -1,0 +1,50 @@
+{
+    "slug": "automattic",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment",
+        "social media",
+        "telecommunication"
+    ],
+    "name": "Aut O’Mattic A8C Ireland Ltd.",
+    "runs": [
+        "Automattic Inc.",
+        "WordPress.com",
+        "WordPress Jetpack (jetpack.com)",
+        "WordPress.com VIP (vip.wordpress.com)",
+        "WooCommerce, Inc. (woocommerce.com)",
+        "WooCommerce Ireland Ltd.",
+        "VaultPress (vaultpress.com)",
+        "Akismet (akismet.com)",
+        "Longreads (longreads.com)",
+        "Simplenote (simplenote.com)",
+        "Polldaddy (polldaddy.com)",
+        "Cloudup (cloudup.com)",
+        "Simperium (simperium.com)",
+        "Gravatar (gravatar.com)",
+        "Tumblr, Inc. (tumblr.com)"
+    ],
+    "address": "Grand Canal Dock, 25 Herbert Pl\nDublin\nD02 AY86\nIreland",
+    "phone": "+1 877 273 3049",
+    "email": "privacypolicyupdates@automattic.com",
+    "web": "https://automattic.com",
+    "sources": [
+        "https://automattic.com/privacy/",
+        "https://www.tumblr.com/privacy/en_eu"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

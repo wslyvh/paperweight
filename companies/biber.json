@@ -1,0 +1,23 @@
+{
+    "slug": "biber",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Biber Umweltprodukte Versand GmbH",
+    "address": "Färbergasse 13\n6850 Dornbirn\nÖsterreich",
+    "phone": "+43 5572 2078200",
+    "fax": "+43 5572 20782020",
+    "email": "datenschutz@biber.com",
+    "web": "https://biber.com",
+    "sources": [
+        "https://www.biber.com/shop/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1022"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

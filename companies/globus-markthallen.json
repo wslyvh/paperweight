@@ -1,0 +1,19 @@
+{
+    "slug": "globus-markthallen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "GLOBUS Markthallen Holding GmbH & Co. KG",
+    "address": "Leipziger Straße 8\n66606 St. Wendel\nDeutschland",
+    "phone": "+49 6851 9090",
+    "fax": "+49 6851 909600",
+    "email": "kundenservice@globus.de",
+    "sources": [
+        "https://www.globus.de/datenschutz.php",
+        "https://github.com/datenanfragen/data/pull/2804"
+    ],
+    "quality": "verified"
+}

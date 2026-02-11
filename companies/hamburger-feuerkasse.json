@@ -1,0 +1,20 @@
+{
+    "slug": "hamburger-feuerkasse",
+    "categories": [
+        "insurance"
+    ],
+    "name": "Hamburger Feuerkasse Versicherungs-AG",
+    "address": "Kleiner Burstah 6 – 10\n20457 Hamburg\nDeutschland",
+    "phone": "+49 251 219 2520",
+    "fax": "+49 40 30904 9000",
+    "email": "datenschutz@provinzial.de",
+    "web": "https://www.hamburger-feuerkasse.de",
+    "sources": [
+        "https://www.provinzial-nordwest.de/export/sites/pkp/_resources/download/meta/Hinweise_zum_Datenschutz.pdf"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

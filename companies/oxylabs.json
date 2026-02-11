@@ -1,0 +1,16 @@
+{
+    "slug": "oxylabs",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Oxylabs",
+    "address": "A. Goštauto g. 40A\nVilnius 01112\nLithuania",
+    "email": "privacy@oxylabs.io",
+    "web": "https://oxylabs.io/",
+    "sources": [
+        "https://oxylabs.io/legal/privacy"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

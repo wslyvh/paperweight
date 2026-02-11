@@ -1,0 +1,20 @@
+{
+    "slug": "private-internet-access",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Private Internet Access, Incorporated",
+    "address": "5555 DTC Parkway\nSuite 360\nGreenwood Village\nCO 80111\nUnited States of America",
+    "phone": "+1 347 586 9467 ext. 904",
+    "email": "privacy@privateinternetaccess.com",
+    "web": "https://www.privateinternetaccess.com/",
+    "sources": [
+        "https://www.privateinternetaccess.com/pages/privacy-policy/",
+        "https://github.com/datenanfragen/data/issues/479"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

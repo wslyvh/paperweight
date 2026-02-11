@@ -1,0 +1,49 @@
+{
+    "slug": "tellows",
+    "relevant-countries": [
+        "de",
+        "es",
+        "fr",
+        "nl",
+        "at",
+        "cz",
+        "se",
+        "it",
+        "pl",
+        "pt",
+        "be",
+        "ie",
+        "no",
+        "hu",
+        "ch"
+    ],
+    "name": "tellows UG (haftungsbeschränkt)",
+    "runs": [
+        "tellows.at",
+        "tellows.be",
+        "tellows.ch",
+        "tellows.cz",
+        "tellows.es",
+        "tellows.fr",
+        "tellows.hu",
+        "ie.tellows.net",
+        "tellows.it",
+        "tellows.nl",
+        "no.tellows.net",
+        "tellows.pl",
+        "tellows.pt",
+        "tellows.se"
+    ],
+    "address": "Eschenring 6\n04828 Bennewitz\nGermany",
+    "phone": "+49 1578 4918966",
+    "fax": "+49 341 35540903",
+    "email": "datenschutz@tellows.de",
+    "web": "https://www.tellows.de",
+    "sources": [
+        "https://www.tellows.de/s/about-de/datenschutz",
+        "https://www.tellows.de/s/about-de/impressum",
+        "https://github.com/datenanfragen/data/pull/2235"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

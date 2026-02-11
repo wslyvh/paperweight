@@ -1,0 +1,31 @@
+{
+    "slug": "whatsapp",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "WhatsApp Ireland Ltd.",
+    "runs": [
+        "WhatsApp Inc."
+    ],
+    "address": "4 Grand Canal Square\nGrand Canal Harbour\nDublin 2\nIreland",
+    "webform": "https://www.whatsapp.com/contact/forms/382532939919295/",
+    "web": "https://www.whatsapp.com/",
+    "sources": [
+        "https://www.whatsapp.com/legal/#privacy-policy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "WhatsApp phone number",
+            "type": "input"
+        }
+    ],
+    "quality": "verified"
+}

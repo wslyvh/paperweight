@@ -1,0 +1,21 @@
+{
+    "slug": "haftpflichtkasse",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Die Haftpflichtkasse VVaG",
+    "address": "Darmstädter Str. 103\n64380 Roßdorf\nDeutschland",
+    "phone": "+49 6154 6010",
+    "fax": "+49 6154 6012288",
+    "email": "datenschutz@haftpflichtkasse.de",
+    "web": "https://www.haftpflichtkasse.de",
+    "sources": [
+        "https://www.haftpflichtkasse.de/export/sites/default/.downloads/Datenschutz/Hinweis-zum-Datenschutz-Vis.pdf",
+        "https://github.com/datenanfragen/data/pull/1246"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

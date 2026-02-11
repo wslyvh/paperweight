@@ -1,0 +1,20 @@
+{
+    "slug": "piraeusbank",
+    "relevant-countries": [
+        "gr"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Piraeus Bank S.A.",
+    "address": "4 Ameriki Street\n10564 Athens\nGreece",
+    "phone": "+30 21 0328 8000",
+    "email": "DPOOffice@piraeusbank.gr",
+    "web": "https://www.piraeusbank.gr/",
+    "sources": [
+        "https://www.piraeusbank.gr/-/jssmedia/Project/Piraeus/PiraeusBank/shared/Files/PiraeusBank/support/gdpr/DPO-en.pdf",
+        "https://www.piraeusbank.gr/en/support/contact-us"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

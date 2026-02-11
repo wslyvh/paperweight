@@ -1,0 +1,24 @@
+{
+    "slug": "grovercom",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Grover Group GmbH",
+    "runs": [
+        "Grover Finance I GmbH",
+        "Grover Finance II GmbH"
+    ],
+    "address": "c/o data protection nord GmbH\nKurfürstendamm 212\n10719 Berlin\nGermany",
+    "email": "office@datenschutz-nord.de",
+    "web": "https://www.grover.com",
+    "sources": [
+        "https://www.grover.com/de-de/g-about/datenschutzerklaerung",
+        "https://github.com/datenanfragen/data/issues/425",
+        "https://github.com/datenanfragen/data/pull/1695"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

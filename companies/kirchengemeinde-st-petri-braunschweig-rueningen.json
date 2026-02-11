@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-st-petri-braunschweig-rueningen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde St. Petri Braunschweig-Rüningen",
+    "address": "Thiedestraße 28\n38122 Braunschweig\nDeutschland",
+    "phone": "+49 531 873908",
+    "fax": "+49 531 8669606",
+    "email": "petri.rueningen.pfa@lk-bs.de",
+    "web": "http://www.petri-rueningen.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=1010"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "contentfleet",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Content Fleet GmbH",
+    "runs": [
+        "einfachtierisch.de"
+    ],
+    "address": "c/o Ströer Digital Media GmbH\nPlatz der Einheit 1\n60327 Frankfurt am Main\nDeutschland",
+    "phone": "+49 30 12085507",
+    "fax": "+49 40 600800619",
+    "email": "datenschutz@contentfleet.com",
+    "web": "https://www.contentfleet.com",
+    "sources": [
+        "https://einfachtierisch.de/p/impressum",
+        "https://einfachtierisch.de/p/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1340"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

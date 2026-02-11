@@ -1,0 +1,41 @@
+{
+    "slug": "adeccogroup",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Adecco Group Germany",
+    "runs": [
+        "Adecco Germany Holding SA & Co. KG",
+        "Adecco Business Solutions GmbH (abs-group.de)",
+        "Adecco Service Center Solutions GmbH (abs-service-center.de)",
+        "Adecco Personaldienstleistungen GmbH (adecco.de)",
+        "CST energy services GmbH (cstgroup.de)",
+        "DIS AG (dis-ag.com)",
+        "LHH Recruitment Solutions",
+        "ProServ Produktionsservice und Personaldienste GmbH (proserv-dienstleistungen.de)"
+    ],
+    "address": "Fritz-Vomfelde-Str. 26\nD-40547 Düsseldorf\nDeutschland",
+    "email": "datenschutz@adeccogroup.com",
+    "web": "https://www.adeccogroup.de",
+    "sources": [
+        "https://www.adeccogroup.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2422"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

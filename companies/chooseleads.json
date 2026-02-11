@@ -1,0 +1,18 @@
+{
+    "slug": "chooseleads",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "addresses"
+    ],
+    "name": "ChooseLeads Ltd.",
+    "address": "7 Bell Yard\nLondon\nWC2A 2JR\nUnited Kingdom",
+    "phone": "+44 20 3472 7200",
+    "email": "hello@chooseleads.co.uk",
+    "web": "https://chooseleads.co.uk/",
+    "sources": [
+        "https://www.chooseleads.co.uk/contact-us/"
+    ],
+    "quality": "verified"
+}

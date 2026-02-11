@@ -1,0 +1,19 @@
+{
+    "slug": "jacques-wein-depot",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Jacques’ Wein-Depot Wein-Einzelhandel GmbH",
+    "runs": [
+        "Jacques’ Wein-Depot"
+    ],
+    "address": "c/o Hanseatisches Wein- und Sekt-Kontor Hawesko GmbH\nHamburger Straße 14-20\n25436 Tornesch\nDeutschland",
+    "sources": [
+        "https://www.jacques.de/ueber-uns/impressum/",
+        "https://www.jacques.de/ueber-uns/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2454"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "email": "datenschutz@jacques.de"
+}

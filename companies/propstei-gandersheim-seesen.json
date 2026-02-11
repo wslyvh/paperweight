@@ -1,0 +1,24 @@
+{
+    "slug": "propstei-gandersheim-seesen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Propstei Gandersheim-Seesen",
+    "address": "Hinter der Kirche 1 A\n38723 Seesen\nDeutschland",
+    "phone": "+49 5381 942920",
+    "fax": "+49 5381 942922",
+    "email": "gandersheim-seesen.pr@lk-bs.de",
+    "web": "http://www.propstei-gandersheim-seesen.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/gandersheim-seesen.html"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

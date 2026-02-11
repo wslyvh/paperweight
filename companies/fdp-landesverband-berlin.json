@@ -1,0 +1,25 @@
+{
+    "slug": "fdp-landesverband-berlin",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "political party"
+    ],
+    "name": "FDP Landesverband Berlin",
+    "runs": [
+        "berlinbrauchttegel.de",
+        "enteignungen-stoppen.de"
+    ],
+    "address": "Dorotheenstraße 56\n10117 Berlin\nDeutschland",
+    "phone": "+49 30 2789590",
+    "fax": "+49 30 27895917",
+    "email": "datenschutz@fdp.de",
+    "web": "https://fdp-berlin.de",
+    "sources": [
+        "https://www.fdp-berlin.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2110"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,34 @@
+{
+    "slug": "debeka",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Debeka-Gruppe",
+    "runs": [
+        "Debeka Krankenversicherungsverein a. G.",
+        "Debeka Lebensversicherungsverein a. G.",
+        "Debeka Allgemeine Versicherung AG",
+        "Debeka Bausparkasse AG",
+        "Debeka Pensionskasse AG",
+        "Debeka proService und Kooperations-GmbH",
+        "Debeka Unterstützungskasse e. V.",
+        "Debeka proBUSINESS betriebliche Vorsorgesysteme GmbH",
+        "Debeka Zusatzversorgungskasse V. a. G.",
+        "Debeka Rechtsschutz-Schadenabwicklung GmbH"
+    ],
+    "address": "56058 Koblenz\nDeutschland",
+    "phone": "+49 261 4983080",
+    "fax": "+49 261 4985555",
+    "email": "datenschutzbeauftragter@debeka.de",
+    "web": "https://www.debeka.de",
+    "sources": [
+        "https://www.debeka.de/content/dam/de/webauftritt/sonstige/datenschutz/I%20200%20Datenschutzhinweise_Versicherungen.pdf",
+        "https://www.debeka.de/content/dam/de/webauftritt/sonstige/datenschutz/gemeinsame_verantwortlichkeit_partnersysteme.pdf",
+        "https://github.com/datenanfragen/data/pull/2423"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

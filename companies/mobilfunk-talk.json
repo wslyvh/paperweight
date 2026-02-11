@@ -1,0 +1,26 @@
+{
+    "slug": "mobilfunk-talk",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Telfonio GmbH & Co. KG",
+    "runs": [
+        "mobilfunkdealz.de",
+        "mobitalk.de"
+    ],
+    "address": "Chausseestr. 59C\n10115 Berlin\nDeutschland",
+    "phone": "+49 9381 5240220",
+    "email": "support@mobilfunk-talk.de",
+    "web": "https://www.mobilfunk-talk.de",
+    "sources": [
+        "https://www.mobilfunkdealz.de/datenschutzerklaerung/",
+        "https://www.mobilfunkdealz.de/impressum/",
+        "https://www.mobitalk.de/datenschutz/",
+        "https://www.mobitalk.de/impressum/",
+        "https://github.com/datenanfragen/data/pull/2381"
+    ],
+    "quality": "verified"
+}

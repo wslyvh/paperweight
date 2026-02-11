@@ -1,0 +1,16 @@
+{
+    "slug": "codesandbox-io",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "CodeSandbox B.V.",
+    "address": "Singel 542\n1017 AZ Amsterdam\nThe Netherlands",
+    "phone": "+1 650 731 3185",
+    "email": "support@codesandbox.io",
+    "web": "https://codesandbox.io/",
+    "sources": [
+        "https://codesandbox.io/legal/privacy",
+        "https://github.com/datenanfragen/data/pull/2253"
+    ],
+    "quality": "verified"
+}

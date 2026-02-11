@@ -1,0 +1,29 @@
+{
+    "slug": "breuninger",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "E. Breuninger GmbH & Co.",
+    "runs": [
+        "www.breuninger-magazin.com",
+        "Breuninger Outlet www.breuninger-outlet.de",
+        "Sansibar by Breuninger www.sansibarbybreuninger.de",
+        "Breuninger Card",
+        "www.e-breuninger.de",
+        "(karls) kitchen www.karls-kitchen.de"
+    ],
+    "address": "Marktstraße 1 – 3\n70173 Stuttgart\nDeutschland",
+    "phone": "+49 711 211 0",
+    "fax": "+49 711 211 3053",
+    "email": "datenschutz@breuninger.de",
+    "web": "https://www.breuninger.com/",
+    "sources": [
+        "https://www.breuninger.com/de/service/datenschutz/",
+        "https://www.breuninger.com/de/service/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

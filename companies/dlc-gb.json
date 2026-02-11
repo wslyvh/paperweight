@@ -1,0 +1,24 @@
+{
+    "slug": "dlc-gb",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "collection agency"
+    ],
+    "name": "Cabot Credit Management Group Ltd.",
+    "runs": [
+        "dlc"
+    ],
+    "address": "1 Kings Hill Avenue\nKings Hill\nKent\nME19 4UA\nUnited Kingdom",
+    "phone": "+44 344 556 0242",
+    "email": "dataprotection@cabotcm.com",
+    "web": "https://www.cabotcreditmanagement.com/",
+    "sources": [
+        "https://www.cabotcreditmanagement.com/privacy-and-cookie-policy/",
+        "https://www.cabotcreditmanagement.com/businesses/dlc/",
+        "https://github.com/datenanfragen/data/issues/166"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

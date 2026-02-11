@@ -1,0 +1,20 @@
+{
+    "slug": "stadtsparkasse-muenchen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Stadtsparkasse München",
+    "address": "Sparkassenstraße 2\n80331 München\nDeutschland",
+    "phone": "+49 89 21670",
+    "email": "datenschutzbeauftragter@sskm.de",
+    "web": "https://www.sskm.de",
+    "sources": [
+        "https://www.sskm.de/de/home/toolbar/datenschutz.html?n=true&stref=footer",
+        "https://github.com/datenanfragen/data/pull/2786"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

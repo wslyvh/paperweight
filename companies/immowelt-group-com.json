@@ -1,0 +1,33 @@
+{
+    "slug": "immowelt-group-com",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "address": "c/o AVIV Germany GmbH\nOstendstraße 113\n90482 Nürnberg\nDeutschland",
+    "phone": "+49 911 520250",
+    "fax": "+49 911 5202525",
+    "email": "datenschutz@immowelt.de",
+    "web": "https://www.immowelt.de",
+    "sources": [
+        "https://www.immowelt.de/immoweltag/datenschutz"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "name": "immowelt.de"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "bbk-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesamt für Bevölkerungsschutz und Katastrophenhilfe (BBK)",
+    "address": "Provinzialstraße 93\n53127 Bonn\nDeutschland",
+    "phone": "+49 228 99 550 0",
+    "fax": "+49 228 99 550 1620",
+    "email": "datenschutz@bbk.bund.de",
+    "web": "https://www.bbk.bund.de",
+    "sources": [
+        "https://www.bbk.bund.de/DE/Service/Datenschutz/datenschutz_node.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,16 @@
+{
+    "slug": "gartner",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Gartner, Inc",
+    "address": "56 Top Gallant Road\nStamford, CT 06902\nUnited States of America",
+    "email": "privacy@gartner.com",
+    "web": "https://www.gartner.com",
+    "sources": [
+        "https://www.gartner.com/en/about/policies/privacy",
+        "https://www.gartner.com/en/contact/worldwide-offices/europe",
+        "https://github.com/datenanfragen/data/pull/1624"
+    ],
+    "quality": "verified"
+}

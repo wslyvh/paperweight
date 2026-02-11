@@ -1,0 +1,30 @@
+{
+    "slug": "natwest",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "NatWest Group plc",
+    "runs": [
+        "Natwest",
+        "National Westminster Bank Plc",
+        "Bó Banking (formerly)"
+    ],
+    "address": "Manchester Mailroom\n1 Hardman Boulevard\nManchester\nM3 3AQ\nUnited Kingdom",
+    "phone": "+44 345 788 8444",
+    "web": "https://www.natwest.com",
+    "sources": [
+        "https://personal.natwest.com/personal/privacy-policy.html",
+        "https://github.com/datenanfragen/data/pull/824",
+        "https://supportcentre.natwest.com/Searchable/959249182/How-do-I-submit-a-Subject-Access-Request-SAR.htm",
+        "https://wearebo.co.uk/privacy.html"
+    ],
+    "suggested-transport-medium": "letter",
+    "comments": [
+        "Relay UK number: 18001 03457 888 444",
+        "They have an optional PDF form for SAR requests: https://personal.natwest.com/content/dam/natwest/personal/support-centre/pdfs/NWB200788.pdf"
+    ],
+    "quality": "verified"
+}

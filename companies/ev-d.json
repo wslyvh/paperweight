@@ -1,0 +1,19 @@
+{
+    "slug": "ev-d",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "EVD EnergieVersorgung Deutschland GmbH",
+    "address": "Mittelstr. 11 - 13\n40789 Monheim am Rhein\nDeutschland",
+    "phone": "+49 800 7085010",
+    "email": "kundenservice@ev-d.de",
+    "web": "https://www.ev-d.de/",
+    "sources": [
+        "https://www.ev-d.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2008"
+    ],
+    "quality": "verified"
+}

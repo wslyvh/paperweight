@@ -1,0 +1,18 @@
+{
+    "slug": "generali-deutschland-versorgungskasse",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Generali Deutschland Versorgungskasse e.V.",
+    "address": "Oeder Weg 151\n60318 Frankfurt\nDeutschland",
+    "phone": "+49 89 51210",
+    "email": "konzerndatenschutz.de@generali.com",
+    "sources": [
+        "https://www.generali.de/resource/blob/90850/75516d00196aec59f572595ad44cbaa0/Merkblatt_Hinweis_zum_Schutz_ihrer_Daten_GDVK.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

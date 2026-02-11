@@ -1,0 +1,21 @@
+{
+    "slug": "edeka-zentrale",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "EDEKA ZENTRALE AG & Co. KG",
+    "address": "New-York-Ring 6\n22297 Hamburg\nDeutschland",
+    "phone": "+49 40 6377 0",
+    "fax": "+49 40 6377 4000",
+    "email": "info@edeka.de",
+    "web": "https://www.edeka.de/",
+    "sources": [
+        "https://www.edeka.de/modulseiten/impressum-edeka/impressum_edeka_zentrale.jsp",
+        "https://github.com/datenanfragen/data/pull/794",
+        "https://www.edeka.de/modulseiten/datenschutzbestimmungen/datenschutzbestimmungen.jsp"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "jacob-shop",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Jacob Elektronik GmbH",
+    "address": "Greschbachstraße 2-4\n76229 Karlsruhe\nDeutschland",
+    "phone": "+49 721 941760",
+    "fax": "+49 721 94176191",
+    "email": "datenschutz@jacob.de",
+    "web": "https://www.jacob.de/",
+    "sources": [
+        "https://www.jacob.de/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/3183"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

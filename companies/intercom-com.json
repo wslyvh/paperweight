@@ -1,0 +1,28 @@
+{
+    "slug": "intercom-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Intercom R&D Unlimited Company",
+    "address": "2nd Floor\nStephen Court\n18-21 Saint Stephen's Green\nDublin 2\nIreland",
+    "email": "legal@intercom.com",
+    "web": "https://www.intercom.com",
+    "sources": [
+        "https://www.intercom.com/legal/privacy",
+        "https://github.com/datenanfragen/data/pull/944"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "quality": "verified"
+}

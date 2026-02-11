@@ -1,0 +1,24 @@
+{
+    "slug": "propstei-bad-harzburg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Propstei Bad Harzburg",
+    "address": "Lutherstraße 7\n38667 Bad Harzburg\nDeutschland",
+    "phone": "+49 5322 2501",
+    "fax": "+49 5322 8789472",
+    "email": "harzburg.pr@lk-bs.de",
+    "web": "http://www.propstei-badharzburg.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/bad-harzburg.html"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

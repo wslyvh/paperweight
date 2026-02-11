@@ -1,0 +1,40 @@
+{
+    "slug": "mdr",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Mitteldeutscher Rundfunk",
+    "runs": [
+        "MDR JUMP",
+        "KiKA"
+    ],
+    "address": "Kantstraße 71 – 73\n04275 Leipzig\nDeutschland",
+    "email": "datenschutz@mdr.de",
+    "web": "https://www.mdr.de",
+    "sources": [
+        "https://www.mdr.de/service/datenschutz/index.html",
+        "https://www.mdrjump.de/service/datenschutz/index.html",
+        "https://github.com/datenanfragen/data/pull/1754",
+        "https://www.kika.de/eltern/footernavi/datenschutz/index.html",
+        "https://github.com/datenanfragen/data/pull/2245",
+        "https://github.com/datenanfragen/data/pull/2580"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Da die Daten im MDR (aus Datenschutzgründen) nicht zentral gesammelt bzw. von einer zentralen Stelle verarbeitet werden, ist es erforderlich das Auskunftsersuchen zu konkretisieren. \n\n1) In welchem Zusammenhang wurden die personenbezogenen Daten an den MDR übermittelt (z. B. für ein Newsletter-Abo oder ein Gewinnspiel, ggf. unter Nennung des betreffenden TV-, Radio- oder Onlineangebotes des MDR) bzw. werden vom MDR verarbeitet?\n\n2) Auf welchem Wege (z. B. über ein bestimmtes Kontaktformular) wurden die Daten übertragen?\n\n3)  Besteht bereits ein persönlicher Kontakt zu Ansprechpartnern im MDR und wenn ja, wer sind jene?"
+    ],
+    "quality": "tested"
+}

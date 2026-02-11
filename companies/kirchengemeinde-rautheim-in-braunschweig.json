@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-rautheim-in-braunschweig",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Rautheim in Braunschweig",
+    "address": "Zum Ackerberg 16\n38126 Braunschweig\nDeutschland",
+    "phone": "+49 531 691434",
+    "fax": "+49 531 682315",
+    "email": "rautheim.buero@lk-bs.de",
+    "web": "http://www.kirche-rautheim.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=852"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

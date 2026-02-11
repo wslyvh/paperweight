@@ -1,0 +1,27 @@
+{
+    "slug": "lufthansa-airplus-servicekarten-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Lufthansa AirPlus Servicekarten GmbH",
+    "address": "Dornhofstraße 10\n63263 Neu-Isenburg\nDeutschland",
+    "email": "datenschutz@airplus.com",
+    "sources": [
+        "https://www.airplus.com/de/de/rechtliches/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2488"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "runs": [
+        "AirPlus International Srl",
+        "AirPlus International Ltd",
+        "AirPlus International SA/NV",
+        "AirPlus International Inc",
+        "AirPlus Payment Management Co., Ltd",
+        "AirPlus Int. Soluções de Pagamento",
+        "AirPlus International AG"
+    ]
+}

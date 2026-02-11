@@ -1,0 +1,29 @@
+{
+    "slug": "open-knowledge-foundation-deutschland-ev",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "nonprofit"
+    ],
+    "name": "Open Knowledge Foundation Deutschland e.V.",
+    "runs": [
+        "Projekt FragDenStaat"
+    ],
+    "address": "Singerstraße 109\n10179 Berlin\nDeutschland",
+    "phone": "+49 30 577036660",
+    "fax": "+49 30 577036669",
+    "email": "datenschutz@okfn.de",
+    "pgp-fingerprint": "2E42 43C2 B587 17C4 0168  4E8E 9474 37A3 AD0C 3653",
+    "pgp-url": "https://okfn.de/okf/datenschutz_okfn_de_pub.asc",
+    "web": "https://okfn.de/",
+    "sources": [
+        "https://okfn.de/impressum/#datenschutzerkl%C3%A4rung",
+        "https://github.com/datenanfragen/data/issues/197",
+        "https://github.com/datenanfragen/data/pull/2736",
+        "https://fragdenstaat.de/datenschutzerklaerung/"
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,23 @@
+{
+    "slug": "wirecloud",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "DALASON GmbH",
+    "runs": [
+        "Wirecloud"
+    ],
+    "address": "Im Mediapark 5\n50670 Köln\nDeutschland",
+    "phone": "+49 221 17739620",
+    "email": "datenschutz@dalason.de",
+    "web": "https://www.wirecloud.de/",
+    "sources": [
+        "https://www.wirecloud.de/impressum/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1055"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

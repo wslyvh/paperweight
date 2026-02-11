@@ -1,0 +1,72 @@
+{
+    "slug": "zarenga",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Zarenga GmbH",
+    "runs": [
+        "leben-ohne-akne.de",
+        "brandaktuelle-aktionen.de",
+        "pdf2txt.de",
+        "hba1c.info",
+        "abendgymnasium-info.de",
+        "imgbox.de",
+        "iphone-x-gewinnspiel.de",
+        "weekly-news.de",
+        "mustervertrag.net",
+        "morbus-crohn-aktuell.de",
+        "wirtschaft-technik.de",
+        "enttaeuschungen.de",
+        "was-ist-gicht.de",
+        "myimg.de",
+        "partyzettel.de",
+        "borreliose-infektionskrankheiten.de",
+        "bilder-hochladen.tv",
+        "fotosverkleinern.de",
+        "mietpreisermittlung.de",
+        "tagesaktuelleangebote.de"
+    ],
+    "address": "Pfaffenweg 15\n53227 Bonn\nDeutschland",
+    "phone": "+49 228 688203105",
+    "email": "datenschutz@zarenga.de",
+    "web": "https://www.zarenga.com",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/354",
+        "https://github.com/datenanfragen/data/pull/871",
+        "https://www.zarenga.com/datenschutz.php",
+        "https://www.zarenga.com/kontakt.html",
+        "https://www.leben-ohne-akne.de/datenschutz",
+        "https://www.pdf2txt.de/datenschutz.html",
+        "https://www.hba1c.info/datenschutz.php",
+        "https://abendgymnasium-info.de/datenschutz/",
+        "https://www.imgbox.de/info/datenschutz/",
+        "https://iphone-x-gewinnspiel.de/datenschutz.php",
+        "https://www.mustervertrag.net/datenschutz",
+        "https://www.morbus-crohn-aktuell.de/datenschutz/",
+        "https://wirtschaft-technik.de/datenschutz.php",
+        "https://www.enttaeuschungen.de/datenschutz/",
+        "https://www.was-ist-gicht.de/datenschutz.html",
+        "https://www.myimg.de/?page=datenschutz",
+        "https://partyzettel.de/datenschutz/",
+        "https://www.borreliose-infektionskrankheiten.de/datenschutz/",
+        "https://www.bilder-hochladen.tv/page/datenschutz",
+        "https://www.fotosverkleinern.de/datenschutz.php",
+        "https://www.mietpreisermittlung.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2875"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

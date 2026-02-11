@@ -1,0 +1,21 @@
+{
+    "slug": "talent-worldwide",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Talent Worldwide Inc.",
+    "runs": [
+        "TopCV",
+        "TopResume"
+    ],
+    "address": "Kemp House\n152 - 160 City Road\nLondon\nEC1V 2NX\nUnited Kingdom",
+    "phone": "+44 800 0293 253",
+    "email": "privacy@topcv.co.uk",
+    "sources": [
+        "https://www.topcv.co.uk/privacy",
+        "https://github.com/datenanfragen/data/pull/1713",
+        "https://www.topcv.co.uk/contact"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

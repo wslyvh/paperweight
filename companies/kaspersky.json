@@ -1,0 +1,17 @@
+{
+    "slug": "kaspersky",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Kaspersky Labs GmbH",
+    "address": "Despag-Straße 3\nD-85055 Ingolstadt\nDeutschland",
+    "email": "dpo@kaspersky.com",
+    "webform": "https://support.kaspersky.com/de/general/privacy",
+    "web": "https://www.kaspersky.de",
+    "sources": [
+        "https://www.kaspersky.de/legal",
+        "https://www.kaspersky.de/web-privacy-policy",
+        "https://github.com/datenanfragen/data/pull/2672"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,32 @@
+{
+    "slug": "ikano-bank-fi",
+    "relevant-countries": [
+        "fi"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Ikano Bank AB - Suomen sivuliike",
+    "address": "PL 85\n02601 Espoo\nFinland",
+    "phone": "+358 10 7735718",
+    "email": "tietosuoja@ikano.fi",
+    "web": "https://ikanobank.fi/",
+    "sources": [
+        "https://ikanobank.fi/tietoameistä/tietosuoja",
+        "https://github.com/datenanfragen/data/pull/1056"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

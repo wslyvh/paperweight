@@ -1,0 +1,19 @@
+{
+    "slug": "flaschenpost",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "flaschenpost SE",
+    "address": "Sentmaringer Weg 21\n48151 Münster\nDeutschland",
+    "email": "datenschutz@flaschenpost.de",
+    "web": "https://www.flaschenpost.de/",
+    "sources": [
+        "https://www.flaschenpost.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1837"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

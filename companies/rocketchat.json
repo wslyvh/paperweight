@@ -1,0 +1,26 @@
+{
+    "slug": "rocketchat",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication",
+        "social media"
+    ],
+    "name": "Rocket.Chat Technologies Corp.",
+    "address": "2711 Centerville Road\nSuite 400 Wilmington\nDE 19808\nUnited States of America",
+    "email": "privacy@rocket.chat",
+    "web": "https://rocket.chat",
+    "sources": [
+        "https://rocket.chat/terms",
+        "https://rocket.chat/privacy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

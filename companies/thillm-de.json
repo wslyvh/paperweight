@@ -1,0 +1,24 @@
+{
+    "slug": "thillm-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school"
+    ],
+    "runs": [
+        "Thüringer Schulportal (TSP)"
+    ],
+    "address": "Heinrich-Heine-Allee 2-4\n99438 Bad Berka\nDeutschland",
+    "phone": "+49 36458 56288",
+    "fax": "+49 36458 56300",
+    "email": "datenschutzbeauftragter@thillm.de",
+    "web": "https://www.schulportal-thueringen.de/thillm",
+    "sources": [
+        "https://www.schulportal-thueringen.de/get-data/fd48ceaf-b132-4ac1-b0c8-c2ecb3e80f91/Datenschutzinformationen%20des%20ThILLM.pdf",
+        "https://www.schulportal-thueringen.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2782"
+    ],
+    "quality": "verified",
+    "name": "Thüringer Institut für Lehrerfortbildung, Lehrplanentwicklung und Medien (ThILLM)"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "frankfurter-societaets-medien",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Frankfurter Societäts-Medien GmbH",
+    "runs": [
+        "Frankfurter Neue Presse (FNP)"
+    ],
+    "address": "Hedderichstraße 49\n60594 Frankfurt\nDeutschland",
+    "phone": "+49 69 75010",
+    "email": "datenschutz@fnp.de",
+    "web": "https://www.fnp.de",
+    "sources": [
+        "https://www.fnp.de/ueber-uns/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2411"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

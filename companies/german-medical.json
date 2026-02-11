@@ -1,0 +1,13 @@
+{
+    "slug": "german-medical",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Fairpreis GmbH",
+    "address": "Kruppstraße 7\n47475 Kamp-Lintfort\nDeutschland",
+    "sources": [
+        "https://www.northdata.de/Fairpreis%20GmbH,%20Kamp-Lintfort/Amtsgericht%20Kleve%20HRB%207260",
+        "https://github.com/datenanfragen/data/pull/1257"
+    ],
+    "quality": "verified"
+}

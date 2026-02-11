@@ -1,0 +1,20 @@
+{
+    "slug": "paydirekt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "paydirekt GmbH",
+    "runs": [
+        "giropay (ehem.)"
+    ],
+    "address": "c/o GÖRG Partnerschaft von Rechtsanwälten mbB\nUlmenstr. 30\n60325 Frankfurt a. Main\nDeutschland",
+    "sources": [
+        "https://www.northdata.de/paydirekt%20GmbH,%20Frankfurt%20a%C2%B7%20Main/Amtsgericht%20Frankfurt%20am%20Main%20HRB%2099538",
+        "https://www.girocard.eu/news-media/blog/giropay-eingestellt/",
+        "https://github.com/datenanfragen/data/pull/1176"
+    ],
+    "quality": "verified"
+}

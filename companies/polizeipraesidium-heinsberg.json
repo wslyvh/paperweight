@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-heinsberg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Der Landrat als Kreispolizeibehörde Heinsberg",
+    "address": "Carl-Severing-Straße 1\n52525 Heinsberg\nDeutschland",
+    "phone": "+49 2452 9200",
+    "fax": "+49 2452 9201009",
+    "email": "datenschutz.heinsberg@polizei.nrw.de",
+    "web": "https://heinsberg.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

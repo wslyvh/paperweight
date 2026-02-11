@@ -1,0 +1,20 @@
+{
+    "slug": "edarling",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Spark Networks Services GmbH",
+    "runs": [
+        "eDarling (www.edarling.de)"
+    ],
+    "address": "Kohlfurter Straße 41/43\n10999 Berlin\nDeutschland",
+    "fax": "+49 30 22 386 739",
+    "email": "dataprotection@edarling.de",
+    "web": "https://www.edarling.de/",
+    "sources": [
+        "https://www.edarling.de/datenschutz",
+        "https://www.edarling.de/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "hoeffner",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Höffner Online GmbH & Co. KG",
+    "address": "Am Rondell 1\n12529 Schönefeld\nDeutschland",
+    "phone": "+49 30 3744402",
+    "fax": "+49 30 374448700",
+    "email": "datenschutz@hoeffner.de",
+    "web": "https://www.hoeffner.de",
+    "sources": [
+        "https://www.hoeffner.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1297"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

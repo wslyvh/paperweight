@@ -1,0 +1,21 @@
+{
+    "slug": "companisto",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Companisto GmbH",
+    "address": "Köpenicker Str. 154\n10997 Berlin\nDeutschland",
+    "phone": "+49 30 346 491 493",
+    "email": "datenschutz@companisto.com",
+    "web": "https://www.companisto.com",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/102",
+        "https://www.companisto.com/en/page/privacy-policy"
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

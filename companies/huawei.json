@@ -1,0 +1,26 @@
+{
+    "slug": "huawei",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce",
+        "telecommunication",
+        "social media"
+    ],
+    "name": "Huawei Technologies Co. Ltd.",
+    "runs": [
+        "HUAWEI TECHNOLOGIES Deutschland GmbH"
+    ],
+    "address": "Huawei Base\nBantian\nLonggang District\nShenzhen\nChina",
+    "phone": "+86 755 2878 0808",
+    "email": "mobile@huawei.com",
+    "webform": "https://www.huawei.com/en/personal-data-request",
+    "web": "https://www.huawei.com",
+    "sources": [
+        "https://www.huawei.com/en/privacy-policy",
+        "https://www.huawei.com/en/contact-us",
+        "https://www.huawei.com/de/impressum"
+    ],
+    "quality": "verified"
+}

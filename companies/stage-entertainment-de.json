@@ -1,0 +1,39 @@
+{
+    "slug": "stage-entertainment-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment",
+        "commerce"
+    ],
+    "name": "STAGE ENTERTAINMENT Marketing & Sales GmbH",
+    "address": "Kehrwieder 6\n20457 Hamburg\nDeutschland",
+    "email": "datenschutzbeauftragter@stage-entertainment.de",
+    "web": "https://www.stage-entertainment.de/",
+    "sources": [
+        "https://www.stage-entertainment.de/service/datenschutz.html",
+        "https://www.stage-entertainment.com/companies",
+        "https://github.com/datenanfragen/data/pull/959",
+        "https://github.com/datenanfragen/data/pull/2276"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": false
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

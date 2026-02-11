@@ -1,0 +1,27 @@
+{
+    "slug": "basler-versicherungen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Baloise Versicherungen",
+    "runs": [
+        "Baloise Sachversicherung AG",
+        "Baloise Lebensversicherung AG",
+        "Basler Versicherungen (ehem.)"
+    ],
+    "address": "Basler Straße 4\n61352 Bad Homburg\nDeutschland",
+    "phone": "+49 6172 1254600",
+    "fax": "+49 6172 1254056",
+    "email": "datenschutz@baloise.de",
+    "web": "https://www.baloise.de/",
+    "sources": [
+        "https://www.baloise.de/de/ueber-uns/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/1239",
+        "https://github.com/datenanfragen/data/pull/2324"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

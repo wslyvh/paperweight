@@ -1,0 +1,23 @@
+{
+    "slug": "missguided",
+    "relevant-countries": [
+        "de",
+        "es",
+        "fr",
+        "ie",
+        "pl",
+        "gb"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Missguided",
+    "address": "12 Marina Boulevard, #15-01\nMarina Bay Financial Centre\nSingapore 018982\nRepublic of Singapore",
+    "email": "data@missguided.com",
+    "web": "https://www.missguided.com/",
+    "sources": [
+        "https://www.missguided.com/page/privacy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

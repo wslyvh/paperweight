@@ -1,0 +1,21 @@
+{
+    "slug": "mlp-finanzberatung",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "MLP Finanzberatung SE",
+    "address": "Alte Heerstraße 40\n69168 Wiesloch\nDeutschland",
+    "phone": "+49 6222 3080",
+    "fax": "+49 6222 3089000",
+    "email": "datenschutzbeauftragter@mlp.de",
+    "web": "https://mlp.de/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/536",
+        "https://mlp.de/mlp/datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,15 @@
+{
+    "slug": "crystalknows",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Crystal Project, Inc.",
+    "address": "90 Oceanside Dr\nNashville\nTN 37204\nUnited States of America",
+    "email": "hello@crystalknows.com",
+    "web": "https://www.crystalknows.com",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/470",
+        "https://www.crystalknows.com/privacy"
+    ],
+    "quality": "verified"
+}

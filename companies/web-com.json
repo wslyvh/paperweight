@@ -1,0 +1,44 @@
+{
+    "slug": "web-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Newfold Digital, Inc.",
+    "runs": [
+        "Register.com, Inc. (www.register.com)",
+        "Network Solutions, LLC (www.networksolutions.com)",
+        "Bluehost, Inc. (www.bluehost.com)",
+        "HostGator.com, LLC (www.hostgator.com)",
+        "NameSecure, LLC (www.namesecure.com)",
+        "Domain.com, LLC (www.domain.com)",
+        "SnapNames (www.snapnames.com)",
+        "Web.com Group, Inc. (www.web.com)",
+        "NameJet (www.namejet.com)",
+        "ResellerClub (www.resellerclub.com)",
+        "iPage (www.ipage.com)",
+        "BigRock (www.bigrock.com)",
+        "SiteBuilder (www.sitebuilder.com)",
+        "LogicBoxes (www.logicboxes.com)",
+        "BuyDomains (www.buydomains.com)",
+        "FatCow (www.fatcow.com)",
+        "Netfirms (www.netfirms.com)",
+        "P.D.R Solutions LLC (www.publicdomainregistry.com)",
+        "The Endurance International Group, Inc. (formerly)",
+        "Crazy Domains (www.crazydomains.com)"
+    ],
+    "address": "5335 Gate Pkwy\nJacksonville, FL 32256\nUnited States of America",
+    "email": "privacy@newfold.com",
+    "webform": "https://newfold.com/privacy-center/requests",
+    "web": "https://www.newfold.com/",
+    "sources": [
+        "https://newfold.com/privacy-center/privacy",
+        "https://newfold.com/privacy-center/addendum-eu-gdpr",
+        "https://github.com/datenanfragen/data/pull/1625"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "webform",
+    "quality": "verified"
+}

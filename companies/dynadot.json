@@ -1,0 +1,21 @@
+{
+    "slug": "dynadot",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Dynadot LLC",
+    "address": "PO Box 345\nSan Mateo\nCA 94401-0345\nUnited States of America",
+    "phone": "+1 866 262 3399",
+    "fax": "+1 415 869 2893",
+    "email": "DataProtectionOfficer@dynadot.com",
+    "web": "https://www.dynadot.com/",
+    "sources": [
+        "https://www.dynadot.com/terms-of-use.html",
+        "https://www.bbb.org/greater-san-francisco/business-reviews/web-hosting/dynadot-llc-in-san-mateo-ca-119068"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

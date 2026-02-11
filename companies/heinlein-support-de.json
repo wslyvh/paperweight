@@ -1,0 +1,34 @@
+{
+    "slug": "heinlein-support-de",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Heinlein Support GmbH",
+    "runs": [
+        "mailbox.org",
+        "JPBerlin",
+        "Heinlein Hosting",
+        "Heinlein Consulting",
+        "Heinlein Akademie",
+        "ox.io"
+    ],
+    "address": "Schwedter Straße 8/9B\n10119 Berlin\nDeutschland",
+    "phone": "+49 30 4050510",
+    "email": "privacy@heinlein-support.de",
+    "web": "https://www.heinlein-support.de",
+    "sources": [
+        "https://www.heinlein-support.de/datenschutz"
+    ],
+    "required-elements": [
+        {
+            "desc": "Email",
+            "type": "name",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

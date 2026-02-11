@@ -1,0 +1,21 @@
+{
+    "slug": "partner-de",
+    "relevant-countries": [
+        "de",
+        "ch"
+    ],
+    "name": "partner.de",
+    "runs": [
+        "partner.ch"
+    ],
+    "address": "c/o NEU.DE GmbH\nNeuturmstraße 5\n80331 München\nDeutschland",
+    "email": "privacy@partner.de",
+    "web": "https://www.partner.de/",
+    "sources": [
+        "https://www.partner.de/pages/misc/privacy",
+        "https://www.partner.de/pages/misc/impressum",
+        "https://www.partner.ch/pages/misc/privacy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

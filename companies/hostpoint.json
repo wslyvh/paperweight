@@ -1,0 +1,28 @@
+{
+    "slug": "hostpoint",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Hostpoint AG",
+    "address": "Neue Jonastrasse 60\n8640 Rapperswil-Jona\nSwitzerland",
+    "phone": "+41 55 220 63 10",
+    "fax": "+41 844 090 909",
+    "email": "privacy@hostpoint.ch",
+    "web": "https://www.hostpoint.ch",
+    "sources": [
+        "https://www.hostpoint.ch/en/hostpoint/contact-gtc.html",
+        "https://github.com/datenanfragen/data/pull/997"
+    ],
+    "required-elements": [
+        {
+            "desc": "Email (Hostpoint ID)",
+            "type": "name",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

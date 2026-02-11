@@ -1,0 +1,21 @@
+{
+    "slug": "goldbach-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Goldbach Germany GmbH",
+    "address": "c/o ePrivacy GmbH\nGroße Bleichen 21\n20354 Hamburg\nDeutschland",
+    "phone": "+49 89 614240400",
+    "email": "oba@de.goldbach.com",
+    "web": "https://goldbach.com/de/de",
+    "sources": [
+        "https://goldbach.com/de/de/datenschutz/goldbach-germany",
+        "https://goldbach.com/de/de/impressum"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

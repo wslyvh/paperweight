@@ -1,0 +1,23 @@
+{
+    "slug": "jaduda",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Jaduda GmbH",
+    "address": "Körtestraße 10\n10967 Berlin\nGermany",
+    "phone": "+49 30 6094028 0",
+    "fax": "+49 30 7001431 242",
+    "email": "oba@goldbach.jaduda.com",
+    "web": "https://www.jaduda.com/",
+    "sources": [
+        "https://www.jaduda.com/datenschutzerklaerung/",
+        "https://www.jaduda.com/impressum/"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

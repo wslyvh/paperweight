@@ -1,0 +1,37 @@
+{
+    "slug": "ergo-group",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "ERGO Group AG",
+    "runs": [
+        "ERGO Direkt AG",
+        "ERGO Direkt Lebensversicherung AG",
+        "ERGO Direkt Versicherung AG",
+        "ERGO Direkt Krankenversicherung AG",
+        "ERGO Vorsorge Lebensversicherung AG",
+        "ERGO Krankenversicherung AG",
+        "ERGO Versicherung AG",
+        "Victoria Lebensversicherung AG",
+        "DKV Deutsche Krankenversicherung AG",
+        "ERGO Reiseversicherung AG",
+        "ERGO Lebensversicherung AG"
+    ],
+    "address": "ERGO-Platz 1\n40198 Düsseldorf\nDeutschland",
+    "phone": "+49 800 666 9000",
+    "fax": "+49 211 477 1500",
+    "email": "datenschutz@ergo.de",
+    "web": "https://www.ergo.de",
+    "sources": [
+        "https://www.ergo.de/de/Service/Datenschutz",
+        "https://github.com/datenanfragen/data/issues/41",
+        "https://github.com/datenanfragen/data/issues/1398",
+        "https://github.com/datenanfragen/data/pull/1396",
+        "https://www.ergo.de/de/Service/Kontakt"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,37 @@
+{
+    "slug": "barmeniade",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Barmenia Versicherungen a. G.",
+    "runs": [
+        "Barmenia Allgemeine Versicherungs-AG",
+        "Barmenia Krankenversicherung AG",
+        "Barmenia Lebensversicherung a. G."
+    ],
+    "address": "Barmenia-Allee 1\n42119 Wuppertal\nDeutschland",
+    "phone": "+49 202 43800",
+    "email": "datenschutz@barmenia.de",
+    "web": "https://www.barmenia.de/",
+    "sources": [
+        "https://www.barmenia.de/deu/bde_privat/datenschutz.xhtml",
+        "https://github.com/datenanfragen/data/pull/691"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

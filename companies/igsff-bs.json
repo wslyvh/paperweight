@@ -1,0 +1,21 @@
+{
+    "slug": "igsff-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "IGS Franzsches Feld Braunschweig",
+    "address": "Grünewaldstraße 12a\n38104 Braunschweig\nDeutschland",
+    "phone": "+49 531 470 5850",
+    "fax": "+49 531 470 5858",
+    "email": "igsff@braunschweig.de",
+    "web": "https://www.igsff.de/",
+    "sources": [
+        "https://www.igsff.de/datenschutzerklaerung/",
+        "https://www.igsff.de/service/kontakt/"
+    ],
+    "request-language": "de",
+    "quality": "verified"
+}

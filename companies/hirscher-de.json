@@ -1,0 +1,26 @@
+{
+    "slug": "hirscher-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Hirscher Datentechnik GmbH",
+    "address": "Wöhrder Hauptstraße 31\n90489 Nürnberg\nDeutschland",
+    "phone": "+49 911 588660",
+    "email": "datenschutz@hirscher.de",
+    "web": "https://www.hirscher.de",
+    "sources": [
+        "https://www.hirscher.de/datenschutzerklaerung/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

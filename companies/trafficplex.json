@@ -1,0 +1,22 @@
+{
+    "slug": "trafficplex",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "TrafficPlex GmbH",
+    "runs": [
+        "lima-city",
+        "bitbackup"
+    ],
+    "address": "Konsul-Smidt-Str. 90\n28217 Bremen\nDeutschland",
+    "phone": "+49 421 40 89 94 50",
+    "fax": "+49 421 40 89 94 59",
+    "email": "info@trafficplex.de",
+    "web": "https://www.trafficplex.de",
+    "sources": [
+        "https://www.trafficplex.de/about_us.html#impressum",
+        "https://www.lima-city.de/juristisches#datenschutzerklaerung",
+        "https://github.com/datenanfragen/data/pull/949"
+    ],
+    "quality": "verified"
+}

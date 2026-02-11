@@ -1,0 +1,18 @@
+{
+    "slug": "datenschutz-planb-ruhr-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "PLANB Ruhr e.V.",
+    "address": "Alleestr. 46\n44793 Bochum\nDeutschland",
+    "phone": "+49 234 4596690",
+    "fax": "+49 234 45966999",
+    "email": "datenschutz@planb-ruhr.de",
+    "web": "https://www.planb-ruhr.de",
+    "sources": [
+        "https://planb-ruhr.de/index.php/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2456"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

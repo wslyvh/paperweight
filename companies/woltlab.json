@@ -1,0 +1,21 @@
+{
+    "slug": "woltlab",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "WoltLab GmbH",
+    "runs": [
+        "WoltLab Suite",
+        "WoltLab Burning Board (WBB)"
+    ],
+    "address": "Nedlitzer Str. 27B\n14469 Potsdam\nGermany",
+    "phone": "+49 331 96784338",
+    "email": "woltlab@woltlab.com",
+    "web": "https://www.woltlab.com",
+    "sources": [
+        "https://www.woltlab.com/de/legal-notice/",
+        "https://github.com/datenanfragen/data/pull/776",
+        "https://www.woltlab.com/de/privacy-policy/"
+    ],
+    "quality": "verified"
+}

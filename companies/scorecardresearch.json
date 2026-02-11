@@ -1,0 +1,25 @@
+{
+    "slug": "scorecardresearch",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Comscore, Inc.",
+    "runs": [
+        "ScorecardResearch"
+    ],
+    "address": "11950 Democracy Drive\nReston, VA 20190\nUnited States of America",
+    "phone": "+1 833 713 1509",
+    "email": "DSR@comscore.com",
+    "webform": "https://www.comscore.com/About/Privacy/Data-Subject-Rights",
+    "web": "https://www.comscore.com",
+    "sources": [
+        "https://www.scorecardresearch.com/privacy.aspx",
+        "https://www.comscore.com/About/Privacy-Policy"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

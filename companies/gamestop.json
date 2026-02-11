@@ -1,0 +1,25 @@
+{
+    "slug": "gamestop",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "GameStop Deutschland GmbH",
+    "address": "Fraunhoferstraße 84\n87700 Memmingen\nDeutschland",
+    "phone": "+49 8331 92 92 0",
+    "email": "datenschutz@gamestop.de",
+    "web": "https://www.gamestop.de/",
+    "sources": [
+        "https://www.gamestop.de/Help/Index?section=Impressum",
+        "https://de.m.wikipedia.org/wiki/GameStop",
+        "https://github.com/datenanfragen/data/issues/30",
+        "https://www.gamestop.de/Help/Index?section=Privacy"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

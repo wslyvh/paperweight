@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-viersen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Der Landrat als Kreispolizeibehörde Viersen",
+    "address": "Lindenstraße 50\n41747 Viersen\nDeutschland",
+    "phone": "+49 2162 3770",
+    "fax": "+49 2162 3774242",
+    "email": "datenschutz.viersen@polizei.nrw.de",
+    "web": "https://viersen.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

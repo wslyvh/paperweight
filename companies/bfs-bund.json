@@ -1,0 +1,21 @@
+{
+    "slug": "bfs-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesamt für Strahlenschutz (BfS)",
+    "address": "Willy-Brandt-Straße 5\n38226 Salzgitter\nDeutschland",
+    "phone": "+49 30 18 333 1410",
+    "fax": "+49 30 18 333 1415",
+    "email": "datenschutzbeauftragte@bfs.de",
+    "web": "https://www.bfs.de",
+    "sources": [
+        "https://www.bfs.de/DE/service/datenschutz/datenschutz_node.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

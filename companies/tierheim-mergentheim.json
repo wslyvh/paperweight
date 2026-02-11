@@ -1,0 +1,22 @@
+{
+    "slug": "tierheim-mergentheim",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "nonprofit"
+    ],
+    "name": "Tierschutzverein Bad Mergentheim und Umgebung e.V.",
+    "runs": [
+        "Tierheim Mergentheim"
+    ],
+    "address": "Nachbarschaftsweg\n(unterhalb Burg Neuhaus)\n97999 Igersheim\nDeutschland",
+    "phone": "+49 7931 44960",
+    "email": "info@tierheim-mergentheim.de",
+    "web": "https://www.tierheim-mergentheim.de/",
+    "sources": [
+        "https://www.tierheim-mergentheim.de/Ueber-uns/Datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1892"
+    ],
+    "quality": "verified"
+}

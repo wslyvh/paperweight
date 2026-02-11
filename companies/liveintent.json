@@ -1,0 +1,22 @@
+{
+    "slug": "liveintent",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "LiveIntent, Inc.",
+    "address": "222 Broadway\nFl. 22\nNew York\nNY\nUnited States of America",
+    "phone": "+1 212 792 5348",
+    "email": "privacy@liveintent.com",
+    "web": "https://www.liveintent.com/",
+    "sources": [
+        "https://www.liveintent.com/services-privacy-policy/",
+        "https://www.liveintent.com/get-in-touch/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

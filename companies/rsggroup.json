@@ -1,0 +1,40 @@
+{
+    "slug": "rsggroup",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "RSG Group GmbH",
+    "runs": [
+        "Gold’s Gym",
+        "John Reed",
+        "McFIT",
+        "High5",
+        "John & Jane's",
+        "Cyberobics",
+        "LOOX",
+        "The Mirai",
+        "Qi²",
+        "The Reed",
+        "McFIT Models",
+        "Pearl Model Management",
+        "Tigerpool",
+        "Marcell von Berlin",
+        "Ron Miller",
+        "Steven Baker",
+        "Master of Ethusiasm"
+    ],
+    "address": "Tannenberg 4\n96132 Schlüsselfeld\nDeutschland",
+    "phone": "+49 9552 93190",
+    "fax": "+49 9552 9319115",
+    "email": "datenschutz@rsggroup.com",
+    "web": "https://rsggroup.com/",
+    "sources": [
+        "https://rsggroup.com/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1177"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

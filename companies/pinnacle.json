@@ -1,0 +1,19 @@
+{
+    "slug": "pinnacle",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "PinBet Malta Ltd",
+    "address": "Level 4, The Penthouse, Suite 2\nEwropa Business Centre\nTriq Dun Karm\nBirkirkara\nBKR9034\nMalta",
+    "email": "dpo@pinnacle.bet",
+    "sources": [
+        "https://www.pinnacle.bet/en/future/privacy-policy/malta",
+        "https://github.com/datenanfragen/data/pull/1597"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "nsfw": true
+}

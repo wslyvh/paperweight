@@ -1,0 +1,20 @@
+{
+    "slug": "di-gemsa-inkasso",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "collection agency"
+    ],
+    "name": "DIRECT INKASSO e.K.",
+    "address": "Grimmelallee 10\n99734 Nordhausen\nDeutschland",
+    "phone": "+49 36 31 49 78 0",
+    "fax": "+49 36 31 49 78 78",
+    "email": "datenschutz@di-gemsa.de",
+    "web": "https://di-gemsa.de/",
+    "sources": [
+        "https://di-gemsa.de/Datenschutz"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,27 @@
+{
+    "slug": "visa-eu",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Visa Europe Limited",
+    "runs": [
+        "CyberSource",
+        "Authorize.net"
+    ],
+    "address": "1 Sheldon Square\nLondon\nW2 6TT\nUnited Kingdom",
+    "email": "privacy@visa.com",
+    "webform": "https://privacyportal.onetrust.com/webform/dd0d9755-b749-45c9-8c89-f768637132db/5a22945a-fdfb-4512-afc4-4ab313d70536",
+    "web": "https://www.visaeurope.com/",
+    "sources": [
+        "https://www.visa.co.uk/legal/global-privacy-notice/jurisdictional-notice-eea.html",
+        "https://www.visa.co.uk/legal/privacy-policy.html",
+        "https://www.visa.de/impressum.html",
+        "https://www.authorize.net/about-us.html",
+        "https://www.cybersource.com/en/about.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "csu",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "political party"
+    ],
+    "name": "Christlich-Soziale Union in Bayern e.V. (CSU)",
+    "address": "Mies-van-der-Rohe-Straße 1\n80807 München\nDeutschland",
+    "phone": "+49 89 12430",
+    "fax": "+49 89 12434297",
+    "email": "datenschutzbeauftragter@csu-bayern.de",
+    "web": "https://www.csu.de/",
+    "sources": [
+        "https://www.csu.de/datenschutz/",
+        "https://github.com/datenanfragen/data/issues/149"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

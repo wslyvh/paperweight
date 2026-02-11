@@ -1,0 +1,32 @@
+{
+    "slug": "verdi-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "ver.di - Vereinte Dienstleistungsgewerkschaft",
+    "address": "Paula-Thiede-Ufer 10\n10179 Berlin\nDeutschland",
+    "phone": "+49 30 69560",
+    "fax": "+49 30 69563141",
+    "email": "datenschutz@verdi.de",
+    "web": "https://www.verdi.de",
+    "sources": [
+        "https://www.verdi.de/impressum/",
+        "https://datenschutz.verdi.de/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        },
+        {
+            "desc": "Mitgliedsnummer",
+            "type": "input"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

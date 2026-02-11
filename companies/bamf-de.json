@@ -1,0 +1,26 @@
+{
+    "slug": "bamf-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesamt für Migration und Flüchtlinge",
+    "runs": [
+        "Ankommen-App (ankommenapp.de)"
+    ],
+    "address": "Frankenstraße 210\n90461 Nürnberg\nDeutschland",
+    "phone": "+49 911 943 0",
+    "fax": "+49 911 943 10000",
+    "email": "service@bamf.bund.de",
+    "webform": "https://www.bamf.de/DE/Service/Kontakt/kontakt-direkt-formular-node.html?cms_contactData=325880",
+    "web": "https://www.bamf.de",
+    "sources": [
+        "https://www.bamf.de/DE/Service/Datenschutz/datenschutz_node.html",
+        "https://www.bamf.de/DE/Service/Impressum/impressum-node.html",
+        "https://www.ankommenapp.de/APP/DE/Service/Datenschutz/datenschutz-node.html"
+    ],
+    "request-language": "de",
+    "quality": "verified"
+}

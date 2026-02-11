@@ -1,0 +1,17 @@
+{
+    "slug": "immowelt-hamburg-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "immonet.de",
+    "address": "c/o AVIV Germany GmbH\nOstendstraße 113\n90482 Nürnberg\nDeutschland",
+    "phone": "+49 911 520250",
+    "fax": "+49 911 5202525",
+    "email": "datenschutz@immowelt.de",
+    "web": "https://www.immonet.de/",
+    "sources": [
+        "https://www.immonet.de/datenschutz"
+    ],
+    "request-language": "de",
+    "quality": "verified"
+}

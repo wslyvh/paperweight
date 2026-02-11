@@ -1,0 +1,23 @@
+{
+    "slug": "cosair",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Corsair Memory Inc.",
+    "runs": [
+        "Elgato",
+        "SCUF Gaming",
+        "Origin PC",
+        "Epocam",
+        "iCUE",
+        "WaveLink"
+    ],
+    "address": "115 N. McCarthy Boulevard\nMilpitas, CA 95035\nUnited States of America",
+    "email": "data.controller@corsair.com",
+    "sources": [
+        "https://www.corsair.com/de/de/s/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/2784"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

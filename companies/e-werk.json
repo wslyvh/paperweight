@@ -1,0 +1,31 @@
+{
+    "slug": "e-werk",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "E-Werk Kulturzentrum GmbH",
+    "address": "c/o WGM Consulting GmbH\nTheatinerstrasse 11\n80333 München\nDeutschland",
+    "phone": "+49 89 710422498",
+    "email": "info@wgm-consulting.de",
+    "web": "https://www.e-werk.de",
+    "sources": [
+        "https://www.e-werk.de/impressum/",
+        "https://www.e-werk.de/datenschutz/",
+        "https://github.com/datenanfragen/data/issues/454"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

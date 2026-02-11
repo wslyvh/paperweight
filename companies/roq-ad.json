@@ -1,0 +1,20 @@
+{
+    "slug": "roq-ad",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Roq.ad GmbH",
+    "address": "c/o ePrivacy GmbH\nGroße Bleichen 21\n20354 Hamburg\nGermany",
+    "phone": "+49 172 5897954",
+    "email": "privacy@roq.ad",
+    "web": "https://www.roq.ad/",
+    "sources": [
+        "https://www.roq.ad/privacy-policy-roqad/",
+        "https://github.com/datenanfragen/data/pull/2229"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

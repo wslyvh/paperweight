@@ -1,0 +1,20 @@
+{
+    "slug": "rockerbox",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Rockerbox, Inc.",
+    "address": "138 Mulberry Street\n#6A3\nNew York\nNY 10013 - 0645\nUnited States of America",
+    "email": "privacy@rockerbox.com",
+    "web": "https://www.rockerbox.com/",
+    "sources": [
+        "https://www.rockerbox.com/privacy"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

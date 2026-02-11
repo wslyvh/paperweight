@@ -1,0 +1,45 @@
+{
+    "slug": "fti-touristik",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel",
+        "insurance"
+    ],
+    "name": "FTI Touristik GmbH",
+    "address": "Landsberger Straße 88\n80339 München\nDeutschland",
+    "phone": "+49 89 25250",
+    "fax": "+49 89 25256565",
+    "email": "datenschutz@fti.de",
+    "web": "https://www.fti.de/",
+    "sources": [
+        "https://www.fti.de/datenschutz.html",
+        "https://www.fti.de/impressum.html",
+        "https://github.com/datenanfragen/data/pull/2593"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": false
+        },
+        {
+            "desc": "Geburtsdatum",
+            "type": "birthdate",
+            "optional": true
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email",
+            "optional": true
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

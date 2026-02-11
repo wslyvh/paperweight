@@ -1,0 +1,20 @@
+{
+    "slug": "psd-bank-nord",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "PSD Bank Nord eG",
+    "address": "Schloßstraße 10\n22041 Hamburg\nDeutschland",
+    "phone": "+49 40 530530",
+    "email": "datenschutz@psd-nord.de",
+    "web": "https://www.psd-nord.de",
+    "sources": [
+        "https://www.psd-nord.de/spezialseiten/datenschutz/c415.html",
+        "https://github.com/datenanfragen/data/pull/1435"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

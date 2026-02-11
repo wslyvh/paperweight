@@ -1,0 +1,19 @@
+{
+    "slug": "travelodge",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Travelodge Hotels Ltd",
+    "address": "Sleepy Hollow\nAylesbury Road\nThame\nOxfordshire\nOX9 3AT\nUnited Kingdom",
+    "email": "datacontroller@travelodge.co.uk",
+    "web": "https://www.travelodge.co.uk",
+    "sources": [
+        "https://www.travelodge.co.uk/about/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/692"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

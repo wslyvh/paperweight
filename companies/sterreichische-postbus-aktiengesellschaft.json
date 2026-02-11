@@ -1,0 +1,19 @@
+{
+    "slug": "sterreichische-postbus-aktiengesellschaft",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "Österreichische Postbus Aktiengesellschaft",
+    "address": "Am Hauptbahnhof 2\n1100 Wien\nÖsterreich",
+    "phone": "+43 517 17",
+    "email": "impressum@pv.oebb.at",
+    "web": "https://personenverkehr.oebb.at/de/postbus",
+    "sources": [
+        "https://personenverkehr.oebb.at/de/postbus/impressum",
+        "https://github.com/datenanfragen/data/pull/1308"
+    ],
+    "quality": "verified"
+}

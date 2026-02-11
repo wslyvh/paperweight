@@ -1,0 +1,25 @@
+{
+    "slug": "zucchetti",
+    "relevant-countries": [
+        "it",
+        "es",
+        "fr"
+    ],
+    "categories": [
+        "finance",
+        "commerce"
+    ],
+    "name": "Zucchetti s.p.a.",
+    "address": "Via Solferino 1\n26900 Lodi\nItalia",
+    "phone": "+39 0371 594 3191",
+    "fax": "+39 0371 594 2195",
+    "email": "dpo@zucchetti.it",
+    "web": "https://www.zucchetti.it",
+    "sources": [
+        "https://www.zucchetti.it/website/cms/privacy.html",
+        "https://www.zucchetti.it/website/cms/contatti.html"
+    ],
+    "request-language": "it",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

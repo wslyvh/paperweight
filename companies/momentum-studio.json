@@ -1,0 +1,27 @@
+{
+    "slug": "momentum-studio",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Momentum Studio Ltd",
+    "address": "Unit 4 Windsor Road\nRedditch\nB97 6DJ\nUnited Kingdom",
+    "sources": [
+        "https://find-and-update.company-information.service.gov.uk/company/11326956",
+        "https://github.com/datenanfragen/data/issues/202",
+        "https://github.com/datenanfragen/data/pull/1072"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,34 @@
+{
+    "slug": "devk",
+    "categories": [
+        "insurance"
+    ],
+    "name": "DEVK Versicherungen",
+    "runs": [
+        "DEVK Deutsche Eisenbahn Versicherung Sach- und HUK-Versicherungsverein a.G.",
+        "DEVK Deutsche Eisenbahn Versicherung Lebensversicherungsverein a.G.",
+        "DEVK Rückversicherungs- und Beteiligungs-AG",
+        "DEVK Vermögensvorsorge- und Beteiligungs-AG",
+        "DEVK Allgemeine Versicherungs-AG",
+        "DEVK Rechtsschutz-Versicherungs-AG",
+        "DEVK Krankenversicherungs-AG",
+        "DEVK Allgemeine Lebensversicherungs-AG",
+        "DEVK Pensionsfonds-AG",
+        "DEVK Service GmbH",
+        "German Assistance Versicherung AG"
+    ],
+    "address": "Riehler Straße 190\n50735 Köln\nDeutschland",
+    "phone": "+49 800 4 757 757",
+    "fax": "+49 221 757 391308",
+    "email": "datenschutz@devk.de",
+    "web": "https://www.devk.de/",
+    "sources": [
+        "https://www.devk.de/footer/rechtliches/datenschutz/index.jsp",
+        "https://www.devk.de/footer/rechtliches/impressum/index.jsp"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

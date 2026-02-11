@@ -1,0 +1,34 @@
+{
+    "slug": "caseking",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Caseking GmbH",
+    "runs": [
+        "Noblechairs"
+    ],
+    "address": "Gaußstr. 1\n10589 Berlin\nDeutschland",
+    "phone": "+49 30 403664200",
+    "fax": "+49 30 403664204",
+    "email": "datenschutz@caseking.de",
+    "web": "https://www.caseking.de",
+    "sources": [
+        "https://www.caseking.de/datenschutz",
+        "https://www.caseking.de/impressum"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

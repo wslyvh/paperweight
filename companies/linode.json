@@ -1,0 +1,23 @@
+{
+    "slug": "linode",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Akamai Technologies GmbH",
+    "runs": [
+        "Linode"
+    ],
+    "address": "Parkring 22\n85748 Garching\nGermany",
+    "email": "privacy@akamai.com",
+    "web": "https://www.akamai.com",
+    "sources": [
+        "https://www.akamai.com/legal/privacy-statement",
+        "https://www.akamai.com/company/akamai-affiliates",
+        "https://github.com/datenanfragen/data/pull/1887"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

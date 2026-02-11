@@ -1,0 +1,19 @@
+{
+    "slug": "liveramp-nl",
+    "relevant-countries": [
+        "nl"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "LiveRamp Netherlands B.V.",
+    "address": "Reguliersdwarsstraat 108\n1017 BN Amsterdam\nThe Netherlands",
+    "email": "privacy.nl@liveramp.com",
+    "web": "https://liveramp.com/",
+    "sources": [
+        "https://liveramp.uk/privacy-policy-netherlands/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

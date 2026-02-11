@@ -1,0 +1,19 @@
+{
+    "slug": "eurobank-gr",
+    "relevant-countries": [
+        "gr"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Eurobank S.A.",
+    "address": "6 Siniosoglou Street\n14234 Nea Ionia\nGreece",
+    "phone": "+30 21 0955 5000",
+    "email": "dpo@eurobank.gr",
+    "web": "https://www.eurobank.gr/",
+    "sources": [
+        "https://www.eurobank.gr/en/personal-data-notice-website/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

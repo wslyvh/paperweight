@@ -1,0 +1,25 @@
+{
+    "slug": "zoominfo",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads",
+        "addresses"
+    ],
+    "name": "Zoom Information, Inc.",
+    "runs": [
+        "ZoomInfo",
+        "DiscoverOrg Data, LLC"
+    ],
+    "address": "805 Broadway\nSuite 900\nVancouver, WA 98660\nUnited States of America",
+    "phone": "+1 360 718 5630",
+    "email": "privacy@zoominfo.com",
+    "web": "https://zoominfo.com",
+    "sources": [
+        "https://www.zoominfo.com/about-zoominfo/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/1716"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

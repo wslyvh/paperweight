@@ -1,0 +1,38 @@
+{
+    "slug": "bmi-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesministerium des Innern, für Bau und Heimat (BMI)",
+    "runs": [
+        "Behördennummer 115 (www.115.de)",
+        "BundID (id.bund.de)",
+        "Protokoll Inland (www.protokoll-inland.de)",
+        "www.onlinezugangsgesetz.de",
+        "Personalausweisportal.de",
+        "Beauftragter der Bundesregierung für jüdisches Leben und den Kampf gegen Antisemitismus",
+        "Die Beauftrage der Bundesregierung für Aussiedlerfragen und nationale Minderheiten",
+        "www.personenstandsrecht.de",
+        "Interministerieller Ausschuss für Geoinformationswesen (IMAGI)",
+        "Die Vertreterin des Bundesinteresses beim Bundesverwaltungsgericht",
+        "Nationale Plattform zur Bekämpfung der Manipulation von Sportwettbewerben (www.nationale-plattform.de)",
+        "Der Bundesbeauftragte der Bundesregierung für Informationstechnik (www.cio.bund.de)",
+        "www.barrierefreiheit-dienstekonsolidierung.bund.de"
+    ],
+    "address": "Alt-Moabit 140\n10557 Berlin\nDeutschland",
+    "phone": "+49 30 186810",
+    "fax": "+49 30 1868155000",
+    "email": "bds@bmi.bund.de",
+    "webform": "https://verwaltung.bund.de/leistungsbeantragung/bmibetroffenenrecht#0",
+    "web": "https://www.bmi.bund.de",
+    "sources": [
+        "https://www.bmi.bund.de/DE/service/datenschutz/datenschutz_node.html",
+        "https://id.bund.de/de/datasecurity"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

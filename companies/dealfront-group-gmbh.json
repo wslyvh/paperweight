@@ -1,0 +1,18 @@
+{
+    "slug": "dealfront-group-gmbh",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "addresses"
+    ],
+    "name": "Dealfront Group GmbH",
+    "address": "Durlacher Allee 73\n76131 Karlsruhe\nGermany",
+    "email": "privacy@dealfront.com",
+    "web": "https://www.dealfront.com",
+    "sources": [
+        "https://www.dealfront.com/privacy-notice/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "gs-veltenhof-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Grundschule Veltenhof Braunschweig",
+    "address": "Pfälzer Straße 34\n38112 Braunschweig\nDeutschland",
+    "phone": "+49 531 311627",
+    "fax": "+49 531 2312595",
+    "email": "gs.veltenhof@braunschweig.de",
+    "sources": [
+        "https://www.braunschweig.de/leben/schule_bildung/schulportal/schulen/schulen/gs-veltenhof.html"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

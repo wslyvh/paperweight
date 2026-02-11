@@ -1,0 +1,31 @@
+{
+    "slug": "ticketcounter-nl",
+    "relevant-countries": [
+        "nl"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Ticketcounter BV",
+    "address": "Van Nelleweg 1404\n3044 BC Rotterdam\nThe Netherlands",
+    "phone": "+31 10 751 6400",
+    "email": "info@ticketcounter.nl",
+    "web": "https://ticketcounter.nl/",
+    "sources": [
+        "https://ticketcounter.nl/privacy/",
+        "https://github.com/datenanfragen/data/pull/1027"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "quality": "verified"
+}

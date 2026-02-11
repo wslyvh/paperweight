@@ -1,0 +1,20 @@
+{
+    "slug": "verpackungsregister",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Stiftung Zentrale Stelle Verpackungsregister",
+    "address": "Öwer de Hase 18\n49074 Osnabrück\nDeutschland",
+    "phone": "+49 541 201971 10",
+    "fax": "+49 541 201971 98",
+    "email": "datenschutz@verpackungsregister.org",
+    "web": "https://www.verpackungsregister.org",
+    "sources": [
+        "https://www.verpackungsregister.org/datenschutz"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "ticket-io",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment",
+        "commerce"
+    ],
+    "name": "Ticket i/O GmbH",
+    "address": "Im Zollhafen 2-4\n50678 Köln\nDeutschland",
+    "phone": "+49 221 3008430",
+    "email": "datenschutz@ticket.io",
+    "web": "https://ticket.io",
+    "sources": [
+        "https://www.ticket.io/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1139",
+        "https://github.com/datenanfragen/data/pull/2957"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

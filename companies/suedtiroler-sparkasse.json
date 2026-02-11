@@ -1,0 +1,22 @@
+{
+    "slug": "suedtiroler-sparkasse",
+    "relevant-countries": [
+        "it",
+        "at",
+        "ch"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Südtiroler Sparkasse AG",
+    "address": "Sparkassenstraße 12\n39100 Bozen\nItaly",
+    "phone": "+39 840 052 052",
+    "email": "privacy.crbz@sparkasse.it",
+    "web": "https://www.sparkasse.it",
+    "sources": [
+        "https://www.sparkasse.it/de/privacy/",
+        "https://github.com/datenanfragen/data/pull/831"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

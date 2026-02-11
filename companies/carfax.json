@@ -1,0 +1,18 @@
+{
+    "slug": "carfax",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "CARFAX Europe GmbH",
+    "address": "Barthstraße 2-10\n80339 Munich\nGermany",
+    "fax": "+49 89 54045629900",
+    "email": "privacy@carfax.eu",
+    "web": "https://www.carfax.eu/",
+    "sources": [
+        "https://www.carfax.eu/privacy-notice",
+        "https://www.carfax.eu/legal-information",
+        "https://github.com/datenanfragen/data/pull/2556"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

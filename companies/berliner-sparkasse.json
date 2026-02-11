@@ -1,0 +1,22 @@
+{
+    "slug": "berliner-sparkasse",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Berliner Sparkasse",
+    "address": "Alexanderplatz 2\n10178 Berlin\nDeutschland",
+    "phone": "+49 30 86986969",
+    "fax": "+49 30 8696941369",
+    "email": "datenschutz@berliner-sparkasse.de",
+    "web": "https://www.berliner-sparkasse.de/",
+    "sources": [
+        "https://www.berliner-sparkasse.de/de/home/toolbar/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/966",
+        "https://www.berliner-sparkasse.de/en/home/toolbar/kontakt.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

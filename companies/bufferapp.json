@@ -1,0 +1,21 @@
+{
+    "slug": "bufferapp",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Buffer Inc.",
+    "runs": [
+        "Buffer Reply"
+    ],
+    "address": "2443 Fillmore St #380-7163\nSan Francisco\nCA 94115\nUnited States of America",
+    "email": "hello@buffer.com",
+    "web": "https://buffer.com/",
+    "sources": [
+        "https://buffer.com/privacy"
+    ],
+    "request-language": "en",
+    "quality": "verified"
+}

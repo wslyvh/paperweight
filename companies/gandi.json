@@ -1,0 +1,37 @@
+{
+    "slug": "gandi",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Gandi SAS",
+    "address": "63-65 Boulevard Masséna\n75013 Paris\nFrance",
+    "phone": "+33 1 70 37 76 61",
+    "fax": "+33 1 43 73 18 51",
+    "email": "dpo@gandi.net",
+    "webform": "https://help.gandi.net/en/contact/my-rights",
+    "web": "https://www.gandi.net",
+    "sources": [
+        "https://www.gandi.net/en/contracts/privacy-policy",
+        "https://www.gandi.net/en-US/about-us"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email address",
+            "type": "email"
+        },
+        {
+            "desc": "Username",
+            "type": "input"
+        }
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

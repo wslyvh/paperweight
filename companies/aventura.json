@@ -1,0 +1,32 @@
+{
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "slug": "aventura",
+    "categories": [
+        "ads"
+    ],
+    "name": "Aventura Post GmbH",
+    "address": "Am Unisys-Park 1\n65843 Sulzbach/Ts.\nDeutschland",
+    "email": "privacy@aventurapost.com",
+    "web": "https://www.aventurapost.com/",
+    "sources": [
+        "https://www.aventurapost.com/sc/todo=cp_aventurapost#imprint",
+        "https://www.aventurapost.com/sc/todo=cp_aventurapost#data_protection",
+        "https://github.com/datenanfragen/data/issues/53"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Antwort kommt von Talk2 GmbH, Rheinstraße 22, 64283 Darmstadt"
+    ],
+    "quality": "verified"
+}

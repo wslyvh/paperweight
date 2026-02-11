@@ -1,0 +1,39 @@
+{
+    "slug": "arag-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "ARAG Allgemeine Versicherungs-AG",
+    "runs": [
+        "ARAG SE",
+        "ARAG Krankenversicherungs-AG"
+    ],
+    "address": "AKB 105D\nARAG Platz 1\n40472 Düsseldorf\nDeutschland",
+    "phone": "+49 211 98700700",
+    "fax": "+49 211 9632813",
+    "email": "datenschutz@arag.de",
+    "web": "https://www.arag.de",
+    "sources": [
+        "https://www.arag.de/datenschutzerklaerung/",
+        "https://github.com/datenanfragen/data/issues/606"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        },
+        {
+            "desc": "Geburtsdatum",
+            "type": "birthdate"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

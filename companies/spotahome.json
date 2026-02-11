@@ -1,0 +1,16 @@
+{
+    "slug": "spotahome",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "SPOTAHOME S.L.U",
+    "address": "Calle de Piamonte 23\n28004 Madrid\nSpain",
+    "email": "privacy@spotahome.com",
+    "web": "https://www.spotahome.com",
+    "sources": [
+        "https://www.spotahome.com/privacy-policies",
+        "https://github.com/datenanfragen/data/pull/2186"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

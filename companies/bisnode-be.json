@@ -1,0 +1,24 @@
+{
+    "slug": "bisnode-be",
+    "relevant-countries": [
+        "be"
+    ],
+    "categories": [
+        "addresses"
+    ],
+    "name": "Black Tiger Belgium SA/NV",
+    "runs": [
+        "Bisnode Belgium SA/NV (formerly)"
+    ],
+    "address": "Researchdreef 65\n1070 Anderlecht\nBelgium",
+    "phone": "+32 2 555 97 00",
+    "email": "dpo@blacktigerbelgium.tech",
+    "web": "https://www.blacktigerbelgium.tech/",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/716",
+        "https://www.blacktigerbelgium.tech/privacy-policy/",
+        "https://www.blacktigerbelgium.tech/black-tiger-acquires-bisnode-belgium/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

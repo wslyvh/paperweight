@@ -1,0 +1,21 @@
+{
+    "slug": "lotto-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Toto-Lotto Niedersachsen GmbH",
+    "address": "Am TÜV 2 + 4\n30519 Hannover\nDeutschland",
+    "phone": "+49 511 84020",
+    "email": "datenschutz@lotto-niedersachsen.de",
+    "web": "https://www.lotto.de",
+    "sources": [
+        "https://www.lotto.de/datenschutzerklaerung",
+        "https://de.wikipedia.org/wiki/Toto-Lotto_Niedersachsen",
+        "https://github.com/datenanfragen/data/issues/457"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

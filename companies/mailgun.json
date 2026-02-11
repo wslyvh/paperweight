@@ -1,0 +1,18 @@
+{
+    "slug": "mailgun",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Mailgun Technologies, Inc.",
+    "address": "112 E Pecan St #1135\nSan Antonio\nTX 78205\nUnited States of America",
+    "email": "privacy@mailgun.com",
+    "web": "https://www.mailgun.com",
+    "sources": [
+        "https://www.mailgun.com/privacy-policy/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "twitch",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Twitch UK Limited",
+    "runs": [
+        "Twitch Interactive, Inc."
+    ],
+    "address": "1 New Oxford Street\nLondon\nWC1A 1BA\nUnited Kingdom",
+    "email": "privacy@twitch.tv",
+    "web": "https://www.twitch.tv",
+    "sources": [
+        "https://www.twitch.tv/p/legal/privacy-policy/",
+        "https://www.twitch.tv/p/legal/terms-of-service/",
+        "https://github.com/datenanfragen/data/issues/623"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

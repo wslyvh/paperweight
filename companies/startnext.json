@@ -1,0 +1,20 @@
+{
+    "slug": "startnext",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce",
+        "social media"
+    ],
+    "name": "Startnext Crowdfunding GmbH",
+    "address": "c/o PragmaProtect GmbH\nStörmthaler Str. 12\n04288 Leipzig\nDeutschland",
+    "email": "datenschutz@startnext.com",
+    "web": "https://www.startnext.com",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/422",
+        "https://www.startnext.com/info/agb/datenschutz.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

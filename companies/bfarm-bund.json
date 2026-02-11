@@ -1,0 +1,21 @@
+{
+    "slug": "bfarm-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesinstitut für Arzneimittel und Medizinprodukte (BfArM)",
+    "address": "Kurt-Georg-Kiesinger-Allee 3\n53175 Bonn\nDeutschland",
+    "phone": "+49 228 99 307 3732",
+    "fax": "+49 228 99 307 5207",
+    "email": "datenschutz@bfarm.de",
+    "web": "https://www.bfarm.de",
+    "sources": [
+        "https://www.bfarm.de/DE/Servicefunktionen/Datenschutz/_node.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "gs-rheinring",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Grundschule Rheinring Braunschweig",
+    "address": "Rheinring 10\n38120 Braunschweig\nDeutschland",
+    "phone": "+49 531 284509 0",
+    "fax": "+49 531 284509 20",
+    "email": "gs.rheinring@braunschweig.de",
+    "sources": [
+        "https://www.braunschweig.de/leben/schule_bildung/schulportal/schulen/schulen/gs-rheinring.html"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

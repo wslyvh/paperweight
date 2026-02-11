@@ -1,0 +1,24 @@
+{
+    "slug": "eurowings",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Eurowings GmbH",
+    "runs": [
+        "Germanwings"
+    ],
+    "address": "Waldstr. 249\n51147 Köln\nDeutschland",
+    "phone": "+49 221 59988298",
+    "email": "datenschutz@eurowings.com",
+    "web": "https://www.eurowings.com",
+    "sources": [
+        "https://www.eurowings.com/de/rechtliches/datenschutz.html",
+        "https://www.eurowings.com/de/rechtliches/impressum.html",
+        "https://github.com/datenanfragen/data/pull/2309"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

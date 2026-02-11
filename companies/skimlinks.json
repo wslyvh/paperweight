@@ -1,0 +1,20 @@
+{
+    "slug": "skimlinks",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Skimbit Ltd t/a Skimlinks",
+    "address": "2nd Floor\n52 Bevenden Street\nLondon\nN1 6BL\nUnited Kingdom",
+    "email": "dpo@skimlinks.com",
+    "web": "https://skimlinks.com/",
+    "sources": [
+        "https://skimlinks.com/privacy-policies/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "prixtel",
+    "relevant-countries": [
+        "fr"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Prixtel SAS",
+    "address": "389 avenue du Club Hippique\n13097 Aix-en-Provence Cedex 2\nFrance",
+    "email": "donneespersonnelles@prixtel.com",
+    "web": "https://www.prixtel.com/",
+    "sources": [
+        "https://pxtl.fr/docs/charte/res",
+        "https://github.com/datenanfragen/data/pull/2544"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

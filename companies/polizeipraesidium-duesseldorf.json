@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-duesseldorf",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Polizeipräsidium Düsseldorf",
+    "address": "Haroldstraße 5\n40213 Düsseldorf\nDeutschland",
+    "phone": "+49 211 8700",
+    "fax": "+49 211 8704405",
+    "email": "datenschutz.duesseldorf@polizei.nrw.de",
+    "web": "https://duesseldorf.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

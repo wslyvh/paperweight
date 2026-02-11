@@ -1,0 +1,24 @@
+{
+    "slug": "mdm-de",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance",
+        "commerce"
+    ],
+    "name": "MDM Münzhandelsgesellschaft mbH & Co. KG Deutsche Münze",
+    "address": "Theodor-Heuss-Straße 7\n38097 Braunschweig\nDeutschland",
+    "phone": "+49 531 2052053",
+    "fax": "+49 531 2051500",
+    "email": "datenschutz@mdm.de",
+    "web": "https://www.mdm.de",
+    "sources": [
+        "https://www.mdm.de/service/Datenschutz/",
+        "https://www.mdm.de/ueber-mdm/impressum/",
+        "https://www.mdm.de/service/versand/",
+        "https://github.com/datenanfragen/data/pull/1236"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

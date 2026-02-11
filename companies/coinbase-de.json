@@ -1,0 +1,19 @@
+{
+    "slug": "coinbase-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Coinbase Germany GmbH",
+    "address": "Kurfürstendamm 12\n10719 Berlin\nDeutschland",
+    "email": "dpo@coinbase.com",
+    "web": "https://www.coinbase.com/de/",
+    "sources": [
+        "https://www.coinbase.com/de/legal/privacy",
+        "https://github.com/datenanfragen/data/pull/1876"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

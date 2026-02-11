@@ -1,0 +1,20 @@
+{
+    "slug": "sevenonemedia",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "SevenOne Media GmbH",
+    "address": "Medienallee 4\n85774 Unterföhring\nGermany",
+    "phone": "+49 89 950740",
+    "fax": "+49 89 95074399",
+    "email": "mysevenone@sevenonemedia.de",
+    "web": "https://www.sevenonemedia.com/",
+    "sources": [
+        "https://www.sevenonemedia.com/privacy-notice"
+    ],
+    "custom-access-template": "access-tracking",
+    "quality": "verified"
+}

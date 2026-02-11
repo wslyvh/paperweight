@@ -1,0 +1,22 @@
+{
+    "slug": "die-linke",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "political party"
+    ],
+    "name": "DIE LINKE",
+    "address": "Kleine Alexanderstraße 28\n10178 Berlin\nDeutschland",
+    "phone": "+49 30 24009397",
+    "fax": "+49 30 24009310",
+    "email": "datenschutz@die-linke.de",
+    "web": "https://www.die-linke.de/",
+    "sources": [
+        "https://www.die-linke.de/seitenfuss/datenschutz/",
+        "https://www.die-linke.de/seitenfuss/impressum/",
+        "https://github.com/datenanfragen/data/issues/147"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

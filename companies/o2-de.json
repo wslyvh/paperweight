@@ -1,0 +1,43 @@
+{
+    "slug": "o2-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Telefónica Germany GmbH & Co. OHG",
+    "runs": [
+        "O2",
+        "O2 Blue",
+        "Blau",
+        "FONIC",
+        "FONIC mobile",
+        "netzclub",
+        "AY YILDIZ",
+        "aetkaSMART",
+        "TürkeiSIM",
+        "blauworld",
+        "Einfach Prepaid",
+        "K-Classic Mobil",
+        "MediaMarkt Prepaid",
+        "MediaMarkt Super Select",
+        "NettoKOM",
+        "novomobil",
+        "Saturn Prepaid",
+        "Saturn Super Select",
+        "Simfinity",
+        "WhatsApp SIM"
+    ],
+    "address": "Georg-Brauchle-Ring 50\n80992 München\nDeutschland",
+    "phone": "+49 89 787979400",
+    "email": "impressum@cc.o2online.de",
+    "webform": "https://www.telefonica.de/unternehmen/datenschutz/kontakt/datenschutz-anfrage.html",
+    "web": "https://www.o2online.de/",
+    "sources": [
+        "https://www.o2online.de/recht/datenschutz/",
+        "https://www.o2online.de/recht/impressum/",
+        "https://meine-daten.telefonica.de/de/aurol"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,18 @@
+{
+    "slug": "infas",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "infas Institut für angewandte Sozialwissenschaft GmbH",
+    "address": "Kurt-Schumacher-Straße 24\n53113 Bonn\nDeutschland",
+    "phone": "+49 228 38220",
+    "fax": "+49 228 310071",
+    "email": "datenschutz@infas.de",
+    "web": "https://www.infas.de",
+    "sources": [
+        "https://www.infas.de/impressum-infas/",
+        "https://www.infas.de/datenschutzerklaerung/",
+        "https://github.com/datenanfragen/data/pull/2442"
+    ],
+    "quality": "verified"
+}

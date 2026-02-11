@@ -1,0 +1,22 @@
+{
+    "slug": "verfassungsschutz",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesamt für Verfassungsschutz (BfV)",
+    "address": "Merianstraße 100\n50765 Köln\nDeutschland",
+    "phone": "+49 221 792 0",
+    "fax": "+49 221 792 2915",
+    "email": "datenschutzreferat@bfv.bund.de",
+    "web": "https://www.verfassungsschutz.de",
+    "sources": [
+        "https://www.verfassungsschutz.de/DE/service/datenschutz/datenschutz_node.html",
+        "https://www.verfassungsschutz.de/DE/service/impressum/impressum_node.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

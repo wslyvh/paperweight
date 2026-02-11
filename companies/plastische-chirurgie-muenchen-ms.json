@@ -1,0 +1,31 @@
+{
+    "slug": "plastische-chirurgie-muenchen-ms",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "Dr. Susanne Morath & Dr. Hendrik Schöll - Plastische und Ästhetische Chirurgie",
+    "address": "Nymphenburger Str. 158\n80634 München\nDeutschland",
+    "phone": "+49 89 54343140",
+    "fax": "+49 89 54343149",
+    "email": "praxis@morath-schoell.de",
+    "web": "https://www.plastische-chirurgie-muenchen-ms.de",
+    "sources": [
+        "https://www.plastische-chirurgie-muenchen-ms.de/impressum/",
+        "https://www.plastische-chirurgie-muenchen-ms.de/kontakt/",
+        "https://github.com/datenanfragen/data/pull/1639"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "quality": "verified"
+}

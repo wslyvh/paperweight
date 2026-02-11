@@ -1,0 +1,25 @@
+{
+    "slug": "vero",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Vero Labs, Inc.",
+    "runs": [
+        "Vero True Social (www.vero.co)"
+    ],
+    "address": "9 East 8th Street\nSuite 270\nNew York\nNY 10003\nUnited States of America",
+    "phone": "+1 347 903 5112",
+    "fax": "+1 347 620 7002",
+    "email": "dataprivacy@vero.co",
+    "web": "https://www.vero.co/",
+    "sources": [
+        "https://www.vero.co/privacy-policy/",
+        "https://www.bloomberg.com/research/stocks/private/snapshot.asp?privcapId=275642751"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

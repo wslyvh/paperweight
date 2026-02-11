@@ -1,0 +1,30 @@
+{
+    "slug": "adac",
+    "categories": [
+        "insurance",
+        "travel"
+    ],
+    "name": "ADAC SE",
+    "runs": [
+        "Allgemeiner Deutscher Automobil-Club e.V.",
+        "ADAC Internetportal (www.adac.de, m.adac.de)",
+        "ADAC Stiftung",
+        "www.jungesportal.de",
+        "www.adac-motorsport.de",
+        "maps.adac.de"
+    ],
+    "address": "Hansastraße 19\n80686 München\nDeutschland",
+    "phone": "+49 89 7676 5019",
+    "fax": "+49 89 7676 5362",
+    "email": "dsb-mail@adac.de",
+    "web": "https://www.adac.de/",
+    "sources": [
+        "https://www.adac.de/datenschutz-cookies/",
+        "https://www.adac.de/impressum-ev/"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

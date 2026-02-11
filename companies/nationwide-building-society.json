@@ -1,0 +1,17 @@
+{
+    "slug": "nationwide-building-society",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Nationwide Building Society",
+    "address": "Kings Park Road\nMoulton Park\nNorthampton\nNN3 6NW\nUnited Kingdom",
+    "web": "https://www.nationwide.co.uk",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/1714",
+        "https://www.nationwide.co.uk/about-us/cookies-privacy/your-information-rights/"
+    ],
+    "quality": "verified"
+}

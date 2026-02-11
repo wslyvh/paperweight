@@ -1,0 +1,15 @@
+{
+    "slug": "wetterdienst",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Wetterdienst.de - Wetter- und Klimaberatung",
+    "address": "Poststraße 2-4\n60329 Frankfurt am Main\nDeutschland",
+    "email": "info@wetterdienst.de",
+    "web": "https://www.wetterdienst.de",
+    "sources": [
+        "https://www.wetterdienst.de/Service/Datenschutz/",
+        "https://github.com/datenanfragen/data/pull/3137"
+    ],
+    "quality": "verified"
+}

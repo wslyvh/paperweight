@@ -1,0 +1,19 @@
+{
+    "slug": "fishpond",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Fishpond Ltd.",
+    "address": "PO Box 97736\nSAMC\nAuckland\nNew Zealand",
+    "email": "service@fishpond.com",
+    "web": "https://www.fishpond.com/",
+    "sources": [
+        "https://www.fishpond.com/page/privacy",
+        "https://www.fishpond.com/page/terms-and-conditions"
+    ],
+    "request-language": "en",
+    "quality": "verified"
+}

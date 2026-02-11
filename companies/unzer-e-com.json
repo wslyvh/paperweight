@@ -1,0 +1,19 @@
+{
+    "slug": "unzer-e-com",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Unzer E-Com GmbH",
+    "address": "Vangerowstraße 18\n69115 Heidelberg\nDeutschland",
+    "phone": "+49 30 83793000",
+    "email": "datenschutz@unzer.com",
+    "web": "https://www.unzer.com/de/online-loesungen/",
+    "sources": [
+        "https://a.storyblok.com/f/118211/x/1afe9300ee/20240920_datenschutzhinweise_unzer_e-com_endkunden.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "blutspendedienst-brk",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "Blutspendedienst des Bayerischen Roten Kreuzes gGmbH",
+    "address": "Herzog-Heinrich-Straße 2\n80336 München\nDeutschland",
+    "phone": "+49 89 53990",
+    "fax": "+49 89 53994005",
+    "email": "datenschutz@blutspendedienst.com",
+    "web": "https://www.blutspendedienst.com/",
+    "sources": [
+        "https://www.blutspendedienst.com/datenschutz",
+        "https://www.blutspendedienst.com/impressum",
+        "https://github.com/datenanfragen/data/pull/1836"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

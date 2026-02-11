@@ -1,0 +1,22 @@
+{
+    "slug": "thuenen-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Johann Heinrich von Thünen-Institut",
+    "address": "Bundesallee 50\n38116 Braunschweig\nDeutschland",
+    "phone": "+49 531 596 1218",
+    "fax": "+49 531 596 1099",
+    "email": "datenschutz@thuenen.de",
+    "web": "https://www.thuenen.de/",
+    "sources": [
+        "https://www.thuenen.de/de/datenschutzerklaerung",
+        "https://www.thuenen.de/de/impressum/"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

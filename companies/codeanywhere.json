@@ -1,0 +1,16 @@
+{
+    "slug": "codeanywhere",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Codeanywhere, Inc.",
+    "address": "2443 Fillmore St #380-7365\nSan Francisco, CA 94115\nUnited States of America",
+    "email": "support@codeanywhere.com",
+    "web": "https://codeanywhere.com/",
+    "sources": [
+        "https://codeanywhere.com/contact",
+        "https://docs.codeanywhere.com/support/",
+        "https://github.com/datenanfragen/data/pull/1728"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "activeleads-se",
+    "relevant-countries": [
+        "se"
+    ],
+    "categories": [
+        "addresses"
+    ],
+    "name": "Active Leads AB",
+    "address": "Västmannagatan 66\n113 25 Stockholm\nSweden",
+    "email": "privacy@activeleads.se",
+    "web": "https://www.activeleads.se/",
+    "sources": [
+        "https://www.activeleads.se/copy-of-om-oss?lang=en",
+        "https://github.com/datenanfragen/data/pull/1028"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

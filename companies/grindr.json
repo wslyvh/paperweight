@@ -1,0 +1,34 @@
+{
+    "slug": "grindr",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Grindr LLC",
+    "runs": [
+        "Grindr iOS",
+        "Grindr iOS Xtra",
+        "Grindr Android",
+        "Grindr Android Xtra",
+        "Grindr Lite",
+        "Grindr Unlimited",
+        "Gaymoji",
+        "Grindr Ads",
+        "Grindr Web Chat",
+        "INTO Site (intomore.com)",
+        "Bloop Site (grindrbloop.com)"
+    ],
+    "address": "PO Box 69176\nWest Hollywood\nCA 90069\nUnited States of America",
+    "email": "privacy@grindr.com",
+    "webform": "https://help.grindr.com/hc/en-us/requests/new?ticket_form_id=360002369054",
+    "web": "https://www.grindr.com/",
+    "sources": [
+        "https://www.grindr.com/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/708"
+    ],
+    "needs-id-document": true,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

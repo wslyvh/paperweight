@@ -1,0 +1,25 @@
+{
+    "slug": "bumble",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Bumble Group",
+    "runs": [
+        "Bumble Holding Limited",
+        "Badoo Trading Limited",
+        "Bumble Trading LLC"
+    ],
+    "address": "The Broadgate Tower Third Floor\n20 Primrose Street\nLondon\nEC2A 2RS\nUnited Kingdom",
+    "email": "DPO@bumble.com",
+    "web": "https://bumble.com",
+    "sources": [
+        "https://bumble.com/privacy",
+        "https://github.com/datenanfragen/data/pull/1593",
+        "https://github.com/datenanfragen/data/pull/2763"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

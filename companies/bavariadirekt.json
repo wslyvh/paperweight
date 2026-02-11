@@ -1,0 +1,24 @@
+{
+    "slug": "bavariadirekt",
+    "categories": [
+        "insurance"
+    ],
+    "name": "OVAG – Ostdeutsche Versicherung AG",
+    "runs": [
+        "BavariaDirekt"
+    ],
+    "address": "Am Karlsbad 4 – 5\n10785 Berlin\nDeutschland",
+    "phone": "+49 89 21 60 18 80",
+    "fax": "+49 89 46 22 47 21",
+    "email": "datenschutz@bavariadirekt.de",
+    "web": "https://www.bavariadirekt.de",
+    "sources": [
+        "https://www.bavariadirekt.de/datenschutz/",
+        "https://www.bavariadirekt.de/impressum/"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

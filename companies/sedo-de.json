@@ -1,0 +1,36 @@
+{
+    "slug": "sedo-de",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Sedo GmbH",
+    "address": "Im Mediapark 6 B\n50670 Köln\nDeutschland",
+    "phone": "+49 221 34030571",
+    "fax": "+49 221 34030102",
+    "email": "datenschutz@sedo.de",
+    "web": "https://sedo.de",
+    "sources": [
+        "https://sedo.com/de/ueber-uns/policies-gmbh/datenschutzrichtlinien-der-sedo-gmbh/",
+        "https://sedo.com/de/ueber-uns/impressum/",
+        "https://github.com/datenanfragen/data/pull/2374"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

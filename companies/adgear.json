@@ -1,0 +1,21 @@
+{
+    "slug": "adgear",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "AdGear Technologies, Inc.",
+    "address": "460 McGill Street, Suite 200\nMontreal, QC\nH2Y 2H2\nCanada",
+    "phone": "+1 514 394 7951",
+    "email": "privacy@adgear.com",
+    "web": "https://adgear.com/en/",
+    "sources": [
+        "https://adgear.com/en/privacy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

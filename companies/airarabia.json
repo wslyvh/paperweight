@@ -1,0 +1,28 @@
+{
+    "slug": "airarabia",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Air Arabia Group",
+    "runs": [
+        "Air Arabia PJSC",
+        "Air Arabia Abu Dhabi",
+        "Air Arabia Maroc SA",
+        "Air Arabia Egypt SAE"
+    ],
+    "address": "4 Rue de Carthage\nQuartier les Iris\nCasablanca\nMorocco",
+    "phone": "+212 5225 36400",
+    "fax": "+212 5229 50326",
+    "email": "contactus@airarabia.com",
+    "web": "https://www.airarabia.com",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/494",
+        "https://www.airarabia.com/en/privacy-policy",
+        "https://www.airarabia.com/en/company-information"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,31 @@
+{
+    "slug": "drkrug-nuernberg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "Dr. Krug & Kollegen - Praxis für Zahngesundheit",
+    "address": "Schwabacher Straße 75\n90439 Nürnberg\nDeutschland",
+    "phone": "+49 911 618000",
+    "fax": "+49 911 6160874",
+    "email": "a.meier@drkrug.de",
+    "web": "https://drkrug.de",
+    "sources": [
+        "https://drkrug.de/dsgvo/",
+        "https://github.com/datenanfragen/data/pull/1635"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

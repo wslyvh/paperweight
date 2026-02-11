@@ -1,0 +1,22 @@
+{
+    "slug": "emerse",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Emerse Sverige AB",
+    "address": "Lilla Fiskaregatan 1A\n222 22 Lund\nSweden",
+    "phone": "+46 46 378 0100",
+    "email": "dataprotectionofficer@emerse.com",
+    "web": "https://www.emerse.com/",
+    "sources": [
+        "https://www.emerse.com/privacy-policy/",
+        "https://www.emerse.com/contact/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

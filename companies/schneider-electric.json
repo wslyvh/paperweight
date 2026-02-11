@@ -1,0 +1,29 @@
+{
+    "slug": "schneider-electric",
+    "relevant-countries": [
+        "fr",
+        "de",
+        "at",
+        "it",
+        "gb",
+        "es"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Schneider Electric Industries SAS",
+    "runs": [
+        "Merten",
+        "Elso",
+        "Invensys"
+    ],
+    "address": "35 rue Joseph Monier\n92500 Rueil Malmaison\nFrance",
+    "email": "Global-Data-Privacy@schneider-electric.com",
+    "web": "https://www.se.com",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/121",
+        "https://www.se.com/de/de/about-us/legal/data-privacy.jsp"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

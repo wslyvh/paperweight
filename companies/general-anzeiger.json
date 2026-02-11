@@ -1,0 +1,19 @@
+{
+    "slug": "general-anzeiger",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "General-Anzeiger Bonn GmbH",
+    "address": "Justus-von-Liebig-Straße 15\n53121 Bonn\nDeutschland",
+    "phone": "+49 228 66880",
+    "email": "datenschutz@ga.de",
+    "web": "https://ga.de/",
+    "sources": [
+        "https://abo.ga.de/datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

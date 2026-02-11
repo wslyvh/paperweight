@@ -1,0 +1,20 @@
+{
+    "slug": "perxtech",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "PERX TECHNOLOGIES PTE LTD",
+    "address": "The Riverwalk\n20 Upper Circular Road\n#02-21B\nSingapore 058416\nSingapore",
+    "phone": "+65 681 62711",
+    "email": "dpo@getperx.com",
+    "web": "https://www.perxtech.com",
+    "sources": [
+        "https://www.perxtech.com/privacy/#privacy",
+        "https://github.com/datenanfragen/data/issues/453"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

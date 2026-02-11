@@ -1,0 +1,21 @@
+{
+    "slug": "tomorrow",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Tomorrow GmbH",
+    "address": "Neuer Pferdemarkt 23\n20359 Hamburg\nDeutschland",
+    "email": "dataprotection@tomorrow.one",
+    "web": "https://www.tomorrow.one/",
+    "sources": [
+        "https://assets.tomorrow.one/de-DE/legal/datenschutzerklaerung/tomorrow-datenschutzerklaerung.pdf",
+        "https://assets.tomorrow.one/de-DE/legal/app-datenschutzerklaerung/tomorrow-app-datenschutzerklaerung.pdf",
+        "https://github.com/datenanfragen/data/pull/2280",
+        "https://github.com/datenanfragen/data/pull/3020"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

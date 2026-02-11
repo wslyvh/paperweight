@@ -1,0 +1,38 @@
+{
+    "slug": "mozilla",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "nonprofit",
+        "telecommunication"
+    ],
+    "name": "Mozilla Corporation",
+    "runs": [
+        "Firefox",
+        "Thunderbird",
+        "MZLA Technologies Corporation"
+    ],
+    "address": "149 New Montgomery St, 4th Floor\nSan Francisco, CA 94105\nUnited States of America",
+    "email": "compliance@mozilla.com",
+    "webform": "https://privacyportal.onetrust.com/webform/1350748f-7139-405c-8188-22740b3b5587/4ba08202-2ede-4934-a89e-f0b0870f95f0",
+    "web": "https://www.mozilla.org/en-US/",
+    "sources": [
+        "https://www.mozilla.org/en-US/privacy/",
+        "https://github.com/datenanfragen/data/pull/2226"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

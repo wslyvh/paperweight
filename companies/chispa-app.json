@@ -1,0 +1,18 @@
+{
+    "slug": "chispa-app",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Chispa",
+    "address": "c/o Affinity Apps, LLC\n8750 N. Central Expressway\nSuite 1400\nDallas TX 75231\nUnited States of America",
+    "email": "privacy@support.chispa-app.com",
+    "web": "https://www.chispa-app.com",
+    "sources": [
+        "https://www.chispa-app.com/en/privacy-policy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

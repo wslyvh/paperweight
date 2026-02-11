@@ -1,0 +1,35 @@
+{
+    "slug": "decathlon-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "DECATHLON Deutschland SE & Co. KG",
+    "address": "Filsallee 19\n73207 Plochingen\nDeutschland",
+    "email": "datenschutz@decathlon.com",
+    "web": "https://www.decathlon.de",
+    "sources": [
+        "https://www.decathlon.de/landing/datenschutz/_/R-a-datenschutz",
+        "https://github.com/datenanfragen/data/pull/1646",
+        "https://github.com/datenanfragen/data/pull/1698"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Auskünfte erfolgen in Form einer PDF-Datei per Email."
+    ],
+    "quality": "tested"
+}

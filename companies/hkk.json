@@ -1,0 +1,22 @@
+{
+    "slug": "hkk",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Handelskrankenkasse (hkk)",
+    "address": "Martinistraße 26\n28195 Bremen\nDeutschland",
+    "phone": "+49 800 2555444",
+    "fax": "+49 421 36553700",
+    "email": "datenschutzbeauftragter@hkk.de",
+    "web": "https://hkk.de",
+    "sources": [
+        "https://www.hkk.de/impressum",
+        "https://www.hkk.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1291"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

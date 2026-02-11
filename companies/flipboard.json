@@ -1,0 +1,30 @@
+{
+    "slug": "flipboard",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Flipboard, Inc.",
+    "address": "555, Bryant Street #352\nPalo Alto\nCA 94301\nUnited States of America",
+    "email": "privacy@flipboard.com",
+    "web": "https://flipboard.com/",
+    "sources": [
+        "https://about.flipboard.com/privacy-policy/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "request-language": "en",
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

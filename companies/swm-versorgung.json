@@ -1,0 +1,19 @@
+{
+    "slug": "swm-versorgung",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "SWM Versorgungs GmbH",
+    "address": "Emmy-Noether-Straße 2\n80992 München\nDeutschland",
+    "email": "datenschutz.versorgung@swm.de",
+    "web": "https://swm.de",
+    "sources": [
+        "https://www.swm.de/datenschutz/swm-versorgungs-gmbh",
+        "https://github.com/datenanfragen/data/issues/630"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,25 @@
+{
+    "slug": "start-io",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Start.io Inc.",
+    "runs": [
+        "Start.io (Formerly StartApp)"
+    ],
+    "address": "584 Broadway\nNew York NY 10012\nUnited States of America",
+    "email": "privacy@start.io",
+    "web": "https://www.start.io/",
+    "sources": [
+        "https://www.start.io/privacy-faq/",
+        "https://www.start.io/policy/privacy-policy-site/",
+        "https://www.start.io/policy/publisher-terms/"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "custom-access-template": "access-tracking", 
+    "quality": "verified"
+}

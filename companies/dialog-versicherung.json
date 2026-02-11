@@ -1,0 +1,21 @@
+{
+    "slug": "dialog-versicherung",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Dialog Versicherung AG",
+    "address": "Adenauerring 7\n81737 München\nDeutschland",
+    "phone": "+49 89 51216680",
+    "fax": "+49 89 51211000",
+    "email": "datenschutzbeauftragter@dialog-versicherung.de",
+    "web": "https://www.dialog-versicherung.de",
+    "sources": [
+        "https://www.dialog-versicherung.de/dsgvo",
+        "https://github.com/datenanfragen/data/pull/1237"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

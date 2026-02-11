@@ -1,0 +1,19 @@
+{
+    "slug": "jumio",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Jumio Corporation",
+    "runs": [
+        "Netverify"
+    ],
+    "address": "395 Page Mill Road, Suite 150\nPalo Alto, CA 94306\nUnited States of America",
+    "email": "privacy@jumio.com",
+    "web": "https://www.jumio.com",
+    "sources": [
+        "https://www.jumio.com/legal-information/privacy-policy/jumio-corp-privacy-policy-for-online-services/",
+        "https://github.com/datenanfragen/data/pull/1682"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

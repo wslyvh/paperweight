@@ -1,0 +1,19 @@
+{
+    "slug": "dropbox",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Dropbox International Unlimited Company",
+    "runs": [
+        "Dropbox, Inc."
+    ],
+    "address": "One Park Place\nFloor 5\nUpper Hatch Street\nDublin 2\nIreland",
+    "email": "privacy@dropbox.com",
+    "web": "https://www.dropbox.com",
+    "sources": [
+        "https://www.dropbox.com/privacy2018",
+        "https://www.dropbox.com/lp/about/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

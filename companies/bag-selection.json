@@ -1,0 +1,19 @@
+{
+    "slug": "bag-selection",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Bag Selection",
+    "address": "Forsterstr 82\n8044 Zurich\nSwitzerland",
+    "phone": "+41 43 537 51 71",
+    "email": "admin@bag-selection.ch",
+    "web": "https://www.bag-selection.ch/",
+    "sources": [
+        "https://www.uid.admin.ch/Detail.aspx?uid_id=CHE-393.117.418",
+        "https://github.com/datenanfragen/data/pull/1822"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "tier-mobility-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Tier Mobility SE",
+    "address": "c/o WeWork\nEichhornstr. 3\n10785 Berlin\nDeutschland",
+    "email": "dpo@tier.app",
+    "web": "https://www.tier.app",
+    "sources": [
+        "https://www.tier.app/germany-privacy-notice-german",
+        "https://github.com/datenanfragen/data/pull/1570",
+        "https://github.com/datenanfragen/data/pull/2393"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

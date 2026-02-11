@@ -1,0 +1,21 @@
+{
+    "slug": "denic",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "DENIC eG",
+    "address": "Theodor-Stern-Kai 1\n60596 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 27 235 0",
+    "fax": "+49 69 27 235 238",
+    "email": "privacy@denic.de",
+    "web": "https://www.denic.de/",
+    "sources": [
+        "https://www.denic.de/ueber-denic/datenschutzerklaerung/?disableOptIn=1",
+        "https://www.denic.de/ueber-denic/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

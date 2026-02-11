@@ -1,0 +1,26 @@
+{
+    "slug": "stiftung-mercator-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Stiftung Mercator",
+    "address": "Joseph Schumpeter Allee 25\n53227 Bonn\nDeutschland",
+    "phone": "+49 228 926165120",
+    "email": "mercator@2b-advice.com",
+    "web": "https://www.stiftung-mercator.de",
+    "sources": [
+        "https://www.stiftung-mercator.de/de/datenschutzerklaerung/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

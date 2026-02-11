@@ -1,0 +1,21 @@
+{
+    "slug": "digitalo",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Re-In Retail International GmbH",
+    "runs": [
+        "digitalo.de"
+    ],
+    "address": "Nordring 98a\n90409 Nürnberg\nDeutschland",
+    "phone": "+49 941 2986930",
+    "fax": "+49 941 29869316",
+    "email": "datenschutz@digitalo.de",
+    "web": "https://www.digitalo.de/",
+    "sources": [
+        "https://www.digitalo.de/Impressum.html",
+        "https://www.digitalo.de/Datenschutz.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

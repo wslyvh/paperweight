@@ -1,0 +1,19 @@
+{
+    "slug": "prosiebenmaxx",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "ProSiebenSat.1 Digital GmbH",
+    "address": "Medienallee 4\n85774 Unterföhring\nGermany",
+    "phone": "+49 89 950710",
+    "email": "datenschutz@prosiebenmaxx.de",
+    "web": "https://www.prosiebenmaxx.de/",
+    "sources": [
+        "https://www.prosiebenmaxx.de/service/datenschutzbestimmungen"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

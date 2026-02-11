@@ -1,0 +1,18 @@
+{
+    "slug": "telenor-dk",
+    "relevant-countries": [
+        "dk"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Telenor A/S",
+    "address": "Frederikskaj 8\n1780 København\nDanmark",
+    "email": "databeskyttelse@telenor.dk",
+    "web": "https://www.telenor.dk",
+    "sources": [
+        "http://www.telenor.dk/andet/privacyregler/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

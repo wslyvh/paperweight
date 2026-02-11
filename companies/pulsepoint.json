@@ -1,0 +1,24 @@
+{
+    "slug": "pulsepoint",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "PulsePoint, Inc.",
+    "runs": [
+        "AllVoices Inc.",
+        "PulsePoint Holdings, LLC"
+    ],
+    "address": "360 Madison Avenue\n14th Floor\nNew York\nNY 10017\nUnited States of America",
+    "email": "privacy@pulsepoint.com",
+    "web": "https://www.pulsepoint.com/",
+    "sources": [
+        "https://pulsepoint.com/legal/platform-privacy-policy"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "custom-access-template": "access-tracking",
+    "quality": "verified"
+}

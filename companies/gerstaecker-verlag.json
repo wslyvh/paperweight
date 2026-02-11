@@ -1,0 +1,25 @@
+{
+    "slug": "gerstaecker-verlag",
+    "relevant-countries": [
+        "de",
+        "ch",
+        "at"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Johannes Gerstäcker Verlag GmbH",
+    "address": "Wecostr. 4\n53783 Eitorf\nGermany",
+    "phone": "+49 2243 8890",
+    "fax": "+49 2243 88945",
+    "email": "datenschutz@gerstaecker.de",
+    "web": "https://www.gerstaecker.de",
+    "sources": [
+        "https://www.gerstaecker.de/impressum/",
+        "https://www.gerstaecker.de/datenschutz/"
+    ],
+    "request-language": "de",
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

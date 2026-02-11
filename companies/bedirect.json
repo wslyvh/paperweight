@@ -1,0 +1,37 @@
+{
+    "slug": "bedirect",
+    "relevant-countries": [
+        "de",
+        "at"
+    ],
+    "categories": [
+        "addresses"
+    ],
+    "name": "beDirect GmbH & Co. KG",
+    "runs": [
+        "beAddress.de"
+    ],
+    "address": "c/o Bertelsmann SE & Co. KGaA\nCarl-Bertelsmann-Straße 270\n33311 Gütersloh\nDeutschland",
+    "phone": "+49 5241 800",
+    "email": "datenschutz@bedirect.de",
+    "web": "https://www.bedirect-online.de",
+    "sources": [
+        "https://www.bedirect-online.de/de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/925"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

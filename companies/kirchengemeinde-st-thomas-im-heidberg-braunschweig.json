@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-st-thomas-im-heidberg-braunschweig",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde St. Thomas im Heidberg Braunschweig",
+    "address": "Bautzenstraße 26\n38124 Braunschweig\nDeutschland",
+    "phone": "+49 531 691055",
+    "fax": "+49 531 691059",
+    "email": "heidberg.bs.buero@lk-bs.de",
+    "web": "http://www.st-thomas-bs.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=758"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

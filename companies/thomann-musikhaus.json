@@ -1,0 +1,20 @@
+{
+    "slug": "thomann-musikhaus",
+    "categories": [
+        "commerce"
+    ],
+    "name": "Thomann GmbH",
+    "address": "Hans-Thomann-Straße 1\n96138 Burgebrach\nDeutschland",
+    "phone": "+49 9546 9223 66",
+    "fax": "+49 9546 9223 24",
+    "email": "info@thomann.de",
+    "web": "https://www.thomann.de",
+    "sources": [
+        "https://www.thomann.de/de/compinfo_privacy.html",
+        "https://www.thomann.de/de/compinfo_imprint.html"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "quality": "verified"
+}

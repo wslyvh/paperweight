@@ -1,0 +1,26 @@
+{
+    "slug": "csob",
+    "relevant-countries": [
+        "cz"
+    ],
+    "categories": [
+        "finance",
+        "credit agency"
+    ],
+    "name": "Československá obchodní banka, a.s.",
+    "runs": [
+        "ČSOB"
+    ],
+    "address": "Radlická 333/150\n150 57, Praha 5\nCzech Republic",
+    "phone": "+420 800 023 003",
+    "email": "osobni-data@csob.cz",
+    "web": "https://www.csob.cz/",
+    "sources": [
+        "https://www.csob.cz/portal/contacts",
+        "https://www.csob.cz/portal/csob/about-the-csob-group",
+        "https://www.csob.cz/portal/en/csob/protection-of-personal-data",
+        "https://github.com/datenanfragen/data/pull/1046"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,18 @@
+{
+    "slug": "wallis",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Wallis Online Ltd.",
+    "address": "49-51 Dale Street\nManchester\nM1 2HF\nUnited Kingdom",
+    "email": "DPO@wallis.com",
+    "web": "http://www.wallis.co.uk",
+    "sources": [
+        "https://www.wallis.co.uk/page/cs-privacy-policy.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

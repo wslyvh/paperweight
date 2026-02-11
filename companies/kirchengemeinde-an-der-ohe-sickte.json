@@ -1,0 +1,23 @@
+{
+    "slug": "kirchengemeinde-an-der-ohe-sickte",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde an der Ohe / Sickte",
+    "address": "Kirchstraße 1\n38173 Veltheim (Ohe)\nDeutschland",
+    "phone": "+49 5305 649",
+    "fax": "+49 5305 480",
+    "email": "veltheim.buero@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=111673"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

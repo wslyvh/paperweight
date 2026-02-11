@@ -1,0 +1,49 @@
+{
+    "slug": "vw-bank",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance",
+        "insurance"
+    ],
+    "name": "Volkswagen Financial Services AG",
+    "runs": [
+        "EURO-Leasing GmbH",
+        "LogPay Transport Services GmbH",
+        "Vehicle Trading International (VTI) GmbH",
+        "Volkswagen Autoversicherung AG",
+        "Volkswagen Bank GmbH",
+        "Volkswagen Financial Services Digital Solutions GmbH",
+        "Volkswagen Insurance Brokers GmbH",
+        "Volkswagen Leasing GmbH",
+        "Volkswagen Versicherung AG",
+        "Volkswagen Versicherungsdienst GmbH"
+    ],
+    "address": "Gifhorner Straße 57\n38112 Braunschweig\nDeutschland",
+    "phone": "+49 531 21202",
+    "fax": "+49 531 2122275",
+    "email": "betroffenenrechte@volkswagenbank.de",
+    "web": "https://www.vwfs.de/",
+    "sources": [
+        "https://www.vwfs.de/service/rechtliches/datenschutz.html",
+        "https://www.volkswagenbank.de/de/privatkunden/kundenservice/hilfe/fragen_Antworten/allgemeines/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/2190",
+        "https://github.com/datenanfragen/data/pull/2197"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

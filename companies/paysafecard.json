@@ -1,0 +1,28 @@
+{
+    "slug": "paysafecard",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Paysafe Group Holdings Limited",
+    "runs": [
+        "Incomeaccess",
+        "Pago wallet",
+        "Paysafecard",
+        "PaysafeCash",
+        "Skrill",
+        "Neteller",
+        "Viafintech",
+        "Openbucks"
+    ],
+    "address": "2 Gresham Street\n1st Floor\nLondon\nEC2V 7AD\nUnited Kingdom",
+    "webform": "https://www.paysafe.com/en/personal-data-requests/",
+    "web": "https://www.paysafecard.com",
+    "sources": [
+        "https://www.paysafecard.com/en-de/privacy-notice/",
+        "https://github.com/datenanfragen/data/issues/372"
+    ],
+    "quality": "verified"
+}

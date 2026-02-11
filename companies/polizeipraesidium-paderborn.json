@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-paderborn",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Der Landrat als Kreispolizeibehörde Paderborn",
+    "address": "Riemekestraße 60 – 62\n33102 Paderborn\nDeutschland",
+    "phone": "+49 5251 3060",
+    "fax": "+49 5251 3061099",
+    "email": "datenschutz.paderborn@polizei.nrw.de",
+    "web": "https://paderborn.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "deltaprojects",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Delta Projects AB",
+    "address": "Linnégatan 89E\n115 23 Stockholm\nSweden",
+    "phone": "+46 8 667 76 92",
+    "email": "privacy@deltaprojects.com",
+    "web": "https://www.deltaprojects.com/",
+    "sources": [
+        "https://www.deltaprojects.com/privacy-policy/",
+        "https://www.deltaprojects.com/contact/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

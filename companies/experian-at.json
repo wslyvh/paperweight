@@ -1,0 +1,17 @@
+{
+    "slug": "experian-at",
+    "relevant-countries": [
+        "at"
+    ],
+    "name": "Experian Austria GmbH",
+    "address": "Strozzigasse 10/14\n10180 Wien\nÖsterreich",
+    "phone": "+49 7221 7793300",
+    "email": "Dach-Datenschutz-at@experian.com",
+    "web": "https://www.experian.at/",
+    "sources": [
+        "https://www.experian.at/legal/datenschutz-bestimmungen",
+        "https://www.experian.at/legal/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

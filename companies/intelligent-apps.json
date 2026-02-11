@@ -1,0 +1,43 @@
+{
+    "slug": "intelligent-apps",
+    "relevant-countries": [
+        "de",
+        "pl",
+        "gb",
+        "pt",
+        "se",
+        "it",
+        "es",
+        "at",
+        "ie"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Intelligent Apps GmbH",
+    "runs": [
+        "FREE NOW"
+    ],
+    "address": "Neumühlen 19\n22763 Hamburg\nDeutschland",
+    "web": "https://free-now.com",
+    "sources": [
+        "https://free-now.com/de/passenger-privacy-policy",
+        "https://free-now.com/de/fahrgast/europa/",
+        "https://github.com/datenanfragen/data/issues/344"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "quality": "verified"
+}

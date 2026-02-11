@@ -1,0 +1,22 @@
+{
+    "slug": "nextbike",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Tier Mobility SE",
+    "runs": [
+        "nextbike (ehem.)",
+        "nextbike by TIER"
+    ],
+    "address": "c/o WeWork Eichhornstr. 3\n10785 Berlin\nDeutschland",
+    "phone": "+49 30 69205046",
+    "email": "datenschutz@nextbike.de",
+    "web": "https://nextbike.de",
+    "sources": [
+        "https://www.nextbike.de/de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1657",
+        "https://www.nextbike.de/media/2021-09-06_Datenschutzerklaerung_APP_nextbike.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

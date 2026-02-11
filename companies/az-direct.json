@@ -1,0 +1,40 @@
+{
+    "slug": "az-direct",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "addresses",
+        "ads"
+    ],
+    "name": "AZ Direct GmbH",
+    "address": "Carl-Bertelsmann-Straße 161S\n33311 Gütersloh\nDeutschland",
+    "phone": "+49 5241 5274730",
+    "fax": "+49 5241 80 66909",
+    "email": "datenschutz@az-direct.com",
+    "web": "https://www.az-direct.com",
+    "sources": [
+        "https://www.az-direct.com/site/dm",
+        "https://github.com/datenanfragen/data/pull/1179"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": false
+        },
+        {
+            "desc": "Voranschriften der letzten zwei Jahre",
+            "type": "address",
+            "optional": true
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

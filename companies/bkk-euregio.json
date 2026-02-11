@@ -1,0 +1,22 @@
+{
+    "slug": "bkk-euregio",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "BKK EUREGIO",
+    "address": "Boos-Fremery-Str. 66\n52525 Heinsberg\nDeutschland",
+    "phone": "+49 2452 90160",
+    "fax": "+49 2452 9016259",
+    "email": "datenschutz@bkk-euregio.de",
+    "web": "https://www.bkk-euregio.de",
+    "sources": [
+        "https://www.bkk-euregio.de/impressum",
+        "https://www.bkk-euregio.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1296"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

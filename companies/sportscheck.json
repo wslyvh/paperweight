@@ -1,0 +1,21 @@
+{
+    "slug": "sportscheck",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "SportScheck GmbH",
+    "address": "Biberger Str. 37\n82008 Unterhaching\nDeutschland",
+    "phone": "+49 89 6654 0",
+    "fax": "+49 89 6654 2030",
+    "email": "service.datenschutz@sportscheck.com",
+    "web": "https://www.sportscheck.com/",
+    "sources": [
+        "https://www.sportscheck.com/datenschutz/",
+        "https://www.sportscheck.com/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,15 @@
+{
+    "slug": "gymlib-sas",
+    "relevant-countries": [
+        "fr"
+    ],
+    "name": "GYMLIB SAS",
+    "address": "156 rue de la Roquette\n75011 Paris\nFrance",
+    "email": "legal@gymlib.com",
+    "web": "https://gymlib.com",
+    "sources": [
+        "https://legals.gymlib.com/tos",
+        "https://github.com/datenanfragen/data/issues/547"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,23 @@
+{
+    "slug": "igs-heidberg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "IGS Heidberg Braunschweig",
+    "address": "Stettinstraße 1\n38124 Braunschweig\nDeutschland",
+    "phone": "+49 531 470 7590",
+    "fax": "+49 531 470 7599",
+    "email": "kontakt@igs-heidberg.de",
+    "web": "https://www.gesamtschule-heidberg.de/",
+    "sources": [
+        "https://www.gesamtschule-heidberg.de/j/privacy",
+        "https://www.gesamtschule-heidberg.de/kontakt/"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

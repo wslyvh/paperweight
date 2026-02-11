@@ -1,0 +1,15 @@
+{
+    "slug": "bwin-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "bwin (Deutschland) Limited",
+    "address": "Unit 6\nSt Business Centre\n120 The Strand\nGzira\nMalta",
+    "email": "privacy@bwin.de",
+    "sources": [
+        "https://help.bwin.de/en/general-information/security/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/2122"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

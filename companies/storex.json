@@ -1,0 +1,19 @@
+{
+    "slug": "storex",
+    "relevant-countries": [
+        "fr"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Pact Group",
+    "address": "29 Promenade Michel Simon\nLe Descartes building\n93160 Noisy-le-Grand\nFrance",
+    "phone": "+33 1 55 85 81 81",
+    "email": "salesstoragedistri@pactinfo.eu",
+    "web": "https://pactgroup.eu/",
+    "sources": [
+        "https://pactgroup.eu/contact.html",
+        "https://github.com/datenanfragen/data/issues/492"
+    ],
+    "quality": "verified"
+}

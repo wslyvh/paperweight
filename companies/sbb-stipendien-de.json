@@ -1,0 +1,20 @@
+{
+    "slug": "sbb-stipendien-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Stiftung Begabtenförderung berufliche Bildung gGmbH",
+    "address": "c/o Sicoda GmbH\nRochusstraße 198\n53123 Bonn\nDeutschland",
+    "phone": "+49 228 28614060",
+    "email": "datenschutz@sbb-stipendien.de",
+    "web": "https://www.sbb-stipendien.de",
+    "sources": [
+        "https://www.sbb-stipendien.de/sbb-start/datenschutz/datenschutz-bewerbung",
+        "https://github.com/datenanfragen/data/pull/1561"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

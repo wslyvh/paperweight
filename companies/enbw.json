@@ -1,0 +1,23 @@
+{
+    "slug": "enbw",
+    "categories": [
+        "utility"
+    ],
+    "name": "EnBW Energie Baden-Württemberg AG",
+    "runs": [
+        "Meine EnBW"
+    ],
+    "address": "Durlacher Allee 93\n76131 Karlsruhe\nDeutschland",
+    "phone": "+49 721 63 00",
+    "email": "datenschutz@enbw.com",
+    "web": "https://www.enbw.com/",
+    "sources": [
+        "https://www.enbw.com/datenschutz/",
+        "https://www.enbw.com/impressum/"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

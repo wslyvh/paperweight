@@ -1,0 +1,20 @@
+{
+    "slug": "stadtwerke-weimar-stadtversorgungs-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "Stadtwerke Weimar Stadtversorgungs-GmbH",
+    "phone": "+49 361 3478054",
+    "fax": "+49 331 7433015",
+    "email": "datenschutz@domusconsult.de",
+    "sources": [
+        "https://sw-weimar.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2715"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "address": "c/o DOMUS Consult Wirtschaftsberatungsgesellschaft mbH\nRegierungsstraße 39\n99086 Erfurt\nDeutschland"
+}

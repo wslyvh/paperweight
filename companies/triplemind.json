@@ -1,0 +1,19 @@
+{
+    "slug": "triplemind",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "TravelScout24.de",
+    "address": "c/o Triplemind GmbH\nBerliner Strasse 2\n63065 Offenbach am Main\nDeutschland",
+    "phone": "+49 991 296767867",
+    "email": "datenschutz@triplemind.com",
+    "web": "https://www.travelscout24.de",
+    "sources": [
+        "https://www.travelscout24.de/datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

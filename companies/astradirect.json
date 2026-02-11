@@ -1,0 +1,22 @@
+{
+    "slug": "astradirect",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "utility"
+    ],
+    "name": "AstraDirect Leasing & Service GmbH",
+    "address": "Dudenstr. 46\n68167 Mannheim\nDeutschland",
+    "phone": "+49 621 1247680",
+    "fax": "+49 621 1247682629",
+    "email": "datenschutz@astradirect.de",
+    "web": "https://www.astradirect.de/",
+    "sources": [
+        "https://www.astradirect.de/impressum",
+        "https://github.com/datenanfragen/data/issues/490"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

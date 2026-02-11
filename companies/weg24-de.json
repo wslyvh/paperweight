@@ -1,0 +1,19 @@
+{
+    "slug": "weg24-de",
+    "categories": [
+        "travel"
+    ],
+    "name": "weg24.de – Ludwigshafen Rhein Neckar",
+    "address": "Bismarckstraße 34\n67059 Ludwigshafen\nDeutschland",
+    "phone": "+49 621 5200 7878",
+    "fax": "+49 621 5200 7880",
+    "email": "info@weg24.de",
+    "web": "https://www.weg24.de/",
+    "sources": [
+        "https://www.weg24.de/impressum/"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "fanatical",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce",
+        "entertainment"
+    ],
+    "name": "Focus Multimedia Ltd.",
+    "runs": [
+        "Fanatical.com"
+    ],
+    "address": "The Studios\nLea Hall Enterprise Park\nWheelhouse Road\nBrereton, Rugeley\nStaffordshire\nWS15 1LH\nUnited Kingdom",
+    "phone": "+44 1889 570156",
+    "email": "support@fanatical.com",
+    "web": "https://www.fanatical.com",
+    "sources": [
+        "https://support.fanatical.com/hc/en-us/articles/115005052465-Privacy-Policy"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "stadium-se",
+    "relevant-countries": [
+        "se"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Stadium AB",
+    "address": "Norra promenaden 63\n601 60 Norrköping\nSweden",
+    "phone": "+46 77 149 94 99",
+    "email": "info@stadium.se",
+    "web": "https://www.stadium.se/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/442",
+        "https://www.stadium.se/privacy"
+    ],
+    "quality": "verified"
+}

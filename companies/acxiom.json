@@ -1,0 +1,35 @@
+{
+    "slug": "acxiom",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "addresses",
+        "ads"
+    ],
+    "name": "Acxiom Deutschland GmbH",
+    "address": "Speicherstraße 57-59\n60327 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 589962700",
+    "email": "datenschutz@acxiom.com",
+    "webform": "https://www.acxiom.de/datenschutzanfragen/",
+    "web": "http://www.acxiom.de/",
+    "sources": [
+        "https://www.acxiom.de/datenschutz/datenschutzinformationen-fuer-verbraucher-und-firmendatenbank/",
+        "https://www.acxiom.de/impressum/",
+        "https://github.com/datenanfragen/data/pull/1099",
+        "https://github.com/datenanfragen/data/pull/2346"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

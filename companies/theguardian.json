@@ -1,0 +1,24 @@
+{
+    "slug": "theguardian",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Guardian News & Media Limited",
+    "runs": [
+        "The Guardian (www.theguardian.com)"
+    ],
+    "address": "Kings Place\n90 York Way\nLondon\nN1 9GU\nUnited Kingdom",
+    "phone": "+44 20 3353 2000",
+    "email": "dataprotection@theguardian.com",
+    "web": "https://www.theguardian.com",
+    "sources": [
+        "https://www.theguardian.com/help/privacy-policy",
+        "https://www.theguardian.com/help/contact-us"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

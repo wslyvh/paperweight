@@ -1,0 +1,23 @@
+{
+    "slug": "holvi",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Holvi Payment Services Oy",
+    "address": "Kaikukatu 2 C\n00530 Helsinki\nFinland",
+    "phone": "+358 75 3252935",
+    "fax": "+358 9 23194337",
+    "email": "privacy@holvi.com",
+    "webform": "https://privacyportal-de.onetrust.com/webform/a97a540f-1036-4037-8d35-e61a36887b4e/4eec97a3-9b2b-4a2c-b9d9-990cdaa8e6d1",
+    "web": "https://www.holvi.com/",
+    "sources": [
+        "https://support.holvi.com/hc/en-gb/articles/202260402-Privacy-Notice",
+        "https://support.holvi.com/hc/en-gb/articles/202271182-Imprint",
+        "https://support.holvi.com/hc/en-gb/articles/115005238365-Contact-us"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

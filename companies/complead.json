@@ -1,0 +1,19 @@
+{
+    "slug": "complead",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "complead GmbH",
+    "address": "Sieglitzhofer Straße 9\n91054 Erlangen\nDeutschland",
+    "email": "datenschutz@complead.de",
+    "sources": [
+        "https://www.complead.de/datenschutz.php",
+        "https://github.com/datenanfragen/data/issues/79"
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

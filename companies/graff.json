@@ -1,0 +1,21 @@
+{
+    "slug": "graff",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Buchhandlung Graff GmbH",
+    "address": "Sack 15\n38100 Braunschweig\nDeutschland",
+    "phone": "+49 531 480890",
+    "fax": "+49 531 4808989",
+    "email": "datenschutz@graff.de",
+    "web": "https://www.graff.de",
+    "sources": [
+        "https://www.graff.de/datenschutz",
+        "https://www.graff.de/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "fkb",
+    "relevant-countries": [
+        "li"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "FKB – Die liechtensteinische Gesundheitskasse",
+    "address": "Gagoz 75\nPostfach 363\n9496 Balzers\nLiechtenstein",
+    "phone": "+423 388 19 90",
+    "fax": "+423 388 19 91",
+    "email": "info@fkb.li",
+    "web": "https://www.fkb.li/",
+    "sources": [
+        "https://www.fkb.li/ueber-uns/datenschutz/",
+        "https://www.fkb.li/fileadmin/user_upload/WEB_Datenschutzerklaerung-2021.pdf"
+    ],
+    "quality": "verified"
+}

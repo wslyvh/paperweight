@@ -1,0 +1,18 @@
+{
+    "slug": "kachelmannwetter",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Kachelmann GmbH",
+    "runs": [
+        "Kachelmannwetter"
+    ],
+    "address": "Dorfplatz 2\n6417 Sattel\nSwitzerland",
+    "email": "info@kachelmann.com",
+    "web": "https://kachelmannwetter.com/",
+    "sources": [
+        "https://kachelmannwetter.com/de/site/datenschutz",
+        "https://github.com/datenanfragen/data/pull/3138"
+    ],
+    "quality": "verified"
+}

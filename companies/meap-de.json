@@ -1,0 +1,19 @@
+{
+    "slug": "meap-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "meap GmbH",
+    "address": "Annenstraße 172\n58453 Witten\nDeutschland",
+    "phone": "+49 2302 87930",
+    "email": "datenschutz@meap.de",
+    "web": "https://www.meap.de/",
+    "sources": [
+        "https://www.meap.de/datenschutz"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

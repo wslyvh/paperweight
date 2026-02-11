@@ -1,0 +1,21 @@
+{
+    "slug": "ovh",
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "OVH GmbH",
+    "address": "Dudweiler Landstraße 5\n66123 Saarbrücken\nDeutschland",
+    "phone": "+49 681 906 730",
+    "fax": "+49 681 876 1827",
+    "email": "datenschutz@ovh.de",
+    "web": "https://www.ovh.de/",
+    "sources": [
+        "https://www.ovh.de/unternehmen/datenschutz.xml",
+        "https://www.ovh.de/support/impressum-und-rechtshinweise/"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

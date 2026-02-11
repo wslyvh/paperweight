@@ -1,0 +1,19 @@
+{
+    "slug": "hit-co-uk",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "HITCOUK Limited",
+    "address": "1 A P Ellis Road\nUpper Rissington\nCheltenham\nGL54 2QB\nUnited Kingdom",
+    "email": "dataprotection@hit.co.uk",
+    "web": "https://hit.co.uk/",
+    "sources": [
+        "https://hit.co.uk/policies/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/1847"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

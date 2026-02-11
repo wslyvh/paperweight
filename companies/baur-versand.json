@@ -1,0 +1,19 @@
+{
+    "slug": "baur-versand",
+    "categories": [
+        "commerce"
+    ],
+    "name": "Baur Versand GmbH & Co. KG",
+    "address": "96222 Burgkunstadt\nDeutschland",
+    "phone": "+49 95 72 91 0",
+    "email": "service@baur.de",
+    "web": "https://www.baur.de/",
+    "sources": [
+        "https://www.baur.de/service-hilfe/ueber-uns/datenschutz/datenschutzhinweis/",
+        "https://www.baur.de/service-hilfe/ueber-uns/impressum/"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "quality": "verified"
+}

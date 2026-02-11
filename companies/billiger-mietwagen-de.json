@@ -1,0 +1,25 @@
+{
+    "slug": "billiger-mietwagen-de",
+    "categories": [
+        "travel",
+        "insurance"
+    ],
+    "name": "SilverTours GmbH",
+    "runs": [
+        "billiger-mietwagen.de (www.billiger-mietwagen.de)"
+    ],
+    "address": "Konrad-Goldmann-Straße 5d\n79100 Freiburg\nDeutschland",
+    "phone": "+49 221 567 999 11",
+    "fax": "+49 761 55 77 25 69",
+    "email": "datenschutz@billiger-mietwagen.de",
+    "web": "https://www.billiger-mietwagen.de/",
+    "sources": [
+        "https://www.billiger-mietwagen.de/datenschutz.htm",
+        "https://www.billiger-mietwagen.de/impressum.htm"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

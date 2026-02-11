@@ -1,0 +1,16 @@
+{
+    "slug": "keseurope",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "KES Kulturpartner Europe Shanghai GmbH",
+    "address": "Börnestraße 10\n40211 Düsseldorf\nDeutschland",
+    "phone": "+49 211 97630445",
+    "email": "service@keseurope.com",
+    "web": "http://www.keseurope.com/",
+    "sources": [
+        "http://www.keseurope.com/impressum.html",
+        "https://github.com/datenanfragen/data/pull/2211"
+    ],
+    "quality": "verified"
+}

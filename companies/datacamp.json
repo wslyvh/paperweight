@@ -1,0 +1,24 @@
+{
+    "slug": "datacamp",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "DataCamp Belgium BV",
+    "runs": [
+        "DataCamp, Inc."
+    ],
+    "address": "Martelarenlaan 38\n3010 Kessel-Lo\nBelgium",
+    "email": "privacy@datacamp.com",
+    "web": "https://www.datacamp.com",
+    "sources": [
+        "https://www.datacamp.com/privacy-policy",
+        "https://www.datacamp.com/terms-of-use",
+        "https://www.datacamp.com/contact-us"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "hammy-media-ltd",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Hammy Media Ltd",
+    "runs": [
+        "xhamster.com"
+    ],
+    "address": "79 Spyrou Kyprianou\nProtopapas Building\n2nd floor, Flat 201\n3076 Limassol\nCyprus",
+    "email": "help@xhamster.com",
+    "sources": [
+        "https://xhamster.com/info/privacy",
+        "https://github.com/datenanfragen/data/issues/546"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "nsfw": true
+}

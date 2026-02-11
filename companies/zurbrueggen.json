@@ -1,0 +1,31 @@
+{
+    "slug": "zurbrueggen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Zurbrüggen Wohn-Zentrum GmbH",
+    "address": "Hans-Böckler-Str. 4\n59423 Unna\nDeutschland",
+    "phone": "+49 2303 208208",
+    "email": "datenschutz@zurbrueggen.de",
+    "web": "https://www.zurbrueggen.de/",
+    "sources": [
+        "https://www.zurbrueggen.de/onlineshop/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1777"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "epson-europe",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Epson Europe B.V.",
+    "runs": [
+        "Epson Ready Print"
+    ],
+    "address": "Azië Building, Atlas Arena\nHoogoorddreef 5\n1101BA Amsterdam\nThe Netherlands",
+    "email": "edpo@epson.eu",
+    "webform": "https://www.epson.de/de_DE/contact-us-about-your-data",
+    "sources": [
+        "https://www.epson.de/de_DE/legal/privacy",
+        "https://www.epson.co.uk/en_GB/legal/privacy",
+        "https://github.com/datenanfragen/data/pull/2753"
+    ],
+    "suggested-transport-medium": "webform",
+    "quality": "verified"
+}

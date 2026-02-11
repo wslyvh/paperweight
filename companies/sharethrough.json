@@ -1,0 +1,20 @@
+{
+    "slug": "sharethrough",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Sharethrough Inc.",
+    "address": "c/o Legal Army\nC. de la Princesa, 31\nMoncloa – Aravaca\n28008 Madrid\nSpain",
+    "email": "dpo@sharethrough.com",
+    "web": "https://www.sharethrough.com/",
+    "sources": [
+        "https://privacy-center.sharethrough.com/en/consumer-privacy-notice/",
+        "https://github.com/datenanfragen/data/pull/2954"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

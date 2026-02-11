@@ -1,0 +1,19 @@
+{
+    "slug": "kreissparkasse-nordhausen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Kreissparkasse Nordhausen",
+    "address": "Kornmarkt 9\n99734 Nordhausen\nDeutschland",
+    "phone": "+49 3631 4280",
+    "email": "datenschutz@kskndh.de",
+    "sources": [
+        "https://www.kreissparkasse-nordhausen.de/de/home/toolbar/datenschutz.html?n=true&stref=footer",
+        "https://github.com/datenanfragen/data/pull/2761"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

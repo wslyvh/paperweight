@@ -1,0 +1,20 @@
+{
+    "slug": "gms-store",
+    "relevant-countries": [
+        "pt"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "GMS-Store",
+    "address": "Sanches Coelho nº2\n1600-202 Lisboa\nPortugal",
+    "email": "rgpd@gms-store.com",
+    "web": "https://www.gms-store.com",
+    "sources": [
+        "https://www.gms-store.com/pages/politica-de-privacidade",
+        "https://www.gms-store.com/pages/termos-e-condicoes",
+        "https://github.com/datenanfragen/data/issues/569"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

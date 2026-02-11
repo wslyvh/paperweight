@@ -1,0 +1,21 @@
+{
+    "slug": "werde-lebensretter-ug",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "health"
+    ],
+    "name": "Werde-Lebensretter UG",
+    "address": "Steinweg 1\n59494 Soest\nDeutschland",
+    "phone": "+49 2921 6850702",
+    "email": "Jonathan@werde-lebensretter.com",
+    "web": "https://www.werde-lebensretter.com",
+    "sources": [
+        "https://www.werde-lebensretter.com/datenschutzerklarung/",
+        "https://www.werde-lebensretter.com/impressum/",
+        "https://github.com/datenanfragen/data/pull/2696"
+    ],
+    "quality": "verified"
+}

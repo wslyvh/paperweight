@@ -1,0 +1,18 @@
+{
+    "slug": "tag-wohnen",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "TAG Wohnen & Service GmbH",
+    "address": "c/o TAG Immobilien AG\nDatenschutzmanagement\nKreuzstraße 7 c\n04103 Leipzig\nDeutschland",
+    "phone": "+49 40 380320",
+    "fax": "+49 40 38032388",
+    "email": "datenschutz@tag-ag.com",
+    "sources": [
+        "https://tag-wohnen.de/datenschutz",
+        "https://tag-wohnen.de/impressum",
+        "https://github.com/datenanfragen/data/pull/2776"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

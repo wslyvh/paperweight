@@ -1,0 +1,21 @@
+{
+    "slug": "triller",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media",
+        "entertainment"
+    ],
+    "name": "Flipps Media, Inc.",
+    "address": "16501 Ventura Blvd\nEncino, CA 91436\nUnited States of America",
+    "phone": "+359 88 852 6608",
+    "email": "support@trillertv.com",
+    "web": "https://www.trillertv.com/",
+    "sources": [
+        "https://www.trillertv.com/p/privacy-policy/",
+        "https://play.google.com/store/apps/details?id=com.flipps.fitetv",
+        "https://github.com/datenanfragen/data/issues/462"
+    ],
+    "quality": "verified"
+}

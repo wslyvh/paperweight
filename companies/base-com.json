@@ -1,0 +1,18 @@
+{
+    "slug": "base-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "BaseLinker spółka z ograniczoną odpowiedzialnością",
+    "runs": [
+        "base.com"
+    ],
+    "address": "Plac Solny 15\n50-062 Wrocław\nPoland",
+    "email": "privacy@base.com",
+    "web": "https://base.com",
+    "sources": [
+        "https://base.com/en-US/policy/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

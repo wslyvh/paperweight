@@ -1,0 +1,28 @@
+{
+    "slug": "drive-now-com",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Free2move Germany GmbH",
+    "runs": [
+        "DriveNow (ehem.)",
+        "car2go (ehem.)",
+        "SHARE NOW (ehem.)"
+    ],
+    "address": "c/o WeWork\nWarschauer Platz 11-13\n10245 Berlin\nGermany",
+    "phone": "+49 30 330831118",
+    "email": "privacy@free2move.com",
+    "web": "https://www.free2move.com/de",
+    "sources": [
+        "https://share-now.assetbank-server.com/assetbank-share-now/assetfile/16419.pdf",
+        "https://www.free2move.com/de/en/legal/#imprint",
+        "https://web.archive.org/web/20190630194630/https://www.berlin.de/tourismus/infos/verkehr/nachrichten/5685531-4357821-drivenow-und-car2go-fusionieren-zu-share.html",
+        "https://www.free2move.com/de/en/about-us/",
+        "https://github.com/datenanfragen/data/issues/260"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

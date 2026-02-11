@@ -1,0 +1,22 @@
+{
+    "slug": "medikompass",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "MediKompass GmbH",
+    "address": "Hausener Weg 29\n60489 Frankfurt am Main\nDeutschland",
+    "phone": "+49 800 1433017",
+    "fax": "+49 800 1433018",
+    "email": "sas@medikompass.com",
+    "web": "https://www.medikompass.de",
+    "sources": [
+        "https://www.medikompass.de/datenschutzerklaerung.php",
+        "https://www.medikompass.de/impressum.php#datenschutz",
+        "https://github.com/datenanfragen/data/pull/2416"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

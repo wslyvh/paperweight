@@ -1,0 +1,23 @@
+{
+    "slug": "discord",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Discord Netherlands BV",
+    "runs": [
+        "Discord, Inc."
+    ],
+    "address": "Schiphol Boulevard 195\n1118 BG Schiphol\nThe Netherlands",
+    "email": "privacy@discord.com",
+    "web": "https://discord.com",
+    "sources": [
+        "https://discord.com/privacy",
+        "https://github.com/datenanfragen/data/pull/1159"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "taboola",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Taboola, Inc.",
+    "address": "1115 Broadway\n7th Floor\nNew York\nNY 10010\nUnited States of America",
+    "phone": "+1 212 206 7663",
+    "email": "privacy@taboola.com",
+    "web": "https://www.taboola.com/",
+    "sources": [
+        "https://www.taboola.com/privacy-policy"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

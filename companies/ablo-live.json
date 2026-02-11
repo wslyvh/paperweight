@@ -1,0 +1,19 @@
+{
+    "slug": "ablo-live",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Ablo",
+    "address": "c/o Massive Media Match NV\nEmile Braunplein 18\n9000 Ghent\nBelgium",
+    "email": "help-en@ablo.live",
+    "web": "https://ablo.live",
+    "sources": [
+        "https://ablo.live/#/about/privacy",
+        "https://ablo.live/#/help?category=CONTACT"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

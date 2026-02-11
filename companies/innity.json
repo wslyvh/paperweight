@@ -1,0 +1,21 @@
+{
+    "slug": "innity",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Innity",
+    "address": "C501&502\nKelana Square 17\nJalan SS7/26\nKelana Jaya\nPetaling Jaya\nSelangor\nMalaysia",
+    "phone": "+603 7880 5611",
+    "email": "privacy@innity.com",
+    "web": "https://www.innity.com/",
+    "sources": [
+        "https://www.innity.com/privacy-policy"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

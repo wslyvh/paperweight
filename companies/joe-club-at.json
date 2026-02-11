@@ -1,0 +1,25 @@
+{
+    "slug": "joe-club-at",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "ads",
+        "commerce"
+    ],
+    "name": "Unser Ö-Bonus Club GmbH",
+    "runs": [
+        "jö Bonus Club"
+    ],
+    "address": "IZ NÖ-Süd Straße 3, Objekt 16\n2355 Wiener Neudorf\nÖsterreich",
+    "phone": "+43 1 3865000",
+    "email": "datenschutz@joe-club.at",
+    "web": "https://www.joe-club.at/",
+    "sources": [
+        "https://www.joe-club.at/datenschutz/DSEV22021",
+        "https://www.joe-club.at/impressum",
+        "https://github.com/datenanfragen/data/issues/254"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

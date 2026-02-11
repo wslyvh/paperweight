@@ -1,0 +1,23 @@
+{
+    "slug": "m-industry-germany",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Delica AG",
+    "runs": [
+        "CoffeeB"
+    ],
+    "address": "Bresteneggstrasse 4\n5033 Buchs\nSchweiz",
+    "phone": "+41 800 506 506",
+    "email": "datenschutz@delica.com",
+    "web": "https://www.delica.ch/",
+    "sources": [
+        "https://www.coffeeb.ch/pages/datenschutzerklaerung",
+        "https://github.com/datenanfragen/data/issues/526"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,28 @@
+{
+    "slug": "docmorris",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "DocMorris N.V.",
+    "runs": [
+        "apo-rot (ehem.)"
+    ],
+    "address": "Avantisallee 152\n6422 RA Heerlen\nThe Netherlands",
+    "phone": "+49 800 480 8000",
+    "fax": "+49 180 3 48 40 40",
+    "email": "datenschutz@docmorris.de",
+    "web": "https://www.docmorris.de/",
+    "sources": [
+        "https://www.docmorris.de/service/bestellung/datenschutz",
+        "https://www.docmorris.de/service/unternehmen/impressum",
+        "https://www.docmorris.de/apo-rot"
+    ],
+    "comments": [
+        "Achtung: Faxnummer ist kostenpflichtig (9 ct/min aus dem dt. Festnetz, max. 42 ct/min aus dem dt. Mobilfunknetz)."
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "gaussschule-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Gaußschule Braunschweig – Gymnasium am Löwenwall",
+    "address": "Löwenwall 18a\n38100 Braunschweig\nDeutschland",
+    "phone": "+49 531 470 4747",
+    "fax": "+49 531 470 4763",
+    "email": "datenschutz@gaussschule-bs.de",
+    "web": "https://gaussschule-braunschweig.de/",
+    "sources": [
+        "https://gaussschule-braunschweig.de/?page_id=3032",
+        "https://gaussschule-braunschweig.de/?page_id=658"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "facet-group": "school"
+}

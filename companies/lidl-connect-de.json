@@ -1,0 +1,21 @@
+{
+    "slug": "lidl-connect-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "LIDL Connect",
+    "address": "Postfach 100 254\n16285 Schwedt\nDeutschland",
+    "phone": "+49 172 2222022",
+    "fax": "+49 361 34195999",
+    "email": "lidl-connect-kundenbetreuung@vodafone.de",
+    "webform": "https://kundenkonto.lidl-connect.de/datenschutz-service.html",
+    "sources": [
+        "https://kundenkonto.lidl-connect.de/datenschutz.html",
+        "https://kundenkonto.lidl-connect.de/datenschutz-service.html",
+        "https://kundenkonto.lidl-connect.de/impressum.html"
+    ],
+    "quality": "verified"
+}

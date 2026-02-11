@@ -1,0 +1,19 @@
+{
+    "slug": "supranet",
+    "relevant-countries": [
+        "li"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Supranet AG",
+    "address": "Im alten Riet 121\n9494 Schaan\nLiechtenstein",
+    "phone": "+423 377 44 43",
+    "email": "dsb@supra.net",
+    "web": "https://supra.net/",
+    "sources": [
+        "https://supra.net/datenschutz"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "volksbank-stuttgart",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Volksbank Stuttgart eG",
+    "address": "Daimlerstraße 129\n70372 Stuttgart\nDeutschland",
+    "phone": "+49 711 1810",
+    "fax": "+49 711 1812497",
+    "email": "datenschutzbeauftragter@volksbank-stuttgart.de",
+    "web": "https://www.volksbank-stuttgart.de/",
+    "sources": [
+        "https://www.volksbank-stuttgart.de/service/rechtliche-hinweise/datenschutzhinweis-zur-website.html",
+        "https://github.com/datenanfragen/data/pull/1987"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

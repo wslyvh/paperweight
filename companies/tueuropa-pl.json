@@ -1,0 +1,23 @@
+{
+    "slug": "tueuropa-pl",
+    "relevant-countries": [
+        "pl"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Towarzystwo Ubezpieczeń Europa S.A.",
+    "runs": [
+        "Towarzystwo Ubezpieczeń na Życie Europa S.A."
+    ],
+    "address": "ul. gen. Władysława Sikorskiego 26\n53-659 Wrocław\nPoland",
+    "phone": "+48 71 369 28 87",
+    "email": "iod@tueuropa.pl",
+    "web": "https://tueuropa.pl",
+    "sources": [
+        "https://tueuropa.pl/polityka-prywatnosci",
+        "https://tueuropa.pl/doclib/1.-KIR_RODO_Produkt_TUE.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

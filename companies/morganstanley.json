@@ -1,0 +1,41 @@
+{
+    "slug": "morganstanley",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Morgan Stanley & Co International plc",
+    "address": "20 Bank Street, Canary Wharf\nLondon\nE14 4AD\nUnited Kingdom",
+    "email": "dataprotectionoffice@morganstanley.com",
+    "web": "https://www.morganstanley.com",
+    "sources": [
+        "https://www.morganstanley.com/disclaimers/emea-privacy-policy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Full Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Address",
+            "type": "address",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "Account Information",
+            "type": "input",
+            "optional": false
+        }
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

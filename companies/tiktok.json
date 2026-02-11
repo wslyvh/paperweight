@@ -1,0 +1,20 @@
+{
+    "slug": "tiktok",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media",
+        "entertainment"
+    ],
+    "name": "TikTok Technology Limited",
+    "address": "10 Earlsfort Terrace\nDublin\nD02 T380\nIreland",
+    "webform": "https://www.tiktok.com/legal/report/privacy",
+    "web": "https://www.tiktok.com",
+    "sources": [
+        "https://www.tiktok.com/legal/page/eea/privacy-policy/en",
+        "https://github.com/datenanfragen/data/pull/2306"
+    ],
+    "suggested-transport-medium": "webform",
+    "quality": "verified"
+}

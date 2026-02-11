@@ -1,0 +1,28 @@
+{
+    "slug": "wbg-nuernberg-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "wbg Nürnberg GmbH Immobilienunternehmen",
+    "address": "Glogauer Straße 70\n90473 Nürnberg\nDeutschland",
+    "phone": "+49 911 80040",
+    "fax": "+49 911 8004201",
+    "email": "datenschutz@wbg.nuernberg.de",
+    "web": "https://wbg.nuernberg.de",
+    "sources": [
+        "https://wbg.nuernberg.de/datenschutz/",
+        "https://wbg.nuernberg.de/impressum/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

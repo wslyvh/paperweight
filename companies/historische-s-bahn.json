@@ -1,0 +1,33 @@
+{
+    "slug": "historische-s-bahn",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "nonprofit",
+        "travel"
+    ],
+    "name": "Historische S-Bahn e.V. (HiSB)",
+    "address": "Bahnhofstr. 10\n15537 Erkner\nDeutschland",
+    "phone": "+49 3362 740004",
+    "email": "info@hisb.de",
+    "sources": [
+        "https://hisb.de/derverein/impressum.html",
+        "https://hisb.de/derverein/datenschutzerklaerung.html",
+        "https://github.com/datenanfragen/data/pull/1407",
+        "https://github.com/datenanfragen/data/pull/2177"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "quality": "verified"
+}

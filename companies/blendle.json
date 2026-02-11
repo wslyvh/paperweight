@@ -1,0 +1,19 @@
+{
+    "slug": "blendle",
+    "relevant-countries": [
+        "de",
+        "nl"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Blendle B.V.",
+    "address": "Catharijnesingel 52\n3511 GC Utrecht\nThe Netherlands",
+    "email": "contact@blendle.com",
+    "web": "https://blendle.com",
+    "sources": [
+        "https://blendle.com/about",
+        "https://blendle.com/about/privacy"
+    ],
+    "quality": "verified"
+}

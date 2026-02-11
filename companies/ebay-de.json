@@ -1,0 +1,47 @@
+{
+    "slug": "ebay-de",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch",
+        "be",
+        "fr",
+        "ie",
+        "it",
+        "nl",
+        "pl",
+        "es"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "eBay GmbH",
+    "address": "Albert-Einstein-Ring 2 – 6\n14532 Kleinmachnow\nGermany",
+    "phone": "+49 30 801950",
+    "fax": "+49 30 80195444",
+    "webform": "https://ocswf.ebay.com/guest/privacy",
+    "web": "https://www.ebay.de/",
+    "sources": [
+        "https://pages.ebay.de/help/policies/privacy-policy.html",
+        "https://pages.ebay.de/help/policies/legal-imprint.html",
+        "https://www.ebayinc.com/our-company/privacy-center/privacy-notice/data-protection-officer-contacts/",
+        "https://www.ebayinc.com/company/privacy-center/privacy-notice/data-protection-officer-contacts/",
+        "https://github.com/datenanfragen/data/issues/178",
+        "https://github.com/datenanfragen/data/pull/2550"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Username",
+            "type": "input"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "quality": "verified"
+}

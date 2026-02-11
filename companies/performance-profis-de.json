@@ -1,0 +1,25 @@
+{
+    "slug": "performance-profis-de",
+    "relevant-countries": [
+        "at",
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Performance Profis Marketing GmbH",
+    "address": "Pfaffenweg 15\n53227 Bonn\nDeutschland",
+    "phone": "+49 228 688203500",
+    "fax": "+49 228 688203548",
+    "email": "datenschutz@performance-profis.de",
+    "web": "https://www.performance-profis.de/",
+    "sources": [
+        "https://www.performance-profis.de/impressum.html",
+        "https://www.northdata.com/Performance+Profis+Marketing+GmbH,+Bonn/HRB+19955",
+        "https://web2.cylex.de/firma-home/performance-profis-marketing-gmbh-10482262.html",
+        "https://github.com/datenanfragen/data/pull/713",
+        "https://www.performance-profis.de/datenschutz.php"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

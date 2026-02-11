@@ -1,0 +1,19 @@
+{
+    "slug": "songkick",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "SK Acquisition Ltd",
+    "runs": [
+        "Songkick"
+    ],
+    "address": "c/o Warner Music Group\n1633 Broadway\nNew York\nNY 10019\nUnited States of America",
+    "email": "privacy@songkick.com",
+    "web": "https://www.songkick.com/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/423",
+        "https://www.songkick.com/info/privacy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,27 @@
+{
+    "slug": "gaspool",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "Trading Hub Europe GmbH",
+    "runs": [
+        "GASPOOL Balancing Services GmbH (ehem.)",
+        "NetConnect Germany GmbH & Co. KG (ehem.)",
+        "NetConnect Germany Management GmbH (ehem.)"
+    ],
+    "address": "EUREF-Campus 1\n40472 Düsseldorf\nDeutschland",
+    "phone": "+49 211 5420000",
+    "email": "datenschutz@tradinghub.eu",
+    "web": "https://www.tradinghub.eu/",
+    "sources": [
+        "https://www.tradinghub.eu/de-de/Start/Datenschutz",
+        "https://www.northdata.de/?id=6562278989",
+        "https://www.northdata.de/?id=6576746147",
+        "https://github.com/datenanfragen/data/issues/575"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

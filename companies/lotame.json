@@ -1,0 +1,22 @@
+{
+    "slug": "lotame",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Lotame Solutions, Inc.",
+    "address": "8850 Stanford Blvd\nSuite 4000\nColumbia\nMD 21045\nUnited States of America",
+    "phone": "+1 410 379 2195",
+    "email": "privacy@lotame.com",
+    "web": "https://www.lotame.com/",
+    "sources": [
+        "https://www.lotame.com/about-lotame/privacy/lotames-products-services-privacy-policy/",
+        "https://www.lotame.com/about-lotame/contact/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,17 @@
+{
+    "slug": "autohaus24",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "autohaus24 GmbH",
+    "address": "Zugspitzstraße 1\n82049 Pullach\nDeutschland",
+    "phone": "+49 89 70 80 84 84",
+    "email": "datenschutz@autohaus24.de",
+    "web": "https://www.autohaus24.de/",
+    "sources": [
+        "https://www.autohaus24.de/datenschutz"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

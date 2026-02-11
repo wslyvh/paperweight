@@ -1,0 +1,20 @@
+{
+    "slug": "payolution",
+    "relevant-countries": [
+        "de",
+        "at"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Payolution GmbH",
+    "address": "Columbusplatz 7-8\nStiege 1 / 5. Stock\n1100 Wien\nÖsterreich",
+    "phone": "+43 800 4043300",
+    "email": "datenschutz-vie@unzer.com",
+    "web": "https://customer.payolution.com",
+    "sources": [
+        "https://a.storyblok.com/f/118211/x/6d9a0fceb9/20250625_datenschutzhinweise_payolution_endkunden.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

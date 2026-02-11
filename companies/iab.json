@@ -1,0 +1,22 @@
+{
+    "slug": "iab",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Interactive Advertising Bureau, Inc.",
+    "runs": [
+        "IAB Tech Lab"
+    ],
+    "address": "116 E. 27th Street\nNew York City NY 10016\nUnited States of America",
+    "email": "support@iabtechlab.com",
+    "web": "https://iabtechlab.com/",
+    "sources": [
+        "https://iabtechlab.com/privacy-policy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking", 
+    "quality": "verified"
+}

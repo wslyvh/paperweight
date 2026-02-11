@@ -1,0 +1,26 @@
+{
+    "slug": "lovescout24",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "name": "FriendScout24 GmbH",
+    "runs": [
+        "FriendScout24.de (ehem.)",
+        "LoveScout24.de",
+        "LoveScout24.at",
+        "LoveScout24.ch"
+    ],
+    "address": "c/o WeWork\nNeuturmstraße 5\n80331 München\nDeutschland",
+    "email": "privacy@lovescout24.de",
+    "web": "https://www.lovescout24.de",
+    "sources": [
+        "https://www.lovescout24.de/pages/misc/privacy",
+        "https://www.lovescout24.de/pages/misc/impressum",
+        "https://www.lovescout24.at/pages/misc/privacy",
+        "https://www.lovescout24.ch/pages/misc/privacy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

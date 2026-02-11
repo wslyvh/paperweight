@@ -1,0 +1,23 @@
+{
+    "slug": "hk24",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body",
+        "commerce"
+    ],
+    "name": "Handelskammer Hamburg",
+    "address": "Adolphsplatz 1\n20457 Hamburg\nDeutschland",
+    "phone": "+49 40 36138138",
+    "fax": "+49 40 36138401",
+    "email": "datenschutz@hk24.de",
+    "web": "https://hk24.de",
+    "sources": [
+        "https://www.hk24.de/ueber-uns/impressum-nutzungsbedingungen-agbs/impressum-1140706",
+        "https://www.hk24.de/ueber-uns/impressum-nutzungsbedingungen-agbs/datenschutz-1140714",
+        "https://github.com/datenanfragen/data/pull/1426"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

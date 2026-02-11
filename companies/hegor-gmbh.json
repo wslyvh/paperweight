@@ -1,0 +1,23 @@
+{
+    "slug": "hegor-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Hegor GmbH",
+    "runs": [
+        "GÖRTZ Lifestyle",
+        "GLDN by Görtz"
+    ],
+    "address": "Gertrud-Grunow-Straße 4\n80807 München\nDeutschland",
+    "email": "support@gldn-fashion.com",
+    "web": "https://gldn-fashion.com/",
+    "sources": [
+        "https://gldn-fashion.com/policies/privacy-policy",
+        "https://gldn-fashion.com/policies/legal-notice",
+        "https://github.com/datenanfragen/data/pull/3278"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "vhv-versicherung",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "VHV Allgemeine Versicherung AG",
+    "address": "Constantin Str. 90\n30177 Hannover\nDeutschland",
+    "phone": "+49 511 9070",
+    "fax": "+49 511 907899",
+    "email": "datenschutzbeauftragter@vhv.de",
+    "sources": [
+        "https://www.vhv.de/meta/datenschutz/datenschutz-allgemein",
+        "https://github.com/datenanfragen/data/pull/978"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

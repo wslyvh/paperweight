@@ -1,0 +1,20 @@
+{
+    "slug": "udemy",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Udemy, Inc.",
+    "address": "600 Harrison Street\n3rd Floor\nSan Francisco, CA 94107\nUnited States of America",
+    "phone": "+1 760 483 3694",
+    "email": "privacy@udemy.com",
+    "webform": "https://support.udemy.com/hc/requests/new?ticket_form_id=9714966689815",
+    "web": "https://www.udemy.com/",
+    "sources": [
+        "https://www.udemy.com/terms/privacy/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

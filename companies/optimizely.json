@@ -1,0 +1,19 @@
+{
+    "slug": "optimizely",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Optimizely, Inc.",
+    "address": "631 Howard Street\nSuite 100\nSan Francisco, CA 94105\nUnited States of America",
+    "email": "privacy@optimizely.com",
+    "web": "https://www.optimizely.com/",
+    "sources": [
+        "https://www.optimizely.com/privacy/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

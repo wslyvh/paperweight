@@ -1,0 +1,20 @@
+{
+    "slug": "rheuma-hh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "MVZ Rheumatologie und Autoimmunmedizin Hamburg GmbH",
+    "address": "Mönckebergstraße 27\n20095 Hamburg-Altstadt\nDeutschland",
+    "phone": "+49 40 33319610",
+    "fax": "+49 40 33319611",
+    "email": "info.moenckeberg@rheuma-hh.de",
+    "web": "https://www.rheuma-hh.de",
+    "sources": [
+        "https://www.rheuma-hh.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1909"
+    ],
+    "quality": "verified"
+}

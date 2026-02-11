@@ -1,0 +1,22 @@
+{
+    "slug": "yourdata-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "addresses"
+    ],
+    "name": "yourdata GmbH",
+    "address": "Büchsenstraße 28\n70174 Stuttgart\nDeutschland",
+    "phone": "+49 711 490 448 11",
+    "fax": "+49 711 490 448 36",
+    "email": "datenschutz@yourdata.de",
+    "web": "https://www.yourdata.de/",
+    "sources": [
+        "https://www.yourdata.de/unternehmen/datenschutz-2/",
+        "https://www.yourdata.de/unternehmen/impressum/",
+        "https://www.yourdata.de/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-bochum",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Polizeipräsidium Bochum",
+    "address": "Uhlandstraße 35\n44791 Bochum\nDeutschland",
+    "phone": "+49 234 9090",
+    "fax": "+49 234 9091111",
+    "email": "datenschutz.bochum@polizei.nrw.de",
+    "web": "https://bochum.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

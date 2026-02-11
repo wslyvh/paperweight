@@ -1,0 +1,31 @@
+{
+    "slug": "erzbistum-berlin",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Erzbischöfliches Ordinariat Berlin",
+    "runs": [
+        "Erzbistum Berlin"
+    ],
+    "address": "Niederwallstraße 8 – 9\n10117 Berlin\nDeutschland",
+    "phone": "+49 30 32684136",
+    "fax": "+49 30 326847136",
+    "email": "office@datenschutz-nord.de",
+    "web": "https://erzbistumberlin.de",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/451",
+        "https://www.erzbistumberlin.de/datenschutz/",
+        "https://www.erzbistumberlin.de/impressum/"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-katholische-kirche",
+    "custom-erasure-template": "erasure-katholische-kirche",
+    "custom-rectification-template": "rectification-katholische-kirche",
+    "custom-objection-template": "objection-katholische-kirche",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "facet-group": "church"
+}

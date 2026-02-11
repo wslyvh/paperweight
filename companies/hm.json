@@ -1,0 +1,21 @@
+{
+    "slug": "hm",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "H&M Hennes & Mauritz GBC AB",
+    "address": "Mäster Samuelsgatan 46\n106 38 Stockholm\nSweden",
+    "phone": "+44 344 736 9000",
+    "email": "dataprotection.gb@hm.com",
+    "web": "https://www2.hm.com/en_gb/index.html",
+    "sources": [
+        "https://www2.hm.com/en_gb/customer-service/legal-and-privacy/privacy-link.html",
+        "https://www2.hm.com/en_gb/customer-service/contact.html"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

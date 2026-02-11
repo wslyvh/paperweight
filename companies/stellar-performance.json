@@ -1,0 +1,23 @@
+{
+    "slug": "stellar-performance",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Stellar Performance Marketing GmbH",
+    "address": "Kurfürstenstraße 1\n34117 Kassel\nDeutschland",
+    "phone": "+49 711 184271 20",
+    "fax": "+49 561 986 803 19",
+    "email": "datenschutz@stellar-performance.de",
+    "web": "http://stellar-performance.de",
+    "sources": [
+        "http://stellar-performance.de/datenschutz.html",
+        "https://github.com/datenanfragen/data/issues/69",
+        "http://stellar-performance.de/impressum.html"
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

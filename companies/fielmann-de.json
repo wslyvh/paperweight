@@ -1,0 +1,57 @@
+{
+    "slug": "fielmann-de",
+    "relevant-countries": [
+        "de",
+        "it",
+        "lu",
+        "nl",
+        "at",
+        "pl",
+        "ch"
+    ],
+    "name": "Fielmann AG",
+    "address": "Weidestraße 118a\n22083 Hamburg\nDeutschland",
+    "phone": "+49 40 270760",
+    "fax": "+49 40 27076399",
+    "email": "datenschutz@fielmann.com",
+    "web": "https://www.fielmann.de",
+    "sources": [
+        "https://www.fielmann.de/datenschutz/",
+        "https://www.fielmann.de/niederlassungen/",
+        "https://www.fielmann.de/impressum/",
+        "https://github.com/datenanfragen/data/pull/2369"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Address",
+            "type": "address",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        },
+        {
+            "desc": "Geburtsdatum",
+            "type": "birthdate",
+            "optional": false
+        },
+        {
+            "desc": "Besuchte Niederlassung(en)",
+            "type": "textarea",
+            "optional": false
+        },
+        {
+            "desc": "Letzte Auftragsnummer",
+            "type": "input",
+            "optional": true
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

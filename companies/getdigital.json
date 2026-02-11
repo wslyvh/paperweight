@@ -1,0 +1,39 @@
+{
+    "slug": "getdigital",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Stern & Schatz GmbH",
+    "runs": [
+        "getDigital"
+    ],
+    "address": "Wellseedamm 18\n24145 Kiel\nDeutschland",
+    "phone": "+49 431 5907845",
+    "fax": "+49 431 7993964",
+    "email": "info@getdigital.de",
+    "web": "https://www.getdigital.de",
+    "sources": [
+        "https://www.getdigital.de/infos/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/1312",
+        "https://github.com/datenanfragen/data/pull/2316"
+    ],
+    "required-elements": [
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        },
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

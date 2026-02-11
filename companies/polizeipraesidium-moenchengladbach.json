@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-moenchengladbach",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Polizeipräsidium Mönchengladbach",
+    "address": "Krefelder Straße 555\n41066 Mönchengladbach\nDeutschland",
+    "phone": "+49 2161 290",
+    "fax": "+49 2161 2920149",
+    "email": "datenschutz.moenchengladbach@polizei.nrw.de",
+    "web": "https://moenchengladbach.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

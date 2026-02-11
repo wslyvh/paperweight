@@ -1,0 +1,22 @@
+{
+    "slug": "reico-vital",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Reico & Partner Vertriebs GmbH",
+    "address": "Zunftstraße 3\n86869 Oberostendorf\nDeutschland",
+    "phone": "+49 8344 92100",
+    "fax": "+49 8344 921029",
+    "email": "datenschutz@reico-vital.de",
+    "web": "https://reico-vital.com/de/",
+    "sources": [
+        "https://reico-vital.com/de/content/7-datenschutzerklaerung",
+        "https://reico-vital.com/de/content/6-impressum",
+        "https://github.com/datenanfragen/data/pull/1680"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

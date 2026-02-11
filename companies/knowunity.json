@@ -1,0 +1,20 @@
+{
+    "slug": "knowunity",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Knowunity GmbH",
+    "address": "Julie-Wolfthorn-Straße 1\n10115 Berlin\nDeutschland",
+    "email": "privacy@knowunity.com",
+    "sources": [
+        "https://knowunity.de/legal/privacy",
+        "https://github.com/datenanfragen/data/pull/2729"
+    ],
+    "comments": [
+        "PGP key ` 9BE2 6545 09F9 5DA7 1924 D72B 3B37 8B1F 9FD2 063A`"
+    ],
+    "quality": "verified"
+}

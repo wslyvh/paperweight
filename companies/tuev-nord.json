@@ -1,0 +1,63 @@
+{
+    "slug": "tuev-nord",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce",
+        "health",
+        "utility",
+        "school",
+        "telecommunication",
+        "public body"
+    ],
+    "name": "TÜV NORD GROUP",
+    "runs": [
+        "TÜV NORD AG",
+        "TÜV NORD Mobilität GmbH & Co. KG",
+        "TÜV NORD Mobilität GmbH & Co. KG, Medizinisch-Psychologisches Institut",
+        "MEDITÜV GmbH & Co. KG",
+        "TÜV NORD EnSys GmbH & Co. KG",
+        "TÜV NORD Service GmbH & Co. KG",
+        "TÜV NORD Akademie GmbH & Co. KG",
+        "TÜV NORD Systems GmbH & Co. KG",
+        "Nord-Kurs GmbH & Co. KG",
+        "TÜV NORD CERT GmbH",
+        "DMT GmbH & Co. KG",
+        "TÜViT, TÜV Informationstechnik GmbH",
+        "TÜV NORD Umweltschutz GmbH & Co. KG",
+        "TÜV NORD MPA GmbH & Co. KG",
+        "TÜV NORD CERT UMWELTGUTACHTER GmbH",
+        "IGN Ingenieurgesellschaft Nord mbH & Co. KG",
+        "TÜV NORD InfraChem GmbH & Co. KG",
+        "EE energy engineers GmbH",
+        "TÜV NORD Material Testing",
+        "GWQ",
+        "ENCOS",
+        "TÜ-Service Anlagentechnik GmbH & Co. KG",
+        "TÜV NORD NC GmbH & Co. KG",
+        "TÜV NORD Technisches Schulungszentrum GmbH & Co. KG",
+        "TÜV NORD Bildung GmbH & Co. KG"
+    ],
+    "address": "Am Technologiepark 1\n45307 Essen\nDeutschland",
+    "phone": "+49 201 825 2165",
+    "fax": "+49 511 998 61237",
+    "email": "privacy@tuev-nord.de",
+    "webform": "https://www.tuev-nord.de/de/dsgvo/",
+    "web": "https://www.tuev-nord.de",
+    "sources": [
+        "https://www.tuev-nord.de/de/datenschutz/",
+        "https://www.tuev-nord.de/de/datenschutz-mpi/",
+        "https://www.medituev.de/de/datenschutz/",
+        "https://www.tuev-nord.de/de/datenschutz-ensys/",
+        "https://www.tuev-nord.de/de/unternehmen/bildung/bildungsberater-standorte/tuev-nord-akademie/datenschutz/datenschutzhinweise/",
+        "https://www.tuev-nord.de/fileadmin/user_upload/datenschutz-systems.pdf",
+        "https://www.tuev-nord.de/de/dsgvo/",
+        "https://www.tuev-nord.de/de/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Die angegebene Adresse ist für den Datenschutzbeauftragten. Eigentliche Adresse: Am TÜV 1, 30519 Hannover, Deutschland"
+    ],
+    "quality": "verified"
+}

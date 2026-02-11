@@ -1,0 +1,21 @@
+{
+    "slug": "intrum-information-services-deutschland-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "credit agency"
+    ],
+    "name": "Intrum Information Services Deutschland GmbH",
+    "address": "Donnersbergstraße 1\n64646 Heppenheim\nDeutschland",
+    "phone": "+49 6252 672050",
+    "fax": "+49 6252 672055",
+    "email": "datenschutz.de@intrum.com",
+    "webform": "https://www.intrum.de/zahlungserinnerung-erhalten/uber-intrum/datenschutz/rechte-der-betroffenen-person/",
+    "web": "https://www.intrum.de",
+    "sources": [
+        "https://www.intrum.de/zahlungserinnerung-erhalten/uber-intrum/datenschutz/datenschutzerklarung/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

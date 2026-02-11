@@ -1,0 +1,21 @@
+{
+    "slug": "gleichheit-partei",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "political party"
+    ],
+    "name": "Sozialistische Gleichheitspartei, Vierte Internationale (SGP)",
+    "address": "Neuenburger Straße 13\n10969 Berlin\nDeutschland",
+    "phone": "+49 30 30872440",
+    "fax": "+49 32 121318583",
+    "email": "datenschutz@gleichheit.de",
+    "web": "https://www.gleichheit.de/",
+    "sources": [
+        "https://www.gleichheit.de/service/datenschutz/",
+        "https://www.gleichheit.de/service/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

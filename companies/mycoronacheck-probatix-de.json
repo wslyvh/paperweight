@@ -1,0 +1,24 @@
+{
+    "slug": "mycoronacheck-probatix-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "myProbatix",
+    "runs": [
+        "my.probatix.de"
+    ],
+    "address": "Bismarckstraße 10-12\n10625 Berlin\nDeutschland",
+    "phone": "+49 30 56838352",
+    "email": "datenschutz@probatix.de",
+    "web": "https://probatix.de/",
+    "sources": [
+        "https://probatix.de/rechtliches/my-probatix-datenschutzbestimmungen",
+        "https://probatix.de/kontakt/",
+        "https://github.com/datenanfragen/data/pull/1791"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,26 @@
+{
+    "slug": "stadtverwaltung-erfurt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Stadtverwaltung Erfurt",
+    "runs": [
+        "Mängelmelder Erfurt"
+    ],
+    "address": "Fischmarkt 1\n99084 Erfurt\nDeutschland",
+    "phone": "+49 361 6551016",
+    "fax": "+49 361 6551029",
+    "email": "datenschutzbeauftragter@erfurt.de",
+    "web": "https://www.erfurt.de/ef/de/index.html",
+    "sources": [
+        "https://www.erfurt.de/ef/de/service/impressum/datenschutz/index.html",
+        "https://www.erfurt.de/ef/de/rathaus/sv/aemter/stelle-303.htmc",
+        "https://maengelmelder.erfurt.de/about/privacy",
+        "https://github.com/datenanfragen/data/pull/2625"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

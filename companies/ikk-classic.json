@@ -1,0 +1,24 @@
+{
+    "slug": "ikk-classic",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health",
+        "insurance"
+    ],
+    "name": "IKK classic (KdöR)",
+    "runs": [
+        "IKK Pflegekasse classic"
+    ],
+    "address": "Tannenstraße 4b\n01099 Dresden\nDeutschland",
+    "phone": "+49 800 4551111",
+    "email": "datenschutz@ikk-classic.de",
+    "web": "https://www.ikk-classic.de",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/862",
+        "https://www.ikk-classic.de/datenschutzerklaerung"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

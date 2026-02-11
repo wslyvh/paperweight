@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-borken",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Polizeipräsidium Borken",
+    "address": "Burloer Straße 91\n46325 Borken\nDeutschland",
+    "phone": "+49 2861 9000",
+    "fax": "+49 2861 9005409",
+    "email": "datenschutz.borken@polizei.nrw.de",
+    "web": "https://borken.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

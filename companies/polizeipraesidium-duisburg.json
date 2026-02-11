@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-duisburg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Polizeipräsidium Duisburg",
+    "address": "Düsseldorfer Straße 161 – 163\n47053 Duisburg\nDeutschland",
+    "phone": "+49 203 2800",
+    "fax": "+49 203 2801009",
+    "email": "datenschutz.duisburg@polizei.nrw.de",
+    "web": "https://duisburg.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

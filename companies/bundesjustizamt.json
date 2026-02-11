@@ -1,0 +1,44 @@
+{
+    "slug": "bundesjustizamt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesamt für Justiz",
+    "address": "Adenauerallee 99 – 103\n53113 Bonn\nDeutschland",
+    "phone": "+49 228 9941040",
+    "fax": "+49 228 4104515",
+    "email": "datenschutz@bfj.bund.de",
+    "web": "https://www.bundesjustizamt.de",
+    "sources": [
+        "https://www.bundesjustizamt.de/DE/ServiceGSB/Datenschutz/Datenschutz_node.html"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Geburtsdatum",
+            "type": "birthdate",
+            "optional": false
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": false
+        },
+        {
+            "desc": "Geburtsort",
+            "type": "input"
+        }
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-bundesjustizamt",
+    "needs-id-document": true,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

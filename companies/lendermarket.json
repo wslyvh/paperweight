@@ -1,0 +1,20 @@
+{
+    "slug": "lendermarket",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "LenderMarket Limited",
+    "address": "77 Sir John Rogerson’s Quay\nBlock C\nGrand Canal Docklands\nDublin 2\nD02 VK60\nIreland",
+    "phone": "+353 1 691 7618",
+    "email": "dpo@lendermarket.com",
+    "web": "https://www.lendermarket.com/",
+    "sources": [
+        "https://www.lendermarket.com/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/1595"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

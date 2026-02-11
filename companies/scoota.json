@@ -1,0 +1,23 @@
+{
+    "slug": "scoota",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Rockabox Media Ltd.",
+    "runs": [
+        "Scoota"
+    ],
+    "address": "West Wing\nSeventh Floor\n52 Grosvenor Gardens\nLondon\nSW1W 0AU\nUnited Kingdom",
+    "phone": "+44 20 7637 1602",
+    "email": "info@scoota.com",
+    "web": "https://scoota.com",
+    "sources": [
+        "https://www.scoota.com/privacy"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "quality": "verified"
+}

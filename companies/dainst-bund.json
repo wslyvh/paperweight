@@ -1,0 +1,21 @@
+{
+    "slug": "dainst-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Deutsches Archäologisches Institut (DAI)",
+    "address": "Podbielskiallee 69 – 71\n14195 Berlin\nDeutschland",
+    "phone": "+49 30 187711 0",
+    "fax": "+49 30 187711 190",
+    "email": "datenschutz@dainst.de",
+    "web": "https://www.dainst.org",
+    "sources": [
+        "https://www.dainst.org/datenschutz"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

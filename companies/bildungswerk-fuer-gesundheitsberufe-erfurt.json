@@ -1,0 +1,18 @@
+{
+    "slug": "bildungswerk-fuer-gesundheitsberufe-erfurt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Bildungswerk für Gesundheitsberufe gGmbH",
+    "address": "Am Kühlhaus 27\n99085 Erfurt\nDeutschland",
+    "phone": "+49 361 7313537",
+    "email": "kontakt@bw-gesundheitsberufe.de",
+    "sources": [
+        "https://www.bw-gesundheitsberufe.de/content/datenschutz.htm",
+        "https://github.com/datenanfragen/data/pull/2718"
+    ],
+    "quality": "verified"
+}

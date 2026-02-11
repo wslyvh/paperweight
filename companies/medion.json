@@ -1,0 +1,23 @@
+{
+    "slug": "medion",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "MEDION AG",
+    "runs": [
+        "Medion Webshop (www.medion.com)"
+    ],
+    "address": "Am Zehnthof 77\n45307 Essen\nDeutschland",
+    "phone": "+49 201 83 83 0",
+    "fax": "+49 201 83 83 1112",
+    "email": "datenschutz@medion.com",
+    "web": "https://www.medion.com/de/shop/",
+    "sources": [
+        "https://www.medion.com/de/shop/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

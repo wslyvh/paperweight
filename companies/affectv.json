@@ -1,0 +1,25 @@
+{
+    "slug": "affectv",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Hybrid Theory Global Ltd.",
+    "runs": [
+        "Affectv Ltd. (formerly)"
+    ],
+    "address": "Epworth House\n25 City Road\nLondon\nEC1Y 1AA\nUnited Kingdom",
+    "phone": "+44 20 3934 2174",
+    "email": "privacy@hybridtheory.com",
+    "web": "https://hybridtheory.com",
+    "sources": [
+        "https://hybridtheory.com/privacy-policy/",
+        "https://find-and-update.company-information.service.gov.uk/company/07472717"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

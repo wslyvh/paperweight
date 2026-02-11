@@ -1,0 +1,22 @@
+{
+    "slug": "fairphone",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication",
+        "commerce"
+    ],
+    "name": "Fairphone B.V.",
+    "address": "Jollemanhof 17\n1019 GW Amsterdam\nThe Netherlands",
+    "phone": "+31 20 788 4400",
+    "email": "privacy@fairphone.com",
+    "web": "https://www.fairphone.com/",
+    "sources": [
+        "https://www.fairphone.com/en/legal/fairphone-privacy-policy/",
+        "https://www.fairphone.com/en/legal/impressum/?ref=footer",
+        "https://github.com/datenanfragen/data/pull/932"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

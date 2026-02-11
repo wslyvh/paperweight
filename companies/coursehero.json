@@ -1,0 +1,20 @@
+{
+    "slug": "coursehero",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Course Hero, Inc.",
+    "address": "c/o DP-Dock GmbH\nBallindamm 39\n20095 Hamburg\nGermany",
+    "email": "coursehero@gdpr-rep.com",
+    "web": "https://coursehero.com",
+    "sources": [
+        "https://www.coursehero.com/assets/pdf/privacy-policy/privacy-policy-july-2020.pdf",
+        "https://www.coursehero.com/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/1394"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

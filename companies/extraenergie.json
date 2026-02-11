@@ -1,0 +1,19 @@
+{
+    "slug": "extraenergie",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "ExtraEnergie GmbH",
+    "address": "Mittelstr. 11–13\n40789 Monheim am Rhein\nDeutschland",
+    "phone": "+49 800 6366361",
+    "email": "service@extraenergie.com",
+    "web": "https://www.extraenergie.com/",
+    "sources": [
+        "https://www.extraenergie.com/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2015"
+    ],
+    "quality": "verified"
+}

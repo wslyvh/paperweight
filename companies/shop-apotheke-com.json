@@ -1,0 +1,25 @@
+{
+    "slug": "shop-apotheke-com",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Shop-Apotheke B.V.",
+    "runs": [
+        "Europa Apotheek Venlo B.V."
+    ],
+    "address": "Postfach 410118\n41241 Mönchengladbach\nDeutschland",
+    "phone": "+49 30 30806600",
+    "fax": "+49 800 90709020",
+    "email": "datenschutz@shop-apotheke.com",
+    "web": "https://www.shop-apotheke.com/",
+    "sources": [
+        "https://www.shop-apotheke.com/datenschutz.htm",
+        "https://www.shop-apotheke.com/apotheke_impressum.htm",
+        "https://github.com/datenanfragen/data/pull/3151"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

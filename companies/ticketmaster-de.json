@@ -1,0 +1,21 @@
+{
+    "slug": "ticketmaster-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Ticketmaster GmbH",
+    "address": "Spree Forum\nAlt-Moabit 60\n10555 Berlin\nDeutschland",
+    "email": "privacy@ticketmaster.de",
+    "web": "https://www.ticketmaster.de",
+    "sources": [
+        "https://www.ticketmaster.de/datenschutz",
+        "https://github.com/datenanfragen/data/issues/85",
+        "https://www.ticketmaster.de/help/imprint.html",
+        "https://github.com/datenanfragen/data/pull/2604"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

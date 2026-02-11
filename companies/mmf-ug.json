@@ -1,0 +1,21 @@
+{
+    "slug": "mmf-ug",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "addresses",
+        "finance"
+    ],
+    "name": "MMF UG",
+    "address": "Hauptstraße 134\n51143 Köln\nDeutschland",
+    "phone": "+49 2174 7148000",
+    "fax": "+49 2174 7148001",
+    "email": "kontakt@mmf-ug.de",
+    "web": "http://mmf-ug.de",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/501",
+        "http://mmf-ug.de/datenschutz/"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,40 @@
+{
+    "slug": "bundespolizei",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundespolizeipräsidium (BPOL)",
+    "address": "Heinrich-Mann-Allee 103\n14473 Potsdam\nDeutschland",
+    "phone": "+49 331 97997 0",
+    "fax": "+49 331 97997 7013",
+    "email": "bpolp.dsb@polizei.bund.de",
+    "web": "https://www.bundespolizei.de",
+    "sources": [
+        "https://www.bundespolizei.de/Web/DE/Service/Datenschutz/datenschutz_node.html"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Geburtsdatum",
+            "type": "birthdate",
+            "optional": false
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": false
+        }
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-bundespolizei",
+    "needs-id-document": true,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

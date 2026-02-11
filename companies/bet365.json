@@ -1,0 +1,23 @@
+{
+    "slug": "bet365",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Hillside (Sports) ENC",
+    "runs": [
+        "Bet365"
+    ],
+    "address": "Office 1/2373\nLevel G\nQuantum House\n75 Abate Rigord Street\nTa' Xbiex XBX 1120\nMalta",
+    "email": "data.protection@bet365.com",
+    "sources": [
+        "https://help.bet365.com/en/privacy-policy",
+        "https://help.bet365.de/de/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/1598"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "nsfw": true
+}

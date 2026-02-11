@@ -1,0 +1,25 @@
+{
+    "slug": "the-church-of-jesus-christ-of-latter-day-saints",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "The Church of Jesus Christ of Latter-day Saints",
+    "runs": [
+        "FamilySearch",
+        "Kirche Jesu Christi der Heiligen der Letzten Tage"
+    ],
+    "address": "50 E. North Temple Street\nSalt Lake City, UT 84150-0005\nUnited States of America",
+    "fax": "+1 801 240 1187",
+    "email": "DataPrivacyOfficer@churchofjesuschrist.org",
+    "sources": [
+        "https://www.churchofjesuschrist.org/legal/privacy-notice?lang=deu&country=go",
+        "https://www.familysearch.org/legal/privacy",
+        "https://github.com/datenanfragen/data/pull/1564"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "facet-group": "church"
+}

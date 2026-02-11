@@ -1,0 +1,55 @@
+{
+    "slug": "invia",
+    "categories": [
+        "travel",
+        "finance",
+        "insurance"
+    ],
+    "name": "Invia Travel Germany GmbH",
+    "runs": [
+        "Invia Flights Germany GmbH",
+        "Invia SSC Germany GmbH",
+        "fluege.de (www.fluege.de)",
+        "ab-in-den-urlaub.de (www.ab-in-den-urlaub.de)",
+        "hotels.ab-in-den-urlaub.de",
+        "ab-in-den-urlaub-deals.de",
+        "flug.de (www.flug.de)",
+        "reisen.de (www.reisen.de)",
+        "airlinedirect (www.airline-direct.de)",
+        "Hotelreservierung.de (www.hotelreservierung.de)",
+        "Tourini GmbH (tourini.de)",
+        "travelchannel.de (www.travelchannel.de)",
+        "billigflug.de (www.billigflug.de)"
+    ],
+    "address": "Dittrichring 18 – 20\n04109 Leipzig\nDeutschland",
+    "phone": "+49 341 35575 85530",
+    "fax": "+49 341 65050 82054",
+    "email": "service@fluege.de",
+    "web": "https://www.fluege.de/",
+    "sources": [
+        "https://www.invia.de/datenschutz/",
+        "https://www.invia.de/impressum/",
+        "https://www.fluege.de/service/privacy",
+        "https://www.fluege.de/service/imprint",
+        "https://www.ab-in-den-urlaub.de/service/datenschutz",
+        "https://www.ab-in-den-urlaub.de/service/impressum",
+        "http://www.flug.de/service/privacy",
+        "http://www.flug.de/service/imprint",
+        "http://www.reisen.de/service/datenschutz",
+        "http://www.reisen.de/service/impressum",
+        "https://www.hotelreservierung.de/de/EUR/service/privacyterms",
+        "https://www.hotelreservierung.de/de/EUR/service/imprint",
+        "http://www.airline-direct.de/service/privacy",
+        "http://www.airline-direct.de/service/imprint",
+        "http://tourini.de/service/datenschutz",
+        "http://tourini.de/service/impressum",
+        "http://www.travelchannel.de/service/datenschutz.html",
+        "http://www.travelchannel.de/service/impressum.html",
+        "http://www.billigflug.de/service/privacy",
+        "http://www.billigflug.de/service/imprint"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "quality": "verified"
+}

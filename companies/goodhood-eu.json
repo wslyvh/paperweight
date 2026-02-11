@@ -1,0 +1,38 @@
+{
+    "slug": "goodhood-eu",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Good Hood GmbH",
+    "runs": [
+        "nebenan.de"
+    ],
+    "address": "Köpenicker Str. 154\n10997 Berlin\nGermany",
+    "phone": "+49 30 346557760",
+    "email": "datenschutz@nebenan.de",
+    "web": "https://goodhood.eu",
+    "sources": [
+        "https://goodhood.eu",
+        "https://nebenan.de/privacy",
+        "https://github.com/datenanfragen/data/pull/2028"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

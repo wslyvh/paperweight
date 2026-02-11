@@ -1,0 +1,19 @@
+{
+    "slug": "rabot-energy",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "RABOT Energy DE GmbH",
+    "address": "Hopfenmarkt 33\n20457 Hamburg\nDeutschland",
+    "phone": "+49 40 593622030",
+    "email": "support@rabot.energy",
+    "web": "https://www.rabot.energy",
+    "sources": [
+        "https://www.rabot-charge.de/datenschutzerklaerung/",
+        "https://github.com/datenanfragen/data/pull/2797"
+    ],
+    "quality": "verified"
+}

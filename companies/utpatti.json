@@ -1,0 +1,15 @@
+{
+    "slug": "utpatti",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Utpatti GmbH",
+    "address": "c/o Mindspace\nMünzstraße 12\n10178 Berlin\nGermany",
+    "email": "info@utpatti.ai",
+    "web": "https://www.utpatti.ai/",
+    "sources": [
+        "https://www.utpatti.ai/imprint",
+        "https://github.com/datenanfragen/data/pull/2378"
+    ],
+    "quality": "verified"
+}

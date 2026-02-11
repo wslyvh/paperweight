@@ -1,0 +1,26 @@
+{
+    "slug": "urban-airship",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Airship Group, Inc.",
+    "runs": [
+        "Urban Airship Germany GmbH",
+        "Apptimize, LLC.",
+        "Urban Airship UK Ltd.",
+        "Urban Airship India Private Ltd."
+    ],
+    "address": "1225 West Burnside\nSuite 401\nPortland, OR 97209\nUnited States of America",
+    "phone": "+1 855 385 3155",
+    "email": "privacy@airship.com",
+    "web": "https://www.airship.com",
+    "sources": [
+        "https://www.airship.com/legal/privacy/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

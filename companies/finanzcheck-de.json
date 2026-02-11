@@ -1,0 +1,19 @@
+{
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "FFG FINANZCHECK Finanzportale GmbH",
+    "address": "Admiralitätstraße 60\n20459 Hamburg\nDeutschland",
+    "phone": "+49 40 524769564",
+    "web": "https://www.finanzcheck.de",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/2053"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "slug": "finanzcheck-de",
+    "email": "datenschutz@finanzcheck.de"
+}

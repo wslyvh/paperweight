@@ -1,0 +1,37 @@
+{
+    "slug": "signal-iduna",
+    "categories": [
+        "insurance"
+    ],
+    "name": "SIGNAL IDUNA Gruppe",
+    "runs": [
+        "SIGNAL IDUNA Krankenversicherung a. G.",
+        "IDUNA Vereinigte Lebensversicherung aG für Handwerk, Handel und Gewerbe",
+        "SIGNAL IDUNA Allgemeine Versicherung AG",
+        "SIGNAL IDUNA Pensionskasse Aktiengesellschaft",
+        "PVAG Polizeiversicherungs-Aktiengesellschaft",
+        "ADLER Versicherung Aktiengesellschaft",
+        "VÖDAG Versicherung für den Öffentlichen Dienst",
+        "SIGNAL IDUNA Sterbekasse VVaG",
+        "DEURAG Deutsche Rechtsschutz-Versicherung AG",
+        "ALLRECHT Rechtsschutzversicherungen",
+        "DONNER & REUSCHEL Aktiengesellschaft",
+        "HANSAINVEST Hanseatische Investment-GmbH",
+        "SIGNAL IDUNA Bauspar Aktiengesellschaft",
+        "SIGNAL IDUNA Asset Management GmbH"
+    ],
+    "address": "Joseph-Scherer-Straße 3\n44139 Dortmund\nDeutschland",
+    "phone": "+49 231 135 4630",
+    "fax": "+49 231 135 134630",
+    "email": "datenschutz@signal-iduna.de",
+    "web": "https://www.signal-iduna.de/",
+    "sources": [
+        "https://www.signal-iduna.de/datenschutz-und-rechtliche-hinweise.php",
+        "https://www.signal-iduna.de/anbieter.php"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

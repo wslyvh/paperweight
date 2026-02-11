@@ -1,0 +1,31 @@
+{
+    "slug": "bandcamp",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce",
+        "entertainment"
+    ],
+    "name": "Bandcamp, Inc.",
+    "address": "48 Gold St\nSan Francisco\nCA 94133-5103\nUnited States of America",
+    "phone": "+1 415 213 2160",
+    "email": "support@bandcamp.com",
+    "web": "https://bandcamp.com/",
+    "sources": [
+        "https://bandcamp.com/privacy",
+        "http://www.hoovers.com/company-information/cs/company-profile.bandcamp_inc.d90e40739bddb07c.html"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "request-language": "en",
+    "quality": "verified"
+}

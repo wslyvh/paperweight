@@ -1,0 +1,32 @@
+{
+    "slug": "academia-edu",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Academia, Inc.",
+    "address": "580 California Street\nNo. 400\nSan Francisco CA 94104\nUnited States of America",
+    "email": "privacy@academia.edu",
+    "web": "https://www.academia.edu",
+    "sources": [
+        "https://www.academia.edu/privacy",
+        "https://github.com/datenanfragen/data/pull/837",
+        "https://www.academia.edu/terms"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

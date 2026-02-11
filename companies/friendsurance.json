@@ -1,0 +1,34 @@
+{
+    "slug": "friendsurance",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance",
+        "finance"
+    ],
+    "name": "Alecto GmbH",
+    "runs": [
+        "Friendsurance.de"
+    ],
+    "address": "Mehringdamm 34\n10961 Berlin\nDeutschland",
+    "phone": "+49 800 0870880",
+    "email": "datenschutz@friendsurance.de",
+    "web": "https://www.friendsurance.de/",
+    "sources": [
+        "https://www.friendsurance.de/datenschutz-allgemein",
+        "https://github.com/datenanfragen/data/issues/497"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

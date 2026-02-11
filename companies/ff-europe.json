@@ -1,0 +1,23 @@
+{
+    "slug": "ff-europe",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "TB International GmbH",
+    "runs": [
+        "FF Headwear Europe GmbH (ehem.)"
+    ],
+    "address": "Dr.-Robert-Murjahn-Straße 7\n64372 Ober-Ramstadt\nDeutschland",
+    "phone": "+49 6154 57402101",
+    "fax": "+49 6154 5740230",
+    "email": "info@tbint.de",
+    "web": "http://ff-europe.com/",
+    "sources": [
+        "https://www.tbint.de/impressum/",
+        "https://www.northdata.de/?id=5412632090902528"
+    ],
+    "quality": "verified"
+}

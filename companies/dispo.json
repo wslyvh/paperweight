@@ -1,0 +1,36 @@
+{
+    "slug": "dispo",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Dispo, Inc",
+    "address": "2720 Neilson Way #5131\nSanta Monica CA 90405\nUnited States of America",
+    "email": "support@dispo.fun",
+    "webform": "https://app.termly.io/notify/51b2187a-54c9-4f2e-8e7c-7fd47db54411",
+    "web": "https://dispo.fun/",
+    "sources": [
+        "https://dispo.fun/privacy.html",
+        "https://github.com/datenanfragen/data/pull/1000"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "Phone",
+            "type": "input",
+            "optional": false
+        }
+    ],
+    "quality": "verified"
+}

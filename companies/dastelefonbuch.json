@@ -1,0 +1,35 @@
+{
+    "slug": "dastelefonbuch",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "addresses",
+        "telecommunication"
+    ],
+    "name": "DTM Deutsche Tele Medien GmbH",
+    "runs": [
+        "Das Telefonbuch"
+    ],
+    "address": "Wiesenhüttenstr. 18\n60329 Frankfurt\nDeutschland",
+    "phone": "+49 69 26820",
+    "fax": "+49 69 6821101",
+    "email": "datenschutz@dtme.de",
+    "web": "https://www.dastelefonbuch.de/",
+    "sources": [
+        "https://www.dastelefonbuch.de/Datenschutz",
+        "https://github.com/datenanfragen/data/issues/515"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Addresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

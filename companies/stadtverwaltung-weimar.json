@@ -1,0 +1,25 @@
+{
+    "slug": "stadtverwaltung-weimar",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Stadtverwaltung Weimar",
+    "runs": [
+        "http://lesarten-weimar.de/",
+        "https://auslaenderbeirat.weimar.de/",
+        "https://stadtmuseum.weimar.de/"
+    ],
+    "address": "Schwanseestraße 17\n99423 Weimar\nDeutschland",
+    "phone": "+49 3643 762251",
+    "fax": "+49 3643 762842",
+    "email": "datenschutz@stadtweimar.de",
+    "web": "https://stadt.weimar.de/",
+    "sources": [
+        "https://stadt.weimar.de/de/datenschutzerklaerung.html",
+        "https://github.com/datenanfragen/data/pull/2717"
+    ],
+    "quality": "verified"
+}

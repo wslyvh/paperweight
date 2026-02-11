@@ -1,0 +1,17 @@
+{
+    "relevant-countries": [
+        "ch"
+    ],
+    "slug": "comparis",
+    "name": "comparis.ch AG",
+    "address": "Birmensdorferstrasse 108\n8003 Zürich\nSchweiz",
+    "phone": "+41 44 360 52 62",
+    "fax": "+41 44 360 52 72",
+    "email": "comparis@activemind.legal",
+    "web": "https://www.comparis.ch",
+    "sources": [
+        "https://www.comparis.ch/comparis/info/privacy",
+        "https://www.comparis.ch/comparis/info/wir"
+    ],
+    "quality": "verified"
+}

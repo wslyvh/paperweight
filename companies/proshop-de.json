@@ -1,0 +1,21 @@
+{
+    "slug": "proshop-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Proshop a/s",
+    "address": "Slet Moellevej 17\n8270 Hoejbjerg\nDenmark",
+    "phone": "+49 800 6655880",
+    "email": "gdpr@proshop.com",
+    "web": "https://www.proshop.de/",
+    "sources": [
+        "https://www.proshop.de/Datenschutzrichtlinien.htm",
+        "https://www.proshop.de/Impressum.htm",
+        "https://github.com/datenanfragen/data/pull/1190"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

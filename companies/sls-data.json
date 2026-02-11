@@ -1,0 +1,26 @@
+{
+    "slug": "sls-data",
+    "relevant-countries": [
+        "fr"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "SLS Data",
+    "address": "12 rue Vivienne\n75002 Paris\nFrance",
+    "email": "dpo@sls-data.com",
+    "web": "https://www.sls-data.com",
+    "sources": [
+        "https://www.sls-data.com/politique",
+        "https://github.com/datenanfragen/data/pull/1980"
+    ],
+    "required-elements": [
+        {
+            "desc": "Adresse email",
+            "type": "name",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,18 @@
+{
+    "slug": "pe-digital",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Parship",
+    "address": "c/o PE Digital GmbH\nSpeersort 10\n20095 Hamburg\nDeutschland",
+    "fax": "+49 40 46 00 26 596",
+    "email": "datenschutz@parship.de",
+    "webform": "https://www.parship.de/privacypolicy/personaldatainquiry",
+    "web": "https://www.parship.de/",
+    "sources": [
+        "https://www.parship.de/privacypolicy/",
+        "https://www.parship.de/aboutus/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

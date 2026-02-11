@@ -1,0 +1,19 @@
+{
+    "slug": "asustek-computer-inc",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication",
+        "entertainment"
+    ],
+    "name": "ASUSTeK COMPUTER INC.",
+    "address": "15, Li-Te Rd.\nTaipei 112\nTaiwan",
+    "email": "privacy@asus.com",
+    "sources": [
+        "https://www.asus.com/terms_of_use_notice_privacy_policy/privacy_policy/",
+        "https://github.com/datenanfragen/data/pull/2767"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,25 @@
+{
+    "slug": "gruene",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "political party"
+    ],
+    "name": "BÜNDNIS 90/DIE GRÜNEN",
+    "address": "c/o CO-CON:SULT\nHauptstraße 27\n53604 Bad Honnef\nDeutschland",
+    "phone": "+49 30 284420",
+    "fax": "+49 30 28442210",
+    "email": "datenschutz@gruene.de",
+    "web": "https://www.gruene.de/",
+    "sources": [
+        "https://www.gruene.de/service/datenschutz",
+        "https://www.gruene.de/service/impressum",
+        "https://github.com/datenanfragen/data/issues/146"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Eigentliche Adresse: Platz vor dem Neuen Tor 1, 10115 Berlin, Deutschland"
+    ],
+    "quality": "verified"
+}

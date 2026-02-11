@@ -1,0 +1,24 @@
+{
+    "slug": "feuersozietaet",
+    "categories": [
+        "insurance"
+    ],
+    "name": "Feuersozietät Berlin Brandenburg Versicherung AG",
+    "runs": [
+        "Öffentliche Lebensversicherung Berlin Brandenburg AG"
+    ],
+    "address": "10913 Berlin\nDeutschland",
+    "phone": "+49 89 21 60 18 80",
+    "fax": "+49 30 26 33 4 00",
+    "email": "datenschutz@feuersozietaet.de",
+    "web": "https://www.feuersozietaet.de",
+    "sources": [
+        "https://www.feuersozietaet.de/content/ueber-uns/unternehmen/datenschutz-compliance/datenschutz/",
+        "https://www.feuersozietaet.de/content/ueber-uns/impressum/"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

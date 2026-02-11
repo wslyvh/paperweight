@@ -1,0 +1,15 @@
+{
+    "slug": "dmk-internet-e-k",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "DMK-Internet e.K.",
+    "address": "Güterhallenstraße 7\n79106 Freiburg im Breisgau\nDeutschland",
+    "sources": [
+        "https://openregister.de/company/DE-HRA-B1204-5082",
+        "https://github.com/datenanfragen/data/pull/1285"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-tracking",
+    "quality": "verified"
+}

@@ -1,0 +1,17 @@
+{
+    "slug": "computerbase-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "ComputerBase GmbH",
+    "address": "Germaniastraße 18-20\n12099 Berlin\nDeutschland",
+    "phone": "+49 30 25749576",
+    "fax": "+49 30 67952514",
+    "email": "gf@computerbase.de",
+    "web": "https://www.computerbase.de",
+    "sources": [
+        "https://www.computerbase.de/impressum",
+        "https://www.computerbase.de/datenschutz"
+    ],
+    "quality": "verified"
+}

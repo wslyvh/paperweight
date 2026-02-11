@@ -1,0 +1,21 @@
+{
+    "slug": "solarwinds",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "SolarWinds Software Europe DAC",
+    "address": "Unit 1101, Building 1000\nCity Gate, Mahon\nCork\nIreland",
+    "email": "privacy@solarwinds.com",
+    "webform": "https://privacyportal.onetrust.com/webform/e4e930be-2a4e-4663-af6b-2fb9b5803e14/0e007f38-a84a-4577-998e-b9b82318ca69",
+    "web": "https://www.solarwinds.com/",
+    "sources": [
+        "https://www.solarwinds.com/legal/privacy",
+        "https://www.solarwinds.com/company/contact-us",
+        "https://github.com/datenanfragen/data/pull/2072"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

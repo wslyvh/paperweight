@@ -1,0 +1,20 @@
+{
+    "slug": "taeglich-angebote",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Täglich Angebote UG (haftungsbeschränkt)",
+    "address": "Talstraße 27\n41751 Viersen\nDeutschland",
+    "webform": "https://taeglich-angebote.de/kontakt.html",
+    "web": "https://taeglich-angebote.de/",
+    "sources": [
+        "https://taeglich-angebote.de/datenschutz.html",
+        "https://github.com/datenanfragen/data/issues/71"
+    ],
+    "quality": "verified"
+}

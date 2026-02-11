@@ -1,0 +1,21 @@
+{
+    "slug": "soliver",
+    "categories": [
+        "commerce"
+    ],
+    "name": "s.Oliver Bernd Freier GmbH & Co. KG",
+    "address": "s.Oliver Straße 1\n97228 Rottendorf\nDeutschland",
+    "phone": "+49 9302 98 00 101",
+    "fax": "+49 9302 98 00 102",
+    "email": "datenschutz@soliver.com",
+    "web": "https://www.soliver.de/",
+    "sources": [
+        "https://www.soliver.de/datenschutzbestimmungen-GENERAL_PRIVACY.html",
+        "https://www.soliver.de/impressum-GENERAL_LEGAL_NOTICE.html"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "vercel",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Vercel Inc.",
+    "address": "c/o EDPO\nAvenue Huart Hamoir 71\n1030 Brussels\nBelgium",
+    "email": "privacy@vercel.com",
+    "webform": "https://edpo.com/gdpr-data-request/",
+    "web": "https://vercel.com",
+    "sources": [
+        "https://vercel.com/legal/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/2079"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

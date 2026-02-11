@@ -1,0 +1,40 @@
+{
+    "slug": "teambank-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "TeamBank AG",
+    "runs": [
+        "fymio"
+    ],
+    "address": "Beuthener Str. 25\n90471 Nürnberg\nDeutschland",
+    "phone": "+49 911 53902000",
+    "fax": "+49 911 53902222",
+    "email": "datenschutz@teambank.de",
+    "web": "https://www.teambank.de",
+    "sources": [
+        "https://www.fymio.de/datenschutz/",
+        "https://www.fymio.de/impressum/",
+        "https://www.teambank.de/datenschutz/",
+        "https://www.teambank.de/wp-content/uploads/2018/05/Datenschutzhinweise.pdf"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "infonline-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "INFOnline GmbH",
+    "runs": [
+        "ioam.de"
+    ],
+    "address": "c/o Sicoda GmbH\nRochusstraße 198\n53123 Bonn\nDeutschland",
+    "phone": "+49 228 28614060",
+    "fax": "+49 228 4102966",
+    "email": "datenschutz@infonline.de",
+    "web": "https://www.infonline.de/",
+    "sources": [
+        "https://www.infonline.de/datenschutz/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "smava",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "smava GmbH",
+    "address": "Palisadenstraße 90\n10243 Berlin\nDeutschland",
+    "phone": "+49 800 0009800",
+    "email": "datenschutz@smava.de",
+    "web": "https://www.smava.de/",
+    "sources": [
+        "https://www.smava.de/datenschutz",
+        "https://github.com/datenanfragen/data/issues/68"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

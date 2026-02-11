@@ -1,0 +1,22 @@
+{
+    "slug": "julius-kuehn-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Julius Kühn-Institut (JKI)",
+    "address": "Erwin-Baur-Str. 27\n06484 Quedlinburg\nDeutschland",
+    "phone": "+49 3946 470",
+    "fax": "+49 3946 47 110",
+    "email": "datenschutz@julius-kuehn.de",
+    "web": "https://www.julius-kuehn.de/",
+    "sources": [
+        "https://www.julius-kuehn.de/datenschutz/",
+        "https://www.julius-kuehn.de/impressum/"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

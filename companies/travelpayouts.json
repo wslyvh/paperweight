@@ -1,0 +1,21 @@
+{
+    "slug": "travelpayouts",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Go Travel Un Limited",
+    "runs": [
+        "TravelPayouts"
+    ],
+    "address": "4007 Central Plaza\n18 Harbour Road\nWanchai\nHong Kong",
+    "email": "support@travelpayouts.com",
+    "web": "https://travelpayouts.com",
+    "sources": [
+        "https://support.travelpayouts.com/hc/en-us/articles/360004121052/",
+        "https://github.com/datenanfragen/data/pull/2097"
+    ],
+    "quality": "verified"
+}

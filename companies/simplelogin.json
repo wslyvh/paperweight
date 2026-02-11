@@ -1,0 +1,19 @@
+{
+    "slug": "simplelogin",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "SimpleLogin SAS",
+    "address": "147 boulevard Henri Sellier\n92150 Suresnes\nFrance",
+    "email": "privacy@simplelogin.io",
+    "web": "https://simplelogin.io/",
+    "sources": [
+        "https://simplelogin.io/privacy/",
+        "https://github.com/datenanfragen/data/pull/2314"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

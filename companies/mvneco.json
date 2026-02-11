@@ -1,0 +1,25 @@
+{
+    "slug": "mvneco",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "mvneco GmbH",
+    "runs": [
+        "Vodafone Sales App"
+    ],
+    "address": "c/o TMD Secure GmbH\nLannerstr. 22\n41189 Mönchengladbach\nDeutschland",
+    "phone": "+49 2166 1359897",
+    "fax": "+49 2166 551093",
+    "email": "datenschutz@mvneco.com",
+    "web": "https://mvneco.com/",
+    "sources": [
+        "https://mvneco.com/datenschutz",
+        "https://www.mvneco.com/privacy-salesapp.html",
+        "https://github.com/datenanfragen/data/pull/2052"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

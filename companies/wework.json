@@ -1,0 +1,21 @@
+{
+    "slug": "wework",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "WeWork International, Ltd.",
+    "address": "c/o Legalinx Limited\n1 Fetter Lane\nLondon\nEC4A 1BR\nUnited Kingdom",
+    "email": "privacy@wework.com",
+    "web": "https://www.wework.com",
+    "sources": [
+        "https://www.wework.com/de-DE/legal/privacy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

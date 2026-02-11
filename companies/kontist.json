@@ -1,0 +1,36 @@
+{
+    "slug": "kontist",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Kontist GmbH",
+    "address": "c/o datenschutz nord GmbH\nKonsul-Smidt-Straße 88\n28217 Bremen\nDeutschland",
+    "phone": "+49 30 31198600",
+    "email": "support@kontist.com",
+    "web": "https://kontist.com",
+    "sources": [
+        "https://kontist.com/imprint/",
+        "https://kontist.com/privacy/",
+        "https://github.com/datenanfragen/data/pull/945"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "E-Mail-Adresse",
+            "type": "email"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": true
+        }
+    ],
+    "quality": "verified"
+}

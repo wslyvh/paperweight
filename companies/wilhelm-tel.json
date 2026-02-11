@@ -1,0 +1,21 @@
+{
+    "slug": "wilhelm-tel",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "wilhelm.tel GmbH",
+    "address": "Heidbergstraße 101 – 111\n22846 Norderstedt\nDeutschland",
+    "phone": "+49 800 432 432 4",
+    "fax": "+49 800 432 432 5",
+    "email": "dsb@wilhelm-tel.de",
+    "web": "https://www.wilhelm-tel.de",
+    "sources": [
+        "https://www.wilhelm-tel.de/meta-navigation/datenschutzhinweise/",
+        "https://www.wilhelm-tel.de/meta-navigation/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

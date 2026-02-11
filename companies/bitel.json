@@ -1,0 +1,19 @@
+{
+    "slug": "bitel",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "BITel Gesellschaft für Telekommunikation mbH",
+    "address": "Schildescher Straße 16\n33611 Bielefeld\nDeutschland",
+    "phone": "+49 521 514600",
+    "email": "datenschutz@bitel.de",
+    "web": "https://www.bitel.de/",
+    "sources": [
+        "https://www.bitel.de/datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-st-andreas-velpke",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde St. Andreas Velpke",
+    "address": "Marktplatz 18\n38458 Velpke\nDeutschland",
+    "phone": "+49 5364 2332",
+    "fax": "+49 5364 8598",
+    "email": "velpke.buero@lk-bs.de",
+    "web": "http://www.ev-kirchengemeinde-velpke.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=1033"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

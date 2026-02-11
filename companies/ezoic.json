@@ -1,0 +1,39 @@
+{
+    "slug": "ezoic",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Ezoic, Inc.",
+    "address": "5870 El Camino Real\nCarlsbad\nCA 92008\nUnited States of America",
+    "phone": "+44 191 257 9020",
+    "fax": "+1 858 210 6725",
+    "email": "legal@ezoic.com",
+    "web": "https://www.ezoic.com/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/127",
+        "https://www.ezoic.com/terms/",
+        "https://www.ezoic.com/privacy-policy/",
+        "https://www.ezoic.com/contact-us/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        },
+        {
+            "desc": "Website address",
+            "type": "input",
+            "optional": true
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

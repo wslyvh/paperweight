@@ -1,0 +1,23 @@
+{
+    "slug": "likee",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment",
+        "social media"
+    ],
+    "name": "Likeme Pte. Ltd.",
+    "runs": [
+        "Likee"
+    ],
+    "address": "30 Pasir Panjang Road #15-31A\nMapletree Business City\nSingapore 117440\nRepublic of Singapore",
+    "email": "legal@likee.video",
+    "web": "https://likee.com",
+    "sources": [
+        "https://likee.com/privacy",
+        "https://github.com/datenanfragen/data/issues/539",
+        "https://github.com/datenanfragen/data/pull/771"
+    ],
+    "quality": "verified"
+}

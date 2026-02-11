@@ -1,0 +1,39 @@
+{
+    "slug": "expedia",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Expedia, Inc.",
+    "runs": [
+        "Hotels.com",
+        "Vrbo",
+        "Abritel",
+        "HomeAway",
+        "Fewo-direkt",
+        "Stayz",
+        "Bookabach",
+        "CarRentals.com",
+        "CheapTickets",
+        "Ebookers",
+        "Mr Jet",
+        "Expedia Cruises",
+        "CruiseShipCenters USA, Inc.",
+        "Hotwire",
+        "Orbitz",
+        "Travelocity",
+        "Wotif"
+    ],
+    "address": "c/o EG Vacation Rentals Ireland Limited\n53 Merrion Square South, Suite 303\nDublin 2\nD02 PR63\nIreland",
+    "phone": "+49 89 217037661",
+    "email": "Privacy@expedia.com",
+    "web": "https://www.expedia.de/",
+    "sources": [
+        "https://legal.expediagroup.com/privacy/privacy-and-cookies-statements/data-controllers-and-representatives",
+        "https://www.expedia.de/lp/lg-impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

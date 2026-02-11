@@ -1,0 +1,20 @@
+{
+    "slug": "bbr-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesamt für Bauwesen und Raumordnung (BBR)",
+    "address": "Deichmanns Aue 31 – 37\n53179 Bonn\nDeutschland",
+    "phone": "+49 228 99401 2423",
+    "email": "datenschutz@bbr.bund.de",
+    "web": "https://www.bbr.bund.de",
+    "sources": [
+        "https://www.bbr.bund.de/BBR/DE/Service/hinweise-zum-datenschutz/datenschutz_node.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

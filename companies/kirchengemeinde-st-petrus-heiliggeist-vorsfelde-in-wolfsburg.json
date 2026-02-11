@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-st-petrus-heiliggeist-vorsfelde-in-wolfsburg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde St. Petrus/Heiliggeist Vorsfelde in Wolfsburg",
+    "address": "Amtsstraße 31\n38448 Wolfsburg\nDeutschland",
+    "phone": "+49 5363 7773",
+    "fax": "+49 5363 73497",
+    "email": "petrus-vorsfelde.buero@lk-bs.de",
+    "web": "http://www.kirche-vorsfelde.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=1051"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

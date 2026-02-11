@@ -1,0 +1,25 @@
+{
+    "slug": "sparda-west",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Sparda-Bank West eG",
+    "runs": [
+        "Sparda-Bank Münster (ehem.)"
+    ],
+    "address": "Ludwig-Erhard-Allee 15\n40227 Düsseldorf\nDeutschland",
+    "phone": "+49 211 23932393",
+    "fax": "+49 211 239329494",
+    "email": "datenschutz@sparda-west.de",
+    "web": "https://www.sparda-west.de",
+    "sources": [
+        "https://www.sparda-west.de/datenschutz.html",
+        "https://www.sparda-west.de/internetauftritt/globale-inhaltsseiten/nachricht-pressemitteilung_9280.html",
+        "https://github.com/datenanfragen/data/pull/736"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

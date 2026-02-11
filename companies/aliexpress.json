@@ -1,0 +1,30 @@
+{
+    "slug": "aliexpress",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "AliExpress.com",
+    "address": "c/o Alibaba.com Singapore E-Commerce Private Limited\n10 Collyer Quay\n#10-01 Ocean Financial Centre\nSingapore 049315\nRepublic of Singapore",
+    "email": "dataprotection.ae@aliexpress.com",
+    "web": "https://www.aliexpress.com/",
+    "sources": [
+        "https://rule.alibaba.com/rule/detail/2034.htm",
+        "https://www.tis.bizfile.gov.sg/ngbtisinternet/faces/oracle/webcenter/portalapp/pages/productlisting/ishopProductListing.jspx?EntityNo=200720572D"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

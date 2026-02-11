@@ -1,0 +1,16 @@
+{
+    "slug": "energiekompass-hamburg",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Energiekompass Hamburg UG (haftungsbeschränkt)",
+    "address": "Sandkamp 1\n22111 Hamburg\nDeutschland",
+    "email": "datenschutz@energiekompass-hamburg.de",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/2697",
+        "https://energiekompass-hamburg.de/datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "web": "https://energiekompass-hamburg.de"
+}

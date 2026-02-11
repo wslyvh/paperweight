@@ -1,0 +1,20 @@
+{
+    "slug": "runalyze",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "Runalyze GmbH",
+    "address": "Hochstraße 11\n67700 Niederkirchen\nGermany",
+    "phone": "+49 1514 2011855",
+    "email": "support@runalyze.com",
+    "web": "https://runalyze.com",
+    "sources": [
+        "https://runalyze.com/en/legal/notice",
+        "https://runalyze.com/en/legal/privacy",
+        "https://github.com/datenanfragen/data/pull/2638"
+    ],
+    "quality": "verified"
+}

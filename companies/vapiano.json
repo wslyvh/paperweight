@@ -1,0 +1,23 @@
+{
+    "slug": "vapiano",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "VAP Franchising s.r.o.",
+    "runs": [
+        "Vapiano Ltd."
+    ],
+    "address": "Václavské náměstí 841/3\n11000 Prague\nCzech Republic",
+    "phone": "+420 737 467 057",
+    "email": "info@vapiano.com",
+    "web": "https://www.vapiano.com",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/392",
+        "https://vapiano.com/data-security/",
+        "https://www.vapiano.com/en/imprint/"
+    ],
+    "quality": "verified"
+}

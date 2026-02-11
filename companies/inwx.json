@@ -1,0 +1,31 @@
+{
+    "slug": "inwx",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "INWX GmbH & Co. KG",
+    "address": "Prinzessinnenstr. 30\n10969 Berlin\nDeutschland",
+    "phone": "+49 30 983212121",
+    "fax": "+49 30 98321290",
+    "email": "datenschutz@inwx.de",
+    "web": "https://www.inwx.de",
+    "sources": [
+        "https://www.inwx.de/de/aboutus/imprint",
+        "https://www.inwx.de/de/aboutus/dataprotection"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

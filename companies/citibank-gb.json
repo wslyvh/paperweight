@@ -1,0 +1,22 @@
+{
+    "slug": "citibank-gb",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Citibank UK Limited",
+    "runs": [
+        "Citibank N.A.",
+        "Canada Square Operations Ltd"
+    ],
+    "address": "33 Canada Square\nLondon\nE14 5LB\nUnited Kingdom",
+    "email": "Dataprotectionofficer@citi.com",
+    "web": "https://www.citibank.co.uk",
+    "sources": [
+        "https://www.citibank.co.uk/personal/privacy-statement.do"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

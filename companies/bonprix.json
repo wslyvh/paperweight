@@ -1,0 +1,21 @@
+{
+    "slug": "bonprix",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "bonprix Handelsgesellschaft mbH",
+    "address": "Haldesdorfer Straße 61\n22179 Hamburg\nDeutschland",
+    "phone": "+49 40 6462 0",
+    "fax": "+49 40 6462 37 00",
+    "email": "datenschutz@bonprix.net",
+    "web": "https://www.bonprix.de/",
+    "sources": [
+        "https://www.bonprix.de/service/datenschutz/",
+        "https://www.bonprix.de/service/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "sued-tiroler-freiheit",
+    "relevant-countries": [
+        "it"
+    ],
+    "categories": [
+        "political party"
+    ],
+    "name": "Süd-Tiroler Freiheit",
+    "address": "Laubengasse 9\n39100 Bolzano\nItaly",
+    "phone": "+39 0471 970208",
+    "email": "datenschutz@suedtiroler-freiheit.com",
+    "web": "https://suedtiroler-freiheit.com/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/534",
+        "https://suedtiroler-freiheit.com/datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

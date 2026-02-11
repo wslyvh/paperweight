@@ -1,0 +1,32 @@
+{
+    "slug": "hvv",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Hamburger Verkehrsverbund GmbH (HVV)",
+    "address": "Steindamm 94\n20099 Hamburg\nDeutschland",
+    "phone": "+49 40 3257750",
+    "email": "info@hvv.de",
+    "web": "https://hvv.de",
+    "sources": [
+        "https://www.hvv.de/de/impressum",
+        "https://www.hvv.de/de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1404"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "quality": "verified"
+}

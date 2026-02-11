@@ -1,0 +1,19 @@
+{
+    "slug": "webid-solutions",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "WebID Solutions GmbH",
+    "address": "Friedrichstraße 88\n10117 Berlin\nDeutschland",
+    "phone": "+49 30 408173216",
+    "fax": "+49 30 408173450",
+    "email": "datenschutz@webid-solutions.de",
+    "web": "https://www.webid-solutions.de",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/702",
+        "https://www.webid-solutions.de/en/privacy-policy/",
+        "https://www.webid-solutions.de/en/imprint/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

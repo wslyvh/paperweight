@@ -1,0 +1,32 @@
+{
+    "slug": "rtl-television-gmbh",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "RTL interactive GmbH",
+    "runs": [
+        "RTL+",
+        "TVNOW (ehem.)",
+        "wetter.de"
+    ],
+    "address": "Picassoplatz 1\n50679 Köln\nDeutschland",
+    "phone": "+49 221 45660",
+    "email": "datenschutz@rtl.de",
+    "web": "https://www.rtl.de/",
+    "sources": [
+        "https://www.rtl.de/cms/service/footer-navigation/datenschutz.html",
+        "https://www.rtl.de/cms/service/footer-navigation/impressum.html",
+        "https://plus.rtl.de/datenschutz",
+        "https://community.plus.rtl.de/s/hilfeartikel/fragen-und-antworten-zu-rtlplus",
+        "https://github.com/datenanfragen/data/pull/1840",
+        "https://www.wetter.de/cms/datenschutzerklaerung-101243.html",
+        "https://github.com/datenanfragen/data/pull/3135"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

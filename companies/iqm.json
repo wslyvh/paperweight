@@ -1,0 +1,24 @@
+{
+    "slug": "iqm",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "IQM Corporation",
+    "runs": [
+        "IQM Inc."
+    ],
+    "address": "315 W 36th street\n6th floor\nNew York\nNY 10018\nUnited States of America",
+    "phone": "+1 212 476 5245",
+    "email": "privacy@iqm.com",
+    "web": "https://iqm.com/",
+    "sources": [
+        "https://iqm.com/privacy-policy"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

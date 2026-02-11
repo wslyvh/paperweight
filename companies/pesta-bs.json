@@ -1,0 +1,21 @@
+{
+    "slug": "pesta-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "GHS Pestalozzistraße",
+    "address": "Pestalozzistraße 18\n38114 Braunschweig\nDeutschland",
+    "phone": "+49 531 208 24 30",
+    "email": "ghs.pestalozzistrasse@braunschweig.de",
+    "web": "https://www.ghspestalozzistrasse.de/",
+    "sources": [
+        "https://www.ghspestalozzistrasse.de/impressum/"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

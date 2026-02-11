@@ -1,0 +1,18 @@
+{
+    "slug": "appnexus",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "AppNexus Inc.",
+    "address": "28 West 23rd Street\nFloor 4\nNew York\nNY 10010\nUnited States of America",
+    "web": "https://www.appnexus.com/",
+    "sources": [
+        "https://www.appnexus.com/platform-privacy-policy"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "quality": "verified"
+}

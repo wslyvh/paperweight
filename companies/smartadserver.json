@@ -1,0 +1,24 @@
+{
+    "slug": "smartadserver",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Smart AdServer SAS",
+    "runs": [
+        "SmartAdServer GmbH"
+    ],
+    "address": "66 rue de la Chaussée d’Antin\n75009 Paris\nFrance",
+    "phone": "+33 1 86 26 76 15",
+    "email": "privacy@smartadserver.com",
+    "web": "https://smartadserver.com/",
+    "sources": [
+        "https://smartadserver.com/corporate-privacy-policy/",
+        "https://smartadserver.com/legal-mentions/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

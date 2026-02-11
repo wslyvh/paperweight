@@ -1,0 +1,16 @@
+{
+    "slug": "zap-hosting",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "ZAP-Hosting GmbH & Co. KG",
+    "address": "Krokusweg 9a\n48165 Münster\nDeutschland",
+    "fax": "+49 251 14981189",
+    "email": "info@zap-hosting.com",
+    "web": "https://zap-hosting.com",
+    "sources": [
+        "https://zap-hosting.com/de/impressum/",
+        "https://github.com/datenanfragen/data/pull/1845"
+    ],
+    "quality": "verified"
+}

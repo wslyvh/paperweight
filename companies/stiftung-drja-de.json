@@ -1,0 +1,31 @@
+{
+    "slug": "stiftung-drja-de",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Stiftung deutsch-russischer Jugendaustausch gGmbH",
+    "runs": [
+        "Initiative „Austausch macht Schule“"
+    ],
+    "address": "Mittelweg 117b\n20149 Hamburg\nDeutschland",
+    "phone": "+49 40 878867930",
+    "fax": "+49 40 878867920",
+    "email": "datenschutz@stiftung-drja.de",
+    "web": "https://www.stiftung-drja.de",
+    "sources": [
+        "https://www.stiftung-drja.de/de/meta/datenschutz.html",
+        "https://www.austausch-macht-schule.org/transferbuero-der-initiative"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

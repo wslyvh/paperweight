@@ -1,0 +1,20 @@
+{
+    "slug": "e-tec-at",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "e-tec electronic GmbH",
+    "address": "Atterseestrasse 121\n4850 Timelkam\nÖsterreich",
+    "phone": "+43 7672 95880",
+    "fax": "+43 7672 9588020",
+    "email": "ccc@e-tec.at",
+    "web": "https://www.e-tec.at/",
+    "sources": [
+        "https://www.e-tec.at/de/unternehmen/datenschutz.html",
+        "https://github.com/datenanfragen/data/issues/403"
+    ],
+    "quality": "verified"
+}

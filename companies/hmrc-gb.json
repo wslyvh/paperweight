@@ -1,0 +1,20 @@
+{
+    "slug": "hmrc-gb",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "HM Revenue and Customs",
+    "address": "National Insurance Contributions Office\nBX9 1AN\nUnited Kingdom",
+    "phone": "+44 300 200 3300",
+    "web": "https://www.hmrc.gov.uk",
+    "sources": [
+        "https://www.gov.uk/guidance/hmrc-subject-access-request",
+        "https://www.gov.uk/government/organisations/hm-revenue-customs/contact/couriers",
+        "https://github.com/datenanfragen/data/pull/2256"
+    ],
+    "quality": "verified",
+    "suggested-transport-medium": "letter"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "sparkasse-ingolstadt-eichstaett",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Sparkasse Ingolstadt Eichstätt",
+    "address": "Rathausplatz 6\n85049 Ingolstadt\nDeutschland",
+    "phone": "+49 841 3044040",
+    "fax": "+49 841 3042700",
+    "email": "dsb@spk-in-ei.de",
+    "web": "https://www.spk-in-ei.de/",
+    "sources": [
+        "https://www.spk-in-ei.de/de/home/toolbar/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/1830"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

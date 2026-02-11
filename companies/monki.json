@@ -1,0 +1,37 @@
+{
+    "slug": "monki",
+    "relevant-countries": [
+        "at",
+        "be",
+        "cz",
+        "dk",
+        "fi",
+        "fr",
+        "de",
+        "hu",
+        "ie",
+        "it",
+        "nl",
+        "pl",
+        "pt",
+        "sk",
+        "es",
+        "se",
+        "gb"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Monki H&M Hennes & Mauritz Sverige AB",
+    "address": "Mäster Samuelsgatan 46A\n106 38 Stockholm\nSweden",
+    "email": "customerservice@monki.com",
+    "web": "https://www.monki.com",
+    "sources": [
+        "https://www.monki.com/en_gbp/privacy-notice.html",
+        "https://www.monki.com/en_gbp/contact.html"
+    ],
+    "comments": [
+        "Phone numbers and addresses for all countries available at: https://www.monki.com/en_gbp/contact.html"
+    ],
+    "quality": "verified"
+}

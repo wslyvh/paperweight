@@ -1,0 +1,19 @@
+{
+    "slug": "palantir",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Palantir Technologies Inc.",
+    "address": "100 Hamilton Ave\nSuite 300\nPalo Alto\nCA 94301\nUnited States of America",
+    "email": "data-subject-request@palantir.com",
+    "sources": [
+        "https://www.palantir.com/privacy-and-security/",
+        "https://github.com/datenanfragen/data/pull/836"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Email of the DPO: privacy@palantir.com"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "useartemis",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads",
+        "addresses"
+    ],
+    "name": "useArtemis",
+    "address": "26 Chem. de Chalin\n69130 Écully\nFrance",
+    "email": "hello@useartemis.co",
+    "web": "https://useartemis.co/",
+    "sources": [
+        "https://useartemis.co/terms",
+        "https://chrome.google.com/webstore/detail/useartemis-email-finder-e/eblaafalmnibhddbmepjjdoohmhnfncf",
+        "https://github.com/datenanfragen/data/pull/1951"
+    ],
+    "quality": "verified"
+}

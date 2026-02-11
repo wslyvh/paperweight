@@ -1,0 +1,21 @@
+{
+    "slug": "4care-gmbh",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "4Care GmbH",
+    "address": "Wissenschaftspark\nFraunhoferstr. 17\n24118 Kiel\nDeutschland",
+    "phone": "+49 431 881188",
+    "fax": "+49 431 881166",
+    "email": "datenschutz@4care.de",
+    "web": "https://www.4care.de",
+    "sources": [
+        "https://www.4care.de/datenschutz",
+        "https://github.com/datenanfragen/data/issues/543"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

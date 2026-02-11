@@ -1,0 +1,18 @@
+{
+    "slug": "nect-com",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Nect GmbH",
+    "address": "c/o ePrivacy GmbH\nGroße Bleichen 21\n20354 Hamburg\nDeutschland",
+    "phone": "+49 40 468974970",
+    "email": "privacy@nect.com",
+    "web": "https://nect.com",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/1141",
+        "https://nect.com/de/data-protection/",
+        "https://nect.com/de/imprint/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "drk-brandenburg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "DRK-Landesverband Brandenburg e.V.",
+    "runs": [
+        "Deutsches Rotes Kreuz Brandenburg"
+    ],
+    "address": "c/o BfbA GmbH\nEisenbahnstraße 109\n14542 Werder (Havel)\nDeutschland",
+    "phone": "+49 331 28640",
+    "fax": "+49 3327 7322561",
+    "email": "info@drk-lv-brandenburg.de",
+    "web": "https://www.drk-brandenburg.de",
+    "sources": [
+        "https://www.drk-brandenburg.de/footer/service/datenschutz/"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-drk-brandenburg-datenleck",
+    "quality": "verified"
+}

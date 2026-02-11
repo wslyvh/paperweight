@@ -1,0 +1,20 @@
+{
+    "slug": "online-druck-biz",
+    "name": "Online-Druck GmbH & Co. KG",
+    "runs": [
+        "online-druck.biz"
+    ],
+    "address": "Brühlstraße 6\n86381 Krumbach\nDeutschland",
+    "phone": "+49 8282 894 370",
+    "fax": "+49 8282 894 379 9",
+    "email": "info@online-druck.biz",
+    "web": "https://www.online-druck.biz/",
+    "sources": [
+        "https://www.online-druck.biz/infos/rechtliches/datenschutz/",
+        "https://www.online-druck.biz/infos/rechtliches/impressum/"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "quality": "verified"
+}

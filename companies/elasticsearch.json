@@ -1,0 +1,17 @@
+{
+    "slug": "elasticsearch",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "elasticsearch B.V.",
+    "runs": [],
+    "address": "Attn: Privacy Team\nKeizersgracht 281\n1016 ED Amsterdam\nThe Netherlands",
+    "webform": "https://app.smartsheet.com/b/form/1dab77b245e449dcbcefc78a6ad315b9",
+    "sources": [
+        "https://www.elastic.co/legal/privacy-statement",
+        "https://github.com/datenanfragen/data/pull/2994"
+    ],
+    "suggested-transport-medium": "webform",
+    "quality": "verified",
+    "web": "https://www.elastic.co"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "quantcast",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Quantcast International Ltd.",
+    "address": "Beaux Lane House\nLower Mercer Street\n1st Floor\nDublin 2\nIreland",
+    "email": "privacy.qil@quantcast.com",
+    "web": "https://www.quantcast.com",
+    "webform": "https://www.quantcast.com/privacy/data-subject-rights/",
+    "sources": [
+        "https://www.quantcast.com/privacy/"
+    ],
+    "suggested-transport-medium": "webform",
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "quality": "verified"
+}

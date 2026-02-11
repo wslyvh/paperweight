@@ -1,0 +1,20 @@
+{
+    "slug": "cyberghost",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "CyberGhost S.A",
+    "runs": [
+        "CyberGhost VPN"
+    ],
+    "address": "70-72 Dionisie Lupu St.\nDistrict 1\n010458 Bucharest\nRomania",
+    "email": "support@cyberghost.ro",
+    "web": "https://www.cyberghostvpn.com",
+    "sources": [
+        "https://www.cyberghostvpn.com/de_DE/impressum",
+        "https://github.com/datenanfragen/data/issues/550",
+        "https://www.cyberghostvpn.com/privacypolicy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

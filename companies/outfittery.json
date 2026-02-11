@@ -1,0 +1,20 @@
+{
+    "slug": "outfittery",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "OUTFITTERY GmbH",
+    "address": "Leuschnerdamm 31\n10999 Berlin\nGermany",
+    "phone": "+49 30 46722431",
+    "email": "datenschutz@outfittery.de",
+    "web": "https://www.outfittery.com/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/471",
+        "https://www.outfittery.com/privacy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

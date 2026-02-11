@@ -1,0 +1,32 @@
+{
+    "slug": "ikano-bank-pl",
+    "relevant-countries": [
+        "pl"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Ikano Bank AB - Oddział w Polsce",
+    "address": "ul. Postępu 14\n02-676 Warsaw\nPoland",
+    "phone": "+48 22 431 56 00",
+    "email": "iod@ikano.pl",
+    "web": "https://ikanobank.pl",
+    "sources": [
+        "https://ikanobank.pl/nota-prawna",
+        "https://github.com/datenanfragen/data/pull/1056"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

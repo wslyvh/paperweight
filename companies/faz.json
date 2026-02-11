@@ -1,0 +1,22 @@
+{
+    "slug": "faz",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Frankfurter Allgemeine Zeitung GmbH",
+    "address": "Pariser Straße 1\n60486 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 75910",
+    "email": "datenschutz@faz.de",
+    "web": "http://www.faz.net",
+    "sources": [
+        "https://www.faz-datenschutz.de/faz",
+        "https://www.faz.net/faz-net-impressum-112096.html",
+        "https://github.com/datenanfragen/data/pull/2409",
+        "https://github.com/datenanfragen/data/pull/3073"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

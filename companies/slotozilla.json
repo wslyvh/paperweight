@@ -1,0 +1,20 @@
+{
+    "slug": "slotozilla",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Slotozilla",
+    "address": "30 S 17th St\nPhiladelphia, PA 19103\nUnited States of America",
+    "phone": "+1 267 800 0083",
+    "email": "info@slotozilla.com",
+    "web": "https://www.slotozilla.com/de/",
+    "sources": [
+        "https://www.slotozilla.com/contact-us",
+        "https://www.slotozilla.com/de/datenschutzerklaerung",
+        "https://github.com/datenanfragen/data/pull/1882"
+    ],
+    "quality": "verified"
+}

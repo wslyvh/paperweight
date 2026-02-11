@@ -1,0 +1,22 @@
+{
+    "slug": "hamburger-hochbahn",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Hamburger Hochbahn AG",
+    "address": "Steinstraße 20\n20095 Hamburg\nDeutschland",
+    "phone": "+49 40 32882316",
+    "fax": "+49 40 326406",
+    "email": "Datenschutzbeauftragter@hochbahn.de",
+    "web": "https://www.hochbahn.de",
+    "sources": [
+        "https://www.hochbahn.de/hochbahn/hamburg/de/Home/Startseite/Datenschutz",
+        "https://www.hochbahn.de/hochbahn/hamburg/de/Home/Startseite/Impressum",
+        "https://github.com/datenanfragen/data/issues/208"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

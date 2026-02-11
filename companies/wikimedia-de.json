@@ -1,0 +1,31 @@
+{
+    "slug": "wikimedia-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "nonprofit"
+    ],
+    "name": "Wikimedia Deutschland – Gesellschaft zur Förderung Freien Wissens e. V.",
+    "address": "Tempelhofer Ufer 23/24\n10963 Berlin\nDeutschland",
+    "phone": "+49 30 21915826 0",
+    "fax": "+49 30 219158269",
+    "email": "datenschutz@wikimedia.de",
+    "web": "https://www.wikimedia.de/",
+    "sources": [
+        "https://www.wikimedia.de/de/impressum",
+        "https://www.wikimedia.de/datenschutz/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

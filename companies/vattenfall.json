@@ -1,0 +1,21 @@
+{
+    "slug": "vattenfall",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "Vattenfall Europe Sales GmbH",
+    "address": "Amerigo-Vespucci-Platz 2\n20457 Hamburg\nDeutschland",
+    "phone": "+49 40 180409092",
+    "email": "datenschutz@vattenfall.de",
+    "web": "https://www.vattenfall.de/",
+    "sources": [
+        "https://www.vattenfall.de/datenschutz#3a41410c-a833-4c82-9b8b-a08bb67495fd_0_0",
+        "https://www.vattenfall.de/kontakt",
+        "https://github.com/datenanfragen/data/pull/2618"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

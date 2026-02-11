@@ -1,0 +1,26 @@
+{
+    "slug": "continentale-versicherung",
+    "categories": [
+        "insurance"
+    ],
+    "name": "Continentale Versicherungsverbund",
+    "runs": [
+        "Continentale Krankenversicherung a.G.",
+        "Continentale Lebensversicherung AG",
+        "Continentale Sachversicherung AG"
+    ],
+    "address": "Ruhrallee 92 – 94\n44139 Dortmund\nDeutschland",
+    "phone": "+49 231 919 0",
+    "fax": "+49 231 919 2913",
+    "email": "datenschutz@continentale.de",
+    "web": "https://www.continentale.de",
+    "sources": [
+        "https://www.continentale.de/datenschutz-internet",
+        "https://www.continentale.de/impressum"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

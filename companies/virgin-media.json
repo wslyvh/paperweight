@@ -1,0 +1,25 @@
+{
+    "slug": "virgin-media",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Virgin Media Ltd.",
+    "runs": [
+        "Virgin Mobile"
+    ],
+    "address": "500 Brook Drive\nGreen Park\nReading\nRG2 6UU\nUnited Kingdom",
+    "phone": "+44 345 454 1111",
+    "email": "dpo@virginmedia.co.uk",
+    "web": "https://www.virginmedia.com",
+    "sources": [
+        "https://www.virginmedia.com/shop/the-legal-stuff/privacy-policy.html",
+        "https://www.virginmedia.com/shop/contactus.html",
+        "https://github.com/datenanfragen/data/issues/111"
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

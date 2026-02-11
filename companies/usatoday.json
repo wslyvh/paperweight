@@ -1,0 +1,20 @@
+{
+    "slug": "usatoday",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Gannett Media Corp.",
+    "runs": [
+        "USA TODAY"
+    ],
+    "address": "c/o EDPO (European Data Protection Office)\nAvenue Huart Hamoir 71\n1030 Brussels\nBelgium",
+    "webform": "https://privacyportal.onetrust.com/webform/5b4b73e5-9c9c-4c5c-82c1-9389c9e42f1c/ba99f627-992e-4377-a31b-f357eaf81c21",
+    "web": "https://eu.usatoday.com/",
+    "sources": [
+        "https://cm.usatoday.com/eea-uk-supplement/?hidebanner=true"
+    ],
+    "quality": "verified"
+}

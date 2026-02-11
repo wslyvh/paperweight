@@ -1,0 +1,20 @@
+{
+    "slug": "intrum-hanseatische-inkasso-treuhand-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "collection agency"
+    ],
+    "name": "Intrum Hanseatische Inkasso-Treuhand GmbH",
+    "address": "Eiffestraße 76\n20537 Hamburg\nDeutschland",
+    "phone": "+49 40 2999230",
+    "fax": "+49 40 292528",
+    "email": "datenschutz-hit.de@intrum.com",
+    "web": "https://www.intrum.de",
+    "sources": [
+        "https://www.intrum.de/zahlungserinnerung-erhalten/uber-intrum/datenschutz/datenschutzerklarung/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

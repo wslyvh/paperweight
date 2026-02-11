@@ -1,0 +1,16 @@
+{
+    "slug": "tanzpartner-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Tanzpartner.de",
+    "address": "Kantstrasse 36\n68723 Oftersheim\nDeutschland",
+    "phone": "+49 6202 9208820",
+    "email": "service@tanzpartner.de",
+    "web": "https://ssl.tanzpartner.de/",
+    "sources": [
+        "https://ssl.tanzpartner.de/datenschutz.htm",
+        "https://github.com/datenanfragen/data/pull/2144"
+    ],
+    "quality": "verified"
+}

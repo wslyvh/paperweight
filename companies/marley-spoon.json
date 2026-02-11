@@ -1,0 +1,20 @@
+{
+    "slug": "marley-spoon",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Marley Spoon SE",
+    "address": "Wrangelstr. 100\n10997 Berlin\nDeutschland",
+    "email": "privacy@marleyspoon.de",
+    "web": "https://marleyspoon.de",
+    "sources": [
+        "https://marleyspoon.de/privacy",
+        "https://github.com/datenanfragen/data/pull/1577",
+        "https://github.com/datenanfragen/data/pull/2298"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

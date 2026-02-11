@@ -1,0 +1,21 @@
+{
+    "slug": "cls-computer",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "CLS Computer",
+    "address": "Auf dem Sand 76\n68309 Mannheim\nDeutschland",
+    "phone": "+49 621 7163591",
+    "fax": "+49 621 7163592",
+    "email": "datenschutz@cls-computer.de",
+    "web": "https://cls-computer.de",
+    "sources": [
+        "https://cls-computer.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2518"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

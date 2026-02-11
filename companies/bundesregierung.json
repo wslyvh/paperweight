@@ -1,0 +1,21 @@
+{
+    "slug": "bundesregierung",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Presse- und Informationsamt der Bundesregierung",
+    "address": "11044 Berlin\nDeutschland",
+    "phone": "+49 30 18 272 0",
+    "fax": "+49 30 18 272 2739",
+    "email": "datenschutzbeauftragte@bpa.bund.de",
+    "web": "https://www.bundesregierung.de",
+    "sources": [
+        "https://www.bundesregierung.de/breg-de/service/datenschutzhinweis"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

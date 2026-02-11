@@ -1,0 +1,24 @@
+{
+    "slug": "propstei-vorsfelde",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Propstei Vorsfelde",
+    "address": "An der Propstei 2\n38448 Wolfsburg\nDeutschland",
+    "phone": "+49 5363 73064",
+    "fax": "+49 5363 73285",
+    "email": "vorsfelde.pr@lk-bs.de",
+    "web": "https://www.propstei-vorsfelde.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/vorsfelde.html"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

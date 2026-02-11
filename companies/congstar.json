@@ -1,0 +1,28 @@
+{
+    "slug": "congstar",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "congstar",
+    "runs": [
+        "Penny Mobil",
+        "ja! mobil",
+        "congstar Services GmbH"
+    ],
+    "address": "c/o Telekom Deutschland GmbH\nBayenwerft 12-14\n50678 Köln\nDeutschland",
+    "phone": "+49 221 79700700",
+    "email": "datenschutz@congstar.de",
+    "web": "https://www.congstar.de/",
+    "sources": [
+        "https://www.congstar.de/fileadmin/files_congstar/documents/Datenschutzhinweise/Datenschutzhinweise_congstar_allgemein.pdf",
+        "https://www.congstar.de/impressum/",
+        "https://www.pennymobil.de/docs/penny-mobil-allgemeine-datenschutzhinweise.pdf",
+        "https://www.jamobil.de/docs/ja-mobil-allgemeine-datenschutzhinweise.pdf",
+        "https://github.com/datenanfragen/data/pull/2405"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

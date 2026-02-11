@@ -1,0 +1,24 @@
+{
+    "slug": "myunidays",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Myunidays Limited",
+    "runs": [
+        "Unidays Inc.",
+        "UNiDAYS GmbH"
+    ],
+    "address": "c/o PLANIT//LEGAL\nJungfernstieg 1\n20095 Hamburg\nDeutschland",
+    "phone": "+44 115 985 3070",
+    "email": "unidays_eu_representative@planit.legal",
+    "web": "https://www.myunidays.com",
+    "sources": [
+        "https://www.myunidays.com/DE/de-DE/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/2286"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "categories": [
+        "commerce"
+    ]
+}

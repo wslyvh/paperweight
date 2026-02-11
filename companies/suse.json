@@ -1,0 +1,26 @@
+{
+    "slug": "suse",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "SUSE Software Solutions Germany GmbH",
+    "address": "Maxfeldstraße 5\n90409 Nürnberg\nDeutschland",
+    "phone": "+49 911 740530",
+    "email": "privacy@suse.com",
+    "web": "https://www.suse.com",
+    "sources": [
+        "https://www.suse.com/de-de/company/legal"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

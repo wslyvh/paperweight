@@ -1,0 +1,51 @@
+{
+    "slug": "bunq",
+    "relevant-countries": [
+        "de",
+        "it",
+        "gb",
+        "es",
+        "fr",
+        "pt"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "bunq B.V.",
+    "address": "Basisweg 32\n1043 AP Amsterdam\nThe Netherlands",
+    "email": "privacy@bunq.com",
+    "web": "https://www.bunq.com",
+    "sources": [
+        "https://www.bunq.com/en-de/documents/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/778"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Address",
+            "type": "address",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "Phone",
+            "type": "input",
+            "optional": true
+        },
+        {
+            "desc": "Date of birth",
+            "type": "birthdate",
+            "optional": true
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

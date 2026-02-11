@@ -1,0 +1,31 @@
+{
+    "slug": "wizzair-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Wizz Air Hungary Ltd.",
+    "runs": [
+        "Wizz Air UK Limited"
+    ],
+    "address": "Laurus Offices\nKőér street 2/A\nBuilding B, II-V.\n1103 Budapest\nHungary",
+    "email": "data.protection@wizzair.com",
+    "web": "https://wizzair.com",
+    "sources": [
+        "https://wizzair.com/en-gb/legal/privacy-notice/detailed-privacy-notice-of-wizz-air"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

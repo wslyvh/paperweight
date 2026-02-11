@@ -1,0 +1,27 @@
+{
+    "slug": "runtastic",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "health",
+        "social media"
+    ],
+    "name": "runtastic GmbH",
+    "address": "Pluskaufstraße 7\n4061 Pasching bei Linz\nAustria",
+    "fax": "+43 7229 23327",
+    "email": "dataprotection@runtastic.com",
+    "web": "https://www.runtastic.com/en/privacy-policy",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/1169",
+        "https://www.runtastic.com/en/privacy-policy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Email",
+            "type": "name"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

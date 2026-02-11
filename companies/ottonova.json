@@ -1,0 +1,24 @@
+{
+    "slug": "ottonova",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "ottonova Holding AG",
+    "runs": [
+        "ottonova services GmbH",
+        "ottonova Krankenversicherung AG"
+    ],
+    "address": "Ottostraße 4\n80333 München\nDeutschland",
+    "phone": "+49 89 18917360",
+    "email": "ottonova@iitr.de",
+    "web": "https://www.ottonova.de",
+    "sources": [
+        "https://www.ottonova.de/datenschutz",
+        "https://github.com/datenanfragen/data/issues/596"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "stromio",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "Stromio GmbH",
+    "address": "Girmes-Kreuz-Straße 55\n41564 Kaarst\nDeutschland",
+    "phone": "+49 800 333 64 64",
+    "fax": "+49 800 333 01 02",
+    "email": "datenschutz@stromio.com",
+    "web": "http://www.stromio.de",
+    "sources": [
+        "http://www.stromio.de/datenschutz.html",
+        "http://www.stromio.de/impressum.html",
+        "http://www.stromio.de/kundenservice.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "go-ahead-bahn",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Go-Ahead Verkehrsgesellschaft Deutschland GmbH",
+    "address": "Rothebühlplatz 21-25\n70178 Stuttgart\nDeutschland",
+    "phone": "+49 821 89982544",
+    "email": "datenschutz@goahead-de.com",
+    "web": "https://www.go-ahead-bahn.de",
+    "sources": [
+        "https://www.go-ahead-bahn.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2061"
+    ],
+    "quality": "verified"
+}

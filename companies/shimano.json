@@ -1,0 +1,18 @@
+{
+    "slug": "shimano",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Shimano Europe B.V.",
+    "address": "High Tech Campus 92\n5656 AG Eindhoven\nThe Netherlands",
+    "email": "privacy@shimano-eu.com",
+    "web": "https://www.shimano.com/en",
+    "sources": [
+        "https://www.shimano.com/en/privacypolicy.html",
+        "https://github.com/datenanfragen/data/pull/2726"
+    ],
+    "quality": "verified"
+}

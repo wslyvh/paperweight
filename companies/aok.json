@@ -1,0 +1,22 @@
+{
+    "slug": "aok",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "AOK-Bundesverband eGbR",
+    "address": "Rosenthaler Straße 31\n10178 Berlin\nDeutschland",
+    "phone": "+49 30 346 46 0",
+    "fax": "+49 30 346 46 2502",
+    "email": "datenschutz@bv.aok.de",
+    "webform": "https://www.aok.de/pk/kontakt-zum-datenschutzbeauftragten-des-aok-bundesverbandes/",
+    "web": "https://www.aok.de/pp/bv/",
+    "sources": [
+        "https://www.aok.de/pk/rechtliches/datenschutzrechte-bundesverband/",
+        "https://www.aok.de/karriere/datenschutzrechte/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

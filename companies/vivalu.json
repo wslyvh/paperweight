@@ -1,0 +1,23 @@
+{
+    "slug": "vivalu",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "VIVALU GmbH",
+    "address": "Kaistr. 4\n40221 Düsseldorf\nDeutschland",
+    "phone": "+49 211 7817520",
+    "fax": "+49 211 78175299",
+    "email": "datenschutz@vivalu.com",
+    "web": "https://www.vivalu.com/",
+    "sources": [
+        "https://www.vivalu.com/datenschutz/",
+        "https://www.vivalu.com/impressum/",
+        "https://github.com/datenanfragen/data/pull/1013"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

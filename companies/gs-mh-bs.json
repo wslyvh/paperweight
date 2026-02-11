@@ -1,0 +1,22 @@
+{
+    "slug": "gs-mh-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Grundschule Mascheroder Holz",
+    "address": "Retemeyerstraße 15\n38126 Braunschweig\nDeutschland",
+    "phone": "+49 531 66200",
+    "fax": "+49 531 26 22 790",
+    "email": "gs.mascheroder-holz@braunschweig.de",
+    "web": "https://www.gs-mascheroder-holz.de/",
+    "sources": [
+        "https://www.gs-mascheroder-holz.de/j/privacy"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

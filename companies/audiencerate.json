@@ -1,0 +1,20 @@
+{
+    "slug": "audiencerate",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Audiencerate Ltd",
+    "address": "7 Bell Yard\nLondon\nWC2A 2JR\nUnited Kingdom",
+    "email": "privacy@audiencerate.com",
+    "web": "http://www.audiencerate.com/",
+    "sources": [
+        "https://www.audiencerate.com/privacy-policy"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

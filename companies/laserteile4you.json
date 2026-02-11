@@ -1,0 +1,23 @@
+{
+    "slug": "laserteile4you",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "H.P. Kaysser GmbH + Co. KG",
+    "address": "Hans-Paul-Kaysser-Straße 4\n71397 Leutenbach-Nellmersbach\nDeutschland",
+    "phone": "+49 7195 1880",
+    "fax": "+49 7195 18830",
+    "email": "info@kaysser.de",
+    "web": "https://www.laserteile4you.de",
+    "sources": [
+        "https://www.laserteile4you.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2567"
+    ],
+    "quality": "verified",
+    "runs": [
+        "Laserteile4you"
+    ]
+}

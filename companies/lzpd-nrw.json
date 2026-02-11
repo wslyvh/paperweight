@@ -1,0 +1,20 @@
+{
+    "slug": "lzpd-nrw",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Landesamt für Zentrale Polizeiliche Dienste NRW",
+    "address": "Schifferstraße 10\n47059 Duisburg\nDeutschland",
+    "phone": "+49 203 41750",
+    "fax": "+49 203 41757299",
+    "email": "poststelle.lzpd@polizei.nrw.de",
+    "web": "https://lzpd.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "quality": "verified"
+}

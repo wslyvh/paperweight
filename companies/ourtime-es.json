@@ -1,0 +1,17 @@
+{
+    "slug": "ourtime-es",
+    "relevant-countries": [
+        "es"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Ourtime.es",
+    "address": "c/o Meetic SAS\n53 rue de Châteaudun\nParis 9\nFrance",
+    "webform": "https://www.ourtime.es/faq/#privacyRequest",
+    "web": "https://www.ourtime.es",
+    "sources": [
+        "https://www.ourtime.es/pages/misc/privacy"
+    ],
+    "quality": "verified"
+}

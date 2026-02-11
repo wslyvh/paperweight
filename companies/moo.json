@@ -1,0 +1,32 @@
+{
+    "slug": "moo",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "MOO Print Ltd.",
+    "runs": [
+        "MOO Inc."
+    ],
+    "address": "2nd Floor\n20 Farringdon Road\nLondon\nEC1M 3AF\nUnited Kingdom",
+    "phone": "+44 20 8269 1415",
+    "email": "data.privacymanager@moo.com",
+    "web": "https://www.moo.com",
+    "sources": [
+        "https://www.moo.com/about/privacy-policy.html"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

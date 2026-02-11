@@ -1,0 +1,19 @@
+{
+    "slug": "interhyp",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Interhyp AG",
+    "address": "Domagkstraße 34\n80807 München\nDeutschland",
+    "email": "datenschutz@interhyp.de",
+    "web": "https://www.interhyp.de/",
+    "sources": [
+        "https://www.interhyp.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2541"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

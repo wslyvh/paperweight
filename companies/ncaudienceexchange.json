@@ -1,0 +1,24 @@
+{
+    "slug": "ncaudienceexchange",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "NC Audience Exchange, LLC",
+    "runs": [
+        "News Corp Connect",
+        "News IQ"
+    ],
+    "address": "1211 Avenue of the Americas\nNew York\nNY 10036\nUnited States of America",
+    "email": "privacypolicy@newscorp.com",
+    "web": "http://www.ncaudienceexchange.com/about/",
+    "sources": [
+        "http://www.ncaudienceexchange.com/privacy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

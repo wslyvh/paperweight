@@ -1,0 +1,22 @@
+{
+    "slug": "sojern",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Sojern, Inc.",
+    "address": "255 California Street\nSuite 1000\nSan Francisco\nCA 94111\nUnited States of America",
+    "phone": "+44 207 549 1661",
+    "email": "sojernprivacy@sojern.com",
+    "web": "https://www.sojern.com/",
+    "sources": [
+        "https://www.sojern.com/privacy/product-privacy-policy/",
+        "https://www.sojern.com/contact/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

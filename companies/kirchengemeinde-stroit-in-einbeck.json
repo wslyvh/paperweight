@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-stroit-in-einbeck",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Stroit in Einbeck",
+    "address": "Im Oberdorf 11\n37574 Einbeck\nDeutschland",
+    "phone": "+49 5563 6822",
+    "fax": "+49 5563 6868",
+    "email": "naensen.buero@lk-bs.de",
+    "web": "http://blog.kirche-naensen.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=695"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "wirtschaftundschule-de",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Institut der deutschen Wirtschaft Köln Medien GmbH",
+    "address": "c/o legitimis group GmbH\nDellbrücker Straße 116\n51469 Bergisch Gladbach\nDeutschland",
+    "phone": "+49 2202 289410",
+    "fax": "+49 221 4981533",
+    "email": "datenschutz@iwkoeln.de",
+    "web": "https://www.wirtschaftundschule.de",
+    "sources": [
+        "https://www.wirtschaftundschule.de/datenschutz/",
+        "https://www.wirtschaftundschule.de/impressum/",
+        "https://github.com/datenanfragen/data/issues/406"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

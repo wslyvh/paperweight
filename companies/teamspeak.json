@@ -1,0 +1,25 @@
+{
+    "slug": "teamspeak",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication",
+        "social media"
+    ],
+    "name": "TeamSpeak Systems GmbH",
+    "runs": [
+        "TeamSpeak Systems, Inc."
+    ],
+    "address": "Soiernstraße 1\n82494 Krün\nDeutschland",
+    "phone": "+1 877 832 6773",
+    "fax": "+1 619 312 4145",
+    "email": "privacy@teamspeak.com",
+    "web": "https://teamspeak.com/",
+    "sources": [
+        "https://teamspeak.com/en/privacy-and-terms/",
+        "https://github.com/datenanfragen/data/issues/141"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

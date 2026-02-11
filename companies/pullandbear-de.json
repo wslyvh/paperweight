@@ -1,0 +1,19 @@
+{
+    "slug": "pullandbear-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "PULL & BEAR Deutschland B.V. & Co. KG",
+    "address": "Mönckebergstraße 11\n20095 Hamburg\nDeutschland",
+    "email": "dataprotection@pullbear.com",
+    "web": "https://www.pullandbear.com/de",
+    "sources": [
+        "https://static.pullandbear.net/2/static2/policies/privacy_policy/pullandbear_privacy_policy_DE_de.pdf",
+        "https://github.com/datenanfragen/data/pull/2653"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "deutsche-rentenversicherung-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Deutsche Rentenversicherung Bund",
+    "address": "10704 Berlin\nDeutschland",
+    "phone": "+49 800 1000 4800",
+    "fax": "+49 30 8652 7880",
+    "email": "Datenschutz-DRV-Bund@drv-bund.de",
+    "web": "https://www.deutsche-rentenversicherung.de",
+    "sources": [
+        "https://www.deutsche-rentenversicherung.de/Allgemein/de/Navigation/0_Home/ServiceFooter/Datenschutz_node.html",
+        "https://www.deutsche-rentenversicherung.de/Allgemein/de/Navigation/0_Home/ServiceFooter/Impressum_node.html"
+    ],
+    "request-language": "de",
+    "quality": "verified"
+}

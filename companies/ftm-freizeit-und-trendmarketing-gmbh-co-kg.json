@@ -1,0 +1,41 @@
+{
+    "slug": "ftm-freizeit-und-trendmarketing-gmbh-co-kg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "FTM Freizeit- und Trendmarketing GmbH & Co. KG",
+    "runs": [
+        "Daydreams (www.daydreams.de)"
+    ],
+    "address": "Postfach 1223\n77602 Offenburg\nDeutschland",
+    "phone": "+49 781 6396100",
+    "fax": "+49 781 6396101",
+    "email": "ftm@datenschutzanfrage.de",
+    "web": "https://www.daydreams.de/datenschutzanfrage-formular",
+    "sources": [
+        "https://www.daydreams.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1482"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

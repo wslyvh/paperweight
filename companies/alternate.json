@@ -1,0 +1,20 @@
+{
+    "slug": "alternate",
+    "categories": [
+        "commerce"
+    ],
+    "name": "ALTERNATE GmbH",
+    "address": "Philipp-Reis-Straße 2 – 3\n35440 Linden\nDeutschland",
+    "phone": "+49 6403 90 50 40",
+    "fax": "+49 6403 90 50 74 00",
+    "email": "datenschutz@alternate.de",
+    "web": "https://www.alternate.de/",
+    "sources": [
+        "https://www.alternate.de/HILFE/ALTERNATE/Datenschutz"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

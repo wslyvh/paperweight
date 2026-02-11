@@ -1,0 +1,20 @@
+{
+    "slug": "paycenter",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "PayCenter GmbH",
+    "runs": [
+        "VIMpay"
+    ],
+    "address": "Clemensänger Ring 24\n85356 Freising\nDeutschland",
+    "phone": "+49 8161 4060300",
+    "email": "datenschutz@paycenter.de",
+    "web": "https://www.paycenter.de/",
+    "sources": [
+        "https://www.vimpay.de/datenschutz/datenschutzbestimmungen-vimpay-de/",
+        "https://www.paycenter.de/datenschutz/webseite/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,28 @@
+{
+    "slug": "bundesdruckerei",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce",
+        "public body",
+        "telecommunication"
+    ],
+    "name": "Bundesdruckerei GmbH",
+    "runs": [
+        "Bundesdruckerei International Services GmbH",
+        "Maurer Electronics GmbH",
+        "D-TRUST GmbH"
+    ],
+    "address": "Kommandantenstraße 18\n10969 Berlin\nDeutschland",
+    "phone": "+49 30 25980",
+    "fax": "+49 30 25982205",
+    "email": "datenschutz@bdr.de",
+    "web": "https://www.bundesdruckerei.de",
+    "sources": [
+        "https://www.bundesdruckerei.de/de/Datenschutz",
+        "https://www.bundesdruckerei.de/de/1209-impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,25 @@
+{
+    "slug": "spreadshirt",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "sprd.net AG",
+    "runs": [
+        "Spreadshirt"
+    ],
+    "address": "Gießerstraße 27\n04229 Leipzig\nGermany",
+    "phone": "+49 341 594005900",
+    "fax": "+49 341 594005499",
+    "email": "privacy@spreadshirt.net",
+    "web": "https://www.spreadshirt.net",
+    "sources": [
+        "https://www.spreadshirt.de/datenschutz-C3928",
+        "https://www.spreadshirt.de/impressum-C1338",
+        "https://github.com/datenanfragen/data/pull/1184"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

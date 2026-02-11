@@ -1,0 +1,19 @@
+{
+    "slug": "gdws-wsv-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Generaldirektion Wasserstraßen und Schifffahrt (GDWS)",
+    "address": "Ulrich-von-Hassell-Straße 76\n53123 Bonn\nDeutschland",
+    "phone": "+49 431 3394 6500",
+    "email": "DSB.GDWS@wsv.bund.de",
+    "web": "https://www.gdws.wsv.bund.de",
+    "sources": [
+        "https://www.gdws.wsv.bund.de/DE/service-navi/datenschutz/datenschutz_node.html"
+    ],
+    "request-language": "de",
+    "quality": "verified"
+}

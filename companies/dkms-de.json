@@ -1,0 +1,33 @@
+{
+    "slug": "dkms-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "nonprofit"
+    ],
+    "name": "DKMS gGmbH",
+    "address": "Kressbach 1\n72072 Tübingen\nDeutschland",
+    "phone": "+49 7071 9430",
+    "fax": "+49 7071 9431499",
+    "email": "datenschutz@dkms.de",
+    "web": "https://www.dkms.de",
+    "sources": [
+        "https://www.dkms.de/de/datenschutzbestimmungen-der-dkms"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

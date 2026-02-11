@@ -1,0 +1,25 @@
+{
+    "slug": "4wave",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "blueleads GmbH",
+    "runs": [
+        "4Wave Marketing GmbH (ehem.)"
+    ],
+    "address": "Unterländer Straße 74\n70435 Stuttgart\nDeutschland",
+    "phone": "+49 800 8444537",
+    "email": "datenschutz@blueleads.online",
+    "web": "http://www.blueleads.online/",
+    "sources": [
+        "http://blueleads.online/datenschutz.html",
+        "https://blueleads.online/index.html",
+        "https://www.northdata.de/?id=2497275007",
+        "https://github.com/datenanfragen/data/issues/70"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

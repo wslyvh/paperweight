@@ -1,0 +1,20 @@
+{
+    "slug": "yvolve",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce",
+        "entertainment"
+    ],
+    "name": "yvolve GmbH",
+    "address": "Schwanenborg 9\n49835 Wietmarschen\nDeutschland",
+    "phone": "+49 5908 9373560",
+    "email": "service@yvolve.shop",
+    "web": "https://yvolve.shop",
+    "sources": [
+        "https://yvolve.shop/policies/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/1820"
+    ],
+    "quality": "verified"
+}

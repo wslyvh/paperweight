@@ -1,0 +1,28 @@
+{
+    "slug": "simplicity-marketing",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Simplicity Marketing Ltd",
+    "runs": [
+        "Flashtalking",
+        "Flashtalking Inc",
+        "Flashtalking GmbH",
+        "Flashtalking PTY"
+    ],
+    "address": "20 Rathbone Place\nFloor 5\nLondon\nW1T 1HY\nUnited Kingdom",
+    "email": "privacy@flashtalking.com",
+    "web": "https://www.flashtalking.com/",
+    "sources": [
+        "https://www.flashtalking.com/consumer-privacy",
+        "https://www.flashtalking.com/privacypolicy",
+        "https://www.flashtalking.com/contact-us"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

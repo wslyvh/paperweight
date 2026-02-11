@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-coesfeld",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Der Landrat als Kreispolizeibehörde Coesfeld",
+    "address": "Daruper Straße 7\n48653 Coesfeld\nDeutschland",
+    "phone": "+49 2541 140",
+    "fax": "+49 2541 14226",
+    "email": "datenschutz.coesfeld@polizei.nrw.de",
+    "web": "https://coesfeld.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

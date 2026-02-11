@@ -1,0 +1,21 @@
+{
+    "slug": "adyen-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Adyen N.V.",
+    "address": "Simon Carmiggeltstraat 6,\n1011 DJ Amsterdam\nThe Netherlands",
+    "email": "dpo@adyen.com",
+    "webform": "https://www.adyen.com/de_DE/richtlinien-und-haftungsausschluss/privacy-form",
+    "web": "https://www.adyen.com/de_DE/",
+    "sources": [
+        "https://www.adyen.com/de_DE/richtlinien-und-haftungsausschluss/privacy-policy",
+        "https://www.adyen.com/de_DE/richtlinien-und-haftungsausschluss/impressum",
+        "https://github.com/datenanfragen/data/pull/3095"
+    ],
+    "suggested-transport-medium": "webform",
+    "quality": "verified"
+}

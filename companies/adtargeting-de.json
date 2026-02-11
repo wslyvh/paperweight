@@ -1,0 +1,23 @@
+{
+    "slug": "adtargeting-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Adtargeting GmbH",
+    "address": "Hauptstrasse 223\n65760 Eschborn\nDeutschland",
+    "phone": "+49 6196 9727747",
+    "fax": "+49 5251 2020271",
+    "email": "datenschutz@adtargeting.de",
+    "web": "https://www.adtargeting.de/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/78",
+        "https://github.com/datenanfragen/data/issues/103",
+        "https://www.adtargeting.de/datenschutz.html"
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

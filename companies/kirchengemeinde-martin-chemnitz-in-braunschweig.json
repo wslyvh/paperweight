@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-martin-chemnitz-in-braunschweig",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Martin Chemnitz in Braunschweig",
+    "address": "Möncheweg 56\n38126 Braunschweig\nDeutschland",
+    "phone": "+49 531 691896",
+    "fax": "+49 531 2621163",
+    "email": "martinchemnitz.buero@lk-bs.de",
+    "web": "http://www.martin-chemnitz-bs.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=751"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

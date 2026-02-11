@@ -1,0 +1,18 @@
+{
+    "slug": "swapfiets-be",
+    "relevant-countries": [
+        "be"
+    ],
+    "name": "Swapfiets België BVBV",
+    "address": "Mechelseplein 10\n2000 Antwerpen\nBelgium",
+    "phone": "+32 3 304 55 70",
+    "email": "privacy@pon.com",
+    "web": "https://swapfiets.be/",
+    "sources": [
+        "https://swapfiets.be/en-BE/privacy",
+        "https://swapfiets.be/en-BE/terms",
+        "https://help.swapfiets.be/hc/en-gb"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

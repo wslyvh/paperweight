@@ -1,0 +1,19 @@
+{
+    "slug": "npr",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "National Public Radio, Inc.",
+    "address": "1111 North Capital Street, NE\nWashington, DC 20002\nUnited States of America",
+    "email": "privacy@npr.org",
+    "web": "https://www.npr.org",
+    "sources": [
+        "https://www.npr.org/about-npr/179878450/privacy-policy"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

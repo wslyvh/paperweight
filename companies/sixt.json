@@ -1,0 +1,21 @@
+{
+    "slug": "sixt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Sixt GmbH & Co. Autovermietung KG",
+    "address": "Zugspitzstraße 1\n82049 Pullach\nDeutschland",
+    "phone": "+49 89 744440",
+    "fax": "+49 89 7444486666",
+    "email": "dataprotection@sixt.com",
+    "web": "https://www.sixt.de/",
+    "sources": [
+        "https://www.sixt.de/shared/data-protection/DSGVO_DE_de.pdf",
+        "https://www.sixt.de/pages/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

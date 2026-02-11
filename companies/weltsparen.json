@@ -1,0 +1,22 @@
+{
+    "slug": "weltsparen",
+    "relevant-countries": [
+        "de",
+        "at"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "address": "c/o Raisin GmbH\nSchlesische Straße 33/34\n10997 Berlin\nDeutschland",
+    "phone": "+49 30 21784002",
+    "email": "datenschutz@weltsparen.de",
+    "web": "https://www.weltsparen.de/",
+    "sources": [
+        "https://www.weltsparen.de/datenschutz/",
+        "https://www.weltsparen.at/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2574"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "name": "Weltsparen"
+}

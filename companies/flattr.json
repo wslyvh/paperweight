@@ -1,0 +1,20 @@
+{
+    "slug": "flattr",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "eyeo GmbH",
+    "runs": [
+        "Flattr (formerly)"
+    ],
+    "address": "Kunibertsgasse 10\n50668 Köln\nGermany",
+    "email": "privacy@eyeo.com",
+    "web": "https://eyeo.com/privacy",
+    "sources": [
+        "https://eyeo.com/privacy",
+        "https://techcrunch.com/2017/04/05/adblock-plus-acquires-flattr/",
+        "https://github.com/datenanfragen/data/pull/2380"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

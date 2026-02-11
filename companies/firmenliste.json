@@ -1,0 +1,27 @@
+{
+    "slug": "firmenliste",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "addresses",
+        "ads"
+    ],
+    "name": "Adresskontor GmbH",
+    "runs": [
+        "FirmenListe.net",
+        "Branchen-Adressen.com"
+    ],
+    "address": "c/o IITR Datenschutz GmbH\nMarienplatz 2\n80331 München\nDeutschland",
+    "phone": "+49 89 1891 7360",
+    "email": "email@iitr.de",
+    "web": "https://www.firmenliste.net",
+    "sources": [
+        "https://www.firmenliste.net/datenschutz.php",
+        "https://www.branchen-adressen.com/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/715",
+        "https://github.com/datenanfragen/data/pull/2041"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

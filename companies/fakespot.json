@@ -1,0 +1,22 @@
+{
+    "slug": "fakespot",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Fakespot Inc",
+    "address": "110 Wall Street\nSuite 2-028\nNew York NY 10005\nUnited States of America",
+    "email": "contact@fakespot.com",
+    "web": "https://www.fakespot.com",
+    "sources": [
+        "https://www.fakespot.com/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/1193"
+    ],
+    "required-elements": [
+        {
+            "desc": "Email",
+            "type": "name",
+            "optional": false
+        }
+    ],
+    "quality": "verified"
+}

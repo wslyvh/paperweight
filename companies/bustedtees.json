@@ -1,0 +1,18 @@
+{
+    "slug": "bustedtees",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "BustedTees.com",
+    "address": "118-A Cass Street\nTraverse City\nMI 49735\nUnited States of America",
+    "email": "legal@bustedtees.com",
+    "web": "https://www.bustedtees.com/",
+    "sources": [
+        "https://www.bustedtees.com/policies/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/2013"
+    ],
+    "quality": "verified"
+}

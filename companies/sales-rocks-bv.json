@@ -1,0 +1,20 @@
+{
+    "slug": "sales-rocks-bv",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "addresses"
+    ],
+    "name": "Sales.Rocks BV",
+    "address": "Halfrond 41\n3071 PP Rotterdam, Zuid-Holland\nThe Netherlands",
+    "phone": "+31 10 310 4085",
+    "email": "datasubjectrequest@sales.rocks",
+    "web": "https://sales.rocks/",
+    "sources": [
+        "https://sales.rocks/privacy-terms-conditions/",
+        "https://github.com/datenanfragen/data/pull/2476"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

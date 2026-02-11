@@ -1,0 +1,21 @@
+{
+    "slug": "ayondo",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Midas Software GmbH",
+    "runs": [
+        "ayondo portfolio management GmbH (ehem.)"
+    ],
+    "address": "Passauer Straße 5\n94161 Ruderting\nDeutschland",
+    "phone": "+49 69 99 99 941 50",
+    "email": "midas@ayondo.one",
+    "web": "https://www.ayondo.com",
+    "sources": [
+        "https://www.ayondo.com/impressum-de.html"
+    ],
+    "quality": "verified"
+}

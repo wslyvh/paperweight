@@ -1,0 +1,31 @@
+{
+    "slug": "ingenico-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance",
+        "health"
+    ],
+    "name": "Ingenico Deutschland",
+    "runs": [
+        "Ingenico Payment Services GmbH",
+        "Ingenico e-Commerce Solutions GmbH",
+        "Ingenico Healthcare GmbH",
+        "Ingenico GmbH"
+    ],
+    "address": "Daniel-Goldbach-Str. 17-19\n40880 Ratingen\nDeutschland",
+    "phone": "+49 210 29979260",
+    "fax": "+49 210 29979269",
+    "email": "datenschutz@ingenico.com",
+    "web": "https://www.ingenico.de",
+    "sources": [
+        "https://www.ingenico.com/privacy-policy#AnnexB",
+        "https://www.ingenico.de/smart-terminals/datenschutzerklarung",
+        "https://www.ingenico.de/healthcare/unternehmen/datenschutz",
+        "https://www.ingenico.de/smart-terminals/unternehmen/ingenico-group",
+        "https://investors.worldline.com/content/investors-worldline-com/en/home/governance.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,16 @@
+{
+    "slug": "dhl-express-germany-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "DHL Express Germany GmbH",
+    "address": "Heinrich-Brüning-Straße 5\n53113 Bonn\nDeutschland",
+    "email": "datenschutz@dpdhl.com",
+    "webform": "https://www.dhl.com/de-de/home/fusszeile/datenschutzhinweis/datenschutzkontakt.html",
+    "web": "https://www.dhl.de/de/geschaeftskunden/express.html",
+    "sources": [
+        "https://www.dhl.de/de/toolbar/footer/datenschutz.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

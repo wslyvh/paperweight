@@ -1,0 +1,22 @@
+{
+    "slug": "nibcdirect",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "NIBC Bank N.V.",
+    "address": "An der Welle 5\n60322 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 24437200",
+    "fax": "+49 69 50600573",
+    "email": "datenschutz@nibc.de",
+    "web": "https://www.nibc.de",
+    "sources": [
+        "https://www.nibc.de/hilfe-services/sicherheit/",
+        "https://www.nibc.de/ueber-nibc/impressum/",
+        "https://github.com/datenanfragen/data/pull/737"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "voxenergie-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication",
+        "utility"
+    ],
+    "name": "voxenergie GmbH",
+    "address": "Großbeerenstraße 2-10\n12107 Berlin\nDeutschland",
+    "phone": "+49 30 206143723",
+    "email": "datenschutz@voxenergie.de",
+    "web": "https://voxenergie.de/",
+    "sources": [
+        "https://voxenergie.de/media/pdf/Datenschutzerklaerung_der_voxenergie_GmbH_03062021.pdf",
+        "https://github.com/datenanfragen/data/pull/2650"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "med1plus",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "med1plus GmbH",
+    "address": "c/o KHBL Service- und Wirtschaftsgesellschaft mbH\nAltenberger-Dom-Straße 200\n51467 Bergisch Gladbach\nDeutschland",
+    "phone": "+49 2202 93590",
+    "fax": "+49 2202 9359479",
+    "email": "datenschutz@service-handwerk.de",
+    "web": "https://med1plus.de",
+    "sources": [
+        "https://med1plus.de/impressum/",
+        "https://github.com/datenanfragen/data/pull/1651"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Weitere Angabe einer E-Mail Adresse: Datenschutzbeauftragter@med1plus.de"
+    ],
+    "quality": "verified"
+}

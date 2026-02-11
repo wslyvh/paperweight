@@ -1,0 +1,21 @@
+{
+    "slug": "hosteurope",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Host Europe GmbH",
+    "address": "Hansestrasse 111\n51149 Köln\nDeutschland",
+    "phone": "+49 2203 9934 1040",
+    "fax": "+49 2203 9934 1042",
+    "email": "datenschutz@hosteurope.de",
+    "web": "https://www.hosteurope.de/",
+    "sources": [
+        "https://www.hosteurope.de/AGB/Datenschutzerklaerung/",
+        "https://www.hosteurope.de/Impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

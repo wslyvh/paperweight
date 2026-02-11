@@ -1,0 +1,32 @@
+{
+    "slug": "easypark-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Easypark GmbH",
+    "address": "Große Düwelstraße 28\n30171 Hannover\nDeutschland",
+    "phone": "+49 221 2601899",
+    "email": "dpo@easypark.net",
+    "web": "https://www.easypark.com/de",
+    "sources": [
+        "https://legals.easyparksystem.net/DE/privacy/de/privacy_de_de.pdf",
+        "https://www.easypark.com/de/impressum",
+        "https://github.com/datenanfragen/data/pull/2500"
+    ],
+    "required-elements": [
+        {
+            "desc": "Handynummer",
+            "type": "input",
+            "optional": true
+        },
+        {
+            "desc": "Name",
+            "type": "name"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

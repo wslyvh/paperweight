@@ -1,0 +1,32 @@
+{
+    "slug": "roku",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Roku International BV",
+    "runs": [
+        "dataxu"
+    ],
+    "address": "Herikerbergweg 238\n1101 CM Amsterdam\nThe Netherlands",
+    "email": "privacy@roku.com",
+    "webform": "https://privacy.roku.com/contact",
+    "web": "https://www.roku.com/de-de/",
+    "sources": [
+        "https://docs.roku.com/published/userprivacypolicy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

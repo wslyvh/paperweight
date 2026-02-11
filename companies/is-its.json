@@ -1,0 +1,21 @@
+{
+    "slug": "is-its",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "isits AG International School of IT Security",
+    "address": "Huestraße 30\n44787 Bochum\nDeutschland",
+    "phone": "+49 234 9278980",
+    "fax": "+49 234 92789820",
+    "email": "datenschutz@is-its.org",
+    "web": "https://www.is-its.org",
+    "sources": [
+        "https://www.is-its.org/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1662"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

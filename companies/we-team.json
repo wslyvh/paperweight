@@ -1,0 +1,23 @@
+{
+    "slug": "we-team",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Otixo, Inc.",
+    "runs": [
+        "We.Team"
+    ],
+    "address": "Schuhhagen 27\n17489 Greifswald\nGermany",
+    "email": "privacy@we.team",
+    "web": "https://we.team/",
+    "sources": [
+        "https://we.team/en/legal/privacy-policy",
+        "https://we.team/en/legal/gdpr",
+        "https://github.com/datenanfragen/data/pull/1191"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,25 @@
+{
+    "slug": "swica",
+    "relevant-countries": [
+        "li",
+        "ch"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "SWICA Krankenversicherung AG",
+    "address": "Römerstrasse 38\n8401 Winterthur\nSchweiz",
+    "phone": "+41 52 244 22 33",
+    "fax": "+41 52 244 22 90",
+    "email": "datenschutz@swica.ch",
+    "webform": "https://www.swica.ch/de/ueber-swica/portrait/ueberblick/datenschutz",
+    "web": "https://www.swica.ch/",
+    "sources": [
+        "https://www.swica.ch/de/ueber-swica/portrait/ueberblick/datenschutz",
+        "https://www.swica.ch/de/ueber-swica/portrait/ueberblick/datenschutz/datenschutzerklaerung",
+        "https://www4.swica.ch/p/826_d_Datenschutzerklaerung_Liechtenstein.pdf",
+        "https://www.swica.ch/de/ueber-swica/portrait/ueberblick/datenschutz/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

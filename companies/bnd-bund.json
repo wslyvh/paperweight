@@ -1,0 +1,19 @@
+{
+    "slug": "bnd-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesnachrichtendienst (BND)",
+    "address": "Postfach 45 01 71\n12247 Berlin\nDeutschland",
+    "email": "datenschutzbeauftragter@bnd.bund.de",
+    "web": "https://www.bnd.bund.de",
+    "sources": [
+        "https://www.bnd.bund.de/DE/Service/Datenschutz/datenschutz_node.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,23 @@
+{
+    "slug": "payoneer",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Payoneer EU Limited",
+    "runs": [
+        "Payoneer Inc."
+    ],
+    "address": "57/63 Line Wall Road\nGibraltar",
+    "phone": "+1 646 658 3695",
+    "email": "DPO@payoneer.com",
+    "web": "https://www.payoneer.com/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/519",
+        "https://www.payoneer.com/legal/privacy-policy/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

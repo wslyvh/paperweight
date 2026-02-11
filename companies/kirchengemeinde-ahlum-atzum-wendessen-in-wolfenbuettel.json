@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-ahlum-atzum-wendessen-in-wolfenbuettel",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Ahlum-Atzum-Wendessen in Wolfenbüttel",
+    "address": "Jahnstraße 5\n38302 Wolfenbüttel\nDeutschland",
+    "phone": "+49 5331 72413",
+    "fax": "+49 5331 340546",
+    "email": "maria-magdala.wf.pfa@lk-bs.de",
+    "web": "http://www.ahlum-atzum-wendessen-evangelisch.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=1053"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

@@ -1,0 +1,28 @@
+{
+    "slug": "asos-shop",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "ASOS",
+    "runs": [
+        "Miss Selfridge",
+        "Topshop",
+        "Topman"
+    ],
+    "address": "Hercules Way\nLeavesden\nWatford\nHertfordshire\nWD25 7GR\nUnited Kingdom",
+    "email": "dataprotection@asos.com",
+    "web": "httsp://www.asos.com",
+    "sources": [
+        "http://www.asos.de/",
+        "http://www.asos.de/datenschutz/",
+        "https://www.asos.com/privacy-policy/",
+        "https://www.asos.com/miss-selfridge/",
+        "https://www.asos.com/topshop/",
+        "https://www.asos.com/topman/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

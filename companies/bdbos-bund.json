@@ -1,0 +1,21 @@
+{
+    "slug": "bdbos-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesanstalt für den Digitalfunk der Behörden und Organisationen mit Sicherheitsaufgaben (BDBOS)",
+    "address": "Fehrbelliner Platz 3\n10707 Berlin\nDeutschland",
+    "phone": "+49 30 1868145350",
+    "fax": "+49 30 1868145880",
+    "email": "dsb@bdbos.bund.de",
+    "web": "https://www.bdbos.bund.de",
+    "sources": [
+        "https://www.bdbos.bund.de/DE/Service/Datenschutz/DS-allgemein/DS-Allgemein_node.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

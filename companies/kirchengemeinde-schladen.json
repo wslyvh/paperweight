@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-schladen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Schladen",
+    "address": "An der Kirche 7\n38315 Schladen\nDeutschland",
+    "phone": "+49 5335 361",
+    "fax": "+49 5335 6755",
+    "email": "schoeppenstedt-sued.pfa@lk-bs.de",
+    "web": "http://www.kirchepunktwir.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=950"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

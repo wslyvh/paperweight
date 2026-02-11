@@ -1,0 +1,24 @@
+{
+    "slug": "cdu",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "political party"
+    ],
+    "name": "Christlich Demokratische Union Deutschlands (CDU)",
+    "address": "Klingelhöferstraße 8\n10785 Berlin\nDeutschland",
+    "phone": "+49 30 22070 0",
+    "fax": "+49 30 22070 111",
+    "email": "datenschutz@cdu.de",
+    "web": "https://www.cdu.de/",
+    "sources": [
+        "https://www.cdu.de/impressum",
+        "https://github.com/datenanfragen/data/issues/118",
+        "https://www.cdu.de/datenschutz"
+    ],
+    "request-language": "de",
+    "needs-id-document": true,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

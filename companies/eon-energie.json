@@ -1,0 +1,26 @@
+{
+    "slug": "eon-energie",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "E.ON Energie Deutschland GmbH",
+    "runs": [
+        "innogy (ehem.)"
+    ],
+    "address": "Postfach 14 75\n84001 Landshut\nDeutschland",
+    "phone": "+49 871 95386200",
+    "email": "betroffenenanfrage@eon.de",
+    "webform": "https://www.eon.de/de/pk/service/kontakt/email/betroffenenrechte.html",
+    "web": "https://www.eon.de",
+    "sources": [
+        "https://www.eon.de/de/pk/datenschutz/betroffenenrechte.html",
+        "https://www.eon.de/de/pk/datenschutz/vertrag.html",
+        "https://www.eon.de/de/innogy.html",
+        "https://github.com/datenanfragen/data/pull/3306"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

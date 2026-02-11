@@ -1,0 +1,20 @@
+{
+    "slug": "nytimes",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "The New York Times Company",
+    "address": "620 Eighth Avenue\nNew York\nNY 10018\nUnited States of America",
+    "phone": "+1 800 698 4637",
+    "email": "privacy@nytimes.com",
+    "webform": "https://www.nytimes.com/data-subject-request",
+    "web": "https://www.nytimes.com/",
+    "sources": [
+        "https://help.nytimes.com/hc/en-us/articles/115014892108-Privacy-policy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

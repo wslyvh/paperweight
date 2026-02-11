@@ -1,0 +1,21 @@
+{
+    "slug": "fitness-first-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "Fitness First Germany GmbH",
+    "address": "Hanauer Landstr. 148a\n60314 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 408016000",
+    "fax": "+49 69 408016019",
+    "email": "datenschutz@fitnessfirst.de",
+    "web": "https://www.fitnessfirst.de/",
+    "sources": [
+        "https://www.fitnessfirst.de/rechtliches/datenschutz",
+        "https://github.com/datenanfragen/data/issues/663"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

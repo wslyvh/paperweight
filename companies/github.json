@@ -1,0 +1,21 @@
+{
+    "slug": "github",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "GitHub, Inc.",
+    "address": "88 Colin P Kelly Jr St\nSan Francisco\nCA 94107\nUnited States of America",
+    "phone": "+1 877 448 4820",
+    "email": "privacy@github.com",
+    "web": "https://github.com/",
+    "sources": [
+        "https://help.github.com/articles/github-privacy-statement/",
+        "https://enterprise.github.com/contact"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "comments": [
+        "The phone number is that of the enterprise sales team."
+    ],
+    "quality": "verified"
+}

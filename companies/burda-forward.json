@@ -1,0 +1,20 @@
+{
+    "slug": "burda-forward",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "BurdaForward GmbH",
+    "address": "St.-Martin-Straße 66\n81541 München\nGermany",
+    "phone": "+49 89 9250 4500",
+    "email": "burdaforward@datenschutzanfrage.de",
+    "web": "https://www.burda-forward.de",
+    "sources": [
+        "https://www.burda-forward.de/datenschutz/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

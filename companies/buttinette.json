@@ -1,0 +1,19 @@
+{
+    "slug": "buttinette",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "buttinette Textil-Versandhaus GmbH",
+    "address": "Industriestr. 22\n86637 Wertingen\nDeutschland",
+    "phone": "+49 8272 99666",
+    "email": "datenschutz@buttinette.de",
+    "web": "https://basteln-de.buttinette.com/",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/1911"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

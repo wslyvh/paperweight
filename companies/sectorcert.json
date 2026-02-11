@@ -1,0 +1,17 @@
+{
+    "slug": "sectorcert",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "SECTOR Cert – Gesellschaft für Zertifizierung GmbH",
+    "address": "Am Turm 24\n53721 Siegburg\nDeutschland",
+    "phone": "+49 2241 2668200",
+    "fax": "+49 2241 2668299",
+    "email": "datenschutz@sector-cert.com",
+    "web": "https://www.sectorcert.com",
+    "sources": [
+        "https://www.sectorcert.com/fussbemerkungen/datenschutz0.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

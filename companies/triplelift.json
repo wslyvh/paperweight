@@ -1,0 +1,24 @@
+{
+    "slug": "triplelift",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "TripleLift UK Limited",
+    "runs": [
+        "Triple Lift, Inc.",
+        "Header Direct LLC"
+    ],
+    "address": "48 Charlotte Street\n2nd Floor\nFitzrovia, London\nW1T 2NS\nUnited Kingdom",
+    "email": "platformprivacy@triplelift.com",
+    "web": "https://triplelift.com/",
+    "sources": [
+        "https://triplelift.com/privacy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

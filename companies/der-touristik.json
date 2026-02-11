@@ -1,0 +1,22 @@
+{
+    "slug": "der-touristik",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "DER Touristik Deutschland GmbH",
+    "address": "Emil-von-Behring-Straße 6\n60439 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 958800",
+    "fax": "+49 69 95881010",
+    "email": "datenschutz@dertouristik.com",
+    "web": "https://www.dertour.de",
+    "sources": [
+        "https://www.dertour.de/privacy/content",
+        "https://www.dertour.de/impressum",
+        "https://github.com/datenanfragen/data/pull/1854"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

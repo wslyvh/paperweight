@@ -1,0 +1,21 @@
+{
+    "slug": "obi-shop",
+    "categories": [
+        "commerce"
+    ],
+    "name": "OBI E-Commerce GmbH",
+    "address": "Albert-Einstein-Straße 7 – 9\n42929 Wermelskirchen\nDeutschland",
+    "phone": "+49 2196 761515",
+    "fax": "+49 2196 762088",
+    "email": "datenschutzbeauftragter@obi.de",
+    "web": "https://www.obi.de/",
+    "sources": [
+        "https://www.obi.de/disclaimer/",
+        "https://www.obi.de/impressum/"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,17 @@
+{
+    "slug": "opodo",
+    "categories": [
+        "travel"
+    ],
+    "name": "Opodo Deutschland",
+    "address": "Büschstraße 12\n20354 Hamburg\nDeutschland",
+    "phone": "+49 30 5200 2075",
+    "web": "https://www.opodo.de/",
+    "sources": [
+        "https://www.opodo.de/kundenservice/"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "quality": "verified"
+}

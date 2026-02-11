@@ -1,0 +1,19 @@
+{
+    "slug": "dataplusmath",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Data Plus Math Corporation",
+    "address": "51 Melcher St.\nBoston\nMA 02210\nUnited States of America",
+    "email": "privacy@dataplusmath.com",
+    "web": "https://www.dataplusmath.com/",
+    "sources": [
+        "https://www.dataplusmath.com/privacy-policy"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

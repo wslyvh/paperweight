@@ -1,0 +1,22 @@
+{
+    "slug": "ogs-diesterwegstrasse-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Grundschule Diesterwegstraße Braunschweig",
+    "address": "Diesterwegstraße 7\n38114 Braunschweig\nDeutschland",
+    "phone": "+49 531 580310 0",
+    "fax": "+49 531 580310 20",
+    "email": "gs.diesterwegstrasse@braunschweig.de",
+    "web": "http://ogs-diesterwegstrasse.de/",
+    "sources": [
+        "http://ogs-diesterwegstrasse.de/index.php/kontakt"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

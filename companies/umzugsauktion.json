@@ -1,0 +1,20 @@
+{
+    "slug": "umzugsauktion",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Umzugsauktion GmbH & Co. KG",
+    "runs": [
+        "Umzugspreisvergleich.de"
+    ],
+    "address": "Frohmattenstraße 2b\n79268 Bötzingen\nDeutschland",
+    "phone": "+49 7663 91430",
+    "fax": "+49 7663 9143166",
+    "email": "datenschutzbeauftragter@umzugspreisvergleich.de",
+    "web": "https://www.umzugspreisvergleich.de/",
+    "sources": [
+        "https://www.umzugspreisvergleich.de/datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

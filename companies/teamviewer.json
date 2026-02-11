@@ -1,0 +1,26 @@
+{
+    "slug": "teamviewer",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "TeamViewer Germany GmbH",
+    "runs": [
+        "TeamViewer AG"
+    ],
+    "address": "Bahnhofsplatz 2\n73033 Göppingen\nGermany",
+    "phone": "+49 7161 60692 50",
+    "fax": "+49 7161 60692 79",
+    "email": "privacy@teamviewer.com",
+    "web": "https://www.teamviewer.com",
+    "sources": [
+        "https://www.teamviewer.com/de/datenschutzerklaerung",
+        "https://github.com/datenanfragen/data/pull/977",
+        "https://www.teamviewer.com/de/impressum/"
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "sia",
+    "relevant-countries": [
+        "it"
+    ],
+    "categories": [
+        "finance",
+        "commerce"
+    ],
+    "name": "Nexi S.p.A.",
+    "runs": [
+        "SIA S.p.A. (formerly)"
+    ],
+    "address": "Corso Sempione, 55\n20149 Milan\nItalia",
+    "phone": "+39 02 34881",
+    "fax": "+39 02 3488 4180",
+    "web": "https://www.nexigroup.com",
+    "sources": [
+        "https://www.nexigroup.com/en/legal-notice/",
+        "https://www.nexigroup.com/en/company-data/",
+        "https://www.nexi.it/content/dam/nexi/download/stampa/comunicati/2021-12-16-pr-Nexi-Sia-sign-the-merger-deed.pdf"
+    ],
+    "quality": "verified"
+}

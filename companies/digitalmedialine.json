@@ -1,0 +1,19 @@
+{
+    "slug": "digitalmedialine",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Digital Media Line",
+    "address": "622b Stockport Road\nManchester\nM13 0SH\nUnited Kingdom",
+    "phone": "+44 161 818 8500",
+    "email": "info@digitalmedialine.com",
+    "web": "https://digitalmedialine.com/",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/857",
+        "https://digitalmedialine.com/contact/"
+    ],
+    "quality": "verified"
+}

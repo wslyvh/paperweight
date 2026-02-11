@@ -1,0 +1,20 @@
+{
+    "slug": "bisnode-ab",
+    "relevant-countries": [
+        "se"
+    ],
+    "name": "Bisnode AB",
+    "runs": [
+        "Bisnode Business Information Group"
+    ],
+    "address": "169 93 Solna\nSweden",
+    "phone": "+46 8 558 059 00",
+    "email": "dpo@bisnode.com",
+    "web": "https://www.bisnode.com",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/421",
+        "https://www.bisnode.com/globalassets/group---english/gdpr/bisnode-general-privacy-information-002.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,33 @@
+{
+    "slug": "sky-de",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "categories": [
+        "telecommunication",
+        "entertainment"
+    ],
+    "name": "Sky Deutschland Fernsehen GmbH & Co. KG",
+    "runs": [
+        "WOW TV"
+    ],
+    "address": "Medienallee 26\n85774 Unterföhring\nDeutschland",
+    "phone": "+49 180 6 11 00 00",
+    "email": "datenschutz@sky.de",
+    "web": "https://www.sky.de",
+    "sources": [
+        "https://www.sky.de/impressum",
+        "https://www.sky.de/datenschutz",
+        "https://www.wowtv.de/datenschutz-und-cookies",
+        "https://github.com/datenanfragen/data/pull/2016"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Achtung: Telefonnummer ist kostenpflichtig (€ 0,20 inkl. MwSt./Anruf aus dem dt. Festnetz; max. € 0,60 inkl. MwSt./Anruf aus dem Mobilfunknetz)",
+        "Personen, die ein WOW-TV-Konto haben, können Anfragen nach  auch per Formular stellen unter: https://privacyportal-de.onetrust.com/webform/1bca6949-81da-4e67-ac5e-a4174c2fb12d/8f632d91-fb74-442a-b711-e2fdb8d38025"
+    ],
+    "quality": "verified"
+}

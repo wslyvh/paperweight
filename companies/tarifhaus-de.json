@@ -1,0 +1,34 @@
+{
+    "slug": "tarifhaus-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Tarifhaus Online GmbH",
+    "address": "Würmstraße 55\n82166 Gräfelfing\nDeutschland",
+    "phone": "+49 89 215 474 880",
+    "email": "impressum@tarifhaus.de",
+    "web": "https://www.tarifhaus.de",
+    "sources": [
+        "https://www.tarifhaus.de/datenschutz",
+        "https://www.tarifhaus.de/impressum/",
+        "https://github.com/datenanfragen/data/issues/330"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "quality": "verified"
+}

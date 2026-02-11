@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-rhein-sieg-kreis",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Der Landrat des Rhein-Sieg-Kreises als Kreispolizeibehörde",
+    "address": "Kaiser-Wilhelm-Platz 1\n53721 Siegburg\nDeutschland",
+    "phone": "+49 2241 5410",
+    "fax": "+49 2241 5411009",
+    "email": "datenschutz.rhein-sieg-kreis@polizei.nrw.de",
+    "web": "https://rhein-sieg-kreis.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

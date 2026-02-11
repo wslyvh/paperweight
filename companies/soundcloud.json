@@ -1,0 +1,25 @@
+{
+    "slug": "soundcloud",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "SoundCloud Limited",
+    "runs": [
+        "SoundCloud Go+",
+        "SoundCloud Inc."
+    ],
+    "address": "Rheinsberger Straße 76 – 77\n10115 Berlin\nDeutschland",
+    "phone": "+49 30 467 247 600",
+    "email": "dataprotection@soundcloud.com",
+    "web": "https://soundcloud.com/",
+    "sources": [
+        "https://soundcloud.com/pages/privacy",
+        "https://soundcloud.com/imprint",
+        "https://github.com/datenanfragen/data/issues/652"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

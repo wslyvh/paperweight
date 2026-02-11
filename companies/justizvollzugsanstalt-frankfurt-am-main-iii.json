@@ -1,0 +1,21 @@
+{
+    "slug": "justizvollzugsanstalt-frankfurt-am-main-iii",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Justizvollzugsanstalt Frankfurt am Main III",
+    "address": "Obere Kreuzäckerstraße 4\n60435 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 136706",
+    "fax": "+49 69 13671399",
+    "email": "datenschutzbeauftragter@jva-frankfurt3.justiz.hessen.de",
+    "web": "https://justizvollzug.hessen.de/JVA-Frankfurt-III",
+    "sources": [
+        "https://justizvollzug.hessen.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1634"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

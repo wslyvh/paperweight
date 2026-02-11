@@ -1,0 +1,19 @@
+{
+    "slug": "indexexchange",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Index Exchange, Inc.",
+    "address": "c/o Legal Army, S.L.\nB88103700\nMaría de Molina, 60 4th\n28006 Madrid\nSpain",
+    "email": "gdpr@legalarmy.net",
+    "web": "https://www.indexexchange.com/",
+    "sources": [
+        "https://www.indexexchange.com/privacy/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

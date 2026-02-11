@@ -1,0 +1,47 @@
+{
+    "slug": "gothaer",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Barmenia.Gothaer Finanzholding AG",
+    "runs": [
+        "Gothaer Allgemeine Versicherung AG",
+        "Gothaer Versicherungsbank VVaG",
+        "Gothaer Krankenversicherung AG",
+        "Gothaer Lebensversicherung AG",
+        "Gothaer Pensionskasse AG"
+    ],
+    "address": "Arnoldiplatz 1\n50969 Köln\nDeutschland",
+    "phone": "+49 221 30800",
+    "fax": "+49 221 308103",
+    "email": "datenschutz@gothaer.de",
+    "web": "https://www.gothaer.de/",
+    "sources": [
+        "https://www.gothaer.de/StreamingServlet/app/dvz/DocumentDownload/116991?scope=gothaer_scope",
+        "https://www.gothaer.de/rechtliche-informationen/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1995"
+    ],
+    "required-elements": [
+        {
+            "type": "name",
+            "desc": "Name",
+            "optional": false
+        },
+        {
+            "type": "address",
+            "desc": "Adresse",
+            "optional": false
+        },
+        {
+            "type": "email",
+            "desc": "E-Mail-Adresse",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

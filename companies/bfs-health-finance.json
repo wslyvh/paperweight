@@ -1,0 +1,40 @@
+{
+    "slug": "bfs-health-finance",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "credit agency",
+        "health"
+    ],
+    "name": "BFS health finance GmbH",
+    "address": "Hülshof 24\n44369 Dortmund\nDeutschland",
+    "phone": "+49 231 945362600",
+    "fax": "+49 231 945362888",
+    "email": "datenschutz@meinebfs.de",
+    "web": "https://meinebfs.de/",
+    "sources": [
+        "https://meinebfs.de/datenschutz/",
+        "https://meinebfs.de/impressum/",
+        "https://github.com/datenanfragen/data/pull/1061"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": true
+        },
+        {
+            "desc": "BFS-Nummer",
+            "type": "input",
+            "optional": true
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

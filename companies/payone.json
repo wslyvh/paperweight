@@ -1,0 +1,32 @@
+{
+    "slug": "payone",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "PAYONE GmbH",
+    "runs": [
+        "Ingenico Payment Services GmbH (ehem.)",
+        "Ingenico e-Commerce Solutions GmbH (ehem.)",
+        "PAYONE Austria GmbH (ehem.)",
+        "BS Payone GmbH (ehem.)",
+        "B+S Card Service GmbH (ehem.)"
+    ],
+    "address": "Lyoner Straße 9\n60528 Frankfurt am Main\nDeutschland",
+    "email": "privacy@payone.com",
+    "webform": "https://privacyportal-eu.onetrust.com/webform/a1193491-22b8-424b-b694-15702547fbdb/db95c38b-3298-4af6-bd40-de645edf4032",
+    "web": "https://www.payone.com",
+    "sources": [
+        "https://www.payone.com/DE-de/dsgvo",
+        "https://www.northdata.de/?id=6418986164551680",
+        "https://www.northdata.de/?id=5469500458",
+        "https://www.northdata.de/?id=4826866195103744",
+        "https://www.northdata.de/?id=6165153251328000"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,71 @@
+{
+    "slug": "ashampoo",
+    "relevant-countries": [
+        "dk",
+        "de",
+        "fr",
+        "gr",
+        "ie",
+        "it",
+        "nl",
+        "no",
+        "at",
+        "pl",
+        "pt",
+        "se",
+        "ch",
+        "es",
+        "hu",
+        "gb"
+    ],
+    "name": "Ashampoo GmbH & Co. KG",
+    "address": "//CRASH Building\nSchafjückenweg 2\n26180 Rastede\nGermany",
+    "phone": "+49 4402 9739200",
+    "fax": "+49 4402 9739409",
+    "email": "privacy@ashampoo.com",
+    "web": "https://www.ashampoo.com",
+    "sources": [
+        "https://www.ashampoo.com/de-de/privacy",
+        "https://www.ashampoo.com/de-de/about",
+        "https://www.ashampoo.com/select-region",
+        "https://www.ashampoo.com/da-dk/privacy",
+        "https://www.ashampoo.com/fr-fr/privacy",
+        "https://www.ashampoo.com/el-gr/privacy",
+        "https://www.ashampoo.com/en-ie/privacy",
+        "https://www.ashampoo.com/it-it/privacy",
+        "https://www.ashampoo.com/nl-nl/privacy",
+        "https://www.ashampoo.com/no-no/privacy",
+        "https://www.ashampoo.com/de-at/privacy",
+        "https://www.ashampoo.com/pl-pl/privacy",
+        "https://www.ashampoo.com/pt-pt/privacy",
+        "https://www.ashampoo.com/sv-se/privacy",
+        "https://www.ashampoo.com/de-ch/privacy",
+        "https://www.ashampoo.com/fr-ch/privacy",
+        "https://www.ashampoo.com/it-ch/privacy",
+        "https://www.ashampoo.com/es-es/privacy",
+        "https://www.ashampoo.com/hu-hu/privacy",
+        "https://www.ashampoo.com/en-gb/privacy",
+        "https://www.ashampoo.com/en-eu/privacy",
+        "https://github.com/datenanfragen/data/pull/2474"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "Address",
+            "type": "address",
+            "optional": true
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

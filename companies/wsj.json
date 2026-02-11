@@ -1,0 +1,24 @@
+{
+    "slug": "wsj",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Dow Jones & Company, Inc.",
+    "runs": [
+        "The Wall Street Journal (www.wsj.com)"
+    ],
+    "address": "4300 U.S. Route 1 North\nMonmouth Junction\nNJ 08852\nUnited States of America",
+    "phone": "+44 20 3426 1313",
+    "email": "privacypolicy@dowjones.com",
+    "web": "https://www.wsj.com",
+    "sources": [
+        "https://www.dowjones.com/privacy-policy/",
+        "https://www.dowjones.com/contact/"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

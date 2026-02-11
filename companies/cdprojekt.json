@@ -1,0 +1,17 @@
+{
+    "slug": "cdprojekt",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "CD PROJEKT S.A.",
+    "address": "ul. Jagiellońska 74\nbuilding E\n03-301 Warsaw\nPoland",
+    "phone": "+48 22 5196900",
+    "email": "dpo@cdprojektred.com",
+    "web": "https://www.cdprojekt.com",
+    "sources": [
+        "https://www.cdprojekt.com/en/privacy-policy",
+        "https://www.cdprojekt.com/en/contact"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

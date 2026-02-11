@@ -1,0 +1,21 @@
+{
+    "slug": "xaxis-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Xaxis, LLC",
+    "address": "c/o GroupM UK Digital Ltd.\n26 Red Lion Square\nLondon\nWC1R 4HQ\nUnited Kingdom",
+    "phone": "+44 207 158 5000",
+    "email": "privacy@xaxis.com",
+    "web": "https://www.xaxis.com/",
+    "sources": [
+        "https://www.xaxis.com/privacy-notice/",
+        "https://www.xaxis.com/contact-us/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

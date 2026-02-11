@@ -1,0 +1,27 @@
+{
+    "slug": "fragrantica",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Fragrantica Inc.",
+    "runs": [
+        "fragrantica.cz",
+        "fragrantica.de",
+        "fragrantica.es",
+        "fragrantica.fr",
+        "fragrantica.gr",
+        "fragrantica.it",
+        "fragrantica.nl",
+        "fragrantica.pl"
+    ],
+    "address": "3830 Valley Centre Dr\nSte 705\nSan Diego, CA 92130\nUnited States of America",
+    "phone": "+1 973 873 8766",
+    "email": "gdpr@fragrantica.com",
+    "web": "https://www.fragrantica.com",
+    "sources": [
+        "https://www.fragrantica.com/privacy-policy.phtml",
+        "https://github.com/datenanfragen/data/pull/1862"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

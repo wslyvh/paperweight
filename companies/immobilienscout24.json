@@ -1,0 +1,17 @@
+{
+    "slug": "immobilienscout24",
+    "name": "Immobilien Scout GmbH",
+    "address": "Andreasstraße 10\n10243 Berlin\nDeutschland",
+    "phone": "+49 30 24 301 12 00",
+    "fax": "+49 30 24 301 11 10",
+    "email": "service@immobilienscout24.de",
+    "web": "https://www.immobilienscout24.de",
+    "sources": [
+        "https://www.immobilienscout24.de/agb/datenschutz.html",
+        "https://www.immobilienscout24.de/impressum.html"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "airlineassessmentprep",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Airline Assessment Prep",
+    "address": "BOITE 43\n3 Rue Jean Vilar\n59650 Villeneuve-d'Ascq\nFrance",
+    "email": "contact@airlineassessmentprep.com",
+    "web": "https://airlineassessmentprep.com",
+    "sources": [
+        "https://airlineassessmentprep.com/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/2687"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

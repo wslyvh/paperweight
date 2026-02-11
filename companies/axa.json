@@ -1,0 +1,31 @@
+{
+    "slug": "axa",
+    "categories": [
+        "insurance"
+    ],
+    "name": "AXA Konzern AG",
+    "runs": [
+        "AXA Art Versicherungs AG",
+        "AXA Easy Versicherung AG",
+        "AXA Krankenversicherung AG",
+        "AXA Lebensversicherung AG",
+        "DBV Deutsche Beamtenversicherung, Zweigniederlassung der AXA Versicherung AG",
+        "Deutsche Ärzteversicherung AG",
+        "Pro bAV Pensionskasse AG",
+        "AXA Versicherung AG"
+    ],
+    "address": "Colonia Allee 10 – 20\n51067 Köln\nDeutschland",
+    "phone": "+49 221 148 24349",
+    "fax": "+49 800 3557035",
+    "email": "datenschutz@axa.de",
+    "web": "https://www.axa.de/",
+    "sources": [
+        "https://www.axa.de/datenschutz",
+        "https://www.axa.de/impressum"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "npd",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "political party"
+    ],
+    "name": "Nationaldemokratische Partei Deutschlands (NPD)",
+    "address": "Seelenbinderstraße 42\n12555 Berlin\nDeutschland",
+    "phone": "+49 30 650110",
+    "fax": "+49 30 65011140",
+    "email": "datenschutz@npd.de",
+    "web": "https://npd.de/",
+    "sources": [
+        "https://npd.de/datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

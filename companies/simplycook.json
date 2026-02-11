@@ -1,0 +1,19 @@
+{
+    "slug": "simplycook",
+    "relevant-countries": [
+        "gb"
+    ],
+    "name": "SimplyCook Ltd.",
+    "address": "2nd Floor, 96 Leonard Street, London\nEC2A 4RH\nUnited Kingdom",
+    "email": "hello@simplycook.com",
+    "web": "https://www.simplycook.com",
+    "sources": [
+        "https://beta.companieshouse.gov.uk/company/09364895",
+        "https://www.simplycook.com/privacy-policy",
+        "https://github.com/datenanfragen/data/issues/134"
+    ],
+    "request-language": "en",
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

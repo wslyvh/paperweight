@@ -1,0 +1,23 @@
+{
+    "slug": "noip",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Vitalwerks Internet Solutions, LLC d/b/a No-IP",
+    "address": "425 Maestro Dr.\nSecond Floor\nReno\nNV 89511\nUnited States of America",
+    "phone": "+1 775 853 1883",
+    "fax": "+1 775 853 1886",
+    "email": "privacy@noip.com",
+    "web": "https://www.noip.com",
+    "sources": [
+        "https://www.noip.com/legal/privacy",
+        "https://www.noip.com/legal/tos",
+        "https://www.noip.com/contact"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

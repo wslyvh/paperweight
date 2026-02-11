@@ -1,0 +1,64 @@
+{
+    "slug": "bezirkskliniken-mfr",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "Bezirkskliniken Mittelfranken",
+    "runs": [
+        "Bezirksklinikum Ansbach",
+        "Klinikum am Europakanal",
+        "Frankenalb-Klinik Engelthal",
+        "Gerontopsychiatrische Ambulanz Ansbach",
+        "Tagesklinik für Erwachsene Ansbach",
+        "Tagesklinik für Kinder und Jugendliche Ansbach",
+        "Tagesklinik für Erwachsene Engelthal",
+        "Tagesklinik für Erwachsene Erlangen",
+        "Tagesklinik für Erwachsene Fürth",
+        "Tagesklinik für Erwachsene Neustadt an der Aisch",
+        "Tagesklinik für Erwachsene Roth",
+        "Tagesklinik für Erwachsene Weißenburg",
+        "Psychiatrische Institutsambulanz Ansbach",
+        "Institutsambulanz für Kinder und Jugendliche Ansbach",
+        "Präventionsambulanz Ansbach",
+        "Forensische Ambulanz Ansbach",
+        "Institutsambulanz für Erwachsene Erlangen",
+        "Forensische Ambulanz Erlangen",
+        "Institutsambulanz für Erwachsene Frankenalb-Klinik Engelthal",
+        "Institutsambulanz für Erwachsene Feuchtwangen",
+        "Institutsambulanz für Erwachsene Fürth",
+        "Institutionsambulanz für Erwachsene Höchstadt an der Aisch",
+        "Institutsambulanz für Erwachsene Neustadt an der Aisch",
+        "Institutsambulanz für Kinder und Jugendliche Neustadt an der Aisch",
+        "Institutsambulanz SubstAnz Nürnberg",
+        "Institutsambulanz für Erwachsene Roth",
+        "Institutsambulanz für Erwachsene Weißenburg",
+        "MVZ Psychiatrie und Psychotherapie Erlangen",
+        "Stationsäquivalente Behandlung Ansbach",
+        "Soziotherapeutisches Wohnheim Ansbach",
+        "Soziotherapeutisches Wohnheim Eggenhof"
+    ],
+    "address": "Feuchtwanger Straße 38\n91522 Ansbach\nDeutschland",
+    "phone": "+49 981 46530",
+    "email": "Datenschutz@bezirkskliniken-mfr.de",
+    "web": "https://www.bezirkskliniken-mfr.de",
+    "sources": [
+        "https://www.bezirkskliniken-mfr.de/datenschutz/",
+        "https://www.bezirkskliniken-mfr.de/standorte-und-kliniken/",
+        "https://github.com/datenanfragen/data/pull/2266"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

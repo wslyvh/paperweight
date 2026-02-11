@@ -1,0 +1,26 @@
+{
+    "slug": "snapchat",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Snap B.V.",
+    "runs": [
+        "Snapchat",
+        "Bitmoji",
+        "Spectacles",
+        "Snap Inc."
+    ],
+    "address": "Keizersgracht 165\n1016 DP Amsterdam\nThe Netherlands",
+    "email": "dpo@snap.com",
+    "web": "https://www.snap.com",
+    "sources": [
+        "https://values.snap.com/privacy/privacy-policy/eea-uk-privacy-notice",
+        "https://values.snap.com/privacy/privacy-policy"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

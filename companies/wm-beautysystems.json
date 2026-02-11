@@ -1,0 +1,26 @@
+{
+    "slug": "wm-beautysystems",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads",
+        "entertainment"
+    ],
+    "name": "WM BEAUTYSYSTEMS AG & Co. KG",
+    "runs": [
+        "WM Management AG"
+    ],
+    "address": "c/o Cyberdyne IT GmbH\nAm Wassermann 31\n50829 Köln\nDeutschland",
+    "phone": "+49 2234 98422966",
+    "email": "Datenschutz@wm-beautysystems.com",
+    "web": "https://www.wm-beautysystems.com/",
+    "sources": [
+        "https://www.wm-beautysystems.com/datenschutzhinweise/",
+        "https://www.sunpoint.de/sunpoint/datenschutz",
+        "https://www.wellmaxx.com/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2635"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

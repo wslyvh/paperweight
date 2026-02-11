@@ -1,0 +1,56 @@
+{
+    "slug": "amazon-de",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch",
+        "cz",
+        "nl",
+        "pl"
+    ],
+    "categories": [
+        "commerce",
+        "entertainment"
+    ],
+    "name": "Amazon Europe Core SARL",
+    "runs": [
+        "amazon.de",
+        "amazon.at",
+        "amazon.ch",
+        "amazon.cz",
+        "amazon.pl",
+        "Amazon EU SARL",
+        "Amazon Services Europe SARL",
+        "Amazon Media EU SARL",
+        "Amazon Deutschland Services GmbH",
+        "Amazon Digital Germany GmbH",
+        "Amazon Kindle",
+        "Kindle Direct Publishing",
+        "Amazon Warehouse Deals",
+        "Amazon Marketplace"
+    ],
+    "address": "Marcel-Breuer-Straße 12\n80807 München\nDeutschland",
+    "phone": "+49 800 3 63 84 69",
+    "fax": "+49 89 38 03 88 01",
+    "email": "eu-privacy@amazon.de",
+    "web": "https://www.amazon.de",
+    "sources": [
+        "https://www.amazon.de/gp/help/customer/display.html?ie=UTF8&nodeId=201909010",
+        "https://www.amazon.de/gp/help/customer/display.html/?ie=UTF8&nodeId=202024860"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail-Adresse Kundenkonto",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Viele Daten über Account anfragbar: https://amazon.de/gp/privacycentral/dsar/preview.html"
+    ],
+    "quality": "verified"
+}

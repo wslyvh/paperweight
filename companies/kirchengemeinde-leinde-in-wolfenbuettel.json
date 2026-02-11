@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-leinde-in-wolfenbuettel",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Leinde in Wolfenbüttel",
+    "address": "Schulring 4-6\n38239 Salzgitter\nDeutschland",
+    "phone": "+49 5341 264616",
+    "fax": "+49 5341 260540",
+    "email": "salzgitters-norden.pfa@lk-bs.de",
+    "web": "http://www.stiftskirche-steterburg.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=885"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

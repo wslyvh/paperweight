@@ -1,0 +1,20 @@
+{
+    "slug": "assurant",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Assurant Deutschland GmbH",
+    "address": "Lyoner Straße 15\n60528 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 6657580",
+    "fax": "+49 69 66164867",
+    "email": "info@assurantsolutions.de",
+    "web": "https://www.assurant.de/",
+    "sources": [
+        "https://www.assurant.de/impressum",
+        "https://github.com/datenanfragen/data/issues/507"
+    ],
+    "quality": "verified"
+}

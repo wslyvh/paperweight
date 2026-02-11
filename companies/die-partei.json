@@ -1,0 +1,20 @@
+{
+    "slug": "die-partei",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "political party"
+    ],
+    "name": "Die PARTEI",
+    "address": "Kopischstraße 10\n10965 Berlin\nDeutschland",
+    "fax": "+49 30 74755001",
+    "email": "datenschutz@die-partei.de",
+    "web": "https://www.die-partei.de/",
+    "sources": [
+        "https://www.die-partei.de/datenschutz/",
+        "https://www.die-partei.de/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

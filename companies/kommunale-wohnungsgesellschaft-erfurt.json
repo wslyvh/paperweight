@@ -1,0 +1,15 @@
+{
+    "slug": "kommunale-wohnungsgesellschaft-erfurt",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Kommunale Wohnungsgesellschaft mbH Erfurt",
+    "address": "Juri-Gagarin-Ring 148\n99084 Erfurt\nDeutschland",
+    "phone": "+49 361 30283028",
+    "email": "zuhause@kowo.de",
+    "sources": [
+        "https://kowo.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2777"
+    ],
+    "quality": "verified"
+}

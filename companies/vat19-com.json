@@ -1,0 +1,20 @@
+{
+    "slug": "vat19-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Vat19.com",
+    "address": "11783 Borman Drive\nSaint Louis, MO 63146\nUnited States of America",
+    "phone": "+1 800 476 1991",
+    "email": "email@vat19.com",
+    "web": "https://www.vat19.com/",
+    "sources": [
+        "https://www.vat19.com/privacypolicy",
+        "https://www.vat19.com/contact"
+    ],
+    "request-language": "en",
+    "quality": "verified"
+}

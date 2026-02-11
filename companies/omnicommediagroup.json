@@ -1,0 +1,24 @@
+{
+    "slug": "omnicommediagroup",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Omnicom Media Group",
+    "runs": [
+        "Omnicom Media Group Holdings Inc."
+    ],
+    "address": "10 Regents Wharf\nLondon\nN1 9RL\nUnited Kingdom",
+    "phone": "+44 203 349 6777",
+    "email": "privacy@omnicommediagroup.com",
+    "web": "https://www.omnicommediagroup.com/",
+    "sources": [
+        "https://www.omnicommediagroup.com/privacy-notice/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

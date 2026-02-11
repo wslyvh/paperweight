@@ -1,0 +1,20 @@
+{
+    "slug": "europ-assistance-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Europ Assistance SA, Niederlassung für Deutschland",
+    "address": "Nördliche Münchner Straße 27A\n82031 Grünwald\nDeutschland",
+    "phone": "+49 89 559870",
+    "fax": "+49 89 55987177",
+    "email": "datenschutz@europ-assistance.de",
+    "web": "https://www.europ-assistance.de/",
+    "sources": [
+        "https://www.europ-assistance.de/rechtliches/datenschutzbestimmungen"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

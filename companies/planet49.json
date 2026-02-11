@@ -1,0 +1,19 @@
+{
+    "slug": "planet49",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Planet49 GmbH",
+    "address": "c/o Talk2 GmbH\nRheinstrasse 22\n64283 Darmstadt\nGermany",
+    "email": "privacy@planet49.com",
+    "web": "https://www.planet49.com",
+    "sources": [
+        "https://www.planet49.com/sc/todo=cp_planet49#data_protection",
+        "https://www.planet49.com/sc/todo=cp_planet49#imprint"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

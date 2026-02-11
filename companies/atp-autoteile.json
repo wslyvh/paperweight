@@ -1,0 +1,20 @@
+{
+    "slug": "atp-autoteile",
+    "categories": [
+        "commerce"
+    ],
+    "name": "ATP Auto-Teile-Pöllath Handels GmbH",
+    "address": "Am Heidweg 1\n92690 Pressath\nDeutschland",
+    "phone": "+49 9647 9273510",
+    "fax": "+49 9647 92903 9399",
+    "email": "info@atp-autoteile.de",
+    "web": "https://www.atp-autoteile.de",
+    "sources": [
+        "https://www.atp-autoteile.de/de/privacy",
+        "https://www.atp-autoteile.de/de/imprint"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "quality": "verified"
+}

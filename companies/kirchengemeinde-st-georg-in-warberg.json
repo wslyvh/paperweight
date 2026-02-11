@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-st-georg-in-warberg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde St. Georg in Warberg",
+    "address": "Hauptstraße 14\n38154 Königslutter am Elm\nDeutschland",
+    "phone": "+49 5353 8413",
+    "fax": "+49 5353 913112",
+    "email": "lelm.pfa@lk-bs.de",
+    "web": "http://www.kirche-warberg.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=851"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

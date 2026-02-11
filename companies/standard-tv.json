@@ -1,0 +1,19 @@
+{
+    "slug": "standard-tv",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Watch Nebula LLC",
+    "address": "PO Box 5426\nDenver, CO 80217\nUnited States of America",
+    "email": "privacy@nebula.tv",
+    "web": "https://nebula.tv/",
+    "sources": [
+        "https://nebula.tv/privacy"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

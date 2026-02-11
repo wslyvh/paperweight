@@ -1,0 +1,23 @@
+{
+    "slug": "simpli-fi",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Simplifi Europe IVS",
+    "runs": [
+        "Simplifi Holdings Inc."
+    ],
+    "address": "Ellingevej 17\n5550 Langeskov\nDenmark",
+    "email": "privacy@simpli.fi",
+    "web": "https://simpli.fi/",
+    "sources": [
+        "https://simpli.fi/site-privacy-policy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

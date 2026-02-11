@@ -1,0 +1,32 @@
+{
+    "slug": "rsvg-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Rhein-Sieg-Verkehrsgesellschaft mbH",
+    "address": "Steinstraße 31\n53844 Troisdorf-Sieglar\nDeutschland",
+    "phone": "+49 2241 4990",
+    "fax": "+49 2241 499222",
+    "email": "datenschutz@rsvg.de",
+    "web": "http://www.rsvg.de",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/373",
+        "http://www.rsvg.de/datenschutz/",
+        "http://www.rsvg.de/impressum/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

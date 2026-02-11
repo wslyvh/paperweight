@@ -1,0 +1,21 @@
+{
+    "slug": "polizeipraesidium-maerkischer-kreis",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Landrat des Märkischen Kreises als Kreispolizeibehörde",
+    "address": "Friedrichstraße 70\n58636 Iserlohn\nDeutschland",
+    "phone": "+49 2371 91990",
+    "fax": "+49 2371 91994791",
+    "email": "datenschutz.maerkischer-kreis@polizei.nrw.de",
+    "web": "https://maerkischer-kreis.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

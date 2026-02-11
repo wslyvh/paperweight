@@ -1,0 +1,24 @@
+{
+    "slug": "ruyterast",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Weingesellschaft Ruyter & Ast GmbH",
+    "runs": [
+        "Club of Wine"
+    ],
+    "address": "Speicher I\nKonsul-Smidt-Str. 8 J\n28217 Bremen\nDeutschland",
+    "phone": "+49 421 3053251",
+    "fax": "+49 421 3053259",
+    "email": "datenschutz@egfra.de",
+    "web": "https://www.club-of-wine.de/",
+    "sources": [
+        "https://www.club-of-wine.de/impressum/",
+        "https://www.club-of-wine.de/datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

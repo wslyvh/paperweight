@@ -1,0 +1,22 @@
+{
+    "slug": "nero",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Nero AG",
+    "address": "Rüppurrer Straße 1a\n76137 Karlsruhe\nDeutschland",
+    "phone": "+49 721 95279007",
+    "fax": "+49 721 62726499",
+    "email": "datenschutz@nero.com",
+    "web": "https://www.nero.com",
+    "sources": [
+        "https://www.nero.com/eng/corp-legal/privacy.php",
+        "https://www.nero.com/eng/corp-legal/imprint.php",
+        "https://github.com/datenanfragen/data/pull/1603"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

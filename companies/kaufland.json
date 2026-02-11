@@ -1,0 +1,20 @@
+{
+    "slug": "kaufland",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Kaufland Dienstleistung GmbH & Co. KG",
+    "address": "Rötelstraße 35\n74172 Neckarsulm\nDeutschland",
+    "phone": "+49 800 1528352",
+    "email": "datenschutz@kaufland.de",
+    "web": "https://www.kaufland.de",
+    "sources": [
+        "https://filiale.kaufland.de/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/1455"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,23 @@
+{
+    "slug": "kirchengemeinde-maria-und-martha-in-vechelde",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Maria und Martha in Vechelde",
+    "address": "Godehardistraße 1\n38159 Vechelde\nDeutschland",
+    "phone": "+49 5302 1040",
+    "email": "bodenstedt.pfa@lk-bs.de",
+    "web": "http://www.kirche-bodenstedt.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=999"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

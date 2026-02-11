@@ -1,0 +1,18 @@
+{
+    "slug": "vmg-mbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "VMG, Vertriebs-Marketing-Gesellschaft mbH",
+    "address": "Niedesheimer Straße 18\n67547 Worms\nDeutschland",
+    "email": "info@vmg-mbh.de",
+    "web": "https://vmg-mbh.de/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/410",
+        "https://vmg-mbh.de/datenschutz"
+    ],
+    "quality": "verified"
+}

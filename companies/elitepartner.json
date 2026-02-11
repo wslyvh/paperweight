@@ -1,0 +1,17 @@
+{
+    "slug": "elitepartner",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "ElitePartner",
+    "address": "c/o PE Digital GmbH\nSpeersort 10\n20095 Hamburg\nDeutschland",
+    "fax": "+49 40 600095 95",
+    "email": "datenschutz@elitepartner.de",
+    "web": "https://www.elitepartner.de/",
+    "sources": [
+        "https://www.elitepartner.de/privacypolicy/",
+        "https://www.elitepartner.de/aboutus/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,40 @@
+{
+    "slug": "neu-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "NEU.DE GmbH",
+    "runs": [
+        "Partnerbörse NEU.de (www.neu.de)"
+    ],
+    "address": "c/o WeWork\nNeuturmstraße 5\n80331 München\nDeutschland",
+    "email": "privacy@neu.de",
+    "web": "https://www.neu.de/",
+    "sources": [
+        "https://www.neu.de/pages/misc/privacy",
+        "https://www.neu.de/pages/misc/impressum",
+        "https://github.com/datenanfragen/data/pull/2451",
+        "https://github.com/datenanfragen/data/pull/2599"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        },
+        {
+            "desc": "Benutzername",
+            "type": "input"
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

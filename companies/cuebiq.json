@@ -1,0 +1,21 @@
+{
+    "slug": "cuebiq",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Cuebiq Inc.",
+    "address": "1460 Broadway\nNew York, NY 10036\nUnited States of America",
+    "email": "privacy@cuebiq.com",
+    "web": "https://www.cuebiq.com/",
+    "webform": "https://www.cuebiq.com/privacy-request/",
+    "sources": [
+        "https://www.cuebiq.com/privacypolicy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "webform",
+    "quality": "verified"
+}

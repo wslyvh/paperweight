@@ -1,0 +1,24 @@
+{
+    "slug": "druckerzubehoer-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Internetmarketing Bielefeld GmbH",
+    "runs": [
+        "druckerzubehoer.de"
+    ],
+    "address": "Am Lenkwerk 3\n33609 Bielefeld\nDeutschland",
+    "phone": "+49 521 1639 5974",
+    "fax": "+49 521 3046 863",
+    "email": "datenschutzbeauftragter@druckerzubehoer.de",
+    "web": "https://www.druckerzubehoer.de/",
+    "sources": [
+        "https://www.druckerzubehoer.de/rechtliches/datenschutzerklaerung/",
+        "https://www.druckerzubehoer.de/rechtliches/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

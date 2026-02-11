@@ -1,0 +1,21 @@
+{
+    "slug": "pearson",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Pearson Deutschland GmbH",
+    "address": "St.-Martin-Straße 82\n81541 München\nDeutschland",
+    "phone": "+49 89 954597420",
+    "fax": "+49 89 954597429",
+    "email": "datenschutz.Pearson@fieldfisher.com",
+    "web": "https://www.pearson.de",
+    "sources": [
+        "https://www.pearson.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1263"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Externer Datenschutzbeauftragter:\n\nFieldfisher (Germany) LLP\nAm Sandtorkai 68\n20457 Hamburg"
+    ],
+    "quality": "verified"
+}

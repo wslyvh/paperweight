@@ -1,0 +1,20 @@
+{
+    "slug": "daedalic-entertainment",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Daedalic Entertainment GmbH",
+    "address": "c/o Nimrod Rechtsanwälte\nEmser Straße 9\n10719 Berlin\nDeutschland",
+    "phone": "+49 30 54461793",
+    "fax": "+49 30 54461794",
+    "email": "info@nimrod-rechtsanwaelte.de",
+    "web": "https://www.daedalic.com",
+    "sources": [
+        "https://www.daedalic.com/imprint"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

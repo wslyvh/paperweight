@@ -1,0 +1,27 @@
+{
+    "slug": "gmp-police",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Chief Constable Greater Manchester Police",
+    "runs": [
+        "Greater Manchester Police (GMP)"
+    ],
+    "address": "Openshaw Complex\nLawton Street\nManchester\nM11 2NS\nUnited Kingdom",
+    "phone": "+44 161 856 2529",
+    "email": "subjectaccess@gmp.police.uk",
+    "webform": "https://www.gmp.police.uk/rqo/request/ri/request-information/ir/ask-for-delete-change-information/",
+    "web": "https://www.gmp.police.uk/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/215",
+        "https://www.gmp.police.uk/hyg/fpngmp/privacy-notice/",
+        "https://www.gmp.police.uk/rqo/request/ri/request-information/ir/information-rights/your-information-rights/",
+        "https://github.com/datenanfragen/data/pull/2290"
+    ],
+    "needs-id-document": true,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

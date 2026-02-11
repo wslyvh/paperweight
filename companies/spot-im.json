@@ -1,0 +1,24 @@
+{
+    "slug": "spot-im",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Open Web Technologies Ltd.",
+    "runs": [
+        "Spot.IM (formerly)"
+    ],
+    "address": "c/o AdYouLike SASU\n145 avenue Charles de Gaulle (Bâtiment DESKEO)\n92200 Neuilly-sur-Seine\nFrance",
+    "email": "privacy@openweb.com",
+    "web": "https://www.openweb.com",
+    "sources": [
+        "https://www.openweb.com/legal-and-privacy/privacy/",
+        "https://www.openweb.com/blog/press-release-spot-im-is-now-openweb"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

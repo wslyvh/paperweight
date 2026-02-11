@@ -1,0 +1,19 @@
+{
+    "slug": "cubic-cts",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Cubic Corporation",
+    "address": "9333 Balboa Avenue\nSan Diego, CA 92123\nUnited States of America",
+    "email": "website@cubic.com",
+    "web": "https://www.cubic.com/",
+    "sources": [
+        "https://www.cubic.com/sites/default/files/2022-09/Cubic%20Privacy%20Notice%20v.2%2011-6-18-branded%20%28002%29.pdf",
+        "https://github.com/datenanfragen/data/issues/483"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "adludio-limited",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Adludio Ltd.",
+    "address": "10c Warner Street\nLondon\nEC1R 5HA\nUnited Kingdom",
+    "email": "privacy@adludio.com",
+    "web": "https://www.adludio.com/",
+    "sources": [
+        "https://www.adludio.com/termsandconditions#privacy",
+        "https://github.com/datenanfragen/data/pull/1201"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

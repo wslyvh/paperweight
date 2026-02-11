@@ -1,0 +1,30 @@
+{
+    "slug": "lewde",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "Lechwerke AG",
+    "address": "Schaezlerstraße 3\n86150 Augsburg\nDeutschland",
+    "phone": "+49 821 3280",
+    "email": "datenschutz@lew.de",
+    "web": "https://www.lew.de",
+    "sources": [
+        "https://www.lew.de/datenschutz",
+        "https://www.lew.de/impressum"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

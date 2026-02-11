@@ -1,0 +1,23 @@
+{
+    "slug": "sky-ie",
+    "relevant-countries": [
+        "ie"
+    ],
+    "categories": [
+        "entertainment",
+        "telecommunication"
+    ],
+    "name": "Sky Ireland Limited",
+    "runs": [
+        "Sky Subscribers Services Limited"
+    ],
+    "address": "One Burlington Plaza\nBurlington Plaza\nD04 RH96\nIreland",
+    "email": "dp.department@sky.uk",
+    "web": "https://www.sky.com/ie",
+    "sources": [
+        "https://www.sky.com/help/articles/sky-privacy-and-cookies-notice",
+        "https://github.com/datenanfragen/data/pull/2260"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

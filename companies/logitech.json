@@ -1,0 +1,29 @@
+{
+    "slug": "logitech",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Logitech Europe S.A.",
+    "runs": [
+        "Astrogaming",
+        "Jaybird",
+        "Saitek",
+        "Ultimateears"
+    ],
+    "address": "EPFL - Quartier de l'Innovation\nDaniel Borel Innovation Center\nCH-1015 Lausanne\nSwitzerland",
+    "phone": "+1 510 7958500",
+    "email": "privacy@logitech.com",
+    "web": "https://www.logitech.com",
+    "sources": [
+        "https://www.logitech.com/de-de/legal/emea-privacy-policy.html",
+        "https://secure.logitech.com/de-de/legal/web-privacy-policy.html"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

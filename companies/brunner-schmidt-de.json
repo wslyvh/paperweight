@@ -1,0 +1,28 @@
+{
+    "slug": "brunner-schmidt-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Brunner & Schmidt Datentechnik GmbH",
+    "address": "Andernacher Straße 53\n90411 Nürnberg\nDeutschland",
+    "phone": "+49 911 3765250",
+    "fax": "+49 911 37652569",
+    "email": "datenschutz@brunner-schmidt.de",
+    "web": "https://www.brunner-schmidt.de",
+    "sources": [
+        "https://www.brunner-schmidt.de/rechtliches/datenschutzerklarung",
+        "https://www.brunner-schmidt.de/rechtliches/impressum"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

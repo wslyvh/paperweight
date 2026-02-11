@@ -1,0 +1,24 @@
+{
+    "slug": "bwi",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "BWI GmbH",
+    "runs": [
+        "BwMessenger"
+    ],
+    "address": "Auf dem Steinbüchel 22\n53340 Meckenheim\nDeutschland",
+    "phone": "+49 2225 9882054",
+    "email": "datenschutzbeauftragter@bwi.de",
+    "web": "https://www.bwi.de",
+    "sources": [
+        "https://www.bwi.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/853",
+        "https://github.com/datenanfragen/data/pull/2539"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

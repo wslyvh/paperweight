@@ -1,0 +1,17 @@
+{
+    "slug": "wallwisher-inc",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Wallwisher, Inc.",
+    "runs": [
+        "padlet.com"
+    ],
+    "address": "981 Mission St\nSan Francisco, CA 94103\nUnited States of America",
+    "email": "hello@padlet.com",
+    "sources": [
+        "https://padlet.com/about/privacy",
+        "https://github.com/datenanfragen/data/pull/1030"
+    ],
+    "quality": "verified"
+}

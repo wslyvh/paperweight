@@ -1,0 +1,22 @@
+{
+    "slug": "evans",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "City Chic Collective UK Ltd.",
+    "runs": [
+        "Evans (World of Curves)"
+    ],
+    "address": "Suite 1, 3rd Floor\n11 – 12 St James's Square\nLondon\nSW1Y 4LB\nUnited Kingdom",
+    "phone": "+44 344 984 0262",
+    "email": "customer.service@evans.co.uk",
+    "web": "http://www.evans.co.uk",
+    "sources": [
+        "https://www.evans.co.uk/privacy-policy",
+        "https://www.evans.co.uk/terms-and-conditions"
+    ],
+    "quality": "verified"
+}

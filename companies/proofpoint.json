@@ -1,0 +1,54 @@
+{
+    "slug": "proofpoint",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Proofpoint, Inc",
+    "runs": [
+        "Proofpoint Canada, Inc",
+        "Proofpoint Limited (UK)",
+        "Proofpoint Pty Ltd (Australia)",
+        "Proofpoint Japan KK",
+        "Proofpoint GmbH (Germany)",
+        "Proofpoint Singapore Ptd. Ltd",
+        "Proofpoint Int’l (Taiwan)",
+        "Proofpoint Digital Risk & Compliance (formerly Nexgate)",
+        "Cloudmark, LLC",
+        "ObserveIT, Ltd",
+        "Wombat Security Technologies, Inc"
+    ],
+    "address": "925 W. Maude Ave\nSunnyvale CA 94085\nUnited States of America",
+    "email": "privacy@proofpoint.com",
+    "web": "https://www.proofpoint.com",
+    "sources": [
+        "https://www.proofpoint.com/us/legal/privacy-policy",
+        "https://www.proofpoint.com/de/legal/privacy-policy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "Social Media Username (in case of Nexgate)",
+            "type": "input",
+            "optional": true
+        },
+        {
+            "desc": "Social Media Platform (in case of Nexgate)",
+            "type": "input",
+            "optional": true
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

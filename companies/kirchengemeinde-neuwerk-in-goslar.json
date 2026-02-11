@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-neuwerk-in-goslar",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Neuwerk in Goslar",
+    "address": "Gemeindehof 8\n38640 Goslar\nDeutschland",
+    "phone": "+49 5321 347351",
+    "fax": "+49 5321 23745",
+    "email": "goslar.pfa@lk-bs.de",
+    "web": "http://www.neuwerkkirche-goslar.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=776"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

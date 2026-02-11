@@ -1,0 +1,17 @@
+{
+    "slug": "experian-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Experian GmbH",
+    "address": "Rheinstraße 99\n76532 Baden-Baden\nDeutschland",
+    "phone": "+49 7221 7793300",
+    "email": "businessdach@experian.com",
+    "web": "https://www.experian.de",
+    "sources": [
+        "https://www.experian.de/legal/datenschutz",
+        "https://www.experian.de/legal/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "katjes",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Katjes Fassin GmbH + Co. KG",
+    "address": "c/o UIMC Dr. Voßbein GmbH & Co. KG\nNützenberger Str. 119\n42115 Wuppertal\nDeutschland",
+    "phone": "+49 202 265740",
+    "fax": "+49 2822 601214",
+    "email": "Datenschutz.Katjes@UIMC.de",
+    "web": "https://www.katjes.de/",
+    "sources": [
+        "https://www.katjes.de/datenschutz",
+        "https://www.katjes.de/impressum",
+        "https://github.com/datenanfragen/data/pull/1718"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

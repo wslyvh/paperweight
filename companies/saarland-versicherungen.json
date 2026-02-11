@@ -1,0 +1,25 @@
+{
+    "slug": "saarland-versicherungen",
+    "categories": [
+        "insurance"
+    ],
+    "name": "SAARLAND Versicherungen",
+    "runs": [
+        "SAARLAND Feuerversicherung AG",
+        "SAARLAND Lebensversicherung AG"
+    ],
+    "address": "Mainzer Straße 32 – 34\n66111 Saarbrücken\nDeutschland",
+    "phone": "+49 89 21 60 18 80",
+    "fax": "+49 681 601 450",
+    "email": "datenschutz@saarland-versicherungen.de",
+    "web": "https://www.saarland-versicherungen.de",
+    "sources": [
+        "https://www.saarland-versicherungen.de/content/ihre-saarland/unternehmen/compliance-datenschutz/#datenschutz",
+        "https://www.saarland-versicherungen.de/content/ihre-saarland/impressum/"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

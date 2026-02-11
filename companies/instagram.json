@@ -1,0 +1,21 @@
+{
+    "slug": "instagram",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment",
+        "social media"
+    ],
+    "name": "Instagram",
+    "address": "c/o Meta Platforms Ireland Limited\n4 Grand Canal Square\nGrand Canal Harbour\nDublin 2\nIreland",
+    "webform": "https://www.facebook.com/help/contact/540977946302970",
+    "web": "https://www.instagram.com/",
+    "sources": [
+        "https://privacycenter.instagram.com/policy",
+        "https://github.com/datenanfragen/data/issues/93",
+        "https://help.instagram.com/581066165581870",
+        "https://github.com/datenanfragen/data/pull/935"
+    ],
+    "quality": "verified"
+}

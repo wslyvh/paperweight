@@ -1,0 +1,22 @@
+{
+    "slug": "bundesnetzagentur",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesnetzagentur für Elektrizität, Gas, Telekommunikation, Post und Eisenbahnen (BNetzA)",
+    "address": "Tulpenfeld 4\n53113 Bonn\nDeutschland",
+    "phone": "+49 228 140",
+    "fax": "+49 228 148872",
+    "email": "Datenschutz@bnetza.de",
+    "web": "https://www.bundesnetzagentur.de",
+    "sources": [
+        "https://www.bundesnetzagentur.de/DE/Service/Datenschutz/start.html",
+        "https://www.bundesnetzagentur.de/DE/Service/Impressum/start.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

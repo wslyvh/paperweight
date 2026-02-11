@@ -1,0 +1,64 @@
+{
+    "slug": "vnr-verlag",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "VNR Verlag für die Deutsche Wirtschaft AG",
+    "runs": [
+        "simplify.de",
+        "Personalwissen.de",
+        "PRO PflegeManagement (www.ppm-online.org)",
+        "PrivacyXperts.de",
+        "working@office (www.workingoffice.de)",
+        "Safety Xperts (www.safetyxperts.de)",
+        "Cleverslide.de",
+        "Vereinswelt.de",
+        "TeachToProtect.de",
+        "ELEX (www.elex-portal.de)",
+        "Sekada.de",
+        "Orgenda (verlag.orgenda.de)",
+        "sekretaerinnen.de"
+    ],
+    "address": "Theodor-Heuss-Str. 2-4\n53177 Bonn\nDeutschland",
+    "phone": "+49 228 955066004",
+    "fax": "+49 228 3696480",
+    "email": "datenschutzbeauftragter@vnr.de",
+    "web": "https://www.vnrag.de/",
+    "sources": [
+        "https://www.vnrag.de/datenschutz/",
+        "https://www.vnrag.de/impressum/",
+        "https://www.simplify.de/service-rechtliches/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1251",
+        "https://www.personalwissen.de/datenschutz/",
+        "https://www.ppm-online.org/datenschutz/",
+        "https://www.privacyxperts.de/datenschutz/",
+        "https://www.workingoffice.de/datenschutz/",
+        "https://www.safetyxperts.de/datenschutz/",
+        "https://www.cleverslide.de/datenschutzerklaerung/",
+        "https://www.vereinswelt.de/datenschutz",
+        "https://www.teachtoprotect.de/datenschutzerklaerung/",
+        "https://www.elex-portal.de/datenschutz/#/",
+        "https://www.sekada.de/footernavi/service-rechtliches/datenschutz/",
+        "https://www.sekretaerinnen.de/login",
+        "https://verlag.orgenda.de/datenschutz/",
+        "https://www.vnrag.de/fachverlage",
+        "https://github.com/datenanfragen/data/pull/1314"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "comments": [
+        "Sofern die Anfrage per Email erfolgt, muss der Absender mit der Adresse übereinstimmen, die zur Identifikation angegeben ist. Alternativ besteht die Möglichkeit, erhaltene Emails z.B. Newsletter als Anlage beizufügen."
+    ],
+    "quality": "tested"
+}

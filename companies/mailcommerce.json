@@ -1,0 +1,21 @@
+{
+    "slug": "mailcommerce",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "mailcommerce GmbH",
+    "address": "Schöneberger Straße 15\n10963 Berlin\nDeutschland",
+    "phone": "+49 89 235193931",
+    "email": "datenschutz@mailcommerce.de",
+    "web": "https://www.mailcommerce.de/",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "sources": [
+        "https://www.mailcommerce.de/de/privacy.html",
+        "https://www.mailcommerce.de/de/impressum.html",
+        "https://github.com/datenanfragen/data/pull/1497"
+    ]
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "aboutyou-shop",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "ABOUT YOU GmbH",
+    "address": "Domstraße 10\n20095 Hamburg\nDeutschland",
+    "phone": "+49 800 3015085",
+    "email": "kundenservice@aboutyou.de",
+    "web": "https://www.aboutyou.de",
+    "sources": [
+        "https://www.aboutyou.de/datenschutz"
+    ],
+    "quality": "verified"
+}

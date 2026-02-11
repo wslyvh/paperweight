@@ -1,0 +1,23 @@
+{
+    "slug": "reuter-shop",
+    "categories": [
+        "commerce"
+    ],
+    "name": "reuter europe GmbH",
+    "address": "Textilstraße 2\n41751 Viersen\nDeutschland",
+    "phone": "+49 2161 9020 0",
+    "fax": "+49 2161 9020 297",
+    "email": "info@reuter.de",
+    "web": "https://www.reuter.de/",
+    "sources": [
+        "https://www.reuter.de/rechtliches/datenschutz.html",
+        "https://www.reuter.de/rechtliches/impressum.html"
+    ],
+    "comments": [
+        "Betreiber laut Impressum ist die reuter onlineshop GmbH an gleicher Adresse."
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "quality": "verified"
+}

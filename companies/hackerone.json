@@ -1,0 +1,23 @@
+{
+    "slug": "hackerone",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "HackerOne B.V.",
+    "runs": [
+        "HackerOne Inc."
+    ],
+    "address": "Griffeweg 97/4\n9723 DV Groningen\nThe Netherlands",
+    "phone": "+1 855 242 8699",
+    "email": "privacy@hackerone.com",
+    "web": "https://www.hackerone.com/",
+    "sources": [
+        "https://www.hackerone.com/privacy"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,33 @@
+{
+    "slug": "adition",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "ADITION technologies AG",
+    "address": "Oststraße 55\n40211 Düsseldorf\nDeutschland",
+    "phone": "+49 211 987400 30",
+    "email": "info@adition.com",
+    "web": "https://www.adition.com/",
+    "sources": [
+        "https://www.adition.com/en/privacy/",
+        "https://www.adition.com/en/imprint/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "User ID",
+            "type": "input"
+        }
+    ],
+    "comments": [
+        "The User ID can be found in section “III. Your rights” of the privacy policy (https://www.adition.com/en/privacy/)."
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "wko-steiermark",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Wirtschaftskammer Steiermark",
+    "address": "Körblergasse 111-113\n8010 Graz\nÖsterreich",
+    "phone": "+43 316 601 607",
+    "email": "datenschutz@wkstmk.at",
+    "web": "https://www.wko.at/service/stmk/Wirtschaftskammer.html",
+    "sources": [
+        "https://www.wko.at/service/dienststelle.html?orgid=14634",
+        "https://github.com/datenanfragen/data/issues/538",
+        "https://www.wko.at/site/Karriereportal-WKV/datenschutzerklaerung-fuer-bewerberinnen.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

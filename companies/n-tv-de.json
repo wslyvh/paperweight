@@ -1,0 +1,20 @@
+{
+    "slug": "n-tv-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "n-tv Nachrichtenfernsehen GmbH",
+    "address": "Picassoplatz 1\n50679 Köln\nDeutschland",
+    "phone": "+49 221 45630",
+    "email": "datenschutz@n-tv.de",
+    "web": "https://www.n-tv.de/",
+    "sources": [
+        "https://www.n-tv.de/ntvintern/Datenschutzerklaerung-article15745191.html",
+        "https://www.n-tv.de/ntvintern/Impressum-article9517336.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

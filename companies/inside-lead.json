@@ -1,0 +1,21 @@
+{
+    "slug": "inside-lead",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Inside Lead GmbH",
+    "address": "Hanauer Landstrasse 291 B\n60314 Frankfurt\nDeutschland",
+    "email": "service@inside-lead.com",
+    "web": "https://www.inside-lead.com",
+    "sources": [
+        "https://www.inside-lead.com/#datenschutz",
+        "https://github.com/datenanfragen/data/issues/50"
+    ],
+    "needs-id-document": false,
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "schalke-04",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "FC Gelsenkirchen-Schalke 04 e.V.",
+    "runs": [
+        "Schalke 04",
+        "store.schalke04.de"
+    ],
+    "address": "Ernst-Kuzorra-Weg 1\n45891 Gelsenkirchen\nDeutschland",
+    "email": "datenschutz@schalke04.de",
+    "web": "https://schalke04.de/",
+    "sources": [
+        "https://store.schalke04.de/impressum",
+        "https://store.schalke04.de/datenschutzerklaerung",
+        "https://github.com/datenanfragen/data/issues/257"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

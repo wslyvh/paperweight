@@ -1,0 +1,22 @@
+{
+    "slug": "many-electronics-gmbh",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "many electronics GmbH",
+    "runs": [
+        "dubaro.de"
+    ],
+    "address": "An der Feuerwehr 7\n26409 Wittmund\nDeutschland",
+    "phone": "+49 4462 9582525",
+    "email": "s.feldmann@prico.de",
+    "sources": [
+        "https://www.dubaro.de/Datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2751"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

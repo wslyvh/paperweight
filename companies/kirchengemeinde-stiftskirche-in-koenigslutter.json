@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-stiftskirche-in-koenigslutter",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Stiftskirche in Königslutter",
+    "address": "Vor dem Kaiserdom 1\n38154 Königslutter am Elm\nDeutschland",
+    "phone": "+49 5353 2247",
+    "fax": "+49 5353 96878",
+    "email": "stiftskirche.koe.buero@lk-bs.de",
+    "web": "http://www.kaiserdom-koenigslutter.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=845"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

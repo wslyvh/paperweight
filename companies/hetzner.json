@@ -1,0 +1,34 @@
+{
+    "slug": "hetzner",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Hetzner Online GmbH",
+    "address": "Industriestr. 25\n91710 Gunzenhausen\nGermany",
+    "phone": "+49 9831 5050",
+    "fax": "+49 9831 5053",
+    "email": "data-protection@hetzner.com",
+    "web": "https://www.hetzner.de/",
+    "sources": [
+        "https://www.hetzner.de/rechtliches/datenschutz",
+        "https://github.com/datenanfragen/data/issues/597"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "E-Mail-Adresse",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

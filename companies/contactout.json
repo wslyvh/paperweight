@@ -1,0 +1,19 @@
+{
+    "slug": "contactout",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "addresses"
+    ],
+    "name": "Contactout Limited",
+    "address": "23 Pokefield Road\nUnit B, 31F Tower 1\nUniversity Heights\nKennedy Town\nHong Kong 00000\nHong Kong",
+    "email": "support@contactout.com",
+    "web": "https://contactout.com/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/527",
+        "https://contactout.com/privacy_data_subjects",
+        "https://www.linkedin.com/company/contactout"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "liveramp-es",
+    "relevant-countries": [
+        "es"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "LiveRamp France SAS",
+    "address": "25 rue Anatole France\n92300 Levallois-Perret\nFrance",
+    "email": "privacy.es@liveramp.com",
+    "web": "https://liveramp.es/",
+    "sources": [
+        "https://liveramp.es/politica-de-privacidad-de-servicios/"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

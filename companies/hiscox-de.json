@@ -1,0 +1,24 @@
+{
+    "slug": "hiscox-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Hiscox Europe Underwriting Ltd.",
+    "runs": [
+        "Hiscox Insurance Company Ltd."
+    ],
+    "address": "Arnulfstraße 31\n80636 München\nDeutschland",
+    "phone": "+49 89 54 58 01 100",
+    "fax": "+49 89 54 58 01 199",
+    "email": "dataprotectionofficer@hiscox.com",
+    "web": "https://www.hiscox.de",
+    "sources": [
+        "https://www.hiscox.de/datenschutzunterrichtung/",
+        "https://www.hiscox.de/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "strassenverkehrsabteilung-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Stadt Braunschweig, Straßenverkehrsabteilung",
+    "address": "Fachbereich Bürgerservice, Öffentliche Sicherheit\nPorschestraße 5\n38112 Braunschweig\nDeutschland",
+    "phone": "+49 531 4707500",
+    "fax": "+49 531 4707460",
+    "email": "strassenverkehrsabtl@braunschweig.de",
+    "web": "https://www.braunschweig.de/politik_verwaltung/fb_institutionen/fachbereiche_referate/fb32/fb32_3/index.html",
+    "sources": [
+        "https://www.braunschweig.de/politik_verwaltung/fb_institutionen/fachbereiche_referate/fb32/fb32_3/index.html",
+        "https://github.com/datenanfragen/data/pull/2946"
+    ],
+    "request-language": "de",
+    "quality": "verified"
+}

@@ -1,0 +1,25 @@
+{
+    "slug": "riot-games",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment",
+        "social media"
+    ],
+    "name": "Riot Games Ltd.",
+    "runs": [
+        "League of Legends",
+        "Valorant",
+        "Riot Games, Inc"
+    ],
+    "address": "PO Box 11989\nDublin 2\nIreland",
+    "email": "dpo@riotgames.com",
+    "web": "https://www.riotgames.com",
+    "sources": [
+        "https://www.riotgames.com/en/privacy-notice",
+        "https://github.com/datenanfragen/data/issues/670"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

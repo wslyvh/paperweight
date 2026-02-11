@@ -1,0 +1,25 @@
+{
+    "slug": "bernstein-bank",
+    "relevant-countries": [
+        "it",
+        "de",
+        "gb",
+        "pl"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Bernstein Bank GmbH",
+    "address": "Maximilianstr. 13\n80539 München\nGermany",
+    "phone": "+49 89 2154 310 0",
+    "fax": "+49 89 2154 310 99",
+    "email": "privacy@bernstein-bank.com",
+    "web": "https://www.bernstein-bank.com",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/266",
+        "https://bernstein-bank.azureedge.net/download/documents/DE/DE20200619_Bernstein_Bank_Datenschutzerklaerung.pdf",
+        "https://bernstein-bank.com/de/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "agentur-eick-weber",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Agentur Eick & Weber | Burkhard Eick & Gregor Weber GbR",
+    "web": "https://www.agentur-eick-weber.de/",
+    "sources": [
+        "https://www.agentur-eick-weber.de/datenschutzerklaerung/",
+        "https://www.agentur-eick-weber.de/impressum/",
+        "https://github.com/datenanfragen/data/pull/1824"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "address": "Hülsenbecke 22\n58256 Ennepetal\nDeutschland",
+    "phone": "+49 231 58685917",
+    "email": "datenschutz@agentur-eick.de",
+    "fax": "+49 2333 7978499"
+}

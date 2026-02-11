@@ -1,0 +1,35 @@
+{
+    "slug": "consorsfinanz",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance",
+        "insurance"
+    ],
+    "name": "BNP Paribas S.A. Niederlassung Deutschland",
+    "runs": [
+        "Consors Finanz",
+        "Commerz Finanz (ehemals)",
+        "Consorsbank",
+        "DAB BNP Paribas",
+        "BNP Paribas Wealth Management",
+        "BNP Paribas Corporate & Institutional Banking",
+        "BNP Paribas Securities Services"
+    ],
+    "address": "Europa-Allee 12\n60327 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 71930",
+    "fax": "+49 203 34695409",
+    "email": "gdpr.desk.cib@bnpparibas.com",
+    "web": "https://www.bnpparibas.de",
+    "sources": [
+        "https://www.consorsfinanz.de/datenschutz/index.html",
+        "https://www.consorsfinanz.de/impressum/index.html",
+        "https://www.bnpparibas.de/de/legals/",
+        "https://www.bnpparibas.de/de/datenschutzrichtlinie/",
+        "https://www.consorsbank.de/ev/Transversal/Datenschutz?tcid=TST-298",
+        "https://github.com/datenanfragen/data/pull/784"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

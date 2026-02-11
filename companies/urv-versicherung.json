@@ -1,0 +1,21 @@
+{
+    "slug": "urv-versicherung",
+    "categories": [
+        "insurance"
+    ],
+    "name": "URV – Union Reiseversicherung AG",
+    "address": "Maximilianstraße 53\n80530 München\nDeutschland",
+    "phone": "+49 89 21 60 18 80",
+    "fax": "+49 89 21 60 67 46",
+    "email": "datenschutz@ukv.de",
+    "web": "https://www.urv.de",
+    "sources": [
+        "https://www.urv.de/content/privatkunden/ueber-uns/datenschutz/",
+        "https://www.urv.de/content/privatkunden/ueber-uns/impressum/"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

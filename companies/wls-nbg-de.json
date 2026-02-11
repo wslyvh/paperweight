@@ -1,0 +1,29 @@
+{
+    "slug": "wls-nbg-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Evangelische Kooperative Gesamtschule Wilhelm-Löhe-Schule Nürnberg",
+    "address": "Deutschherrnstraße 10\n90429 Nürnberg\nDeutschland",
+    "phone": "+49 911 270820",
+    "email": "info@loehe-schule.de",
+    "web": "https://www.wls-nbg.de",
+    "sources": [
+        "https://www.wls-nbg.de/index.php?id=16"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "quality": "verified",
+    "facet-group": "school"
+}

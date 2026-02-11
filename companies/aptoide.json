@@ -1,0 +1,21 @@
+{
+    "slug": "aptoide",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Aptoide, S.A.",
+    "address": "Rua Soeiro Pereira Gomes\nLote 1, 3D\n1649-031 Lisboa\nPortugal",
+    "phone": "+351 913 423 006",
+    "email": "personal-data@aptoide.com",
+    "web": "https://en.aptoide.com",
+    "sources": [
+        "https://en.aptoide.com/company/legal?section=privacy",
+        "https://en.aptoide.com/company/legal",
+        "https://github.com/datenanfragen/data/pull/1803"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "generali-deutschland-gruppenunterstuetzungskasse",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Generali Deutschland Gruppenunterstützungskasse e. V.",
+    "address": "AachenMünchener-Platz 1\n52064 Aachen\nDeutschland",
+    "phone": "+49 241 4563388",
+    "email": "konzerndatenschutz.de@generali.com",
+    "web": "https://www.generali.de/geschaeftskunden/gesundheit-betriebliche-vorsorge/unterstuetzungskasse",
+    "sources": [
+        "https://www.generali.de/resource/blob/48972/e2809de5e389c6c6af3c2745589e8328/TA%2018%20230302%20DSGVO%20GruppenUkasse_G%20nCD.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

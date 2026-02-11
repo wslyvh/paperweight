@@ -1,0 +1,19 @@
+{
+    "slug": "hp-gb",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Hewlett-Packard Limited",
+    "runs": [
+        "Aruba"
+    ],
+    "address": "Amen Corner\nCain Road\nBracknell\nBerkshire\nRG12 1HN\nUnited Kingdom",
+    "web": "https://www8.hp.com/uk",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/486"
+    ],
+    "quality": "verified"
+}

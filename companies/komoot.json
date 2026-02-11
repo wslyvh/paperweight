@@ -1,0 +1,18 @@
+{
+    "slug": "komoot",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "komoot GmbH",
+    "address": "Friedrich-Wilhelm-Boelcke-Straße 2\n14473 Potsdam\nGermany",
+    "email": "feedback@komoot.de",
+    "web": "https://www.komoot.com/",
+    "sources": [
+        "https://www.komoot.com/privacy",
+        "https://github.com/datenanfragen/data/pull/3056"
+    ],
+    "quality": "verified"
+}

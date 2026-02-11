@@ -1,0 +1,30 @@
+{
+    "slug": "billbay",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch",
+        "nl"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Klarna Bank AB",
+    "runs": [
+        "BillPay GmbH"
+    ],
+    "address": "Sveavägen 46\n111 34 Stockholm\nSweden",
+    "phone": "+49 221 669 501 71",
+    "fax": "+49 22 166 95 019 0",
+    "email": "datenschutz@klarna.de",
+    "web": "https://www.billpay.de",
+    "sources": [
+        "https://www.billpay.de/de/datenschutz-de/",
+        "https://www.billpay.de/de/impressum/"
+    ],
+    "comments": [
+        "Die BillPay GmbH selbst sitzt: Zinnowitzer Straße 1, 10115 Berlin, Deutschland."
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

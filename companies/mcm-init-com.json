@@ -1,0 +1,15 @@
+{
+    "slug": "mcm-init-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "mcm.init UG (haftungsbeschränkt)",
+    "address": "Talstraße 5a\n13189 Berlin\nGermany",
+    "email": "we@mcm-init.com",
+    "web": "http://www.mcm-init.com",
+    "sources": [
+        "http://www.mcm-init.com",
+        "https://github.com/datenanfragen/data/pull/2356"
+    ],
+    "quality": "verified"
+}

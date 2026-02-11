@@ -1,0 +1,25 @@
+{
+    "slug": "deutsche-glasfaser",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Deutsche Glasfaser",
+    "runs": [
+        "Deutsche Glasfaser Holding GmbH",
+        "Deutsche Glasfaser Business GmbH",
+        "Deutsche Glasfaser Wholesale GmbH",
+        "inexio Beteiligungs GmbH"
+    ],
+    "address": "Am Kuhm 31\n46325 Borken\nDeutschland",
+    "phone": "+49 2861 890600",
+    "email": "datenschutz@deutsche-glasfaser.de",
+    "web": "https://www.deutsche-glasfaser.de/",
+    "sources": [
+        "https://www.deutsche-glasfaser.de/unternehmen/datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

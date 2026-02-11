@@ -1,0 +1,21 @@
+{
+    "slug": "connatix",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Connatix Holdings Inc.",
+    "address": "666 Broadway\n10th Floor\nNew York\nNY 10012\nUnited States of America",
+    "email": "privacy@connatix.com",
+    "web": "https://www.connatix.com/",
+    "sources": [
+        "https://www.connatix.com/privacy-policy",
+        "https://www.connatix.com/contact"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

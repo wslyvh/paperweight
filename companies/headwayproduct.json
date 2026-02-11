@@ -1,0 +1,18 @@
+{
+    "slug": "headwayproduct",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "GTHW App Limited",
+    "runs": [
+        "Headway"
+    ],
+    "address": "24 Peiraios Str.\n1st floor\nStrovolos\n2023 Nicosia\nCyprus",
+    "email": "support@get-headway.com",
+    "web": "https://makeheadway.com/",
+    "sources": [
+        "https://makeheadway.com/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/1958"
+    ],
+    "quality": "verified"
+}

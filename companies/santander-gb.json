@@ -1,0 +1,22 @@
+{
+    "slug": "santander-gb",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Santander Consumer Bank UK",
+    "address": "Santander Customer Operations\nPO BOX 1111\nBradford\nBD1 9NQ\nUnited Kingdom",
+    "phone": "+44 800 912 3123",
+    "web": "https://www.santander.co.uk",
+    "sources": [
+        "https://www.santander.co.uk/personal/support/customer-support/legal-information",
+        "https://www.santander.co.uk/assets/s3fs-public/documents/using_my_personal_data_core0026mar21h.pdf"
+    ],
+    "comments": [
+        "You can also contact them at any Santander UK branch, or use Online Banking under 'contact us'"
+    ],
+    "suggested-transport-medium": "letter",
+    "quality": "verified"
+}

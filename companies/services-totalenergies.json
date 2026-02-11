@@ -1,0 +1,22 @@
+{
+    "slug": "services-totalenergies",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "TotalEnergies Marketing Deutschland GmbH",
+    "address": "Jean-Monnet-Str. 2\n10557 Berlin\nDeutschland",
+    "phone": "+49 30 202760",
+    "fax": "+49 30 20278833",
+    "email": "ms.datenschutz-germany@totalenergies.com",
+    "web": "https://totalenergies.de",
+    "sources": [
+        "https://totalenergies.de/datenschutz",
+        "https://totalenergies.de/impressum",
+        "https://github.com/datenanfragen/data/pull/1155"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

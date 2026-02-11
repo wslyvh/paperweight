@@ -1,0 +1,42 @@
+{
+    "slug": "drillisch",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Drillisch Online GmbH",
+    "runs": [
+        "BILDconnect",
+        "smartmobil",
+        "yourfone",
+        "DeutschlandSIM",
+        "winSIM",
+        "maXXim",
+        "simply",
+        "sim.de",
+        "PremiumSIM",
+        "M2M-mobil"
+    ],
+    "address": "Wilhelm-Röntgen-Straße 1 – 5\n63477 Maintal\nDeutschland",
+    "phone": "+49 6181 7074 070",
+    "fax": "+49 6181 7074 063",
+    "email": "datenschutz@drillisch-online.de",
+    "web": "https://www.drillisch-online.de",
+    "sources": [
+        "https://www.drillisch-online.de/datenschutz",
+        "https://www.drillisch-online.de/impressum",
+        "https://www.bildconnect.de/datenschutz",
+        "https://www.smartmobil.de/datenschutz",
+        "https://www.yourfone.de/datenschutz",
+        "https://service.deutschlandsim.de/public/impressum",
+        "https://www.winsim.de/datenschutz",
+        "https://www.maxxim.de/datenschutz",
+        "https://www.simplytel.de/datenschutz",
+        "https://www.sim.de/datenschutz",
+        "https://www.premiumsim.de/datenschutz",
+        "https://www.m2m-mobil.de/datenschutz"
+    ],
+    "quality": "verified"
+}

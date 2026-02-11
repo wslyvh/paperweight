@@ -1,0 +1,21 @@
+{
+    "slug": "ebase",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "European Bank for Financial Services GmbH (ebase)",
+    "address": "80218 München\nDeutschland",
+    "phone": "+49 89 45460890",
+    "fax": "+49 89 45460892",
+    "email": "datenschutz-ebase@ebase.com",
+    "web": "https://www.ebase.com/home/",
+    "sources": [
+        "https://www.ebase.com/datenschutz/datenschutz-online/",
+        "https://github.com/datenanfragen/data/issues/63"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

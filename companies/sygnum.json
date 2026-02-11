@@ -1,0 +1,20 @@
+{
+    "slug": "sygnum",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Sygnum Bank AG",
+    "address": "Uetlibergstrasse 134a\n8045 Zurich\nSwitzerland",
+    "phone": "+41 58 508 20 00",
+    "email": "dpo@sygnum.com",
+    "web": "https://www.sygnum.com/",
+    "sources": [
+        "https://www.sygnum.com/more/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/2002"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

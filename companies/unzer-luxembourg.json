@@ -1,0 +1,19 @@
+{
+    "slug": "unzer-luxembourg",
+    "relevant-countries": [
+        "lu"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Unzer Luxembourg S.A.",
+    "address": "Parc d'Activité Syrdall 2\n18 - 20 rue Gabriel Lippmann\nL- 5365 Munsbach\nLuxembourg",
+    "phone": "+352 26 62 27 1",
+    "email": "datenschutz-lu@unzer.com",
+    "web": "https://www.unzer.com/lu/",
+    "sources": [
+        "https://a.storyblok.com/f/118211/x/d4e479d8a7/20250610_datenschutzhinweise_unzer_luxembourg_endkunden.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

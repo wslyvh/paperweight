@@ -1,0 +1,21 @@
+{
+    "slug": "hermann-bosch-inkasso",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "collection agency"
+    ],
+    "name": "Hermann Bosch Inkasso und Beratung GmbH & Co. KG",
+    "address": "Augsburger Str. 10\n99091 Erfurt\nDeutschland",
+    "phone": "+49 361 2624180",
+    "fax": "+49 361 26241813",
+    "email": "datenschutz@hermann-bosch-inkasso.de",
+    "web": "https://www.hermann-bosch-inkasso.de",
+    "sources": [
+        "https://www.hermann-bosch-inkasso.de/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/973"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

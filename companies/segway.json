@@ -1,0 +1,18 @@
+{
+    "slug": "segway",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [],
+    "name": "Segway Europe BV",
+    "email": "info@segway.eu.com",
+    "web": "https://segway.com",
+    "sources": [
+        "https://shop.segway.com/de_en/imprint-en",
+        "https://shop.segway.com/de_en/privacy-en",
+        "https://de-de.segway.com/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/3058"
+    ],
+    "quality": "verified",
+    "address": "Dynamostraat 7\n1014 BN Amsterdam\nThe Netherlands"
+}

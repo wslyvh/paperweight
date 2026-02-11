@@ -1,0 +1,31 @@
+{
+    "slug": "synlab",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "SYNLAB Holding Deutschland GmbH",
+    "address": "Gubener Straße 39\n86156 Augsburg\nDeutschland",
+    "phone": "+49 821 521570",
+    "email": "datenschutz@synlab.com",
+    "web": "https://www.synlab.de",
+    "sources": [
+        "https://www.synlab.de/datenschutz",
+        "https://www.synlab.de/impressum",
+        "https://github.com/datenanfragen/data/pull/2642"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

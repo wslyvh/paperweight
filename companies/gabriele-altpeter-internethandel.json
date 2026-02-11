@@ -1,0 +1,26 @@
+{
+    "slug": "gabriele-altpeter-internethandel",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Gabriele Altpeter, Internethandel",
+    "runs": [
+        "hexteQ."
+    ],
+    "address": "Schreinerweg 6\n38126 Braunschweig\nDeutschland",
+    "phone": "+49 531 615 4 710",
+    "fax": "+49 531 615 4 288",
+    "email": "datenschutz@gabriele-altpeter.info",
+    "pgp-fingerprint": "BCA8 A5F2 2F7F D05A ED67  EE2B FE5B E03D 78C1 CF0F",
+    "pgp-url": "https://gabriele-altpeter.info/pgp-key-privacy.asc",
+    "web": "https://gabriele-altpeter.info",
+    "sources": [
+        "https://gabriele-altpeter.info/privacy.html",
+        "https://www.hexteq.de/privacy.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

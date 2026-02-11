@@ -1,0 +1,22 @@
+{
+    "slug": "evernote",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Evernote GmbH",
+    "runs": [
+        "Evernote Corp."
+    ],
+    "address": "Walchestrasse 9\n8006 Zürich\nSwitzerland",
+    "email": "privacy@evernote.com",
+    "web": "https://evernote.com/",
+    "sources": [
+        "https://evernote.com/privacy/policy-5-25-2018"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Alternative email: compliance@evernote.com"
+    ],
+    "quality": "verified"
+}

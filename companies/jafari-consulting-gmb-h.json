@@ -1,0 +1,22 @@
+{
+    "slug": "jafari-consulting-gmb-h",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "name": "Jafari Consulting GmbH",
+    "runs": [
+        "fibonaccicode.de"
+    ],
+    "address": "c/o heyData GmbH\nSchützenstraße 5\n10117 Berlin\nDeutschland",
+    "phone": "+49 8806 9590979",
+    "email": "datenschutz@heydata.eu",
+    "web": "https://fibonaccicode.de/",
+    "sources": [
+        "https://fibonaccicode.de/datenschutzerklaerung",
+        "https://github.com/datenanfragen/data/pull/2497"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

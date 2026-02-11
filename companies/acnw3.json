@@ -1,0 +1,22 @@
+{
+    "slug": "acnw3",
+    "relevant-countries": [
+        "de"
+    ],
+    "runs": [
+        "X-Projekt Rodis UG (ehem.)",
+        "sprachen-online.eu"
+    ],
+    "address": "Bennigsenstrasse 11\n12159 Berlin\nDeutschland",
+    "phone": "+49 173 2475911",
+    "email": "robert.sidor@acnw3.com",
+    "web": "https://acnw3.com/",
+    "sources": [
+        "https://acnw3.com/impressum.html",
+        "https://acnw3.com/datenschutz.html",
+        "https://sprachen-online.eu/impressum.html",
+        "https://github.com/datenanfragen/data/pull/1821"
+    ],
+    "quality": "verified",
+    "name": "ACNW3 UG (haftungsbeschränkt)"
+}

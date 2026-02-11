@@ -1,0 +1,28 @@
+{
+    "slug": "xing",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "NEW WORK SE",
+    "runs": [
+        "XING",
+        "kununu",
+        "onlyfy"
+    ],
+    "address": "Am Strandkai 1\n20457 Hamburg\nGermany",
+    "phone": "+49 40 4191310",
+    "fax": "+49 40 41913111",
+    "email": "info@xing.com",
+    "webform": "https://www.xing.com/support/contact/security/data_protection",
+    "web": "https://www.xing.com/",
+    "sources": [
+        "https://privacy.xing.com/en/privacy-policy/printable-version",
+        "https://www.xing.com/imprint",
+        "https://github.com/datenanfragen/data/pull/2328"
+    ],
+    "quality": "verified",
+    "suggested-transport-medium": "webform"
+}

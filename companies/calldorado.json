@@ -1,0 +1,24 @@
+{
+    "slug": "calldorado",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads",
+        "telecommunication"
+    ],
+    "name": "Appvestor ApS",
+    "runs": [
+        "Calldorado"
+    ],
+    "address": "Gladsaxevej 342\n2860 Søborg\nDenmark",
+    "email": "info@appvestor.com",
+    "web": "https://calldorado.com/",
+    "sources": [
+        "https://calldorado.com/terms-of-use.html",
+        "https://appvestor.com/?page_id=457"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "quality": "verified"
+}

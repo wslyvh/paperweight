@@ -1,0 +1,34 @@
+{
+    "slug": "turner",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Turner Broadcasting System Europe Ltd.",
+    "runs": [
+        "CNN (edition.cnn.com)",
+        "Cartoon Network (www.cartoonnetworkhq.com)",
+        "Boomerang (www.boomeranghq.net)",
+        "Turner Broadcasting System, Inc."
+    ],
+    "address": "Turner House\n16 Great Marlborough Street\nLondon\nW1F 7HS\nUnited Kingdom",
+    "phone": "+1 404 827 1700",
+    "email": "EMEA.privacy@turner.com",
+    "web": "http://www.turner.com/",
+    "sources": [
+        "http://www.turner.com/locations",
+        "http://www.turner.com/legal#euPrivacy",
+        "https://edition.cnn.com/privacy1",
+        "https://www.turner.com/contact-us",
+        "https://www.cartoonnetworkhq.com/privacy-policy",
+        "http://www.boomeranghq.net"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Address of Turner Broadcasting System, Inc.: 1050 Techwood Drive NW, Atlanta, GA 30318, United States of America."
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,33 @@
+{
+    "slug": "thalia",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce",
+        "entertainment"
+    ],
+    "name": "Thalia Bücher GmbH",
+    "address": "Batheyer Straße 115 – 117\n58099 Hagen\nDeutschland",
+    "phone": "+49 251 5309 330",
+    "email": "datenschutz@thalia.de",
+    "web": "https://www.thalia.de",
+    "sources": [
+        "https://www.thalia.de/hilfe/rechtliches/datenschutz"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

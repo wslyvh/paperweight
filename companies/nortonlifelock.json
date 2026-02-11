@@ -1,0 +1,22 @@
+{
+    "slug": "nortonlifelock",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "NortonLifeLock Ireland Limited",
+    "runs": [
+        "Norton",
+        "LifeLock"
+    ],
+    "address": "Ballycoolin Business Park\nBlanchardstown\nDublin 15\nIreland",
+    "email": "nll_privacy@GenDigital.com",
+    "webform": "https://privacyportal.onetrust.com/webform/25b84167-55d3-4099-84e2-c9e08ec67d54/4d9f34ca-cc1d-4578-9590-35834c92f17b",
+    "web": "https://www.nortonlifelock.com/",
+    "sources": [
+        "https://www.nortonlifelock.com/gb/en/privacy/global-privacy-statement/",
+        "https://github.com/datenanfragen/data/pull/1686",
+        "https://github.com/datenanfragen/data/pull/2680"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "mid-sachsen-anhalt",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Ministerium für Infrastruktur und Digitales des Landes Sachsen-Anhalt",
+    "runs": [
+        "Online-Antrag EPPSG-Einmalzahlung (www.einmalzahlung200.de)"
+    ],
+    "address": "Turmschanzenstraße 30\n39114 Magdeburg\nDeutschland",
+    "phone": "+49 391 5673577",
+    "fax": "+49 391 5677510",
+    "email": "datenschutz-mid@sachsen-anhalt.de",
+    "web": "https://mid.sachsen-anhalt.de/",
+    "sources": [
+        "https://mid.sachsen-anhalt.de/datenschutz",
+        "https://mid.sachsen-anhalt.de/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

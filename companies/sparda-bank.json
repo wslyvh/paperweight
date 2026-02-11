@@ -1,0 +1,21 @@
+{
+    "slug": "sparda-bank",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Verband der Sparda-Banken e.V.",
+    "address": "Friedrich-Ebert-Anlage 35 – 37\n60327 Frankfurt am Main\nDeutschland",
+    "phone": "+49 69 79 20 94 0",
+    "fax": "+49 69 79 20 94 290",
+    "email": "datenschutz@sparda-verband.de",
+    "web": "http://www.sparda.de/",
+    "sources": [
+        "http://www.sparda.de/datenschutz.php",
+        "http://www.sparda.de/impressum.php"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

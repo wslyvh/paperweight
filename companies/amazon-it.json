@@ -1,0 +1,40 @@
+{
+    "slug": "amazon-it",
+    "relevant-countries": [
+        "it"
+    ],
+    "categories": [
+        "commerce",
+        "entertainment"
+    ],
+    "name": "Amazon Europe Core SARL",
+    "runs": [
+        "amazon.it",
+        "Amazon EU SARL",
+        "Amazon Services Europe SARL",
+        "Amazon Media EU SARL",
+        "Amazon Digital UK Limited",
+        "Amazon Kindle",
+        "Kindle Direct Publishing",
+        "Amazon Warehouse Deals",
+        "Amazon Marketplace"
+    ],
+    "address": "38 avenue John F. Kennedy\nL-1855, Luxembourg\nLuxembourg",
+    "email": "eu-privacy@amazon.it",
+    "web": "https://www.amazon.it",
+    "sources": [
+        "https://www.amazon.it/gp/help/customer/display.html?ie=UTF8&nodeId=200545460"
+    ],
+    "required-elements": [
+        {
+            "desc": "Nome",
+            "type": "name"
+        },
+        {
+            "desc": "E-mail",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

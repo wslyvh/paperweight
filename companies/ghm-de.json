@@ -1,0 +1,31 @@
+{
+    "slug": "ghm-de",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "GHM Gesellschaft für Handwerksmessen mbH",
+    "runs": [
+        "Internationale Handwerksmesse (IHM)"
+    ],
+    "address": "Paul-Wassermann-Str. 5\n81829 München\nGermany",
+    "phone": "+49 89 1891490",
+    "fax": "+49 89 189149239",
+    "email": "datenschutz@ghm.de",
+    "web": "https://www.ihm.de",
+    "sources": [
+        "https://www.ghm.de/datenschutz",
+        "https://www.ihm.de/datenschutz"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

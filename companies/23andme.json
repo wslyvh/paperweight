@@ -1,0 +1,17 @@
+{
+    "slug": "23andme",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "23andMe, Inc.",
+    "address": "899 West Evelyn Avenue\nMountain View\nCA 94041\nUnited States of America",
+    "phone": "+1 800 239 5230",
+    "email": "privacy@23andme.com",
+    "web": "https://www.23andme.com",
+    "sources": [
+        "https://www.23andme.com/en-int/about/privacy/"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

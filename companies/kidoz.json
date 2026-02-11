@@ -1,0 +1,21 @@
+{
+    "slug": "kidoz",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "KIDOZ Ltd.",
+    "address": "12 Haomanut Street\nPoleg Industrial Park\nPO BOX 8517\nNetanya\nIsrael",
+    "phone": "+972 9 779 6366",
+    "email": "dpo@kidoz.net",
+    "web": "https://kidoz.net/",
+    "sources": [
+        "https://kidoz.net/website-and-kidoz-sdk-privacy-policy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,17 @@
+{
+    "slug": "wahoo-fitness",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Wahoo Fitness, LLC",
+    "address": "90 West Wieuca Rd NE #110\nAtlanta, GA 30342\nUnited States of America",
+    "phone": "+1 877 978 1112",
+    "email": "privacy@wahoofitness.com",
+    "web": "https://de-eu.wahoofitness.com",
+    "sources": [
+        "https://de-eu.wahoofitness.com/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/3368"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

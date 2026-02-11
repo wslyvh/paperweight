@@ -1,0 +1,24 @@
+{
+    "slug": "oeffentliche",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Öffentliche Versicherung Braunschweig",
+    "runs": [
+        "Öffentliche Sachversicherung Braunschweig",
+        "Öffentliche Lebensversicherung Braunschweig"
+    ],
+    "address": "Theodor-Heuss-Straße 10\n38122 Braunschweig\nDeutschland",
+    "phone": "+49 531 20 20",
+    "fax": "+49 531 2 02 17 80",
+    "email": "datenschutz@oeffentliche.de",
+    "sources": [
+        "https://www.oeffentliche.de/content/oeffentliche/gesetzliche-regelungen/datenschutz/beantragung-des-versicherungsvertrages-sachversicherung/index.html",
+        "https://www.oeffentliche.de/content/oeffentliche/gesetzliche-regelungen/datenschutz/beantragung-des-versicherungsvertrages-lebensversicherung/index.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

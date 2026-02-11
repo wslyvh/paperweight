@@ -1,0 +1,24 @@
+{
+    "slug": "match-gb",
+    "relevant-countries": [
+        "gb",
+        "ie"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Match.com",
+    "runs": [
+        "uk.match.com",
+        "ie.match.com"
+    ],
+    "address": "MIL\nc/o Skadden\n40 Bank Street\nCanary Wharf\nLondon\nE14 5DS\nUnited Kingdom",
+    "email": "privacy@match.co.uk",
+    "web": "https://uk.match.com/",
+    "sources": [
+        "https://uk.match.com/pages/misc/privacy",
+        "https://ie.match.com/pages/misc/privacy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "elster",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Mein ELSTER",
+    "address": "Bayerisches Landesamt für Steuern\nDienststelle München\n80284 München\nDeutschland",
+    "phone": "+49 89 99910",
+    "fax": "+49 89 99911099",
+    "email": "datenschutz@elster.de",
+    "web": "https://www.elster.de",
+    "sources": [
+        "https://www.elster.de/eportal/helpGlobal?themaGlobal=datenschutz_public"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

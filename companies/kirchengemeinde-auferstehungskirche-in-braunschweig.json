@@ -1,0 +1,23 @@
+{
+    "slug": "kirchengemeinde-auferstehungskirche-in-braunschweig",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Auferstehungskirche in Braunschweig",
+    "address": "Süntelstraße 1\n38122 Braunschweig\nDeutschland",
+    "phone": "+49 531 2872180",
+    "fax": "+49 531 2872181",
+    "email": "gartenstadt.buero@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=756"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

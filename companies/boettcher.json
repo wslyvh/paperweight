@@ -1,0 +1,25 @@
+{
+    "slug": "boettcher",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Böttcher AG",
+    "address": "Stadtrodaer Landstraße 1\n07751 Jena-Zöllnitz\nDeutschland",
+    "phone": "+49 180 7 667300",
+    "email": "datenschutz@bueromarkt-ag.de",
+    "web": "https://www.bueromarkt-ag.de",
+    "sources": [
+        "https://www.bueromarkt-ag.de/datenschutz/datenschutz.php",
+        "https://www.bueromarkt-ag.de/impressum/impressum.php",
+        "https://github.com/datenanfragen/data/pull/1677",
+        "https://github.com/datenanfragen/data/pull/3289"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Achtung: Telefonnummer ist kostenpflichtig (30 Sekunden frei, danach 14Cent inkl.MwSt/Minute aus dem deutschen Festnetz / Mobilfunknetz)!"
+    ],
+    "quality": "verified"
+}

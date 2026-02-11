@@ -1,0 +1,51 @@
+{
+    "slug": "tchibo",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Tchibo GmbH",
+    "runs": [
+        "Tchibo mobil",
+        "TchiboCard",
+        "Treuebohnenkonto",
+        "TchiboEXPERTS",
+        "Tchibo Community",
+        "Qbo"
+    ],
+    "address": "Postfach 10 78 20\n28078 Bremen\nDeutschland",
+    "phone": "+49 40 63870",
+    "email": "service@tchibo.de",
+    "web": "https://www.tchibo.de/",
+    "sources": [
+        "https://www.tchibo.de/c/service-datenschutz-kontakt",
+        "https://www.tchibo.de/documents/antrag-auskunftsersuchen.pdf",
+        "https://github.com/datenanfragen/data/pull/1348"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "E-Mail-Adresse",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "TchiboCard-Nummer",
+            "type": "input",
+            "optional": true
+        },
+        {
+            "desc": "Seriennummer der Qbo",
+            "type": "input",
+            "optional": true
+        }
+    ],
+    "needs-id-document": false,
+    "quality": "verified"
+}

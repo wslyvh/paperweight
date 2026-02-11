@@ -1,0 +1,23 @@
+{
+    "slug": "crunchyroll",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Crunchyroll, LLC",
+    "address": "c/o Crunchyroll GmbH\nSpreeufer 5\n1st, 3rd & 4th Floors\n10178 Berlin\nGermany",
+    "phone": "+49 89 51305697",
+    "fax": "+49 89 51305698",
+    "email": "SPE_EU_Privacy_Contact@spe.sony.com",
+    "webform": "https://privacyportal.onetrust.com/webform/d19e506f-1a64-463d-94e4-914dd635817d/35fb5149-8905-48f3-9cbf-8b651c427d0e",
+    "web": "https://www.crunchyroll.com/de",
+    "sources": [
+        "https://intl.sonypictures.com/sony-entities",
+        "https://intl.sonypictures.com/en/contact-us",
+        "https://github.com/datenanfragen/data/pull/2398"
+    ],
+    "suggested-transport-medium": "webform",
+    "quality": "verified"
+}

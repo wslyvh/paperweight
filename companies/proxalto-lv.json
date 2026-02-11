@@ -1,0 +1,21 @@
+{
+    "slug": "proxalto-lv",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Proxalto Lebensversicherung AG",
+    "address": "20083 Hamburg\nDeutschland",
+    "phone": "+49 40 55554400",
+    "fax": "+49 40 55554499",
+    "email": "datenschutz@viridium-gruppe.com",
+    "web": "https://www.proxalto-lv.de",
+    "sources": [
+        "https://www.proxalto-lv.de/datenschutzbestimmungen/",
+        "https://github.com/datenanfragen/data/pull/1550"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

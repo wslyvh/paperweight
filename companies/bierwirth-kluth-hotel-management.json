@@ -1,0 +1,35 @@
+{
+    "slug": "bierwirth-kluth-hotel-management",
+    "relevant-countries": [
+        "de",
+        "at"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Bierwirth & Kluth Hotel Management GmbH",
+    "runs": [
+        "Moxy Frankfurt East Frankfurt",
+        "Courtyard by Marriott Wiesbaden-Nordenstadt Wiesbaden-Nordenstadt",
+        "Gästeresidenz PelikanViertel Hannover",
+        "Holiday Inn Hamburg City Nord Hamburg",
+        "My4walls Serviced Apartments Hamburg",
+        "München Airport Marriott Hotel München",
+        "Courtyard by Marriott Oberpfaffenhofen Munich South",
+        "Renaissance Wien Hotel Wien",
+        "Courtyard by Marriott Wien Prater/Messe Wien",
+        "Moxy Vienna Airport Wien"
+    ],
+    "address": "Bahnhofstraße 67\n65185 Wiesbaden\nDeutschland",
+    "phone": "+49 611 4476000",
+    "fax": "+49 611 44760044",
+    "email": "datenschutz@bierwirth-kluth.de",
+    "sources": [
+        "http://www.bierwirth-kluth.de/de/datenschutz",
+        "http://www.bierwirth-kluth.de/de/unsere-hotels",
+        "https://www.hi-city-nord.de/de/datenschutz.html",
+        "https://github.com/datenanfragen/data/issues/207"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

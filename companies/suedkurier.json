@@ -1,0 +1,31 @@
+{
+    "slug": "suedkurier",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "SÜDKURIER GmbH Medienhaus",
+    "address": "Max-Stromeyer-Str. 178\n78467 Konstanz\nDeutschland",
+    "email": "datenschutz@suedkurier.de",
+    "web": "https://www.suedkurier.de/",
+    "sources": [
+        "https://www.suedkurier.de/services/agb/datenschutzerklaerung;art1370803,10581762",
+        "https://github.com/datenanfragen/data/pull/1036"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        },
+        {
+            "desc": "Kundenummer",
+            "type": "input",
+            "optional": true
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

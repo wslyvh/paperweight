@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-st-brictius-linden-in-wolfenbuettel",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde St. Brictius Linden in Wolfenbüttel",
+    "address": "Neuer Weg 90\n38302 Wolfenbüttel\nDeutschland",
+    "phone": "+49 5331 972850",
+    "fax": "+49 5331 978958",
+    "email": "wf-mitte-sued.pfa@lk-bs.de",
+    "web": "http://www.kirche-linden.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=1067"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

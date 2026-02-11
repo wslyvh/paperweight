@@ -1,0 +1,21 @@
+{
+    "slug": "sma-de",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "SMA Solar Technology AG",
+    "address": "Sonnenallee 1\n34266 Niestetal\nGermany",
+    "phone": "+49 561 95220",
+    "email": "datenschutz@SMA.de",
+    "web": "https://www.sma.de/",
+    "sources": [
+        "https://www.sma.de/datenschutzerklaerung",
+        "https://www.sma.de/impressum",
+        "https://github.com/datenanfragen/data/pull/981"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

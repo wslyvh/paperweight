@@ -1,0 +1,33 @@
+{
+    "slug": "ikano-bank",
+    "relevant-countries": [
+        "se"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Ikano Bank AB",
+    "address": "Box 21066\n200 21 Malmö\nSweden",
+    "phone": "+46 476 880 00",
+    "email": "dataskydd@ikano.se",
+    "web": "https://ikanobank.se",
+    "sources": [
+        "https://ikanobank.se/personuppgifter",
+        "https://ikanobank.se/-/media/sweden/digitalstore/b2c/footer/information_om_behandling_av_personuppgifter.pdf?la=sv-se",
+        "https://github.com/datenanfragen/data/pull/1056"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,29 @@
+{
+    "slug": "lusha",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads",
+        "addresses"
+    ],
+    "name": "Lusha Systems Inc.",
+    "runs": [
+        "Lusha Ltd."
+    ],
+    "address": "1177 Avenue of the Americas\n5th Floor\nNew York NY 10036\nUnited States of America",
+    "email": "Privacy@Lusha.com",
+    "webform": "https://www.lushaprivacy.com/privacy-form/",
+    "web": "https://www.lusha.co/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/115",
+        "https://github.com/datenanfragen/data/issues/114",
+        "https://www.lusha.co/gdpr/",
+        "https://www.lusha.co/privacy_policy/",
+        "https://www.lusha.com/legal/terms_and_conditions/"
+    ],
+    "request-language": "en",
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

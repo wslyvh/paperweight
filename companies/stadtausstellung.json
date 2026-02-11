@@ -1,0 +1,22 @@
+{
+    "slug": "stadtausstellung",
+    "relevant-countries": [
+        "de",
+        "at"
+    ],
+    "name": "mobyoucon GmbH",
+    "runs": [
+        "Stadtausstellung"
+    ],
+    "address": "Buchengasse 42/2/6\n1100 Wien\nÖsterreich",
+    "phone": "+43 664 51 45 746",
+    "email": "dsgvo@stadtausstellung.at",
+    "web": "https://www.stadtausstellung.at/",
+    "sources": [
+        "https://www.stadtausstellung.at/",
+        "https://github.com/datenanfragen/data/issues/576",
+        "https://dsgvo.stadtausstellung.at/datenschutzerklaerung/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

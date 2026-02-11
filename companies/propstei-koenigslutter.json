@@ -1,0 +1,23 @@
+{
+    "slug": "propstei-koenigslutter",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Propstei Königslutter",
+    "address": "An der Stadtkirche 6\n38154 Königslutter am Elm\nDeutschland",
+    "phone": "+49 5353 95170",
+    "email": "koenigslutter.pr@lk-bs.de",
+    "web": "http://www.propstei-koenigslutter.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/koenigslutter.html"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

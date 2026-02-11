@@ -1,0 +1,40 @@
+{
+    "slug": "marksandspencer-bank",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "finance",
+        "insurance"
+    ],
+    "name": "Marks & Spencer Financial Services plc",
+    "runs": [
+        "M&S Bank",
+        "M&S Bank Mortgages",
+        "M&S Travel",
+        "M&S Current Account",
+        "M&S Credit Card",
+        "M&S Personal Loans",
+        "M&S Insurance",
+        "M&S Savings and Investments",
+        "Marks and Spencer Unit Trust Management Ltd.",
+        "M&S High Income Fund",
+        "M&S Worldwide Managed Fund",
+        "M&S UK Selection Portfolio",
+        "M&S UK 100 Companies Fund",
+        "Marks and Spencer Savings and Investments Ltd.",
+        "M&S Corporate ISA"
+    ],
+    "address": "PO Box 10565\n51 Saffron Road\nWigston\nLE18 9FT\nUnited Kingdom",
+    "phone": "+44 345 900 0900",
+    "web": "https://bank.marksandspencer.com/",
+    "sources": [
+        "https://bank.marksandspencer.com/legal-information/privacy-notice/",
+        "https://bank.marksandspencer.com/explore/contact-us/"
+    ],
+    "request-language": "en",
+    "comments": [
+        "Actual address: Kings Meadow, Chester CH99 9FB, United Kingdom."
+    ],
+    "quality": "verified"
+}

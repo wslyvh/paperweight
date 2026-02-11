@@ -1,0 +1,23 @@
+{
+    "slug": "kirchengemeinde-klein-denkte-in-denkte",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Klein Denkte in Denkte",
+    "address": "Kirchstraße 7\n38321 Denkte\nDeutschland",
+    "phone": "+49 5331 906130",
+    "fax": "+49 5331 906132",
+    "email": "denkte.buero@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=939"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

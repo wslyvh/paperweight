@@ -1,0 +1,25 @@
+{
+    "slug": "badv-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesamt für zentrale Dienste und offene Vermögensfragen (BADV)",
+    "runs": [
+        "Bundesausgleichsamt (BAA)"
+    ],
+    "address": "DGZ-Ring 12\n13086 Berlin\nDeutschland",
+    "phone": "+49 30 187030 0",
+    "fax": "+49 30 187030 1140",
+    "email": "Datenschutz@badv.bund.de",
+    "web": "https://www.badv.bund.de",
+    "sources": [
+        "https://www.badv.bund.de/DE/Sonstiges/Datenschutzerklaerung/start.html",
+        "https://www.badv.bund.de/DE/Sonstiges/Impressum/start.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

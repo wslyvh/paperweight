@@ -1,0 +1,17 @@
+{
+    "slug": "swapfiets-es",
+    "relevant-countries": [
+        "es"
+    ],
+    "name": "Swapfiets Spain S.l.",
+    "address": "Carrer De Marià Cubí 7\n08006 Barcelona\nSpain",
+    "phone": "+34 932 20 23 71",
+    "email": "privacy@swapfiets.com",
+    "web": "https://swapfiets.es/",
+    "sources": [
+        "https://swapfiets.es/en-ES/privacy",
+        "https://help.swapfiets.es/hc/en-gb"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

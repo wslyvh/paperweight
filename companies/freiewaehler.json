@@ -1,0 +1,21 @@
+{
+    "slug": "freiewaehler",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "political party"
+    ],
+    "name": "FREIE WÄHLER Bundesvereinigung",
+    "address": "Mühlenstraße 1\n27777 Ganderkesee\nDeutschland",
+    "phone": "+49 176 22807096",
+    "fax": "+49 4222 2094923",
+    "email": "dsb@freiewaehler.eu",
+    "web": "https://www.freiewaehler.eu/",
+    "sources": [
+        "https://www.freiewaehler.eu/Datenschutz/",
+        "https://www.freiewaehler.eu/Impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

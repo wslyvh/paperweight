@@ -1,0 +1,27 @@
+{
+    "slug": "solute",
+    "relevant-countries": [
+        "de",
+        "ch",
+        "li"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "solute GmbH",
+    "runs": [
+        "billiger.de"
+    ],
+    "address": "Zeppelinstraße 15\n76185 Karlsruhe\nDeutschland",
+    "phone": "+49 721 86956 0",
+    "email": "datenschutz@solute.de",
+    "sources": [
+        "https://company.billiger.de/service/datenschutzunterrichtung/",
+        "https://github.com/datenanfragen/data/issues/132"
+    ],
+    "comments": [
+        "Externer DSB: dacuro GmbH, Heidelberger Straße 70b, 69190 Walldorf, Deutschland"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

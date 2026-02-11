@@ -1,0 +1,21 @@
+{
+    "slug": "bayernpartei",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "political party"
+    ],
+    "name": "Bayernpartei e.V.",
+    "address": "Baumkirchner Straße 20\n81673 München\nDeutschland",
+    "phone": "+49 89 83929297",
+    "fax": "+49 89 452442770",
+    "email": "post@abamatus.de",
+    "web": "https://bayernpartei.de/",
+    "sources": [
+        "https://bayernpartei.de/datenschutzerklaerung/",
+        "https://bayernpartei.de/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

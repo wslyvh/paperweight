@@ -1,0 +1,34 @@
+{
+    "slug": "casamoda",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "CASAMODA Heinrich Katt GmbH & Co. KG",
+    "runs": [
+        "venti.com"
+    ],
+    "address": "c/o O H A Gesellschaft für Arbeitsschutz und Arbeitssicherheit m.b.H.\nPaul-Klinger-Straße 1\n45127 Essen\nDeutschland",
+    "phone": "+49 44 12066456",
+    "fax": "+49 44 12066111",
+    "email": "ds-beauftragter@oha-essen.de",
+    "web": "https://www.casamoda.com",
+    "sources": [
+        "https://www.venti.com/de/de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/940"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail-Adresse",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

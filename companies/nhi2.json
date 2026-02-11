@@ -1,0 +1,33 @@
+{
+    "slug": "nhi2",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication",
+        "ads"
+    ],
+    "name": "nhi² AG Interviews International",
+    "address": "Am Metternicher Hof 15\n53111 Bonn\nDeutschland",
+    "phone": "+49 228 201780",
+    "email": "ds-beauftragter@nhi2.de",
+    "web": "https://www.nhi2.de/",
+    "sources": [
+        "https://www.nhi2.de/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/791"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Telefon",
+            "type": "input",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

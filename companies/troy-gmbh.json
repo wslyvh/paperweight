@@ -1,0 +1,21 @@
+{
+    "slug": "troy-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "collection agency"
+    ],
+    "name": "troy GmbH",
+    "address": "Hansastraße 39\n59557 Lippstadt\nDeutschland",
+    "phone": "+49 2941 7463014",
+    "email": "datenschutz@troy-bleiben.de",
+    "web": "https://www.troy-bleiben.de/",
+    "sources": [
+        "https://www.troy-bleiben.de/datenschutzerklaerung/",
+        "https://www.troy-bleiben.de/datenschutzerklaerung-mahnung/",
+        "https://github.com/datenanfragen/data/pull/2359"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

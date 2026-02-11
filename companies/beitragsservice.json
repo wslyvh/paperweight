@@ -1,0 +1,23 @@
+{
+    "slug": "beitragsservice",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment",
+        "public body"
+    ],
+    "name": "ARD ZDF Deutschlandradio Beitragsservice",
+    "address": "50656 Köln\nDeutschland",
+    "runs": [
+        "Gebühreneinzugszentrale GEZ (ehem.)"
+    ],
+    "phone": "+49 221 5061 0",
+    "webform": "https://www.rundfunkbeitrag.de/datenschutz/datenschutzkontaktformular/index_ger.html",
+    "web": "https://www.rundfunkbeitrag.de",
+    "sources": [
+        "https://www.rundfunkbeitrag.de/datenschutz/datenschutz_beim_beitragseinzug/index_ger.html",
+        "https://www.rundfunkbeitrag.de/impressum/index_ger.html"
+    ],
+    "quality": "verified"
+}

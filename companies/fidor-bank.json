@@ -1,0 +1,34 @@
+{
+    "slug": "fidor-bank",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "FG Management GmbH",
+    "runs": [
+        "Fidor Bank AG (ehem.)"
+    ],
+    "address": "Prannerstr. 1\n80333 München\nDeutschland",
+    "email": "datenschutz@legaldata.law",
+    "webform": "https://fidor-datentreuhand.legaldata.law/",
+    "web": "https://fgmanagement.de/",
+    "sources": [
+        "https://fgmanagement.de/",
+        "https://legaldata.law/impressum/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "lvm-versicherung",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "LVM Versicherung",
+    "address": "Kolde-Ring 21\n48151 Münster\nDeutschland",
+    "phone": "+49 251 702 0",
+    "fax": "+49 251 702 1099",
+    "email": "datenschutz@lvm.de",
+    "web": "https://www.lvm.de",
+    "sources": [
+        "https://www.lvm.de/wps/portal/lvm/die-lvm/unternehmen/wir-als-versicherer/rechtliches/rechtliches-impressum",
+        "https://www.lvm.de/die-lvm/unternehmen/wir-als-versicherer/datenschutz/datenschutz-uebersicht"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Für info@lvm.de steht ein PGP-Key zur Verfügung: https://www.lvm.de/wps/portal/lvm/die-lvm/unternehmen/wir-als-versicherer/rechtliches/rechtliches-kundendaten-tab1"
+    ],
+    "quality": "verified"
+}

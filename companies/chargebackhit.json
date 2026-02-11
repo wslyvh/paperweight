@@ -1,0 +1,21 @@
+{
+    "slug": "chargebackhit",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "runs": [
+        "chargebackhit"
+    ],
+    "address": "loanni Mina, 8\n‘Agios loannis\n4871 Limassol\nCyprus",
+    "email": "support@chargebackhit.com",
+    "web": "https://chargebackhit.com/",
+    "sources": [
+        "https://chargebackhit.com/terms-of-use/",
+        "https://github.com/datenanfragen/data/pull/2149"
+    ],
+    "quality": "verified",
+    "name": "Anteolink Limited"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "vimeo",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Vimeo, Inc.",
+    "address": "555 West 18th Street\nNew York\nNY 10011\nUnited States of America",
+    "email": "privacy@vimeo.com",
+    "web": "https://vimeo.com",
+    "sources": [
+        "https://vimeo.com/privacy",
+        "https://vimeo.com/terms",
+        "https://github.com/datenanfragen/data/pull/1152"
+    ],
+    "suggested-transport-medium": "email",
+    "request-language": "en",
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "kirchengemeinde-broistedt-in-lengede",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Broistedt in Lengede",
+    "address": "Lebenstedter Straße 3\n38268 Lengede\nDeutschland",
+    "phone": "+49 5344 1255",
+    "email": "broistedt.pfa@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=887"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

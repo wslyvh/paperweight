@@ -1,0 +1,30 @@
+{
+    "slug": "viactiv",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "VIACTIV Krankenkasse",
+    "address": "Suttner-Nobel-Allee 3-5\n44803 Bochum\nDeutschland",
+    "phone": "+49 234 4792799",
+    "email": "datenschutz@viactiv.de",
+    "web": "https://www.viactiv.de/",
+    "sources": [
+        "https://www.viactiv.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/3085"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

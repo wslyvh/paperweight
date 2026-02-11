@@ -1,0 +1,31 @@
+{
+    "slug": "meetup-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Meetup, Inc.",
+    "address": "632 Broadway 10th Floor\nNew York\nNY 10012\nUnited States of America",
+    "phone": "+1 646 442 6679",
+    "email": "privacy@meetup.com",
+    "web": "https://www.meetup.com",
+    "sources": [
+        "https://www.meetup.com/privacy/",
+        "https://www.meetup.com/impressum/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

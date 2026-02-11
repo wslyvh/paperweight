@@ -1,0 +1,31 @@
+{
+    "slug": "nbc",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Universal Studios International B.V.",
+    "runs": [
+        "NBCUniversal Media, LLC",
+        "NBCUniversal International Limited",
+        "NBC News (www.nbcnews.com)",
+        "NBC Sports (www.nbcsports.com)",
+        "Telemundo (www.telemundo.com)",
+        "CNBC International (www.cnbc.com)",
+        "hayu (www.hayu.com)",
+        "Bluprint (www.mybluprint.com)",
+        "SportsEngine (www.sportsengine.com)"
+    ],
+    "address": "Moermanskkade 421\n1013 BC Amsterdam\nThe Netherlands",
+    "email": "privacy@nbcuni.com",
+    "web": "https://www.nbcnews.com/",
+    "sources": [
+        "https://www.nbcuniversal.com/privacy",
+        "https://www.nbcuniversal.com/brands"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

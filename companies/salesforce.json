@@ -1,0 +1,54 @@
+{
+    "slug": "salesforce",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Salesforce.com, Inc.",
+    "runs": [
+        "Salesforce Customer360",
+        "Salesforce Marketing Cloud (formerly ExactTarget)",
+        "Salesforce Commerce Cloud (formerly Demandware)",
+        "Salesforce Social Studio (formerly Radian6)",
+        "SalesforceIQ (formerly RelateIQ)",
+        "Heroku",
+        "Quip",
+        "Pardot",
+        "Tableau",
+        "Work.com"
+    ],
+    "address": "415 Mission St\n3rd Floor\nSan Francisco CA 94105\nUnited States of America",
+    "phone": "+1 844 287 7147",
+    "email": "privacy@salesforce.com",
+    "webform": "https://www.salesforce.com/form/other/privacy-request/",
+    "web": "https://www.salesforce.com/",
+    "sources": [
+        "https://www.salesforce.com/company/privacy/",
+        "https://www.salesforce.com/company/privacy/full_privacy/",
+        "https://www.tableau.com/privacy",
+        "https://quip.com/about/privacy",
+        "https://github.com/datenanfragen/data/issues/22",
+        "https://github.com/datenanfragen/data/issues/26"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "Company Name",
+            "type": "input",
+            "optional": true
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "skatbank",
+    "categories": [
+        "finance"
+    ],
+    "name": "Deutsche Skatbank, Zweigniederlassung der VR-Bank Altenburger Land eG",
+    "address": "c/o GenoTec GmbH\nWilhelm-Haas-Platz\n63263 Neu-Isenburg\nDeutschland",
+    "phone": "+49 69 69783324",
+    "fax": "+49 69 69783322",
+    "web": "https://ssl.skatbank.de/",
+    "sources": [
+        "https://ssl.skatbank.de/datenschutz",
+        "https://ssl.skatbank.de/impressum"
+    ],
+    "comments": [
+        "Die Skatbank selbst sitzt: Altenburger Straße 13, 04626 Schmölln, Deutschland."
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "quality": "verified"
+}

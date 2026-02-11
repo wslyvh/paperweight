@@ -1,0 +1,19 @@
+{
+    "slug": "stiftung-warentest",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Stiftung Warentest",
+    "address": "Lützowplatz 11–13\n10785 Berlin\nDeutschland",
+    "phone": "+49 30 26310",
+    "fax": "+49 30 26312727",
+    "email": "datenschutzbeauftragte@stiftung-warentest.de",
+    "web": "https://www.test.de",
+    "sources": [
+        "https://www.test.de/impressum/",
+        "https://www.test.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2414"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

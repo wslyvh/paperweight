@@ -1,0 +1,20 @@
+{
+    "slug": "data-broker-gb",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "addresses"
+    ],
+    "name": "Databroker Ltd.",
+    "address": "8 Ambassador Place\nStockport Road\nAltrincham\nWA15 8DB\nUnited Kingdom",
+    "phone": "+44 161 941 5700",
+    "email": "info@data-broker.co.uk",
+    "web": "https://www.data-broker.co.uk/",
+    "sources": [
+        "https://www.data-broker.co.uk/privacy-policy/",
+        "https://www.data-broker.co.uk/contact-us/"
+    ],
+    "request-language": "en",
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "addconti",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "categories": [
+        "addresses",
+        "ads"
+    ],
+    "name": "Add Conti GmbH",
+    "address": "Wiggenweg 3\n9404 Rorschacherberg\nSchweiz",
+    "phone": "+49 800 583584000",
+    "email": "datenschutz@addconti.ch",
+    "web": "https://addconti.ch/",
+    "sources": [
+        "https://sg.chregister.ch/cr-portal/auszug/auszug.xhtml?uid=CHE-355.005.818",
+        "https://addconti.ch/",
+        "https://github.com/datenanfragen/data/pull/2673"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

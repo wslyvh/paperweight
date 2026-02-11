@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-blankenburg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Blankenburg",
+    "address": "Herzogstraße 16\n38889 Blankenburg (Harz)\nDeutschland",
+    "phone": "+49 3944 980669",
+    "fax": "+49 3944 980670",
+    "email": "harzer-land.pfa@lk-bs.de",
+    "web": "http://www.evangelisch-in-blankenburg.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=706"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

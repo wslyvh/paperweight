@@ -1,0 +1,20 @@
+{
+    "slug": "polizeipraesidium-guetersloh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Der Landrat als Kreispolizeibehörde Gütersloh",
+    "address": "Herzebrocker Straße 142\n33334 Gütersloh\nDeutschland",
+    "phone": "+49 5241 8690",
+    "email": "datenschutz.guetersloh@polizei.nrw.de",
+    "web": "https://guetersloh.polizei.nrw/",
+    "sources": [
+        "https://polizei.nrw/datenschutzerklaerung"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

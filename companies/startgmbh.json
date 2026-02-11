@@ -1,0 +1,26 @@
+{
+    "slug": "startgmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Regionalverkehre Start Deutschland GmbH",
+    "runs": [
+        "Start Unterelbe",
+        "Start Niedersachsen Mitte"
+    ],
+    "address": "Hahnstraße 40\n60528 Frankfurt a. M.\nDeutschland",
+    "phone": "+49 69 999993640",
+    "fax": "+49 69 999993669",
+    "email": "datenschutz@startgmbh.com",
+    "sources": [
+        "https://www.startgmbh.com/impressum",
+        "https://www.startgmbh.com/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1429",
+        "https://www.startgmbh.com/netze"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

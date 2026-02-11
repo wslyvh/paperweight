@@ -1,0 +1,22 @@
+{
+    "slug": "ihk-braunschweig",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce",
+        "public body"
+    ],
+    "name": "Industrie- und Handelskammer Braunschweig",
+    "address": "Brabandtstraße 11\n38100 Braunschweig\nDeutschland",
+    "phone": "+49 531 4715 0",
+    "fax": "+49 531 4715 299",
+    "email": "datenschutz@braunschweig.ihk.de",
+    "web": "https://www.braunschweig.ihk.de/",
+    "sources": [
+        "https://www.braunschweig.ihk.de/datenschutzinformationen-4290884",
+        "https://github.com/datenanfragen/data/pull/1422"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

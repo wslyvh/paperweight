@@ -1,0 +1,22 @@
+{
+    "slug": "willytel",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "willy.tel GmbH",
+    "address": "Hinschenfelder Stieg 6\n22041 Hamburg\nDeutschland",
+    "phone": "+49 40 696963679",
+    "fax": "+49 40 69696363",
+    "email": "datenschutz@willytel.de",
+    "web": "https://www.willytel.de",
+    "sources": [
+        "https://www.willytel.de/datenschutz",
+        "https://www.willytel.de/impressum",
+        "https://github.com/datenanfragen/data/pull/1244"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

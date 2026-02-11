@@ -1,0 +1,28 @@
+{
+    "slug": "posteo",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Posteo e.K.",
+    "address": "Methfesselstr. 38\n10965 Berlin\nGermany",
+    "fax": "+49 30 346493249",
+    "email": "datenschutz@posteo.de",
+    "web": "https://posteo.de",
+    "sources": [
+        "https://posteo.de/en/site/legal_notice",
+        "https://posteo.de/en/site/privacy_policy",
+        "https://github.com/datenanfragen/data/pull/2282"
+    ],
+    "required-elements": [
+        {
+            "desc": "Email",
+            "type": "name",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,23 @@
+{
+    "slug": "bankofscotland-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Lloyds Bank GmbH",
+    "runs": [
+        "Bank of Scotland"
+    ],
+    "address": "Karl-Liebknecht-Straße 5\n10178 Berlin\nDeutschland",
+    "phone": "+49 30 2804280",
+    "email": "kundenservice@bankofscotland.de",
+    "web": "https://www.bankofscotland.de/",
+    "sources": [
+        "https://www.bankofscotland.de/datenschutz",
+        "https://www.bankofscotland.de/dam/jcr:7c02f359-ff51-455f-ae21-8750de70f7a8/datenschutzinformation.pdf",
+        "https://github.com/datenanfragen/data/pull/860"
+    ],
+    "quality": "verified"
+}

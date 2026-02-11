@@ -1,0 +1,29 @@
+{
+    "relevant-countries": [
+        "de"
+    ],
+    "slug": "traffego",
+    "categories": [
+        "ads"
+    ],
+    "name": "Traffego GmbH",
+    "address": "Carl-Zeiss-Straße 3\n64331 Weiterstadt\nDeutschland",
+    "phone": "+49 6150 507010",
+    "fax": "+49 6150 5070199",
+    "email": "datenschutz@traffego.de",
+    "web": "https://www.traffego.de",
+    "sources": [
+        "https://www.traffego.de/impressum/",
+        "https://www.traffego.de/datenschutz/",
+        "https://github.com/datenanfragen/data/issues/57"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

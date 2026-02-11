@@ -1,0 +1,20 @@
+{
+    "slug": "ifpiorg",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "IFPI",
+    "address": "7 Air Street\nLondon\nW1B 5AD\nUnited Kingdom",
+    "phone": "+44 20 7878 7900",
+    "fax": "+44 20 7878 7950",
+    "email": "info@ifpi.org",
+    "web": "https://www.ifpi.org/",
+    "sources": [
+        "https://www.ifpi.org/contacts.php",
+        "https://github.com/datenanfragen/data/issues/180"
+    ],
+    "comments": [
+        "IFPI probably downloaded all videos ever uploaded to Twitter.  https://twitter.com/luca/status/1146873652874547201?s=20"
+    ],
+    "quality": "verified"
+}

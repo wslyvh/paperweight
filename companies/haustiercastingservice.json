@@ -1,0 +1,18 @@
+{
+    "slug": "haustiercastingservice",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Kmedia GbR",
+    "address": "In den Peschen 33\n47228 Duisburg\nDeutschland",
+    "email": "info@haustiercasting.com",
+    "web": "https://www.haustiercastingservice.de",
+    "sources": [
+        "https://www.haustiercastingservice.de/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/1929"
+    ],
+    "quality": "verified"
+}

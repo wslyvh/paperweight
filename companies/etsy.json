@@ -1,0 +1,30 @@
+{
+    "slug": "etsy",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce",
+        "finance"
+    ],
+    "name": "Etsy Ireland UC",
+    "runs": [
+        "EtsyStudio.com (retired)",
+        "Etsy’s mobile applications",
+        "Pattern by Etsy",
+        "Etsy Payments",
+        "Etsy API",
+        "Etsy, Inc."
+    ],
+    "address": "66 – 67 Great Strand Street\nDublin 1\nIreland",
+    "phone": "+353 1 513 7100",
+    "fax": "+44 20 3514 2331",
+    "email": "dpo@etsy.com",
+    "web": "https://www.etsy.com/",
+    "sources": [
+        "https://www.etsy.com/legal/privacy/",
+        "https://www.etsy.com/legal/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

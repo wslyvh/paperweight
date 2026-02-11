@@ -1,0 +1,23 @@
+{
+    "slug": "tugraz",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Technische Universität Graz",
+    "address": "c/o x-tention Informationstechnologie GmbH\nRömerstraße 80A\n4600 Wels\nÖsterreich",
+    "phone": "+43 316 8730",
+    "fax": "+43 316 8736009",
+    "email": "datenschutz@tugraz.at",
+    "web": "https://www.tugraz.at",
+    "sources": [
+        "https://www.tugraz.at",
+        "https://www.tugraz.at/ueber-diese-seite/datenschutzerklaerung/",
+        "https://github.com/datenanfragen/data/pull/1467"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,37 @@
+{
+    "slug": "ada-health",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "Ada Health GmbH",
+    "runs": [
+        "Doctor Chat",
+        "Ada app",
+        "Ada Digital Health Ltd.",
+        "Ada Health, Inc."
+    ],
+    "address": "Karl-Liebknecht-Straße 1\n10178 Berlin\nDeutschland",
+    "phone": "+49 30 60031987",
+    "email": "dpo@ada.com",
+    "web": "https://ada.com",
+    "sources": [
+        "https://ada.com/privacy-policy/",
+        "https://ada.com/imprint/",
+        "https://github.com/datenanfragen/data/pull/1866"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,36 @@
+{
+    "slug": "fleurop",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Fleurop AG",
+    "address": "Lindenstraße 3-4\n12207 Berlin\nDeutschland",
+    "phone": "+49 30 713710",
+    "fax": "+49 30 71371198",
+    "email": "datenschutz@fleurop.de",
+    "web": "https://www.fleurop.de",
+    "sources": [
+        "https://www.fleurop.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1498"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "needs-id-document": true,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

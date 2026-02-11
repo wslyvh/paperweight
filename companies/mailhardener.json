@@ -1,0 +1,23 @@
+{
+    "slug": "mailhardener",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Mailhardener",
+    "address": "Caballero Fabriek - unit 18\nThe Hague\nThe Netherlands",
+    "email": "privacy@mailhardener.com",
+    "web": "https://www.mailhardener.com",
+    "sources": [
+        "https://www.mailhardener.com/privacy-statement",
+        "https://github.com/datenanfragen/data/pull/1380"
+    ],
+    "required-elements": [
+        {
+            "desc": "Email",
+            "type": "name",
+            "optional": false
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "postcode-lotterie",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Postcode Lotterie DT gGmbH",
+    "address": "Martin-Luther-Platz 28\n40212 Düsseldorf\nDeutschland",
+    "phone": "+49 211 94283821",
+    "email": "datenschutz@postcode-lotterie.de",
+    "web": "https://www.postcode-lotterie.de/",
+    "sources": [
+        "https://www.postcode-lotterie.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1217"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,35 @@
+{
+    "slug": "vag-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "VAG Verkehrs-Aktiengesellschaft",
+    "address": "Südliche Fürther Straße 5\n90429 Nürnberg\nDeutschland",
+    "phone": "+49 911 2830",
+    "fax": "+49 911 2834800",
+    "email": "datenschutz@vag.de",
+    "web": "https://www.vag.de",
+    "sources": [
+        "https://www.vag.de/datenschutz/kundendialog",
+        "https://github.com/datenanfragen/data/issues/600"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        },
+        {
+            "desc": "Geburtsdatum",
+            "type": "birthdate"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

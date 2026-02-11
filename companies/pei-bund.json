@@ -1,0 +1,21 @@
+{
+    "slug": "pei-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Paul-Ehrlich-Institut (PEI)",
+    "address": "Paul-Ehrlich-Straße 51 – 59\n63225 Langen\nDeutschland",
+    "phone": "+49 6103 77 1605",
+    "fax": "+49 6103 77 1234",
+    "email": "datenschutz@pei.de",
+    "web": "https://www.pei.de",
+    "sources": [
+        "https://www.pei.de/DE/service-navi/datenschutz/datenschutz-node.html"
+    ],
+    "suggested-transport-medium": "email",
+    "request-language": "de",
+    "quality": "verified"
+}

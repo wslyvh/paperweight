@@ -1,0 +1,24 @@
+{
+    "slug": "mydealz",
+    "relevant-countries": [
+        "de",
+        "at"
+    ],
+    "categories": [
+        "ads",
+        "social media"
+    ],
+    "name": "Atolls Germany GmbH",
+    "runs": [
+        "mydealz.de"
+    ],
+    "address": "Radlkoferstr. 2\n81373 München\nDeutschland",
+    "email": "privacy@mydealz.de",
+    "web": "https://www.mydealz.de",
+    "sources": [
+        "https://www.mydealz.de/datenschutz",
+        "https://github.com/datenanfragen/data/issues/586"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,26 @@
+{
+    "slug": "bescha-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Beschaffungsamt des Bundesministeriums des Innern",
+    "runs": [
+        "Bedarfserhebungstool BET (e-beschaffung.bund.de)",
+        "e-Vergabe des Bundes (www.evergabe-online.de)",
+        "Kaufhaus des Bundes KdB (www.kdb.bund.de)"
+    ],
+    "address": "Brühler Straße 3\n53119 Bonn\nDeutschland",
+    "phone": "+49 22899 610 1800",
+    "fax": "+49 22899 10610 1800",
+    "email": "datenschutz@bescha.bund.de",
+    "web": "https://www.bescha.bund.de",
+    "sources": [
+        "https://www.bescha.bund.de/DE/Service/Datenschutz/datenschutz_node.html"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

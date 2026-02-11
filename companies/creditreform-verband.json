@@ -1,0 +1,21 @@
+{
+    "slug": "creditreform-verband",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "credit agency"
+    ],
+    "name": "Verband der Vereine Creditreform e.V.",
+    "address": "Hellersbergstraße 12\n41460 Neuss\nDeutschland",
+    "phone": "+49 2131 1090",
+    "fax": "+49 2131 1098000",
+    "email": "datenschutz@verband.creditreform.de",
+    "web": "https://www.creditreform.de",
+    "sources": [
+        "https://github.com/datenanfragen/data/pull/695",
+        "https://www.creditreform.de/datenschutz"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

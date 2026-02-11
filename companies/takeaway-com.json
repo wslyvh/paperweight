@@ -1,0 +1,50 @@
+{
+    "slug": "takeaway-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Takeaway.com Group B.V.",
+    "runs": [
+        "БГменю ЕООД",
+        "Lieferando",
+        "Takeaway.com",
+        "Pyszne.pl",
+        "Thuisbezorgd.nl",
+        "10bis",
+        "Scoober"
+    ],
+    "address": "Piet Heinkade 61\n1019 GM Amsterdam\nNederland",
+    "email": "privacy-concerns@takeaway.com",
+    "webform": "https://privacyportal-de.onetrust.com/webform/5fffb107-8d8a-49e5-bdda-be5d78615bc7/5e662c3e-31ca-49fe-a8b1-bfef7431a149",
+    "web": "https://takeaway.com",
+    "sources": [
+        "https://www.takeaway.com/bg/pravna-informatsia",
+        "https://www.lieferando.de/privacy-statement",
+        "https://www.lieferando.de/impressum",
+        "https://www.pyszne.pl/privacy-policy",
+        "https://www.thuisbezorgd.nl/privacy-policy",
+        "https://www.10bis.co.il/next/privacyPolicy",
+        "https://www.thuisbezorgd.nl/en/courier/privacy",
+        "https://github.com/datenanfragen/data/pull/1118",
+        "https://github.com/datenanfragen/data/pull/1654",
+        "https://github.com/datenanfragen/data/pull/2407"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        },
+        {
+            "desc": "Address",
+            "type": "address",
+            "optional": true
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

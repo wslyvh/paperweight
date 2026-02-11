@@ -1,0 +1,23 @@
+{
+    "slug": "ndr",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment",
+        "public body"
+    ],
+    "name": "Norddeutscher Rundfunk (NDR)",
+    "runs": [
+        "tagesschau.de"
+    ],
+    "address": "Rothenbaumchaussee 132\n20149 Hamburg\nDeutschland",
+    "email": "datenschutz@ndr.de",
+    "web": "https://www.ndr.de/",
+    "sources": [
+        "https://www.ndr.de/service/datenschutz/index.html",
+        "https://www.tagesschau.de/kontakt_und_hilfe/datenschutz/index.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

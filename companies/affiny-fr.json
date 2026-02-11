@@ -1,0 +1,18 @@
+{
+    "slug": "affiny-fr",
+    "relevant-countries": [
+        "fr"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Affiny.fr",
+    "address": "c/o Meetic SAS\n53 rue de Châteaudun\n75009 Paris\nFrance",
+    "email": "privacy@affiny.fr",
+    "web": "https://www.affiny.fr",
+    "sources": [
+        "https://www.affiny.fr/pages/misc/privacy"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

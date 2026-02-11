@@ -1,0 +1,25 @@
+{
+    "slug": "happycar",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "travel",
+        "insurance"
+    ],
+    "name": "HAPPYCAR GmbH",
+    "runs": [
+        "HAPPYCAR UG (haftungsbeschränkt)"
+    ],
+    "address": "c/o Protekto Gruppe\nWendenstraße 279\n20537 Hamburg\nDeutschland",
+    "phone": "+49 40 42236924",
+    "email": "datenschutz@protekto.de",
+    "web": "https://www.happycar.de/",
+    "sources": [
+        "https://www.happycar.de/datenschutz",
+        "https://www.happycar.de/impressum",
+        "https://github.com/datenanfragen/data/pull/3015"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

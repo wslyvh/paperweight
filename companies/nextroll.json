@@ -1,0 +1,22 @@
+{
+    "slug": "nextroll",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "NextRoll Limited",
+    "runs": [
+        "NextRoll, Inc."
+    ],
+    "address": "Level 6\n1, Burlington Plaza\nBurlington Road\nDublin 4\nIreland",
+    "email": "dpo@nextroll.com",
+    "web": "https://www.nextroll.com/",
+    "sources": [
+        "https://www.nextroll.com/privacy"
+    ],
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

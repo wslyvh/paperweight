@@ -1,0 +1,56 @@
+{
+    "slug": "hannoversche",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Hannoversche Lebensversicherung AG",
+    "runs": [
+        "VHV Vereinigte Hannoversche Versicherung a. G.",
+        "VHV Holding AG",
+        "VHV Allgemeine Versicherung AG",
+        "Hannoversche Direktversicherung AG",
+        "VHV solutions GmbH",
+        "VHV Dienstleistungen GmbH",
+        "VHV Vermögensanlage AG",
+        "Pensionskasse der VHV Versicherungen",
+        "Hannoversche Direktvertriebs-GmbH",
+        "HANNOVERSCHE CONSULT GmbH",
+        "HANNO-PENSION-Versorgungs-Management e.V.",
+        "Rhein-Ruhr-Vermögensverwaltungsgesellschaft mbH",
+        "VAV Versicherungen-AG, Wien",
+        "VVH Versicherungsvermittlung Hannover GmbH",
+        "WAVE Management AG"
+    ],
+    "address": "VHV-Platz 1\n30177 Hannover\nDeutschland",
+    "phone": "+49 511 67058300",
+    "fax": "+49 511 9565666",
+    "email": "datenschutz@hannoversche-leben.de",
+    "web": "https://www.hannoversche.de/",
+    "sources": [
+        "https://www.hannoversche.de/datenschutz/allgemeine-informationen",
+        "https://github.com/datenanfragen/data/pull/1213",
+        "https://www.hannoversche.de/datenschutz"
+    ],
+    "suggested-transport-medium": "email",
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "Address",
+            "type": "address",
+            "optional": false
+        }
+    ],
+    "quality": "tested"
+}

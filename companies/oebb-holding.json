@@ -1,0 +1,25 @@
+{
+    "slug": "oebb-holding",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "ÖBB-Holding AG",
+    "runs": [
+        "ÖBB-Werbung GmbH",
+        "ÖBB-Finanzierungsservice GmbH",
+        "iMobility GmbH"
+    ],
+    "address": "Am Hauptbahnhof 2\n1100 Wien\nAustria",
+    "email": "datenschutz.holding@oebb.at",
+    "web": "https://holding.oebb.at",
+    "sources": [
+        "https://holding.oebb.at/de/impressum",
+        "https://konzern.oebb.at/de/impressum/datenschutzbeauftragte",
+        "https://github.com/datenanfragen/data/pull/1306"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

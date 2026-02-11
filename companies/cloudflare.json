@@ -1,0 +1,40 @@
+{
+    "slug": "cloudflare",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Cloudflare, Ltd.",
+    "runs": [
+        "Cloudflare, Inc.",
+        "Cloudflare, Pte., Ltd."
+    ],
+    "address": "2nd Floor\n25 Lavington Street\nLondon\nSE1 0NZ\nUnited Kingdom",
+    "phone": "+1 650 319 8930",
+    "email": "sar@cloudflare.com",
+    "web": "https://www.cloudflare.com/",
+    "sources": [
+        "https://www.cloudflare.com/privacypolicy/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "request-language": "en",
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Alternative email: privacyquestions@cloudflare.com"
+    ],
+    "quality": "tested"
+}

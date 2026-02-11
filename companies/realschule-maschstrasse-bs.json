@@ -1,0 +1,22 @@
+{
+    "slug": "realschule-maschstrasse-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Realschule Maschstraße Braunschweig",
+    "address": "Maschstraße 41\n38114 Braunschweig\nDeutschland",
+    "phone": "+49 531 12 92 54 0",
+    "fax": "+49 531 12 92 54 29",
+    "email": "realschule.maschstrasse@braunschweig.de",
+    "web": "https://realschule-maschstrasse.de/",
+    "sources": [
+        "https://realschule-maschstrasse.de/datenschutz/"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

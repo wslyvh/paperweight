@@ -1,0 +1,18 @@
+{
+    "slug": "splitwise",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Splitwise Inc.",
+    "address": "150 Union St #606\nProvidence, RI 02903\nUnited States of America",
+    "email": "support@splitwise.com",
+    "web": "https://secure.splitwise.com/",
+    "sources": [
+        "https://secure.splitwise.com/privacy",
+        "https://github.com/datenanfragen/data/pull/2629"
+    ],
+    "quality": "verified"
+}

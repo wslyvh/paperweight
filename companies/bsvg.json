@@ -1,0 +1,30 @@
+{
+    "slug": "bsvg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility",
+        "travel"
+    ],
+    "name": "Braunschweiger Verkehrs-GmbH (BSVG)",
+    "address": "Am Hauptgüterbahnhof 28\n38126 Braunschweig\nDeutschland",
+    "phone": "+49 531 28639555",
+    "email": "datenschutz@bsvg.net",
+    "web": "https://www.bsvg.net/",
+    "sources": [
+        "https://www.bsvg.net/datenschutz"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

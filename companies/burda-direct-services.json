@@ -1,0 +1,21 @@
+{
+    "slug": "burda-direct-services",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Burda Direkt Services GmbH",
+    "address": "Postfach 1223\n77602 Offenburg\nDeutschland",
+    "phone": "+49 781 6396100",
+    "fax": "+49 781 6396101",
+    "email": "burdadirektservices@datenschutzanfrage.de",
+    "web": "https://www.burdadirect.com/",
+    "sources": [
+        "https://www.burdadirect.com/datenschutz",
+        "https://github.com/datenanfragen/data/issues/66"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

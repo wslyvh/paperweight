@@ -1,0 +1,21 @@
+{
+    "slug": "uniserv",
+    "categories": [
+        "addresses"
+    ],
+    "name": "Uniserv GmbH",
+    "address": "Rastatter Straße 13\n75179 Pforzheim\nDeutschland",
+    "phone": "+49 7231 936 0",
+    "fax": "+49 7231 936 2500",
+    "email": "datenschutz@uniserv.com",
+    "web": "https://www.uniserv.com",
+    "sources": [
+        "https://www.uniserv.com/datenschutz/",
+        "https://www.uniserv.com/impressum/"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

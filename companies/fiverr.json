@@ -1,0 +1,36 @@
+{
+    "slug": "fiverr",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce",
+        "finance"
+    ],
+    "name": "Fiverr Germany GmbH",
+    "runs": [
+        "Fiverr International Ltd."
+    ],
+    "address": "Westendstrasse 28\n60325 Frankfurt am Main\nGermany",
+    "email": "privacy@fiverr.com",
+    "web": "https://www.fiverr.com/",
+    "sources": [
+        "https://www.fiverr.com/legal-portal/privacy/privacy-policy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "request-language": "en",
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

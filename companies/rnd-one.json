@@ -1,0 +1,43 @@
+{
+    "slug": "rnd-one",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "RND One GmbH",
+    "runs": [
+        "RedaktionsNetzwerk Deutschland",
+        "Ostsee-Zeitung",
+        "Hannoversche Allgemeine (HAZ)",
+        "Dresdner Neuste Nachrichten (DNN)",
+        "Göttinger Tageblatt / Eichsfelder Tageblatt (GT/ET)",
+        "Leipziger Volkszeitungs (LVZ)",
+        "Lübecker Nachrichten (LN)",
+        "Märkische Allgemeine Zeitung (MAZ)",
+        "Neue Presse (NP)",
+        "Peiner Allgemeine Zeitung (PAZ)",
+        "Schaumburger Nachrichten (SN)",
+        "Wolfsburger Allgemeine / Aller-Zeitung (WAZ/AZ)"
+    ],
+    "address": "Mühlenkamp 59\n22303 Hamburg\nDeutschland",
+    "phone": "+49 800 1234312",
+    "email": "datenschutz@rnd-one.de",
+    "web": "https://www.rnd.de/netzwerk/",
+    "sources": [
+        "https://www.rnd.de/datenschutz/",
+        "https://www.ostsee-zeitung.de/datenschutz/",
+        "https://www.haz.de/datenschutz/",
+        "https://www.dnn.de/datenschutz/",
+        "https://www.goettinger-tageblatt.de/datenschutz/",
+        "https://www.lvz.de/datenschutz/",
+        "https://www.ln-online.de/datenschutz/",
+        "https://www.maz-online.de/datenschutz/",
+        "https://www.neuepresse.de/datenschutz/",
+        "https://www.paz-online.de/datenschutz/",
+        "https://www.sn-online.de/datenschutz/",
+        "https://www.waz-online.de/datenschutz/"
+    ],
+    "quality": "verified"
+}

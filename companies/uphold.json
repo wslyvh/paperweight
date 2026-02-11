@@ -1,0 +1,20 @@
+{
+    "slug": "uphold",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce",
+        "finance"
+    ],
+    "name": "Uphold Europe Limited",
+    "address": "6 Honduras Street, Suite A\nEC1Y 0TH London\nUnited Kingdom",
+    "email": "data.privacy@uphold.com",
+    "web": "https://www.uphold.com",
+    "sources": [
+        "https://uphold.com/en-gb/legal/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/1587"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

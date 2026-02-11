@@ -1,0 +1,36 @@
+{
+    "slug": "fidelity-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "FIL Fondsbank GmbH",
+    "runs": [
+        "Fidelity"
+    ],
+    "address": "Postfach 11 06 63\n60041 Frankfurt am Main\nDeutschland",
+    "phone": "+49 6173 5091923",
+    "fax": "+49 6173 5094199",
+    "email": "info@fidelity.de",
+    "web": "https://www.fidelity.de",
+    "sources": [
+        "https://www.fidelity.de/datenschutzhinweise/",
+        "https://www.fidelity.de/canonical/1590723880/6574/",
+        "https://www.fidelity.de/ueber-uns/kontakt/unsere-ansprechpartner/",
+        "https://www.fidelity.de/impressum/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "needs-id-document": false,
+    "quality": "tested"
+}

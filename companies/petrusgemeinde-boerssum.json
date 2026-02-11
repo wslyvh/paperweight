@@ -1,0 +1,24 @@
+{
+    "slug": "petrusgemeinde-boerssum",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Petrusgemeinde Börßum",
+    "address": "Hauptstraße 14\n38312 Börßum\nDeutschland",
+    "phone": "+49 5334 6180",
+    "fax": "+49 5334 958429",
+    "email": "boerssum.buero@lk-bs.de",
+    "web": "http://www.kirche-boerssum.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=918"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "tractebel-be",
+    "relevant-countries": [
+        "be"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "Tractebel Engineering S.A.",
+    "address": "Boulevard Simon Bolivar 34-36\n1000 Brussels\nBelgium",
+    "email": "privacy@tractebel.engie.com",
+    "web": "https://tractebel-engie.com",
+    "sources": [
+        "https://tractebel-engie.com/files/attachments/.6121/TRACTEBEL_PRIVACY_STATEMENT_EN_2023.pdf",
+        "https://github.com/datenanfragen/data/pull/2081"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

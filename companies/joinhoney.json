@@ -1,0 +1,36 @@
+{
+    "slug": "joinhoney",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Honey Science LLC",
+    "runs": [
+        "Honey Savings Finder (Browser extension)",
+        "Honey Gold"
+    ],
+    "address": "963 E. 4th Street\nLos Angeles\nCA 90013\nUnited States of America",
+    "email": "privacy@joinhoney.com",
+    "web": "https://www.joinhoney.com/",
+    "sources": [
+        "https://www.joinhoney.com/privacy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        },
+        {
+            "desc": "Honey Gold balance",
+            "type": "input",
+            "optional": true
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

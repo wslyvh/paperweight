@@ -1,0 +1,23 @@
+{
+    "slug": "kirchengemeinde-st-andreas-in-braunschweig",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde St. Andreas in Braunschweig",
+    "address": "An der Andreaskirche 1\n38100 Braunschweig\nDeutschland",
+    "phone": "+49 531 44358",
+    "email": "andreas.bs.buero@lk-bs.de",
+    "web": "http://www.standreas.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=735"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

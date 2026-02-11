@@ -1,0 +1,33 @@
+{
+    "slug": "drluppa-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "Praxis Dr. med. dent. Peter Luppa",
+    "address": "Königstr. 33\n90402 Nürnberg\nDeutschland",
+    "phone": "+49 911 227104",
+    "fax": "+49 911 227103",
+    "email": "praxis@drluppa.de",
+    "web": "https://drluppa.de",
+    "sources": [
+        "https://drluppa.de/index.php/datenschutzerklaerung",
+        "https://github.com/datenanfragen/data/pull/1638"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Adresse",
+            "type": "address"
+        }
+    ],
+    "comments": [
+        "Alternative E-Mail-Adresse: kontakt@drluppa.de"
+    ],
+    "quality": "verified"
+}

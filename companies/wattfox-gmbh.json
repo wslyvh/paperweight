@@ -1,0 +1,24 @@
+{
+    "slug": "wattfox-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "WattFox GmbH",
+    "runs": [
+        "photovoltaik-angebotsvergleich.de"
+    ],
+    "address": "c/o dacuro GmbH\nOtto-Hahn-Straße 3\n69190 Walldorf\nDeutschland",
+    "phone": "+49 6227 7893930",
+    "email": "DSB@wattfox.de",
+    "web": "https://www.wattfox.de/",
+    "sources": [
+        "https://www.wattfox.de/datenschutz",
+        "https://www.photovoltaik-angebotsvergleich.de/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/2123"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Betreibt photovoltaik-angebotsvergleich.de"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "kesselhaus",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "kesselhaus GmbH",
+    "address": "Beim Alten Ausbesserungswerk 4\n77654 Offenburg\nDeutschland",
+    "phone": "+49 781 92417 0",
+    "fax": "+49 781 92417 15",
+    "email": "Datenschutzbeauftragter@kesselhaus.com",
+    "web": "https://www.kesselhaus.com",
+    "sources": [
+        "https://kesselhaus.com/datenschutz/",
+        "https://github.com/datenanfragen/data/issues/72"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

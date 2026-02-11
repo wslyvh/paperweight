@@ -1,0 +1,20 @@
+{
+    "slug": "deutschewelle",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Deutsche Welle",
+    "address": "Kurt-Schumacher-Straße 3\n53113 Bonn\nDeutschland",
+    "phone": "+49 228 429 2123",
+    "fax": "+49 228 429 2195",
+    "email": "datenschutz@dw.com",
+    "web": "https://www.dw.com",
+    "sources": [
+        "https://www.dw.com/de/definition-und-nutzung-von-daten-durch-die-deutsche-welle-gem%C3%A4%C3%9F-eu-dsgvo/a-18265186"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

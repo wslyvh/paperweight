@@ -1,0 +1,27 @@
+{
+    "slug": "flux-fail",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "flux.fail UG (haftungsbeschränkt) & Co. Betriebs KG",
+    "address": "Glogauerstrasse 21\n10999 Berlin\nDeutschland",
+    "email": "info@flux.fail",
+    "web": "https://flux.fail",
+    "sources": [
+        "https://flux.fail/imprint"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "quality": "verified"
+}

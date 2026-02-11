@@ -1,0 +1,19 @@
+{
+    "slug": "pluralsight",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Pluralsight, LLC",
+    "address": "Southpoint, Herbert House\n11 Harmony Row\nDublin\nDO2 H270\nIreland",
+    "phone": "+1 801 784 9007",
+    "email": "support@pluralsight.com",
+    "web": "https://www.pluralsight.com",
+    "sources": [
+        "https://www.pluralsight.com/privacy",
+        "https://github.com/datenanfragen/data/issues/181"
+    ],
+    "quality": "verified"
+}

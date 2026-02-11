@@ -1,0 +1,23 @@
+{
+    "slug": "premius-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Premius GmbH",
+    "runs": [
+        "DUP Magazin",
+        "DUP Unternehmer-Plattform",
+        "Newsletter „DUP Weekly“"
+    ],
+    "address": "Albrechtstraße 22\n10117 Berlin\nDeutschland",
+    "phone": "+49 40 4688320",
+    "email": "info@kamux.eu",
+    "web": "https://www.dup-magazin.de/",
+    "sources": [
+        "https://www.dup-magazin.de/premius-datenschutzhinweis",
+        "https://www.dup-magazin.de/impressum",
+        "https://www.dup-magazin.de/allgemein/melden-sie-sich-jetzt-fuer-den-dup-weekly-an"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

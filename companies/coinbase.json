@@ -1,0 +1,34 @@
+{
+    "slug": "coinbase",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Coinbase Europe, Limited",
+    "runs": [
+        "Coinbase Pro",
+        "Coinbase Custody International Limited",
+        "Coinbase Ireland, Limited",
+        "Coinbase Singapore Pte. Ltd.",
+        "CB Payments. Ltd",
+        "Coinbase, Inc.",
+        "Coinbase Custody Trust Company, LLC",
+        "Coinbase Credit, Inc.",
+        "Coinbase Australia Pty Ltd",
+        "Coinbase KK."
+    ],
+    "address": "70 Sir John Rogerson's Quay\nDublin 2\nIreland",
+    "email": "dpo@coinbase.com",
+    "web": "https://www.coinbase.com",
+    "sources": [
+        "https://www.coinbase.com/legal/privacy",
+        "https://github.com/datenanfragen/data/pull/870"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Einwohner Deutschlands: Verwenden Sie stattdessen den Eintrag der Coinbase Germany GmbH in der Unternehmensdatenbank."
+    ],
+    "quality": "verified"
+}

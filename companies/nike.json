@@ -1,0 +1,24 @@
+{
+    "slug": "nike",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Nike European Operations Netherlands B.V.",
+    "runs": [
+        "NIKE Retail BV",
+        "Nike, Inc."
+    ],
+    "address": "Colosseum 1\n1213NL Hilversum\nThe Netherlands",
+    "email": "privacy@nike.com",
+    "web": "https://www.nike.com",
+    "sources": [
+        "https://agreementservice.svs.nike.com/rest/agreement?agreementType=privacyPolicy&uxId=com.nike.commerce.nikedotcom.web&country=DE",
+        "https://github.com/datenanfragen/data/issues/533",
+        "https://www.nike.com/de/help/a/unternehmensinformationen"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

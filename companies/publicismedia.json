@@ -1,0 +1,21 @@
+{
+    "slug": "publicismedia",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Publicis Media GmbH",
+    "address": "Toulouser Allee 3\n40211 Düsseldorf\nDeutschland",
+    "phone": "+49 211 17540 7",
+    "email": "privacy@publicismedia.de",
+    "web": "https://www.publicismedia.de/",
+    "sources": [
+        "https://www.publicismedia.de/datenschutz/"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

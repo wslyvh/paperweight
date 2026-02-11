@@ -1,0 +1,21 @@
+{
+    "slug": "bgl-inkasso",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "collection agency"
+    ],
+    "name": "BGL Inkasso UG (haftungsbeschränkt)",
+    "address": "c/o LexNovis\nJulius-Hatry-Straße 1\n68163 Mannheim\nDeutschland",
+    "phone": "+49 621 37703640",
+    "fax": "+49 621 37703641",
+    "email": "info@lexnovis.de",
+    "web": "https://www.bgl-inkasso.de",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/499",
+        "https://www.bgl-inkasso.de/datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,23 @@
+{
+  "slug": "ikiosk-de",
+  "relevant-countries": [
+    "de"
+  ],
+  "categories": [
+    "commerce",
+    "entertainment"
+  ],
+  "name": "Schweitzer Fachinformationen oHG",
+  "runs": [
+    "iKiosk"
+  ],
+  "address": "Elsenheimerstraße 41-43\n80687 München\nDeutschland",
+  "phone": "+49 89 55134 0",
+  "email": "datenschutz@schweitzer-online.de",
+  "web": "https://www.ikiosk.de",
+  "sources": [
+    "https://www.ikiosk.de/datenschutz.html"
+  ],
+  "suggested-transport-medium": "email",
+  "quality": "verified"
+}

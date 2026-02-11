@@ -1,0 +1,25 @@
+{
+    "slug": "dazn",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch",
+        "it",
+        "es"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "DAZN DACH GmbH",
+    "runs": [
+        "DAZN Limited"
+    ],
+    "address": "Münchener Str. 101\nGebäude 24.5 Nord\n85737 Ismaning\nGermany",
+    "email": "datasubjectrights@dazn.com",
+    "web": "https://www.dazn.com",
+    "sources": [
+        "https://www.dazn.com/en-DE/help/articles/privacy-de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

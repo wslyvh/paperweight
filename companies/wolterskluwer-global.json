@@ -1,0 +1,24 @@
+{
+    "slug": "wolterskluwer-global",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "health",
+        "school",
+        "social media"
+    ],
+    "name": "Wolters Kluwer N.V.",
+    "address": "P.O. Box 1030\n2400BA Alphen aan den Rijn\nThe Netherlands",
+    "phone": "+1 877 755 1133",
+    "webform": "https://www.wolterskluwer.com/en/privacy-cookies/inquiry",
+    "web": "https://www.wolterskluwer.com",
+    "sources": [
+        "https://www.wolterskluwer.com/en/privacy-cookies",
+        "https://www.wolterskluwer.com/en/privacy-cookies/inquiry",
+        "https://github.com/datenanfragen/data/pull/922",
+        "https://www.wolterskluwer.com/en/site-owner",
+        "https://www.wolterskluwer.com/en/privacy-cookies/california-consumer-privacy-act"
+    ],
+    "quality": "verified"
+}

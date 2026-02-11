@@ -1,0 +1,21 @@
+{
+    "slug": "4wmarketplace",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "4w Marketplace S.r.l.",
+    "address": "Via B. Quaranta, 40\n20139 Milano\nItaly",
+    "phone": "+39 02 5250 51",
+    "fax": "+39 02 9366 1938",
+    "web": "https://www.4wmarketplace.com/",
+    "sources": [
+        "https://www.4wmarketplace.com/privacy/",
+        "https://www.4wmarketplace.com/contatti/"
+    ],
+    "request-language": "it",
+    "custom-access-template": "access-tracking",
+    "quality": "verified"
+}

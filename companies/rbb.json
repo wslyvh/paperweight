@@ -1,0 +1,29 @@
+{
+    "slug": "rbb",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Rundfunk Berlin-Brandenburg (rbb)",
+    "runs": [
+        "rbb24",
+        "Antenne Brandenburg",
+        "rbb 88.8",
+        "radioeins",
+        "rbb24 Inforadio",
+        "radio3",
+        "rbb Fritz"
+    ],
+    "address": "Masurenallee 8 – 14\n14057 Berlin\nDeutschland",
+    "phone": "+49 30 979930",
+    "email": "Datenschutz@rbb-online.de",
+    "web": "https://www.rbb-online.de",
+    "sources": [
+        "https://www.rbb-online.de/datenschutz/datenschutzerklaerung.html",
+        "https://www.rbb-online.de/impressum/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

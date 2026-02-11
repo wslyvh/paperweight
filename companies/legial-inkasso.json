@@ -1,0 +1,20 @@
+{
+    "slug": "legial-inkasso",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "collection agency"
+    ],
+    "name": "LEGIAL AG",
+    "address": "c/o ERGO Group AG\nERGO-Platz 1\n40477 Düsseldorf\nDeutschland",
+    "phone": "+49 89 5880860",
+    "fax": "+49 89 588086833",
+    "email": "datenschutz@ergo.de",
+    "web": "https://www.legial.de/",
+    "sources": [
+        "https://www.legial.de/datenschutz-legial"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

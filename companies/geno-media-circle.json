@@ -1,0 +1,35 @@
+{
+    "slug": "geno-media-circle",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads",
+        "addresses"
+    ],
+    "name": "Geno Media Circle GmbH",
+    "address": "Weidestraße 122b\n22083 Hamburg\nDeutschland",
+    "phone": "+49 40 68878775",
+    "fax": "+49 40 68879560",
+    "email": "datenschutz@geno-media-circle.de",
+    "web": "https://www.geno-media-circle.de",
+    "sources": [
+        "https://www.geno-media-circle.de/datenschutz.php",
+        "https://github.com/datenanfragen/data/issues/86"
+    ],
+    "suggested-transport-medium": "email",
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "quality": "tested"
+}

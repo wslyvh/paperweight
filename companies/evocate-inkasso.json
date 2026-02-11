@@ -1,0 +1,21 @@
+{
+    "slug": "evocate-inkasso",
+    "categories": [
+        "addresses",
+        "collection agency"
+    ],
+    "name": "Evocate Inkasso GmbH",
+    "address": "Kirschenweg 32\n76756 Bellheim\nDeutschland",
+    "phone": "+49 72 72 9383 110",
+    "fax": "+49 72 72 9383 129",
+    "email": "info@evocate.de",
+    "web": "https://www.evocate-inkasso.de",
+    "sources": [
+        "https://www.evocate-inkasso.de/datenschutz",
+        "https://www.evocate-inkasso.de/impressum"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "quality": "verified"
+}

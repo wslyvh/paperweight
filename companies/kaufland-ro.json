@@ -1,0 +1,19 @@
+{
+    "slug": "kaufland-ro",
+    "relevant-countries": [
+        "ro"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Kaufland Romania SCS",
+    "address": "Str. Barbu Văcărescu, nr. 120-144\nCP 020284, Bucuresti, sector 2\nRomania",
+    "phone": "+40 372 090 000",
+    "email": "protectiadatelor@kaufland.ro",
+    "web": "https://www.kaufland.ro",
+    "sources": [
+        "https://www.kaufland.ro/regulament-privind-protectia-datelor.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

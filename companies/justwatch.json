@@ -1,0 +1,21 @@
+{
+    "slug": "justwatch",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment",
+        "ads"
+    ],
+    "name": "JustWatch GmbH",
+    "address": "Boxhagener Str. 18\n10245 Berlin\nGermany",
+    "email": "privacy@justwatch.com",
+    "web": "https://www.justwatch.com/",
+    "sources": [
+        "https://www.justwatch.com/de/Impressum",
+        "https://www.justwatch.com/de/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/767"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "alpha-bank-gr",
+    "relevant-countries": [
+        "gr"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "ALPHA BANK S.A.",
+    "address": "43, Panepistimiou Street\n105 64 Athens\nGreece",
+    "phone": "+30 210 326 6953",
+    "email": "contact-DPO@alpha.gr",
+    "web": "https://www.alpha.gr/",
+    "sources": [
+        "https://www.alpha.gr/en/retail/oroi/personal-data-protection"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

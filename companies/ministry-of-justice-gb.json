@@ -1,0 +1,20 @@
+{
+    "slug": "ministry-of-justice-gb",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Ministry of Justice",
+    "address": "Post point 5.22\n102 Petty France\nLondon\nSW1H 9AJ\nUnited Kingdom",
+    "email": "data.access@justice.gov.uk",
+    "webform": "https://request-personal-info.form.service.justice.gov.uk",
+    "web": "https://www.gov.uk/government/organisations/ministry-of-justice",
+    "sources": [
+        "https://www.gov.uk/government/organisations/ministry-of-justice/about/personal-information-charter",
+        "https://github.com/datenanfragen/data/pull/2254"
+    ],
+    "quality": "verified",
+    "suggested-transport-medium": "email"
+}

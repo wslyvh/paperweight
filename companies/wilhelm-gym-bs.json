@@ -1,0 +1,22 @@
+{
+    "slug": "wilhelm-gym-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Wilhelm-Gymnasium Braunschweig",
+    "address": "Leonhardstraße 63\n38102 Braunschweig\nDeutschland",
+    "phone": "+49 531 470 5670",
+    "fax": "+49 531 470 5699",
+    "email": "datenschutzbeauftragter@wilhelm-gym.net",
+    "web": "https://www.wilhelm-gym.de/",
+    "sources": [
+        "https://www.wilhelm-gym.de/home/impressum.htm",
+        "https://www.wilhelm-gym.de/home/datenschutzerklaerung.pdf"
+    ],
+    "request-language": "de",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

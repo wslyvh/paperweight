@@ -1,0 +1,21 @@
+{
+    "slug": "jobomi",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "Jobomi UG (haftungsbeschränkt)",
+    "address": "Korweg 8\n51647 Gummersbach\nDeutschland",
+    "phone": "+49 40 238 307 080",
+    "email": "info@jobomi.de",
+    "web": "https://jobomi.de",
+    "sources": [
+        "https://www.jobomi.de/datenschutzerklaerung/",
+        "https://www.jobomi.de/impressum/",
+        "https://github.com/datenanfragen/data/pull/1594"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

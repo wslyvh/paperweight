@@ -1,0 +1,32 @@
+{
+    "slug": "radio-bremen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Radio Bremen",
+    "runs": [
+        "buten un binnen",
+        "Bremen Eins",
+        "Bremen Zwei",
+        "Bremen Vier",
+        "Bremen NEXT"
+    ],
+    "address": "Diepenau 10\n28195 Bremen\nDeutschland",
+    "phone": "+49 421 246 0",
+    "fax": "+49 421 246 4 12 00",
+    "email": "datenschutz@radiobremen.de",
+    "web": "https://www.radiobremen.de/",
+    "sources": [
+        "https://dein.radiobremen.de/info/datenschutz/index.html",
+        "https://www.butenunbinnen.de/info/datenschutz/index.html",
+        "https://www.bremeneins.de/info/datenschutz/index.html",
+        "https://www.bremenzwei.de/info/datenschutz/index.html",
+        "https://www.bremenvier.de/info/datenschutz/index.html",
+        "https://www.bremennext.de/info/datenschutz/index.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

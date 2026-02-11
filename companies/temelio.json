@@ -1,0 +1,22 @@
+{
+    "slug": "temelio",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Temelio S.A.S",
+    "address": "2 rue de Lisbonne\n75008 Paris\nFrance",
+    "phone": "+33 1 40 68 76 50",
+    "email": "dpo@temelio.com",
+    "web": "https://www.temelio.com/",
+    "sources": [
+        "https://cdn.prod.website-files.com/6273edeee204e00de9592474/68c934cbd1cdca29a9bd667b_202509_TEMELIO_PolitiqueConfidentialite.pdf",
+        "https://www.temelio.com/mentions-legales"
+    ],
+    "request-language": "fr",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

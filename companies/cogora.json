@@ -1,0 +1,21 @@
+{
+    "slug": "cogora",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads",
+        "health"
+    ],
+    "name": "Cogora Group Ltd.",
+    "address": "140 London Wall\nLondon, EC2Y 5DN\nUnited Kingdom",
+    "phone": "+44 20 7214 0500",
+    "email": "data@cogora.com",
+    "web": "https://www.cogora.com",
+    "sources": [
+        "https://www.cogora.com/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/1349"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

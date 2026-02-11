@@ -1,0 +1,21 @@
+{
+    "slug": "finanzen-net-zero-gmbh",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "finanzen.net zero GmbH",
+    "address": "Gartenstraße 67\n76135 Karlsruhe\nDeutschland",
+    "phone": "+49 89 54 55 81 88",
+    "email": "datenschutzbeauftragter@finanzen-zero.net",
+    "web": "https://www.finanzen.net/zero/",
+    "sources": [
+        "https://www.finanzen.net/zero/impressum/",
+        "https://www.finanzen.net/zero/kontakt/",
+        "https://github.com/datenanfragen/data/pull/1536"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

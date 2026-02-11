@@ -1,0 +1,19 @@
+{
+    "slug": "buhl-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Buhl Data Service GmbH",
+    "address": "Am Siebertsweiher 3/5\n57290 Neunkirchen\nDeutschland",
+    "phone": "+49 2735 909699",
+    "fax": "+49 2735 77619",
+    "email": "datenschutz@buhl-data.com",
+    "web": "https://www.buhl.de",
+    "sources": [
+        "https://www.buhl.de/datenschutz",
+        "https://www.buhl.de/impressum/",
+        "https://github.com/datenanfragen/data/pull/1260"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "datev",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "DATEV eG",
+    "runs": [
+        "Arbeitnehmer online"
+    ],
+    "address": "Paumgartnerstraße 6 - 14\n90429 Nürnberg\nDeutschland",
+    "phone": "+49 911 3190",
+    "email": "datenschutz@datev.de",
+    "web": "https://www.datev.de/",
+    "sources": [
+        "https://www.datev.de/web/de/m/ueber-datev/datenschutz/informationen-nach-artikel-13-und-14-ds-gvo/",
+        "https://apps.datev.de/ano/legal/privacy",
+        "https://github.com/datenanfragen/data/pull/1838"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

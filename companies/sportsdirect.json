@@ -1,0 +1,18 @@
+{
+    "slug": "sportsdirect",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "SportsDirect.com Retail Ltd.",
+    "address": "Unit A\nBrook Park East\nMeadow Lane\nShirebrook NG20 8RY\nUnited Kingdom",
+    "email": "cs@sportsdirect.com",
+    "web": "https://www.sportsdirect.com/",
+    "sources": [
+        "https://www.sportsdirect.com/customerservices/otherinformation/securityandprivacy",
+        "https://www.sportsdirect.com/CustomerServices/ContactUs/ContactForm"
+    ],
+    "quality": "verified"
+}

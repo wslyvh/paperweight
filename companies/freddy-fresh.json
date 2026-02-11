@@ -1,0 +1,21 @@
+{
+    "slug": "freddy-fresh",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "FREDDY FRESH AG",
+    "runs": [
+        "Pizza"
+    ],
+    "address": "Großenhainer Straße 22a\n01936 Laußnitz\nDeutschland",
+    "phone": "+49 35795 285381",
+    "email": "Datenschutz@freddy-fresh.de",
+    "web": "https://www.freddy-fresh.de/",
+    "sources": [
+        "https://www.freddy-fresh.de/kontakt/",
+        "https://github.com/datenanfragen/data/issues/96",
+        "https://www.freddy-fresh.de/datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

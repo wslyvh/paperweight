@@ -1,0 +1,35 @@
+{
+    "slug": "advanzia",
+    "relevant-countries": [
+        "de",
+        "fr",
+        "at",
+        "gb",
+        "lu",
+        "es"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Advanzia Bank S.A.",
+    "runs": [
+        "Gebührenfrei Mastercard GOLD (www.gebuhrenfrei.com)",
+        "Carte de crédit ZERO Gold Mastercard (www.cartezero.fr)",
+        "free Mastercard Gold (www.free.at)",
+        "Tarjeta YOU (tarjetayou.es)",
+        "Advanzia deposit account (www.advanziakonto.com)"
+    ],
+    "address": "14, Rue Gabriel Lippmann\nL-5365 Munsbach\nLuxembourg",
+    "email": "dataprotection@advanzia.com",
+    "web": "https://www.advanzia.com",
+    "sources": [
+        "https://www.advanzia.com/en-gb/Documents/Corporate-Data-Protection-Notice-EN-202507.pdf",
+        "https://staomc3we02.blob.core.windows.net/blob-static-documents/LEGAL/DEU/Datenschutzhinweise.pdf",
+        "https://ma.cartezero.fr/CGV-Pol.-de-confid./binarywriterservlet?imgUid=6af70e49-b9cd-bf81-ad08-17429ae7701d&uBasVariant=11111111-1111-1111-1111-111111111111",
+        "https://staomc3we02.blob.core.windows.net/blob-static-documents/LEGAL/AUT/Datenschutzhinweise.pdf",
+        "https://staomc3we02.blob.core.windows.net/blob-static-documents/LEGAL/ESP/Pol%C3%ADtica-de-Protecci%C3%B3n-de-Datos.pdf",
+        "https://staomc3we02.blob.core.windows.net/blob-static-documents/LEGAL/DEP/DEU/Datenschutzhinweise.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

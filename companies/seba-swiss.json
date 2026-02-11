@@ -1,0 +1,21 @@
+{
+    "slug": "seba-swiss",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "SEBA Bank AG",
+    "address": "Kolinplatz 15\n6300 Zug\nSwitzerland",
+    "phone": "+41 41 552 43 00",
+    "email": "dataprotection@seba.swiss",
+    "web": "https://www.seba.swiss",
+    "sources": [
+        "https://www.seba.swiss/privacy-policy",
+        "https://www.seba.swiss/contact/",
+        "https://github.com/datenanfragen/data/pull/2001"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

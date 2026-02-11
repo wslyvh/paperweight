@@ -1,0 +1,23 @@
+{
+    "slug": "kirchengemeinde-ildehausen-in-seesen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Ildehausen in Seesen",
+    "address": "Alte Dorfstraße 4\n38723 Seesen\nDeutschland",
+    "phone": "+49 5381 8602",
+    "fax": "+49 5381 989667",
+    "email": "kirchberg.pfa@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=977"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "qvc-shop",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "QVC Handel S.á r.l. & Co. KG",
+    "address": "Rhein Studios\nPlockstraße 30\n40221 Düsseldorf\nDeutschland",
+    "phone": "+49 221 348 9362 45",
+    "email": "konzerndatenschutzbeauftragter@qvc.com",
+    "web": "http://www.qvc.de/",
+    "sources": [
+        "https://www.qvc.de/content/datenschutz/datenschutzbestimmungen.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

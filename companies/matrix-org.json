@@ -1,0 +1,22 @@
+{
+    "slug": "matrix-org",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "The Matrix.org Foundation C.I.C.",
+    "runs": [
+        "Matrix.org"
+    ],
+    "address": "10 Queen Street Place\nLondon\nEC4R 1AG\nUnited Kingdom",
+    "email": "dpo@matrix.org",
+    "web": "https://matrix.org",
+    "sources": [
+        "https://matrix.org/legal/privacy-notice/",
+        "https://github.com/datenanfragen/data/pull/1800"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "postabiztosito-hu",
+    "relevant-countries": [
+        "hu"
+    ],
+    "categories": [
+        "insurance"
+    ],
+    "name": "Magyar Posta Biztosító Zrt. (MPB)",
+    "runs": [
+        "Magyar Posta Életbiztosító Zrt. (MPÉ)"
+    ],
+    "address": "Pf. 269\n1392 Budapest\nHungary",
+    "phone": "+36 1 200 4800",
+    "email": "adatvedelem@mpb.hu",
+    "web": "https://postabiztosito.hu",
+    "sources": [
+        "https://postabiztosito.hu/cms/media/lvffh4lp/adatkezel%C3%A9si-t%C3%A1j%C3%A9koztat%C3%B3_%C3%A1ltal%C3%A1nos_20250701_final.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

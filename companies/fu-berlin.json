@@ -1,0 +1,22 @@
+{
+    "slug": "fu-berlin",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Freie Universität Berlin",
+    "address": "Kaiserswerther Straße 16/18\n14195 Berlin\nDeutschland",
+    "phone": "+49 30 838 1",
+    "fax": "+49 30 838 473 100",
+    "email": "datenschutz@fu-berlin.de",
+    "web": "https://fu-berlin.de",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/140",
+        "https://www.fu-berlin.de/redaktion/impressum/datenschutzhinweise/index.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

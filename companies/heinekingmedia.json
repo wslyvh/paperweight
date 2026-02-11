@@ -1,0 +1,38 @@
+{
+    "slug": "heinekingmedia",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "categories": [
+        "commerce",
+        "entertainment",
+        "social media",
+        "telecommunication",
+        "ads"
+    ],
+    "name": "heinekingmedia GmbH",
+    "runs": [
+        "netschool",
+        "netbizz",
+        "netpublic",
+        "netPOS",
+        "Digitales Schwarzes Brett",
+        "DOOH.de",
+        "Media Box",
+        "stashcat",
+        "schul.cloud",
+        "schul.cloud pro"
+    ],
+    "address": "Hamburger Allee 2 – 4\n30161 Hannover\nDeutschland",
+    "phone": "+49 511 67 51 90",
+    "fax": "+49 511 67 51 91 11",
+    "email": "datenschutz@heinekingmedia.de",
+    "web": "https://heinekingmedia.de/",
+    "sources": [
+        "https://heinekingmedia.de/datenschutz/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

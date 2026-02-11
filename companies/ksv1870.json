@@ -1,0 +1,26 @@
+{
+    "slug": "ksv1870",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "credit agency",
+        "collection agency",
+        "finance"
+    ],
+    "name": "KSV1870 Holding AG",
+    "address": "Wagenseilgasse 7\n1120 Wien\nÖsterreich",
+    "phone": "+43 50 1870 1000",
+    "email": "ksv1870.datenschutzbeauftragter@ksv.at",
+    "web": "https://www.ksv.at",
+    "sources": [
+        "https://www.ksv.at/datenschutzerklaerung",
+        "https://github.com/datenanfragen/data/issues/151"
+    ],
+    "needs-id-document": true,
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Hotline für Auskunftsansuchen:\n- Telefon: +43 50 1870-1101\n- Mail: ksv.sa@ksv.at"
+    ],
+    "quality": "verified"
+}

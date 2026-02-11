@@ -1,0 +1,34 @@
+{
+    "slug": "jaksch-partner",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "JAKSCH & PARTNER - Jaksch Research GmbH",
+    "address": "Schillerstraße 8\n4020 Linz\nAustria",
+    "phone": "+43 732 604260",
+    "fax": "+43 732 60426042",
+    "email": "datenschutzbeauftragter@jaksch-partner.at",
+    "web": "https://www.jaksch-partner.at/",
+    "sources": [
+        "https://www.jaksch-partner.at/datenschutzerklarung/",
+        "https://www.jaksch-partner.at/impressum/",
+        "https://github.com/datenanfragen/data/pull/2664"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": true
+        },
+        {
+            "desc": "Telefonnummer",
+            "type": "input",
+            "optional": true
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

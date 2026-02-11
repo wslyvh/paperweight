@@ -1,0 +1,22 @@
+{
+    "slug": "1st-online-solutions-limited",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "1st Online Solutions Limited",
+    "runs": [
+        "Fantastic Academy"
+    ],
+    "address": "98 Tooley Street\nLondon\nSE1 2TH\nUnited Kingdom",
+    "email": "privacy@fantasticservices.com",
+    "web": "https://fantasticacademy.com/",
+    "sources": [
+        "https://fantasticacademy.com/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/1189"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

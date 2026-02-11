@@ -1,0 +1,21 @@
+{
+    "slug": "psd-bb",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "PSD Bank Berlin-Brandenburg eG",
+    "address": "Handjerystr. 34–36\n12159 Berlin\nDeutschland",
+    "phone": "+49 30 850820",
+    "fax": "+49 30 85082239",
+    "email": "datenschutz@psd-bb.de",
+    "web": "https://www.psd-berlin-brandenburg.de/",
+    "sources": [
+        "https://www.psd-berlin-brandenburg.de/service/rechtliche-hinweise/datenschutzhinweis-zur-website.html"
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

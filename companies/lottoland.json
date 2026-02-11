@@ -1,0 +1,20 @@
+{
+    "slug": "lottoland",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Lottoland Holdings Limited",
+    "runs": [
+        "Lottoland.com"
+    ],
+    "address": "c/o Instant EU GDPR Representative Limited\nOffice 2, 12A Lower Main Street\nLucan, Co. Dublin\nK78X5P8\nIreland",
+    "phone": "+49 40 82216931",
+    "email": "dpo@lottoland.com",
+    "web": "https://www.lottoland.com",
+    "sources": [
+        "https://www.lottoland.com/datenschutz",
+        "https://www.lottoland.com/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

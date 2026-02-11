@@ -1,0 +1,29 @@
+{
+    "slug": "tuev-rheinland",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body",
+        "school",
+        "telecommunication",
+        "travel",
+        "commerce",
+        "utility",
+        "health"
+    ],
+    "name": "TÜV Rheinland Group",
+    "runs": [
+        "TÜV Rheinland AG"
+    ],
+    "address": "Am Grauen Stein\n51105 Köln\nDeutschland",
+    "phone": "+49 221 8060",
+    "fax": "+49 221 806114",
+    "email": "datenschutzbeauftragter@de.tuv.com",
+    "web": "https://www.tuv.com",
+    "sources": [
+        "https://www.tuv.com/germany/de/data-protection-declaration-de/"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

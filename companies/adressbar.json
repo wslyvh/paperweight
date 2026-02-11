@@ -1,0 +1,21 @@
+{
+    "slug": "adressbar",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "addresses"
+    ],
+    "name": "Fabian Wolf – Data Services",
+    "address": "Brehmstraße 3\n40239 Düsseldorf\nDeutschland",
+    "phone": "+49 211 96665650",
+    "email": "datenschutz@adressbar.de",
+    "web": "https://adressbar.de",
+    "sources": [
+        "https://adressbar.de/datenschutzerklaerung/",
+        "https://adressbar.de/impressum/",
+        "https://github.com/datenanfragen/data/pull/2330"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

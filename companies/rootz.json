@@ -1,0 +1,21 @@
+{
+    "slug": "rootz",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Rootz Ltd.",
+    "runs": [
+        "Wildz"
+    ],
+    "address": "Ewropa Business Centre, Level 3 - 701\nDun Karm Street\nBirkirkara BKR 9034\nMalta",
+    "email": "dpo@wildz.com",
+    "sources": [
+        "https://www.wildz.de/de/info/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1988"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

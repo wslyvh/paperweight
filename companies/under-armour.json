@@ -1,0 +1,21 @@
+{
+    "slug": "under-armour",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Under Armour, Inc.",
+    "runs": [
+        "UA Record"
+    ],
+    "address": "c/o Under Armour Europe B.V.\nStadionplein 10\n1076 CM Amsterdam\nThe Netherlands",
+    "email": "privacy@underarmour.com",
+    "web": "https://www.underarmour.com/",
+    "sources": [
+        "https://privacy.underarmour.com/s/article/Residents-of-the-European-Economic-Area-and-the-United-Kingdom?language=en_US",
+        "https://privacy.underarmour.com/s/article/How-to-Contact-Us?language=en_US",
+        "https://github.com/datenanfragen/data/issues/428",
+        "https://github.com/datenanfragen/data/pull/3115"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

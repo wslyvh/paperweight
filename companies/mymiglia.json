@@ -1,0 +1,24 @@
+{
+    "slug": "mymiglia",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "travel"
+    ],
+    "name": "Italia Loyalty S.p.A.",
+    "runs": [
+        "MilleMiglia"
+    ],
+    "address": "Piazza Almerico da Schio, 3\nPalazzina Bravo\n00054 Fiumicino (RM)\nItaly",
+    "phone": "+39 06 65645",
+    "email": "dpo@mymiglia.com",
+    "web": "https://www.mymiglia.com/",
+    "sources": [
+        "https://www.mymiglia.com/en-GB/pages/privacy",
+        "https://www.mymiglia.com/en-GB/pages/contact",
+        "https://github.com/datenanfragen/data/pull/2490"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

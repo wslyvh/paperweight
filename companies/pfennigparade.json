@@ -1,0 +1,17 @@
+{
+    "slug": "pfennigparade",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Stiftung Pfennigparade",
+    "address": "Barlachstraße 24-36\n80804 München\nDeutschland",
+    "phone": "+49 89 83934120",
+    "email": "Datenschutz@Pfennigparade.de",
+    "web": "https://www.pfennigparade.de",
+    "sources": [
+        "https://www.pfennigparade.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1954"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

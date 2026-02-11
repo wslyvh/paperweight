@@ -1,0 +1,22 @@
+{
+    "slug": "calcuso",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce",
+        "school"
+    ],
+    "name": "CALCUSO GmbH",
+    "address": "Hans-Böckler-Str. 12\n40764 Langenfeld\nDeutschland",
+    "phone": "+49 2173 9608884",
+    "fax": "+49 2173 1096926",
+    "email": "privacy@calcuso.com",
+    "web": "https://www.calcuso.de",
+    "sources": [
+        "https://www.calcuso.de/privacy-policy",
+        "https://www.calcuso.de/impressum/",
+        "https://github.com/datenanfragen/data/pull/967"
+    ],
+    "quality": "verified"
+}

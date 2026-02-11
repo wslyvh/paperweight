@@ -1,0 +1,17 @@
+{
+    "slug": "stopandgo",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "stop+go Systemzentrale GmbH",
+    "address": "Polostraße 1\n41363 Jüchen\nDeutschland",
+    "phone": "+49 2165 17170",
+    "email": "datenschutz@stopandgo.de",
+    "web": "https://www.stopandgo.de/",
+    "sources": [
+        "https://www.stopandgo.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/1976"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,34 @@
+{
+    "slug": "digicert",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "DigiCert Ireland Ltd.",
+    "runs": [
+        "DigiCert, Inc."
+    ],
+    "address": "Unit 21, Beckett Way\nPark West Business Park\nDublin 12\nIreland",
+    "phone": "+353 1803 5400",
+    "fax": "+353 1861 7990",
+    "email": "privacy@digicert.com",
+    "webform": "https://privacyportal.onetrust.com/webform/8805d472-8993-4a56-a4d1-9c1ba8b92aca/f3fe7561-71f8-4f11-b648-8fb5955dd5ef",
+    "web": "https://www.digicert.com/",
+    "sources": [
+        "https://www.digicert.com/digicert-privacy-policy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

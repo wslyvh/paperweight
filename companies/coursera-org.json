@@ -1,0 +1,26 @@
+{
+    "slug": "coursera-org",
+    "relevant-countries": [
+        "all"
+    ],
+    "name": "Coursera UK Limited",
+    "address": "City Bridge House\n57 Southwark Street\nLondon\nSE1 1RU\nUnited Kingdom",
+    "phone": "+44 20 3457 0256",
+    "email": "privacy@coursera.org",
+    "web": "https://www.coursera.org",
+    "sources": [
+        "https://www.coursera.org/about/privacy"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

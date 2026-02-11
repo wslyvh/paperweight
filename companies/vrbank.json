@@ -1,0 +1,21 @@
+{
+    "slug": "vrbank",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "VR Bank Rhein-Neckar eG",
+    "address": "Augustaanlage 61\n68165 Mannheim\nDeutschland",
+    "phone": "+49 621 1282 19999",
+    "fax": "+49 621 1282 12820",
+    "email": "Datenschutz@vrbank.de",
+    "web": "https://www.vrbank.de/",
+    "sources": [
+        "https://www.vrbank.de/service/rechtliche-hinweise/datenschutzhinweis-zur-website.html",
+        "https://github.com/datenanfragen/data/pull/1100"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

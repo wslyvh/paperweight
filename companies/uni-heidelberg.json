@@ -1,0 +1,23 @@
+{
+    "slug": "uni-heidelberg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body",
+        "school"
+    ],
+    "name": "Universität Heidelberg",
+    "address": "Seminarstr. 2\n69117 Heidelberg\nDeutschland",
+    "phone": "+49 6221 5419012",
+    "fax": "+49 6221 5419020",
+    "email": "datenschutz@uni-heidelberg.de",
+    "web": "https://www.uni-heidelberg.de",
+    "sources": [
+        "https://www.uni-heidelberg.de/de/datenschutzerklaerung",
+        "https://github.com/datenanfragen/data/pull/942",
+        "https://www.uni-heidelberg.de/de/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

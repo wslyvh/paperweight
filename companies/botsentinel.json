@@ -1,0 +1,20 @@
+{
+    "slug": "botsentinel",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Bot Sentinel Inc",
+    "address": "PO Box 156\nHasbrouck Heights, NJ 07604\nUnited States of America",
+    "email": "support@botsentinel.com",
+    "webform": "https://help.botsentinel.com/support/tickets/new",
+    "web": "https://botsentinel.com/",
+    "sources": [
+        "https://botsentinel.com/privacy-policy",
+        "https://chrome.google.com/webstore/detail/bot-sentinel/eadmnplpcakhnmjbaioeholpakbknhgc?hl=en",
+        "https://github.com/datenanfragen/data/pull/1880"
+    ],
+    "quality": "verified"
+}

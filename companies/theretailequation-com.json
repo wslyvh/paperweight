@@ -1,0 +1,34 @@
+{
+    "slug": "theretailequation-com",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "The Retail Equation, Inc.",
+    "address": "220 Progress\nSuite 175\nIrvine, CA 92618\nUnited States of America",
+    "phone": "+1 888 588 0671",
+    "email": "privacy@theretailequation.com",
+    "webform": "https://theretailequation.atlassian.net/servicedesk/customer/portals",
+    "web": "https://www.theretailequation.com",
+    "sources": [
+        "https://www.theretailequation.com/privacy-policies/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Address",
+            "type": "address"
+        },
+        {
+            "desc": "Email",
+            "type": "email"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

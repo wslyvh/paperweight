@@ -1,0 +1,20 @@
+{
+    "slug": "greenpeace-media",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "Greenpeace Media GmbH",
+    "runs": [
+        "Greenpeace Magazin"
+    ],
+    "address": "Große Elbstraße 145 d\n22767 Hamburg\nDeutschland",
+    "phone": "+49 40 808128080",
+    "fax": "+49 40 808128099",
+    "email": "gpm@greenpeace-magazin.de",
+    "web": "https://www.greenpeace-magazin.de",
+    "sources": [
+        "https://www.greenpeace-magazin.de/seite/datenschutz",
+        "https://github.com/datenanfragen/data/pull/2108"
+    ],
+    "quality": "verified"
+}

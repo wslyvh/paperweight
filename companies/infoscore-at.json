@@ -1,0 +1,25 @@
+{
+    "slug": "infoscore-at",
+    "relevant-countries": [
+        "at"
+    ],
+    "categories": [
+        "collection agency"
+    ],
+    "name": "Riverty Services Austria GmbH",
+    "runs": [
+        "infoscore austria GmbH (ehem.)"
+    ],
+    "address": "Karl-Popper-Straße 2/Top 6\n1100 Wien\nÖsterreich",
+    "phone": "+43 1 5036490",
+    "fax": "+43 1 5036490968",
+    "email": "datenschutz.at@riverty.com",
+    "web": "https://at.flow.riverty.com/",
+    "sources": [
+        "https://at.flow.riverty.com/rechtliches/datenschutz",
+        "https://at.flow.riverty.com/rechtliches/impressum",
+        "https://www.northdata.de/Riverty%20Services%20Austria%20GmbH,%20Wien/148689k"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,42 @@
+{
+    "slug": "jimmyfairly",
+    "relevant-countries": [
+        "de",
+        "fr",
+        "it",
+        "gb",
+        "at",
+        "be",
+        "cz",
+        "dk",
+        "ee",
+        "fi",
+        "gr",
+        "hu",
+        "is",
+        "ie",
+        "lv",
+        "lt",
+        "lu",
+        "nl",
+        "pl",
+        "pt",
+        "sk",
+        "es",
+        "se"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Jimmy Fairly",
+    "address": "23, rue du Mail\n75002 Paris\nFrance",
+    "email": "dpo@jimmyfairly.com",
+    "web": "https://www.jimmyfairly.com",
+    "sources": [
+        "https://www.jimmyfairly.com/pages/legal",
+        "https://github.com/datenanfragen/data/issues/588",
+        "https://www.jimmyfairly.com/pages/faq"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

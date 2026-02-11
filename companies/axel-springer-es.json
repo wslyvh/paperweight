@@ -1,0 +1,33 @@
+{
+    "slug": "axel-springer-es",
+    "relevant-countries": [
+        "es"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Henneo Magazines, S.A.",
+    "runs": [
+        "autobild.es",
+        "businessinsider.es",
+        "computerhoy.com",
+        "hobbyconsolas.com",
+        "ticbit.com",
+        "topgear.es"
+    ],
+    "address": "Calle Canarias 49\n28045 Madrid\nEspaña",
+    "phone": "+34 915 14 06 00",
+    "email": "dpo@henneomagazines.com",
+    "web": "https://www.henneomagazines.com",
+    "sources": [
+        "https://www.henneomagazines.com/policies/privacy-policy",
+        "https://www.henneomagazines.com/policies/contact-information",
+        "https://www.autobild.es/politica-privacidad",
+        "https://www.businessinsider.es/politica-privacidad",
+        "https://computerhoy.20minutos.es/politica-privacidad",
+        "https://www.hobbyconsolas.com/politica-privacidad",
+        "https://www.topgear.es/politica-privacidad"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

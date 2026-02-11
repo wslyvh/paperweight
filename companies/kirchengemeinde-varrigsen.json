@@ -1,0 +1,24 @@
+{
+    "slug": "kirchengemeinde-varrigsen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Varrigsen",
+    "address": "Rothöfen 1\n31073 Delligsen\nDeutschland",
+    "phone": "+49 5187 2405",
+    "fax": "+49 5187 3481",
+    "email": "kaierde.buero@lk-bs.de",
+    "web": "http://www.kirche-kaierde.de/",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=683"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

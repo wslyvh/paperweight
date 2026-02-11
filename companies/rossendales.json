@@ -1,0 +1,22 @@
+{
+    "slug": "rossendales",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "collection agency"
+    ],
+    "name": "Marston Holdings Ltd.",
+    "runs": [
+        "Rossendales Ltd. (formerly)"
+    ],
+    "address": "Rutland House\n8th Floor\n148 Edmund Street\nBirmingham\nB3 2JR\nUnited Kingdom",
+    "email": "dpo@marstonholdings.co.uk",
+    "web": "https://www.marstonholdings.co.uk",
+    "sources": [
+        "https://www.marstonholdings.co.uk/marston-holdings-privacy-notice/",
+        "https://find-and-update.company-information.service.gov.uk/company/01501584"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

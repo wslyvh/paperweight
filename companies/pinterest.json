@@ -1,0 +1,38 @@
+{
+    "slug": "pinterest",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Pinterest Europe Ltd.",
+    "runs": [
+        "Pinterest Inc.",
+        "Pinterest GmbH"
+    ],
+    "address": "Palmerston House\n2nd Floor\nFenian Street\nDublin 2\nIreland",
+    "email": "privacy-support@pinterest.com",
+    "webform": "https://help.pinterest.com/en/contact",
+    "web": "https://www.pinterest.com/",
+    "sources": [
+        "https://policy.pinterest.com/en/privacy-policy",
+        "https://policy.pinterest.com/en/impressumnetzdg",
+        "https://github.com/datenanfragen/data/issues/277"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Email",
+            "type": "email",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

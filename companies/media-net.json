@@ -1,0 +1,20 @@
+{
+    "slug": "media-net",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Media.Net Advertising FZ-LLC",
+    "address": "2701 Aurora Tower\nDubai Media City\nDubai 215028\nUnited Arab Emirates",
+    "email": "privacy@media.net",
+    "web": "https://www.media.net",
+    "sources": [
+        "https://www.media.net/privacy-policy"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

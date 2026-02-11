@@ -1,0 +1,17 @@
+{
+    "slug": "tide-co",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Tide Platform Ltd",
+    "address": "5th Floor\n1 Appold Street\nLondon\nEC2A 2UT\nUnited Kingdom",
+    "email": "hello@tide.co",
+    "web": "https://www.tide.co/",
+    "sources": [
+        "https://www.tide.co/privacy/"
+    ],
+    "quality": "verified"
+}

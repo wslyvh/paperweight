@@ -1,0 +1,20 @@
+{
+    "slug": "sevenoaks-conservatives",
+    "relevant-countries": [
+        "gb"
+    ],
+    "categories": [
+        "political party"
+    ],
+    "name": "Sevenoaks Conservative Association",
+    "address": "First Floor\n6 Wealden Place\nBradbourne Vale Road\nSevenoaks\nTN13 3QQ\nUnited Kingdom",
+    "phone": "+44 1732 452261",
+    "email": "office@sevenoaksconservatives.org",
+    "web": "https://www.sevenoaksconservatives.org/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/389",
+        "https://www.sevenoaksconservatives.org/contact"
+    ],
+    "request-language": "en",
+    "quality": "verified"
+}

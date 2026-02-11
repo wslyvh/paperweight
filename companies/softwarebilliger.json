@@ -1,0 +1,24 @@
+{
+    "slug": "softwarebilliger",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Antares Im- und Export GmbH",
+    "runs": [
+        "softwarebilliger.de"
+    ],
+    "address": "Pankower Str. 16\n13156 Berlin\nDeutschland",
+    "phone": "+49 30 779078685",
+    "fax": "+49 30 779078686",
+    "email": "info@dg-datenschutz.de",
+    "web": "https://www.softwarebilliger.de/",
+    "sources": [
+        "https://www.softwarebilliger.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2210"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

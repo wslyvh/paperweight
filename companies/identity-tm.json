@@ -1,0 +1,27 @@
+{
+    "slug": "identity-tm",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "IDnow GmbH",
+    "address": "Auenstr. 100\n80469 München\nDeutschland",
+    "phone": "+49 89 41324600",
+    "email": "info@idnow.de",
+    "web": "https://www.idnow.io/",
+    "sources": [
+        "https://www.idnow.io/de/datenschutzerklaerung/",
+        "https://www.idnow.io/de/impressum/"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Auftragsnummer",
+            "type": "input"
+        }
+    ],
+    "quality": "verified"
+}

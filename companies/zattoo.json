@@ -1,0 +1,34 @@
+{
+    "slug": "zattoo",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "categories": [
+        "entertainment",
+        "social media"
+    ],
+    "name": "Zattoo Europa AG",
+    "address": "Baslerstrasse 60\n8048 Zürich\nSchweiz",
+    "phone": "+41 43 500 21 00",
+    "fax": "+41 43 500 21 11",
+    "email": "datenschutz@zattoo.com",
+    "web": "https://zattoo.com/",
+    "sources": [
+        "https://zattoo.com/company/privacy/",
+        "https://github.com/datenanfragen/data/issues/498"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name"
+        },
+        {
+            "desc": "Nutzername",
+            "type": "input"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

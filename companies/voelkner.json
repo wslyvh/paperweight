@@ -1,0 +1,24 @@
+{
+    "slug": "voelkner",
+    "categories": [
+        "commerce"
+    ],
+    "name": "Re-In Retail International GmbH",
+    "runs": [
+        "voelkner.de"
+    ],
+    "address": "Nordring 98a\n90409 Nürnberg\nDeutschland",
+    "phone": "+49 911 326 898 88",
+    "fax": "+49 911 326 898 89",
+    "email": "datenschutz@voelkner.de",
+    "web": "https://www.voelkner.de/",
+    "sources": [
+        "https://www.voelkner.de/Datenschutz.html",
+        "https://www.voelkner.de/Impressum.html"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

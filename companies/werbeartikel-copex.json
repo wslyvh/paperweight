@@ -1,0 +1,17 @@
+{
+    "slug": "werbeartikel-copex",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "COPEX GmbH",
+    "address": "Wichmannstr. 27\n30519 Hannover\nDeutschland",
+    "phone": "+49 511 12359580",
+    "fax": "+49 511 123595888",
+    "email": "info@werbeartikel-copex.de",
+    "web": "https://www.werbeartikel-copex.de",
+    "sources": [
+        "https://www.werbeartikel-copex.de/impressum-38fc1e2a-4d57-5bbe-a69e-b5712285bb32.html",
+        "https://github.com/datenanfragen/data/pull/1261"
+    ],
+    "quality": "verified"
+}

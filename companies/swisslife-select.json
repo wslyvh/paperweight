@@ -1,0 +1,22 @@
+{
+    "slug": "swisslife-select",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Swiss Life Select Deutschland GmbH",
+    "address": "Swiss-Life-Platz 1\n30659 Hannover\nDeutschland",
+    "fax": "+49 511 90205224",
+    "email": "datenschutz@swisslife-select.de",
+    "pgp-fingerprint": "670B A093 EA23 7A99 7494  4AE5 87CA A6E3 BEB9 7484",
+    "pgp-url": "https://www.swisslife-select.de/content/dam/slsde/pgpschl%C3%BCssel/Datenschutz@swisslife-select.de%20670BA093EA237A9974944AE587CAA6E3BEB97484%20Public.pgp",
+    "web": "https://www.swisslife-select.de",
+    "sources": [
+        "https://www.swisslife-select.de/privatkunden/footer/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/1942"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,16 @@
+{
+    "slug": "food-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "name": "food direkt GmbH",
+    "runs": [
+        "food.de"
+    ],
+    "address": "Spohrstraße 10\n04103 Leipzig\nDeutschland",
+    "sources": [
+        "https://www.northdata.de/food%20direkt%20GmbH,%20Leipzig/HRB%2032999",
+        "https://github.com/datenanfragen/data/issues/510"
+    ],
+    "quality": "verified"
+}

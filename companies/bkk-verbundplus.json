@@ -1,0 +1,21 @@
+{
+    "slug": "bkk-verbundplus",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "insurance",
+        "health"
+    ],
+    "name": "BKK VerbundPlus",
+    "address": "Zeppelinring 13\n88400 Biberach\nDeutschland",
+    "phone": "+49 7351 18240",
+    "email": "datenschutz@bkkvp.de",
+    "web": "https://www.bkk-verbundplus.de/",
+    "sources": [
+        "https://www.bkk-verbundplus.de/unternehmen/datenschutz/datenschutzerklaerung",
+        "https://github.com/datenanfragen/data/issues/508"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

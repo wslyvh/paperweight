@@ -1,0 +1,21 @@
+{
+    "slug": "vbk-versicherung",
+    "categories": [
+        "insurance"
+    ],
+    "name": "Versicherungskammer Bayern Versicherungsanstalt des öffentlichen Rechts",
+    "address": "Maximilianstraße 53\n80530 München\nDeutschland",
+    "phone": "+48 89 21 60 18 80",
+    "fax": "+49 89 21 60 27 14",
+    "email": "datenschutz@vkb.de",
+    "web": "https://www.vkb.de",
+    "sources": [
+        "https://www.vkb.de/content/ueber-uns/unternehmen/datenschutz-compliance/datenschutz/",
+        "https://www.vkb.de/content/ueber-uns/impressum/"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

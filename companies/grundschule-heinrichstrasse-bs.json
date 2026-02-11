@@ -1,0 +1,22 @@
+{
+    "slug": "grundschule-heinrichstrasse-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Offene Ganztagsgrundschule Heinrichstraße Braunschweig",
+    "address": "Heinrichstraße 30\n38106 Braunschweig\nDeutschland",
+    "phone": "+49 531 33 05 64",
+    "fax": "+49 531 2 33 87 39",
+    "email": "GS.Heinrichstrasse@braunschweig.de",
+    "web": "http://www.grundschule-heinrichstrasse.de",
+    "sources": [
+        "http://www.grundschule-heinrichstrasse.de/index.php?id=70"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

@@ -1,0 +1,32 @@
+{
+    "slug": "doctolib",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "health"
+    ],
+    "name": "Doctolib GmbH",
+    "address": "Mehringdamm 51\n10961 Berlin\nDeutschland",
+    "phone": "+49 89 20702884",
+    "email": "datenschutz@doctolib.de",
+    "web": "https://www.doctolib.de",
+    "sources": [
+        "https://media.doctolib.com/image/upload/v1690558649/legal/B2C-PrivacyPolicy-Aug-23-DE.pdf",
+        "https://media.doctolib.com/image/upload/v1691488871/legal/Legal-Mentions-Aug23-DE.pdf",
+        "https://github.com/datenanfragen/data/pull/898",
+        "https://github.com/datenanfragen/data/pull/2342"
+    ],
+    "required-elements": [
+        {
+            "desc": "E-Mail",
+            "type": "email"
+        },
+        {
+            "desc": "Name",
+            "type": "name"
+        }
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

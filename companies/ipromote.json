@@ -1,0 +1,26 @@
+{
+    "slug": "ipromote",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "2KDirect, Inc.",
+    "runs": [
+        "iPromote"
+    ],
+    "address": "3000 Broad Street\nSuite 115\nSan Luis Obispo\nCA 93401\nUnited States of America",
+    "phone": "+1 800 576 1955",
+    "fax": "+1 805 597 5001",
+    "email": "privacy@ipromote.com",
+    "web": "https://www.ipromote.com/",
+    "sources": [
+        "https://www.ipromote.com/privacy-policy/",
+        "https://www.ipromote.com/contact/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,22 @@
+{
+    "slug": "mylife",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "credit agency",
+        "addresses"
+    ],
+    "name": "MyLife.com, Inc.",
+    "address": "907 Westwood Blvd. (#359)\nLos Angeles\nCA 90024-2905\nUnited States of America",
+    "phone": "+1 888 704 1900",
+    "email": "privacy@mylife.com",
+    "web": "https://www.mylife.com/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/120",
+        "https://web.archive.org/web/20190505164339/https://www.mylife.com/privacy-policy"
+    ],
+    "request-language": "en",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

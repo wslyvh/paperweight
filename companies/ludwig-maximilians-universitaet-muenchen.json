@@ -1,0 +1,23 @@
+{
+    "slug": "ludwig-maximilians-universitaet-muenchen",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Ludwig-Maximilians-Universität München",
+    "address": "Geschwister-Scholl-Platz 1\n80539 München\nDeutschland",
+    "phone": "+49 89 21802414",
+    "fax": "+49 89 21802322",
+    "email": "poststelle@verwaltung.uni-muenchen.de",
+    "webform": "https://www.lmu.de/de/footer/datenschutz/kontakt-zum-behoerdlichen-datenschutzbeauftragten.html",
+    "web": "https://www.lmu.de/",
+    "sources": [
+        "https://www.lmu.de/de/die-lmu/struktur/organisation/vertretungen-und-beauftragte/datenschutzbeauftragte.html",
+        "https://www.lmu.de/de/footer/impressum/",
+        "https://github.com/datenanfragen/data/pull/1834"
+    ],
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "moneyfarm-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "WAP Invest GmbH",
+    "runs": [
+        "MFM Investment GmbH (ehem.)",
+        "Sciuridae Vermögensverwaltungs GmbH (ehem.)",
+        "Vaamo Asset Management GmbH (ehem.)"
+    ],
+    "address": "c/o Kriftel Spaces\nTaunusstr. 52\n65830 Kriftel\nDeutschland",
+    "sources": [
+        "https://www.northdata.de/WAP%20Invest%20GmbH,%20Kriftel/Amtsgericht%20Frankfurt%20am%20Main%20HRB%20105192",
+        "https://github.com/datenanfragen/data/pull/1556"
+    ],
+    "quality": "verified"
+}

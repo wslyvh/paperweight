@@ -1,0 +1,24 @@
+{
+    "slug": "harlekin",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "entertainment",
+        "health"
+    ],
+    "name": "Harlekin Spiel- und Unterhaltungsautomaten Betriebsgesellschaft mbH",
+    "runs": [
+        "Fit/One Fitnessstudios"
+    ],
+    "address": "Röntgenstr. 15\n97295 Waldbrunn\nDeutschland",
+    "phone": "+49 9306 90 91 66",
+    "email": "datenschutzbeauftragter@fit-one.de",
+    "web": "https://www.fit-one.de/",
+    "sources": [
+        "https://www.fit-one.de/datenschutz.html",
+        "https://github.com/datenanfragen/data/issues/285"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

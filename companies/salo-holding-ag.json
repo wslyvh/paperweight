@@ -1,0 +1,25 @@
+{
+    "slug": "salo-holding-ag",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school"
+    ],
+    "name": "Salo Holding AG",
+    "runs": [
+        "SALO+PARTNER"
+    ],
+    "address": "Spaldingstraße 57-59\n20097 Hamburg\nDeutschland",
+    "phone": "+49 40 239160",
+    "fax": "+49 40 23916269",
+    "email": "datenschutz@salo-ag.de",
+    "web": "https://www.salo-ag.de",
+    "sources": [
+        "https://www.salo-ag.de/datenschutz/",
+        "https://www.salo-ag.de/impressum/",
+        "https://github.com/datenanfragen/data/pull/1975"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

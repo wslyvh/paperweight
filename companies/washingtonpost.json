@@ -1,0 +1,23 @@
+{
+    "slug": "washingtonpost",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "WP Company LLC",
+    "runs": [
+        "The Washington Post (www.washingtonpost.com)"
+    ],
+    "address": "1301 K Street NW\nWashington DC 20071\nUnited States of America",
+    "email": "privacy@washpost.com",
+    "webform": "https://helpcenter.washingtonpost.com/hc/en-us/requests/new?ticket_form_id=360000603931&itid=lk_inline_manual_146",
+    "web": "https://www.washingtonpost.com",
+    "sources": [
+        "https://www.washingtonpost.com/privacy-policy/",
+        "https://github.com/datenanfragen/data/pull/1569"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

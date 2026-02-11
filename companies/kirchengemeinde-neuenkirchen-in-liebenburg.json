@@ -1,0 +1,23 @@
+{
+    "slug": "kirchengemeinde-neuenkirchen-in-liebenburg",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Neuenkirchen in Liebenburg",
+    "address": "Pfarrwinkel 6\n38704 Liebenburg\nDeutschland",
+    "phone": "+49 5346 1335",
+    "fax": "+49 5346 1013",
+    "email": "doehren.pfa@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=937"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

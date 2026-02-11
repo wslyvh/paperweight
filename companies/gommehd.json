@@ -1,0 +1,18 @@
+{
+    "slug": "gommehd",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "name": "GommeHDnet GmbH",
+    "address": "Salzstr. 1\n21335 Lüneburg\nDeutschland",
+    "email": "info@gommehd.net",
+    "web": "https://www.gommehd.net/",
+    "sources": [
+        "https://www.gommehd.net/terms/privacy",
+        "https://www.gommehd.net/terms/imprint",
+        "https://github.com/datenanfragen/data/pull/1998"
+    ],
+    "quality": "verified"
+}

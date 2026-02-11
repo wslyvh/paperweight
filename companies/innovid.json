@@ -1,0 +1,25 @@
+{
+    "slug": "innovid",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Innovid, Inc.",
+    "runs": [
+        "Innovid EU Ltd.",
+        "Innovid Media Ltd",
+        "Innovid AU PTY Ltd."
+    ],
+    "address": "30 Irving Place\n12th Floor\nNew York\nNY 10003\nUnited States of America",
+    "email": "privacy@innovid.com",
+    "web": "https://www.innovid.com/",
+    "sources": [
+        "https://www.innovid.com/privacy-policy/"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

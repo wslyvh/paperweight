@@ -1,0 +1,24 @@
+{
+    "slug": "blablacar",
+    "categories": [
+        "travel"
+    ],
+    "name": "Comuto SA",
+    "runs": [
+        "BlaBlaCar (www.blablacar.de)"
+    ],
+    "address": "84, avenue de la République\n75011 Paris\nFrance",
+    "email": "dataprotection@blablacar.com",
+    "web": "https://www.blablacar.de/",
+    "sources": [
+        "https://www.blablacar.de/ueber-uns/datenschutzerklaerung",
+        "https://www.blablacar.de/ueber-uns/impressum",
+        "https://www.blablacar.co.uk/about-us/privacy-policy",
+        "https://github.com/datenanfragen/data/issues/620"
+    ],
+    "relevant-countries": [
+        "all"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

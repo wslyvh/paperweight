@@ -1,0 +1,26 @@
+{
+    "slug": "meetic-fr",
+    "relevant-countries": [
+        "fr",
+        "be",
+        "ch"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Meetic SAS",
+    "runs": [
+        "Meetic.fr",
+        "Meetic.be",
+        "Meetic.ch"
+    ],
+    "address": "53 rue de Châteaudun\nParis 9\nFrance",
+    "webform": "https://www.meetic.fr/faq/#privacyRequest",
+    "web": "https://www.meetic.fr",
+    "sources": [
+        "https://www.meetic.fr/pages/misc/privacy",
+        "https://fr.meetic.be/pages/misc/privacy",
+        "https://fr.meetic.ch/pages/misc/privacy"
+    ],
+    "quality": "verified"
+}

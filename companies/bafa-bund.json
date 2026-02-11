@@ -1,0 +1,20 @@
+{
+    "slug": "bafa-bund",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Bundesamt für Wirtschaft und Ausfuhrkontrolle (BAFA)",
+    "address": "Frankfurter Straße 29 – 35\n65760 Eschborn\nDeutschland",
+    "phone": "+49 6196 908 0",
+    "fax": "+49 6196 908 1800",
+    "email": "poststelle@bafa.bund.de",
+    "web": "https://www.bafa.de",
+    "sources": [
+        "https://www.bafa.de/DE/Service/Datenschutzerklaerung/datenschutzerklaerung_node.html"
+    ],
+    "request-language": "de",
+    "quality": "verified"
+}

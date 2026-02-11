@@ -1,0 +1,23 @@
+{
+    "slug": "g2a",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "G2A PL sp. z o.o.",
+    "runs": [
+        "G2A.COM Limited"
+    ],
+    "address": "Emili Plater 53 Street\n00-113 Warsaw\nPoland",
+    "email": "dpo@g2a.com",
+    "web": "https://g2a.com",
+    "sources": [
+        "https://www.g2a.com/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/768"
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

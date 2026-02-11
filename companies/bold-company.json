@@ -1,0 +1,19 @@
+{
+    "slug": "bold-company",
+    "relevant-countries": [
+        "nl"
+    ],
+    "name": "Bold Company B.V",
+    "runs": [
+        "Bold Company Interim B.V"
+    ],
+    "address": "Beursplein 37\n3011AA Rotterdam\nThe Netherlands",
+    "phone": "+31 88 018 4700",
+    "email": "info@boldcompany.nl",
+    "web": "https://www.boldcompany.nl/",
+    "sources": [
+        "https://www.boldcompany.nl/privacy-statement",
+        "https://github.com/datenanfragen/data/pull/1115"
+    ],
+    "quality": "verified"
+}

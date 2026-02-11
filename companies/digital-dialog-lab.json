@@ -1,0 +1,19 @@
+{
+    "slug": "digital-dialog-lab",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Digital Dialog Lab GmbH",
+    "address": "Rothenbaumchaussee 40\n20148 Hamburg\nDeutschland",
+    "email": "info@digital-dialog-lab.de",
+    "web": "https://www.digital-dialog-lab.de",
+    "sources": [
+        "https://ddl-datenschutz.s3.eu-central-1.amazonaws.com/Digital_Dialog_Lab_Datenschutz.pdf",
+        "https://github.com/datenanfragen/data/pull/1785",
+        "https://github.com/datenanfragen/data/pull/3126"
+    ],
+    "quality": "verified"
+}

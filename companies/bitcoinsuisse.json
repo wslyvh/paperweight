@@ -1,0 +1,21 @@
+{
+    "slug": "bitcoinsuisse",
+    "relevant-countries": [
+        "de",
+        "at",
+        "ch"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "Bitcoin Suisse AG",
+    "address": "Grafenauweg 12\n6300 Zug\nSwitzerland",
+    "email": "dataprotection@bitcoinsuisse.com",
+    "web": "https://www.bitcoinsuisse.com/",
+    "sources": [
+        "https://files.bitcoinsuisse.com/assets/pdf/data_protection_policy.pdf",
+        "https://github.com/datenanfragen/data/pull/1035"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

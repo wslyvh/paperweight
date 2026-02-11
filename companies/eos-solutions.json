@@ -1,0 +1,34 @@
+{
+    "slug": "eos-solutions",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "collection agency"
+    ],
+    "name": "EOS Holding GmbH",
+    "address": "Steindamm 71\n20099 Hamburg\nDeutschland",
+    "phone": "+49 40 2532 8657",
+    "fax": "+49 40 2532 8658",
+    "email": "datenschutz@eos-solutions.com",
+    "web": "https://www.eos-solutions.com",
+    "sources": [
+        "https://eos-solutions.com/privacy-policy.html",
+        "https://eos-solutions.com/imprint.html"
+    ],
+    "required-elements": [
+        {
+            "desc": "Name",
+            "type": "name",
+            "optional": false
+        },
+        {
+            "desc": "Adresse",
+            "type": "address",
+            "optional": false
+        }
+    ],
+    "needs-id-document": false,
+    "suggested-transport-medium": "email",
+    "quality": "tested"
+}

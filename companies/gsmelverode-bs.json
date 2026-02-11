@@ -1,0 +1,22 @@
+{
+    "slug": "gsmelverode-bs",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "school",
+        "public body"
+    ],
+    "name": "Grunschule Melverode",
+    "address": "Görlitzstraße 9\n38124 Braunschweig\nDeutschland",
+    "phone": "+49 531 601110",
+    "fax": "+49 531 6149197",
+    "email": "schulleitung@gs-melverode.de",
+    "web": "https://www.gsmelverode.de/",
+    "sources": [
+        "https://www.gsmelverode.de/index.php/impressum"
+    ],
+    "request-language": "de",
+    "quality": "verified",
+    "facet-group": "school"
+}

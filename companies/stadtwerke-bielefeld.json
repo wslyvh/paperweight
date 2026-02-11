@@ -1,0 +1,19 @@
+{
+    "slug": "stadtwerke-bielefeld",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "Stadtwerke Bielefeld GmbH",
+    "address": "Schildescher Straße 16\n33611 Bielefeld\nDeutschland",
+    "phone": "+49 521 514600",
+    "email": "datenschutz@stadtwerke-bielefeld.de",
+    "web": "https://www.stadtwerke-bielefeld.de/",
+    "sources": [
+        "https://www.stadtwerke-bielefeld.de/datenschutz.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

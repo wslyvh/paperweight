@@ -1,0 +1,23 @@
+{
+    "slug": "hellowork",
+    "relevant-countries": [
+        "fr"
+    ],
+    "name": "HelloWork SASU",
+    "runs": [
+        "RegionsJob (regionsjob.com)",
+        "ParisJob",
+        "Cadreo"
+    ],
+    "address": "2, rue de la Mabilais\n35000 Rennes\nFrance",
+    "phone": "+33 2 23 44 80 44",
+    "fax": "+33 2 23 44 80 45",
+    "email": "dpo@hellowork.com",
+    "web": "https://www.hellowork.com/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/496",
+        "https://www.regionsjob.com/pdc.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

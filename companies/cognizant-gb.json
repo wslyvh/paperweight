@@ -1,0 +1,17 @@
+{
+    "slug": "cognizant-gb",
+    "relevant-countries": [
+        "gb"
+    ],
+    "name": "Cognizant",
+    "address": "1 Kingdom Street\nPaddington Central\nLondon\nW2 6BD\nUnited Kingdom",
+    "phone": "+44 20 7297 7600",
+    "email": "DataProtectionOfficer@cognizant.com",
+    "web": "https://www.cognizant.com/en-uk/",
+    "sources": [
+        "https://github.com/datenanfragen/data/issues/535",
+        "https://www.cognizant.com/privacy-notice"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

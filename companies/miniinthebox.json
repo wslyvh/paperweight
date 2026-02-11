@@ -1,0 +1,24 @@
+{
+    "slug": "miniinthebox",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Light In The Box Ltd.",
+    "runs": [
+        "MiniInTheBox.com (www.miniinthebox.com)"
+    ],
+    "address": "131 – 151 Great Titchfield Street\nGreater London\nLondon\nW1W 5BB\nUnited Kingdom",
+    "email": "dataprotectionofficer@lightinthebox.com",
+    "web": "https://www.miniinthebox.com/",
+    "sources": [
+        "https://www.miniinthebox.com/r/privacy.html",
+        "https://www.miniinthebox.com/r/about-us.html",
+        "https://www.lightinthebox.com/r/privacy.html",
+        "https://www.lightinthebox.com/r/about-us.html?prm=1.33.157.0"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

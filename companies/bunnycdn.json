@@ -1,0 +1,22 @@
+{
+    "slug": "bunnycdn",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "telecommunication"
+    ],
+    "name": "BunnyWay d.o.o.",
+    "runs": [
+        "BunnyCDN"
+    ],
+    "address": "Cesta komandanta\nStaneta 4A\n1215 Medvode\nSlovenia",
+    "email": "support@bunnycdn.com",
+    "web": "https://bunnycdn.com/",
+    "sources": [
+        "https://bunnycdn.com/contact",
+        "https://bunnycdn.com/privacy"
+    ],
+    "request-language": "en",
+    "quality": "verified"
+}

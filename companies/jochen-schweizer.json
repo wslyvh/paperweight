@@ -1,0 +1,22 @@
+{
+    "slug": "jochen-schweizer",
+    "categories": [
+        "travel",
+        "commerce"
+    ],
+    "name": "Jochen Schweizer GmbH",
+    "address": "Rosenheimer Straße 145 e – f\n81671 München\nDeutschland",
+    "phone": "+49 89 896 893 26",
+    "fax": "+49 89 606 089 87",
+    "email": "datenschutz@jochen-schweizer.de",
+    "web": "https://www.jochen-schweizer.de",
+    "sources": [
+        "https://www.jochen-schweizer.de/datenschutz/JS_DATENSCHUTZ,default,pg.html",
+        "https://www.jochen-schweizer.de/impressum-jochen-schweizer/JS_IMPRESSUM,default,pg.html"
+    ],
+    "relevant-countries": [
+        "de"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

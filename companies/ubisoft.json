@@ -1,0 +1,19 @@
+{
+    "slug": "ubisoft",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment",
+        "social media"
+    ],
+    "name": "Ubisoft Entertainment SA",
+    "address": "2, rue du Chêne Heleuc\n56910 Carentoir\nFrance",
+    "webform": "https://support.ubisoft.com/Article/000063467",
+    "web": "https://www.ubisoft.com",
+    "sources": [
+        "https://legal.ubi.com/privacypolicy/de-DE",
+        "https://github.com/datenanfragen/data/pull/1067"
+    ],
+    "quality": "verified"
+}

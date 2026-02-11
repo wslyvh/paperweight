@@ -1,0 +1,19 @@
+{
+    "slug": "frontier-developments",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "entertainment"
+    ],
+    "name": "Frontier Developments plc.",
+    "address": "26 Cambridge Science Park\nMilton Road\nCambridge\nCambridgeshire\nCB4 0FP\nUnited Kingdom",
+    "email": "dataprotection@frontier.co.uk",
+    "web": "https://www.frontier.co.uk/",
+    "sources": [
+        "https://www.frontier.co.uk/legal/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/1886"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

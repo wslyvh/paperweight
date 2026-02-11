@@ -1,0 +1,20 @@
+{
+    "slug": "pairs-lv",
+    "relevant-countries": [
+        "lv"
+    ],
+    "categories": [
+        "social media"
+    ],
+    "name": "Eureka, Inc.",
+    "runs": [
+        "pairs.lv"
+    ],
+    "address": "4th floor\nSumitomo Fudosan Azabu Juban Building, 1-4-1\nMita, Minato-ku\nTokyo 108-0073\nJapan",
+    "email": "info@pairs.lv",
+    "web": "https://www.pairs.lv/",
+    "sources": [
+        "https://pairs.lv/static/privacy"
+    ],
+    "quality": "verified"
+}

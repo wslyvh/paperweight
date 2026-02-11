@@ -1,0 +1,25 @@
+{
+    "slug": "rent2buy",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "rent2buy AG",
+    "runs": [
+        "rent2buymusic"
+    ],
+    "address": "c/o DataGAP GmbH\nBessemerstr. 82, 10. OG Süd\n12103 Berlin\nDeutschland",
+    "phone": "+49 6441 785970",
+    "email": "datenschutz@rent2buy.ag",
+    "pgp-fingerprint": "69C3 F99B B4EC 4BAC 7ABE  0B46 4EE7 E121 8FC0 4E73",
+    "pgp-url": "https://keys.openpgp.org/vks/v1/by-fingerprint/69C3F99BB4EC4BAC7ABE0B464EE7E1218FC04E73",
+    "web": "https://www.rent2buy.ag/",
+    "sources": [
+        "https://www.rent2buy.ag/datenschutz.html",
+        "https://github.com/datenanfragen/data/pull/1971"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

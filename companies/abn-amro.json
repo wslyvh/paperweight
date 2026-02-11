@@ -1,0 +1,24 @@
+{
+    "slug": "abn-amro",
+    "relevant-countries": [
+        "de",
+        "nl"
+    ],
+    "categories": [
+        "finance"
+    ],
+    "name": "ABN AMRO Bank N.V.",
+    "runs": [
+        "Moneyou (moneyou.de)"
+    ],
+    "address": "Gustav Mahlerlaan 10\n1082 PP Amsterdam\nThe Netherlands",
+    "email": "privacy.office@nl.abnamro.com",
+    "web": "https://www.abnamro.com",
+    "sources": [
+        "https://www.abnamro.com/en/home/information/privacy-statement",
+        "https://www.moneyou.de/datenschutz",
+        "https://github.com/datenanfragen/data/pull/1554"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,20 @@
+{
+    "slug": "lucky-bike-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Lucky Bike.de GmbH",
+    "address": "c/o Datenschutz Ruhr\nHauptstr. 2\n45219 Essen\nDeutschland",
+    "phone": "+49 201 89066123",
+    "email": "dsb@datenschutz-ruhr.de",
+    "web": "https://www.lucky-bike.de",
+    "sources": [
+        "https://www.lucky-bike.de/Datenschutzerklaerung/",
+        "https://github.com/datenanfragen/data/pull/2808"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

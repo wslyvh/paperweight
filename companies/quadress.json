@@ -1,0 +1,21 @@
+{
+    "slug": "quadress",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "addresses"
+    ],
+    "name": "QUADRESS GmbH",
+    "address": "Josef-Haumann-Str. 7a\n44866 Bochum\nDeutschland",
+    "phone": "+49 2327 3038 25",
+    "fax": "+49 2327 3038 20",
+    "email": "dsb.quadress@zb-datenschutz.de",
+    "web": "http://www.quadress.de/",
+    "sources": [
+        "http://www.quadress.de/datenschutz",
+        "http://www.quadress.de/impressum"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

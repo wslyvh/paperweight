@@ -1,0 +1,21 @@
+{
+    "slug": "dominos-de",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "commerce"
+    ],
+    "name": "Domino’s Pizza Deutschland GmbH",
+    "address": "Am Sandtorkai 75-77\n20457 Hamburg\nDeutschland",
+    "phone": "+49 40 4502330",
+    "email": "datenschutz@dominos.de",
+    "web": "https://dominos.de",
+    "sources": [
+        "https://www.dominos.de/datenschutz",
+        "https://www.dominos.de/impressum",
+        "https://github.com/datenanfragen/data/pull/1018"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,21 @@
+{
+    "slug": "umweltbundesamt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "public body"
+    ],
+    "name": "Umweltbundesamt",
+    "address": "Wörlitzer Platz 1\n06844 Dessau-Roßlau\nDeutschland",
+    "phone": "+49 30 8903 5141",
+    "fax": "+49 340 2103 2285",
+    "email": "buergerservice@uba.de",
+    "web": "https://www.umweltbundesamt.de",
+    "sources": [
+        "https://www.umweltbundesamt.de/datenschutz-haftung",
+        "https://www.umweltbundesamt.de/impressum"
+    ],
+    "request-language": "de",
+    "quality": "verified"
+}

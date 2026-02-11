@@ -1,0 +1,23 @@
+{
+    "slug": "en-marche",
+    "relevant-countries": [
+        "fr"
+    ],
+    "categories": [
+        "political party"
+    ],
+    "name": "Renaissance",
+    "runs": [
+        "La République en marche (formerly)"
+    ],
+    "address": "68 rue du Rocher\n75008 Paris\nFrance",
+    "email": "mes-donnees@parti-renaissance.fr",
+    "web": "https://parti-renaissance.fr/",
+    "sources": [
+        "https://parti-renaissance.fr/politique-de-protection-des-donnees",
+        "https://www.lemonde.fr/politique/article/2022/09/18/renaissance-un-nouveau-parti-pour-reactiver-le-depassement-macroniste_6142086_823448.html",
+        "https://github.com/datenanfragen/data/issues/509"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

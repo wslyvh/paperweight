@@ -1,0 +1,20 @@
+{
+    "slug": "knorex",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "Knorex",
+    "address": "1159 Sonora Court\nSuite 122\nSunnyvale\nCA 94086\nUnited States of America",
+    "email": "privacy@knorex.com",
+    "web": "https://www.knorex.com/",
+    "sources": [
+        "https://www.knorex.com/privacy-policy-website"
+    ],
+    "request-language": "en",
+    "custom-access-template": "access-tracking",
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+}

@@ -1,0 +1,23 @@
+{
+    "slug": "kirchengemeinde-rhene-in-baddeckenstedt",
+    "relevant-countries": [
+        "de"
+    ],
+    "categories": [
+        "church"
+    ],
+    "name": "Kirchengemeinde Rhene in Baddeckenstedt",
+    "address": "An der Kirche 2\n38271 Baddeckenstedt\nDeutschland",
+    "phone": "+49 5345 4040",
+    "fax": "+49 5345 929956",
+    "email": "baddeckenstedt.buero@lk-bs.de",
+    "sources": [
+        "https://www.landeskirche-braunschweig.de/gemeinden/propsteien/einrichtungen.html?user_lkbsaddress_pi2%5Bid%5D=769"
+    ],
+    "request-language": "de",
+    "custom-access-template": "access-evangelische-kirche",
+    "custom-erasure-template": "erasure-evangelische-kirche",
+    "custom-rectification-template": "rectification-evangelische-kirche",
+    "quality": "scraped",
+    "facet-group": "church"
+}

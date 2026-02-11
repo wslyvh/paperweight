@@ -1,0 +1,24 @@
+{
+    "slug": "servizio-elettrico-nazionale",
+    "relevant-countries": [
+        "it"
+    ],
+    "categories": [
+        "utility"
+    ],
+    "name": "Servizio Elettrico Nazionale S.p.A.",
+    "address": "Viale Regina Margherita 125\n00198 Roma RM\nItalia",
+    "phone": "+39 800 900 800",
+    "fax": "+39 199 505 055",
+    "email": "privacy.serviziomaggiortutela@servizioelettriconazionale.it",
+    "web": "https://www.servizioelettriconazionale.it/",
+    "sources": [
+        "https://www.servizioelettriconazionale.it/it-IT/privacy",
+        "https://www.servizioelettriconazionale.it/it-IT/info-news/sen-gdpr"
+    ],
+    "suggested-transport-medium": "email",
+    "comments": [
+        "Il responsabile della protezione dei dati personali può essere contattato al seguente indirizzo e-mail: dpo@servizioelettriconazionale.it"
+    ],
+    "quality": "verified"
+}

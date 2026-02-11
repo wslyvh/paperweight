@@ -1,0 +1,20 @@
+{
+    "slug": "adressdruck",
+    "relevant-countries": [
+        "all"
+    ],
+    "categories": [
+        "ads"
+    ],
+    "name": "adressdruck.de",
+    "address": "c/o Dirk Otto Rechtsanwalt\nOsnabrücker Straße 7\n10589 Berlin\nDeutschland",
+    "phone": "+49 30 23369248",
+    "fax": "+49 30 23369249",
+    "email": "datenschutz@kreativrecht.de",
+    "web": "https://www.adressdruck.de",
+    "sources": [
+        "https://www.adressdruck.de/datenschutz/",
+        "https://github.com/datenanfragen/data/pull/2065"
+    ],
+    "quality": "verified"
+}
