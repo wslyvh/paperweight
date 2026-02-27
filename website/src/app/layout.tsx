@@ -7,10 +7,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   applicationName: SITE_CONFIG.NAME,
-  title: {
-    default: SITE_CONFIG.NAME,
-    template: `%s | ${SITE_CONFIG.NAME}`,
-  },
+  title: SITE_CONFIG.TAGLINE + " | " + SITE_CONFIG.NAME,
   description: SITE_CONFIG.DESCRIPTION,
   metadataBase: new URL(SITE_CONFIG.URL),
   openGraph: {

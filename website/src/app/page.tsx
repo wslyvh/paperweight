@@ -8,11 +8,13 @@ export default function Home() {
       {/* Hero */}
       <section className="container mx-auto px-4 pt-20 pb-16 text-center">
         <h1 className="text-5xl md:text-6xl font-bold mb-6">
-          Your inbox knows where your data lives
+          {SITE_CONFIG.TAGLINE}
         </h1>
         <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto opacity-80">
-          See every account you've created, unsubscribe from bulk senders, and
-          take back control. Everything runs locally on your computer.
+          {SITE_CONFIG.DESCRIPTION}
+        </p>
+        <p className="text-accent mb-8 max-w-2xl mx-auto opacity-80">
+          Your inbox knows where your data lives.
         </p>
         <a href="#download" className="btn btn-primary btn-lg">
           Download for free
@@ -66,8 +68,8 @@ export default function Home() {
             <div className="flex items-center gap-2">
               <span className="text-lg">Gmail</span>
             </div>
-            <div className="flex items-center gap-2 opacity-50">
-              <span className="text-lg">Outlook (soon)</span>
+            <div className="flex items-center gap-2">
+              <span className="text-lg">Outlook</span>
             </div>
             <div className="flex items-center gap-2 opacity-50">
               <span className="text-lg">iCloud (soon)</span>
@@ -153,7 +155,9 @@ export default function Home() {
                 Buy lifetime license
               </a>
             </div>
-            <p className="text-sm opacity-60">First 100 licenses only.</p>
+            <p className="text-sm opacity-60">
+              *Temporary early supporters price only.
+            </p>
           </div>
         </div>
       </section>

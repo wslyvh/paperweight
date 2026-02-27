@@ -5,9 +5,8 @@ export const SITE_CONFIG = {
 
   NAME: "Paperweight",
   DESCRIPTION:
-    "Paperweight is a local-first desktop app that helps you understand and reduce unwanted email.",
-  TAGLINE:
-    "Your inbox knows where your data lives. We help you take back control.",
+    "Paperweight scans your inbox to map your digital footprint, then helps you take back control and delete your data. Local-first and open source.",
+  TAGLINE: "Manage your digital footprint",
   DOMAIN,
   URL: `https://www.${DOMAIN}`,
   GITHUB_URL: "https://github.com/wslyvh/paperweight",
