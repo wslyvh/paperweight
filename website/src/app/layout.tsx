@@ -7,12 +7,12 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   applicationName: SITE_CONFIG.NAME,
-  title: SITE_CONFIG.TAGLINE + " | " + SITE_CONFIG.NAME,
+  title: `${SITE_CONFIG.NAME} | ${SITE_CONFIG.TAGLINE}`,
   description: SITE_CONFIG.DESCRIPTION,
   metadataBase: new URL(SITE_CONFIG.URL),
   openGraph: {
     type: "website",
-    title: SITE_CONFIG.NAME,
+    title: `${SITE_CONFIG.NAME} | ${SITE_CONFIG.TAGLINE}`,
     siteName: SITE_CONFIG.NAME,
     description: SITE_CONFIG.DESCRIPTION,
     url: SITE_CONFIG.URL,
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: SITE_CONFIG.SOCIAL_TWITTER,
-    title: SITE_CONFIG.NAME,
+    title: `${SITE_CONFIG.NAME} | ${SITE_CONFIG.TAGLINE}`,
     description: SITE_CONFIG.DESCRIPTION,
     images: `${SITE_CONFIG.URL}/og.png`,
   },
