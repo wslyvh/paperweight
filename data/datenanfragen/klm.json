@@ -8,14 +8,17 @@
     ],
     "name": "KLM Royal Dutch Airlines",
     "runs": [
-        "Koninklijke Luchtvaart Maatschappij NV"
+        "Koninklijke Luchtvaart Maatschappij NV",
+        "Flying Blue Miles"
     ],
     "address": "Privacy Office - AMSPI\nPO Box 7700\nNL-1117 ZL Luchthaven Schiphol\nThe Netherlands",
     "email": "KLMPrivacyOffice@klm.com",
     "web": "https://klm.nl",
     "sources": [
         "https://www.klm.nl/en/information/legal/privacy-policy",
-        "https://github.com/datenanfragen/data/pull/2709"
+        "https://github.com/datenanfragen/data/pull/2709",
+        "https://www.flyingblue.com/en/privacy-policy",
+        "https://github.com/datenanfragen/data/pull/3387"
     ],
     "quality": "verified"
 }

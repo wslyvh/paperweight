@@ -1,0 +1,805 @@
+[
+  {
+    "slug": "ing",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "ING",
+    "categories": [
+      "financial"
+    ],
+    "web": "https://www.ing.nl",
+    "webform": "https://www.ing.nl/veiligheid-en-fraude/privacy/index.html",
+    "email": "privacyloket@ing.com",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "ING Privacyloket."
+    ]
+  },
+  {
+    "slug": "rabobank",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Rabobank",
+    "categories": [
+      "financial"
+    ],
+    "web": "https://www.rabobank.nl",
+    "webform": "https://www.rabobank.nl/privacy",
+    "email": "dpo@rabobank.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "DPO NL; bank verwijst naar privacyformulier."
+    ]
+  },
+  {
+    "slug": "knab",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Knab",
+    "categories": [
+      "financial"
+    ],
+    "web": "https://www.knab.nl",
+    "webform": "https://www.knab.nl/privacy/privacy-statement",
+    "email": "fg@knab.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Gebruik bij Knab bekende e-mailadres."
+    ]
+  },
+  {
+    "slug": "sns",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "SNS",
+    "categories": [
+      "financial"
+    ],
+    "web": "https://www.snsbank.nl",
+    "webform": "https://www.snsbank.nl/over-sns/privacy.html",
+    "email": "fg@devolksbank.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Onderdeel de Volksbank."
+    ]
+  },
+  {
+    "slug": "asn",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "ASN Bank",
+    "categories": [
+      "financial"
+    ],
+    "web": "https://www.asnbank.nl",
+    "webform": "https://www.asnbank.nl/over-asn-bank/privacy.html",
+    "email": "fg@devolksbank.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Onderdeel de Volksbank."
+    ]
+  },
+  {
+    "slug": "regiobank",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "RegioBank",
+    "categories": [
+      "financial"
+    ],
+    "web": "https://www.regiobank.nl",
+    "webform": "https://www.regiobank.nl/veelgestelde-vragen/privacy.html",
+    "email": "privacyrechten@regiobank.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "ID-kopie (BSN/foto afgedekt) gevraagd."
+    ]
+  },
+  {
+    "slug": "kpn",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "KPN",
+    "categories": [
+      "communication"
+    ],
+    "web": "https://www.kpn.com",
+    "webform": "https://www.kpn.com/algemeen/missie-en-privacy-statement",
+    "suggested-transport-medium": "webform",
+    "quality": "verified",
+    "comments": [
+      "Verificatie vaak via MijnKPN/portaal."
+    ]
+  },
+  {
+    "slug": "vodafone-ziggo",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Vodafone-Ziggo",
+    "runs": [
+      "Vodafone NL",
+      "Ziggo"
+    ],
+    "categories": [
+      "communication"
+    ],
+    "web": "https://www.vodafoneziggo.nl",
+    "webform": "https://www.vodafoneziggo.nl/privacy/",
+    "suggested-transport-medium": "webform",
+    "quality": "verified",
+    "comments": [
+      "Privacy Office/portaal voor DSAR."
+    ]
+  },
+  {
+    "slug": "odido",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Odido",
+    "runs": [
+      "Tele2",
+      "Ben",
+      "Simpel"
+    ],
+    "categories": [
+      "communication"
+    ],
+    "web": "https://www.odido.nl",
+    "webform": "https://www.odido.nl/privacy",
+    "suggested-transport-medium": "webform",
+    "quality": "verified",
+    "comments": [
+      "Incl. Tele2/Ben/Simpel; specifieke formulieren per product."
+    ]
+  },
+  {
+    "slug": "eneco",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Eneco",
+    "categories": [
+      "services"
+    ],
+    "web": "https://www.eneco.nl",
+    "webform": "https://www.eneco.nl/privacy/",
+    "email": "meldpuntprivacy@eneco.com",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Meldpunt privacy."
+    ]
+  },
+  {
+    "slug": "essent",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Essent",
+    "categories": [
+      "services"
+    ],
+    "web": "https://www.essent.nl",
+    "webform": "https://www.essent.nl/content/particulier/overessent/privacy",
+    "email": "fg@essent.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "FG mailbox."
+    ]
+  },
+  {
+    "slug": "greenchoice",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Greenchoice",
+    "categories": [
+      "services"
+    ],
+    "web": "https://www.greenchoice.nl",
+    "webform": "https://www.greenchoice.nl/privacy/",
+    "email": "privacy@greenchoice.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Algemeen privacy-adres."
+    ]
+  },
+  {
+    "slug": "delta-energie",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "DELTA Energie",
+    "categories": [
+      "services"
+    ],
+    "web": "https://www.delta.nl",
+    "webform": "https://www.delta.nl/energie/privacy/",
+    "email": "privacy@deltaenergie.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Privacy team."
+    ]
+  },
+  {
+    "slug": "engie",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "ENGIE",
+    "categories": [
+      "services"
+    ],
+    "web": "https://www.engie.nl",
+    "webform": "https://www.engie.nl/privacy",
+    "email": "data.protection.nl@engie.com",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "DPO NL."
+    ]
+  },
+  {
+    "slug": "vandebron",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Vandebron",
+    "categories": [
+      "services"
+    ],
+    "web": "https://vandebron.nl",
+    "webform": "https://vandebron.nl/privacy",
+    "email": "privacy@vandebron.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Algemeen privacy-adres."
+    ]
+  },
+  {
+    "slug": "oxxio",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Oxxio",
+    "categories": [
+      "services"
+    ],
+    "web": "https://www.oxxio.nl",
+    "webform": "https://www.oxxio.nl/service/privacy",
+    "email": "meldpuntprivacy@oxxio.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Meldpunt privacy."
+    ]
+  },
+  {
+    "slug": "budget-energie",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Budget Energie",
+    "categories": [
+      "services"
+    ],
+    "web": "https://www.budgetthuis.nl",
+    "webform": "https://www.budgetthuis.nl/privacy/",
+    "email": "privacy@budgetthuis.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Budget Thuis groep."
+    ]
+  },
+  {
+    "slug": "albert-heijn",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Albert Heijn",
+    "categories": [
+      "shopping"
+    ],
+    "web": "https://www.ah.nl",
+    "webform": "https://www.ah.nl/privacy/vragen",
+    "email": "privacy@ah.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Bonuskaart/Mijn AH."
+    ]
+  },
+  {
+    "slug": "jumbo",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Jumbo",
+    "categories": [
+      "shopping"
+    ],
+    "web": "https://www.jumbo.com",
+    "webform": "https://www.jumbo.com/klantenservice",
+    "email": "privacy@jumbo.com",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Serviceformulier als voorkeursroute."
+    ]
+  },
+  {
+    "slug": "aldi",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "ALDI",
+    "categories": [
+      "shopping"
+    ],
+    "web": "https://www.aldi.nl",
+    "webform": "https://www.aldi.nl/privacystatement.html",
+    "suggested-transport-medium": "webform",
+    "quality": "verified",
+    "comments": [
+      "Contact via formulier/klantenservice."
+    ]
+  },
+  {
+    "slug": "hema",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "HEMA",
+    "categories": [
+      "shopping"
+    ],
+    "web": "https://www.hema.nl",
+    "webform": "https://www.hema.nl/privacy-statement",
+    "email": "privacy@hema.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Privacy mailbox."
+    ]
+  },
+  {
+    "slug": "etos",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Etos",
+    "categories": [
+      "shopping"
+    ],
+    "web": "https://www.etos.nl",
+    "webform": "https://www.etos.nl/privacybeleid.html",
+    "email": "privacy@etos.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Etos Extra's/Mijn Etos."
+    ]
+  },
+  {
+    "slug": "gall",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Gall & Gall",
+    "categories": [
+      "shopping"
+    ],
+    "web": "https://www.gall.nl",
+    "webform": "https://www.gall.nl/privacyverklaring",
+    "email": "privacy@gall.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Voordeelkaart."
+    ]
+  },
+  {
+    "slug": "bol",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "bol",
+    "categories": [
+      "shopping"
+    ],
+    "web": "https://www.bol.com",
+    "webform": "https://www.bol.com/nl/nl/tc/privacybeleid/",
+    "email": "klantenservice@bol.com",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Bol geeft voorkeur aan portaal/klantenservice."
+    ]
+  },
+  {
+    "slug": "coolblue",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Coolblue",
+    "categories": [
+      "shopping"
+    ],
+    "web": "https://www.coolblue.nl",
+    "webform": "https://www.coolblue.nl/privacystatement",
+    "email": "privacy@coolblue.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Ook privacyvragen@coolblue.nl in gebruik."
+    ]
+  },
+  {
+    "slug": "kruidvat",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Kruidvat",
+    "categories": [
+      "shopping"
+    ],
+    "web": "https://www.kruidvat.nl",
+    "webform": "https://www.kruidvat.nl/service/privacy",
+    "email": "privacy@kruidvat.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Voorkeursroute soms via OneTrust-formulier."
+    ]
+  },
+  {
+    "slug": "wehkamp",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Wehkamp",
+    "categories": [
+      "shopping"
+    ],
+    "web": "https://www.wehkamp.nl",
+    "webform": "https://images.wehkamp.nl/raw/privacy-verklaring_algemeen.pdf",
+    "email": "privacy@wehkamp.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Privacyverklaring (PDF)."
+    ]
+  },
+  {
+    "slug": "decathlon",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Decathlon",
+    "categories": [
+      "shopping"
+    ],
+    "web": "https://www.decathlon.nl",
+    "webform": "https://www.decathlon.nl/privacy",
+    "suggested-transport-medium": "webform",
+    "quality": "verified",
+    "comments": [
+      "DSAR via formulier/portaal."
+    ]
+  },
+  {
+    "slug": "postnl",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "PostNL",
+    "categories": [
+      "services"
+    ],
+    "web": "https://www.postnl.nl",
+    "webform": "https://www.postnl.nl/privacy/",
+    "email": "fg@postnl.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "FG mailbox; verificatie kan gevraagd worden."
+    ]
+  },
+  {
+    "slug": "dhl-express",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "DHL Express Nederland",
+    "categories": [
+      "services"
+    ],
+    "web": "https://www.dhlexpress.nl",
+    "webform": "https://www.dhlexpress.nl/en/privacy-policy",
+    "email": "customerservice.nl@dhl.com",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Algemene NL mailbox; DSAR via beleid/portaal."
+    ]
+  },
+  {
+    "slug": "gls-nl",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "GLS Nederland",
+    "categories": [
+      "services"
+    ],
+    "web": "https://gls-group.com",
+    "webform": "https://gls-group.com/NL/en/privacy-policy/",
+    "email": "dataprotection@gls-holding.com",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Groeps-DPO e-mail als fallback."
+    ]
+  },
+  {
+    "slug": "ns",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "NS",
+    "categories": [
+      "services"
+    ],
+    "web": "https://www.ns.nl",
+    "webform": "https://www.ns.nl/privacy",
+    "email": "fg@ns.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "FG e-mail."
+    ]
+  },
+  {
+    "slug": "gvb",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "GVB",
+    "categories": [
+      "services"
+    ],
+    "web": "https://www.gvb.nl",
+    "webform": "https://www.gvb.nl/privacyverklaring/jouw-privacyrechten",
+    "email": "privacy@gvb.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Privacy/FG."
+    ]
+  },
+  {
+    "slug": "ov-chipkaart",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "OV-chipkaart",
+    "categories": [
+      "services"
+    ],
+    "web": "https://www.ov-chipkaart.nl",
+    "webform": "https://www.ov-chipkaart.nl/privacy",
+    "email": "privacy@ov-chipkaart.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Centraal privacy-adres."
+    ]
+  },
+  {
+    "slug": "booking",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Booking.com",
+    "categories": [
+      "shopping"
+    ],
+    "web": "https://www.booking.com",
+    "webform": "https://www.booking.com/content/privacy.nl.html",
+    "email": "dataprotectionoffice@booking.com",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "DPO mailbox."
+    ]
+  },
+  {
+    "slug": "amazon",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Amazon",
+    "categories": [
+      "shopping"
+    ],
+    "web": "https://www.amazon.nl",
+    "webform": "https://www.amazon.co.uk/gp/help/customer/display.html?nodeId=201909010",
+    "email": "eu-privacy@amazon.co.uk",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "EU privacy mailbox."
+    ]
+  },
+  {
+    "slug": "meta",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Meta",
+    "runs": [
+      "Facebook",
+      "Instagram",
+      "WhatsApp"
+    ],
+    "categories": [
+      "social"
+    ],
+    "web": "https://www.meta.com",
+    "webform": "https://www.facebook.com/help/contact/2032834846972583",
+    "email": "dpo@fb.com",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "DPO (Ireland) e-mail."
+    ]
+  },
+  {
+    "slug": "x",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "X (Twitter)",
+    "runs": [
+      "Twitter"
+    ],
+    "categories": [
+      "social"
+    ],
+    "web": "https://www.twitter.com",
+    "webform": "https://privacy.x.com/en/policy",
+    "suggested-transport-medium": "webform",
+    "quality": "verified",
+    "comments": [
+      "Verzoeken via account/portal."
+    ]
+  },
+  {
+    "slug": "shell",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Shell",
+    "categories": [
+      "services"
+    ],
+    "web": "https://www.shell.nl",
+    "webform": "https://www.shell.nl/privacyverklaringen.html",
+    "email": "privacy-office-si@shell.com",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Group privacy office; NL pagina's verwijzen hiernaar."
+    ]
+  },
+  {
+    "slug": "bp",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "BP",
+    "categories": [
+      "services"
+    ],
+    "web": "https://www.bp.com",
+    "webform": "https://www.bp.com/privacy",
+    "email": "privacy@bp.com",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Global privacy e-mail."
+    ]
+  },
+  {
+    "slug": "totalenergies",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "TotalEnergies",
+    "categories": [
+      "services"
+    ],
+    "web": "https://totalenergies.nl",
+    "webform": "https://totalenergies.nl/privacybeleid",
+    "email": "privacy@totalenergies.com",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Groeps-privacyadres."
+    ]
+  },
+  {
+    "slug": "q8",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Q8",
+    "categories": [
+      "services"
+    ],
+    "web": "https://www.q8.com",
+    "webform": "https://www.q8smiles.nl/privacy",
+    "email": "privacy@q8.com",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Q8 Smiles loyalty."
+    ]
+  },
+  {
+    "slug": "tango",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Tango",
+    "categories": [
+      "services"
+    ],
+    "web": "https://www.tango.nl",
+    "webform": "https://www.tango.nl/privacy",
+    "email": "privacy@tango.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Q8 Benelux merk."
+    ]
+  },
+  {
+    "slug": "tinq",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "TinQ",
+    "categories": [
+      "services"
+    ],
+    "web": "https://www.tinq.nl",
+    "webform": "https://www.tinq.nl/privacy",
+    "email": "privacy@tinq.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Onbemande tankstations."
+    ]
+  }
+]

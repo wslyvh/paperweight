@@ -14,10 +14,9 @@
         "mail.ch",
         "mail.fr",
         "mail.co.uk",
-        "mail.uk",
-        "FanMail-Projekt @acdc.com"
+        "mail.uk"
     ],
-    "address": "Münsterstraße 3\n33330 Gütersloh\nGermany",
+    "address": "Friedrich-Ebert-Straße 70\n33330 Gütersloh\nGermany",
     "phone": "+49 5241 7434982",
     "fax": "+49 5241 7434987",
     "email": "support@mail.de",
@@ -29,7 +28,7 @@
         "https://mail.fr/en/privacy/",
         "https://mail.ch/de/datenschutz/",
         "https://github.com/datenanfragen/data/pull/1479",
-        "https://mail.de/de/blog/2016-01-mailde-rockt-realisierung-der-offiziellen-acdc-fanmail"
+        "https://github.com/datenanfragen/data/pull/3382"
     ],
     "quality": "verified"
 }
