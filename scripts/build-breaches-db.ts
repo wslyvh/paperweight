@@ -6,12 +6,12 @@
  *
  * Source: https://haveibeenpwned.com/api/v3/breaches
  *
- * Uses the sqlite3 CLI (no native Node modules needed).
+ * Uses better-sqlite3 (cross-platform, no system sqlite3 CLI needed).
  */
 
+import Database from "better-sqlite3";
 import { mkdirSync, unlinkSync, existsSync } from "fs";
 import { join, resolve } from "path";
-import { execSync } from "child_process";
 import { fileURLToPath } from "url";
 
 const __dirname = join(fileURLToPath(import.meta.url), "..");
@@ -95,11 +95,9 @@ async function main() {
   sqlParts.push("VACUUM;");
 
   const sql = sqlParts.join("\n");
-
-  execSync(`sqlite3 "${OUT_PATH}"`, {
-    input: sql,
-    stdio: ["pipe", "inherit", "inherit"],
-  });
+  const db = new Database(OUT_PATH);
+  db.exec(sql);
+  db.close();
 
   console.log(`\nWrote ${OUT_PATH}`);
   console.log(`Total breaches: ${breaches.length}`);

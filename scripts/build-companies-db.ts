@@ -4,12 +4,12 @@
  * Run manually before building the app:
  *   npx tsx scripts/build-companies-db.ts
  *
- * Uses the sqlite3 CLI (no native Node modules needed).
+ * Uses better-sqlite3 (cross-platform, no system sqlite3 CLI needed).
  */
 
+import Database from "better-sqlite3";
 import { readdirSync, readFileSync, mkdirSync, unlinkSync, existsSync } from "fs";
 import { join, resolve } from "path";
-import { execSync } from "child_process";
 import { fileURLToPath } from "url";
 
 const __dirname = join(fileURLToPath(import.meta.url), "..");
@@ -208,12 +208,9 @@ function main() {
   sqlParts.push("VACUUM;");
 
   const sql = sqlParts.join("\n");
-
-  // Pipe to sqlite3 CLI
-  execSync(`sqlite3 "${OUT_PATH}"`, {
-    input: sql,
-    stdio: ["pipe", "inherit", "inherit"],
-  });
+  const db = new Database(OUT_PATH);
+  db.exec(sql);
+  db.close();
 
   console.log(`\nWrote ${OUT_PATH}`);
   console.log(`datenanfragen: ${imported} companies`);
