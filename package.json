@@ -15,9 +15,9 @@
     "build:companies": "tsx scripts/build-companies-db.ts",
     "build:breaches": "tsx scripts/build-breaches-db.ts",
     "dist": "pnpm dist:mac && pnpm dist:linux && pnpm dist:win",
-    "dist:mac": "pnpm build && electron-builder --mac",
-    "dist:linux": "pnpm build && electron-builder --linux",
-    "dist:win": "pnpm build && electron-builder --win"
+    "dist:mac": "pnpm build && electron-builder --mac --publish never",
+    "dist:linux": "pnpm build && electron-builder --linux --publish never",
+    "dist:win": "pnpm build && electron-builder --win --publish never"
   },
   "build": {
     "appId": "email.paperweight",
