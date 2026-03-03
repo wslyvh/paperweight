@@ -5,9 +5,31 @@ on:
     tags:
       - "v*"
   workflow_dispatch:
+    inputs:
+      version:
+        description: "Release version (e.g. v1.0.0)"
+        required: true
 
 jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Verify tag/version matches package.json
+        run: |
+          RAW="${{ github.event.inputs.version || github.ref_name }}"
+          EXPECTED="${RAW#v}"
+          ACTUAL=$(node -p "require('./package.json').version")
+          if [ "$EXPECTED" != "$ACTUAL" ]; then
+            echo "Version mismatch: tag/input '$RAW' -> $EXPECTED, package.json has $ACTUAL"
+            echo "Update package.json to match before tagging, or use matching version for workflow_dispatch"
+            exit 1
+          fi
+          echo "Version OK: $ACTUAL"
+
   build-macos:
+    needs: verify
     runs-on: macos-latest
     steps:
       - name: Checkout code
@@ -37,6 +59,7 @@ jobs:
           archive: false
 
   build-linux:
+    needs: verify
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -72,6 +95,7 @@ jobs:
           archive: false
 
   build-windows:
+    needs: verify
     runs-on: windows-latest
     steps:
       - name: Checkout code
@@ -99,3 +123,28 @@ jobs:
           name: windows-installers
           path: dist/*.exe
           archive: false
+
+  create-release:
+    needs: [verify, build-macos, build-linux, build-windows]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Create draft release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.inputs.version || github.ref_name }}
+          draft: true
+          generate_release_notes: true
+          files: |
+            artifacts/macos-installers/*
+            artifacts/linux-appimage/*
+            artifacts/linux-deb/*
+            artifacts/windows-installers/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
