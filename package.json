@@ -1,0 +1,98 @@
+{
+  "name": "paperweight",
+  "version": "0.1.0",
+  "description": "Email unsubscribe manager",
+  "author": "wslyvh",
+  "main": "./out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "prebuild": "pnpm build:companies && pnpm build:breaches",
+    "build": "electron-vite build",
+    "preview": "electron-vite preview",
+    "typecheck:node": "tsc --noEmit -p tsconfig.node.json",
+    "typecheck:web": "tsc --noEmit -p tsconfig.web.json",
+    "typecheck": "pnpm typecheck:node && pnpm typecheck:web",
+    "build:companies": "tsx scripts/build-companies-db.ts",
+    "build:breaches": "tsx scripts/build-breaches-db.ts",
+    "dist": "pnpm dist:mac && pnpm dist:linux && pnpm dist:win",
+    "dist:mac": "pnpm build && electron-builder --mac",
+    "dist:linux": "pnpm build && electron-builder --linux",
+    "dist:win": "pnpm build && electron-builder --win"
+  },
+  "build": {
+    "appId": "email.paperweight",
+    "productName": "Paperweight",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "out/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "resources/companies.db",
+        "to": "companies.db"
+      },
+      {
+        "from": "resources/breaches.db",
+        "to": "breaches.db"
+      }
+    ],
+    "mac": {
+      "target": "dmg",
+      "category": "public.app-category.productivity"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Utility",
+      "maintainer": "wslyvh"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false
+    }
+  },
+  "dependencies": {
+    "@electron-toolkit/utils": "^4.0.0",
+    "better-sqlite3": "^12.6.0",
+    "dayjs": "^1.11.19",
+    "electron-log": "^5.4.3",
+    "ethereum-blockies-base64": "^1.0.2",
+    "imapflow": "^1.0.172",
+    "lucide-react": "^0.563.0",
+    "mailparser": "^3.7.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.2",
+    "recharts": "^3.7.0"
+  },
+  "devDependencies": {
+    "@electron-toolkit/preload": "^3.0.2",
+    "@electron-toolkit/tsconfig": "^1.0.1",
+    "@tailwindcss/postcss": "^4.1.18",
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/mailparser": "^3.4.5",
+    "@types/node": "^25.1.0",
+    "@types/react": "^18.3.14",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.24",
+    "daisyui": "^5.5.17",
+    "dotenv": "^17.2.3",
+    "electron": "^33.2.1",
+    "electron-builder": "^26.7.0",
+    "electron-vite": "^5.0.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.7.2"
+  }
+}

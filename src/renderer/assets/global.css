@@ -1,0 +1,15 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: dim --default;
+}
+
+.recharts-wrapper :focus,
+.recharts-wrapper :focus-visible,
+.recharts-wrapper [tabindex]:focus,
+.recharts-wrapper [tabindex]:focus-visible,
+.recharts-wrapper svg:focus,
+.recharts-wrapper svg:focus-visible 
+.recharts-surface:focus,
+.recharts-surface:focus-visible {
+  outline: none;
+}

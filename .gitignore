@@ -16,3 +16,5 @@ resources/
 
 # editor / tooling
 .claude/
+./docs/
+*.md
