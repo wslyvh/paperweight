@@ -238,7 +238,7 @@ function extractPartByMime(parts: MimePart[], mime: string): string {
 
 interface GmailHistoryEntry {
   id: string;
-  messagesAdded?: Array<{ message: { id: string; labelIds?: string[] } }>;
+  messagesAdded?: Array<{ message: { id: string } }>;
   messagesDeleted?: Array<{ message: { id: string } }>;
 }
 
@@ -474,7 +474,10 @@ export function createGmailProvider(): EmailProvider {
       try {
         // eslint-disable-next-line no-constant-condition
         while (true) {
-          const params: Record<string, string> = { startHistoryId: checkpoint };
+          const params: Record<string, string> = {
+            startHistoryId: checkpoint,
+            labelId: "INBOX",
+          };
           if (pageToken) params.pageToken = pageToken;
 
           const result = (await gmailApiFetch("/history", params)) as GmailHistoryResponse;
@@ -484,8 +487,6 @@ export function createGmailProvider(): EmailProvider {
 
           for (const entry of result.history ?? []) {
             for (const item of entry.messagesAdded ?? []) {
-              const labels = item.message.labelIds ?? [];
-              if (labels.includes("SPAM") || labels.includes("TRASH")) continue;
               addedIds.add(item.message.id);
               deletedIds.delete(item.message.id);
             }
