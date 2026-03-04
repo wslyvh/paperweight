@@ -2,7 +2,7 @@ import Link from "next/link";
 import { SITE_CONFIG } from "@/utils/config";
 import { Mail, ShieldAlert, Map, FileText, Lock, Github } from "lucide-react";
 
-const latestVersion = "0.1.2";
+const latestVersion = "0.1.3";
 
 export default function Home() {
   return (
