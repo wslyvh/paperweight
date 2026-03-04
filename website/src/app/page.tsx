@@ -141,25 +141,25 @@ export default function Home() {
             Free to try. All features included for 30 days.
           </p>
 
-          <div className="flex flex-row justify-center gap-4 mb-4">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 mb-4">
             <Link
               href={`${SITE_CONFIG.GITHUB_URL}/releases/latest/download/Paperweight-0.1.0.dmg`}
-              className="btn btn-outline btn-lg w-48 plausible-event-name=Download+macOS"
+              className="btn btn-outline btn-lg w-full sm:flex-1 sm:min-w-[8rem] sm:max-w-48 plausible-event-name=Download+macOS"
             >
               macOS
             </Link>
 
             <Link
               href={`${SITE_CONFIG.GITHUB_URL}/releases/latest/download/Paperweight-0.1.0.exe`}
-              className="btn btn-outline btn-lg w-48 plausible-event-name=Download+Windows"
+              className="btn btn-outline btn-lg w-full sm:flex-1 sm:min-w-[8rem] sm:max-w-48 plausible-event-name=Download+Windows"
             >
               Windows
             </Link>
 
-            <div>
+            <div className="w-full sm:flex-1 sm:min-w-[8rem] sm:max-w-48">
               <Link
                 href={`${SITE_CONFIG.GITHUB_URL}/releases/latest/download/Paperweight-0.1.0.AppImage`}
-                className="btn btn-outline btn-lg w-48 plausible-event-name=Download+Linux"
+                className="btn btn-outline btn-lg w-full plausible-event-name=Download+Linux"
               >
                 Linux
               </Link>
