@@ -7,6 +7,7 @@ import { APP_CONFIG } from "@shared/config";
 import { getSetting, applyAutoLaunch, wasLaunchedAsHidden } from "./services/settings";
 import { initDb } from "./db";
 import { appLog } from "./utils/log";
+import { initFileLog } from "./utils/file-log";
 
 let startHidden = false;
 
@@ -65,6 +66,8 @@ function createWindow(): BrowserWindow {
 }
 
 app.whenReady().then(() => {
+  initFileLog(join(app.getPath("logs"), "main.log"));
+
   appLog.info(`Starting ${APP_CONFIG.NAME} v${app.getVersion()} (Electron ${process.versions.electron})`);
 
   // Pre-compute paths using Electron APIs and store them so db.ts never needs to

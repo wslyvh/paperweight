@@ -1,5 +1,5 @@
 import { app, ipcMain } from "electron";
-import { statSync } from "fs";
+import { readFileSync, statSync } from "fs";
 import { join } from "path";
 import { IPC } from "@shared/ipc";
 import { APP_CONFIG } from "@shared/config";
@@ -25,8 +25,8 @@ import { getLicenseStatus, deleteLicense } from "../services/settings";
 import { getDashboardStats } from "../services/stats";
 import { deleteCredentials, loadCredentials } from "../credentials";
 import { wipeDatabase } from "../db";
-import { getLogPath, readLogFile } from "../utils/log";
 import { dataLog, actionLog } from "../utils/log";
+import { getFileLogPath } from "../utils/file-log";
 import os from "os";
 
 function isImapConfig(value: unknown): value is ImapConfig {
@@ -149,9 +149,16 @@ export function registerAccountHandlers(): void {
       totalMessages: stats.totalMessages,
       lastSyncAt: syncState.last_sync_at,
       dbSizeMb: getDbSizeMb(),
-      logPath: getLogPath(),
+      logPath: getFileLogPath() || join(app.getPath("logs"), "main.log"),
     };
   });
 
-  ipcMain.handle(IPC.readLogFile, () => readLogFile());
+  ipcMain.handle(IPC.readLogFile, () => {
+    const logPath = getFileLogPath() || join(app.getPath("logs"), "main.log");
+    try {
+      return readFileSync(logPath, "utf-8");
+    } catch {
+      return "";
+    }
+  });
 }

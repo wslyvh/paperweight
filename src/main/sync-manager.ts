@@ -7,10 +7,16 @@ import { loadCredentials } from "./credentials";
 import { getLicenseStatus } from "./services/settings";
 import { APP_CONFIG } from "@shared/config";
 import { syncLog } from "./utils/log";
+import { appendFileLog } from "./utils/file-log";
 import type { SyncStatus } from "@shared/types";
 
 let activeWorker: Worker | undefined;
-let lastStatus: SyncStatus = { running: false, progress: 0, total: 0, message: "" };
+let lastStatus: SyncStatus = {
+  running: false,
+  progress: 0,
+  total: 0,
+  message: "",
+};
 
 export function getSyncStatus(): SyncStatus {
   return lastStatus;
@@ -32,21 +38,46 @@ export function startSync(): void {
 
   const workerPath = join(__dirname, "sync-worker.js");
   activeWorker = new Worker(workerPath, {
-    workerData: { dbPath, companiesDbPath, breachesDbPath, credentials, licensed },
+    workerData: {
+      dbPath,
+      companiesDbPath,
+      breachesDbPath,
+      credentials,
+      licensed,
+    },
   });
 
-  activeWorker.on("message", (msg: { type: string; status?: SyncStatus }) => {
-    if (msg.type === "progress" && msg.status) {
-      lastStatus = msg.status;
-      for (const win of BrowserWindow.getAllWindows()) {
-        win.webContents.send(IPC.syncProgress, msg.status);
+  activeWorker.on(
+    "message",
+    (msg: {
+      type: string;
+      status?: SyncStatus;
+      scope?: string;
+      level?: string;
+      args?: unknown[];
+    }) => {
+      if (msg.type === "log" && msg.scope && msg.level && msg.args) {
+        appendFileLog(msg.level, msg.scope, ...msg.args);
+        return;
       }
-    }
-  });
+      if (msg.type === "progress" && msg.status) {
+        lastStatus = msg.status;
+        for (const win of BrowserWindow.getAllWindows()) {
+          win.webContents.send(IPC.syncProgress, msg.status);
+        }
+      }
+    },
+  );
 
   activeWorker.on("error", (err: Error) => {
     syncLog.error("Sync worker error:", err.stack ?? err.message);
-    lastStatus = { running: false, progress: 0, total: 0, message: "Sync failed", error: err.message };
+    lastStatus = {
+      running: false,
+      progress: 0,
+      total: 0,
+      message: "Sync failed",
+      error: err.message,
+    };
     activeWorker = undefined;
   });
 

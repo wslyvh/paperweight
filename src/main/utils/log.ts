@@ -1,17 +1,40 @@
 import { parentPort } from "node:worker_threads";
-import { readFileSync } from "fs";
 
 // Worker threads don't have access to 'electron' — electron-log requires it at load time.
-// Use a console-based fallback when running in a worker.
+// Use a console-based fallback that also relays to the main process for file logging.
 function createWorkerLogger() {
+  const relay = (scope: string, level: string, args: unknown[]) => {
+    if (parentPort) {
+      try {
+        parentPort.postMessage({ type: "log", scope, level, args });
+      } catch {
+        // ignore if worker not connected
+      }
+    }
+  };
   const createScope = (name: string) => {
     const prefix = `[${name}]`;
     return {
-      debug: (...args: unknown[]) => console.log(prefix, ...args),
-      info: (...args: unknown[]) => console.info(prefix, ...args),
-      warn: (...args: unknown[]) => console.warn(prefix, ...args),
-      error: (...args: unknown[]) => console.error(prefix, ...args),
-      verbose: (...args: unknown[]) => console.log(prefix, ...args),
+      debug: (...args: unknown[]) => {
+        console.log(prefix, ...args);
+        relay(name, "debug", args);
+      },
+      info: (...args: unknown[]) => {
+        console.info(prefix, ...args);
+        relay(name, "info", args);
+      },
+      warn: (...args: unknown[]) => {
+        console.warn(prefix, ...args);
+        relay(name, "warn", args);
+      },
+      error: (...args: unknown[]) => {
+        console.error(prefix, ...args);
+        relay(name, "error", args);
+      },
+      verbose: (...args: unknown[]) => {
+        console.log(prefix, ...args);
+        relay(name, "verbose", args);
+      },
     };
   };
   return {
@@ -20,9 +43,11 @@ function createWorkerLogger() {
   };
 }
 
-let log: ReturnType<typeof createWorkerLogger> | import("electron-log").MainLogger;
+let log:
+  | ReturnType<typeof createWorkerLogger>
+  | import("electron-log").MainLogger;
 
-if (typeof parentPort !== "undefined") {
+if (parentPort !== null) {
   log = createWorkerLogger();
 } else {
   const electronLog = require("electron-log/main").default;
@@ -41,17 +66,5 @@ export const licenseLog = log.scope("license");
 export const dataLog = log.scope("data");
 export const actionLog = log.scope("action");
 export const dbLog = log.scope("db");
-
-export function getLogPath(): string {
-  return log.transports.file.getFile().path;
-}
-
-export function readLogFile(): string {
-  try {
-    return readFileSync(getLogPath(), "utf-8");
-  } catch {
-    return "";
-  }
-}
 
 export default log;

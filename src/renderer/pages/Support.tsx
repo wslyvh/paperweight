@@ -50,7 +50,7 @@ export default function Support(): JSX.Element {
   };
 
   return (
-    <div className="space-y-6 max-w-xl">
+    <div className="space-y-6">
       <div className="flex items-center gap-3">
         <button
           className="btn btn-ghost btn-sm btn-square"
@@ -61,34 +61,36 @@ export default function Support(): JSX.Element {
         <h1 className="text-2xl font-bold">Support</h1>
       </div>
 
-      <DeviceInfoCard info={info} />
+      <div className="max-w-xl space-y-6">
+        <DeviceInfoCard info={info} />
 
-      {/* App Info */}
-      <div className="card bg-base-200">
-        <div className="card-body space-y-3">
-          <h3 className="font-semibold">App Info</h3>
-          {info && (
-            <div className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-sm">
-              <span className="text-base-content/50">Provider</span>
-              <span>{formatProvider(info.providerType)}</span>
+        {/* App Info */}
+        <div className="card bg-base-200">
+          <div className="card-body space-y-3">
+            <h3 className="font-semibold">App Info</h3>
+            {info && (
+              <div className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-sm">
+                <span className="text-base-content/50">Provider</span>
+                <span>{formatProvider(info.providerType)}</span>
 
-              <span className="text-base-content/50">License</span>
-              <span>{license.active ? "Active" : "Free"}</span>
+                <span className="text-base-content/50">License</span>
+                <span>{license.active ? "Active" : "Free"}</span>
 
-              <span className="text-base-content/50">Messages synced</span>
-              <span>{info.totalMessages.toLocaleString()}</span>
+                <span className="text-base-content/50">Messages synced</span>
+                <span>{info.totalMessages.toLocaleString()}</span>
 
-              <span className="text-base-content/50">Last sync</span>
-              <span>{formatDateTime(info.lastSyncAt)}</span>
+                <span className="text-base-content/50">Last sync</span>
+                <span>{formatDateTime(info.lastSyncAt)}</span>
 
-              <span className="text-base-content/50">Database size</span>
-              <span>{info.dbSizeMb} MB</span>
-            </div>
-          )}
+                <span className="text-base-content/50">Database size</span>
+                <span>{info.dbSizeMb} MB</span>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
 
-      <HelpSection />
+        <HelpSection />
+      </div>
 
       {/* Log Viewer */}
       <div className="card bg-base-200">
@@ -103,10 +105,7 @@ export default function Support(): JSX.Element {
                 <RefreshCw className="w-3 h-3" />
                 Refresh
               </button>
-              <button
-                className="btn btn-ghost btn-xs gap-1"
-                onClick={copyLogs}
-              >
+              <button className="btn btn-ghost btn-xs gap-1" onClick={copyLogs}>
                 <Copy className="w-3 h-3" />
                 {copied ? "Copied" : "Copy"}
               </button>
