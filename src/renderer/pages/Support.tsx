@@ -4,9 +4,11 @@ import { ArrowLeft, RefreshCw, Copy } from "lucide-react";
 import type { SupportInfo } from "@shared/types";
 import DeviceInfoCard from "../components/DeviceInfoCard";
 import HelpSection from "../components/HelpSection";
+import { useLicense } from "../context/LicenseContext";
 
 export default function Support(): JSX.Element {
   const navigate = useNavigate();
+  const license = useLicense();
   const [info, setInfo] = useState<SupportInfo>();
   const [logContent, setLogContent] = useState("");
   const [copied, setCopied] = useState(false);
@@ -71,7 +73,7 @@ export default function Support(): JSX.Element {
               <span>{formatProvider(info.providerType)}</span>
 
               <span className="text-base-content/50">License</span>
-              <span>{info.licenseActive ? "Active" : "Free"}</span>
+              <span>{license.active ? "Active" : "Free"}</span>
 
               <span className="text-base-content/50">Messages synced</span>
               <span>{info.totalMessages.toLocaleString()}</span>

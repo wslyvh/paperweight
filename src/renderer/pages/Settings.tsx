@@ -8,6 +8,7 @@ import type {
   LicenseStatus,
   WhitelistEntry,
 } from "@shared/types";
+import { useLicense, useRefreshLicense } from "../context/LicenseContext";
 
 export default function Settings(): JSX.Element {
   const navigate = useNavigate();
@@ -17,9 +18,8 @@ export default function Settings(): JSX.Element {
   const [launchMinimized, setLaunchMinimized] = useState(false);
   const [showClearModal, setShowClearModal] = useState(false);
   const [licenseKey, setLicenseKey] = useState("");
-  const [licenseStatus, setLicenseStatus] = useState<LicenseStatus>({
-    active: false,
-  });
+  const license = useLicense();
+  const refreshLicense = useRefreshLicense();
   const [licenseLoading, setLicenseLoading] = useState(false);
   const [licenseError, setLicenseError] = useState("");
   const [showWipeModal, setShowWipeModal] = useState(false);
@@ -40,7 +40,6 @@ export default function Settings(): JSX.Element {
       setAutoLaunch(!!s.autoLaunch);
       setLaunchMinimized(!!s.launchMinimized);
     });
-    window.api.getLicenseStatus().then(setLicenseStatus);
     window.api.getEmailConnection().then(setConnection);
     fetchWhitelist();
   }, []);
@@ -66,7 +65,7 @@ export default function Settings(): JSX.Element {
     setLicenseError("");
     try {
       const status = await window.api.activateLicense(key);
-      setLicenseStatus(status);
+      await refreshLicense();
       if (!status.active) {
         setLicenseError("Invalid or expired license key.");
       } else {
@@ -82,7 +81,7 @@ export default function Settings(): JSX.Element {
 
   const handleDeactivateLicense = async (): Promise<void> => {
     await window.api.deactivateLicense();
-    setLicenseStatus({ active: false });
+    await refreshLicense();
   };
 
   const handleClearSync = async (): Promise<void> => {
@@ -197,23 +196,23 @@ export default function Settings(): JSX.Element {
                 License
               </h4>
 
-              {licenseStatus.active ? (
+              {license.active ? (
                 <div className="space-y-2">
                   <div className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-1 text-sm">
                     <span className="text-base-content/50">Type</span>
-                    <span>{tierLabel(licenseStatus)}</span>
+                    <span>{tierLabel(license)}</span>
 
                     <span className="text-base-content/50">Key</span>
                     <span className="font-mono">
-                      {licenseStatus.key ? `XXXX-XXXX-${licenseStatus.key.slice(-4)}` : ""}
+                      {license.key ? `XXXX-XXXX-${license.key.slice(-4)}` : ""}
                     </span>
 
-                    {licenseStatus.expiresAt && (
+                    {license.expiresAt && (
                       <>
                         <span className="text-base-content/50">Expires</span>
                         <span>
                           {new Date(
-                            licenseStatus.expiresAt,
+                            license.expiresAt,
                           ).toLocaleDateString()}
                         </span>
                       </>
@@ -224,7 +223,7 @@ export default function Settings(): JSX.Element {
                       className="btn btn-primary btn-sm"
                       onClick={() =>
                         window.api.openExternal(
-                          licenseStatus.portalUrl ||
+                          license.portalUrl ||
                             "https://paperweight.email",
                         )
                       }
@@ -311,7 +310,7 @@ export default function Settings(): JSX.Element {
                 <span>{account.totalMessages.toLocaleString()}</span>
 
                 <span className="text-base-content/50">Sync period</span>
-                <span>{licenseStatus.active ? "Full history" : "30 days"}</span>
+                <span>{license.active ? "Full history" : "30 days"}</span>
               </div>
 
               {(account.providerType === "gmail" || account.providerType === "microsoft") && (

@@ -4,8 +4,8 @@ import type {
   AttentionStats,
   ChartTrend,
   DashboardStats,
-  LicenseStatus,
 } from "@shared/types";
+import { useLicense } from "../context/LicenseContext";
 import TrendChartCard from "../components/TrendChartCard";
 import ImpactBlock from "../components/ImpactBlock";
 import { ArrowRight, ChevronRight, Contact, Inbox, Mail } from "lucide-react";
@@ -27,7 +27,7 @@ export default function Dashboard(): JSX.Element {
     series: [],
     markers: [],
   });
-  const [license, setLicense] = useState<LicenseStatus>({ active: true });
+  const license = useLicense();
   const [loading, setLoading] = useState(true);
   const [impactKey, setImpactKey] = useState(0);
 
@@ -46,7 +46,6 @@ export default function Dashboard(): JSX.Element {
 
   useEffect(() => {
     fetchData();
-    window.api.getLicenseStatus().then(setLicense);
   }, []);
 
   // Re-fetch when sync updates or finishes (silent to avoid flashing)

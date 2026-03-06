@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import type { Vendor, VendorQuery } from "@shared/types";
+import { useLicense } from "../context/LicenseContext";
 import { BadgeCheck, ChevronRight, ChevronLeft, ArrowUpDown, SlidersHorizontal, Check } from "lucide-react";
 import { getActivitySignal, ACTIVITY_BADGE } from "../utils/signals";
 import ActionModal from "../components/ActionModal";
@@ -31,11 +32,15 @@ interface Preset {
   defaultSort?: string;
 }
 
-const PRESETS: Preset[] = [
-  { id: "priority",  label: "Priority",      risk: "high", activity: "stale" },
+const FREE_PRESETS: Preset[] = [
+  { id: "highrisk",  label: "High risk",    risk: "high" },
   { id: "onetime",   label: "Single orders", dataType: "has_orders", volume: "oneoff" },
-  { id: "oldorders", label: "Old orders",    dataType: "has_orders", activity: "stale" },
   { id: "breached",  label: "Breached",      breached: true, defaultSort: "risk" },
+];
+
+const LICENSED_PRESETS: Preset[] = [
+  { id: "oldaccounts", label: "Old accounts", risk: "high", activity: "stale" },
+  { id: "oldorders",   label: "Old orders",   dataType: "has_orders", activity: "stale" },
 ];
 
 interface FilterGroupProps {
@@ -90,7 +95,9 @@ export default function Accounts(): JSX.Element {
   // Restore previous filter state when returning from a detail page.
   // Preset activation (e.g. from Dashboard) is used only on a fresh load.
   const restore = locState?.restore;
-  const initialPreset = restore ? undefined : PRESETS.find((p) => p.id === locState?.preset);
+  const license = useLicense();
+  const presets = license.active ? [...FREE_PRESETS, ...LICENSED_PRESETS] : FREE_PRESETS;
+  const initialPreset = restore ? undefined : presets.find((p) => p.id === locState?.preset);
 
   const [vendors, setVendors] = useState<Vendor[]>([]);
   const [total, setTotal] = useState(0);
@@ -100,8 +107,8 @@ export default function Accounts(): JSX.Element {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState(restore?.search ?? "");
   const [sortBy, setSortBy] = useState(restore?.sortBy ?? initialPreset?.defaultSort ?? "message_count");
-  const [riskFilter, setRiskFilter] = useState(restore?.riskFilter ?? (initialPreset ? (initialPreset.risk ?? "") : "high"));
-  const [activityFilter, setActivityFilter] = useState(restore?.activityFilter ?? (initialPreset ? (initialPreset.activity ?? "") : "stale"));
+  const [riskFilter, setRiskFilter] = useState(restore?.riskFilter ?? (initialPreset ? (initialPreset.risk ?? "") : ""));
+  const [activityFilter, setActivityFilter] = useState(restore?.activityFilter ?? (initialPreset ? (initialPreset.activity ?? "") : ""));
   const [dataTypeFilter, setDataTypeFilter] = useState(restore?.dataTypeFilter ?? initialPreset?.dataType ?? "");
   const [volumeFilter, setVolumeFilter] = useState(restore?.volumeFilter ?? initialPreset?.volume ?? "");
   const [breachedFilter, setBreachedFilter] = useState(restore?.breachedFilter ?? !!(initialPreset?.breached));
@@ -381,7 +388,7 @@ export default function Accounts(): JSX.Element {
 
         <div className="w-px h-3 bg-base-content/20" />
 
-        {PRESETS.map(p => (
+        {presets.map(p => (
           <button
             key={p.id}
             className={`badge badge-sm cursor-pointer ${isPresetActive(p) ? "badge-accent" : "badge-soft badge-accent"}`}
