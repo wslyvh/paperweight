@@ -10,7 +10,7 @@ import {
   Info,
 } from "lucide-react";
 
-const latestVersion = "0.1.3";
+const latestVersion = "0.1.4";
 
 export default function Home() {
   return (
