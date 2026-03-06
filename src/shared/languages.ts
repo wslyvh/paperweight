@@ -84,6 +84,9 @@ export const TRANSACTIONAL_PATTERNS: RegExp[] = [
   /\bbevestig (je |uw )?e-?mail\b/i,
   /\bwachtwoord (opnieuw )?instellen\b/i,
   /\bverificatiecode\b/i,
+  /\bwijzig (je |uw )?wachtwoord\b/i,
+  /\bwachtwoord wijzigen\b/i,
+  /\bwachtwoord vergeten\b/i,
   // German
   /\bwillkommen bei\b/i,
   /\be-?mail best[aä]tigen\b/i,
@@ -131,10 +134,11 @@ export const ORDER_PATTERNS: RegExp[] = [
   // Dutch
   /\bofferte(aanvraag)?\b/i,
   /\bbestelbevestiging\b/i,
-  /\bje bestelling\b/i,
+  /\b(uw|je) bestelling\b/i,
   /\bonvangstbewijs\b/i,
   /\bverzending\b/i,
   /\bfactuur\b/i,
+  /\bretourbon#?\d+/i,
   // German
   /\bbestellbest[aä]tigung\b/i,
   /\bihre bestellung\b/i,
