@@ -26,12 +26,12 @@ export default async function PrivacyPage() {
         </p>
         <ul>
           <li>
-            <strong>Read your emails</strong> - to scan for accounts and
-            marketing senders
+            <strong>Read your emails</strong> - to scan for mailing lists, and
+            other accounts
           </li>
           <li>
-            <strong>Modify emails</strong> (optional) - to trash, archive, or
-            mark emails as read when you choose
+            <strong>Modify emails</strong> - to trash, archive, or mark emails
+            as spam when you choose
           </li>
         </ul>
         <p>
@@ -41,8 +41,8 @@ export default async function PrivacyPage() {
 
         <h3>What data we collect</h3>
         <p>
-          We don't have user accounts for the app and we don't collect your
-          email contents.
+          The desktop App does not collect any data. Not even analytics or usage
+          data. Everything happens locally on your device.
         </p>
         <p>
           This website may collect limited data when you choose to provide it:
@@ -56,7 +56,8 @@ export default async function PrivacyPage() {
           <li>
             <strong>Newsletter signup</strong> - if you enter your email to get
             updates, we store that email for the purpose of sending product
-            announcements and updates. You can unsubscribe at any time.
+            announcements and updates. You can unsubscribe at any time. Using
+            the desktop App does not sign you up for the newsletter.
           </li>
           <li>
             <strong>Website analytics</strong> - we use Plausible to understand
