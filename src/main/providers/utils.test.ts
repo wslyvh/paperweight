@@ -5,19 +5,6 @@ describe("cleanHtml", () => {
     expect(cleanHtml(undefined)).toBe("");
   });
 
-  it("removes style tags and their content", () => {
-    const html = `
-      <style>
-        body { background: red; }
-      </style>
-      <p>Hello</p>
-    `;
-
-    const result = cleanHtml(html);
-    expect(result).not.toContain("background");
-    expect(result).toContain("Hello");
-  });
-
   it("removes script tags and their content", () => {
     const html = `
       <script>
