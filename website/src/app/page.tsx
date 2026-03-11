@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { SITE_CONFIG } from "@/utils/config";
 import {
   Mail,
@@ -34,10 +35,36 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Preview */}
+      <section className="bg-base-200 pt-20 pb-10">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-2">See it in action</h2>
+            <p className="text-lg opacity-80 mb-10">
+              Messages synced, mailing lists, and daily email trends at a glance.
+            </p>
+            <div className="relative mx-auto max-w-3xl rounded-2xl overflow-hidden border border-base-300 shadow-2xl ring-1 ring-base-content/5">
+              <Image
+                src="/dashboard.png"
+                alt="Paperweight dashboard showing messages synced, mailing lists, accounts, and daily email chart"
+                width={1057}
+                height={880}
+                className="w-full h-auto"
+                priority
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features */}
-      <section className="bg-base-200 py-20">
+      <section className="bg-base-200 pt-10 pb-20">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold mb-2 text-center">Features</h2>
+            <p className="text-lg opacity-80 mb-10 text-center">
+              What you can do with Paperweight.
+            </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="card bg-base-100 shadow-sm">
                 <div className="card-body items-center text-center">
