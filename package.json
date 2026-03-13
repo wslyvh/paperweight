@@ -2,6 +2,7 @@
   "name": "paperweight",
   "version": "0.1.4",
   "description": "Manage your digital footprint",
+  "license": "GPL-3.0",
   "author": "wslyvh",
   "main": "./out/main/index.js",
   "scripts": {
