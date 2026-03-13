@@ -24,6 +24,10 @@ import {
 //   for Gmail, "http://localhost" for Microsoft — Azure requires the localhost form).
 // buildAuthUrl: called with the full redirectUri (base + port), returns the URL to open.
 
+function escapeHtml(str: string): string {
+  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
 export function runLoopbackAuth(
   redirectUriBase: string,
   buildAuthUrl: (redirectUri: string) => string
@@ -109,7 +113,7 @@ export function runLoopbackAuth(
 <body>
   <div class="stone">🗿</div>
   <h2>Authorization failed.</h2>
-  <p>${errorDescription || error || "Unknown error"}</p>
+  <p>${escapeHtml(errorDescription || error || "Unknown error")}</p>
 </body>
 </html>`
       );
