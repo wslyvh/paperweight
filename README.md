@@ -41,7 +41,7 @@ All features available in free tier. Upgrade for unlimited email history.
 - **Free tier**: 30-day email scan, all features included
 - **Early supporters license**: All features, unlimited email history, lifetime updates.
 
-[Buy a lifetime license and support development →](https://www.paperweight.email/)
+[Buy a lifetime license and support development →](https://www.paperweight.email/#pricing)
 
 ## Contributing
 

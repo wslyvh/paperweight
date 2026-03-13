@@ -105,6 +105,9 @@ export default function RootLayout(props: PropsWithChildren) {
                       </span>
                     </div>
                     <div className="flex items-center gap-4">
+                      <Link href="/changelog" className="hover:underline">
+                        Changelog
+                      </Link>
                       <Link href="/privacy" className="hover:underline">
                         Privacy
                       </Link>

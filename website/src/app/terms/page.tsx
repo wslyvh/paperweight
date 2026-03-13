@@ -4,7 +4,7 @@ export default async function TermsPage() {
   const lastUpdated = "Feb 9, 2026";
 
   return (
-    <div className="container max-w-7xl mx-auto w-full px-4 pt-24 pb-12">
+    <div className="container mx-auto w-full px-4 pt-24 pb-12">
       <h1 className="text-3xl font-semibold mb-6">Terms of Service</h1>
       <p className="text-sm mt-2">Last updated: {lastUpdated}</p>
       <div className="divider"></div>

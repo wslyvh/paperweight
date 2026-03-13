@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { SITE_CONFIG } from "@/utils/config";
+import { getLatestVersion } from "@/lib/github";
 import {
   Mail,
   ShieldAlert,
@@ -11,9 +12,11 @@ import {
   Info,
 } from "lucide-react";
 
-const latestVersion = "0.1.4";
-
-export default function Home() {
+export default async function Home() {
+  const latestVersion = await getLatestVersion();
+  if (!latestVersion) {
+    throw new Error("No releases found from GitHub API");
+  }
   return (
     <>
       {/* Hero */}
@@ -41,7 +44,8 @@ export default function Home() {
           <div className="max-w-6xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-2">See it in action</h2>
             <p className="text-lg opacity-80 mb-10">
-              Messages synced, mailing lists, and daily email trends at a glance.
+              Messages synced, mailing lists, and daily email trends at a
+              glance.
             </p>
             <div className="relative mx-auto max-w-3xl rounded-2xl overflow-hidden border border-base-300 shadow-2xl ring-1 ring-base-content/5">
               <Image
@@ -260,9 +264,9 @@ export default function Home() {
 
           <p className="text-sm opacity-60">
             Latest version: v{latestVersion} ·{" "}
-            <a href={`${SITE_CONFIG.GITHUB_URL}/releases`} className="link">
+            <Link href="/changelog" className="link">
               All releases
-            </a>
+            </Link>
           </p>
         </div>
       </section>

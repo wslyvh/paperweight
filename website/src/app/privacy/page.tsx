@@ -4,7 +4,7 @@ export default async function PrivacyPage() {
   const lastUpdated = "Mar 12, 2026";
 
   return (
-    <div className="container max-w-7xl mx-auto w-full px-4 pt-24 pb-12">
+    <div className="container mx-auto w-full px-4 pt-24 pb-12">
       <h1 className="text-3xl font-semibold mb-6">Privacy Policy</h1>
       <p className="text-sm mt-2">Last updated: {lastUpdated}</p>
       <div className="divider"></div>
