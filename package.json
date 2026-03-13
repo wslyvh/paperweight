@@ -19,7 +19,8 @@
     "dist": "yarn dist:mac && yarn dist:linux && yarn dist:win",
     "dist:mac": "electron-rebuild -f -w better-sqlite3 && yarn build && electron-builder --mac --publish never",
     "dist:linux": "electron-rebuild -f -w better-sqlite3 && yarn build && electron-builder --linux --publish never",
-    "dist:win": "electron-rebuild -f -w better-sqlite3 && yarn build && electron-builder --win --publish never"
+    "dist:win": "electron-rebuild -f -w better-sqlite3 && yarn build && electron-builder --win --publish never",
+    "test": "jest"
   },
   "build": {
     "appId": "email.paperweight",
@@ -85,6 +86,7 @@
     "@electron/rebuild": "^4.0.3",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/better-sqlite3": "^7.6.12",
+    "@types/jest": "^30.0.0",
     "@types/mailparser": "^3.4.5",
     "@types/node": "^25.1.0",
     "@types/react": "^18.3.14",
@@ -97,8 +99,10 @@
     "electron": "^33.2.1",
     "electron-builder": "^26.7.0",
     "electron-vite": "^5.0.0",
+    "jest": "^30.3.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.18",
+    "ts-jest": "^29.4.6",
     "tsx": "^4.21.0",
     "typescript": "^5.7.2",
     "vite": "^7.3.1"

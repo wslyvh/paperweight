@@ -275,5 +275,8 @@ export function cleanHtml(html: string | undefined)
     // Remove <script>...</script> blocks
     .replace(/<script[\s\S]*?<\/script>/gi, "")
     // Remove all remaining HTML tags
-    .replace(/<[^>]*>/g, " ");
+    .replace(/<[^>]*>/g, " ")
+    // Collapse multiple spaces/newlines into a single space
+    .replace(/\s+/g, " ")
+    .trim();
 }
