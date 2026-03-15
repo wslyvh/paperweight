@@ -107,6 +107,11 @@ async function getValidAccessToken(): Promise<string> {
     }),
   });
 
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Token refresh failed (${response.status}): ${text}`);
+  }
+
   const data = await response.json();
   if (data.access_token) {
     creds.gmail.accessToken = data.access_token;

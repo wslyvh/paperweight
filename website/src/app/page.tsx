@@ -340,7 +340,7 @@ export default async function Home() {
 
                 <div className="text-center mb-6">
                   <h3 className="text-2xl font-bold mb-2">Lifetime License</h3>
-                  <div className="text-4xl font-bold mb-2">$19</div>
+                  <div className="text-4xl font-bold mb-2">$49</div>
                   <div className="text-sm opacity-60 mb-1">
                     One-time payment
                   </div>

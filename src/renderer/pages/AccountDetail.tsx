@@ -1,7 +1,16 @@
 import { useEffect, useCallback, useState } from "react";
 import { useParams, Link, useLocation } from "react-router-dom";
-import type { VendorDetail, Message, UnsubscribeEntry, ActivityEntry } from "@shared/types";
-import { formatRelativeDate, formatAbsoluteDate, formatBytes } from "@shared/formatting";
+import type {
+  VendorDetail,
+  Message,
+  UnsubscribeEntry,
+  ActivityEntry,
+} from "@shared/types";
+import {
+  formatRelativeDate,
+  formatAbsoluteDate,
+  formatBytes,
+} from "@shared/formatting";
 import { RISK_CATEGORIES, RISK_LEVELS } from "@shared/languages";
 import {
   ArrowLeft,
@@ -33,12 +42,16 @@ const RISK_BADGE_CLASS: Record<string, string> = {
 
 function buildDeletionEmail(
   userEmail: string,
-): { subject: string; body: string } {
+  accountIdentifier?: string,
+): {
+  subject: string;
+  body: string;
+} {
   return {
     subject: `Data Deletion Request`,
     body: `To whom it may concern,
 
-I am requesting the complete deletion of all my personal data under GDPR.
+I am requesting the deletion of all personal data you hold about me. I no longer wish for you to process my data and there is no ongoing reason for you to retain it.
 
 Please:
 - Delete all account data and purchase history
@@ -48,6 +61,7 @@ Please:
 
 Account identifier:
 - Email: ${userEmail}
+${accountIdentifier ? `- Account reference: ${accountIdentifier}` : ""}
 
 Please confirm completion of this request within 30 days.
 
@@ -115,28 +129,52 @@ function methodDescription(method: string, url: string): string {
   return "Opens the unsubscribe page in your browser.";
 }
 
-function unsubDescription(entry: UnsubscribeEntry, vendorName: string): JSX.Element {
+function unsubDescription(
+  entry: UnsubscribeEntry,
+  vendorName: string,
+): JSX.Element {
   if (entry.method === "rfc8058") {
-    return <>An unsubscribe request will be sent to <strong>{vendorName}</strong> automatically.</>;
+    return (
+      <>
+        An unsubscribe request will be sent to <strong>{vendorName}</strong>{" "}
+        automatically.
+      </>
+    );
   }
   if (entry.url.startsWith("mailto:")) {
-    return <>Your email client will open with a pre-filled unsubscribe request to <strong>{vendorName}</strong>. Send the email to complete.</>;
+    return (
+      <>
+        Your email client will open with a pre-filled unsubscribe request to{" "}
+        <strong>{vendorName}</strong>. Send the email to complete.
+      </>
+    );
   }
-  return <>The unsubscribe page for <strong>{vendorName}</strong> will open in your browser. Complete the process there.</>;
+  return (
+    <>
+      The unsubscribe page for <strong>{vendorName}</strong> will open in your
+      browser. Complete the process there.
+    </>
+  );
 }
 
 export default function AccountDetail(): JSX.Element {
   const { groupKey } = useParams<{ groupKey: string }>();
   const { state } = useLocation();
-  const accountsState = (state as { accountsState?: unknown } | null)?.accountsState;
+  const accountsState = (state as { accountsState?: unknown } | null)
+    ?.accountsState;
   const [detail, setDetail] = useState<VendorDetail>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>();
   const [riskOpen, setRiskOpen] = useState(false);
   const [breachOpen, setBreachOpen] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [pendingUnsub, setPendingUnsub] = useState<UnsubscribeEntry | null>(null);
-  const [unsubCheck, setUnsubCheck] = useState<{ entry: UnsubscribeEntry; trashAlso: boolean } | null>(null);
+  const [pendingUnsub, setPendingUnsub] = useState<UnsubscribeEntry | null>(
+    null,
+  );
+  const [unsubCheck, setUnsubCheck] = useState<{
+    entry: UnsubscribeEntry;
+    trashAlso: boolean;
+  } | null>(null);
   const [unsubResult, setUnsubResult] = useState<{
     entry: UnsubscribeEntry;
     kind: "success" | "failure";
@@ -145,7 +183,9 @@ export default function AccountDetail(): JSX.Element {
   } | null>(null);
   const [actionLoading, setActionLoading] = useState(false);
   const [unsubDone, setUnsubDone] = useState<Set<string>>(new Set());
-  const [activeTab, setActiveTab] = useState<"emails" | "mailing" | "data" | "activity">("emails");
+  const [activeTab, setActiveTab] = useState<
+    "emails" | "mailing" | "data" | "activity"
+  >("emails");
 
   useEffect(() => {
     if (!groupKey) return;
@@ -154,7 +194,9 @@ export default function AccountDetail(): JSX.Element {
       .getVendorDetail(decodeURIComponent(groupKey))
       .then((d) => {
         setDetail(d);
-        setBreachOpen(d.vendor.breachInfo?.some((b) => b.likelyAffected) ?? false);
+        setBreachOpen(
+          d.vendor.breachInfo?.some((b) => b.likelyAffected) ?? false,
+        );
       })
       .catch((err) => setError(err.message ?? "Failed to load"))
       .finally(() => setLoading(false));
@@ -187,7 +229,11 @@ export default function AccountDetail(): JSX.Element {
   if (error || !detail) {
     return (
       <div className="space-y-4">
-        <Link to="/accounts" state={{ restore: accountsState }} className="btn btn-ghost btn-sm gap-1">
+        <Link
+          to="/accounts"
+          state={{ restore: accountsState }}
+          className="btn btn-ghost btn-sm gap-1"
+        >
           <ArrowLeft className="w-4 h-4" /> Back to overview
         </Link>
         <div className="card bg-base-200">
@@ -199,8 +245,15 @@ export default function AccountDetail(): JSX.Element {
     );
   }
 
-  const { vendor, company, senders, allMessages, first_activity, user_email, activityLog } =
-    detail;
+  const {
+    vendor,
+    company,
+    senders,
+    allMessages,
+    first_activity,
+    user_email,
+    activityLog,
+  } = detail;
   const breaches = vendor.breachInfo ?? [];
   const anyLikelyAffected = breaches.some((b) => b.likelyAffected);
   const displayName = vendor.name || vendor.root_domain || "Unknown";
@@ -213,10 +266,10 @@ export default function AccountDetail(): JSX.Element {
     cat !== "unknown"
       ? cat
       : vendor.has_orders
-      ? "shopping"
-      : vendor.has_account
-      ? "services"
-      : cat;
+        ? "shopping"
+        : vendor.has_account
+          ? "services"
+          : cat;
   const catInfo = RISK_CATEGORIES[effectiveCat as keyof typeof RISK_CATEGORIES];
   const badgeClass = RISK_BADGE_CLASS[risk] ?? "badge-ghost";
 
@@ -225,11 +278,11 @@ export default function AccountDetail(): JSX.Element {
     riskInfo?.description ?? "Not enough data to determine a risk level";
 
   const contactEmail = company?.email ?? senders[0]?.sender_email;
-  const deletionEmail = user_email
-    ? buildDeletionEmail(user_email)
-    : undefined;
+  const deletionEmail = user_email ? buildDeletionEmail(user_email) : undefined;
 
-  const domainUrl = company?.web ? company.web : `https://${vendor.root_domain ?? ""}`;
+  const domainUrl = company?.web
+    ? company.web
+    : `https://${vendor.root_domain ?? ""}`;
 
   const handleCopyMessage = async () => {
     if (!deletionEmail || !contactEmail) return;
@@ -263,14 +316,26 @@ export default function AccountDetail(): JSX.Element {
     setActionLoading(true);
     try {
       if (entry.method === "rfc8058") {
-        const fallbackMethods = unsubMethods.filter((m) => m.method !== "rfc8058");
+        const fallbackMethods = unsubMethods.filter(
+          (m) => m.method !== "rfc8058",
+        );
         const result = await window.api.executeRfc8058(entry.url);
         setPendingUnsub(null);
         if (result.success) {
           await window.api.markVendorUnsubscribed(vendorId);
-          setUnsubResult({ entry, kind: "success", fallbackMethods: [], trashAlso: true });
+          setUnsubResult({
+            entry,
+            kind: "success",
+            fallbackMethods: [],
+            trashAlso: true,
+          });
         } else {
-          setUnsubResult({ entry, kind: "failure", fallbackMethods, trashAlso: true });
+          setUnsubResult({
+            entry,
+            kind: "failure",
+            fallbackMethods,
+            trashAlso: true,
+          });
         }
       } else {
         await window.api.openExternal(entry.url);
@@ -311,7 +376,9 @@ export default function AccountDetail(): JSX.Element {
     }
   };
 
-  const handleUnsubResultFallback = async (fallbackEntry: UnsubscribeEntry): Promise<void> => {
+  const handleUnsubResultFallback = async (
+    fallbackEntry: UnsubscribeEntry,
+  ): Promise<void> => {
     if (!unsubResult) return;
     const { entry } = unsubResult;
     setActionLoading(true);
@@ -357,7 +424,11 @@ export default function AccountDetail(): JSX.Element {
     <div className="space-y-6">
       {/* Top bar */}
       <div className="flex items-center justify-between">
-        <Link to="/accounts" state={{ restore: accountsState }} className="btn btn-ghost btn-sm gap-1">
+        <Link
+          to="/accounts"
+          state={{ restore: accountsState }}
+          className="btn btn-ghost btn-sm gap-1"
+        >
           <ArrowLeft className="w-4 h-4" /> Back to overview
         </Link>
         <button
@@ -384,7 +455,8 @@ export default function AccountDetail(): JSX.Element {
           className="text-base-content/60 text-sm hover:text-base-content/80 hover:underline inline-flex items-center gap-1 mt-1"
           onClick={() => window.api.openExternal(domainUrl)}
         >
-          {vendor.root_domain ?? "(unknown)"} <ExternalLink className="w-3 h-3" />
+          {vendor.root_domain ?? "(unknown)"}{" "}
+          <ExternalLink className="w-3 h-3" />
         </button>
         {company?.categories && company.categories.length > 0 && (
           <div className="flex items-center gap-2 flex-wrap mt-2">
@@ -407,11 +479,15 @@ export default function AccountDetail(): JSX.Element {
       <div className="grid grid-cols-4 gap-4">
         <div>
           <p className="text-xs text-base-content/50 uppercase">First seen</p>
-          <p className="font-medium">{formatAbsoluteDate(first_activity ?? vendor.first_seen ?? 0)}</p>
+          <p className="font-medium">
+            {formatAbsoluteDate(first_activity ?? vendor.first_seen ?? 0)}
+          </p>
         </div>
         <div>
           <p className="text-xs text-base-content/50 uppercase">Last seen</p>
-          <p className="font-medium">{formatRelativeDate(vendor.last_seen ?? 0)}</p>
+          <p className="font-medium">
+            {formatRelativeDate(vendor.last_seen ?? 0)}
+          </p>
         </div>
         <div>
           <p className="text-xs text-base-content/50 uppercase">Emails</p>
@@ -425,7 +501,9 @@ export default function AccountDetail(): JSX.Element {
 
       {/* Breach alert */}
       {breaches.length > 0 && (
-        <div className={`card ${anyLikelyAffected ? "bg-error/10 border border-error/30" : "bg-warning/10 border border-warning/30"}`}>
+        <div
+          className={`card ${anyLikelyAffected ? "bg-error/10 border border-error/30" : "bg-warning/10 border border-warning/30"}`}
+        >
           <div
             className="p-4 flex items-center gap-3 cursor-pointer"
             onClick={() => setBreachOpen(!breachOpen)}
@@ -447,24 +525,30 @@ export default function AccountDetail(): JSX.Element {
                     {bi.breach.title} was breached on{" "}
                     <span className="font-medium">
                       {new Date(bi.breach.breachDate).toLocaleDateString()}
-                    </span>
-                    {" "}—{" "}
+                    </span>{" "}
+                    —{" "}
                     {bi.likelyAffected
                       ? "your data was likely on this list"
-                      : "your data was unlikely to be on this list"}.
+                      : "your data was unlikely to be on this list"}
+                    .
                   </li>
                 ))}
               </ul>
               {(() => {
                 const combined = [
                   ...new Set(
-                    breaches.filter((b) => b.likelyAffected).flatMap((b) => b.breach.dataClasses)
+                    breaches
+                      .filter((b) => b.likelyAffected)
+                      .flatMap((b) => b.breach.dataClasses),
                   ),
                 ];
                 return combined.length > 0 ? (
                   <div className="flex flex-wrap gap-1">
                     {combined.map((item) => (
-                      <span key={item} className="badge badge-sm badge-outline badge-error">
+                      <span
+                        key={item}
+                        className="badge badge-sm badge-outline badge-error"
+                      >
                         {item}
                       </span>
                     ))}
@@ -478,7 +562,12 @@ export default function AccountDetail(): JSX.Element {
                     {i > 0 && ", "}
                     <button
                       className="underline hover:text-base-content/80"
-                      onClick={(e) => { e.stopPropagation(); window.api.openExternal(`https://haveibeenpwned.com/Breach/${bi.breach.name}`); }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.api.openExternal(
+                          `https://haveibeenpwned.com/Breach/${bi.breach.name}`,
+                        );
+                      }}
                     >
                       {bi.breach.title}
                     </button>
@@ -554,8 +643,15 @@ export default function AccountDetail(): JSX.Element {
           </button>
 
           {mailingDisabled && activeTab !== "mailing" ? (
-            <span className="tooltip tooltip-bottom" data-tip="No mailing list subscriptions found">
-              <button role="tab" className="tab opacity-40 cursor-not-allowed" disabled>
+            <span
+              className="tooltip tooltip-bottom"
+              data-tip="No mailing list subscriptions found"
+            >
+              <button
+                role="tab"
+                className="tab opacity-40 cursor-not-allowed"
+                disabled
+              >
                 Mailing lists
               </button>
             </span>
@@ -589,7 +685,9 @@ export default function AccountDetail(): JSX.Element {
           </button>
         </div>
 
-        <div className={`tab-content py-2 ${activeTab === "emails" ? "!block" : ""}`}>
+        <div
+          className={`tab-content py-2 ${activeTab === "emails" ? "!block" : ""}`}
+        >
           {allMessages.length > 0 ? (
             <EmailsBySender
               messages={allMessages}
@@ -602,9 +700,13 @@ export default function AccountDetail(): JSX.Element {
           )}
         </div>
 
-        <div className={`tab-content px-4 py-3 text-sm space-y-3 ${activeTab === "mailing" ? "!block" : ""}`}>
+        <div
+          className={`tab-content px-4 py-3 text-sm space-y-3 ${activeTab === "mailing" ? "!block" : ""}`}
+        >
           {unsubMethods.length === 0 ? (
-            <p className="text-base-content/50">No mailing list subscriptions found.</p>
+            <p className="text-base-content/50">
+              No mailing list subscriptions found.
+            </p>
           ) : (
             unsubMethods.map((entry) => (
               <div
@@ -632,7 +734,9 @@ export default function AccountDetail(): JSX.Element {
           )}
         </div>
 
-        <div className={`tab-content px-4 py-3 text-sm space-y-3 ${activeTab === "data" ? "!block" : ""}`}>
+        <div
+          className={`tab-content px-4 py-3 text-sm space-y-3 ${activeTab === "data" ? "!block" : ""}`}
+        >
           {!company && (
             <p className="text-base-content/50">
               This contact address is not verified. We recommend checking their
@@ -705,9 +809,13 @@ export default function AccountDetail(): JSX.Element {
           )}
         </div>
 
-        <div className={`tab-content px-4 py-3 ${activeTab === "activity" ? "!block" : ""}`}>
+        <div
+          className={`tab-content px-4 py-3 ${activeTab === "activity" ? "!block" : ""}`}
+        >
           {activityLog.length === 0 ? (
-            <p className="text-sm text-base-content/50">No actions taken yet.</p>
+            <p className="text-sm text-base-content/50">
+              No actions taken yet.
+            </p>
           ) : (
             <div className="font-mono text-sm divide-y divide-base-300">
               {activityLog.map((entry) => (
@@ -719,13 +827,16 @@ export default function AccountDetail(): JSX.Element {
                     <span className="text-base-content/40 shrink-0">
                       {formatAbsoluteDate(entry.actionedAt)}
                     </span>
-                    <span className={`shrink-0 ${ACTION_COLORS[entry.actionType]}`}>
+                    <span
+                      className={`shrink-0 ${ACTION_COLORS[entry.actionType]}`}
+                    >
                       {ACTION_LABELS[entry.actionType]}
                     </span>
                   </div>
                   <span className="text-base-content/40 text-right shrink-0">
                     {entry.messageCount.toLocaleString()} emails
-                    {entry.sizeBytes > 0 && ` · ${formatBytes(entry.sizeBytes)}`}
+                    {entry.sizeBytes > 0 &&
+                      ` · ${formatBytes(entry.sizeBytes)}`}
                   </span>
                 </div>
               ))}
@@ -742,7 +853,9 @@ export default function AccountDetail(): JSX.Element {
           confirmLabel="Unsubscribe"
           confirmVariant="primary"
           onConfirm={handleUnsubscribeConfirm}
-          onCancel={() => { if (!actionLoading) setPendingUnsub(null); }}
+          onCancel={() => {
+            if (!actionLoading) setPendingUnsub(null);
+          }}
           loading={actionLoading}
         >
           <p>{unsubDescription(pendingUnsub, displayName)}</p>
@@ -759,20 +872,26 @@ export default function AccountDetail(): JSX.Element {
           onConfirm={handleUnsubResultDone}
           onCancel={() => {
             if (!actionLoading) {
-              setUnsubDone((prev) => new Set(prev).add(unsubResult.entry.method));
+              setUnsubDone((prev) =>
+                new Set(prev).add(unsubResult.entry.method),
+              );
               setUnsubResult(null);
             }
           }}
           loading={actionLoading}
         >
-          <p>Successfully unsubscribed from <strong>{displayName}</strong>.</p>
+          <p>
+            Successfully unsubscribed from <strong>{displayName}</strong>.
+          </p>
           <label className="flex items-center gap-2 cursor-pointer mt-1">
             <input
               type="checkbox"
               className="checkbox checkbox-sm"
               checked={unsubResult.trashAlso}
               onChange={(e) =>
-                setUnsubResult((prev) => prev ? { ...prev, trashAlso: e.target.checked } : prev)
+                setUnsubResult((prev) =>
+                  prev ? { ...prev, trashAlso: e.target.checked } : prev,
+                )
               }
             />
             <span>Also move all emails to trash</span>
@@ -788,16 +907,26 @@ export default function AccountDetail(): JSX.Element {
           secondaryLabel="Mark as spam"
           secondaryVariant="neutral"
           onSecondary={handleUnsubResultSpam}
-          onCancel={() => { if (!actionLoading) setUnsubResult(null); }}
+          onCancel={() => {
+            if (!actionLoading) setUnsubResult(null);
+          }}
           loading={actionLoading}
         >
-          <p>Couldn't automatically unsubscribe from <strong>{displayName}</strong>.</p>
+          <p>
+            Couldn't automatically unsubscribe from{" "}
+            <strong>{displayName}</strong>.
+          </p>
           {unsubResult.fallbackMethods.length > 0 && (
             <div className="space-y-2 mt-1">
               <p className="text-base-content/60">Try another method:</p>
               {unsubResult.fallbackMethods.map((entry) => (
-                <div key={entry.method} className="flex items-center justify-between gap-4">
-                  <span className="text-base-content/80">{unsubDescription(entry, displayName)}</span>
+                <div
+                  key={entry.method}
+                  className="flex items-center justify-between gap-4"
+                >
+                  <span className="text-base-content/80">
+                    {unsubDescription(entry, displayName)}
+                  </span>
                   <button
                     className="btn btn-primary btn-sm shrink-0"
                     disabled={actionLoading}
@@ -815,7 +944,9 @@ export default function AccountDetail(): JSX.Element {
               className="checkbox checkbox-sm"
               checked={unsubResult.trashAlso}
               onChange={(e) =>
-                setUnsubResult((prev) => prev ? { ...prev, trashAlso: e.target.checked } : prev)
+                setUnsubResult((prev) =>
+                  prev ? { ...prev, trashAlso: e.target.checked } : prev,
+                )
               }
             />
             <span>Also move all emails to trash</span>
@@ -834,17 +965,24 @@ export default function AccountDetail(): JSX.Element {
           confirmVariant="primary"
           onSecondary={handleUnsubCheckSpam}
           onConfirm={handleUnsubCheckDone}
-          onCancel={() => { if (!actionLoading) setUnsubCheck(null); }}
+          onCancel={() => {
+            if (!actionLoading) setUnsubCheck(null);
+          }}
           loading={actionLoading}
         >
-          <p>Did you successfully unsubscribe from <strong>{displayName}</strong>?</p>
+          <p>
+            Did you successfully unsubscribe from <strong>{displayName}</strong>
+            ?
+          </p>
           <label className="flex items-center gap-2 cursor-pointer mt-1">
             <input
               type="checkbox"
               className="checkbox checkbox-sm"
               checked={unsubCheck.trashAlso}
               onChange={(e) =>
-                setUnsubCheck((prev) => prev ? { ...prev, trashAlso: e.target.checked } : prev)
+                setUnsubCheck((prev) =>
+                  prev ? { ...prev, trashAlso: e.target.checked } : prev,
+                )
               }
             />
             <span>Also move all emails to trash</span>
