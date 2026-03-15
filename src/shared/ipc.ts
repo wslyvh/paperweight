@@ -1,5 +1,6 @@
 import type {
   AccountInfo,
+  AccountSummary,
   ActivityEntry,
   AttentionStats,
   DashboardStats,
@@ -65,6 +66,9 @@ export const IPC = {
   getImpactStats: "get-impact-stats",
   getRiskCounts: "get-risk-counts",
   getActivityLog: "get-activity-log",
+  listAccounts: "list-accounts",
+  switchAccount: "switch-account",
+  removeAccount: "remove-account",
 } as const;
 
 export interface ElectronAPI {
@@ -85,7 +89,7 @@ export interface ElectronAPI {
   getSettings: () => Promise<Settings>;
   saveSettings: (settings: Partial<Settings>) => Promise<void>;
   clearSyncData: () => Promise<void>;
-  wipeData: () => Promise<void>;
+  wipeData: () => Promise<{ willRelaunch: boolean }>;
   openExternal: (url: string) => Promise<void>;
   onSyncProgress: (callback: (status: SyncStatus) => void) => () => void;
   markUnsubscribed: (email: string) => Promise<void>;
@@ -114,6 +118,9 @@ export interface ElectronAPI {
   getImpactStats: () => Promise<ImpactStats>;
   getRiskCounts: () => Promise<RiskCounts>;
   getActivityLog: (limit: number, offset: number) => Promise<{ entries: ActivityEntry[]; total: number }>;
+  listAccounts: () => Promise<AccountSummary[]>;
+  switchAccount: (email: string) => Promise<void>;
+  removeAccount: (email: string) => Promise<void>;
 }
 
 export type { SyncStatus };

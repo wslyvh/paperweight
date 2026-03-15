@@ -4,6 +4,7 @@ import makeBlockie from "ethereum-blockies-base64";
 import { HelpCircle } from "lucide-react";
 import type {
   AccountInfo,
+  AccountSummary,
   EmailConnection,
   LicenseStatus,
   WhitelistEntry,
@@ -28,6 +29,8 @@ export default function Settings(): JSX.Element {
   );
   const [newEntry, setNewEntry] = useState("");
   const [reconnectLoading, setReconnectLoading] = useState(false);
+  const [accounts, setAccounts] = useState<AccountSummary[]>([]);
+  const [removeAccountEmail, setRemoveAccountEmail] = useState<string | null>(null);
 
   const fetchWhitelist = async (): Promise<void> => {
     const entries = await window.api.getWhitelistEntries();
@@ -41,6 +44,7 @@ export default function Settings(): JSX.Element {
       setLaunchMinimized(!!s.launchMinimized);
     });
     window.api.getEmailConnection().then(setConnection);
+    window.api.listAccounts().then(setAccounts);
     fetchWhitelist();
   }, []);
 
@@ -91,9 +95,11 @@ export default function Settings(): JSX.Element {
   };
 
   const handleWipe = async (): Promise<void> => {
-    await window.api.wipeData();
+    const result = await window.api.wipeData();
     setShowWipeModal(false);
-    navigate("/onboarding");
+    if (!result?.willRelaunch) {
+      navigate("/onboarding");
+    }
   };
 
   const formatProvider = (type: string): string => {
@@ -420,7 +426,57 @@ export default function Settings(): JSX.Element {
         </div>
       </div>
 
-      {/* Section 5: Danger Zone */}
+      {/* Section 5: Accounts */}
+      {accounts.length > 0 && (
+        <div className="card bg-base-200">
+          <div className="card-body space-y-3">
+            <h3 className="font-semibold">Accounts</h3>
+            <div className="space-y-2">
+              {accounts.map((acc) => (
+                <div key={acc.email} className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <img
+                      src={makeBlockie(acc.email)}
+                      alt=""
+                      className="w-8 h-8 rounded-md shrink-0"
+                    />
+                    <div className="min-w-0">
+                      <p className="text-sm font-medium truncate">{acc.email}</p>
+                      <p className="text-xs text-base-content/50">{formatProvider(acc.providerType)}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    {acc.isActive ? (
+                      <span className="badge badge-xs badge-soft badge-success">Active</span>
+                    ) : (
+                      <button
+                        className="btn btn-ghost btn-xs"
+                        onClick={() => window.api.switchAccount(acc.email)}
+                      >
+                        Switch
+                      </button>
+                    )}
+                    <button
+                      className="btn btn-ghost btn-xs text-error"
+                      onClick={() => setRemoveAccountEmail(acc.email)}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <button
+              className="btn btn-primary btn-sm w-fit"
+              onClick={() => navigate("/onboarding")}
+            >
+              Add Account
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Section 6: Danger Zone */}
       <div className="card bg-base-200 border border-error/30">
         <div className="card-body space-y-4">
           <h3 className="font-semibold text-error">Danger Zone</h3>
@@ -474,6 +530,49 @@ export default function Settings(): JSX.Element {
           </div>
           <form method="dialog" className="modal-backdrop">
             <button onClick={() => setShowClearModal(false)}>close</button>
+          </form>
+        </dialog>
+      )}
+
+      {/* Remove account confirmation modal */}
+      {removeAccountEmail && (
+        <dialog className="modal modal-open">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">Remove account?</h3>
+            <p className="py-4">
+              This will permanently delete all local data for{" "}
+              <span className="font-medium">{removeAccountEmail}</span>, including
+              synced emails and credentials. This action cannot be undone.
+            </p>
+            <div className="modal-action">
+              <button
+                className="btn btn-ghost"
+                onClick={() => setRemoveAccountEmail(null)}
+              >
+                Cancel
+              </button>
+              <button
+                className="btn btn-error"
+                onClick={async () => {
+                  const email = removeAccountEmail;
+                  setRemoveAccountEmail(null);
+                  await window.api.removeAccount(email);
+                  // If the app didn't relaunch (non-active or last account removed),
+                  // refresh state
+                  const updated = await window.api.listAccounts();
+                  if (updated.length === 0) {
+                    navigate("/onboarding");
+                  } else {
+                    setAccounts(updated);
+                  }
+                }}
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+          <form method="dialog" className="modal-backdrop">
+            <button onClick={() => setRemoveAccountEmail(null)}>close</button>
           </form>
         </dialog>
       )}

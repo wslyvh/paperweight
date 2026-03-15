@@ -226,6 +226,13 @@ export interface VendorDetail {
 
 // Account / settings
 
+export interface AccountSummary {
+  email: string;
+  providerType: string;
+  registeredAt?: number;
+  isActive: boolean;
+}
+
 export interface AccountInfo {
   email: string;
   providerType: string;

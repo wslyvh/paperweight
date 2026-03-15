@@ -1,10 +1,10 @@
 import { app, ipcMain } from "electron";
-import { readFileSync, statSync } from "fs";
+import { readFileSync, statSync, existsSync, unlinkSync } from "fs";
 import { join } from "path";
 import { IPC } from "@shared/ipc";
 import { APP_CONFIG } from "@shared/config";
 import { isIntInRange, isString } from "@shared/validation";
-import type { ImapConfig, SupportInfo } from "@shared/types";
+import type { ImapConfig, SupportInfo, AccountSummary } from "@shared/types";
 import {
   getAccountInfo,
   getConnectionStatus,
@@ -23,7 +23,15 @@ import { clearSyncData, getSyncState } from "../services/sync";
 import { startSync, getSyncStatus } from "../sync-manager";
 import { getLicenseStatus, deleteLicense } from "../services/settings";
 import { getDashboardStats } from "../services/stats";
-import { deleteCredentials, loadCredentials } from "../credentials";
+import {
+  deleteCredentials,
+  loadCredentials,
+  listAccounts,
+  getActiveEmail,
+  setActiveEmail,
+  removeAccountEntry,
+  sanitizeEmail,
+} from "../credentials";
 import { wipeDatabase } from "../db";
 import { dataLog, actionLog } from "../utils/log";
 import { getFileLogPath } from "../utils/file-log";
@@ -47,7 +55,9 @@ function isImapConfig(value: unknown): value is ImapConfig {
 
 function getDbSizeMb(): number {
   try {
-    const dbPath = join(app.getPath("userData"), `${APP_CONFIG.DOMAIN}.db`);
+    const activeEmail = getActiveEmail();
+    const dbName = activeEmail ? `${sanitizeEmail(activeEmail)}.db` : `${APP_CONFIG.DOMAIN}.db`;
+    const dbPath = join(app.getPath("userData"), dbName);
     const stats = statSync(dbPath);
     return Math.round((stats.size / (1024 * 1024)) * 100) / 100;
   } catch {
@@ -74,6 +84,59 @@ export function registerAccountHandlers(): void {
   ipcMain.handle(IPC.getAccountInfo, () => getAccountInfo());
 
   ipcMain.handle(IPC.getEmailConnection, () => getEmailConnection());
+
+  // --- Multi-account management ---
+
+  ipcMain.handle(IPC.listAccounts, (): AccountSummary[] => {
+    const activeEmail = getActiveEmail();
+    return listAccounts().map((a) => ({
+      email: a.email,
+      providerType: a.providerType,
+      registeredAt: a.registeredAt,
+      isActive: a.email === activeEmail,
+    }));
+  });
+
+  ipcMain.handle(IPC.switchAccount, (_event, email: unknown) => {
+    if (!isString(email) || !email.trim()) throw new Error("Invalid email");
+    const accounts = listAccounts();
+    if (!accounts.find((a) => a.email === email)) throw new Error("Account not found");
+    setActiveEmail(email);
+    setImmediate(() => { app.relaunch(); app.exit(0); });
+  });
+
+  ipcMain.handle(IPC.removeAccount, (_event, email: unknown) => {
+    if (!isString(email) || !email.trim()) throw new Error("Invalid email");
+    const activeEmail = getActiveEmail();
+    const isActive = email === activeEmail;
+
+    // Delete the account's credential file
+    deleteCredentials(email);
+
+    // Delete the account's database
+    const userData = app.getPath("userData");
+    const dbPath = join(userData, `${sanitizeEmail(email)}.db`);
+    try {
+      if (existsSync(dbPath)) unlinkSync(dbPath);
+      for (const suffix of ["-wal", "-shm"]) {
+        const p = dbPath + suffix;
+        if (existsSync(p)) unlinkSync(p);
+      }
+    } catch {
+      // Non-fatal
+    }
+
+    removeAccountEntry(email);
+
+    if (isActive) {
+      const remaining = listAccounts();
+      if (remaining.length > 0) {
+        // Switch to next account
+        setImmediate(() => { app.relaunch(); app.exit(0); });
+      }
+      // If no accounts remain, return normally — renderer navigates to onboarding
+    }
+  });
 
   // --- Email actions ---
 
@@ -122,10 +185,28 @@ export function registerAccountHandlers(): void {
   });
 
   ipcMain.handle(IPC.wipeData, () => {
-    dataLog.warn("Wipe all data requested");
+    dataLog.warn("Wipe account data requested");
+    const activeEmail = getActiveEmail();
+
+    // Wipe the active account's database
     wipeDatabase();
-    deleteCredentials();
-    deleteLicense();
+
+    // Delete the active account's credentials and remove from registry
+    if (activeEmail) {
+      deleteCredentials();
+      removeAccountEntry(activeEmail);
+    }
+
+    const remaining = listAccounts();
+    if (remaining.length > 0) {
+      // Other accounts exist — switch to the next one
+      setImmediate(() => { app.relaunch(); app.exit(0); });
+      return { willRelaunch: true };
+    } else {
+      // No accounts left — wipe license; renderer will navigate to onboarding
+      deleteLicense();
+      return { willRelaunch: false };
+    }
   });
 
   // --- Support / diagnostics ---
