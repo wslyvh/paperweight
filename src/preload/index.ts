@@ -117,6 +117,12 @@ const api: ElectronAPI = {
 
   getActivityLog: (limit, offset) =>
     ipcRenderer.invoke(IPC.getActivityLog, limit, offset),
+
+  listAccounts: () => ipcRenderer.invoke(IPC.listAccounts),
+
+  switchAccount: (email) => ipcRenderer.invoke(IPC.switchAccount, email),
+
+  removeAccount: (email) => ipcRenderer.invoke(IPC.removeAccount, email),
 };
 
 contextBridge.exposeInMainWorld("api", api);

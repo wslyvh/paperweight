@@ -1,10 +1,10 @@
 import { app, ipcMain } from "electron";
-import { readFileSync, statSync } from "fs";
+import { readFileSync, statSync, existsSync, unlinkSync } from "fs";
 import { join } from "path";
 import { IPC } from "@shared/ipc";
 import { APP_CONFIG } from "@shared/config";
 import { isIntInRange, isString } from "@shared/validation";
-import type { ImapConfig, SupportInfo } from "@shared/types";
+import type { ImapConfig, SupportInfo, AccountSummary } from "@shared/types";
 import {
   getAccountInfo,
   getConnectionStatus,
@@ -19,12 +19,21 @@ import {
   trashVendorMessages,
   spamVendorMessages,
 } from "../services/account";
-import { clearSyncData, getSyncState } from "../services/sync";
+import Database from "better-sqlite3";
+import { clearSyncData, clearSyncDataOnDb, getSyncState } from "../services/sync";
 import { startSync, getSyncStatus } from "../sync-manager";
 import { getLicenseStatus, deleteLicense } from "../services/settings";
 import { getDashboardStats } from "../services/stats";
-import { deleteCredentials, loadCredentials } from "../credentials";
-import { wipeDatabase } from "../db";
+import {
+  deleteCredentials,
+  loadCredentials,
+  listAccounts,
+  getActiveEmail,
+  setActiveEmail,
+  removeAccountEntry,
+  sanitizeEmail,
+} from "../credentials";
+import { wipeDatabase, deleteDbFiles } from "../db";
 import { dataLog, actionLog } from "../utils/log";
 import { getFileLogPath } from "../utils/file-log";
 import os from "os";
@@ -47,7 +56,9 @@ function isImapConfig(value: unknown): value is ImapConfig {
 
 function getDbSizeMb(): number {
   try {
-    const dbPath = join(app.getPath("userData"), `${APP_CONFIG.DOMAIN}.db`);
+    const activeEmail = getActiveEmail();
+    const dbName = activeEmail ? `${sanitizeEmail(activeEmail)}.db` : `${APP_CONFIG.DOMAIN}.db`;
+    const dbPath = join(app.getPath("userData"), dbName);
     const stats = statSync(dbPath);
     return Math.round((stats.size / (1024 * 1024)) * 100) / 100;
   } catch {
@@ -74,6 +85,57 @@ export function registerAccountHandlers(): void {
   ipcMain.handle(IPC.getAccountInfo, () => getAccountInfo());
 
   ipcMain.handle(IPC.getEmailConnection, () => getEmailConnection());
+
+  // --- Multi-account management ---
+
+  ipcMain.handle(IPC.listAccounts, (): AccountSummary[] => {
+    const activeEmail = getActiveEmail();
+    return listAccounts().map((a) => ({
+      email: a.email,
+      providerType: a.providerType,
+      registeredAt: a.registeredAt,
+      isActive: a.email === activeEmail,
+    }));
+  });
+
+  ipcMain.handle(IPC.switchAccount, (_event, email: unknown) => {
+    if (!isString(email) || !email.trim()) throw new Error("Invalid email");
+    const accounts = listAccounts();
+    if (!accounts.some((a) => a.email === email)) throw new Error("Account not found");
+    setActiveEmail(email);
+    setImmediate(() => { app.relaunch(); app.exit(0); });
+  });
+
+  ipcMain.handle(IPC.removeAccount, (_event, email: unknown) => {
+    if (!isString(email) || !email.trim()) throw new Error("Invalid email");
+    const accounts = listAccounts();
+    if (!accounts.some((a) => a.email === email)) throw new Error("Account not found");
+    const activeEmail = getActiveEmail();
+    const isActive = email === activeEmail;
+
+    // Delete the account's credential file
+    deleteCredentials(email);
+
+    // Delete the account's database
+    if (isActive) {
+      // The active account's DB connection is open — must close it before deleting
+      // (on Windows, unlinkSync on an open file fails silently)
+      wipeDatabase();
+    } else {
+      deleteDbFiles(email);
+    }
+
+    removeAccountEntry(email);
+
+    if (isActive) {
+      const remaining = listAccounts();
+      if (remaining.length > 0) {
+        // Switch to next account
+        setImmediate(() => { app.relaunch(); app.exit(0); });
+      }
+      // If no accounts remain, return normally — renderer navigates to onboarding
+    }
+  });
 
   // --- Email actions ---
 
@@ -117,15 +179,55 @@ export function registerAccountHandlers(): void {
   ipcMain.handle(IPC.getSyncStatus, () => getSyncStatus());
 
   ipcMain.handle(IPC.clearSyncData, () => {
-    dataLog.warn("Clear sync data requested");
-    clearSyncData();
+    dataLog.warn("Clear sync data requested (all accounts)");
+    const accounts = listAccounts();
+    const userData = app.getPath("userData");
+    const activeEmail = getActiveEmail();
+
+    for (const acc of accounts) {
+      if (acc.email === activeEmail) {
+        clearSyncData(); // uses cached getDb() connection
+        continue;
+      }
+      const dbPath = join(userData, `${sanitizeEmail(acc.email)}.db`);
+      if (!existsSync(dbPath)) continue;
+      let db: Database.Database | undefined;
+      try {
+        db = new Database(dbPath);
+        clearSyncDataOnDb(db);
+      } catch {
+        // Non-fatal
+      } finally {
+        db?.close();
+      }
+    }
   });
 
   ipcMain.handle(IPC.wipeData, () => {
-    dataLog.warn("Wipe all data requested");
+    dataLog.warn("Wipe ALL data requested");
+    const accounts = listAccounts();
+    const userData = app.getPath("userData");
+
+    // Close the active DB connection before deleting (Windows file lock)
     wipeDatabase();
-    deleteCredentials();
+
+    // Delete every account's database and credentials
+    for (const acc of accounts) {
+      deleteCredentials(acc.email);
+      deleteDbFiles(acc.email);
+    }
+
+    // Delete the accounts registry
+    const registryPath = join(userData, "accounts.json");
+    try {
+      if (existsSync(registryPath)) unlinkSync(registryPath);
+    } catch {
+      // Non-fatal
+    }
+
+    // Wipe license — renderer will navigate to onboarding
     deleteLicense();
+    return { willRelaunch: false };
   });
 
   // --- Support / diagnostics ---

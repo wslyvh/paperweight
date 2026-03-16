@@ -1,3 +1,4 @@
+import Database from "better-sqlite3";
 import { getDb } from "../db";
 import {
   findOrCreateVendor,
@@ -115,9 +116,8 @@ export function updateSyncState(update: SyncStateUpdate): void {
   d.prepare(`UPDATE sync_state SET ${setClause} WHERE id = 1`).run(update);
 }
 
-export function clearSyncData(): void {
-  const d = getDb();
-  d.exec(`
+export function clearSyncDataOnDb(db: Database.Database): void {
+  db.exec(`
     DELETE FROM messages;
     DELETE FROM vendors;
     UPDATE sync_state SET
@@ -129,6 +129,10 @@ export function clearSyncData(): void {
       sync_checkpoint = NULL
     WHERE id = 1;
   `);
+}
+
+export function clearSyncData(): void {
+  clearSyncDataOnDb(getDb());
 }
 
 // --- Batch processing ---

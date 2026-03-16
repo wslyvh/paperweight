@@ -3,6 +3,7 @@ import { join } from "path";
 import { APP_CONFIG } from "@shared/config";
 import { existsSync, unlinkSync } from "fs";
 import { dbLog } from "./utils/log";
+import { getActiveEmail, sanitizeEmail } from "./credentials";
 
 let db: Database.Database | undefined;
 
@@ -20,6 +21,11 @@ function getDbPath(): string {
   if (_dbPath) return _dbPath;
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { app } = require("electron") as typeof import("electron");
+  const activeEmail = getActiveEmail();
+  if (activeEmail) {
+    return join(app.getPath("userData"), `${sanitizeEmail(activeEmail)}.db`);
+  }
+  // Legacy fallback: used before migration runs or during very first account setup
   return join(app.getPath("userData"), `${APP_CONFIG.DOMAIN}.db`);
 }
 
@@ -171,6 +177,21 @@ function attachBreachesDb() {
     return;
   }
   d.exec(`ATTACH DATABASE '${breachesPath}' AS breaches`);
+}
+
+export function deleteDbFiles(email: string): void {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { app } = require("electron") as typeof import("electron");
+  const dbPath = join(app.getPath("userData"), `${sanitizeEmail(email)}.db`);
+  try {
+    if (existsSync(dbPath)) unlinkSync(dbPath);
+    for (const suffix of ["-wal", "-shm"]) {
+      const p = dbPath + suffix;
+      if (existsSync(p)) unlinkSync(p);
+    }
+  } catch {
+    // Non-fatal
+  }
 }
 
 export function wipeDatabase(): void {

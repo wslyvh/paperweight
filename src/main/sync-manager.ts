@@ -3,7 +3,7 @@ import { is } from "@electron-toolkit/utils";
 import { join } from "path";
 import { Worker } from "node:worker_threads";
 import { IPC } from "@shared/ipc";
-import { loadCredentials } from "./credentials";
+import { loadCredentials, getActiveEmail, sanitizeEmail } from "./credentials";
 import { getLicenseStatus } from "./services/settings";
 import { APP_CONFIG } from "@shared/config";
 import { syncLog } from "./utils/log";
@@ -25,7 +25,9 @@ export function getSyncStatus(): SyncStatus {
 export function startSync(): void {
   if (activeWorker) return; // already running
 
-  const dbPath = join(app.getPath("userData"), `${APP_CONFIG.DOMAIN}.db`);
+  const activeEmail = getActiveEmail();
+  const dbName = activeEmail ? `${sanitizeEmail(activeEmail)}.db` : `${APP_CONFIG.DOMAIN}.db`;
+  const dbPath = join(app.getPath("userData"), dbName);
   const companiesDbPath = is.dev
     ? join(app.getAppPath(), "resources", "companies.db")
     : join(process.resourcesPath, "companies.db");
