@@ -1,6 +1,6 @@
 import type { EmailProvider, EmailMessage, EmailConnection } from "./types";
 import { loadCredentials, saveCredentials } from "../credentials";
-import { resolveUnsubscribe, runLoopbackAuth } from "./utils";
+import { cleanHtml, resolveUnsubscribe, runLoopbackAuth } from "./utils";
 
 // Injected at build time via electron-vite define.
 // Set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET env vars before building.
@@ -287,7 +287,7 @@ function parseGmailMessage(msg: GmailRawMessage): EmailMessage {
   const headersJson = JSON.stringify(rawHeaders);
 
   const unsub = resolveUnsubscribe(listUnsub, listUnsubPost, bodyHtml, subject);
-  const bodyPreview = (bodyText || bodyHtml.replace(/<[^>]*>/g, " "))
+  const bodyPreview = (bodyText || cleanHtml(bodyHtml))
     .replace(/\s+/g, " ")
     .trim()
     .substring(0, 150);

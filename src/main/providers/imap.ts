@@ -2,7 +2,7 @@ import { ImapFlow } from "imapflow";
 import { simpleParser } from "mailparser";
 import type { EmailProvider, EmailMessage, EmailConnection } from "./types";
 import { loadCredentials } from "../credentials";
-import { resolveUnsubscribe } from "./utils";
+import { cleanHtml, resolveUnsubscribe } from "./utils";
 import { friendlyConnectionError } from "../services/sync";
 import { getSetting } from "../services/settings";
 
@@ -176,7 +176,7 @@ async function parseImapMessage(
 
   const bodyText = parsed.text || "";
   const bodyHtml = parsed.html || "";
-  const bodyPreview = (bodyText || bodyHtml.replace(/<[^>]*>/g, " "))
+  const bodyPreview = (bodyText || cleanHtml(bodyHtml))
     .replace(/\s+/g, " ")
     .trim()
     .substring(0, 150);
