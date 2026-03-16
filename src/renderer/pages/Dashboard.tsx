@@ -152,7 +152,7 @@ export default function Dashboard(): JSX.Element {
       {/* Action Items */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold">Activities</h2>
+          <h2 className="text-lg font-semibold">Actions</h2>
           <button
             className="text-sm text-base-content/50 hover:text-base-content/80 transition-colors"
             onClick={() => navigate("/activity")}
@@ -204,7 +204,7 @@ export default function Dashboard(): JSX.Element {
                 onClick={() => navigate("/accounts")}
               >
                 <span>
-                  {attention.vendorsToReview} vendor
+                  {attention.vendorsToReview} account
                   {attention.vendorsToReview !== 1 ? "s" : ""} to review
                 </span>
                 <ChevronRight

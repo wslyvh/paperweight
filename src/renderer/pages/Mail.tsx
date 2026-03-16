@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import type { Vendor, VendorQuery, UnsubscribeEntry } from "@shared/types";
 import { formatRelativeDate } from "@shared/formatting";
-import { ArrowUpDown, BellOff, ChevronLeft, ChevronRight, Flag, Trash2 } from "lucide-react";
+import { ArrowUpDown, BellOff, ChevronLeft, ChevronRight, Flag, SlidersHorizontal, Trash2 } from "lucide-react";
 import ActionModal from "../components/ActionModal";
 
 // ---------- types ----------
@@ -47,6 +47,46 @@ interface BatchState {
   total: number;
   succeeded: number[];
   failed: string[];
+}
+
+// ---------- filter group ----------
+
+interface FilterGroupProps {
+  label: string;
+  options: string[];
+  labels: string[];
+  value: string;
+  onChange: (val: string) => void;
+  colors?: string[];
+}
+
+function FilterGroup({ label, options, labels, value, onChange, colors }: FilterGroupProps) {
+  return (
+    <div>
+      <div className="text-sm text-base-content/40 mb-1.5">{label}</div>
+      <div className="flex gap-1 flex-wrap">
+        {options.map((opt, i) => {
+          const color = colors?.[i];
+          const cls = color
+            ? value === opt
+              ? `badge-${color}`
+              : `badge-soft badge-${color}`
+            : value === opt
+            ? "badge-neutral"
+            : "badge-soft";
+          return (
+            <button
+              key={opt}
+              className={`badge badge-sm cursor-pointer ${cls}`}
+              onClick={() => onChange(value === opt ? "" : opt)}
+            >
+              {labels[i]}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
 // ---------- helpers ----------
@@ -132,12 +172,16 @@ export default function Mail(): JSX.Element {
   const [actionLoading, setActionLoading] = useState(false);
 
   const [showSort, setShowSort] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
+  const [volumeFilter, setVolumeFilter] = useState("");
+  const [activityFilter, setActivityFilter] = useState("");
 
   // Batch selection
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
   const [batch, setBatch] = useState<BatchState | null>(null);
   const selectAllRef = useRef<HTMLInputElement>(null);
   const sortRef = useRef<HTMLDivElement>(null);
+  const filterRef = useRef<HTMLDivElement>(null);
   const removedIdsRef = useRef<Set<number>>(new Set());
 
   const limit = 25;
@@ -159,13 +203,15 @@ export default function Mail(): JSX.Element {
             : "DESC",
         search: search || undefined,
         filter: "lists",
+        activity: activityFilter || undefined,
+        volume: volumeFilter || undefined,
       };
       const data = await window.api.queryVendors(query);
       setVendors(data.vendors.filter((v) => !removedIdsRef.current.has(v.id)));
       setTotal(data.total);
       setLoading(false);
     },
-    [page, sortBy, search],
+    [page, sortBy, search, activityFilter, volumeFilter],
   );
 
   useEffect(() => {
@@ -212,11 +258,13 @@ export default function Mail(): JSX.Element {
     removedIdsRef.current = new Set();
     setSearch("");
     setSortBy("message_count");
+    setVolumeFilter("");
+    setActivityFilter("");
     setPage(1);
     setSelectedIds(new Set());
   };
 
-  const hasAnyFilter = !!(search || sortBy !== "message_count" || page > 1);
+  const hasAnyFilter = !!(search || sortBy !== "message_count" || volumeFilter || activityFilter || page > 1);
 
   const handleSortChange = (value: string) => {
     removedIdsRef.current = new Set();
@@ -236,10 +284,13 @@ export default function Mail(): JSX.Element {
       if (showSort && sortRef.current && !sortRef.current.contains(e.target as Node)) {
         setShowSort(false);
       }
+      if (showFilters && filterRef.current && !filterRef.current.contains(e.target as Node)) {
+        setShowFilters(false);
+      }
     }
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
-  }, [showSort]);
+  }, [showSort, showFilters]);
 
   // ---------- select-all ----------
 
@@ -1004,7 +1055,10 @@ export default function Mail(): JSX.Element {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-bold">Mailing lists</h1>
+      <div>
+        <h1 className="text-2xl font-bold">Mailing lists</h1>
+        <p className="text-sm text-base-content/50 mt-1">Newsletters and promotional emails you can unsubscribe from. We unsubscribe automatically where possible, otherwise open the link for you.</p>
+      </div>
 
       {toast && (
         <div role="alert" className="alert alert-warning">
@@ -1074,6 +1128,32 @@ export default function Mail(): JSX.Element {
             </div>
           )}
         </div>
+
+        {/* Filter dropdown */}
+        <div className="relative" ref={filterRef}>
+          <button className="btn btn-sm btn-ghost btn-circle" onClick={() => setShowFilters(f => !f)}>
+            <SlidersHorizontal className="w-4 h-4" />
+          </button>
+          {showFilters && (
+            <div className="absolute right-0 top-full z-20 bg-base-200 rounded-xl shadow-lg mt-1 p-4 min-w-64 space-y-3">
+              <FilterGroup
+                label="Volume"
+                options={["oneoff", "low", "medium", "high"]}
+                labels={["One-off (≤5)", "Low (≤25)", "Medium (≤100)", "High (100+)"]}
+                value={volumeFilter}
+                onChange={v => { setVolumeFilter(v); setPage(1); }}
+              />
+              <FilterGroup
+                label="Activity"
+                options={["active", "inactive", "stale"]}
+                labels={["Active (<1y)", "1-2 years ago", "2+ years ago"]}
+                colors={["secondary", "secondary", "secondary"]}
+                value={activityFilter}
+                onChange={v => { setActivityFilter(v); setPage(1); }}
+              />
+            </div>
+          )}
+        </div>
       </div>
 
       {loading ? (
@@ -1110,45 +1190,39 @@ export default function Mail(): JSX.Element {
               {/* Col 3: action buttons + selected count — aligned with sender name */}
               <div className="flex items-center gap-1">
                 <button
-                  className={`btn btn-ghost btn-sm btn-square tooltip text-base-content/50 hover:bg-base-content/10 hover:text-base-content/80 ${selectedIds.size > 0 ? "" : "invisible"}`}
+                  className="btn btn-ghost btn-sm btn-square tooltip text-base-content/50 hover:bg-base-content/10 hover:text-base-content/80 disabled:opacity-25"
                   data-tip="Unsubscribe"
-                  tabIndex={selectedIds.size > 0 ? undefined : -1}
+                  disabled={selectedIds.size === 0}
                   onClick={() => openBatch("unsubscribe")}
                 >
                   <BellOff className="w-4 h-4" strokeWidth={1.5} />
                 </button>
                 <button
-                  className={`btn btn-ghost btn-sm btn-square tooltip text-base-content/50 hover:bg-base-content/10 hover:text-base-content/80 ${selectedIds.size > 0 ? "" : "invisible"}`}
+                  className="btn btn-ghost btn-sm btn-square tooltip text-base-content/50 hover:bg-base-content/10 hover:text-base-content/80 disabled:opacity-25"
                   data-tip="Report spam"
-                  tabIndex={selectedIds.size > 0 ? undefined : -1}
+                  disabled={selectedIds.size === 0}
                   onClick={() => openBatch("spam")}
                 >
                   <Flag className="w-4 h-4" strokeWidth={1.5} />
                 </button>
                 <button
-                  className={`btn btn-ghost btn-sm btn-square tooltip text-base-content/50 hover:bg-base-content/10 hover:text-base-content/80 ${selectedIds.size > 0 ? "" : "invisible"}`}
+                  className="btn btn-ghost btn-sm btn-square tooltip text-base-content/50 hover:bg-base-content/10 hover:text-base-content/80 disabled:opacity-25"
                   data-tip="Move to trash"
-                  tabIndex={selectedIds.size > 0 ? undefined : -1}
+                  disabled={selectedIds.size === 0}
                   onClick={() => openBatch("trash")}
                 >
                   <Trash2 className="w-4 h-4" strokeWidth={1.5} />
                 </button>
-                <span className={`text-sm text-base-content/50 ml-1 ${selectedIds.size > 0 ? "" : "invisible"}`}>
-                  {selectedIds.size} selected
-                </span>
+                {selectedIds.size > 0 && (
+                  <span className="text-sm text-base-content/50 ml-1">
+                    {selectedIds.size} selected
+                  </span>
+                )}
               </div>
               {/* Col 4: empty */}
               <div />
-              {/* Col 5: clear */}
-              <div className="flex items-center justify-end">
-                <button
-                  className={`btn btn-ghost btn-xs ${selectedIds.size > 0 ? "" : "invisible"}`}
-                  tabIndex={selectedIds.size > 0 ? undefined : -1}
-                  onClick={() => setSelectedIds(new Set())}
-                >
-                  Clear
-                </button>
-              </div>
+              {/* Col 5: empty */}
+              <div />
             </div>
 
             {vendors.map((vendor) => {

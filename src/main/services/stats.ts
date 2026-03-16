@@ -3,14 +3,44 @@ import { toUtcDayString, utcMidnightMs } from "@shared/formatting";
 import type { DashboardStats, AttentionStats, ChartTrend, ImpactStats, RiskCounts, ActivityEntry } from "@shared/types";
 import { getSetting } from "./settings";
 import { COMPUTED_RISK_CASE } from "./vendors";
+import { APP_CONFIG } from "@shared/config";
 
 export function getDashboardStats(): DashboardStats {
   const d = getDb();
   const totalMessages = (
     d.prepare("SELECT COUNT(*) as c FROM messages").get() as { c: number }
   ).c;
+  const personalDomainFilterStats =
+    APP_CONFIG.PERSONAL_DOMAINS.length > 0
+      ? `AND (root_domain IS NULL OR root_domain NOT IN (${APP_CONFIG.PERSONAL_DOMAINS.map(() => "?").join(",")}))`
+      : "";
+  const actionedStats = `(status = 'reviewed' OR EXISTS (SELECT 1 FROM action_log al WHERE al.vendor_id = vendors.id LIMIT 1))`;
   const uniqueVendors = (
-    d.prepare("SELECT COUNT(*) as c FROM vendors").get() as { c: number }
+    d
+      .prepare(
+        `SELECT COUNT(*) as c FROM vendors
+         WHERE (status IS NULL OR status != 'reviewed')
+         ${personalDomainFilterStats}
+         AND (EXISTS (
+           SELECT 1 FROM messages m
+           WHERE m.vendor_id = vendors.id
+           AND (m.type IS NULL OR m.type != 'personal')
+           LIMIT 1
+         ) OR ${actionedStats})
+         AND (EXISTS (
+           SELECT 1 FROM messages m
+           WHERE m.vendor_id = vendors.id
+           AND NOT EXISTS (
+             SELECT 1 FROM whitelist w
+             WHERE (w.value LIKE '%@%' AND m.sender_email = w.value)
+                OR (w.value NOT LIKE '%@%' AND (
+                      m.sender_email LIKE '%@' || w.value
+                   OR m.sender_email LIKE '%.' || w.value
+                ))
+           )
+         ) OR ${actionedStats})`
+      )
+      .get(...APP_CONFIG.PERSONAL_DOMAINS) as { c: number }
   ).c;
   const mailingListCount = (
     d
@@ -82,22 +112,39 @@ export function getAttentionStats(): AttentionStats {
       .get() as { c: number }
   ).c;
 
+  const personalDomainFilter =
+    APP_CONFIG.PERSONAL_DOMAINS.length > 0
+      ? `AND (root_domain IS NULL OR root_domain NOT IN (${APP_CONFIG.PERSONAL_DOMAINS.map(() => "?").join(",")}))`
+      : "";
+
+  const actioned = `(status = 'reviewed' OR EXISTS (SELECT 1 FROM action_log al WHERE al.vendor_id = vendors.id LIMIT 1))`;
+
   const vendorsToReview = (
     d
       .prepare(
-        `SELECT COUNT(*) as c FROM vendors v
-         WHERE (v.status IS NULL OR v.status != 'reviewed')
-         AND EXISTS (
-           SELECT 1 FROM messages m WHERE m.vendor_id = v.id LIMIT 1
-         )
-         AND NOT EXISTS (
-           SELECT 1 FROM whitelist w, messages m
-           WHERE m.vendor_id = v.id
-           AND ((w.value LIKE '%@%' AND m.sender_email = w.value)
-                OR (w.value NOT LIKE '%@%' AND m.sender_email LIKE '%@' || w.value))
-         )`
+        `SELECT COUNT(*) as c FROM vendors
+         WHERE (status IS NULL OR status != 'reviewed')
+         ${personalDomainFilter}
+         AND (EXISTS (
+           SELECT 1 FROM messages m
+           WHERE m.vendor_id = vendors.id
+           AND (m.type IS NULL OR m.type != 'personal')
+           LIMIT 1
+         ) OR ${actioned})
+         AND (EXISTS (
+           SELECT 1 FROM messages m
+           WHERE m.vendor_id = vendors.id
+           AND NOT EXISTS (
+             SELECT 1 FROM whitelist w
+             WHERE (w.value LIKE '%@%' AND m.sender_email = w.value)
+                OR (w.value NOT LIKE '%@%' AND (
+                      m.sender_email LIKE '%@' || w.value
+                   OR m.sender_email LIKE '%.' || w.value
+                ))
+           )
+         ) OR ${actioned})`
       )
-      .get() as { c: number }
+      .get(...APP_CONFIG.PERSONAL_DOMAINS) as { c: number }
   ).c;
 
   return { bulkEmailsToReview, vendorsToReview };

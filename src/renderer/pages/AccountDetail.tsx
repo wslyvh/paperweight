@@ -441,7 +441,7 @@ export default function AccountDetail(): JSX.Element {
 
       {/* Header */}
       <div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-baseline gap-4">
           <h1 className="text-2xl font-bold">{displayName}</h1>
           {vendor.company_slug && (
             <BadgeCheck
@@ -450,14 +450,17 @@ export default function AccountDetail(): JSX.Element {
               aria-label="Verified company"
             />
           )}
+          <button
+            className="text-base-content/40 text-sm hover:text-base-content/70 hover:underline inline-flex items-center gap-1"
+            onClick={() => window.api.openExternal(domainUrl)}
+          >
+            {vendor.root_domain ?? "(unknown)"} <ExternalLink className="w-3 h-3" />
+          </button>
         </div>
-        <button
-          className="text-base-content/60 text-sm hover:text-base-content/80 hover:underline inline-flex items-center gap-1 mt-1"
-          onClick={() => window.api.openExternal(domainUrl)}
-        >
-          {vendor.root_domain ?? "(unknown)"}{" "}
-          <ExternalLink className="w-3 h-3" />
-        </button>
+        <p className="text-sm text-base-content/50 mt-1">
+          Review what this company knows about you and decide what to do. For older
+          accounts, consider unsubscribing and requesting data deletion.
+        </p>
         {company?.categories && company.categories.length > 0 && (
           <div className="flex items-center gap-2 flex-wrap mt-2">
             {company.categories.map((c) => {

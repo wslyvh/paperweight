@@ -145,8 +145,8 @@ const ACTIVITY_RANGES: Record<string, [number, number | null]> = {
 
 const VOLUME_RANGES: Record<string, [number, number | null]> = {
   oneoff: [0, 5],
-  low:    [6, 20],
-  medium: [21, 100],
+  low:    [6, 25],
+  medium: [26, 100],
   high:   [101, null],
 };
 
