@@ -179,6 +179,21 @@ function attachBreachesDb() {
   d.exec(`ATTACH DATABASE '${breachesPath}' AS breaches`);
 }
 
+export function deleteDbFiles(email: string): void {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { app } = require("electron") as typeof import("electron");
+  const dbPath = join(app.getPath("userData"), `${sanitizeEmail(email)}.db`);
+  try {
+    if (existsSync(dbPath)) unlinkSync(dbPath);
+    for (const suffix of ["-wal", "-shm"]) {
+      const p = dbPath + suffix;
+      if (existsSync(p)) unlinkSync(p);
+    }
+  } catch {
+    // Non-fatal
+  }
+}
+
 export function wipeDatabase(): void {
   if (db) {
     db.close();

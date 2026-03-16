@@ -95,11 +95,9 @@ export default function Settings(): JSX.Element {
   };
 
   const handleWipe = async (): Promise<void> => {
-    const result = await window.api.wipeData();
+    await window.api.wipeData();
     setShowWipeModal(false);
-    if (!result?.willRelaunch) {
-      navigate("/onboarding");
-    }
+    navigate("/onboarding");
   };
 
   const formatProvider = (type: string): string => {
@@ -482,8 +480,8 @@ export default function Settings(): JSX.Element {
           <h3 className="font-semibold text-error">Danger Zone</h3>
           <div>
             <p className="text-sm text-base-content/60">
-              Clear all synced emails and sender data. Your connection,
-              settings, and whitelist are kept so you can re-sync.
+              Clear all synced emails and sender data for all accounts. Your
+              connections, settings, and whitelists are kept so you can re-sync.
             </p>
             <button
               className="btn btn-error btn-outline btn-sm w-fit mt-2"
@@ -494,8 +492,8 @@ export default function Settings(): JSX.Element {
           </div>
           <div>
             <p className="text-sm text-base-content/60">
-              Delete everything including emails, settings, and stored
-              credentials.
+              Delete everything including all accounts, emails, settings, and
+              stored credentials.
             </p>
             <button
               className="btn btn-error btn-sm w-fit mt-2"
@@ -513,8 +511,8 @@ export default function Settings(): JSX.Element {
           <div className="modal-box">
             <h3 className="font-bold text-lg">Clear sync data?</h3>
             <p className="py-4">
-              This will delete all synced emails, sender data, and detected
-              accounts. Your connection, settings, and whitelist will be kept.
+              This will delete all synced emails and sender data for all
+              accounts. Your connections, settings, and whitelists will be kept.
             </p>
             <div className="modal-action">
               <button
@@ -581,10 +579,11 @@ export default function Settings(): JSX.Element {
       {showWipeModal && (
         <dialog className="modal modal-open">
           <div className="modal-box">
-            <h3 className="font-bold text-lg">Are you sure?</h3>
+            <h3 className="font-bold text-lg">Wipe all data?</h3>
             <p className="py-4">
-              This will permanently delete all local data, including your email
-              database and stored credentials. This action cannot be undone.
+              This will permanently delete <strong>all accounts</strong>, their
+              synced emails, and stored credentials. This action cannot be
+              undone.
             </p>
             <div className="modal-action">
               <button

@@ -19,7 +19,8 @@ import {
   trashVendorMessages,
   spamVendorMessages,
 } from "../services/account";
-import { clearSyncData, getSyncState } from "../services/sync";
+import Database from "better-sqlite3";
+import { clearSyncData, clearSyncDataOnDb, getSyncState } from "../services/sync";
 import { startSync, getSyncStatus } from "../sync-manager";
 import { getLicenseStatus, deleteLicense } from "../services/settings";
 import { getDashboardStats } from "../services/stats";
@@ -32,7 +33,7 @@ import {
   removeAccountEntry,
   sanitizeEmail,
 } from "../credentials";
-import { wipeDatabase } from "../db";
+import { wipeDatabase, deleteDbFiles } from "../db";
 import { dataLog, actionLog } from "../utils/log";
 import { getFileLogPath } from "../utils/file-log";
 import os from "os";
@@ -100,13 +101,15 @@ export function registerAccountHandlers(): void {
   ipcMain.handle(IPC.switchAccount, (_event, email: unknown) => {
     if (!isString(email) || !email.trim()) throw new Error("Invalid email");
     const accounts = listAccounts();
-    if (!accounts.find((a) => a.email === email)) throw new Error("Account not found");
+    if (!accounts.some((a) => a.email === email)) throw new Error("Account not found");
     setActiveEmail(email);
     setImmediate(() => { app.relaunch(); app.exit(0); });
   });
 
   ipcMain.handle(IPC.removeAccount, (_event, email: unknown) => {
     if (!isString(email) || !email.trim()) throw new Error("Invalid email");
+    const accounts = listAccounts();
+    if (!accounts.some((a) => a.email === email)) throw new Error("Account not found");
     const activeEmail = getActiveEmail();
     const isActive = email === activeEmail;
 
@@ -114,16 +117,12 @@ export function registerAccountHandlers(): void {
     deleteCredentials(email);
 
     // Delete the account's database
-    const userData = app.getPath("userData");
-    const dbPath = join(userData, `${sanitizeEmail(email)}.db`);
-    try {
-      if (existsSync(dbPath)) unlinkSync(dbPath);
-      for (const suffix of ["-wal", "-shm"]) {
-        const p = dbPath + suffix;
-        if (existsSync(p)) unlinkSync(p);
-      }
-    } catch {
-      // Non-fatal
+    if (isActive) {
+      // The active account's DB connection is open — must close it before deleting
+      // (on Windows, unlinkSync on an open file fails silently)
+      wipeDatabase();
+    } else {
+      deleteDbFiles(email);
     }
 
     removeAccountEntry(email);
@@ -180,33 +179,55 @@ export function registerAccountHandlers(): void {
   ipcMain.handle(IPC.getSyncStatus, () => getSyncStatus());
 
   ipcMain.handle(IPC.clearSyncData, () => {
-    dataLog.warn("Clear sync data requested");
-    clearSyncData();
+    dataLog.warn("Clear sync data requested (all accounts)");
+    const accounts = listAccounts();
+    const userData = app.getPath("userData");
+    const activeEmail = getActiveEmail();
+
+    for (const acc of accounts) {
+      if (acc.email === activeEmail) {
+        clearSyncData(); // uses cached getDb() connection
+        continue;
+      }
+      const dbPath = join(userData, `${sanitizeEmail(acc.email)}.db`);
+      if (!existsSync(dbPath)) continue;
+      let db: Database.Database | undefined;
+      try {
+        db = new Database(dbPath);
+        clearSyncDataOnDb(db);
+      } catch {
+        // Non-fatal
+      } finally {
+        db?.close();
+      }
+    }
   });
 
   ipcMain.handle(IPC.wipeData, () => {
-    dataLog.warn("Wipe account data requested");
-    const activeEmail = getActiveEmail();
+    dataLog.warn("Wipe ALL data requested");
+    const accounts = listAccounts();
+    const userData = app.getPath("userData");
 
-    // Wipe the active account's database
+    // Close the active DB connection before deleting (Windows file lock)
     wipeDatabase();
 
-    // Delete the active account's credentials and remove from registry
-    if (activeEmail) {
-      deleteCredentials();
-      removeAccountEntry(activeEmail);
+    // Delete every account's database and credentials
+    for (const acc of accounts) {
+      deleteCredentials(acc.email);
+      deleteDbFiles(acc.email);
     }
 
-    const remaining = listAccounts();
-    if (remaining.length > 0) {
-      // Other accounts exist — switch to the next one
-      setImmediate(() => { app.relaunch(); app.exit(0); });
-      return { willRelaunch: true };
-    } else {
-      // No accounts left — wipe license; renderer will navigate to onboarding
-      deleteLicense();
-      return { willRelaunch: false };
+    // Delete the accounts registry
+    const registryPath = join(userData, "accounts.json");
+    try {
+      if (existsSync(registryPath)) unlinkSync(registryPath);
+    } catch {
+      // Non-fatal
     }
+
+    // Wipe license — renderer will navigate to onboarding
+    deleteLicense();
+    return { willRelaunch: false };
   });
 
   // --- Support / diagnostics ---

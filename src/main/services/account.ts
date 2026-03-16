@@ -72,8 +72,12 @@ export async function startGmailAuthAndRecordAccount() {
   saveCredentials(stagingCreds);   // saves to credentials-{email}.enc (active email is now set)
   deleteCredentials("__staging__");
 
-  saveSetting("accountEmail", email);
-  autoWhitelist(email);
+  if (isFirstAccount) {
+    // For non-first accounts the DB path is cached from the previous account's session.
+    // ensureAccountSettingsInDb() handles this on the next startup after relaunch.
+    saveSetting("accountEmail", email);
+    autoWhitelist(email);
+  }
 
   if (!getSetting("registeredAt")) {
     authLog.info("Account registered (first time setup)");
@@ -145,8 +149,12 @@ export async function startMicrosoftAuthAndRecordAccount() {
   saveCredentials(stagingCreds);   // saves to credentials-{email}.enc
   deleteCredentials("__staging__");
 
-  saveSetting("accountEmail", email);
-  autoWhitelist(email);
+  if (isFirstAccount) {
+    // For non-first accounts the DB path is cached from the previous account's session.
+    // ensureAccountSettingsInDb() handles this on the next startup after relaunch.
+    saveSetting("accountEmail", email);
+    autoWhitelist(email);
+  }
 
   if (!getSetting("registeredAt")) {
     authLog.info("Account registered (first time setup)");
@@ -188,8 +196,12 @@ export async function saveImapConfigAndRecordAccount(config: ImapConfig) {
     registerAccount(email, "imap", registeredAt);
 
     authLog.info("IMAP config saved");
-    saveSetting("accountEmail", email);
-    autoWhitelist(email);
+    if (isFirstAccount) {
+      // For non-first accounts the DB path is cached from the previous account's session.
+      // ensureAccountSettingsInDb() handles this on the next startup after relaunch.
+      saveSetting("accountEmail", email);
+      autoWhitelist(email);
+    }
 
     if (!getSetting("registeredAt")) {
       authLog.info("Account registered (first time setup)");
