@@ -181,9 +181,10 @@ async function parseImapMessage(
     .trim()
     .substring(0, 150);
 
+  const parsedTime = parsed.date?.getTime();
   return {
     id: `${idPrefix}${msg.uid}`,
-    date: parsed.date?.getTime() || Date.now(),
+    date: parsedTime && parsedTime > 946684800000 ? parsedTime : Date.now(),
     subject: parsed.subject || "",
     snippet: (parsed.text || "").substring(0, 200),
     bodyPreview: bodyPreview || (parsed.text || "").substring(0, 150) || "",
@@ -211,9 +212,10 @@ async function parseImapHeadersOnly(
   // No body available — only header-based unsubscribe methods (rfc8058, list-unsubscribe)
   const unsub = resolveUnsubscribe(listUnsubStr, listUnsubPostStr, undefined, parsed.subject);
 
+  const parsedTime = parsed.date?.getTime();
   return {
     id: `${idPrefix}${msg.uid}`,
-    date: parsed.date?.getTime() || Date.now(),
+    date: parsedTime && parsedTime > 946684800000 ? parsedTime : Date.now(),
     subject: parsed.subject || "",
     snippet: "",
     bodyPreview: "",

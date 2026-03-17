@@ -210,7 +210,8 @@ function parseEmailAddress(raw: string): { name: string; email: string } {
   if (bareMatch) {
     return { name: "", email: bareMatch[1].toLowerCase() };
   }
-  return { name: "", email: raw.toLowerCase().trim() };
+  const emailMatch = raw.match(/[^\s<>]+@[^\s<>]+/);
+  return { name: "", email: emailMatch ? emailMatch[0].toLowerCase() : raw.toLowerCase().trim() };
 }
 
 function base64UrlDecode(str: string): string {
@@ -297,9 +298,17 @@ function parseGmailMessage(msg: GmailRawMessage): EmailMessage {
     .trim()
     .substring(0, 150);
 
+  const internalDate = parseInt(msg.internalDate, 10);
+  const date = !isNaN(internalDate)
+    ? internalDate
+    : (() => {
+        const t = new Date(getHeader("Date")).getTime();
+        return !isNaN(t) && t > 946684800000 ? t : Date.now();
+      })();
+
   return {
     id: msg.id,
-    date: parseInt(msg.internalDate, 10),
+    date,
     subject,
     snippet: msg.snippet,
     bodyPreview: bodyPreview || msg.snippet?.substring(0, 150) || "",
@@ -403,6 +412,7 @@ export function createGmailProvider(): EmailProvider {
             params.metadataHeaders = [
               "From",
               "Subject",
+              "Date",
               "List-Unsubscribe",
               "List-Unsubscribe-Post",
             ];
