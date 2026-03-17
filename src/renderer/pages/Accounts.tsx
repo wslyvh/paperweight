@@ -501,7 +501,7 @@ export default function Accounts(): JSX.Element {
             {vendors.map((vendor) => {
               const displayName = vendor.name || vendor.root_domain || "Unknown";
               const computedRisk = vendor.risk_level ?? "unknown";
-              const groupKey = vendor.company_slug ?? vendor.root_domain ?? String(vendor.id);
+              const groupKey = vendor.root_domain ?? vendor.company_slug ?? String(vendor.id);
               const activitySignal = getActivitySignal(vendor.last_seen);
               const activityBadgeInfo = ACTIVITY_BADGE[activitySignal] ?? null;
 

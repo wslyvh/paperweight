@@ -41,6 +41,7 @@ const RISK_BADGE_CLASS: Record<string, string> = {
 };
 
 const TWO_YEARS_MS = 2 * 365.25 * 24 * 60 * 60 * 1000;
+const TEN_YEARS_MS = 10 * 365.25 * 24 * 60 * 60 * 1000;
 
 function buildDeletionEmail(
   userEmail: string,
@@ -376,6 +377,7 @@ export default function AccountDetail(): JSX.Element {
   // Action item derivation
   const now = Date.now();
   const twoYearsAgo = now - TWO_YEARS_MS;
+  const tenYearsAgo = now - TEN_YEARS_MS;
 
   const activeBulkMessages = detail.bulkMessages.filter(
     (m) => m.date > twoYearsAgo && m.status == null
@@ -383,17 +385,21 @@ export default function AccountDetail(): JSX.Element {
   const hasActiveSubscription = activeBulkMessages.length > 0 && unsubMethods.length > 0;
   const bulkCount = detail.bulkMessageCount;
   const totalCount = vendor.message_count;
-  // Stale: last seen > 2yr ago with enough email history — no has_account requirement because
-  // transaction/notification emails are often classified as "personal" not "account".
-  const isStaleAccount = !!(vendor.last_seen && vendor.last_seen < twoYearsAgo && totalCount >= 5);
-  const showDeleteMarketing = totalCount > 25 && bulkCount > 0;
-  const showDeleteAll = totalCount > 25;
+  // Ancient: last seen > 10yr ago — company may no longer exist, so suggest verifying first.
+  // Stale: last seen > 2yr ago (but not ancient) — deletion request is the right move.
+  // No has_account requirement because transaction/notification emails are often classified as "personal" not "account".
+  const isAncientAccount = !!(vendor.last_seen && vendor.last_seen < tenYearsAgo && totalCount >= 5);
+  const isStaleAccount = !!(vendor.last_seen && vendor.last_seen < twoYearsAgo && !isAncientAccount && totalCount >= 5);
+  const allEmailsAreMarketing = bulkCount > 0 && bulkCount === totalCount;
+  const showDeleteMarketing = allEmailsAreMarketing;
+  const showDeleteAll = totalCount > 0 && !allEmailsAreMarketing;
 
   const actionItems: string[] = [
     ...(anyLikelyAffected ? ["breachReview", "breachAccess", "breachDeletion"] : []),
     ...(hasActiveSubscription ? unsubMethods.map((m) => `unsub-${m.method}`) : []),
     ...(showDeleteMarketing ? ["deleteMarketing"] : []),
     ...(showDeleteAll ? ["deleteAll"] : []),
+    ...((isAncientAccount && !anyLikelyAffected) ? ["checkActive"] : []),
     ...((isStaleAccount && !anyLikelyAffected) ? ["dataDeletion"] : []),
   ];
 
@@ -414,6 +420,8 @@ export default function AccountDetail(): JSX.Element {
     } else if (id === "dataDeletion" || id === "breachAccess" || id === "breachDeletion") {
       setDataRequestType(id === "breachAccess" ? "access" : "deletion");
       setActiveTab("data");
+    } else if (id === "checkActive") {
+      window.api.openExternal(domainUrl);
     } else if (id === "breachReview") {
       setBreachOpen(true);
       document.getElementById("breach-alert")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -620,13 +628,13 @@ export default function AccountDetail(): JSX.Element {
         <div>
           <p className="text-xs text-base-content/50 uppercase">First seen</p>
           <p className="font-medium">
-            {formatAbsoluteDate(first_activity ?? vendor.first_seen ?? 0)}
+            {(first_activity ?? vendor.first_seen) ? formatAbsoluteDate(first_activity ?? vendor.first_seen ?? 0) : "Unknown"}
           </p>
         </div>
         <div>
           <p className="text-xs text-base-content/50 uppercase">Last seen</p>
           <p className="font-medium">
-            {formatRelativeDate(vendor.last_seen ?? 0)}
+            {vendor.last_seen ? formatRelativeDate(vendor.last_seen) : "Unknown"}
           </p>
         </div>
         <div>
@@ -660,11 +668,22 @@ export default function AccountDetail(): JSX.Element {
           </div>
           {breachOpen && (
             <div className="px-4 pb-4 flex flex-col gap-4">
-              <ul className="text-sm space-y-1">
+              <ul className="text-sm space-y-1 list-disc list-inside">
                 {breaches.map((bi) => (
                   <li key={bi.breach.name}>
-                    {bi.breach.title} was breached on{" "}
-                    <span className="font-medium">
+                    <button
+                      className="font-semibold underline hover:text-base-content/80"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.api.openExternal(
+                          `https://haveibeenpwned.com/Breach/${bi.breach.name}`,
+                        );
+                      }}
+                    >
+                      {bi.breach.title}
+                    </button>{" "}
+                    was breached on{" "}
+                    <span>
                       {new Date(bi.breach.breachDate).toLocaleDateString()}
                     </span>{" "}
                     —{" "}
@@ -697,24 +716,7 @@ export default function AccountDetail(): JSX.Element {
                 ) : null;
               })()}
               <p className="text-xs text-base-content/50">
-                Source:{" "}
-                {breaches.map((bi, i) => (
-                  <span key={bi.breach.name}>
-                    {i > 0 && ", "}
-                    <button
-                      className="underline hover:text-base-content/80"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        window.api.openExternal(
-                          `https://haveibeenpwned.com/Breach/${bi.breach.name}`,
-                        );
-                      }}
-                    >
-                      {bi.breach.title}
-                    </button>
-                  </span>
-                ))}{" "}
-                (haveibeenpwned.com)
+                Source: haveibeenpwned.com
               </p>
             </div>
           )}
@@ -826,7 +828,12 @@ export default function AccountDetail(): JSX.Element {
                   if (anyLikelyAffected) {
                     parts.push(`This sender was involved in a data breach that likely included your account. Your personal data may be at risk, so it is worth reviewing what was exposed and taking steps to protect yourself.`);
                   }
-                  if (isStaleAccount) {
+                  if (isAncientAccount) {
+                    const yearsAgo = vendor.last_seen
+                      ? Math.round((now - vendor.last_seen) / (365.25 * 24 * 60 * 60 * 1000))
+                      : null;
+                    parts.push(`This sender last emailed you${yearsAgo ? ` over ${yearsAgo} years` : " a very long time"} ago. They may no longer exist, so it's worth checking before taking any further action.`);
+                  } else if (isStaleAccount) {
                     const yearsAgo = vendor.last_seen
                       ? Math.round((now - vendor.last_seen) / (365.25 * 24 * 60 * 60 * 1000))
                       : null;
@@ -835,7 +842,7 @@ export default function AccountDetail(): JSX.Element {
                   if (hasActiveSubscription) {
                     parts.push(`This sender is still sending you marketing emails. Unsubscribing reduces clutter and cuts down the data they collect about you.`);
                   }
-                  if ((showDeleteMarketing || showDeleteAll) && !hasActiveSubscription && !isStaleAccount && !anyLikelyAffected) {
+                  if ((showDeleteMarketing || showDeleteAll) && !hasActiveSubscription && !isStaleAccount && !isAncientAccount && !anyLikelyAffected) {
                     parts.push(`This sender has sent you a lot of emails over time. Deleting them reduces the amount of data stored in your inbox.`);
                   }
                   return parts.join(" ");
@@ -917,6 +924,18 @@ export default function AccountDetail(): JSX.Element {
                   anyLoading={actionLoading}
                   actionLabel="Delete"
                   onAction={() => handleItemAction("deleteAll")}
+                />
+              )}
+              {isAncientAccount && !anyLikelyAffected && (
+                <ActionTaskRow
+                  index={actionItems.indexOf("checkActive") + 1}
+                  label="Check if this company is still active"
+                  description="This sender may no longer exist. Visit their website to verify before taking further action."
+                  done={doneIds.has("checkActive")}
+                  spinning={false}
+                  anyLoading={actionLoading}
+                  actionLabel="Visit website"
+                  onAction={() => handleItemAction("checkActive")}
                 />
               )}
               {isStaleAccount && !anyLikelyAffected && (
