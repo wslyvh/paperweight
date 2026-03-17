@@ -22,50 +22,52 @@
     "dist:win": "electron-rebuild -f -w better-sqlite3 && yarn build && electron-builder --win --publish never",
     "test": "jest"
   },
-  "build": {
-    "appId": "email.paperweight",
-    "productName": "Paperweight",
-    "artifactName": "Paperweight-${version}.${ext}",
-    "directories": {
-      "output": "dist"
-    },
-    "files": [
-      "out/**/*"
-    ],
-    "extraResources": [
-      {
-        "from": "resources/companies.db",
-        "to": "companies.db"
+    "build": {
+      "appId": "email.paperweight",
+      "productName": "Paperweight",
+      "artifactName": "Paperweight-${version}.${ext}",
+      "directories": {
+        "output": "dist"
       },
-      {
-        "from": "resources/breaches.db",
-        "to": "breaches.db"
+      "files": [
+        "out/**/*"
+      ],
+      "extraResources": [
+        {
+          "from": "resources/companies.db",
+          "to": "companies.db"
+        },
+        {
+          "from": "resources/breaches.db",
+          "to": "breaches.db"
+        }
+      ],
+      "mac": {
+        "target": "dmg",
+        "category": "public.app-category.productivity",
+        "icon": "build/icon.png"
+      },
+      "win": {
+        "target": [
+          "nsis"
+        ],
+        "icon": "build/icon.ico"
+      },
+      "linux": {
+        "target": [
+          "AppImage",
+          "deb"
+        ],
+        "category": "Utility",
+        "maintainer": "wslyvh",
+        "icon": "build/icon.png"
+      },
+      "nsis": {
+        "oneClick": false,
+        "allowToChangeInstallationDirectory": true,
+        "perMachine": false
       }
-    ],
-    "mac": {
-      "target": "dmg",
-      "category": "public.app-category.productivity"
     },
-    "win": {
-      "target": [
-        "nsis"
-      ],
-      "icon": "build/icon.ico"
-    },
-    "linux": {
-      "target": [
-        "AppImage",
-        "deb"
-      ],
-      "category": "Utility",
-      "maintainer": "wslyvh"
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true,
-      "perMachine": false
-    }
-  },
   "dependencies": {
     "@electron-toolkit/utils": "^4.0.0",
     "better-sqlite3": "12.6.0",
