@@ -158,16 +158,29 @@ const BATCH_LABELS: Record<
 
 // ---------- component ----------
 
+interface MailState {
+  page: number;
+  sortBy: string;
+  search: string;
+  volumeFilter: string;
+  activityFilter: string;
+  whitelistedFilter: boolean;
+  priorityFilter: boolean;
+  breachedFilter: boolean;
+}
+
 export default function Mail(): JSX.Element {
   const navigate = useNavigate();
   const location = useLocation();
-  const locState = location.state as { preset?: MailPresetId } | null;
+  const locState = location.state as { preset?: MailPresetId; restore?: MailState } | null;
+  const restore = locState?.restore;
+
   const [vendors, setVendors] = useState<Vendor[]>([]);
   const [total, setTotal] = useState(0);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(restore?.page ?? 1);
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
-  const [sortBy, setSortBy] = useState("message_count");
+  const [search, setSearch] = useState(restore?.search ?? "");
+  const [sortBy, setSortBy] = useState(restore?.sortBy ?? "message_count");
   const [expandedRows, setExpandedRows] = useState<Set<number>>(new Set());
   const [messagesCache, setMessagesCache] = useState<
     Map<number, Array<{ id: string; subject?: string; date: number }>>
@@ -185,11 +198,11 @@ export default function Mail(): JSX.Element {
 
   const [showSort, setShowSort] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
-  const [volumeFilter, setVolumeFilter] = useState("");
-  const [activityFilter, setActivityFilter] = useState("");
-  const [whitelistedFilter, setWhitelistedFilter] = useState(locState?.preset === "whitelisted");
-  const [priorityFilter, setPriorityFilter] = useState(locState?.preset === "priorities");
-  const [breachedFilter, setBreachedFilter] = useState(locState?.preset === "breached");
+  const [volumeFilter, setVolumeFilter] = useState(restore?.volumeFilter ?? "");
+  const [activityFilter, setActivityFilter] = useState(restore?.activityFilter ?? "");
+  const [whitelistedFilter, setWhitelistedFilter] = useState(restore?.whitelistedFilter ?? locState?.preset === "whitelisted");
+  const [priorityFilter, setPriorityFilter] = useState(restore?.priorityFilter ?? locState?.preset === "priorities");
+  const [breachedFilter, setBreachedFilter] = useState(restore?.breachedFilter ?? locState?.preset === "breached");
 
   // Batch selection
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
@@ -312,6 +325,16 @@ export default function Mail(): JSX.Element {
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, [showSort, showFilters]);
+
+  // Keep history entry in sync so navigate(-1) restores filter state
+  const pathname = location.pathname;
+  useEffect(() => {
+    navigate(pathname, {
+      replace: true,
+      state: { restore: { page, sortBy, search, volumeFilter, activityFilter, whitelistedFilter, priorityFilter, breachedFilter } satisfies MailState },
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page, sortBy, search, volumeFilter, activityFilter, whitelistedFilter, priorityFilter, breachedFilter]);
 
   // ---------- select-all ----------
 

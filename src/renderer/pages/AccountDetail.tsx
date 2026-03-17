@@ -1,5 +1,5 @@
 import { useEffect, useCallback, useState } from "react";
-import { useParams, Link, useLocation } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import type {
   VendorDetail,
   Message,
@@ -231,9 +231,7 @@ function ActionTaskRow({ index, label, description, done, spinning, anyLoading, 
 
 export default function AccountDetail(): JSX.Element {
   const { groupKey } = useParams<{ groupKey: string }>();
-  const { state } = useLocation();
-  const accountsState = (state as { accountsState?: unknown } | null)
-    ?.accountsState;
+  const navigate = useNavigate();
   const [detail, setDetail] = useState<VendorDetail>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>();
@@ -297,13 +295,12 @@ export default function AccountDetail(): JSX.Element {
   if (error || !detail) {
     return (
       <div className="space-y-4">
-        <Link
-          to="/accounts"
-          state={{ restore: accountsState }}
+        <button
           className="btn btn-ghost btn-sm gap-1"
+          onClick={() => navigate(-1)}
         >
           <ArrowLeft className="w-4 h-4" /> Back to overview
-        </Link>
+        </button>
         <div className="card bg-base-200">
           <div className="card-body text-center">
             <p className="text-error">{error ?? "Vendor not found"}</p>
@@ -569,13 +566,12 @@ export default function AccountDetail(): JSX.Element {
     <div className="space-y-6">
       {/* Top bar */}
       <div className="flex items-center justify-between">
-        <Link
-          to="/accounts"
-          state={{ restore: accountsState }}
+        <button
           className="btn btn-ghost btn-sm gap-1"
+          onClick={() => navigate(-1)}
         >
           <ArrowLeft className="w-4 h-4" /> Back to overview
-        </Link>
+        </button>
         <button
           className={`btn btn-sm ${vendor.status === "reviewed" ? "btn-ghost" : "btn-neutral"}`}
           onClick={handleToggleReviewed}
