@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type {
-  AttentionStats,
   ChartTrend,
   DashboardStats,
 } from "@shared/types";
@@ -17,10 +16,10 @@ export default function Dashboard(): JSX.Element {
     uniqueVendors: 0,
     mailingListCount: 0,
     breachedCount: 0,
-  });
-  const [attention, setAttention] = useState<AttentionStats>({
-    bulkEmailsToReview: 0,
-    vendorsToReview: 0,
+    mailingListsActioned: 0,
+    activeSubscriptions: 0,
+    reviewedVendors: 0,
+    highRiskUnreviewed: 0,
   });
   const [trend, setTrend] = useState<ChartTrend>({
     labels: [],
@@ -33,13 +32,11 @@ export default function Dashboard(): JSX.Element {
 
   const fetchData = async (silent = false): Promise<void> => {
     if (!silent) setLoading(true);
-    const [statsData, attentionData, trendData] = await Promise.all([
+    const [statsData, trendData] = await Promise.all([
       window.api.getDashboardStats(),
-      window.api.getAttentionStats(),
       window.api.getDashboardTrend(),
     ]);
     setStats(statsData);
-    setAttention(attentionData);
     setTrend(trendData);
     setLoading(false);
   };
@@ -72,8 +69,8 @@ export default function Dashboard(): JSX.Element {
     );
   }
 
-  const hasAttentionItems =
-    attention.bulkEmailsToReview > 0 || attention.vendorsToReview > 0;
+  const hasActionItems =
+    stats.breachedCount > 0 || stats.activeSubscriptions > 0 || stats.highRiskUnreviewed > 0;
 
   return (
     <div className="space-y-6">
@@ -102,22 +99,23 @@ export default function Dashboard(): JSX.Element {
       {/* Stat tiles — 3 in 1 row */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div
-          className="stat border-none bg-base-200 rounded-box cursor-pointer hover:bg-base-300 transition-colors"
+          className="stat border-none bg-base-200 rounded-box cursor-pointer hover:bg-base-300 transition-colors flex flex-col justify-between"
           onClick={() => navigate("/dashboard")}
         >
           <div className="flex items-center justify-between mb-1">
             <div className="font-semibold text-base text-base-content">
-              Messages synced
+              Emails analyzed
             </div>
             <Inbox className="w-5 h-5 text-info" aria-hidden="true" />
           </div>
           <div className="stat-value text-info">
             {stats.totalMessages.toLocaleString()}
           </div>
+          <p className="text-base-content/50 text-xs mt-1">&nbsp;</p>
         </div>
 
         <div
-          className="stat border-none bg-base-200 rounded-box cursor-pointer hover:bg-base-300 transition-colors"
+          className="stat border-none bg-base-200 rounded-box cursor-pointer hover:bg-base-300 transition-colors flex flex-col justify-between"
           onClick={() => navigate("/mail")}
         >
           <div className="flex items-center justify-between mb-1">
@@ -129,10 +127,13 @@ export default function Dashboard(): JSX.Element {
           <div className="stat-value text-primary">
             {stats.mailingListCount.toLocaleString()}
           </div>
+          <p className="text-base-content/50 text-xs mt-1">
+            {stats.mailingListsActioned.toLocaleString()} actioned · {stats.activeSubscriptions.toLocaleString()} priorities
+          </p>
         </div>
 
         <div
-          className="stat border-none bg-base-200 rounded-box cursor-pointer hover:bg-base-300 transition-colors"
+          className="stat border-none bg-base-200 rounded-box cursor-pointer hover:bg-base-300 transition-colors flex flex-col justify-between"
           onClick={() => navigate("/accounts")}
         >
           <div className="flex items-center justify-between mb-1">
@@ -144,6 +145,9 @@ export default function Dashboard(): JSX.Element {
           <div className="stat-value text-secondary">
             {stats.uniqueVendors.toLocaleString()}
           </div>
+          <p className="text-base-content/50 text-xs mt-1">
+            {stats.reviewedVendors.toLocaleString()} reviewed · {stats.highRiskUnreviewed.toLocaleString()} high risk
+          </p>
         </div>
       </div>
 
@@ -161,7 +165,7 @@ export default function Dashboard(): JSX.Element {
           </button>
         </div>
 
-        {hasAttentionItems || stats.breachedCount > 0 ? (
+        {hasActionItems ? (
           <div className="space-y-2">
             {stats.breachedCount > 0 && (
               <div
@@ -172,8 +176,7 @@ export default function Dashboard(): JSX.Element {
               >
                 <span>
                   {stats.breachedCount} account
-                  {stats.breachedCount !== 1 ? "s are" : " is"} likely part of a
-                  data breach
+                  {stats.breachedCount !== 1 ? "s are" : " is"} on a known data breach list
                 </span>
                 <ChevronRight
                   className="w-5 h-5 text-base-content/50"
@@ -182,14 +185,14 @@ export default function Dashboard(): JSX.Element {
               </div>
             )}
 
-            {attention.bulkEmailsToReview > 0 && (
+            {stats.activeSubscriptions > 0 && (
               <div
                 className="flex items-center justify-between p-3 bg-base-200 rounded-lg border-l-4 border-primary cursor-pointer hover:bg-base-300 transition-colors"
-                onClick={() => navigate("/mail")}
+                onClick={() => navigate("/mail", { state: { preset: "priorities" } })}
               >
                 <span>
-                  {attention.bulkEmailsToReview} mailing list
-                  {attention.bulkEmailsToReview !== 1 ? "s" : ""} to review
+                  {stats.activeSubscriptions} active mailing list
+                  {stats.activeSubscriptions !== 1 ? "s" : ""} to unsubscribe
                 </span>
                 <ChevronRight
                   className="w-5 h-5 text-base-content/50"
@@ -198,14 +201,16 @@ export default function Dashboard(): JSX.Element {
               </div>
             )}
 
-            {attention.vendorsToReview > 0 && (
+            {stats.highRiskUnreviewed > 0 && (
               <div
                 className="flex items-center justify-between p-3 bg-base-200 rounded-lg border-l-4 border-secondary cursor-pointer hover:bg-base-300 transition-colors"
-                onClick={() => navigate("/accounts")}
+                onClick={() =>
+                  navigate("/accounts", { state: { preset: "highrisk" } })
+                }
               >
                 <span>
-                  {attention.vendorsToReview} account
-                  {attention.vendorsToReview !== 1 ? "s" : ""} to review
+                  {stats.highRiskUnreviewed} high risk account
+                  {stats.highRiskUnreviewed !== 1 ? "s" : ""} to review
                 </span>
                 <ChevronRight
                   className="w-5 h-5 text-base-content/50"

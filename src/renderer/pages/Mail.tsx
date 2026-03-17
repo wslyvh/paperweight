@@ -1,8 +1,8 @@
 import { useEffect, useState, useCallback, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import type { Vendor, VendorQuery, UnsubscribeEntry } from "@shared/types";
 import { formatRelativeDate } from "@shared/formatting";
-import { ArrowUpDown, BellOff, ChevronLeft, ChevronRight, Flag, SlidersHorizontal, Trash2 } from "lucide-react";
+import { ArrowUpDown, BadgeCheck, BellOff, ChevronLeft, ChevronRight, Flag, SlidersHorizontal, Trash2 } from "lucide-react";
 import ActionModal from "../components/ActionModal";
 
 // ---------- types ----------
@@ -89,6 +89,16 @@ function FilterGroup({ label, options, labels, value, onChange, colors }: Filter
   );
 }
 
+// ---------- presets ----------
+
+const MAIL_PRESETS = [
+  { id: "whitelisted", label: "Whitelisted" },
+  { id: "priorities",  label: "Priorities" },
+  { id: "breached",    label: "Breached" },
+] as const;
+
+type MailPresetId = typeof MAIL_PRESETS[number]["id"];
+
 // ---------- helpers ----------
 
 const SORT_OPTIONS = [
@@ -150,6 +160,8 @@ const BATCH_LABELS: Record<
 
 export default function Mail(): JSX.Element {
   const navigate = useNavigate();
+  const location = useLocation();
+  const locState = location.state as { preset?: MailPresetId } | null;
   const [vendors, setVendors] = useState<Vendor[]>([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
@@ -175,6 +187,9 @@ export default function Mail(): JSX.Element {
   const [showFilters, setShowFilters] = useState(false);
   const [volumeFilter, setVolumeFilter] = useState("");
   const [activityFilter, setActivityFilter] = useState("");
+  const [whitelistedFilter, setWhitelistedFilter] = useState(locState?.preset === "whitelisted");
+  const [priorityFilter, setPriorityFilter] = useState(locState?.preset === "priorities");
+  const [breachedFilter, setBreachedFilter] = useState(locState?.preset === "breached");
 
   // Batch selection
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
@@ -205,13 +220,16 @@ export default function Mail(): JSX.Element {
         filter: "lists",
         activity: activityFilter || undefined,
         volume: volumeFilter || undefined,
+        activeSubscriptions: priorityFilter || undefined,
+        onBreachList: breachedFilter || undefined,
+        showWhitelisted: whitelistedFilter || undefined,
       };
       const data = await window.api.queryVendors(query);
       setVendors(data.vendors.filter((v) => !removedIdsRef.current.has(v.id)));
       setTotal(data.total);
       setLoading(false);
     },
-    [page, sortBy, search, activityFilter, volumeFilter],
+    [page, sortBy, search, activityFilter, volumeFilter, priorityFilter, breachedFilter, whitelistedFilter],
   );
 
   useEffect(() => {
@@ -260,11 +278,14 @@ export default function Mail(): JSX.Element {
     setSortBy("message_count");
     setVolumeFilter("");
     setActivityFilter("");
+    setWhitelistedFilter(false);
+    setPriorityFilter(false);
+    setBreachedFilter(false);
     setPage(1);
     setSelectedIds(new Set());
   };
 
-  const hasAnyFilter = !!(search || sortBy !== "message_count" || volumeFilter || activityFilter || page > 1);
+  const hasAnyFilter = !!(search || sortBy !== "message_count" || volumeFilter || activityFilter || whitelistedFilter || priorityFilter || breachedFilter || page > 1);
 
   const handleSortChange = (value: string) => {
     removedIdsRef.current = new Set();
@@ -436,7 +457,7 @@ export default function Mail(): JSX.Element {
             continue;
           }
           await window.api.markVendorUnsubscribed(vendor.id);
-          if (trashAlso) await window.api.trashVendorMessages(vendor.id);
+          if (trashAlso) await window.api.trashVendorMessages(vendor.id, ["bulk"]);
           succeeded.push(vendor.id);
         } else if (kind === "spam") {
           const result = await window.api.reportSpamVendor(vendor.id);
@@ -444,10 +465,10 @@ export default function Mail(): JSX.Element {
             failed.push(name);
             continue;
           }
-          if (trashAlso) await window.api.trashVendorMessages(vendor.id);
+          if (trashAlso) await window.api.trashVendorMessages(vendor.id, ["bulk"]);
           succeeded.push(vendor.id);
         } else if (kind === "trash") {
-          const result = await window.api.trashVendorMessages(vendor.id);
+          const result = await window.api.trashVendorMessages(vendor.id, ["bulk"]);
           if (!result.success) {
             failed.push(name);
             continue;
@@ -529,7 +550,7 @@ export default function Mail(): JSX.Element {
     setActionLoading(true);
     try {
       if (trashAlso) {
-        const result = await window.api.trashVendorMessages(vendor.id);
+        const result = await window.api.trashVendorMessages(vendor.id, ["bulk"]);
         if (!result.success) setToast(result.error ?? "Unsubscribed, but couldn't move emails to trash.");
       }
       setUnsubResult(null);
@@ -545,7 +566,7 @@ export default function Mail(): JSX.Element {
     setActionLoading(true);
     try {
       await window.api.reportSpamVendor(vendor.id);
-      if (trashAlso) await window.api.trashVendorMessages(vendor.id);
+      if (trashAlso) await window.api.trashVendorMessages(vendor.id, ["bulk"]);
       setUnsubResult(null);
       removeVendor(vendor.id);
     } finally {
@@ -573,7 +594,7 @@ export default function Mail(): JSX.Element {
     try {
       await window.api.markVendorUnsubscribed(vendor.id);
       if (trashAlso) {
-        const result = await window.api.trashVendorMessages(vendor.id);
+        const result = await window.api.trashVendorMessages(vendor.id, ["bulk"]);
         if (!result.success) setToast(result.error ?? "Unsubscribed, but couldn't move emails to trash.");
       }
       setUnsubCheck(null);
@@ -609,7 +630,7 @@ export default function Mail(): JSX.Element {
         setModalError(spamResult.error ?? "Failed to report spam.");
         return;
       }
-      if (trashAlso) await window.api.trashVendorMessages(vendor.id);
+      if (trashAlso) await window.api.trashVendorMessages(vendor.id, ["bulk"]);
       setModal(null);
       setModalError(null);
       removeVendor(vendor.id);
@@ -624,7 +645,7 @@ export default function Mail(): JSX.Element {
     setActionLoading(true);
     setModalError(null);
     try {
-      const result = await window.api.trashVendorMessages(vendor.id);
+      const result = await window.api.trashVendorMessages(vendor.id, ["bulk"]);
       if (!result.success) {
         setModalError(result.error ?? "Failed to move emails to trash.");
         return;
@@ -1077,7 +1098,7 @@ export default function Mail(): JSX.Element {
           onChange={(e) => handleSearchChange(e.target.value)}
         />
         <span className="text-sm text-base-content/60 shrink-0">
-          {total} list{total !== 1 ? "s" : ""} to review
+          {total.toLocaleString()} list{total !== 1 ? "s" : ""}
         </span>
 
         {hasAnyFilter && (
@@ -1151,9 +1172,51 @@ export default function Mail(): JSX.Element {
                 value={activityFilter}
                 onChange={v => { setActivityFilter(v); setPage(1); }}
               />
+              <div className="pt-2 border-t border-base-content/10">
+                <div className="text-sm text-base-content/40 mb-1.5">Breach</div>
+                <button
+                  className={`badge badge-sm cursor-pointer ${breachedFilter ? "badge-warning" : "badge-soft badge-warning"}`}
+                  onClick={() => { setBreachedFilter(v => !v); setPriorityFilter(false); setWhitelistedFilter(false); setPage(1); }}
+                >
+                  ⚠️ On breach list
+                </button>
+              </div>
             </div>
           )}
         </div>
+      </div>
+
+      {/* Row 2 — presets */}
+      <div className="flex items-center gap-2">
+        <button
+          className={`badge badge-sm cursor-pointer gap-1 ${whitelistedFilter ? "badge-accent" : "badge-soft badge-accent"}`}
+          onClick={() => { const next = !whitelistedFilter; setWhitelistedFilter(next); setPriorityFilter(false); setBreachedFilter(false); setPage(1); setSelectedIds(new Set()); }}
+        >
+          <BadgeCheck className="w-3 h-3" />
+          Whitelisted
+        </button>
+
+        <div className="w-px h-3 bg-base-content/20" />
+
+        {MAIL_PRESETS.filter(p => p.id !== "whitelisted").map(p => {
+          const active = p.id === "priorities" ? priorityFilter : breachedFilter;
+          return (
+            <button
+              key={p.id}
+              className={`badge badge-sm cursor-pointer ${active ? "badge-accent" : "badge-soft badge-accent"}`}
+              onClick={() => {
+                const next = !active;
+                setWhitelistedFilter(false);
+                setPriorityFilter(p.id === "priorities" ? next : false);
+                setBreachedFilter(p.id === "breached" ? next : false);
+                setPage(1);
+                setSelectedIds(new Set());
+              }}
+            >
+              {p.label}
+            </button>
+          );
+        })}
       </div>
 
       {loading ? (
@@ -1278,12 +1341,12 @@ export default function Mail(): JSX.Element {
                         <span className="font-medium truncate">
                           {displayName}
                         </span>
-                        {vendor.breachInfo?.likelyAffected && (
+                        {vendor.breachInfo && vendor.breachInfo.length > 0 && (
                           <span
-                            className="badge badge-xs badge-error shrink-0"
-                            title="You likely had an account when this company was breached"
+                            className="shrink-0 leading-none"
+                            title={vendor.breachInfo.some(b => b.likelyAffected) ? "You likely had an account when a breach occurred" : "Domain appears on a known breach list"}
                           >
-                            ⚠ Breached
+                            {vendor.breachInfo.some(b => b.likelyAffected) ? "⚠️" : "ℹ️"}
                           </span>
                         )}
                         <span

@@ -40,6 +40,8 @@ const RISK_BADGE_CLASS: Record<string, string> = {
   unknown: "badge-ghost",
 };
 
+const TWO_YEARS_MS = 2 * 365.25 * 24 * 60 * 60 * 1000;
+
 function buildDeletionEmail(
   userEmail: string,
   accountIdentifier?: string,
@@ -48,16 +50,16 @@ function buildDeletionEmail(
   body: string;
 } {
   return {
-    subject: `Data Deletion Request`,
+    subject: `Personal Data Deletion Request`,
     body: `To whom it may concern,
 
-I am requesting the deletion of all personal data you hold about me. I no longer wish for you to process my data and there is no ongoing reason for you to retain it.
+I am writing to request the deletion of all personal data you hold about me. I no longer wish for you to process my data and there is no ongoing reason for you to retain it.
 
 Please:
-- Delete all account data and purchase history
-- Unsubscribe me from all marketing emails
-- Stop processing my data
-- Notify third parties who received my data
+- Delete all personal data and account history associated with me
+- Unsubscribe me from all marketing communications
+- Stop any further processing of my data
+- Notify any third parties you have shared my data with
 
 Account identifier:
 - Email: ${userEmail}
@@ -65,7 +67,33 @@ ${accountIdentifier ? `- Account reference: ${accountIdentifier}` : ""}
 
 Please confirm completion of this request within 30 days.
 
-If you need any information to verify my identity, let me know. Thank you!
+If you need any information to verify my identity, feel free to reach out. Thank you!
+
+Best regards,
+${userEmail}`,
+  };
+}
+
+function buildAccessEmail(userEmail: string): { subject: string; body: string } {
+  return {
+    subject: `Personal Data Access Request`,
+    body: `To whom it may concern,
+
+I am writing to request access to the personal data you hold about me.
+
+Please provide:
+- A copy of all personal data you hold about me
+- The purposes for which my data is being processed
+- The categories of data you hold
+- Any third parties my data has been shared with
+- How long you intend to retain my data
+
+Account identifier:
+- Email: ${userEmail}
+
+Please respond within 30 days.
+
+If you need any information to verify my identity, feel free to reach out. Thank you!
 
 Best regards,
 ${userEmail}`,
@@ -157,6 +185,49 @@ function unsubDescription(
   );
 }
 
+function ActionTaskRow({ index, label, description, done, spinning, anyLoading, onAction, actionLabel, onMarkDone, variant }: {
+  index: number;
+  label: string;
+  description?: string;
+  done: boolean;
+  spinning: boolean;
+  anyLoading: boolean;
+  onAction: () => void;
+  actionLabel: string;
+  onMarkDone?: () => void;
+  variant?: "warning";
+}) {
+  return (
+    <div className={`flex items-start gap-3 py-2.5 border-b border-base-200 last:border-0 transition-opacity ${done ? "opacity-40" : ""}`}>
+      <span className={`text-sm font-medium tabular-nums shrink-0 mt-0.5 w-5 text-right ${done ? "text-base-content/30" : "text-base-content/40"}`}>
+        {done ? "✓" : `${index}.`}
+      </span>
+      <div className={`flex-1 min-w-0 ${done ? "line-through" : ""}`}>
+        <p className={`text-sm ${variant === "warning" ? "text-warning font-semibold" : ""}`}>{label}</p>
+        {description && <p className="text-xs text-base-content/50 mt-0.5">{description}</p>}
+      </div>
+      <div className="flex gap-1 shrink-0">
+        <button
+          className="btn btn-sm btn-neutral"
+          disabled={done || anyLoading}
+          onClick={onAction}
+        >
+          {spinning ? <span className="loading loading-spinner loading-xs" /> : actionLabel}
+        </button>
+        {onMarkDone && (
+          <button
+            className="btn btn-sm btn-ghost"
+            disabled={done || anyLoading}
+            onClick={onMarkDone}
+          >
+            Mark as done
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function AccountDetail(): JSX.Element {
   const { groupKey } = useParams<{ groupKey: string }>();
   const { state } = useLocation();
@@ -167,14 +238,10 @@ export default function AccountDetail(): JSX.Element {
   const [error, setError] = useState<string>();
   const [riskOpen, setRiskOpen] = useState(false);
   const [breachOpen, setBreachOpen] = useState(false);
-  const [copied, setCopied] = useState(false);
-  const [pendingUnsub, setPendingUnsub] = useState<UnsubscribeEntry | null>(
-    null,
-  );
-  const [unsubCheck, setUnsubCheck] = useState<{
-    entry: UnsubscribeEntry;
-    trashAlso: boolean;
-  } | null>(null);
+  const [copiedRequest, setCopiedRequest] = useState(false);
+  const [dataRequestType, setDataRequestType] = useState<"access" | "deletion">("deletion");
+  const [pendingUnsub, setPendingUnsub] = useState<UnsubscribeEntry | null>(null);
+  const [unsubCheck, setUnsubCheck] = useState<{ entry: UnsubscribeEntry; trashAlso: boolean } | null>(null);
   const [unsubResult, setUnsubResult] = useState<{
     entry: UnsubscribeEntry;
     kind: "success" | "failure";
@@ -182,10 +249,10 @@ export default function AccountDetail(): JSX.Element {
     trashAlso: boolean;
   } | null>(null);
   const [actionLoading, setActionLoading] = useState(false);
-  const [unsubDone, setUnsubDone] = useState<Set<string>>(new Set());
-  const [activeTab, setActiveTab] = useState<
-    "emails" | "mailing" | "data" | "activity"
-  >("emails");
+  const [doneIds, setDoneIds] = useState<Set<string>>(new Set());
+  const [activeItemId, setActiveItemId] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<"actions" | "data" | "emails" | "activity">("actions");
+  const [pendingDelete, setPendingDelete] = useState<"marketing" | "all" | null>(null);
 
   useEffect(() => {
     if (!groupKey) return;
@@ -260,8 +327,6 @@ export default function AccountDetail(): JSX.Element {
   const risk = vendor.risk_level ?? "unknown";
   const riskInfo = RISK_LEVELS[risk as keyof typeof RISK_LEVELS];
   const cat = vendor.category_id ?? "unknown";
-  // When category is unknown, fall back to the best signal we have from message types.
-  // has_orders → shopping (shipping address + payment data); has_account → services.
   const effectiveCat =
     cat !== "unknown"
       ? cat
@@ -279,17 +344,18 @@ export default function AccountDetail(): JSX.Element {
 
   const contactEmail = company?.email ?? senders[0]?.sender_email;
   const deletionEmail = user_email ? buildDeletionEmail(user_email) : undefined;
+  const accessEmail = user_email ? buildAccessEmail(user_email) : undefined;
 
   const domainUrl = company?.web
     ? company.web
     : `https://${vendor.root_domain ?? ""}`;
 
-  const handleCopyMessage = async () => {
-    if (!deletionEmail || !contactEmail) return;
-    const full = `To: ${contactEmail}\nSubject: ${deletionEmail.subject}\n\n${deletionEmail.body}`;
+  const handleCopyRequest = async (email: { subject: string; body: string }) => {
+    if (!contactEmail) return;
+    const full = `To: ${contactEmail}\nSubject: ${email.subject}\n\n${email.body}`;
     await navigator.clipboard.writeText(full);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    setCopiedRequest(true);
+    setTimeout(() => setCopiedRequest(false), 2000);
   };
 
   // Derive unique unsubscribe methods from bulk messages
@@ -307,7 +373,52 @@ export default function AccountDetail(): JSX.Element {
     return result;
   })();
 
-  const mailingDisabled = unsubMethods.length === 0;
+  // Action item derivation
+  const now = Date.now();
+  const twoYearsAgo = now - TWO_YEARS_MS;
+
+  const activeBulkMessages = detail.bulkMessages.filter(
+    (m) => m.date > twoYearsAgo && m.status == null
+  );
+  const hasActiveSubscription = activeBulkMessages.length > 0 && unsubMethods.length > 0;
+  const bulkCount = detail.bulkMessageCount;
+  const totalCount = vendor.message_count;
+  // Stale: last seen > 2yr ago with enough email history — no has_account requirement because
+  // transaction/notification emails are often classified as "personal" not "account".
+  const isStaleAccount = !!(vendor.last_seen && vendor.last_seen < twoYearsAgo && totalCount >= 5);
+  const showDeleteMarketing = totalCount > 25 && bulkCount > 0;
+  const showDeleteAll = totalCount > 25;
+
+  const actionItems: string[] = [
+    ...(anyLikelyAffected ? ["breachReview", "breachAccess", "breachDeletion"] : []),
+    ...(hasActiveSubscription ? unsubMethods.map((m) => `unsub-${m.method}`) : []),
+    ...(showDeleteMarketing ? ["deleteMarketing"] : []),
+    ...(showDeleteAll ? ["deleteAll"] : []),
+    ...((isStaleAccount && !anyLikelyAffected) ? ["dataDeletion"] : []),
+  ];
+
+  function unsubEntryForId(id: string): UnsubscribeEntry | undefined {
+    const method = id.replace(/^unsub-/, "");
+    return unsubMethods.find((m) => m.method === method);
+  }
+
+  function handleItemAction(id: string) {
+    if (id.startsWith("unsub-")) {
+      const entry = unsubEntryForId(id);
+      if (!entry) return;
+      setActiveItemId(id);
+      setPendingUnsub(entry);
+    } else if (id === "deleteMarketing" || id === "deleteAll") {
+      setActiveItemId(id);
+      setPendingDelete(id === "deleteAll" ? "all" : "marketing");
+    } else if (id === "dataDeletion" || id === "breachAccess" || id === "breachDeletion") {
+      setDataRequestType(id === "breachAccess" ? "access" : "deletion");
+      setActiveTab("data");
+    } else if (id === "breachReview") {
+      setBreachOpen(true);
+      document.getElementById("breach-alert")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
 
   const handleUnsubscribeConfirm = async (): Promise<void> => {
     if (!pendingUnsub || !detail) return;
@@ -352,9 +463,10 @@ export default function AccountDetail(): JSX.Element {
     const { entry, trashAlso } = unsubResult;
     setActionLoading(true);
     try {
-      if (trashAlso) await window.api.trashVendorMessages(detail.vendor.id);
+      if (trashAlso) await window.api.trashVendorMessages(detail.vendor.id, ["bulk"]);
       setUnsubResult(null);
-      setUnsubDone((prev) => new Set(prev).add(entry.method));
+      setDoneIds((prev) => new Set(prev).add(`unsub-${entry.method}`));
+      setActiveItemId(null);
       await refreshDetail();
     } finally {
       setActionLoading(false);
@@ -367,9 +479,10 @@ export default function AccountDetail(): JSX.Element {
     setActionLoading(true);
     try {
       await window.api.reportSpamVendor(detail.vendor.id);
-      if (trashAlso) await window.api.trashVendorMessages(detail.vendor.id);
+      if (trashAlso) await window.api.trashVendorMessages(detail.vendor.id, ["bulk"]);
       setUnsubResult(null);
-      setUnsubDone((prev) => new Set(prev).add(entry.method));
+      setDoneIds((prev) => new Set(prev).add(`unsub-${entry.method}`));
+      setActiveItemId(null);
       await refreshDetail();
     } finally {
       setActionLoading(false);
@@ -397,9 +510,10 @@ export default function AccountDetail(): JSX.Element {
     setActionLoading(true);
     try {
       await window.api.markVendorUnsubscribed(detail.vendor.id);
-      if (trashAlso) await window.api.trashVendorMessages(detail.vendor.id);
+      if (trashAlso) await window.api.trashVendorMessages(detail.vendor.id, ["bulk"]);
       setUnsubCheck(null);
-      setUnsubDone((prev) => new Set(prev).add(entry.method));
+      setDoneIds((prev) => new Set(prev).add(`unsub-${entry.method}`));
+      setActiveItemId(null);
       await refreshDetail();
     } finally {
       setActionLoading(false);
@@ -413,7 +527,30 @@ export default function AccountDetail(): JSX.Element {
     try {
       await window.api.reportSpamVendor(detail.vendor.id);
       setUnsubCheck(null);
-      setUnsubDone((prev) => new Set(prev).add(entry.method));
+      setDoneIds((prev) => new Set(prev).add(`unsub-${entry.method}`));
+      setActiveItemId(null);
+      await refreshDetail();
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const handleDeleteConfirm = async (): Promise<void> => {
+    if (!pendingDelete || !detail) return;
+    setActionLoading(true);
+    try {
+      const result = pendingDelete === "all"
+        ? await window.api.trashVendorMessages(detail.vendor.id)
+        : await window.api.trashVendorMessages(detail.vendor.id, ["bulk"]);
+      if (!result.success) {
+        setPendingDelete(null);
+        setActiveItemId(null);
+        return;
+      }
+      const doneId = pendingDelete === "all" ? "deleteAll" : "deleteMarketing";
+      setPendingDelete(null);
+      setDoneIds((prev) => new Set(prev).add(doneId));
+      setActiveItemId(null);
       await refreshDetail();
     } finally {
       setActionLoading(false);
@@ -505,6 +642,7 @@ export default function AccountDetail(): JSX.Element {
       {/* Breach alert */}
       {breaches.length > 0 && (
         <div
+          id="breach-alert"
           className={`card ${anyLikelyAffected ? "bg-error/10 border border-error/30" : "bg-warning/10 border border-warning/30"}`}
         >
           <div
@@ -638,36 +776,12 @@ export default function AccountDetail(): JSX.Element {
         <div role="tablist" className="flex">
           <button
             role="tab"
-            aria-selected={activeTab === "emails"}
-            className={`tab ${activeTab === "emails" ? "tab-active" : ""}`}
-            onClick={() => setActiveTab("emails")}
+            aria-selected={activeTab === "actions"}
+            className={`tab ${activeTab === "actions" ? "tab-active" : ""}`}
+            onClick={() => setActiveTab("actions")}
           >
-            Latest emails
+            Actions
           </button>
-
-          {mailingDisabled && activeTab !== "mailing" ? (
-            <span
-              className="tooltip tooltip-bottom"
-              data-tip="No mailing list subscriptions found"
-            >
-              <button
-                role="tab"
-                className="tab opacity-40 cursor-not-allowed"
-                disabled
-              >
-                Mailing lists
-              </button>
-            </span>
-          ) : (
-            <button
-              role="tab"
-              aria-selected={activeTab === "mailing"}
-              className={`tab ${activeTab === "mailing" ? "tab-active" : ""}`}
-              onClick={() => setActiveTab("mailing")}
-            >
-              Mailing lists
-            </button>
-          )}
 
           <button
             role="tab"
@@ -680,17 +794,237 @@ export default function AccountDetail(): JSX.Element {
 
           <button
             role="tab"
-            aria-selected={activeTab === "activity"}
-            className={`tab ${activeTab === "activity" ? "tab-active" : ""}`}
-            onClick={() => setActiveTab("activity")}
+            aria-selected={activeTab === "emails"}
+            className={`tab ${activeTab === "emails" ? "tab-active" : ""}`}
+            onClick={() => setActiveTab("emails")}
           >
-            Activity
+            Emails
           </button>
+
+          <div className={activityLog.length === 0 ? "tooltip tooltip-bottom" : ""} data-tip={activityLog.length === 0 ? "No activity yet" : undefined}>
+            <button
+              role="tab"
+              aria-selected={activeTab === "activity"}
+              className={`tab ${activeTab === "activity" ? "tab-active" : ""} ${activityLog.length === 0 ? "tab-disabled opacity-40 cursor-not-allowed" : ""}`}
+              onClick={() => { if (activityLog.length > 0) setActiveTab("activity"); }}
+            >
+              Activity
+            </button>
+          </div>
         </div>
 
-        <div
-          className={`tab-content py-2 ${activeTab === "emails" ? "!block" : ""}`}
-        >
+        {/* Actions tab */}
+        <div className={`tab-content px-4 py-3 ${activeTab === "actions" ? "!block" : ""}`}>
+          {actionItems.length === 0 ? (
+            <p className="text-base-content/50 text-sm">No recommended actions for this company.</p>
+          ) : (
+            <div>
+              {/* Contextual recommendation blurb */}
+              <p className="text-sm text-base-content/60 mb-4">
+                {(() => {
+                  const parts: string[] = [];
+                  if (anyLikelyAffected) {
+                    parts.push(`This sender was involved in a data breach that likely included your account. Your personal data may be at risk, so it is worth reviewing what was exposed and taking steps to protect yourself.`);
+                  }
+                  if (isStaleAccount) {
+                    const yearsAgo = vendor.last_seen
+                      ? Math.round((now - vendor.last_seen) / (365.25 * 24 * 60 * 60 * 1000))
+                      : null;
+                    parts.push(`You haven't heard from this sender in${yearsAgo ? ` over ${yearsAgo} years` : " a long time"}, but they still hold your data. Requesting deletion removes any lingering risk.`);
+                  }
+                  if (hasActiveSubscription) {
+                    parts.push(`This sender is still sending you marketing emails. Unsubscribing reduces clutter and cuts down the data they collect about you.`);
+                  }
+                  if ((showDeleteMarketing || showDeleteAll) && !hasActiveSubscription && !isStaleAccount && !anyLikelyAffected) {
+                    parts.push(`This sender has sent you a lot of emails over time. Deleting them reduces the amount of data stored in your inbox.`);
+                  }
+                  return parts.join(" ");
+                })()}
+              </p>
+
+              {anyLikelyAffected && (
+                <ActionTaskRow
+                  index={actionItems.indexOf("breachReview") + 1}
+                  label="Review the security incident"
+                  description="Check what data was exposed in this breach. See the Security alert on this page for details."
+                  done={doneIds.has("breachReview")}
+                  spinning={false}
+                  anyLoading={actionLoading}
+                  actionLabel="Review"
+                  variant="warning"
+                  onAction={() => handleItemAction("breachReview")}
+                />
+              )}
+              {anyLikelyAffected && (
+                <ActionTaskRow
+                  index={actionItems.indexOf("breachAccess") + 1}
+                  label="Request your data"
+                  description="Request this sender to share all data they hold about you. Opens a pre-filled request in the Data requests tab."
+                  done={doneIds.has("breachAccess")}
+                  spinning={false}
+                  anyLoading={actionLoading}
+                  actionLabel="Open"
+                  onAction={() => handleItemAction("breachAccess")}
+                />
+              )}
+              {anyLikelyAffected && (
+                <ActionTaskRow
+                  index={actionItems.indexOf("breachDeletion") + 1}
+                  label="Request to delete your data"
+                  description="Request this sender to erase all data they hold about you. Opens a pre-filled request in the Data requests tab."
+                  done={doneIds.has("breachDeletion")}
+                  spinning={false}
+                  anyLoading={actionLoading}
+                  actionLabel="Open"
+                  onAction={() => handleItemAction("breachDeletion")}
+                />
+              )}
+              {hasActiveSubscription && unsubMethods.map((entry) => {
+                const id = `unsub-${entry.method}`;
+                return (
+                  <ActionTaskRow
+                    key={id}
+                    index={actionItems.indexOf(id) + 1}
+                    label="Unsubscribe"
+                    description={methodDescription(entry.method, entry.url)}
+                    done={doneIds.has(id)}
+                    spinning={activeItemId === id && actionLoading}
+                    anyLoading={actionLoading}
+                    actionLabel="Unsubscribe"
+                    onAction={() => handleItemAction(id)}
+                  />
+                );
+              })}
+              {showDeleteMarketing && (
+                <ActionTaskRow
+                  index={actionItems.indexOf("deleteMarketing") + 1}
+                  label="Delete marketing emails"
+                  description={`Moves ${bulkCount} marketing and newsletter emails to trash`}
+                  done={doneIds.has("deleteMarketing")}
+                  spinning={activeItemId === "deleteMarketing" && actionLoading}
+                  anyLoading={actionLoading}
+                  actionLabel="Delete"
+                  onAction={() => handleItemAction("deleteMarketing")}
+                />
+              )}
+              {showDeleteAll && (
+                <ActionTaskRow
+                  index={actionItems.indexOf("deleteAll") + 1}
+                  label="Delete all emails"
+                  description={`Moves all ${vendor.message_count} emails from this sender to trash, including receipts and notifications`}
+                  done={doneIds.has("deleteAll")}
+                  spinning={activeItemId === "deleteAll" && actionLoading}
+                  anyLoading={actionLoading}
+                  actionLabel="Delete"
+                  onAction={() => handleItemAction("deleteAll")}
+                />
+              )}
+              {isStaleAccount && !anyLikelyAffected && (
+                <ActionTaskRow
+                  index={actionItems.indexOf("dataDeletion") + 1}
+                  label="Request to delete your data"
+                  description="Request this sender to erase all data they hold about you. Opens a pre-filled request in the Data requests tab."
+                  done={doneIds.has("dataDeletion")}
+                  spinning={false}
+                  anyLoading={actionLoading}
+                  actionLabel="Open"
+                  onAction={() => handleItemAction("dataDeletion")}
+                />
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Data requests tab */}
+        <div className={`tab-content px-4 py-3 text-sm space-y-3 ${activeTab === "data" ? "!block" : ""}`}>
+          {company?.comments &&
+            company.comments.length > 0 &&
+            company.comments.map((comment, i) => (
+              <p key={i} className="text-base-content/70">
+                {comment}
+              </p>
+            ))}
+
+          {company?.webform && (
+            <>
+              <button
+                className="btn btn-primary btn-sm gap-1"
+                onClick={() => window.api.openExternal(company.webform!)}
+              >
+                Open privacy form <ExternalLink className="w-3.5 h-3.5" />
+              </button>
+              {contactEmail && (deletionEmail || accessEmail) && <hr className="border-base-100 mt-2 mb-4" />}
+            </>
+          )}
+
+          {contactEmail && (deletionEmail || accessEmail) ? (
+            <>
+              {!company && (
+                <p className="text-base-content/50 text-xs">
+                  This contact address is not verified. We recommend checking their privacy policy before sending a request.
+                </p>
+              )}
+              <div className="flex items-center gap-3">
+                <label className="text-xs text-base-content/50 uppercase shrink-0">Purpose</label>
+                <select
+                  className="select select-bordered select-sm"
+                  value={dataRequestType}
+                  onChange={(e) => { setDataRequestType(e.target.value as "access" | "deletion"); setCopiedRequest(false); }}
+                >
+                  <option value="deletion">Request data deletion</option>
+                  <option value="access">Request data access</option>
+                </select>
+              </div>
+              {(() => {
+                const email = dataRequestType === "access" ? accessEmail : deletionEmail;
+                if (!email) return null;
+                return (
+                  <>
+                    <div>
+                      <p className="text-base-content/50 text-xs uppercase mb-1">To</p>
+                      <p className="font-mono">{contactEmail}</p>
+                    </div>
+                    <div>
+                      <p className="text-base-content/50 text-xs uppercase mb-1">Subject</p>
+                      <p>{email.subject}</p>
+                    </div>
+                    <div>
+                      <p className="text-base-content/50 text-xs uppercase mb-1">Message</p>
+                      <pre className="whitespace-pre-wrap text-base-content/80 bg-base-100 rounded-lg p-3 mt-1">
+                        {email.body}
+                      </pre>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <button
+                        className="btn btn-primary btn-sm gap-1"
+                        onClick={() => {
+                          const mailto = `mailto:${contactEmail}?subject=${encodeURIComponent(email.subject)}&body=${encodeURIComponent(email.body)}`;
+                          window.api.openExternal(mailto);
+                        }}
+                      >
+                        Open email client <ExternalLink className="w-3.5 h-3.5" />
+                      </button>
+                      <button
+                        className="btn btn-neutral btn-sm gap-1"
+                        onClick={() => handleCopyRequest(email)}
+                      >
+                        <Clipboard className="w-3.5 h-3.5" />
+                        {copiedRequest ? "Copied!" : "Copy message"}
+                      </button>
+                    </div>
+                  </>
+                );
+              })()}
+            </>
+          ) : (
+            <p className="text-base-content/50">
+              No contact information available for data requests.
+            </p>
+          )}
+        </div>
+
+        {/* Emails tab */}
+        <div className={`tab-content py-2 ${activeTab === "emails" ? "!block" : ""}`}>
           {allMessages.length > 0 ? (
             <EmailsBySender
               messages={allMessages}
@@ -703,118 +1037,8 @@ export default function AccountDetail(): JSX.Element {
           )}
         </div>
 
-        <div
-          className={`tab-content px-4 py-3 text-sm space-y-3 ${activeTab === "mailing" ? "!block" : ""}`}
-        >
-          {unsubMethods.length === 0 ? (
-            <p className="text-base-content/50">
-              No mailing list subscriptions found.
-            </p>
-          ) : (
-            unsubMethods.map((entry) => (
-              <div
-                key={entry.method}
-                className="flex items-center justify-between gap-4"
-              >
-                <p className="text-base-content/70">
-                  {methodDescription(entry.method, entry.url)}
-                </p>
-                {unsubDone.has(entry.method) ? (
-                  <span className="badge badge-success badge-sm shrink-0">
-                    Done
-                  </span>
-                ) : (
-                  <button
-                    className="btn btn-neutral btn-sm shrink-0"
-                    disabled={actionLoading}
-                    onClick={() => setPendingUnsub(entry)}
-                  >
-                    Unsubscribe
-                  </button>
-                )}
-              </div>
-            ))
-          )}
-        </div>
-
-        <div
-          className={`tab-content px-4 py-3 text-sm space-y-3 ${activeTab === "data" ? "!block" : ""}`}
-        >
-          {!company && (
-            <p className="text-base-content/50">
-              This contact address is not verified. We recommend checking their
-              privacy policy before sending a request.
-            </p>
-          )}
-
-          {company?.comments &&
-            company.comments.length > 0 &&
-            company.comments.map((comment, i) => (
-              <p key={i} className="text-base-content/70">
-                {comment}
-              </p>
-            ))}
-
-          {company?.webform && (
-            <button
-              className="btn btn-ghost btn-sm gap-1 -ml-2"
-              onClick={() => window.api.openExternal(company.webform!)}
-            >
-              Open privacy webform <ExternalLink className="w-3.5 h-3.5" />
-            </button>
-          )}
-
-          {deletionEmail && contactEmail ? (
-            <>
-              <div>
-                <p className="text-base-content/50 text-xs uppercase mb-1">
-                  To
-                </p>
-                <p className="font-mono">{contactEmail}</p>
-              </div>
-              <div>
-                <p className="text-base-content/50 text-xs uppercase mb-1">
-                  Subject
-                </p>
-                <p>{deletionEmail.subject}</p>
-              </div>
-              <div>
-                <p className="text-base-content/50 text-xs uppercase mb-1">
-                  Message
-                </p>
-                <pre className="whitespace-pre-wrap text-base-content/80 bg-base-100 rounded-lg p-3 mt-1">
-                  {deletionEmail.body}
-                </pre>
-              </div>
-              <div className="flex items-center gap-2">
-                <button
-                  className="btn btn-primary btn-sm gap-1"
-                  onClick={() => {
-                    const mailto = `mailto:${contactEmail}?subject=${encodeURIComponent(deletionEmail.subject)}&body=${encodeURIComponent(deletionEmail.body)}`;
-                    window.api.openExternal(mailto);
-                  }}
-                >
-                  Open email client <ExternalLink className="w-3.5 h-3.5" />
-                </button>
-                <button
-                  className="btn btn-neutral btn-sm gap-1"
-                  onClick={handleCopyMessage}
-                >
-                  <Clipboard className="w-3.5 h-3.5" />
-                  {copied ? "Copied!" : "Copy message"}
-                </button>
-              </div>
-            </>
-          ) : (
-            <p className="text-base-content/50">
-              No contact information available for data requests.
-            </p>
-          )}
-        </div>
-
-        <div
-          className={`tab-content px-4 py-3 ${activeTab === "activity" ? "!block" : ""}`}
-        >
+        {/* Activity tab */}
+        <div className={`tab-content px-4 py-3 ${activeTab === "activity" ? "!block" : ""}`}>
           {activityLog.length === 0 ? (
             <p className="text-sm text-base-content/50">
               No actions taken yet.
@@ -848,6 +1072,25 @@ export default function AccountDetail(): JSX.Element {
         </div>
       </div>
 
+      {/* Delete confirm modal */}
+      {pendingDelete && (
+        <ActionModal
+          isOpen
+          title={pendingDelete === "all" ? "Delete all emails" : "Delete marketing emails"}
+          confirmLabel="Move to trash"
+          confirmVariant="primary"
+          onConfirm={handleDeleteConfirm}
+          onCancel={() => { if (!actionLoading) { setPendingDelete(null); setActiveItemId(null); } }}
+          loading={actionLoading}
+        >
+          {pendingDelete === "all" ? (
+            <p>Move all <strong>{vendor.message_count}</strong> emails from <strong>{displayName}</strong> to trash? This includes all email types.</p>
+          ) : (
+            <p>Move marketing emails from <strong>{displayName}</strong> to trash?</p>
+          )}
+        </ActionModal>
+      )}
+
       {/* Unsubscribe confirm modal */}
       {pendingUnsub && (
         <ActionModal
@@ -857,7 +1100,7 @@ export default function AccountDetail(): JSX.Element {
           confirmVariant="primary"
           onConfirm={handleUnsubscribeConfirm}
           onCancel={() => {
-            if (!actionLoading) setPendingUnsub(null);
+            if (!actionLoading) { setPendingUnsub(null); setActiveItemId(null); }
           }}
           loading={actionLoading}
         >
@@ -875,10 +1118,9 @@ export default function AccountDetail(): JSX.Element {
           onConfirm={handleUnsubResultDone}
           onCancel={() => {
             if (!actionLoading) {
-              setUnsubDone((prev) =>
-                new Set(prev).add(unsubResult.entry.method),
-              );
+              setDoneIds((prev) => new Set(prev).add(`unsub-${unsubResult.entry.method}`));
               setUnsubResult(null);
+              setActiveItemId(null);
             }
           }}
           loading={actionLoading}
@@ -911,7 +1153,7 @@ export default function AccountDetail(): JSX.Element {
           secondaryVariant="neutral"
           onSecondary={handleUnsubResultSpam}
           onCancel={() => {
-            if (!actionLoading) setUnsubResult(null);
+            if (!actionLoading) { setUnsubResult(null); setActiveItemId(null); }
           }}
           loading={actionLoading}
         >
@@ -969,7 +1211,7 @@ export default function AccountDetail(): JSX.Element {
           onSecondary={handleUnsubCheckSpam}
           onConfirm={handleUnsubCheckDone}
           onCancel={() => {
-            if (!actionLoading) setUnsubCheck(null);
+            if (!actionLoading) { setUnsubCheck(null); setActiveItemId(null); }
           }}
           loading={actionLoading}
         >

@@ -4,7 +4,8 @@ import { join } from "path";
 import { IPC } from "@shared/ipc";
 import { APP_CONFIG } from "@shared/config";
 import { isIntInRange, isString } from "@shared/validation";
-import type { ImapConfig, SupportInfo } from "@shared/types";
+import type { ImapConfig, SupportInfo, MessageType } from "@shared/types";
+import { isMessageType } from "@shared/types";
 import {
   getAccountInfo,
   getConnectionStatus,
@@ -96,10 +97,12 @@ export function registerAccountHandlers(): void {
     }
   );
 
-  ipcMain.handle(IPC.trashVendorMessages, (_event, vendorId: unknown) => {
+  ipcMain.handle(IPC.trashVendorMessages, (_event, vendorId: unknown, types: unknown) => {
     if (typeof vendorId !== "number") throw new Error("Invalid vendor id");
-    actionLog.info(`Trash vendor messages: vendor ${vendorId}`);
-    return trashVendorMessages(vendorId);
+    if (types !== undefined && (!Array.isArray(types) || !types.every(isMessageType))) throw new Error("Invalid types");
+    const narrowedTypes = Array.isArray(types) ? (types as MessageType[]) : undefined;
+    actionLog.info(`Trash vendor messages: vendor ${vendorId}, types=${types ?? "all"}`);
+    return trashVendorMessages(vendorId, narrowedTypes);
   });
 
   ipcMain.handle(IPC.reportSpamVendor, (_event, vendorId: unknown) => {

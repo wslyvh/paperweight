@@ -205,6 +205,11 @@ function parseEmailAddress(raw: string): { name: string; email: string } {
       email: match[2].toLowerCase(),
     };
   }
+  // Handle bare angle-bracketed address with no display name: <email@domain.com>
+  const bareMatch = raw.match(/^<([^>]+)>$/);
+  if (bareMatch) {
+    return { name: "", email: bareMatch[1].toLowerCase() };
+  }
   return { name: "", email: raw.toLowerCase().trim() };
 }
 

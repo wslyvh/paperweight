@@ -197,21 +197,23 @@ export function markVendorUnsubscribed(vendorId: number): void {
   }
 }
 
-export function deleteVendorBulkMessages(vendorId: number): { count: number; sizeBytes: number } {
+export function deleteVendorMessages(vendorId: number, types?: MessageType[]): { count: number; sizeBytes: number } {
   const d = getDb();
+  const typeFilter = types?.length ? ` AND type IN (${types.map(() => "?").join(", ")})` : "";
+  const params: (number | string)[] = types?.length ? [vendorId, ...types] : [vendorId];
   const rows = d.prepare(
-    `SELECT COUNT(*) as count, COALESCE(SUM(size_bytes), 0) as total_size
-     FROM messages WHERE vendor_id = ? AND type = 'bulk'`
-  ).get(vendorId) as { count: number; total_size: number };
-  d.prepare("DELETE FROM messages WHERE vendor_id = ? AND type = 'bulk'").run(vendorId);
+    `SELECT COUNT(*) as count, COALESCE(SUM(size_bytes), 0) as total_size FROM messages WHERE vendor_id = ?${typeFilter}`
+  ).get(...params) as { count: number; total_size: number };
+  d.prepare(`DELETE FROM messages WHERE vendor_id = ?${typeFilter}`).run(...params);
   return { count: rows.count, sizeBytes: rows.total_size };
 }
 
-export function getMessageIdsByVendor(vendorId: number, type?: MessageType): string[] {
+export function getMessageIdsByVendor(vendorId: number, types?: MessageType[]): string[] {
   const d = getDb();
-  if (type) {
+  if (types?.length) {
+    const placeholders = types.map(() => "?").join(", ");
     return (
-      d.prepare("SELECT id FROM messages WHERE vendor_id = ? AND type = ?").all(vendorId, type) as { id: string }[]
+      d.prepare(`SELECT id FROM messages WHERE vendor_id = ? AND type IN (${placeholders})`).all(vendorId, ...types) as { id: string }[]
     ).map((r) => r.id);
   }
   return (

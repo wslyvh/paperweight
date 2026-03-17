@@ -1,6 +1,6 @@
 import { getDb } from "../db";
 import { toUtcDayString, utcMidnightMs } from "@shared/formatting";
-import type { DashboardStats, AttentionStats, ChartTrend, ImpactStats, RiskCounts, ActivityEntry } from "@shared/types";
+import type { DashboardStats, ChartTrend, ImpactStats, RiskCounts, ActivityEntry } from "@shared/types";
 import { getSetting } from "./settings";
 import { COMPUTED_RISK_CASE } from "./vendors";
 import { APP_CONFIG } from "@shared/config";
@@ -15,11 +15,20 @@ export function getDashboardStats(): DashboardStats {
       ? `AND (root_domain IS NULL OR root_domain NOT IN (${APP_CONFIG.PERSONAL_DOMAINS.map(() => "?").join(",")}))`
       : "";
   const actionedStats = `(status = 'reviewed' OR EXISTS (SELECT 1 FROM action_log al WHERE al.vendor_id = vendors.id LIMIT 1))`;
+
+  const breachesAttached = !!(
+    d.prepare("SELECT name FROM pragma_database_list WHERE name = 'breaches'").get()
+  );
+  const onBreachListSql = breachesAttached
+    ? `EXISTS (SELECT 1 FROM breaches.breaches b WHERE (b.domain = vendors.root_domain OR vendors.root_domain LIKE '%.' || b.domain))`
+    : "0";
+
   const uniqueVendors = (
     d
       .prepare(
         `SELECT COUNT(*) as c FROM vendors
          WHERE (status IS NULL OR status != 'reviewed')
+         AND (has_account = 1 OR ${onBreachListSql})
          ${personalDomainFilterStats}
          AND (EXISTS (
            SELECT 1 FROM messages m
@@ -65,10 +74,6 @@ export function getDashboardStats(): DashboardStats {
       .get() as { c: number }
   ).c;
 
-  // Count vendors likely affected by a known breach (first_seen < breach_date)
-  const breachesAttached = !!(
-    d.prepare("SELECT name FROM pragma_database_list WHERE name = 'breaches'").get()
-  );
   const breachedCount = breachesAttached
     ? (
         d
@@ -77,63 +82,40 @@ export function getDashboardStats(): DashboardStats {
              WHERE EXISTS (
                SELECT 1 FROM breaches.breaches b
                WHERE (b.domain = vendors.root_domain OR vendors.root_domain LIKE '%.' || b.domain)
-               AND vendors.first_seen IS NOT NULL
-               AND vendors.first_seen < strftime('%s', b.breach_date) * 1000
              )
-             AND NOT EXISTS (
-               SELECT 1 FROM action_log al WHERE al.vendor_id = vendors.id LIMIT 1
-             )`
+             AND (status IS NULL OR status != 'reviewed')`
           )
           .get() as { c: number }
       ).c
     : 0;
 
-  return { totalMessages, uniqueVendors, mailingListCount, breachedCount };
-}
-
-export function getAttentionStats(): AttentionStats {
-  const d = getDb();
-
-  const bulkEmailsToReview = (
+  const mailingListsActioned = (
     d
       .prepare(
-        `SELECT COUNT(DISTINCT m.vendor_id) as c FROM messages m
-         WHERE m.type = 'bulk'
-         AND (m.status IS NULL OR m.status != 'unsubscribed')
-         AND NOT EXISTS (
-           SELECT 1 FROM whitelist w
-           WHERE (w.value LIKE '%@%' AND m.sender_email = w.value)
-              OR (w.value NOT LIKE '%@%' AND (
-                    m.sender_email LIKE '%@' || w.value
-                 OR m.sender_email LIKE '%.' || w.value
-              ))
-         )`
+        `SELECT COUNT(DISTINCT al.vendor_id) as c
+         FROM action_log al
+         JOIN vendors v ON al.vendor_id = v.id
+         WHERE v.has_marketing = 1
+           AND al.action_type IN ('unsubscribed', 'trashed', 'spam_reported')`
       )
       .get() as { c: number }
   ).c;
 
-  const personalDomainFilter =
-    APP_CONFIG.PERSONAL_DOMAINS.length > 0
-      ? `AND (root_domain IS NULL OR root_domain NOT IN (${APP_CONFIG.PERSONAL_DOMAINS.map(() => "?").join(",")}))`
-      : "";
-
-  const actioned = `(status = 'reviewed' OR EXISTS (SELECT 1 FROM action_log al WHERE al.vendor_id = vendors.id LIMIT 1))`;
-
-  const vendorsToReview = (
+  const activeSubscriptions = (
     d
       .prepare(
-        `SELECT COUNT(*) as c FROM vendors
-         WHERE (status IS NULL OR status != 'reviewed')
-         ${personalDomainFilter}
-         AND (EXISTS (
-           SELECT 1 FROM messages m
-           WHERE m.vendor_id = vendors.id
-           AND (m.type IS NULL OR m.type != 'personal')
-           LIMIT 1
-         ) OR ${actioned})
-         AND (EXISTS (
-           SELECT 1 FROM messages m
-           WHERE m.vendor_id = vendors.id
+        `SELECT COUNT(DISTINCT m.vendor_id) as c
+         FROM messages m
+         WHERE m.type = 'bulk'
+           AND m.date > (CAST(strftime('%s','now') AS INTEGER) * 1000 - 63115200000) -- 2 * 365.25 days in ms
+           AND (m.status IS NULL OR m.status != 'unsubscribed')
+           AND m.unsubscribe_method IS NOT NULL
+           AND m.unsubscribe_method != 'none'
+           AND NOT EXISTS (
+             SELECT 1 FROM action_log al
+             WHERE al.vendor_id = m.vendor_id
+               AND al.action_type = 'unsubscribed'
+           )
            AND NOT EXISTS (
              SELECT 1 FROM whitelist w
              WHERE (w.value LIKE '%@%' AND m.sender_email = w.value)
@@ -141,13 +123,50 @@ export function getAttentionStats(): AttentionStats {
                       m.sender_email LIKE '%@' || w.value
                    OR m.sender_email LIKE '%.' || w.value
                 ))
-           )
-         ) OR ${actioned})`
+           )`
+      )
+      .get() as { c: number }
+  ).c;
+
+  const reviewedVendors = (
+    d.prepare("SELECT COUNT(*) as c FROM vendors WHERE status = 'reviewed'").get() as { c: number }
+  ).c;
+
+  const highRiskUnreviewed = (
+    d
+      .prepare(
+        `SELECT COUNT(*) as c FROM vendors
+         WHERE (${COMPUTED_RISK_CASE}) = 'high'
+           AND (status IS NULL OR status != 'reviewed')
+           AND (has_account = 1 OR ${onBreachListSql})
+           ${personalDomainFilterStats}
+           AND (EXISTS (
+             SELECT 1 FROM messages m
+             WHERE m.vendor_id = vendors.id
+             AND (m.type IS NULL OR m.type != 'personal')
+             LIMIT 1
+           ) OR ${actionedStats})
+           AND (EXISTS (
+             SELECT 1 FROM messages m
+             WHERE m.vendor_id = vendors.id
+             AND NOT EXISTS (
+               SELECT 1 FROM whitelist w
+               WHERE (w.value LIKE '%@%' AND m.sender_email = w.value)
+                  OR (w.value NOT LIKE '%@%' AND (
+                        m.sender_email LIKE '%@' || w.value
+                     OR m.sender_email LIKE '%.' || w.value
+                  ))
+             )
+           ) OR ${actionedStats})`
       )
       .get(...APP_CONFIG.PERSONAL_DOMAINS) as { c: number }
   ).c;
 
-  return { bulkEmailsToReview, vendorsToReview };
+  return {
+    totalMessages, uniqueVendors, mailingListCount, breachedCount,
+    mailingListsActioned, activeSubscriptions,
+    reviewedVendors, highRiskUnreviewed,
+  };
 }
 
 export function getImpactStats(): ImpactStats {

@@ -93,7 +93,6 @@ interface AccountsState {
   activityFilter: string;
   dataTypeFilter: string;
   volumeFilter: string;
-  breachedFilter: boolean;
   anyBreachFilter: boolean;
   showReviewed: boolean;
 }
@@ -122,8 +121,7 @@ export default function Accounts(): JSX.Element {
   const [activityFilter, setActivityFilter] = useState(restore?.activityFilter ?? (initialPreset ? (initialPreset.activity ?? "") : ""));
   const [dataTypeFilter, setDataTypeFilter] = useState(restore?.dataTypeFilter ?? initialPreset?.dataType ?? "");
   const [volumeFilter, setVolumeFilter] = useState(restore?.volumeFilter ?? initialPreset?.volume ?? "");
-  const [breachedFilter, setBreachedFilter] = useState(restore?.breachedFilter ?? !!(initialPreset?.breached));
-  const [anyBreachFilter, setAnyBreachFilter] = useState(restore?.anyBreachFilter ?? false);
+  const [anyBreachFilter, setAnyBreachFilter] = useState(restore?.anyBreachFilter ?? !!(initialPreset?.breached));
   const [showReviewed, setShowReviewed] = useState(restore?.showReviewed ?? false);
   const [showSort, setShowSort] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
@@ -142,7 +140,7 @@ export default function Accounts(): JSX.Element {
       (p.activity ?? "") === activityFilter &&
       (p.dataType ?? "") === dataTypeFilter &&
       (p.volume ?? "") === volumeFilter &&
-      !!(p.breached) === breachedFilter
+      !!(p.breached) === anyBreachFilter
     );
   }
 
@@ -152,7 +150,6 @@ export default function Accounts(): JSX.Element {
       setActivityFilter("");
       setDataTypeFilter("");
       setVolumeFilter("");
-      setBreachedFilter(false);
       setAnyBreachFilter(false);
       setSortBy("risk");
     } else {
@@ -160,8 +157,7 @@ export default function Accounts(): JSX.Element {
       setActivityFilter(p.activity ?? "");
       setDataTypeFilter(p.dataType ?? "");
       setVolumeFilter(p.volume ?? "");
-      setBreachedFilter(!!(p.breached));
-      setAnyBreachFilter(false);
+      setAnyBreachFilter(!!(p.breached));
       setSortBy(p.defaultSort ?? "message_count");
       setShowReviewed(false);
     }
@@ -176,7 +172,6 @@ export default function Accounts(): JSX.Element {
       setActivityFilter("");
       setDataTypeFilter("");
       setVolumeFilter("");
-      setBreachedFilter(false);
       setAnyBreachFilter(false);
       setShowReviewed(true);
     }
@@ -189,7 +184,6 @@ export default function Accounts(): JSX.Element {
     setActivityFilter("");
     setDataTypeFilter("");
     setVolumeFilter("");
-    setBreachedFilter(false);
     setAnyBreachFilter(false);
     setShowReviewed(false);
     setSortBy("risk");
@@ -198,7 +192,7 @@ export default function Accounts(): JSX.Element {
 
   const hasAnyFilter = !!(
     search || riskFilter || activityFilter || dataTypeFilter ||
-    volumeFilter || breachedFilter || anyBreachFilter || showReviewed || sortBy !== "risk" || page > 1
+    volumeFilter || anyBreachFilter || showReviewed || sortBy !== "risk" || page > 1
   );
 
   function dismissBanner() {
@@ -212,10 +206,10 @@ export default function Accounts(): JSX.Element {
   useEffect(() => {
     navigate(pathname, {
       replace: true,
-      state: { restore: { page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, breachedFilter, anyBreachFilter, showReviewed } satisfies AccountsState },
+      state: { restore: { page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, anyBreachFilter, showReviewed } satisfies AccountsState },
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, breachedFilter, anyBreachFilter, showReviewed]);
+  }, [page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, anyBreachFilter, showReviewed]);
 
   useEffect(() => {
     function handler(e: MouseEvent) {
@@ -278,20 +272,20 @@ export default function Accounts(): JSX.Element {
       limit,
       sortBy: actualSortBy,
       sortDir: sortBy === "name" || sortBy === "last_seen_asc" || sortBy === "risk" ? "ASC" : "DESC",
+      filter: "accounts",
       search: search || undefined,
       risk: riskFilter || undefined,
       activity: activityFilter || undefined,
       dataType: dataTypeFilter || undefined,
       volume: volumeFilter || undefined,
       showReviewed,
-      breached: breachedFilter || undefined,
       onBreachList: anyBreachFilter || undefined,
     };
     const data = await window.api.queryVendors(query);
     setVendors(data.vendors);
     setTotal(data.total);
     setLoading(false);
-  }, [page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, showReviewed, breachedFilter, anyBreachFilter]);
+  }, [page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, showReviewed, anyBreachFilter]);
 
   useEffect(() => {
     fetchVendors();
@@ -422,14 +416,14 @@ export default function Accounts(): JSX.Element {
                 labels={["High", "Medium", "Low"]}
                 colors={["error", "warning", "success"]}
                 value={riskFilter}
-                onChange={v => { setRiskFilter(v); setShowReviewed(false); setBreachedFilter(false); setPage(1); }}
+                onChange={v => { setRiskFilter(v); setShowReviewed(false); setPage(1); }}
               />
               <FilterGroup
                 label="Type"
-                options={["marketing_only", "has_account", "has_orders"]}
-                labels={["Bulk", "Transactional", "Orders"]}
+                options={["has_orders"]}
+                labels={["Orders"]}
                 value={dataTypeFilter}
-                onChange={v => { setDataTypeFilter(v); setShowReviewed(false); setBreachedFilter(false); setPage(1); }}
+                onChange={v => { setDataTypeFilter(v); setShowReviewed(false); setPage(1); }}
               />
               <FilterGroup
                 label="Activity"
@@ -437,22 +431,22 @@ export default function Accounts(): JSX.Element {
                 labels={["Recent (<3m)", "Active (<1y)", "1-2 years ago", "2+ years ago", "5+ years ago"]}
                 colors={["secondary", "secondary", "secondary", "secondary", "secondary"]}
                 value={activityFilter}
-                onChange={v => { setActivityFilter(v); setShowReviewed(false); setBreachedFilter(false); setPage(1); }}
+                onChange={v => { setActivityFilter(v); setShowReviewed(false); setPage(1); }}
               />
               <FilterGroup
                 label="Volume"
                 options={["oneoff", "low", "medium", "high"]}
                 labels={["One-off (≤5)", "Low (≤25)", "Medium (≤100)", "High (100+)"]}
                 value={volumeFilter}
-                onChange={v => { setVolumeFilter(v); setShowReviewed(false); setBreachedFilter(false); setPage(1); }}
+                onChange={v => { setVolumeFilter(v); setShowReviewed(false); setPage(1); }}
               />
               <div className="pt-2 border-t border-base-content/10">
                 <div className="text-sm text-base-content/40 mb-1.5">Breach</div>
                 <button
                   className={`badge badge-sm cursor-pointer ${anyBreachFilter ? "badge-warning" : "badge-soft badge-warning"}`}
-                  onClick={() => { const next = !anyBreachFilter; setAnyBreachFilter(next); if (next) setBreachedFilter(false); setShowReviewed(false); setPage(1); }}
+                  onClick={() => { setAnyBreachFilter(v => !v); setShowReviewed(false); setPage(1); }}
                 >
-                  ⚠️ Breached
+                  ⚠️ On breach list
                 </button>
               </div>
             </div>
@@ -519,7 +513,7 @@ export default function Accounts(): JSX.Element {
                   <div
                     className="p-4 cursor-pointer hover:bg-base-300 transition-colors rounded-2xl group"
                     onClick={() => navigate(`/accounts/${encodeURIComponent(groupKey)}`, {
-                      state: { accountsState: { page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, breachedFilter, anyBreachFilter, showReviewed } satisfies AccountsState },
+                      state: { accountsState: { page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, anyBreachFilter, showReviewed } satisfies AccountsState },
                     })}
                   >
                     <div className="flex items-center gap-3 w-full">

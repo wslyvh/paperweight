@@ -1,7 +1,7 @@
 import { ipcMain } from "electron";
 import { IPC } from "@shared/ipc";
 import { hasValidLicense } from "../services/settings";
-import { getDashboardStats, getAttentionStats, getDashboardTrend, getImpactStats, getRiskCounts, getActivityLog } from "../services/stats";
+import { getDashboardStats, getDashboardTrend, getImpactStats, getRiskCounts, getActivityLog } from "../services/stats";
 
 export function registerStatsHandlers(): void {
   ipcMain.handle(IPC.getDashboardStats, () => getDashboardStats());
@@ -11,8 +11,6 @@ export function registerStatsHandlers(): void {
     const windowDays = licensed ? 90 : 30;
     return getDashboardTrend(windowDays);
   });
-
-  ipcMain.handle(IPC.getAttentionStats, () => getAttentionStats());
 
   ipcMain.handle(IPC.getImpactStats, () => getImpactStats());
 

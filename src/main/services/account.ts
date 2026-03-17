@@ -12,11 +12,11 @@ import { getDashboardStats } from "./stats";
 import { getSyncState } from "./sync";
 import {
   getMessageIdsByVendor,
-  deleteVendorBulkMessages,
+  deleteVendorMessages,
   insertActionLog,
 } from "./messages";
 import { APP_CONFIG } from "@shared/config";
-import type { ImapConfig, AccountInfo, EmailConnection } from "@shared/types";
+import type { ImapConfig, AccountInfo, EmailConnection, MessageType } from "@shared/types";
 import { authLog, actionLog } from "../utils/log";
 
 function autoWhitelist(email: string): void {
@@ -251,12 +251,13 @@ type BulkActionType = "trashed" | "spam_reported";
 async function bulkActionVendorMessages(
   vendorId: number,
   actionType: BulkActionType,
+  types?: MessageType[],
 ): Promise<{ success: boolean; error?: string }> {
   const label = actionType === "trashed" ? "trashVendorMessages" : "spamVendorMessages";
   const permissionVerb = actionType === "trashed" ? "move emails to trash" : "report spam";
 
-  const ids = getMessageIdsByVendor(vendorId, "bulk");
-  actionLog.info(`${label}: found ${ids.length} bulk messages for vendor ${vendorId}`);
+  const ids = getMessageIdsByVendor(vendorId, types);
+  actionLog.info(`${label}: found ${ids.length} messages for vendor ${vendorId}`);
 
   if (ids.length > 0) {
     const provider = getProvider();
@@ -291,7 +292,7 @@ async function bulkActionVendorMessages(
             actionLog.error(`${label}: failed on message ${id}: ${err instanceof Error ? err.message : String(err)}`);
           }
         }
-        const { count, sizeBytes } = deleteVendorBulkMessages(vendorId);
+        const { count, sizeBytes } = deleteVendorMessages(vendorId, types);
         if (count > 0) insertActionLog(vendorId, actionType, count, sizeBytes);
         actionLog.info(`${label}: done for vendor ${vendorId}`);
       } catch (err) {
@@ -307,10 +308,11 @@ async function bulkActionVendorMessages(
   return { success: true };
 }
 
-export async function trashVendorMessages(vendorId: number): Promise<{ success: boolean; error?: string }> {
-  return bulkActionVendorMessages(vendorId, "trashed");
+// types: undefined = all message types, otherwise filter to specified types
+export async function trashVendorMessages(vendorId: number, types?: MessageType[]): Promise<{ success: boolean; error?: string }> {
+  return bulkActionVendorMessages(vendorId, "trashed", types);
 }
 
 export async function spamVendorMessages(vendorId: number): Promise<{ success: boolean; error?: string }> {
-  return bulkActionVendorMessages(vendorId, "spam_reported");
+  return bulkActionVendorMessages(vendorId, "spam_reported", ["bulk"]);
 }

@@ -7,6 +7,11 @@ export type MessageType =
   | "personal"       // 1:1 conversation
   | "unknown";       // Classification failed — needs improvement
 
+export const MESSAGE_TYPES: readonly MessageType[] = ["bulk", "transactional", "order", "personal", "unknown"];
+export function isMessageType(value: unknown): value is MessageType {
+  return typeof value === "string" && (MESSAGE_TYPES as readonly string[]).includes(value);
+}
+
 export type UnsubscribeMethod =
   | "rfc8058"           // POST with List-Unsubscribe=One-Click
   | "list-unsubscribe"  // GET or mailto from header
@@ -149,9 +154,10 @@ export interface VendorQuery extends SearchFilterQuery {
   activity?: string;      // 'recent' | 'active' | 'inactive' | 'stale' | 'dead'
   dataType?: string;      // 'has_orders' | 'has_account' | 'marketing_only'
   volume?: string;        // 'oneoff' | 'low' | 'medium' | 'high'
-  maxMessages?: number;   // message_count <= N
-  breached?: boolean;     // only vendors likely affected by a known breach (first_seen < breach_date)
-  onBreachList?: boolean; // any vendor whose domain appears in the breach database
+  maxMessages?: number;       // message_count <= N
+  onBreachList?: boolean;     // vendor whose domain appears in the breach database
+  activeSubscriptions?: boolean; // vendors with actionable recent bulk mail (< 2yr, has unsub method, not yet actioned)
+  showWhitelisted?: boolean;     // invert whitelist exclusion — show vendors whose senders are all whitelisted
 }
 
 export interface MessageQuery extends SearchFilterQuery {
@@ -167,11 +173,10 @@ export interface DashboardStats {
   uniqueVendors: number;
   mailingListCount: number;
   breachedCount: number;
-}
-
-export interface AttentionStats {
-  bulkEmailsToReview: number;
-  vendorsToReview: number;
+  mailingListsActioned: number;
+  activeSubscriptions: number;
+  reviewedVendors: number;
+  highRiskUnreviewed: number;
 }
 
 export interface ImpactStats {
@@ -217,6 +222,7 @@ export interface VendorDetail {
   company?: Company;
   senders: Array<{ sender_email: string; sender_name?: string; message_count: number }>;
   bulkMessages: Message[];
+  bulkMessageCount: number;
   accountMessages: Message[];
   allMessages: Message[];
   first_activity?: number;

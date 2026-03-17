@@ -42,8 +42,9 @@ export function registerVendorHandlers(): void {
         ? q.volume : undefined,
       maxMessages: typeof q.maxMessages === "number" && q.maxMessages > 0
         ? Math.floor(q.maxMessages) : undefined,
-      breached: typeof q.breached === "boolean" ? q.breached : undefined,
       onBreachList: typeof q.onBreachList === "boolean" ? q.onBreachList : undefined,
+      activeSubscriptions: typeof q.activeSubscriptions === "boolean" ? q.activeSubscriptions : undefined,
+      showWhitelisted: typeof q.showWhitelisted === "boolean" ? q.showWhitelisted : undefined,
     });
     return { vendors: result.vendors, total: result.total };
   });
