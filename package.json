@@ -45,7 +45,12 @@
       "mac": {
         "target": "dmg",
         "category": "public.app-category.productivity",
-        "icon": "build/icon.png"
+        "icon": "build/icon.png",
+        "hardenedRuntime": true,
+        "gatekeeperAssess": false,
+        "entitlements": "build/entitlements.mac.plist",
+        "entitlementsInherit": "build/entitlements.mac.plist",
+        "notarize": true
       },
       "win": {
         "target": [
