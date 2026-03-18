@@ -43,8 +43,12 @@
         }
       ],
       "mac": {
-        "target": "dmg",
-        "arch": ["universal"],
+        "target": [
+          {
+            "target": "dmg",
+            "arch": ["universal"]
+          }
+        ],
         "category": "public.app-category.productivity",
         "icon": "build/icon.png",
         "hardenedRuntime": true,
