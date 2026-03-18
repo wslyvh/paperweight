@@ -44,6 +44,7 @@
       ],
       "mac": {
         "target": "dmg",
+        "arch": ["universal"],
         "category": "public.app-category.productivity",
         "icon": "build/icon.png",
         "hardenedRuntime": true,
@@ -68,7 +69,6 @@
         "icon": "build/icon.png"
       },
       "nsis": {
-        "oneClick": false,
         "allowToChangeInstallationDirectory": true,
         "perMachine": false
       }
