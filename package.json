@@ -74,7 +74,6 @@
       },
       "nsis": {
         "oneClick": true,
-        "allowToChangeInstallationDirectory": true,
         "perMachine": false
       }
     },
