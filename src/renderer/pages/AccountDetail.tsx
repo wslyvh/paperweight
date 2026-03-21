@@ -160,27 +160,6 @@ function methodDescription(method: string, url: string): string {
   return "Opens the unsubscribe page in your browser.";
 }
 
-function getCoveredWhitelistEntries(
-  targetValue: string,
-  whitelistEntries: WhitelistEntry[],
-): WhitelistEntry[] {
-  const normalizedTarget = targetValue.trim().toLowerCase();
-  if (!normalizedTarget || normalizedTarget.includes("@")) return [];
-  const targetRootDomain = getRootDomain(normalizedTarget);
-
-  return whitelistEntries.filter((entry) => {
-    const value = entry.value.toLowerCase();
-    if (value === normalizedTarget || value === targetRootDomain) return false;
-
-    if (value.includes("@")) {
-      const domain = value.split("@")[1]?.trim().toLowerCase();
-      return !!domain && getRootDomain(domain) === targetRootDomain;
-    }
-
-    return getRootDomain(value) === targetRootDomain;
-  });
-}
-
 function unsubDescription(
   entry: UnsubscribeEntry,
   vendorName: string,
@@ -276,7 +255,7 @@ export default function AccountDetail(): JSX.Element {
   const [activeTab, setActiveTab] = useState<"actions" | "data" | "emails" | "activity">("actions");
   const [pendingDelete, setPendingDelete] = useState<"marketing" | "all" | null>(null);
   const [whitelistModalOpen, setWhitelistModalOpen] = useState(false);
-  const [whitelistValue, setWhitelistValue] = useState("");
+  const [selectedWhitelistValues, setSelectedWhitelistValues] = useState<Set<string>>(new Set());
   const [whitelistLoading, setWhitelistLoading] = useState(false);
   const [whitelistEntries, setWhitelistEntries] = useState<WhitelistEntry[]>([]);
   const [whitelistBusyValue, setWhitelistBusyValue] = useState<string | null>(null);
@@ -396,9 +375,8 @@ export default function AccountDetail(): JSX.Element {
       .filter((domain): domain is string => !!domain),
   )];
 
-  const rootDomainOption = (() => {
-    const companyHost = (() => {
-      if (!company?.web) return undefined;
+  const companyDomain = company?.web
+    ? (() => {
       const candidate = company.web.trim().toLowerCase();
       if (!candidate) return undefined;
       try {
@@ -408,10 +386,12 @@ export default function AccountDetail(): JSX.Element {
       } catch {
         return candidate.replace(/^www\./, "");
       }
-    })();
+    })()
+    : undefined;
 
+  const rootDomainOption = (() => {
     const domainCandidate =
-      companyHost ??
+      companyDomain ??
       vendor.root_domain?.trim().toLowerCase() ??
       senderDomains[0];
     return domainCandidate ? getRootDomain(domainCandidate) : undefined;
@@ -425,7 +405,15 @@ export default function AccountDetail(): JSX.Element {
     ...senderEmailOptions,
   ];
 
-  const canOpenWhitelistModal = whitelistOptions.length > 0;
+  const whitelistedValues = new Set(
+    whitelistEntries.map((entry) => entry.value.trim().toLowerCase()),
+  );
+
+  const addableWhitelistOptions = whitelistOptions.filter(
+    (option) => !whitelistedValues.has(option.trim().toLowerCase()),
+  );
+
+  const canOpenWhitelistModal = addableWhitelistOptions.length > 0;
 
   const knownWhitelistEntries = whitelistEntries.filter((entry) => {
     const value = entry.value.trim().toLowerCase();
@@ -666,23 +654,33 @@ export default function AccountDetail(): JSX.Element {
 
   const handleOpenWhitelistModal = (): void => {
     if (!canOpenWhitelistModal) return;
-    setWhitelistValue(whitelistOptions[0]);
+    setSelectedWhitelistValues(new Set());
     setWhitelistModalOpen(true);
   };
 
+  const handleToggleWhitelistValue = (value: string): void => {
+    setSelectedWhitelistValues((prev) => {
+      const next = new Set(prev);
+      if (next.has(value)) {
+        next.delete(value);
+      } else {
+        next.add(value);
+      }
+      return next;
+    });
+  };
+
   const handleWhitelistConfirm = async (): Promise<void> => {
-    if (!detail || !whitelistValue) return;
+    if (selectedWhitelistValues.size === 0) return;
     setWhitelistLoading(true);
     try {
-      const entriesToRemove = getCoveredWhitelistEntries(
-        whitelistValue,
-        whitelistEntries,
-      );
       await Promise.all(
-        entriesToRemove.map((entry) => window.api.removeWhitelistEntry(entry.value)),
+        Array.from(selectedWhitelistValues).map((value) =>
+          window.api.addWhitelistEntry(value),
+        ),
       );
-      await window.api.addWhitelistEntry(whitelistValue);
       setWhitelistModalOpen(false);
+      setSelectedWhitelistValues(new Set());
       await refreshWhitelist();
     } finally {
       setWhitelistLoading(false);
@@ -1280,33 +1278,66 @@ export default function AccountDetail(): JSX.Element {
 
       {/* Delete confirm modal */}
       {whitelistModalOpen && (
-        <ActionModal
-          isOpen
-          title="Add to whitelist"
-          confirmLabel="Add"
-          confirmVariant="primary"
-          onConfirm={handleWhitelistConfirm}
-          onCancel={() => {
-            if (!whitelistLoading) setWhitelistModalOpen(false);
-          }}
-          loading={whitelistLoading}
-        >
-          <p>Select an email address or domain to whitelist.</p>
-          <label className="form-control w-full">
-            <span className="label-text text-base-content/60">Whitelist target</span>
-            <select
-              className="select select-bordered w-full"
-              value={whitelistValue}
-              onChange={(e) => setWhitelistValue(e.target.value)}
+        <div className="modal modal-open">
+          <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+            <h3 className="font-bold text-lg mb-4">Add to whitelist</h3>
+            <div className="text-sm text-base-content/80 space-y-3">
+              <p>Select an email address or domain to whitelist.</p>
+              <div className="space-y-2">
+                {addableWhitelistOptions.map((option) => (
+                  <label key={option} className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm"
+                      checked={selectedWhitelistValues.has(option)}
+                      onChange={() => handleToggleWhitelistValue(option)}
+                    />
+                    <span className="font-mono text-sm break-all">{option}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+            <div className="modal-action mt-6">
+              <button
+                className="btn btn-sm btn-neutral"
+                onClick={() => {
+                  if (!whitelistLoading) {
+                    setWhitelistModalOpen(false);
+                    setSelectedWhitelistValues(new Set());
+                  }
+                }}
+                disabled={whitelistLoading}
+              >
+                Cancel
+              </button>
+              <button
+                className="btn btn-sm btn-primary"
+                onClick={handleWhitelistConfirm}
+                disabled={whitelistLoading || selectedWhitelistValues.size === 0}
+              >
+                {whitelistLoading ? (
+                  <span className="loading loading-spinner loading-xs" />
+                ) : (
+                  "Add"
+                )}
+              </button>
+            </div>
+          </div>
+          <form method="dialog" className="modal-backdrop">
+            <button
+              type="submit"
+              onClick={() => {
+                if (!whitelistLoading) {
+                  setWhitelistModalOpen(false);
+                  setSelectedWhitelistValues(new Set());
+                }
+              }}
+              disabled={whitelistLoading}
             >
-              {whitelistOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </label>
-        </ActionModal>
+              close
+            </button>
+          </form>
+        </div>
       )}
 
       {pendingDelete && (
