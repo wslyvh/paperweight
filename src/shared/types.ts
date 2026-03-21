@@ -300,3 +300,10 @@ export interface SyncStatus {
   historicalCursor?: number;  // epoch ms of oldest date reached in historical sync
   historicalDone?: boolean;
 }
+
+export interface UpdateInfo {
+  available: boolean;
+  isMajor: boolean;
+  current: string;
+  latest: string;
+}

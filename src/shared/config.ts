@@ -13,6 +13,7 @@ export const APP_CONFIG = {
   CONTACT_EMAIL: "hello@paperweight.email",
 
   LICENSE_API_URL: "https://www.paperweight.email/api/license",
+  GITHUB_REPO: "wslyvh/paperweight",
 
   PERSONAL_DOMAINS: [
     // Google
