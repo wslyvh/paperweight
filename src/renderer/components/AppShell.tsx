@@ -1,6 +1,9 @@
 import { APP_CONFIG } from "@shared/config";
 import { Outlet, NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import type { UpdateInfo } from "@shared/ipc";
 import SyncStatusBar from "./SyncStatusBar";
+import UpdateBlock from "./UpdateBlock";
 import { Contact, Inbox, Mail, Settings } from "lucide-react";
 
 const navItems = [
@@ -30,6 +33,14 @@ const bottomItems = [
 ];
 
 export default function AppShell(): JSX.Element {
+  const [updateInfo, setUpdateInfo] = useState<UpdateInfo | null>(null);
+
+  useEffect(() => {
+    window.api.checkForUpdates().then((info) => {
+      if (info.available) setUpdateInfo(info);
+    });
+  }, []);
+
   return (
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
@@ -93,6 +104,11 @@ export default function AppShell(): JSX.Element {
       <div className="flex flex-1 flex-col min-w-0">
         <SyncStatusBar />
         <main className="flex-1 p-6 overflow-y-auto">
+          {updateInfo && (
+            <div className="mb-4">
+              <UpdateBlock info={updateInfo} onDismiss={() => setUpdateInfo(null)} />
+            </div>
+          )}
           <Outlet />
         </main>
       </div>

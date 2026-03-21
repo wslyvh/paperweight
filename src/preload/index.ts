@@ -115,6 +115,8 @@ const api: ElectronAPI = {
 
   getActivityLog: (limit, offset) =>
     ipcRenderer.invoke(IPC.getActivityLog, limit, offset),
+
+  checkForUpdates: () => ipcRenderer.invoke(IPC.checkForUpdates),
 };
 
 contextBridge.exposeInMainWorld("api", api);

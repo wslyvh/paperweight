@@ -14,6 +14,7 @@ import type {
   SupportInfo,
   SyncStatus,
   UnsubscribeEntry,
+  UpdateInfo,
   Vendor,
   VendorDetail,
   VendorQuery,
@@ -64,6 +65,7 @@ export const IPC = {
   getImpactStats: "get-impact-stats",
   getRiskCounts: "get-risk-counts",
   getActivityLog: "get-activity-log",
+  checkForUpdates: "check-for-updates",
 } as const;
 
 export interface ElectronAPI {
@@ -112,6 +114,7 @@ export interface ElectronAPI {
   getImpactStats: () => Promise<ImpactStats>;
   getRiskCounts: () => Promise<RiskCounts>;
   getActivityLog: (limit: number, offset: number) => Promise<{ entries: ActivityEntry[]; total: number }>;
+  checkForUpdates: () => Promise<UpdateInfo>;
 }
 
-export type { SyncStatus };
+export type { SyncStatus, UpdateInfo };
