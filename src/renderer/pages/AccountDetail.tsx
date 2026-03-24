@@ -5,6 +5,7 @@ import type {
   Message,
   UnsubscribeEntry,
   ActivityEntry,
+  WhitelistEntry,
 } from "@shared/types";
 import {
   formatRelativeDate,
@@ -12,6 +13,7 @@ import {
   formatBytes,
 } from "@shared/formatting";
 import { RISK_CATEGORIES, RISK_LEVELS } from "@shared/languages";
+import { getRootDomain } from "@shared/utils";
 import {
   ArrowLeft,
   BadgeCheck,
@@ -252,14 +254,22 @@ export default function AccountDetail(): JSX.Element {
   const [activeItemId, setActiveItemId] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<"actions" | "data" | "emails" | "activity">("actions");
   const [pendingDelete, setPendingDelete] = useState<"marketing" | "all" | null>(null);
+  const [whitelistModalOpen, setWhitelistModalOpen] = useState(false);
+  const [selectedWhitelistValues, setSelectedWhitelistValues] = useState<Set<string>>(new Set());
+  const [whitelistLoading, setWhitelistLoading] = useState(false);
+  const [whitelistEntries, setWhitelistEntries] = useState<WhitelistEntry[]>([]);
+  const [whitelistBusyValue, setWhitelistBusyValue] = useState<string | null>(null);
 
   useEffect(() => {
     if (!groupKey) return;
     setLoading(true);
-    window.api
-      .getVendorDetail(decodeURIComponent(groupKey))
-      .then((d) => {
+    Promise.all([
+      window.api.getVendorDetail(decodeURIComponent(groupKey)),
+      window.api.getWhitelistEntries(),
+    ])
+      .then(([d, entries]) => {
         setDetail(d);
+        setWhitelistEntries(entries);
         setBreachOpen(
           d.vendor.breachInfo?.some((b) => b.likelyAffected) ?? false,
         );
@@ -273,6 +283,11 @@ export default function AccountDetail(): JSX.Element {
     const d = await window.api.getVendorDetail(decodeURIComponent(groupKey));
     setDetail(d);
   }, [groupKey]);
+
+  const refreshWhitelist = useCallback(async () => {
+    const entries = await window.api.getWhitelistEntries();
+    setWhitelistEntries(entries);
+  }, []);
 
   const handleToggleReviewed = async () => {
     if (!detail) return;
@@ -347,6 +362,81 @@ export default function AccountDetail(): JSX.Element {
   const domainUrl = company?.web
     ? company.web
     : `https://${vendor.root_domain ?? ""}`;
+
+  const senderEmailOptions = [...new Set(
+    senders
+      .map((sender) => sender.sender_email?.toLowerCase())
+      .filter((email): email is string => !!email),
+  )];
+
+  const senderDomains = [...new Set(
+    senderEmailOptions
+      .map((email) => email.split("@")[1]?.trim().toLowerCase())
+      .filter((domain): domain is string => !!domain),
+  )];
+
+  const companyDomain = company?.web
+    ? (() => {
+      const candidate = company.web.trim().toLowerCase();
+      if (!candidate) return undefined;
+      try {
+        return new URL(
+          candidate.includes("://") ? candidate : `https://${candidate}`,
+        ).hostname.toLowerCase().replace(/^www\./, "");
+      } catch {
+        return candidate.replace(/^www\./, "");
+      }
+    })()
+    : undefined;
+
+  const rootDomainOption = (() => {
+    const domainCandidate =
+      companyDomain ??
+      vendor.root_domain?.trim().toLowerCase() ??
+      senderDomains[0];
+    return domainCandidate ? getRootDomain(domainCandidate) : undefined;
+  })();
+
+  const senderEmailSet = new Set(senderEmailOptions);
+  const senderDomainSet = new Set(senderDomains);
+
+  const whitelistOptions = [
+    ...(rootDomainOption ? [rootDomainOption] : []),
+    ...senderEmailOptions,
+  ];
+
+  const whitelistedValues = new Set(
+    whitelistEntries.map((entry) => entry.value.trim().toLowerCase()),
+  );
+
+  const addableWhitelistOptions = whitelistOptions.filter(
+    (option) => !whitelistedValues.has(option.trim().toLowerCase()),
+  );
+
+  const canOpenWhitelistModal = addableWhitelistOptions.length > 0;
+
+  const knownWhitelistEntries = whitelistEntries.filter((entry) => {
+    const value = entry.value.trim().toLowerCase();
+    if (value.includes("@")) {
+      return senderEmailSet.has(value);
+    }
+    return (
+      senderDomainSet.has(value) ||
+      (rootDomainOption !== undefined &&
+        getRootDomain(value) === rootDomainOption)
+    );
+  });
+
+  const sortedActivityLog = [...activityLog].sort(
+    (a, b) => b.actionedAt - a.actionedAt,
+  );
+
+  const sortedWhitelistEntries = [...knownWhitelistEntries].sort(
+    (a, b) => Date.parse(b.created_at) - Date.parse(a.created_at),
+  );
+
+  const hasAnyActivity =
+    sortedActivityLog.length > 0 || sortedWhitelistEntries.length > 0;
 
   const handleCopyRequest = async (email: { subject: string; body: string }) => {
     if (!contactEmail) return;
@@ -562,6 +652,51 @@ export default function AccountDetail(): JSX.Element {
     }
   };
 
+  const handleOpenWhitelistModal = (): void => {
+    if (!canOpenWhitelistModal) return;
+    setSelectedWhitelistValues(new Set());
+    setWhitelistModalOpen(true);
+  };
+
+  const handleToggleWhitelistValue = (value: string): void => {
+    setSelectedWhitelistValues((prev) => {
+      const next = new Set(prev);
+      if (next.has(value)) {
+        next.delete(value);
+      } else {
+        next.add(value);
+      }
+      return next;
+    });
+  };
+
+  const handleWhitelistConfirm = async (): Promise<void> => {
+    if (selectedWhitelistValues.size === 0) return;
+    setWhitelistLoading(true);
+    try {
+      await Promise.all(
+        Array.from(selectedWhitelistValues).map((value) =>
+          window.api.addWhitelistEntry(value),
+        ),
+      );
+      setWhitelistModalOpen(false);
+      setSelectedWhitelistValues(new Set());
+      await refreshWhitelist();
+    } finally {
+      setWhitelistLoading(false);
+    }
+  };
+
+  const handleWhitelistRemove = async (value: string): Promise<void> => {
+    setWhitelistBusyValue(value);
+    try {
+      await window.api.removeWhitelistEntry(value);
+      await refreshWhitelist();
+    } finally {
+      setWhitelistBusyValue(null);
+    }
+  };
+
   return (
     <div className="space-y-6">
       {/* Top bar */}
@@ -572,12 +707,21 @@ export default function AccountDetail(): JSX.Element {
         >
           <ArrowLeft className="w-4 h-4" /> Back to overview
         </button>
-        <button
-          className={`btn btn-sm ${vendor.status === "reviewed" ? "btn-ghost" : "btn-neutral"}`}
-          onClick={handleToggleReviewed}
-        >
-          {vendor.status === "reviewed" ? "Undo review" : "Mark as reviewed"}
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            className="btn btn-sm btn-ghost"
+            onClick={handleOpenWhitelistModal}
+            disabled={!canOpenWhitelistModal || whitelistLoading}
+          >
+            Add to whitelist
+          </button>
+          <button
+            className={`btn btn-sm ${vendor.status === "reviewed" ? "btn-ghost" : "btn-neutral"}`}
+            onClick={handleToggleReviewed}
+          >
+            {vendor.status === "reviewed" ? "Undo review" : "Mark as reviewed"}
+          </button>
+        </div>
       </div>
 
       {/* Header */}
@@ -799,12 +943,12 @@ export default function AccountDetail(): JSX.Element {
             Emails
           </button>
 
-          <div className={activityLog.length === 0 ? "tooltip tooltip-bottom" : ""} data-tip={activityLog.length === 0 ? "No activity yet" : undefined}>
+          <div className={hasAnyActivity ? "" : "tooltip tooltip-bottom"} data-tip={hasAnyActivity ? undefined : "No activity yet"}>
             <button
               role="tab"
               aria-selected={activeTab === "activity"}
-              className={`tab ${activeTab === "activity" ? "tab-active" : ""} ${activityLog.length === 0 ? "tab-disabled opacity-40 cursor-not-allowed" : ""}`}
-              onClick={() => { if (activityLog.length > 0) setActiveTab("activity"); }}
+              className={`tab ${activeTab === "activity" ? "tab-active" : ""} ${hasAnyActivity ? "" : "tab-disabled opacity-40 cursor-not-allowed"}`}
+              onClick={() => { if (hasAnyActivity) setActiveTab("activity"); }}
             >
               Activity
             </button>
@@ -1054,40 +1198,148 @@ export default function AccountDetail(): JSX.Element {
 
         {/* Activity tab */}
         <div className={`tab-content px-4 py-3 ${activeTab === "activity" ? "!block" : ""}`}>
-          {activityLog.length === 0 ? (
+          {!hasAnyActivity ? (
             <p className="text-sm text-base-content/50">
               No actions taken yet.
             </p>
           ) : (
-            <div className="font-mono text-sm divide-y divide-base-300">
-              {activityLog.map((entry) => (
-                <div
-                  key={entry.id}
-                  className="grid grid-cols-[1fr_auto] items-center gap-4 py-2"
-                >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <span className="text-base-content/40 shrink-0">
-                      {formatAbsoluteDate(entry.actionedAt)}
-                    </span>
-                    <span
-                      className={`shrink-0 ${ACTION_COLORS[entry.actionType]}`}
-                    >
-                      {ACTION_LABELS[entry.actionType]}
-                    </span>
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-sm font-semibold mb-2">Activity logs</h3>
+                {sortedActivityLog.length === 0 ? (
+                  <p className="text-sm text-base-content/50">No log entries yet.</p>
+                ) : (
+                  <div className="font-mono text-sm divide-y divide-base-300">
+                    {sortedActivityLog.map((entry) => (
+                      <div
+                        key={entry.id}
+                        className="grid grid-cols-[1fr_auto] items-center gap-4 py-2"
+                      >
+                        <div className="flex items-center gap-3 min-w-0">
+                          <span className="text-base-content/40 shrink-0">
+                            {formatAbsoluteDate(entry.actionedAt)}
+                          </span>
+                          <span
+                            className={`shrink-0 ${ACTION_COLORS[entry.actionType]}`}
+                          >
+                            {ACTION_LABELS[entry.actionType]}
+                          </span>
+                        </div>
+                        <span className="text-base-content/40 text-right shrink-0">
+                          {entry.messageCount.toLocaleString()} emails
+                          {entry.sizeBytes > 0 &&
+                            ` · ${formatBytes(entry.sizeBytes)}`}
+                        </span>
+                      </div>
+                    ))}
                   </div>
-                  <span className="text-base-content/40 text-right shrink-0">
-                    {entry.messageCount.toLocaleString()} emails
-                    {entry.sizeBytes > 0 &&
-                      ` · ${formatBytes(entry.sizeBytes)}`}
-                  </span>
-                </div>
-              ))}
+                )}
+              </div>
+
+              <div>
+                <h3 className="text-sm font-semibold mb-2">Whitelist</h3>
+                {sortedWhitelistEntries.length === 0 ? (
+                  <p className="text-sm text-base-content/50">No whitelisted email or domain for this account.</p>
+                ) : (
+                  <div className="font-mono text-sm divide-y divide-base-300">
+                    {sortedWhitelistEntries.map((entry) => (
+                      <div
+                        key={entry.id}
+                        className="grid grid-cols-[1fr_auto] items-center gap-4 py-2"
+                      >
+                        <div className="flex items-center gap-3 min-w-0">
+                          <span className="text-base-content/40 shrink-0">
+                            {formatAbsoluteDate(Date.parse(entry.created_at))}
+                          </span>
+                          <span className="shrink-0 text-base-content/80">
+                            {entry.value}
+                          </span>
+                        </div>
+                        <button
+                          className="btn btn-ghost btn-xs"
+                          disabled={
+                            whitelistBusyValue === entry.value
+                          }
+                          onClick={() => handleWhitelistRemove(entry.value)}
+                        >
+                          {whitelistBusyValue === entry.value
+                            ? "Removing..."
+                            : "Remove"}
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </div>
       </div>
 
       {/* Delete confirm modal */}
+      {whitelistModalOpen && (
+        <div className="modal modal-open">
+          <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+            <h3 className="font-bold text-lg mb-4">Add to whitelist</h3>
+            <div className="text-sm text-base-content/80 space-y-3">
+              <p>Select an email address or domain to whitelist.</p>
+              <div className="space-y-2">
+                {addableWhitelistOptions.map((option) => (
+                  <label key={option} className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm"
+                      checked={selectedWhitelistValues.has(option)}
+                      onChange={() => handleToggleWhitelistValue(option)}
+                    />
+                    <span className="font-mono text-sm break-all">{option}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+            <div className="modal-action mt-6">
+              <button
+                className="btn btn-sm btn-neutral"
+                onClick={() => {
+                  if (!whitelistLoading) {
+                    setWhitelistModalOpen(false);
+                    setSelectedWhitelistValues(new Set());
+                  }
+                }}
+                disabled={whitelistLoading}
+              >
+                Cancel
+              </button>
+              <button
+                className="btn btn-sm btn-primary"
+                onClick={handleWhitelistConfirm}
+                disabled={whitelistLoading || selectedWhitelistValues.size === 0}
+              >
+                {whitelistLoading ? (
+                  <span className="loading loading-spinner loading-xs" />
+                ) : (
+                  "Add"
+                )}
+              </button>
+            </div>
+          </div>
+          <form method="dialog" className="modal-backdrop">
+            <button
+              type="submit"
+              onClick={() => {
+                if (!whitelistLoading) {
+                  setWhitelistModalOpen(false);
+                  setSelectedWhitelistValues(new Set());
+                }
+              }}
+              disabled={whitelistLoading}
+            >
+              close
+            </button>
+          </form>
+        </div>
+      )}
+
       {pendingDelete && (
         <ActionModal
           isOpen
