@@ -249,16 +249,6 @@ export default function Mail(): JSX.Element {
     fetchVendors();
   }, [fetchVendors]);
 
-  useEffect(() => {
-    const unsub = window.api.onSyncProgress((status) => {
-      if (status.message === "Vendor data updated") {
-        fetchVendors(true);
-      } else if (!status.running && status.message.includes("complete")) {
-        fetchVendors();
-      }
-    });
-    return unsub;
-  }, [fetchVendors]);
 
   // Sync indeterminate state on select-all checkbox
   const eligibleVendors = vendors.filter((v) => v.has_rfc8058);

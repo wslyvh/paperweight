@@ -28,7 +28,7 @@ export default function Dashboard(): JSX.Element {
   });
   const license = useLicense();
   const [loading, setLoading] = useState(true);
-  const [impactKey, setImpactKey] = useState(0);
+  const [impactKey] = useState(0);
 
   const fetchData = async (silent = false): Promise<void> => {
     if (!silent) setLoading(true);
@@ -45,21 +45,6 @@ export default function Dashboard(): JSX.Element {
     fetchData();
   }, []);
 
-  // Re-fetch when sync updates or finishes (silent to avoid flashing)
-  useEffect(() => {
-    const unsub = window.api.onSyncProgress((status) => {
-      if (
-        status.message === "Vendor data updated" ||
-        status.message === "Sender data updated"
-      ) {
-        fetchData(true);
-      } else if (!status.running && status.message.includes("complete")) {
-        fetchData();
-        setImpactKey((k) => k + 1);
-      }
-    });
-    return unsub;
-  }, []);
 
   if (loading) {
     return (

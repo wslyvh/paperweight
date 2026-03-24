@@ -34,7 +34,7 @@ export default function SyncStatusBar(): JSX.Element {
   const [reconnecting, setReconnecting] = useState(false);
 
   useEffect(() => {
-    const unsub = window.api.onSyncProgress((s) => setStatus(s));
+    const unsub = window.api.onSyncProgress(setStatus);
     window.api.getSyncStatus().then(setStatus);
     return unsub;
   }, []);

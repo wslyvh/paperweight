@@ -291,17 +291,6 @@ export default function Accounts(): JSX.Element {
     fetchVendors();
   }, [fetchVendors]);
 
-  // Re-fetch when sync updates or finishes
-  useEffect(() => {
-    const unsub = window.api.onSyncProgress((status) => {
-      if (status.message === "Vendor data updated") {
-        fetchVendors(true);
-      } else if (!status.running && status.message.includes("complete")) {
-        fetchVendors();
-      }
-    });
-    return unsub;
-  }, [fetchVendors]);
 
   const totalPages = Math.max(1, Math.ceil(total / limit));
 
