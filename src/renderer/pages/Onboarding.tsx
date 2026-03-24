@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { HelpCircle } from "lucide-react";
+import { HelpCircle, Search, Trash2, Globe } from "lucide-react";
 import type { SupportInfo } from "@shared/types";
 import DeviceInfoCard from "../components/DeviceInfoCard";
 import HelpSection from "../components/HelpSection";
@@ -16,22 +16,22 @@ import {
 
 const slides = [
   {
-    icon: <>🗿</>,
-    title: "Paperweight",
+    icon: <Search className="w-10 h-10" />,
+    title: "Analyse your inbox",
     description:
-      "Take control of your inbox. See who emails you the most, spot which vendors show up in your inbox, and unsubscribe from unwanted emails.",
+      "Paperweight scans your emails and organises them into two views: Mailing Lists (newsletters and subscriptions) and Accounts (every company that has your data). Start with Mailing Lists. That's where most people find the most to clean up.",
   },
   {
-    icon: <>🔍</>,
-    title: "Inside your inbox",
+    icon: <Trash2 className="w-10 h-10" />,
+    title: "Clear the clutter",
     description:
-      "Track newsletter volume, identify account activity, and find vendor patterns, with simple workflows to clean things up.",
+      "Review your mailing lists by volume. Unsubscribe from anything you haven't opened in a month. For senders that support one-click unsubscribe, Paperweight handles it automatically. Others will open the sender's unsubscribe page for you.",
   },
   {
-    icon: <>🔒</>,
-    title: "Grounded",
+    icon: <Globe className="w-10 h-10" />,
+    title: "Manage your footprint",
     description:
-      "Your data stays yours. Paperweight scans emails locally on your computer. Nothing sent to external servers. You stay in control.",
+      "The Accounts tab shows every company holding your data. For ones you no longer use, you can send a GDPR deletion request directly from Paperweight. We pre-fill it with your account details.",
   },
 ];
 

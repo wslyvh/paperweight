@@ -2,7 +2,7 @@ import { ImapFlow } from "imapflow";
 import { simpleParser } from "mailparser";
 import type { EmailProvider, EmailMessage, EmailConnection } from "./types";
 import { loadCredentials } from "../credentials";
-import { resolveUnsubscribe } from "./utils";
+import { cleanHtml, resolveUnsubscribe } from "./utils";
 import { friendlyConnectionError } from "../services/sync";
 import { getSetting } from "../services/settings";
 
@@ -176,14 +176,15 @@ async function parseImapMessage(
 
   const bodyText = parsed.text || "";
   const bodyHtml = parsed.html || "";
-  const bodyPreview = (bodyText || bodyHtml.replace(/<[^>]*>/g, " "))
+  const bodyPreview = (bodyText || cleanHtml(bodyHtml))
     .replace(/\s+/g, " ")
     .trim()
     .substring(0, 150);
 
+  const parsedTime = parsed.date?.getTime();
   return {
     id: `${idPrefix}${msg.uid}`,
-    date: parsed.date?.getTime() || Date.now(),
+    date: parsedTime && parsedTime > 946684800000 ? parsedTime : Date.now(),
     subject: parsed.subject || "",
     snippet: (parsed.text || "").substring(0, 200),
     bodyPreview: bodyPreview || (parsed.text || "").substring(0, 150) || "",
@@ -211,9 +212,10 @@ async function parseImapHeadersOnly(
   // No body available — only header-based unsubscribe methods (rfc8058, list-unsubscribe)
   const unsub = resolveUnsubscribe(listUnsubStr, listUnsubPostStr, undefined, parsed.subject);
 
+  const parsedTime = parsed.date?.getTime();
   return {
     id: `${idPrefix}${msg.uid}`,
-    date: parsed.date?.getTime() || Date.now(),
+    date: parsedTime && parsedTime > 946684800000 ? parsedTime : Date.now(),
     subject: parsed.subject || "",
     snippet: "",
     bodyPreview: "",

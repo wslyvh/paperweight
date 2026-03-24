@@ -1,6 +1,6 @@
 import type { EmailProvider, EmailMessage, EmailConnection } from "./types";
 import { loadCredentials, saveCredentials } from "../credentials";
-import { resolveUnsubscribe, runLoopbackAuth } from "./utils";
+import { cleanHtml, resolveUnsubscribe, runLoopbackAuth } from "./utils";
 
 // Injected at build time via electron-vite define.
 // Set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET env vars before building.
@@ -205,7 +205,13 @@ function parseEmailAddress(raw: string): { name: string; email: string } {
       email: match[2].toLowerCase(),
     };
   }
-  return { name: "", email: raw.toLowerCase().trim() };
+  // Handle bare angle-bracketed address with no display name: <email@domain.com>
+  const bareMatch = raw.match(/^<([^>]+)>$/);
+  if (bareMatch) {
+    return { name: "", email: bareMatch[1].toLowerCase() };
+  }
+  const emailMatch = raw.match(/[^\s<>]+@[^\s<>]+/);
+  return { name: "", email: emailMatch ? emailMatch[0].toLowerCase() : raw.toLowerCase().trim() };
 }
 
 function base64UrlDecode(str: string): string {
@@ -287,14 +293,22 @@ function parseGmailMessage(msg: GmailRawMessage): EmailMessage {
   const headersJson = JSON.stringify(rawHeaders);
 
   const unsub = resolveUnsubscribe(listUnsub, listUnsubPost, bodyHtml, subject);
-  const bodyPreview = (bodyText || bodyHtml.replace(/<[^>]*>/g, " "))
+  const bodyPreview = (bodyText || cleanHtml(bodyHtml))
     .replace(/\s+/g, " ")
     .trim()
     .substring(0, 150);
 
+  const internalDate = parseInt(msg.internalDate, 10);
+  const date = !isNaN(internalDate)
+    ? internalDate
+    : (() => {
+        const t = new Date(getHeader("Date")).getTime();
+        return !isNaN(t) && t > 946684800000 ? t : Date.now();
+      })();
+
   return {
     id: msg.id,
-    date: parseInt(msg.internalDate, 10),
+    date,
     subject,
     snippet: msg.snippet,
     bodyPreview: bodyPreview || msg.snippet?.substring(0, 150) || "",
@@ -398,6 +412,7 @@ export function createGmailProvider(): EmailProvider {
             params.metadataHeaders = [
               "From",
               "Subject",
+              "Date",
               "List-Unsubscribe",
               "List-Unsubscribe-Post",
             ];

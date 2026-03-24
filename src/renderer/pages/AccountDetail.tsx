@@ -1,10 +1,11 @@
 import { useEffect, useCallback, useState } from "react";
-import { useParams, Link, useLocation } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import type {
   VendorDetail,
   Message,
   UnsubscribeEntry,
   ActivityEntry,
+  WhitelistEntry,
 } from "@shared/types";
 import {
   formatRelativeDate,
@@ -12,6 +13,7 @@ import {
   formatBytes,
 } from "@shared/formatting";
 import { RISK_CATEGORIES, RISK_LEVELS } from "@shared/languages";
+import { getRootDomain } from "@shared/utils";
 import {
   ArrowLeft,
   BadgeCheck,
@@ -40,35 +42,344 @@ const RISK_BADGE_CLASS: Record<string, string> = {
   unknown: "badge-ghost",
 };
 
-function buildDeletionEmail(
-  userEmail: string,
-  accountIdentifier?: string,
-): {
-  subject: string;
-  body: string;
-} {
-  return {
-    subject: `Data Deletion Request`,
-    body: `To whom it may concern,
+const TWO_YEARS_MS = 2 * 365.25 * 24 * 60 * 60 * 1000;
+const TEN_YEARS_MS = 10 * 365.25 * 24 * 60 * 60 * 1000;
 
-I am requesting the deletion of all personal data you hold about me. I no longer wish for you to process my data and there is no ongoing reason for you to retain it.
+const LANGUAGES: Record<string, { label: string; flag: string }> = {
+  en: { label: "English", flag: "🇬🇧" },
+  nl: { label: "Dutch", flag: "🇳🇱" },
+  de: { label: "German", flag: "🇩🇪" },
+  fr: { label: "French", flag: "🇫🇷" },
+  es: { label: "Spanish", flag: "🇪🇸" },
+  it: { label: "Italian", flag: "🇮🇹" },
+  pt: { label: "Portuguese", flag: "🇵🇹" },
+};
+
+const TLD_LANG: Record<string, string> = {
+  nl: "nl", de: "de", fr: "fr", es: "es", it: "it", pt: "pt",
+};
+
+function detectLanguageFromDomain(domain?: string): string {
+  if (!domain) return "en";
+  const tld = domain.split(".").pop()?.toLowerCase() ?? "";
+  return TLD_LANG[tld] ?? "en";
+}
+
+type EmailTemplate = {
+  deletionSubject: string;
+  deletion: string;
+  accessSubject: string;
+  access: string;
+  accountRefLabel: string;
+};
+
+const EMAIL_TEMPLATES: Record<string, EmailTemplate> = {
+  en: {
+    accountRefLabel: "Account reference",
+    deletionSubject: "Personal Data Deletion Request",
+    deletion: `To whom it may concern,
+
+I am writing to request the deletion of all personal data you hold about me. I no longer wish for you to process my data and there is no ongoing reason for you to retain it.
 
 Please:
-- Delete all account data and purchase history
-- Unsubscribe me from all marketing emails
-- Stop processing my data
-- Notify third parties who received my data
+- Delete all personal data and account history associated with me
+- Unsubscribe me from all marketing communications
+- Stop any further processing of my data
+- Notify any third parties you have shared my data with
 
 Account identifier:
-- Email: ${userEmail}
-${accountIdentifier ? `- Account reference: ${accountIdentifier}` : ""}
+- Email: %EMAIL%%ACCOUNT_REF%
 
 Please confirm completion of this request within 30 days.
 
-If you need any information to verify my identity, let me know. Thank you!
+If you need any information to verify my identity, feel free to reach out. Thank you!
 
 Best regards,
-${userEmail}`,
+%NAME%`,
+    accessSubject: "Personal Data Access Request",
+    access: `To whom it may concern,
+
+I am writing to request access to the personal data you hold about me.
+
+Please provide:
+- A copy of all personal data you hold about me
+- The purposes for which my data is being processed
+- The categories of data you hold
+- Any third parties my data has been shared with
+- How long you intend to retain my data
+
+Account identifier:
+- Email: %EMAIL%%ACCOUNT_REF%
+
+Please respond to this request within 30 days.
+
+If you need any information to verify my identity, feel free to reach out. Thank you!
+
+Best regards,
+%NAME%`,
+  },
+  nl: {
+    accountRefLabel: "Accountreferentie",
+    deletionSubject: "Verzoek tot verwijdering van persoonsgegevens",
+    deletion: `Geachte heer/mevrouw,
+
+Hierbij verzoek ik u alle persoonsgegevens die u over mij verwerkt te verwijderen. Ik wens niet langer dat u mijn gegevens verwerkt en er is geen geldige reden meer om deze te bewaren.
+
+Ik verzoek u het volgende te doen:
+- Alle persoonsgegevens en accountgeschiedenis te verwijderen
+- Mij af te melden voor alle marketingcommunicatie
+- Alle verdere verwerking van mijn gegevens te staken
+- Eventuele derde partijen waarmee mijn gegevens zijn gedeeld hiervan op de hoogte te stellen
+
+Accountgegevens:
+- E-mail: %EMAIL%%ACCOUNT_REF%
+
+Ik verzoek u de voltooiing van dit verzoek binnen 30 dagen te bevestigen.
+
+Met vriendelijke groet,
+%NAME%`,
+    accessSubject: "Verzoek tot inzage in persoonsgegevens",
+    access: `Geachte heer/mevrouw,
+
+Hierbij verzoek ik u inzage te verlenen in de persoonsgegevens die u over mij verwerkt.
+
+Ik verzoek u het volgende te verstrekken:
+- Een kopie van alle persoonsgegevens die u over mij beschikt
+- De doeleinden waarvoor mijn gegevens worden verwerkt
+- De categorieën gegevens die u verwerkt
+- Eventuele derde partijen waarmee mijn gegevens zijn gedeeld
+- De bewaartermijn van mijn gegevens
+
+Accountgegevens:
+- E-mail: %EMAIL%%ACCOUNT_REF%
+
+Ik verzoek u binnen 30 dagen op dit verzoek te reageren.
+
+Met vriendelijke groet,
+%NAME%`,
+  },
+  de: {
+    accountRefLabel: "Kontoreferenz",
+    deletionSubject: "Antrag auf Löschung personenbezogener Daten",
+    deletion: `Sehr geehrte Damen und Herren,
+
+Hiermit beantrage ich die Löschung aller personenbezogenen Daten, die Sie über mich verarbeiten. Ich wünsche nicht länger, dass Sie meine Daten verarbeiten, und es besteht kein berechtigter Grund mehr, diese aufzubewahren.
+
+Ich bitte Sie um folgendes:
+- Löschung aller personenbezogenen Daten und Kontodaten
+- Abmeldung von allen Marketingmitteilungen
+- Einstellung jeglicher weiterer Verarbeitung meiner Daten
+- Benachrichtigung etwaiger Dritter, an die meine Daten weitergegeben wurden
+
+Kontodaten:
+- E-Mail: %EMAIL%%ACCOUNT_REF%
+
+Ich bitte um eine Bestätigung der Durchführung innerhalb von 30 Tagen.
+
+Mit freundlichen Grüßen,
+%NAME%`,
+    accessSubject: "Antrag auf Auskunft über personenbezogene Daten",
+    access: `Sehr geehrte Damen und Herren,
+
+Hiermit beantrage ich Auskunft über die personenbezogenen Daten, die Sie über mich verarbeiten.
+
+Bitte stellen Sie mir folgendes zur Verfügung:
+- Eine Kopie aller personenbezogenen Daten, die Sie über mich gespeichert haben
+- Die Zwecke, für die meine Daten verarbeitet werden
+- Die Kategorien der verarbeiteten Daten
+- Etwaige Dritte, an die meine Daten weitergegeben wurden
+- Die geplante Speicherdauer meiner Daten
+
+Kontodaten:
+- E-Mail: %EMAIL%%ACCOUNT_REF%
+
+Ich bitte um eine Antwort innerhalb von 30 Tagen.
+
+Mit freundlichen Grüßen,
+%NAME%`,
+  },
+  fr: {
+    accountRefLabel: "Référence de compte",
+    deletionSubject: "Demande de suppression de données personnelles",
+    deletion: `Madame, Monsieur,
+
+Je vous adresse la présente afin de demander la suppression de toutes les données personnelles que vous détenez à mon sujet. Je ne souhaite plus que vous traitiez mes données et il n'existe aucune raison valable de les conserver.
+
+Veuillez procéder comme suit :
+- Supprimer toutes les données personnelles et l'historique de compte me concernant
+- Me désabonner de toutes les communications marketing
+- Cesser tout traitement ultérieur de mes données
+- Informer les éventuels tiers avec lesquels mes données ont été partagées
+
+Identifiant de compte :
+- E-mail : %EMAIL%%ACCOUNT_REF%
+
+Je vous prie de bien vouloir confirmer l'exécution de cette demande dans un délai de 30 jours.
+
+Cordialement,
+%NAME%`,
+    accessSubject: "Demande d'accès aux données personnelles",
+    access: `Madame, Monsieur,
+
+Je vous adresse la présente afin de demander accès aux données personnelles que vous détenez à mon sujet.
+
+Veuillez me fournir les éléments suivants :
+- Une copie de toutes les données personnelles que vous détenez à mon sujet
+- Les finalités pour lesquelles mes données sont traitées
+- Les catégories de données que vous détenez
+- Les éventuels tiers avec lesquels mes données ont été partagées
+- La durée de conservation prévue de mes données
+
+Identifiant de compte :
+- E-mail : %EMAIL%%ACCOUNT_REF%
+
+Je vous prie de bien vouloir répondre à cette demande dans un délai de 30 jours.
+
+Cordialement,
+%NAME%`,
+  },
+  es: {
+    accountRefLabel: "Referencia de cuenta",
+    deletionSubject: "Solicitud de eliminación de datos personales",
+    deletion: `Estimado/a señor/a,
+
+Por medio de la presente, solicito la eliminación de todos los datos personales que usted tiene sobre mí. Ya no deseo que trate mis datos y no existe ninguna razón válida para conservarlos.
+
+Le ruego que proceda de la siguiente manera:
+- Eliminar todos los datos personales e historial de cuenta asociados a mí
+- Darme de baja de todas las comunicaciones de marketing
+- Cesar cualquier tratamiento posterior de mis datos
+- Notificar a los terceros con quienes se hayan compartido mis datos
+
+Identificador de cuenta:
+- Correo electrónico: %EMAIL%%ACCOUNT_REF%
+
+Le ruego que confirme la realización de esta solicitud en un plazo de 30 días.
+
+Atentamente,
+%NAME%`,
+    accessSubject: "Solicitud de acceso a datos personales",
+    access: `Estimado/a señor/a,
+
+Por medio de la presente, solicito acceso a los datos personales que usted tiene sobre mí.
+
+Le ruego que me proporcione lo siguiente:
+- Una copia de todos los datos personales que tiene sobre mí
+- Los fines para los que se tratan mis datos
+- Las categorías de datos que tiene sobre mí
+- Los terceros con quienes se han compartido mis datos
+- El período de conservación previsto de mis datos
+
+Identificador de cuenta:
+- Correo electrónico: %EMAIL%%ACCOUNT_REF%
+
+Le ruego que responda a esta solicitud en un plazo de 30 días.
+
+Atentamente,
+%NAME%`,
+  },
+  it: {
+    accountRefLabel: "Riferimento account",
+    deletionSubject: "Richiesta di cancellazione dei dati personali",
+    deletion: `Gentile Signore/Signora,
+
+Con la presente, richiedo la cancellazione di tutti i dati personali che Lei detiene su di me. Non desidero più che i miei dati vengano trattati e non sussiste alcun motivo valido per conservarli.
+
+La prego di procedere come segue:
+- Cancellare tutti i dati personali e la cronologia dell'account a me associati
+- Annullare la mia iscrizione a tutte le comunicazioni di marketing
+- Cessare qualsiasi ulteriore trattamento dei miei dati
+- Informare eventuali terze parti con cui i miei dati sono stati condivisi
+
+Dati dell'account:
+- E-mail: %EMAIL%%ACCOUNT_REF%
+
+La prego di confermare il completamento di questa richiesta entro 30 giorni.
+
+Cordiali saluti,
+%NAME%`,
+    accessSubject: "Richiesta di accesso ai dati personali",
+    access: `Gentile Signore/Signora,
+
+Con la presente, richiedo l'accesso ai dati personali che Lei detiene su di me.
+
+La prego di fornirmi quanto segue:
+- Una copia di tutti i dati personali che detiene su di me
+- Le finalità per cui i miei dati vengono trattati
+- Le categorie di dati che detiene
+- Eventuali terze parti con cui i miei dati sono stati condivisi
+- Il periodo di conservazione previsto per i miei dati
+
+Dati dell'account:
+- E-mail: %EMAIL%%ACCOUNT_REF%
+
+La prego di rispondere a questa richiesta entro 30 giorni.
+
+Cordiali saluti,
+%NAME%`,
+  },
+  pt: {
+    accountRefLabel: "Referência de conta",
+    deletionSubject: "Pedido de eliminação de dados pessoais",
+    deletion: `Exmo./Exma. Senhor/Senhora,
+
+Por meio da presente, solicito a eliminação de todos os dados pessoais que detém sobre mim. Não desejo que os meus dados continuem a ser tratados e não existe qualquer razão válida para os conservar.
+
+Solicito que proceda da seguinte forma:
+- Eliminar todos os dados pessoais e histórico de conta associados a mim
+- Cancelar a minha subscrição de todas as comunicações de marketing
+- Cessar qualquer tratamento posterior dos meus dados
+- Notificar eventuais terceiros com quem os meus dados foram partilhados
+
+Identificador de conta:
+- E-mail: %EMAIL%%ACCOUNT_REF%
+
+Solicito que confirme a conclusão deste pedido no prazo de 30 dias.
+
+Com os melhores cumprimentos,
+%NAME%`,
+    accessSubject: "Pedido de acesso a dados pessoais",
+    access: `Exmo./Exma. Senhor/Senhora,
+
+Por meio da presente, solicito acesso aos dados pessoais que detém sobre mim.
+
+Solicito que me forneça o seguinte:
+- Uma cópia de todos os dados pessoais que detém sobre mim
+- As finalidades para as quais os meus dados são tratados
+- As categorias de dados que detém sobre mim
+- Eventuais terceiros com quem os meus dados foram partilhados
+- O período de retenção previsto para os meus dados
+
+Identificador de conta:
+- E-mail: %EMAIL%%ACCOUNT_REF%
+
+Solicito que responda a este pedido no prazo de 30 dias.
+
+Com os melhores cumprimentos,
+%NAME%`,
+  },
+};
+
+function applyTemplate(template: string, userEmail: string, accountIdentifier?: string, accountRefLabel = "Account reference", userName?: string): string {
+  return template
+    .replace(/%EMAIL%/g, userEmail)
+    .replace("%ACCOUNT_REF%", accountIdentifier ? `\n- ${accountRefLabel}: ${accountIdentifier}` : "")
+    .replace("%NAME%", userName?.trim() || userEmail);
+}
+
+function buildDeletionEmail(userEmail: string, accountIdentifier?: string, lang = "en", userName?: string): { subject: string; body: string } {
+  const t = EMAIL_TEMPLATES[lang] ?? EMAIL_TEMPLATES.en;
+  return {
+    subject: t.deletionSubject,
+    body: applyTemplate(t.deletion, userEmail, accountIdentifier, t.accountRefLabel, userName),
+  };
+}
+
+function buildAccessEmail(userEmail: string, accountIdentifier?: string, lang = "en", userName?: string): { subject: string; body: string } {
+  const t = EMAIL_TEMPLATES[lang] ?? EMAIL_TEMPLATES.en;
+  return {
+    subject: t.accessSubject,
+    body: applyTemplate(t.access, userEmail, accountIdentifier, t.accountRefLabel, userName),
   };
 }
 
@@ -157,24 +468,64 @@ function unsubDescription(
   );
 }
 
+function ActionTaskRow({ index, label, description, done, spinning, anyLoading, onAction, actionLabel, onMarkDone, variant }: {
+  index: number;
+  label: string;
+  description?: string;
+  done: boolean;
+  spinning: boolean;
+  anyLoading: boolean;
+  onAction: () => void;
+  actionLabel: string;
+  onMarkDone?: () => void;
+  variant?: "warning";
+}) {
+  return (
+    <div className={`flex items-start gap-3 py-2.5 border-b border-base-200 last:border-0 transition-opacity ${done ? "opacity-40" : ""}`}>
+      <span className={`text-sm font-medium tabular-nums shrink-0 mt-0.5 w-5 text-right ${done ? "text-base-content/30" : "text-base-content/40"}`}>
+        {done ? "✓" : `${index}.`}
+      </span>
+      <div className={`flex-1 min-w-0 ${done ? "line-through" : ""}`}>
+        <p className={`text-sm ${variant === "warning" ? "text-warning font-semibold" : ""}`}>{label}</p>
+        {description && <p className="text-xs text-base-content/50 mt-0.5">{description}</p>}
+      </div>
+      <div className="flex gap-1 shrink-0">
+        <button
+          className="btn btn-sm btn-neutral"
+          disabled={done || anyLoading}
+          onClick={onAction}
+        >
+          {spinning ? <span className="loading loading-spinner loading-xs" /> : actionLabel}
+        </button>
+        {onMarkDone && (
+          <button
+            className="btn btn-sm btn-ghost"
+            disabled={done || anyLoading}
+            onClick={onMarkDone}
+          >
+            Mark as done
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function AccountDetail(): JSX.Element {
   const { groupKey } = useParams<{ groupKey: string }>();
-  const { state } = useLocation();
-  const accountsState = (state as { accountsState?: unknown } | null)
-    ?.accountsState;
+  const navigate = useNavigate();
   const [detail, setDetail] = useState<VendorDetail>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>();
   const [riskOpen, setRiskOpen] = useState(false);
   const [breachOpen, setBreachOpen] = useState(false);
-  const [copied, setCopied] = useState(false);
-  const [pendingUnsub, setPendingUnsub] = useState<UnsubscribeEntry | null>(
-    null,
-  );
-  const [unsubCheck, setUnsubCheck] = useState<{
-    entry: UnsubscribeEntry;
-    trashAlso: boolean;
-  } | null>(null);
+  const [copiedField, setCopiedField] = useState<"to" | "subject" | "body" | null>(null);
+  const [dataRequestType, setDataRequestType] = useState<"access" | "deletion">("deletion");
+  const [accountIdentifier, setAccountIdentifier] = useState("");
+  const [emailLanguage, setEmailLanguage] = useState("en");
+  const [userName, setUserName] = useState("");
+  const [pendingUnsub, setPendingUnsub] = useState<UnsubscribeEntry | null>(null);
+  const [unsubCheck, setUnsubCheck] = useState<{ entry: UnsubscribeEntry; trashAlso: boolean } | null>(null);
   const [unsubResult, setUnsubResult] = useState<{
     entry: UnsubscribeEntry;
     kind: "success" | "failure";
@@ -182,21 +533,32 @@ export default function AccountDetail(): JSX.Element {
     trashAlso: boolean;
   } | null>(null);
   const [actionLoading, setActionLoading] = useState(false);
-  const [unsubDone, setUnsubDone] = useState<Set<string>>(new Set());
-  const [activeTab, setActiveTab] = useState<
-    "emails" | "mailing" | "data" | "activity"
-  >("emails");
+  const [doneIds, setDoneIds] = useState<Set<string>>(new Set());
+  const [activeItemId, setActiveItemId] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<"actions" | "data" | "emails" | "activity">("actions");
+  const [pendingDelete, setPendingDelete] = useState<"marketing" | "all" | null>(null);
+  const [whitelistModalOpen, setWhitelistModalOpen] = useState(false);
+  const [selectedWhitelistValues, setSelectedWhitelistValues] = useState<Set<string>>(new Set());
+  const [whitelistLoading, setWhitelistLoading] = useState(false);
+  const [whitelistEntries, setWhitelistEntries] = useState<WhitelistEntry[]>([]);
+  const [whitelistBusyValue, setWhitelistBusyValue] = useState<string | null>(null);
 
   useEffect(() => {
     if (!groupKey) return;
     setLoading(true);
-    window.api
-      .getVendorDetail(decodeURIComponent(groupKey))
-      .then((d) => {
+    Promise.all([
+      window.api.getVendorDetail(decodeURIComponent(groupKey)),
+      window.api.getWhitelistEntries(),
+      window.api.getSettings(),
+    ])
+      .then(([d, entries, settings]) => {
         setDetail(d);
+        setWhitelistEntries(entries);
+        setEmailLanguage(detectLanguageFromDomain(d.vendor.root_domain));
         setBreachOpen(
           d.vendor.breachInfo?.some((b) => b.likelyAffected) ?? false,
         );
+        if (settings.userName) setUserName(settings.userName);
       })
       .catch((err) => setError(err.message ?? "Failed to load"))
       .finally(() => setLoading(false));
@@ -207,6 +569,11 @@ export default function AccountDetail(): JSX.Element {
     const d = await window.api.getVendorDetail(decodeURIComponent(groupKey));
     setDetail(d);
   }, [groupKey]);
+
+  const refreshWhitelist = useCallback(async () => {
+    const entries = await window.api.getWhitelistEntries();
+    setWhitelistEntries(entries);
+  }, []);
 
   const handleToggleReviewed = async () => {
     if (!detail) return;
@@ -229,13 +596,12 @@ export default function AccountDetail(): JSX.Element {
   if (error || !detail) {
     return (
       <div className="space-y-4">
-        <Link
-          to="/accounts"
-          state={{ restore: accountsState }}
+        <button
           className="btn btn-ghost btn-sm gap-1"
+          onClick={() => navigate(-1)}
         >
           <ArrowLeft className="w-4 h-4" /> Back to overview
-        </Link>
+        </button>
         <div className="card bg-base-200">
           <div className="card-body text-center">
             <p className="text-error">{error ?? "Vendor not found"}</p>
@@ -260,8 +626,6 @@ export default function AccountDetail(): JSX.Element {
   const risk = vendor.risk_level ?? "unknown";
   const riskInfo = RISK_LEVELS[risk as keyof typeof RISK_LEVELS];
   const cat = vendor.category_id ?? "unknown";
-  // When category is unknown, fall back to the best signal we have from message types.
-  // has_orders → shopping (shipping address + payment data); has_account → services.
   const effectiveCat =
     cat !== "unknown"
       ? cat
@@ -278,18 +642,92 @@ export default function AccountDetail(): JSX.Element {
     riskInfo?.description ?? "Not enough data to determine a risk level";
 
   const contactEmail = company?.email ?? senders[0]?.sender_email;
-  const deletionEmail = user_email ? buildDeletionEmail(user_email) : undefined;
+  const deletionEmail = user_email ? buildDeletionEmail(user_email, accountIdentifier || undefined, emailLanguage, userName || undefined) : undefined;
+  const accessEmail = user_email ? buildAccessEmail(user_email, accountIdentifier || undefined, emailLanguage, userName || undefined) : undefined;
 
   const domainUrl = company?.web
     ? company.web
     : `https://${vendor.root_domain ?? ""}`;
 
-  const handleCopyMessage = async () => {
-    if (!deletionEmail || !contactEmail) return;
-    const full = `To: ${contactEmail}\nSubject: ${deletionEmail.subject}\n\n${deletionEmail.body}`;
-    await navigator.clipboard.writeText(full);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const senderEmailOptions = [...new Set(
+    senders
+      .map((sender) => sender.sender_email?.toLowerCase())
+      .filter((email): email is string => !!email),
+  )];
+
+  const senderDomains = [...new Set(
+    senderEmailOptions
+      .map((email) => email.split("@")[1]?.trim().toLowerCase())
+      .filter((domain): domain is string => !!domain),
+  )];
+
+  const companyDomain = company?.web
+    ? (() => {
+      const candidate = company.web.trim().toLowerCase();
+      if (!candidate) return undefined;
+      try {
+        return new URL(
+          candidate.includes("://") ? candidate : `https://${candidate}`,
+        ).hostname.toLowerCase().replace(/^www\./, "");
+      } catch {
+        return candidate.replace(/^www\./, "");
+      }
+    })()
+    : undefined;
+
+  const rootDomainOption = (() => {
+    const domainCandidate =
+      companyDomain ??
+      vendor.root_domain?.trim().toLowerCase() ??
+      senderDomains[0];
+    return domainCandidate ? getRootDomain(domainCandidate) : undefined;
+  })();
+
+  const senderEmailSet = new Set(senderEmailOptions);
+  const senderDomainSet = new Set(senderDomains);
+
+  const whitelistOptions = [
+    ...(rootDomainOption ? [rootDomainOption] : []),
+    ...senderEmailOptions,
+  ];
+
+  const whitelistedValues = new Set(
+    whitelistEntries.map((entry) => entry.value.trim().toLowerCase()),
+  );
+
+  const addableWhitelistOptions = whitelistOptions.filter(
+    (option) => !whitelistedValues.has(option.trim().toLowerCase()),
+  );
+
+  const canOpenWhitelistModal = addableWhitelistOptions.length > 0;
+
+  const knownWhitelistEntries = whitelistEntries.filter((entry) => {
+    const value = entry.value.trim().toLowerCase();
+    if (value.includes("@")) {
+      return senderEmailSet.has(value);
+    }
+    return (
+      senderDomainSet.has(value) ||
+      (rootDomainOption !== undefined &&
+        getRootDomain(value) === rootDomainOption)
+    );
+  });
+
+  const sortedActivityLog = [...activityLog].sort(
+    (a, b) => b.actionedAt - a.actionedAt,
+  );
+
+  const sortedWhitelistEntries = [...knownWhitelistEntries].sort(
+    (a, b) => Date.parse(b.created_at) - Date.parse(a.created_at),
+  );
+
+  const hasAnyActivity =
+    sortedActivityLog.length > 0 || sortedWhitelistEntries.length > 0;
+
+  const handleCopyField = async (text: string, field: "to" | "subject" | "body") => {
+    await navigator.clipboard.writeText(text);
+    setCopiedField(field);
+    setTimeout(() => setCopiedField(null), 2000);
   };
 
   // Derive unique unsubscribe methods from bulk messages
@@ -307,7 +745,59 @@ export default function AccountDetail(): JSX.Element {
     return result;
   })();
 
-  const mailingDisabled = unsubMethods.length === 0;
+  // Action item derivation
+  const now = Date.now();
+  const twoYearsAgo = now - TWO_YEARS_MS;
+  const tenYearsAgo = now - TEN_YEARS_MS;
+
+  const activeBulkMessages = detail.bulkMessages.filter(
+    (m) => m.date > twoYearsAgo && m.status == null
+  );
+  const hasActiveSubscription = activeBulkMessages.length > 0 && unsubMethods.length > 0;
+  const bulkCount = detail.bulkMessageCount;
+  const totalCount = vendor.message_count;
+  // Ancient: last seen > 10yr ago — company may no longer exist, so suggest verifying first.
+  // Stale: last seen > 2yr ago (but not ancient) — deletion request is the right move.
+  // No has_account requirement because transaction/notification emails are often classified as "personal" not "account".
+  const isAncientAccount = !!(vendor.last_seen && vendor.last_seen < tenYearsAgo && totalCount >= 5);
+  const isStaleAccount = !!(vendor.last_seen && vendor.last_seen < twoYearsAgo && !isAncientAccount && totalCount >= 5);
+  const allEmailsAreMarketing = bulkCount > 0 && bulkCount === totalCount;
+  const showDeleteMarketing = allEmailsAreMarketing;
+  const showDeleteAll = totalCount > 0 && !allEmailsAreMarketing;
+
+  const actionItems: string[] = [
+    ...(anyLikelyAffected ? ["breachReview", "breachAccess", "breachDeletion"] : []),
+    ...(hasActiveSubscription ? unsubMethods.map((m) => `unsub-${m.method}`) : []),
+    ...(showDeleteMarketing ? ["deleteMarketing"] : []),
+    ...(showDeleteAll ? ["deleteAll"] : []),
+    ...((isAncientAccount && !anyLikelyAffected) ? ["checkActive"] : []),
+    ...((isStaleAccount && !anyLikelyAffected) ? ["dataDeletion"] : []),
+  ];
+
+  function unsubEntryForId(id: string): UnsubscribeEntry | undefined {
+    const method = id.replace(/^unsub-/, "");
+    return unsubMethods.find((m) => m.method === method);
+  }
+
+  function handleItemAction(id: string) {
+    if (id.startsWith("unsub-")) {
+      const entry = unsubEntryForId(id);
+      if (!entry) return;
+      setActiveItemId(id);
+      setPendingUnsub(entry);
+    } else if (id === "deleteMarketing" || id === "deleteAll") {
+      setActiveItemId(id);
+      setPendingDelete(id === "deleteAll" ? "all" : "marketing");
+    } else if (id === "dataDeletion" || id === "breachAccess" || id === "breachDeletion") {
+      setDataRequestType(id === "breachAccess" ? "access" : "deletion");
+      setActiveTab("data");
+    } else if (id === "checkActive") {
+      window.api.openExternal(domainUrl);
+    } else if (id === "breachReview") {
+      setBreachOpen(true);
+      document.getElementById("breach-alert")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
 
   const handleUnsubscribeConfirm = async (): Promise<void> => {
     if (!pendingUnsub || !detail) return;
@@ -352,9 +842,10 @@ export default function AccountDetail(): JSX.Element {
     const { entry, trashAlso } = unsubResult;
     setActionLoading(true);
     try {
-      if (trashAlso) await window.api.trashVendorMessages(detail.vendor.id);
+      if (trashAlso) await window.api.trashVendorMessages(detail.vendor.id, ["bulk"]);
       setUnsubResult(null);
-      setUnsubDone((prev) => new Set(prev).add(entry.method));
+      setDoneIds((prev) => new Set(prev).add(`unsub-${entry.method}`));
+      setActiveItemId(null);
       await refreshDetail();
     } finally {
       setActionLoading(false);
@@ -367,9 +858,10 @@ export default function AccountDetail(): JSX.Element {
     setActionLoading(true);
     try {
       await window.api.reportSpamVendor(detail.vendor.id);
-      if (trashAlso) await window.api.trashVendorMessages(detail.vendor.id);
+      if (trashAlso) await window.api.trashVendorMessages(detail.vendor.id, ["bulk"]);
       setUnsubResult(null);
-      setUnsubDone((prev) => new Set(prev).add(entry.method));
+      setDoneIds((prev) => new Set(prev).add(`unsub-${entry.method}`));
+      setActiveItemId(null);
       await refreshDetail();
     } finally {
       setActionLoading(false);
@@ -397,9 +889,10 @@ export default function AccountDetail(): JSX.Element {
     setActionLoading(true);
     try {
       await window.api.markVendorUnsubscribed(detail.vendor.id);
-      if (trashAlso) await window.api.trashVendorMessages(detail.vendor.id);
+      if (trashAlso) await window.api.trashVendorMessages(detail.vendor.id, ["bulk"]);
       setUnsubCheck(null);
-      setUnsubDone((prev) => new Set(prev).add(entry.method));
+      setDoneIds((prev) => new Set(prev).add(`unsub-${entry.method}`));
+      setActiveItemId(null);
       await refreshDetail();
     } finally {
       setActionLoading(false);
@@ -413,10 +906,78 @@ export default function AccountDetail(): JSX.Element {
     try {
       await window.api.reportSpamVendor(detail.vendor.id);
       setUnsubCheck(null);
-      setUnsubDone((prev) => new Set(prev).add(entry.method));
+      setDoneIds((prev) => new Set(prev).add(`unsub-${entry.method}`));
+      setActiveItemId(null);
       await refreshDetail();
     } finally {
       setActionLoading(false);
+    }
+  };
+
+  const handleDeleteConfirm = async (): Promise<void> => {
+    if (!pendingDelete || !detail) return;
+    setActionLoading(true);
+    try {
+      const result = pendingDelete === "all"
+        ? await window.api.trashVendorMessages(detail.vendor.id)
+        : await window.api.trashVendorMessages(detail.vendor.id, ["bulk"]);
+      if (!result.success) {
+        setPendingDelete(null);
+        setActiveItemId(null);
+        return;
+      }
+      const doneId = pendingDelete === "all" ? "deleteAll" : "deleteMarketing";
+      setPendingDelete(null);
+      setDoneIds((prev) => new Set(prev).add(doneId));
+      setActiveItemId(null);
+      await refreshDetail();
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const handleOpenWhitelistModal = (): void => {
+    if (!canOpenWhitelistModal) return;
+    setSelectedWhitelistValues(new Set());
+    setWhitelistModalOpen(true);
+  };
+
+  const handleToggleWhitelistValue = (value: string): void => {
+    setSelectedWhitelistValues((prev) => {
+      const next = new Set(prev);
+      if (next.has(value)) {
+        next.delete(value);
+      } else {
+        next.add(value);
+      }
+      return next;
+    });
+  };
+
+  const handleWhitelistConfirm = async (): Promise<void> => {
+    if (selectedWhitelistValues.size === 0) return;
+    setWhitelistLoading(true);
+    try {
+      await Promise.all(
+        Array.from(selectedWhitelistValues).map((value) =>
+          window.api.addWhitelistEntry(value),
+        ),
+      );
+      setWhitelistModalOpen(false);
+      setSelectedWhitelistValues(new Set());
+      await refreshWhitelist();
+    } finally {
+      setWhitelistLoading(false);
+    }
+  };
+
+  const handleWhitelistRemove = async (value: string): Promise<void> => {
+    setWhitelistBusyValue(value);
+    try {
+      await window.api.removeWhitelistEntry(value);
+      await refreshWhitelist();
+    } finally {
+      setWhitelistBusyValue(null);
     }
   };
 
@@ -424,24 +985,32 @@ export default function AccountDetail(): JSX.Element {
     <div className="space-y-6">
       {/* Top bar */}
       <div className="flex items-center justify-between">
-        <Link
-          to="/accounts"
-          state={{ restore: accountsState }}
+        <button
           className="btn btn-ghost btn-sm gap-1"
+          onClick={() => navigate(-1)}
         >
           <ArrowLeft className="w-4 h-4" /> Back to overview
-        </Link>
-        <button
-          className={`btn btn-sm ${vendor.status === "reviewed" ? "btn-ghost" : "btn-neutral"}`}
-          onClick={handleToggleReviewed}
-        >
-          {vendor.status === "reviewed" ? "Undo review" : "Mark as reviewed"}
         </button>
+        <div className="flex items-center gap-2">
+          <button
+            className="btn btn-sm btn-ghost"
+            onClick={handleOpenWhitelistModal}
+            disabled={!canOpenWhitelistModal || whitelistLoading}
+          >
+            Add to whitelist
+          </button>
+          <button
+            className={`btn btn-sm ${vendor.status === "reviewed" ? "btn-ghost" : "btn-neutral"}`}
+            onClick={handleToggleReviewed}
+          >
+            {vendor.status === "reviewed" ? "Undo review" : "Mark as reviewed"}
+          </button>
+        </div>
       </div>
 
       {/* Header */}
       <div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-baseline gap-4">
           <h1 className="text-2xl font-bold">{displayName}</h1>
           {vendor.company_slug && (
             <BadgeCheck
@@ -450,14 +1019,17 @@ export default function AccountDetail(): JSX.Element {
               aria-label="Verified company"
             />
           )}
+          <button
+            className="text-base-content/40 text-sm hover:text-base-content/70 hover:underline inline-flex items-center gap-1"
+            onClick={() => window.api.openExternal(domainUrl)}
+          >
+            {vendor.root_domain ?? "(unknown)"} <ExternalLink className="w-3 h-3" />
+          </button>
         </div>
-        <button
-          className="text-base-content/60 text-sm hover:text-base-content/80 hover:underline inline-flex items-center gap-1 mt-1"
-          onClick={() => window.api.openExternal(domainUrl)}
-        >
-          {vendor.root_domain ?? "(unknown)"}{" "}
-          <ExternalLink className="w-3 h-3" />
-        </button>
+        <p className="text-sm text-base-content/50 mt-1">
+          Review what this company knows about you and decide what to do. For older
+          accounts, consider unsubscribing and requesting data deletion.
+        </p>
         {company?.categories && company.categories.length > 0 && (
           <div className="flex items-center gap-2 flex-wrap mt-2">
             {company.categories.map((c) => {
@@ -480,13 +1052,13 @@ export default function AccountDetail(): JSX.Element {
         <div>
           <p className="text-xs text-base-content/50 uppercase">First seen</p>
           <p className="font-medium">
-            {formatAbsoluteDate(first_activity ?? vendor.first_seen ?? 0)}
+            {(first_activity ?? vendor.first_seen) ? formatAbsoluteDate(first_activity ?? vendor.first_seen ?? 0) : "Unknown"}
           </p>
         </div>
         <div>
           <p className="text-xs text-base-content/50 uppercase">Last seen</p>
           <p className="font-medium">
-            {formatRelativeDate(vendor.last_seen ?? 0)}
+            {vendor.last_seen ? formatRelativeDate(vendor.last_seen) : "Unknown"}
           </p>
         </div>
         <div>
@@ -502,6 +1074,7 @@ export default function AccountDetail(): JSX.Element {
       {/* Breach alert */}
       {breaches.length > 0 && (
         <div
+          id="breach-alert"
           className={`card ${anyLikelyAffected ? "bg-error/10 border border-error/30" : "bg-warning/10 border border-warning/30"}`}
         >
           <div
@@ -519,11 +1092,22 @@ export default function AccountDetail(): JSX.Element {
           </div>
           {breachOpen && (
             <div className="px-4 pb-4 flex flex-col gap-4">
-              <ul className="text-sm space-y-1">
+              <ul className="text-sm space-y-1 list-disc list-inside">
                 {breaches.map((bi) => (
                   <li key={bi.breach.name}>
-                    {bi.breach.title} was breached on{" "}
-                    <span className="font-medium">
+                    <button
+                      className="font-semibold underline hover:text-base-content/80"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.api.openExternal(
+                          `https://haveibeenpwned.com/Breach/${bi.breach.name}`,
+                        );
+                      }}
+                    >
+                      {bi.breach.title}
+                    </button>{" "}
+                    was breached on{" "}
+                    <span>
                       {new Date(bi.breach.breachDate).toLocaleDateString()}
                     </span>{" "}
                     —{" "}
@@ -556,24 +1140,7 @@ export default function AccountDetail(): JSX.Element {
                 ) : null;
               })()}
               <p className="text-xs text-base-content/50">
-                Source:{" "}
-                {breaches.map((bi, i) => (
-                  <span key={bi.breach.name}>
-                    {i > 0 && ", "}
-                    <button
-                      className="underline hover:text-base-content/80"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        window.api.openExternal(
-                          `https://haveibeenpwned.com/Breach/${bi.breach.name}`,
-                        );
-                      }}
-                    >
-                      {bi.breach.title}
-                    </button>
-                  </span>
-                ))}{" "}
-                (haveibeenpwned.com)
+                Source: haveibeenpwned.com
               </p>
             </div>
           )}
@@ -635,36 +1202,12 @@ export default function AccountDetail(): JSX.Element {
         <div role="tablist" className="flex">
           <button
             role="tab"
-            aria-selected={activeTab === "emails"}
-            className={`tab ${activeTab === "emails" ? "tab-active" : ""}`}
-            onClick={() => setActiveTab("emails")}
+            aria-selected={activeTab === "actions"}
+            className={`tab ${activeTab === "actions" ? "tab-active" : ""}`}
+            onClick={() => setActiveTab("actions")}
           >
-            Latest emails
+            Actions
           </button>
-
-          {mailingDisabled && activeTab !== "mailing" ? (
-            <span
-              className="tooltip tooltip-bottom"
-              data-tip="No mailing list subscriptions found"
-            >
-              <button
-                role="tab"
-                className="tab opacity-40 cursor-not-allowed"
-                disabled
-              >
-                Mailing lists
-              </button>
-            </span>
-          ) : (
-            <button
-              role="tab"
-              aria-selected={activeTab === "mailing"}
-              className={`tab ${activeTab === "mailing" ? "tab-active" : ""}`}
-              onClick={() => setActiveTab("mailing")}
-            >
-              Mailing lists
-            </button>
-          )}
 
           <button
             role="tab"
@@ -677,17 +1220,309 @@ export default function AccountDetail(): JSX.Element {
 
           <button
             role="tab"
-            aria-selected={activeTab === "activity"}
-            className={`tab ${activeTab === "activity" ? "tab-active" : ""}`}
-            onClick={() => setActiveTab("activity")}
+            aria-selected={activeTab === "emails"}
+            className={`tab ${activeTab === "emails" ? "tab-active" : ""}`}
+            onClick={() => setActiveTab("emails")}
           >
-            Activity
+            Emails
           </button>
+
+          <div className={hasAnyActivity ? "" : "tooltip tooltip-bottom"} data-tip={hasAnyActivity ? undefined : "No activity yet"}>
+            <button
+              role="tab"
+              aria-selected={activeTab === "activity"}
+              className={`tab ${activeTab === "activity" ? "tab-active" : ""} ${hasAnyActivity ? "" : "tab-disabled opacity-40 cursor-not-allowed"}`}
+              onClick={() => { if (hasAnyActivity) setActiveTab("activity"); }}
+            >
+              Activity
+            </button>
+          </div>
         </div>
 
-        <div
-          className={`tab-content py-2 ${activeTab === "emails" ? "!block" : ""}`}
-        >
+        {/* Actions tab */}
+        <div className={`tab-content px-4 py-3 ${activeTab === "actions" ? "!block" : ""}`}>
+          {actionItems.length === 0 ? (
+            <p className="text-base-content/50 text-sm">No recommended actions for this company.</p>
+          ) : (
+            <div>
+              {/* Contextual recommendation blurb */}
+              <p className="text-sm text-base-content/60 mb-4">
+                {(() => {
+                  const parts: string[] = [];
+                  if (anyLikelyAffected) {
+                    parts.push(`This sender was involved in a data breach that likely included your account. Your personal data may be at risk, so it is worth reviewing what was exposed and taking steps to protect yourself.`);
+                  }
+                  if (isAncientAccount) {
+                    const yearsAgo = vendor.last_seen
+                      ? Math.round((now - vendor.last_seen) / (365.25 * 24 * 60 * 60 * 1000))
+                      : null;
+                    parts.push(`This sender last emailed you${yearsAgo ? ` over ${yearsAgo} years` : " a very long time"} ago. They may no longer exist, so it's worth checking before taking any further action.`);
+                  } else if (isStaleAccount) {
+                    const yearsAgo = vendor.last_seen
+                      ? Math.round((now - vendor.last_seen) / (365.25 * 24 * 60 * 60 * 1000))
+                      : null;
+                    parts.push(`You haven't heard from this sender in${yearsAgo ? ` over ${yearsAgo} years` : " a long time"}, but they still hold your data. Requesting deletion removes any lingering risk.`);
+                  }
+                  if (hasActiveSubscription) {
+                    parts.push(`This sender is still sending you marketing emails. Unsubscribing reduces clutter and cuts down the data they collect about you.`);
+                  }
+                  if ((showDeleteMarketing || showDeleteAll) && !hasActiveSubscription && !isStaleAccount && !isAncientAccount && !anyLikelyAffected) {
+                    parts.push(`This sender has sent you a lot of emails over time. Deleting them reduces the amount of data stored in your inbox.`);
+                  }
+                  return parts.join(" ");
+                })()}
+              </p>
+
+              {anyLikelyAffected && (
+                <ActionTaskRow
+                  index={actionItems.indexOf("breachReview") + 1}
+                  label="Review the security incident"
+                  description="Check what data was exposed in this breach. See the Security alert on this page for details."
+                  done={doneIds.has("breachReview")}
+                  spinning={false}
+                  anyLoading={actionLoading}
+                  actionLabel="Review"
+                  variant="warning"
+                  onAction={() => handleItemAction("breachReview")}
+                />
+              )}
+              {anyLikelyAffected && (
+                <ActionTaskRow
+                  index={actionItems.indexOf("breachAccess") + 1}
+                  label="Request your data"
+                  description="Request this sender to share all data they hold about you. Opens a pre-filled request in the Data requests tab."
+                  done={doneIds.has("breachAccess")}
+                  spinning={false}
+                  anyLoading={actionLoading}
+                  actionLabel="Open"
+                  onAction={() => handleItemAction("breachAccess")}
+                />
+              )}
+              {anyLikelyAffected && (
+                <ActionTaskRow
+                  index={actionItems.indexOf("breachDeletion") + 1}
+                  label="Request to delete your data"
+                  description="Request this sender to erase all data they hold about you. Opens a pre-filled request in the Data requests tab."
+                  done={doneIds.has("breachDeletion")}
+                  spinning={false}
+                  anyLoading={actionLoading}
+                  actionLabel="Open"
+                  onAction={() => handleItemAction("breachDeletion")}
+                />
+              )}
+              {hasActiveSubscription && unsubMethods.map((entry) => {
+                const id = `unsub-${entry.method}`;
+                return (
+                  <ActionTaskRow
+                    key={id}
+                    index={actionItems.indexOf(id) + 1}
+                    label="Unsubscribe"
+                    description={methodDescription(entry.method, entry.url)}
+                    done={doneIds.has(id)}
+                    spinning={activeItemId === id && actionLoading}
+                    anyLoading={actionLoading}
+                    actionLabel="Unsubscribe"
+                    onAction={() => handleItemAction(id)}
+                  />
+                );
+              })}
+              {showDeleteMarketing && (
+                <ActionTaskRow
+                  index={actionItems.indexOf("deleteMarketing") + 1}
+                  label="Delete marketing emails"
+                  description={`Moves ${bulkCount} marketing and newsletter emails to trash`}
+                  done={doneIds.has("deleteMarketing")}
+                  spinning={activeItemId === "deleteMarketing" && actionLoading}
+                  anyLoading={actionLoading}
+                  actionLabel="Delete"
+                  onAction={() => handleItemAction("deleteMarketing")}
+                />
+              )}
+              {showDeleteAll && (
+                <ActionTaskRow
+                  index={actionItems.indexOf("deleteAll") + 1}
+                  label="Delete all emails"
+                  description={`Moves all ${vendor.message_count} emails from this sender to trash, including receipts and notifications`}
+                  done={doneIds.has("deleteAll")}
+                  spinning={activeItemId === "deleteAll" && actionLoading}
+                  anyLoading={actionLoading}
+                  actionLabel="Delete"
+                  onAction={() => handleItemAction("deleteAll")}
+                />
+              )}
+              {isAncientAccount && !anyLikelyAffected && (
+                <ActionTaskRow
+                  index={actionItems.indexOf("checkActive") + 1}
+                  label="Check if this company is still active"
+                  description="This sender may no longer exist. Visit their website to verify before taking further action."
+                  done={doneIds.has("checkActive")}
+                  spinning={false}
+                  anyLoading={actionLoading}
+                  actionLabel="Visit website"
+                  onAction={() => handleItemAction("checkActive")}
+                />
+              )}
+              {isStaleAccount && !anyLikelyAffected && (
+                <ActionTaskRow
+                  index={actionItems.indexOf("dataDeletion") + 1}
+                  label="Request to delete your data"
+                  description="Request this sender to erase all data they hold about you. Opens a pre-filled request in the Data requests tab."
+                  done={doneIds.has("dataDeletion")}
+                  spinning={false}
+                  anyLoading={actionLoading}
+                  actionLabel="Open"
+                  onAction={() => handleItemAction("dataDeletion")}
+                />
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Data requests tab */}
+        <div className={`tab-content px-4 py-3 text-sm space-y-3 ${activeTab === "data" ? "!block" : ""}`}>
+          {company?.comments &&
+            company.comments.length > 0 &&
+            company.comments.map((comment, i) => (
+              <p key={i} className="text-base-content/70">
+                {comment}
+              </p>
+            ))}
+
+          {company?.webform && (
+            <>
+              <button
+                className="btn btn-primary btn-sm gap-1"
+                onClick={() => window.api.openExternal(company.webform!)}
+              >
+                Open privacy form <ExternalLink className="w-3.5 h-3.5" />
+              </button>
+              {contactEmail && (deletionEmail || accessEmail) && <hr className="border-base-100 mt-2 mb-4" />}
+            </>
+          )}
+
+          {contactEmail && (deletionEmail || accessEmail) ? (
+            <>
+              {!company && (
+                <p className="text-base-content/50 text-xs">
+                  This contact address is not verified. We recommend checking their privacy policy before sending a request.
+                </p>
+              )}
+              <div className="space-y-2">
+                <div className="flex items-center gap-3">
+                  <label className="text-xs text-base-content/50 uppercase shrink-0 w-20">Language</label>
+                  <select
+                    className="select select-bordered select-sm"
+                    value={emailLanguage}
+                    onChange={(e) => { setEmailLanguage(e.target.value); setCopiedField(null); }}
+                  >
+                    {Object.entries(LANGUAGES).map(([code, { label, flag }]) => (
+                      <option key={code} value={code}>{flag}  {label}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="flex items-center gap-3">
+                  <label className="text-xs text-base-content/50 uppercase shrink-0 w-20">Purpose</label>
+                  <select
+                    className="select select-bordered select-sm"
+                    value={dataRequestType}
+                    onChange={(e) => { setDataRequestType(e.target.value as "access" | "deletion"); setCopiedField(null); }}
+                  >
+                    <option value="deletion">Request data deletion</option>
+                    <option value="access">Request data access</option>
+                  </select>
+                </div>
+                <div className="flex items-center gap-3">
+                  <label className="text-xs text-base-content/50 uppercase shrink-0 w-20">Name</label>
+                  <input
+                    type="text"
+                    className="input input-bordered input-sm"
+                    placeholder="Your full name"
+                    value={userName}
+                    onChange={(e) => { setUserName(e.target.value); setCopiedField(null); }}
+                    onBlur={() => window.api.saveSettings({ userName })}
+                  />
+                  <span className="text-xs text-base-content/40 shrink-0">(optional)</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <label className="text-xs text-base-content/50 uppercase shrink-0 w-20">Account ID</label>
+                  <input
+                    type="text"
+                    className="input input-bordered input-sm"
+                    placeholder="Username, customer/reference id, etc."
+                    value={accountIdentifier}
+                    onChange={(e) => { setAccountIdentifier(e.target.value); setCopiedField(null); }}
+                  />
+                  <span className="text-xs text-base-content/40 shrink-0">(optional)</span>
+                </div>
+              </div>
+              {(() => {
+                const email = dataRequestType === "access" ? accessEmail : deletionEmail;
+                if (!email) return null;
+                return (
+                  <>
+                    <div>
+                      <p className="text-base-content/50 text-xs uppercase mb-1">To</p>
+                      <div className="flex items-center gap-2">
+                        <p className="font-mono">{contactEmail}</p>
+                        <button
+                          className="btn btn-ghost btn-xs px-1"
+                          onClick={() => handleCopyField(contactEmail!, "to")}
+                          title="Copy"
+                        >
+                          {copiedField === "to" ? <span className="text-xs text-success">✓</span> : <Clipboard className="w-3.5 h-3.5 text-base-content/40" />}
+                        </button>
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-base-content/50 text-xs uppercase mb-1">Subject</p>
+                      <div className="flex items-center gap-2">
+                        <p>{email.subject}</p>
+                        <button
+                          className="btn btn-ghost btn-xs px-1"
+                          onClick={() => handleCopyField(email.subject, "subject")}
+                          title="Copy"
+                        >
+                          {copiedField === "subject" ? <span className="text-xs text-success">✓</span> : <Clipboard className="w-3.5 h-3.5 text-base-content/40" />}
+                        </button>
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-base-content/50 text-xs uppercase mb-1">Message</p>
+                      <pre className="whitespace-pre-wrap text-base-content/80 bg-base-100 rounded-lg p-3 mt-1">
+                        {email.body}
+                      </pre>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <button
+                        className="btn btn-primary btn-sm gap-1"
+                        onClick={() => {
+                          const mailto = `mailto:${contactEmail}?subject=${encodeURIComponent(email.subject)}&body=${encodeURIComponent(email.body)}`;
+                          window.api.openExternal(mailto);
+                        }}
+                      >
+                        Open email client <ExternalLink className="w-3.5 h-3.5" />
+                      </button>
+                      <button
+                        className="btn btn-neutral btn-sm gap-1"
+                        onClick={() => handleCopyField(email.body, "body")}
+                      >
+                        {copiedField === "body" ? <span className="text-success">✓</span> : <Clipboard className="w-3.5 h-3.5" />}
+                        {copiedField === "body" ? "Copied!" : "Copy message"}
+                      </button>
+                    </div>
+                  </>
+                );
+              })()}
+            </>
+          ) : (
+            <p className="text-base-content/50">
+              No contact information available for data requests.
+            </p>
+          )}
+        </div>
+
+        {/* Emails tab */}
+        <div className={`tab-content py-2 ${activeTab === "emails" ? "!block" : ""}`}>
           {allMessages.length > 0 ? (
             <EmailsBySender
               messages={allMessages}
@@ -700,150 +1535,167 @@ export default function AccountDetail(): JSX.Element {
           )}
         </div>
 
-        <div
-          className={`tab-content px-4 py-3 text-sm space-y-3 ${activeTab === "mailing" ? "!block" : ""}`}
-        >
-          {unsubMethods.length === 0 ? (
-            <p className="text-base-content/50">
-              No mailing list subscriptions found.
-            </p>
-          ) : (
-            unsubMethods.map((entry) => (
-              <div
-                key={entry.method}
-                className="flex items-center justify-between gap-4"
-              >
-                <p className="text-base-content/70">
-                  {methodDescription(entry.method, entry.url)}
-                </p>
-                {unsubDone.has(entry.method) ? (
-                  <span className="badge badge-success badge-sm shrink-0">
-                    Done
-                  </span>
-                ) : (
-                  <button
-                    className="btn btn-neutral btn-sm shrink-0"
-                    disabled={actionLoading}
-                    onClick={() => setPendingUnsub(entry)}
-                  >
-                    Unsubscribe
-                  </button>
-                )}
-              </div>
-            ))
-          )}
-        </div>
-
-        <div
-          className={`tab-content px-4 py-3 text-sm space-y-3 ${activeTab === "data" ? "!block" : ""}`}
-        >
-          {!company && (
-            <p className="text-base-content/50">
-              This contact address is not verified. We recommend checking their
-              privacy policy before sending a request.
-            </p>
-          )}
-
-          {company?.comments &&
-            company.comments.length > 0 &&
-            company.comments.map((comment, i) => (
-              <p key={i} className="text-base-content/70">
-                {comment}
-              </p>
-            ))}
-
-          {company?.webform && (
-            <button
-              className="btn btn-ghost btn-sm gap-1 -ml-2"
-              onClick={() => window.api.openExternal(company.webform!)}
-            >
-              Open privacy webform <ExternalLink className="w-3.5 h-3.5" />
-            </button>
-          )}
-
-          {deletionEmail && contactEmail ? (
-            <>
-              <div>
-                <p className="text-base-content/50 text-xs uppercase mb-1">
-                  To
-                </p>
-                <p className="font-mono">{contactEmail}</p>
-              </div>
-              <div>
-                <p className="text-base-content/50 text-xs uppercase mb-1">
-                  Subject
-                </p>
-                <p>{deletionEmail.subject}</p>
-              </div>
-              <div>
-                <p className="text-base-content/50 text-xs uppercase mb-1">
-                  Message
-                </p>
-                <pre className="whitespace-pre-wrap text-base-content/80 bg-base-100 rounded-lg p-3 mt-1">
-                  {deletionEmail.body}
-                </pre>
-              </div>
-              <div className="flex items-center gap-2">
-                <button
-                  className="btn btn-primary btn-sm gap-1"
-                  onClick={() => {
-                    const mailto = `mailto:${contactEmail}?subject=${encodeURIComponent(deletionEmail.subject)}&body=${encodeURIComponent(deletionEmail.body)}`;
-                    window.api.openExternal(mailto);
-                  }}
-                >
-                  Open email client <ExternalLink className="w-3.5 h-3.5" />
-                </button>
-                <button
-                  className="btn btn-neutral btn-sm gap-1"
-                  onClick={handleCopyMessage}
-                >
-                  <Clipboard className="w-3.5 h-3.5" />
-                  {copied ? "Copied!" : "Copy message"}
-                </button>
-              </div>
-            </>
-          ) : (
-            <p className="text-base-content/50">
-              No contact information available for data requests.
-            </p>
-          )}
-        </div>
-
-        <div
-          className={`tab-content px-4 py-3 ${activeTab === "activity" ? "!block" : ""}`}
-        >
-          {activityLog.length === 0 ? (
+        {/* Activity tab */}
+        <div className={`tab-content px-4 py-3 ${activeTab === "activity" ? "!block" : ""}`}>
+          {!hasAnyActivity ? (
             <p className="text-sm text-base-content/50">
               No actions taken yet.
             </p>
           ) : (
-            <div className="font-mono text-sm divide-y divide-base-300">
-              {activityLog.map((entry) => (
-                <div
-                  key={entry.id}
-                  className="grid grid-cols-[1fr_auto] items-center gap-4 py-2"
-                >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <span className="text-base-content/40 shrink-0">
-                      {formatAbsoluteDate(entry.actionedAt)}
-                    </span>
-                    <span
-                      className={`shrink-0 ${ACTION_COLORS[entry.actionType]}`}
-                    >
-                      {ACTION_LABELS[entry.actionType]}
-                    </span>
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-sm font-semibold mb-2">Activity logs</h3>
+                {sortedActivityLog.length === 0 ? (
+                  <p className="text-sm text-base-content/50">No log entries yet.</p>
+                ) : (
+                  <div className="font-mono text-sm divide-y divide-base-300">
+                    {sortedActivityLog.map((entry) => (
+                      <div
+                        key={entry.id}
+                        className="grid grid-cols-[1fr_auto] items-center gap-4 py-2"
+                      >
+                        <div className="flex items-center gap-3 min-w-0">
+                          <span className="text-base-content/40 shrink-0">
+                            {formatAbsoluteDate(entry.actionedAt)}
+                          </span>
+                          <span
+                            className={`shrink-0 ${ACTION_COLORS[entry.actionType]}`}
+                          >
+                            {ACTION_LABELS[entry.actionType]}
+                          </span>
+                        </div>
+                        <span className="text-base-content/40 text-right shrink-0">
+                          {entry.messageCount.toLocaleString()} emails
+                          {entry.sizeBytes > 0 &&
+                            ` · ${formatBytes(entry.sizeBytes)}`}
+                        </span>
+                      </div>
+                    ))}
                   </div>
-                  <span className="text-base-content/40 text-right shrink-0">
-                    {entry.messageCount.toLocaleString()} emails
-                    {entry.sizeBytes > 0 &&
-                      ` · ${formatBytes(entry.sizeBytes)}`}
-                  </span>
-                </div>
-              ))}
+                )}
+              </div>
+
+              <div>
+                <h3 className="text-sm font-semibold mb-2">Whitelist</h3>
+                {sortedWhitelistEntries.length === 0 ? (
+                  <p className="text-sm text-base-content/50">No whitelisted email or domain for this account.</p>
+                ) : (
+                  <div className="font-mono text-sm divide-y divide-base-300">
+                    {sortedWhitelistEntries.map((entry) => (
+                      <div
+                        key={entry.id}
+                        className="grid grid-cols-[1fr_auto] items-center gap-4 py-2"
+                      >
+                        <div className="flex items-center gap-3 min-w-0">
+                          <span className="text-base-content/40 shrink-0">
+                            {formatAbsoluteDate(Date.parse(entry.created_at))}
+                          </span>
+                          <span className="shrink-0 text-base-content/80">
+                            {entry.value}
+                          </span>
+                        </div>
+                        <button
+                          className="btn btn-ghost btn-xs"
+                          disabled={
+                            whitelistBusyValue === entry.value
+                          }
+                          onClick={() => handleWhitelistRemove(entry.value)}
+                        >
+                          {whitelistBusyValue === entry.value
+                            ? "Removing..."
+                            : "Remove"}
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </div>
       </div>
+
+      {/* Delete confirm modal */}
+      {whitelistModalOpen && (
+        <div className="modal modal-open">
+          <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+            <h3 className="font-bold text-lg mb-4">Add to whitelist</h3>
+            <div className="text-sm text-base-content/80 space-y-3">
+              <p>Select an email address or domain to whitelist.</p>
+              <div className="space-y-2">
+                {addableWhitelistOptions.map((option) => (
+                  <label key={option} className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm"
+                      checked={selectedWhitelistValues.has(option)}
+                      onChange={() => handleToggleWhitelistValue(option)}
+                    />
+                    <span className="font-mono text-sm break-all">{option}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+            <div className="modal-action mt-6">
+              <button
+                className="btn btn-sm btn-neutral"
+                onClick={() => {
+                  if (!whitelistLoading) {
+                    setWhitelistModalOpen(false);
+                    setSelectedWhitelistValues(new Set());
+                  }
+                }}
+                disabled={whitelistLoading}
+              >
+                Cancel
+              </button>
+              <button
+                className="btn btn-sm btn-primary"
+                onClick={handleWhitelistConfirm}
+                disabled={whitelistLoading || selectedWhitelistValues.size === 0}
+              >
+                {whitelistLoading ? (
+                  <span className="loading loading-spinner loading-xs" />
+                ) : (
+                  "Add"
+                )}
+              </button>
+            </div>
+          </div>
+          <form method="dialog" className="modal-backdrop">
+            <button
+              type="submit"
+              onClick={() => {
+                if (!whitelistLoading) {
+                  setWhitelistModalOpen(false);
+                  setSelectedWhitelistValues(new Set());
+                }
+              }}
+              disabled={whitelistLoading}
+            >
+              close
+            </button>
+          </form>
+        </div>
+      )}
+
+      {pendingDelete && (
+        <ActionModal
+          isOpen
+          title={pendingDelete === "all" ? "Delete all emails" : "Delete marketing emails"}
+          confirmLabel="Move to trash"
+          confirmVariant="primary"
+          onConfirm={handleDeleteConfirm}
+          onCancel={() => { if (!actionLoading) { setPendingDelete(null); setActiveItemId(null); } }}
+          loading={actionLoading}
+        >
+          {pendingDelete === "all" ? (
+            <p>Move all <strong>{vendor.message_count}</strong> emails from <strong>{displayName}</strong> to trash? This includes all email types.</p>
+          ) : (
+            <p>Move marketing emails from <strong>{displayName}</strong> to trash?</p>
+          )}
+        </ActionModal>
+      )}
 
       {/* Unsubscribe confirm modal */}
       {pendingUnsub && (
@@ -854,7 +1706,7 @@ export default function AccountDetail(): JSX.Element {
           confirmVariant="primary"
           onConfirm={handleUnsubscribeConfirm}
           onCancel={() => {
-            if (!actionLoading) setPendingUnsub(null);
+            if (!actionLoading) { setPendingUnsub(null); setActiveItemId(null); }
           }}
           loading={actionLoading}
         >
@@ -872,10 +1724,9 @@ export default function AccountDetail(): JSX.Element {
           onConfirm={handleUnsubResultDone}
           onCancel={() => {
             if (!actionLoading) {
-              setUnsubDone((prev) =>
-                new Set(prev).add(unsubResult.entry.method),
-              );
+              setDoneIds((prev) => new Set(prev).add(`unsub-${unsubResult.entry.method}`));
               setUnsubResult(null);
+              setActiveItemId(null);
             }
           }}
           loading={actionLoading}
@@ -908,7 +1759,7 @@ export default function AccountDetail(): JSX.Element {
           secondaryVariant="neutral"
           onSecondary={handleUnsubResultSpam}
           onCancel={() => {
-            if (!actionLoading) setUnsubResult(null);
+            if (!actionLoading) { setUnsubResult(null); setActiveItemId(null); }
           }}
           loading={actionLoading}
         >
@@ -966,7 +1817,7 @@ export default function AccountDetail(): JSX.Element {
           onSecondary={handleUnsubCheckSpam}
           onConfirm={handleUnsubCheckDone}
           onCancel={() => {
-            if (!actionLoading) setUnsubCheck(null);
+            if (!actionLoading) { setUnsubCheck(null); setActiveItemId(null); }
           }}
           loading={actionLoading}
         >

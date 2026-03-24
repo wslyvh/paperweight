@@ -75,16 +75,6 @@ function parseBreachInfo(vendor: Vendor, row: BreachRow): BreachInfo {
   return { breach, likelyAffected };
 }
 
-// SQL condition: vendors where first_seen predates a breach on their domain (user likely had an account).
-// first_seen is stored in milliseconds; strftime('%s', ...) returns seconds, so multiply by 1000.
-// Also matches subdomain vendors (e.g. kvibes.substack.com) against root-level breaches (substack.com).
-const HAS_BREACH_SQL = `EXISTS (
-  SELECT 1 FROM breaches.breaches b
-  WHERE (b.domain = vendors.root_domain OR vendors.root_domain LIKE '%.' || b.domain)
-  AND vendors.first_seen IS NOT NULL
-  AND vendors.first_seen < strftime('%s', b.breach_date) * 1000
-)`;
-
 // SQL condition: any vendor whose domain appears in the breach database, regardless of first_seen.
 const ON_BREACH_LIST_SQL = `EXISTS (
   SELECT 1 FROM breaches.breaches b
@@ -95,10 +85,11 @@ const ON_BREACH_LIST_SQL = `EXISTS (
 // This is category-independent: a streaming service that sends an "invoice" is high risk.
 export const COMPUTED_RISK_CASE = `
   CASE
-    WHEN category_id IN ('financial','healthcare','government') THEN 'high'
     WHEN EXISTS (
       SELECT 1 FROM messages m WHERE m.vendor_id = vendors.id AND m.type = 'order' LIMIT 1
     ) THEN 'high'
+    WHEN category_id IN ('financial','healthcare','government') AND has_account = 1 THEN 'high'
+    WHEN category_id IN ('financial','healthcare','government') AND has_account = 0 THEN 'medium'
     WHEN category_id = 'social' AND has_account = 1 THEN 'medium'
     WHEN category_id = 'social' THEN 'low'
     WHEN category_id = 'marketing' AND has_account = 1 THEN 'medium'
@@ -111,21 +102,24 @@ export const COMPUTED_RISK_CASE = `
 
 function riskWhereClause(risk: string): string {
   if (risk === "high") return `(
-    category_id IN ('financial','healthcare','government')
-    OR EXISTS (
+    EXISTS (
       SELECT 1 FROM messages m WHERE m.vendor_id = vendors.id AND m.type = 'order' LIMIT 1
     )
+    OR (category_id IN ('financial','healthcare','government') AND has_account = 1)
   )`;
   if (risk === "medium") return `(
     NOT EXISTS (SELECT 1 FROM messages m WHERE m.vendor_id = vendors.id AND m.type = 'order' LIMIT 1)
+    AND NOT (category_id IN ('financial','healthcare','government') AND has_account = 1)
     AND (
-      category_id IN ('shopping','communication','services')
+      (category_id IN ('financial','healthcare','government') AND has_account = 0)
+      OR category_id IN ('shopping','communication','services')
       OR (category_id = 'social' AND has_account = 1)
       OR (category_id = 'marketing' AND has_account = 1)
     )
   )`;
   if (risk === "low") return `(
     NOT EXISTS (SELECT 1 FROM messages m WHERE m.vendor_id = vendors.id AND m.type = 'order' LIMIT 1)
+    AND NOT (category_id IN ('financial','healthcare','government') AND has_account = 1)
     AND (
       category_id = 'entertainment'
       OR (category_id = 'social' AND has_account = 0)
@@ -145,8 +139,8 @@ const ACTIVITY_RANGES: Record<string, [number, number | null]> = {
 
 const VOLUME_RANGES: Record<string, [number, number | null]> = {
   oneoff: [0, 5],
-  low:    [6, 20],
-  medium: [21, 100],
+  low:    [6, 25],
+  medium: [26, 100],
   high:   [101, null],
 };
 
@@ -537,10 +531,11 @@ const VENDOR_SORT_COLUMNS = [
 // Mirrors COMPUTED_RISK_CASE logic directly — avoids nesting one CASE inside another.
 const RISK_SORT_EXPR = `
   CASE
-    WHEN category_id IN ('financial','healthcare','government') THEN 1
     WHEN EXISTS (
       SELECT 1 FROM messages m WHERE m.vendor_id = vendors.id AND m.type = 'order' LIMIT 1
     ) THEN 1
+    WHEN category_id IN ('financial','healthcare','government') AND has_account = 1 THEN 1
+    WHEN category_id IN ('financial','healthcare','government') THEN 2
     WHEN category_id IN ('shopping','communication','services') THEN 2
     WHEN category_id = 'social' AND has_account = 1 THEN 2
     WHEN category_id = 'marketing' AND has_account = 1 THEN 2
@@ -587,7 +582,7 @@ export function queryVendors(
     params.push(term, term);
   }
   if (query.hasAccount || query.filter === "accounts") {
-    conditions.push("has_account = 1");
+    conditions.push(`(has_account = 1 OR ${ON_BREACH_LIST_SQL})`);
   }
   if (query.filter === "lists") {
     conditions.push("has_marketing = 1");
@@ -637,11 +632,31 @@ export function queryVendors(
     conditions.push(`message_count <= ?`);
     params.push(query.maxMessages);
   }
-  if (query.breached && isBreachesAttached()) {
-    conditions.push(HAS_BREACH_SQL);
-  }
   if (query.onBreachList && isBreachesAttached()) {
     conditions.push(ON_BREACH_LIST_SQL);
+  }
+  if (query.activeSubscriptions) {
+    conditions.push(`EXISTS (
+      SELECT 1 FROM messages m
+      WHERE m.vendor_id = vendors.id
+        AND m.type = 'bulk'
+        AND m.date > (CAST(strftime('%s','now') AS INTEGER) * 1000 - 63115200000)
+        AND (m.status IS NULL OR m.status != 'unsubscribed')
+        AND m.unsubscribe_method IS NOT NULL
+        AND m.unsubscribe_method != 'none'
+        AND NOT EXISTS (
+          SELECT 1 FROM action_log al
+          WHERE al.vendor_id = m.vendor_id AND al.action_type = 'unsubscribed'
+        )
+        AND NOT EXISTS (
+          SELECT 1 FROM whitelist w
+          WHERE (w.value LIKE '%@%' AND m.sender_email = w.value)
+             OR (w.value NOT LIKE '%@%' AND (
+                   m.sender_email LIKE '%@' || w.value
+                OR m.sender_email LIKE '%.' || w.value
+             ))
+        )
+    )`);
   }
 
   // Exclude vendors on personal/webmail domains (always 1:1 contacts, never vendors)
@@ -653,7 +668,10 @@ export function queryVendors(
 
   // Vendors the user has explicitly acted on (reviewed or unsubscribed/trashed) are always
   // retained regardless of message state, since deleting emails shouldn't erase the record.
-  const actioned = `(status = 'reviewed' OR EXISTS (SELECT 1 FROM action_log al WHERE al.vendor_id = vendors.id LIMIT 1))`;
+  // Breached vendors are also always retained — domain-level breach risk is independent of
+  // how the emails were classified (e.g. a personal-looking welcome email from a breached service).
+  const breachBypass = query.onBreachList && isBreachesAttached() ? ` OR ${ON_BREACH_LIST_SQL}` : "";
+  const actioned = `(status = 'reviewed' OR EXISTS (SELECT 1 FROM action_log al WHERE al.vendor_id = vendors.id LIMIT 1)${breachBypass})`;
 
   // Exclude vendors where every message is personal (1:1 contacts with custom domains)
   conditions.push(`(EXISTS (
@@ -663,18 +681,34 @@ export function queryVendors(
     LIMIT 1
   ) OR ${actioned})`);
 
-  conditions.push(`(EXISTS (
-    SELECT 1 FROM messages m
-    WHERE m.vendor_id = vendors.id
-    AND NOT EXISTS (
-      SELECT 1 FROM whitelist w
-      WHERE (w.value LIKE '%@%' AND m.sender_email = w.value)
-         OR (w.value NOT LIKE '%@%' AND (
-               m.sender_email LIKE '%@' || w.value
-            OR m.sender_email LIKE '%.' || w.value
-         ))
-    )
-  ) OR ${actioned})`);
+  if (query.showWhitelisted) {
+    conditions.push(`(NOT EXISTS (
+      SELECT 1 FROM messages m
+      WHERE m.vendor_id = vendors.id
+      AND NOT EXISTS (
+        SELECT 1 FROM whitelist w
+        WHERE (w.value LIKE '%@%' AND m.sender_email = w.value)
+           OR (w.value NOT LIKE '%@%' AND (
+                 m.sender_email LIKE '%@' || w.value
+              OR m.sender_email LIKE '%.' || w.value
+           ))
+      )
+    ) AND (status IS NULL OR status != 'reviewed')
+      AND NOT EXISTS (SELECT 1 FROM action_log al WHERE al.vendor_id = vendors.id LIMIT 1))`);
+  } else {
+    conditions.push(`(EXISTS (
+      SELECT 1 FROM messages m
+      WHERE m.vendor_id = vendors.id
+      AND NOT EXISTS (
+        SELECT 1 FROM whitelist w
+        WHERE (w.value LIKE '%@%' AND m.sender_email = w.value)
+           OR (w.value NOT LIKE '%@%' AND (
+                 m.sender_email LIKE '%@' || w.value
+              OR m.sender_email LIKE '%.' || w.value
+           ))
+      )
+    ) OR ${actioned})`);
+  }
 
   const whereClause = conditions.join(" AND ");
   const col = VENDOR_SORT_COLUMNS.includes(sortBy ?? "") ? sortBy : "message_count";
@@ -800,6 +834,10 @@ export function getVendorDetail(groupKey: string): VendorDetail {
     )
     .all(vendor.id) as Message[];
 
+  const { bulkMessageCount } = d
+    .prepare(`SELECT COUNT(*) as bulkMessageCount FROM messages WHERE vendor_id = ? AND type = 'bulk'`)
+    .get(vendor.id) as { bulkMessageCount: number };
+
   const accountMessages = d
     .prepare(
       `SELECT * FROM messages WHERE vendor_id = ? AND type IN ('transactional', 'order') ORDER BY date DESC LIMIT 50`
@@ -881,5 +919,5 @@ export function getVendorDetail(groupKey: string): VendorDetail {
     actionedAt: r.actioned_at,
   }));
 
-  return { vendor: enrichedVendor, company, senders, bulkMessages, accountMessages, allMessages, activityLog };
+  return { vendor: enrichedVendor, company, senders, bulkMessages, bulkMessageCount, accountMessages, allMessages, activityLog };
 }

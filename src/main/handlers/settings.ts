@@ -2,7 +2,7 @@ import { ipcMain, shell } from "electron";
 import { IPC } from "@shared/ipc";
 import { isLicenseKey, isString } from "@shared/validation";
 import { activateLicense, getLicenseStatus, deleteLicense, applyAutoLaunch } from "../services/settings";
-import { getSetting } from "../services/settings";
+import { getSetting, saveSetting } from "../services/settings";
 import { getGlobalSetting, saveGlobalSetting } from "../services/globalSettings";
 import { loadCredentials } from "../credentials";
 import { dataLog } from "../utils/log";
@@ -16,6 +16,7 @@ function getSettings() {
     providerType: creds?.providerType || "none",
     autoLaunch: autoLaunchVal !== undefined ? autoLaunchVal : registered,
     launchMinimized: launchMinimizedVal !== undefined ? launchMinimizedVal : registered,
+    userName: getSetting("userName") ?? "",
   };
 }
 
@@ -59,6 +60,11 @@ export function registerSettingsHandlers(): void {
       const autoLaunch = getGlobalSetting("autoLaunch") ?? false;
       const minimized = getGlobalSetting("launchMinimized") ?? false;
       applyAutoLaunch(autoLaunch, minimized);
+    }
+
+    if (s.userName !== undefined) {
+      if (typeof s.userName !== "string") throw new Error("Invalid userName");
+      saveSetting("userName", s.userName);
     }
   });
 

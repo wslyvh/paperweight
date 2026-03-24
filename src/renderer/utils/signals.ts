@@ -10,7 +10,7 @@ export function getActivitySignal(lastSeen?: number): string {
 
 export function getVolumeSignal(count: number): string {
   if (count <= 5)   return "oneoff";
-  if (count <= 20)  return "low";
+  if (count <= 25)  return "low";
   if (count <= 100) return "medium";
   return "high";
 }
@@ -18,8 +18,8 @@ export function getVolumeSignal(count: number): string {
 export const ACTIVITY_BADGE: Record<string, { label: string; color: string } | null> = {
   recent:  null,
   active:  null,
-  inactive:{ label: "Inactive",   color: "badge-info" },
-  stale:   { label: "Stale",      color: "badge-info" },
-  dead:    { label: "Ancient",    color: "badge-info" },
+  inactive:{ label: "1-2 years ago", color: "badge-secondary" },
+  stale:   { label: "2+ years ago",  color: "badge-secondary" },
+  dead:    { label: "5+ years ago",  color: "badge-secondary" },
   unknown: null,
 };

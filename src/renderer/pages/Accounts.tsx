@@ -14,11 +14,11 @@ const RISK_BORDER: Record<string, string> = {
 };
 
 const SORT_OPTIONS = [
+  { value: "risk",            label: "Risk" },
   { value: "message_count",   label: "Most emails" },
   { value: "last_seen",       label: "Latest" },
   { value: "last_seen_asc",   label: "Oldest" },
   { value: "name",            label: "Name" },
-  { value: "risk",            label: "Risk" },
 ];
 
 interface Preset {
@@ -49,22 +49,33 @@ interface FilterGroupProps {
   labels: string[];
   value: string;
   onChange: (val: string) => void;
+  colors?: string[];
 }
 
-function FilterGroup({ label, options, labels, value, onChange }: FilterGroupProps) {
+function FilterGroup({ label, options, labels, value, onChange, colors }: FilterGroupProps) {
   return (
     <div>
       <div className="text-sm text-base-content/40 mb-1.5">{label}</div>
       <div className="flex gap-1 flex-wrap">
-        {options.map((opt, i) => (
-          <button
-            key={opt}
-            className={`badge badge-sm cursor-pointer ${value === opt ? "badge-neutral" : "border border-current text-base-content/60"}`}
-            onClick={() => onChange(value === opt ? "" : opt)}
-          >
-            {labels[i]}
-          </button>
-        ))}
+        {options.map((opt, i) => {
+          const color = colors?.[i];
+          const cls = color
+            ? value === opt
+              ? `badge-${color}`
+              : `badge-soft badge-${color}`
+            : value === opt
+            ? "badge-neutral"
+            : "badge-soft";
+          return (
+            <button
+              key={opt}
+              className={`badge badge-sm cursor-pointer ${cls}`}
+              onClick={() => onChange(value === opt ? "" : opt)}
+            >
+              {labels[i]}
+            </button>
+          );
+        })}
       </div>
     </div>
   );
@@ -82,7 +93,6 @@ interface AccountsState {
   activityFilter: string;
   dataTypeFilter: string;
   volumeFilter: string;
-  breachedFilter: boolean;
   anyBreachFilter: boolean;
   showReviewed: boolean;
 }
@@ -106,13 +116,12 @@ export default function Accounts(): JSX.Element {
   const [page, setPage] = useState(restore?.page ?? 1);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState(restore?.search ?? "");
-  const [sortBy, setSortBy] = useState(restore?.sortBy ?? initialPreset?.defaultSort ?? "message_count");
+  const [sortBy, setSortBy] = useState(restore?.sortBy ?? initialPreset?.defaultSort ?? "risk");
   const [riskFilter, setRiskFilter] = useState(restore?.riskFilter ?? (initialPreset ? (initialPreset.risk ?? "") : ""));
   const [activityFilter, setActivityFilter] = useState(restore?.activityFilter ?? (initialPreset ? (initialPreset.activity ?? "") : ""));
   const [dataTypeFilter, setDataTypeFilter] = useState(restore?.dataTypeFilter ?? initialPreset?.dataType ?? "");
   const [volumeFilter, setVolumeFilter] = useState(restore?.volumeFilter ?? initialPreset?.volume ?? "");
-  const [breachedFilter, setBreachedFilter] = useState(restore?.breachedFilter ?? !!(initialPreset?.breached));
-  const [anyBreachFilter, setAnyBreachFilter] = useState(restore?.anyBreachFilter ?? false);
+  const [anyBreachFilter, setAnyBreachFilter] = useState(restore?.anyBreachFilter ?? !!(initialPreset?.breached));
   const [showReviewed, setShowReviewed] = useState(restore?.showReviewed ?? false);
   const [showSort, setShowSort] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
@@ -131,7 +140,7 @@ export default function Accounts(): JSX.Element {
       (p.activity ?? "") === activityFilter &&
       (p.dataType ?? "") === dataTypeFilter &&
       (p.volume ?? "") === volumeFilter &&
-      !!(p.breached) === breachedFilter
+      !!(p.breached) === anyBreachFilter
     );
   }
 
@@ -141,16 +150,14 @@ export default function Accounts(): JSX.Element {
       setActivityFilter("");
       setDataTypeFilter("");
       setVolumeFilter("");
-      setBreachedFilter(false);
       setAnyBreachFilter(false);
-      setSortBy("message_count");
+      setSortBy("risk");
     } else {
       setRiskFilter(p.risk ?? "");
       setActivityFilter(p.activity ?? "");
       setDataTypeFilter(p.dataType ?? "");
       setVolumeFilter(p.volume ?? "");
-      setBreachedFilter(!!(p.breached));
-      setAnyBreachFilter(false);
+      setAnyBreachFilter(!!(p.breached));
       setSortBy(p.defaultSort ?? "message_count");
       setShowReviewed(false);
     }
@@ -165,7 +172,6 @@ export default function Accounts(): JSX.Element {
       setActivityFilter("");
       setDataTypeFilter("");
       setVolumeFilter("");
-      setBreachedFilter(false);
       setAnyBreachFilter(false);
       setShowReviewed(true);
     }
@@ -178,16 +184,15 @@ export default function Accounts(): JSX.Element {
     setActivityFilter("");
     setDataTypeFilter("");
     setVolumeFilter("");
-    setBreachedFilter(false);
     setAnyBreachFilter(false);
     setShowReviewed(false);
-    setSortBy("message_count");
+    setSortBy("risk");
     setPage(1);
   }
 
   const hasAnyFilter = !!(
     search || riskFilter || activityFilter || dataTypeFilter ||
-    volumeFilter || breachedFilter || anyBreachFilter || showReviewed || sortBy !== "message_count" || page > 1
+    volumeFilter || anyBreachFilter || showReviewed || sortBy !== "risk" || page > 1
   );
 
   function dismissBanner() {
@@ -201,10 +206,10 @@ export default function Accounts(): JSX.Element {
   useEffect(() => {
     navigate(pathname, {
       replace: true,
-      state: { restore: { page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, breachedFilter, anyBreachFilter, showReviewed } satisfies AccountsState },
+      state: { restore: { page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, anyBreachFilter, showReviewed } satisfies AccountsState },
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, breachedFilter, anyBreachFilter, showReviewed]);
+  }, [page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, anyBreachFilter, showReviewed]);
 
   useEffect(() => {
     function handler(e: MouseEvent) {
@@ -267,20 +272,20 @@ export default function Accounts(): JSX.Element {
       limit,
       sortBy: actualSortBy,
       sortDir: sortBy === "name" || sortBy === "last_seen_asc" || sortBy === "risk" ? "ASC" : "DESC",
+      filter: "accounts",
       search: search || undefined,
       risk: riskFilter || undefined,
       activity: activityFilter || undefined,
       dataType: dataTypeFilter || undefined,
       volume: volumeFilter || undefined,
       showReviewed,
-      breached: breachedFilter || undefined,
       onBreachList: anyBreachFilter || undefined,
     };
     const data = await window.api.queryVendors(query);
     setVendors(data.vendors);
     setTotal(data.total);
     setLoading(false);
-  }, [page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, showReviewed, breachedFilter, anyBreachFilter]);
+  }, [page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, showReviewed, anyBreachFilter]);
 
   useEffect(() => {
     fetchVendors();
@@ -302,12 +307,35 @@ export default function Accounts(): JSX.Element {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-bold">Accounts</h1>
+      <div>
+        <h1 className="text-2xl font-bold">Accounts</h1>
+        <p className="text-sm text-base-content/50 mt-1">Companies that likely hold your personal data, like orders, accounts, invoices, and more. Risk is based on data type and breach history.</p>
+      </div>
 
       {/* Beta banner */}
       {!bannerDismissed && (
         <div className="alert bg-base-200 text-sm py-2">
-          <span>Accounts view is in beta. Email analysis may not be 100% accurate.</span>
+          <span>
+            Account detection improves with more email data. Help us improve! Please{" "}
+            <button
+              className="link link-primary"
+              onClick={() =>
+                window.api.openExternal("https://github.com/wslyvh/paperweight/issues")
+              }
+            >
+              share feedback
+            </button>
+            {" "}
+            or{" "}
+            <button
+              className="link link-primary"
+              onClick={() =>
+                window.api.openExternal("mailto:hello@paperweight.email")
+              }
+            >
+              contact us
+            </button>.
+          </span>
           <button onClick={dismissBanner} className="btn btn-xs btn-ghost ml-auto">×</button>
         </div>
       )}
@@ -374,6 +402,56 @@ export default function Accounts(): JSX.Element {
             </div>
           )}
         </div>
+
+        {/* Filter dropdown */}
+        <div className="relative" ref={filterRef}>
+          <button className="btn btn-sm btn-ghost btn-circle" onClick={() => setShowFilters(f => !f)}>
+            <SlidersHorizontal className="w-4 h-4" />
+          </button>
+          {showFilters && (
+            <div className="absolute right-0 top-full z-20 bg-base-200 rounded-xl shadow-lg mt-1 p-4 min-w-64 space-y-3">
+              <FilterGroup
+                label="Risk"
+                options={["high", "medium", "low"]}
+                labels={["High", "Medium", "Low"]}
+                colors={["error", "warning", "success"]}
+                value={riskFilter}
+                onChange={v => { setRiskFilter(v); setShowReviewed(false); setPage(1); }}
+              />
+              <FilterGroup
+                label="Type"
+                options={["has_orders"]}
+                labels={["Orders"]}
+                value={dataTypeFilter}
+                onChange={v => { setDataTypeFilter(v); setShowReviewed(false); setPage(1); }}
+              />
+              <FilterGroup
+                label="Activity"
+                options={["recent", "active", "inactive", "stale", "dead"]}
+                labels={["Recent (<3m)", "Active (<1y)", "1-2 years ago", "2+ years ago", "5+ years ago"]}
+                colors={["secondary", "secondary", "secondary", "secondary", "secondary"]}
+                value={activityFilter}
+                onChange={v => { setActivityFilter(v); setShowReviewed(false); setPage(1); }}
+              />
+              <FilterGroup
+                label="Volume"
+                options={["oneoff", "low", "medium", "high"]}
+                labels={["One-off (≤5)", "Low (≤25)", "Medium (≤100)", "High (100+)"]}
+                value={volumeFilter}
+                onChange={v => { setVolumeFilter(v); setShowReviewed(false); setPage(1); }}
+              />
+              <div className="pt-2 border-t border-base-content/10">
+                <div className="text-sm text-base-content/40 mb-1.5">Breach</div>
+                <button
+                  className={`badge badge-sm cursor-pointer ${anyBreachFilter ? "badge-warning" : "badge-soft badge-warning"}`}
+                  onClick={() => { setAnyBreachFilter(v => !v); setShowReviewed(false); setPage(1); }}
+                >
+                  ⚠️ On breach list
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Row 2 — presets + filter icon */}
@@ -398,56 +476,6 @@ export default function Accounts(): JSX.Element {
           </button>
         ))}
 
-        {/* Filter icon */}
-        <div className="relative ml-auto" ref={filterRef}>
-          <button
-            className="btn btn-sm btn-ghost btn-circle"
-            onClick={() => setShowFilters(f => !f)}
-          >
-            <SlidersHorizontal className="w-4 h-4" />
-          </button>
-          {showFilters && (
-            <div className="absolute right-0 top-full z-20 bg-base-200 rounded-xl shadow-lg mt-1 p-4 min-w-64 space-y-3">
-              <FilterGroup
-                label="Risk"
-                options={["high", "medium", "low"]}
-                labels={["High", "Medium", "Low"]}
-                value={riskFilter}
-                onChange={v => { setRiskFilter(v); setShowReviewed(false); setBreachedFilter(false); setPage(1); }}
-              />
-              <FilterGroup
-                label="Type"
-                options={["marketing_only", "has_account", "has_orders"]}
-                labels={["Bulk", "Transactional", "Orders"]}
-                value={dataTypeFilter}
-                onChange={v => { setDataTypeFilter(v); setShowReviewed(false); setBreachedFilter(false); setPage(1); }}
-              />
-              <FilterGroup
-                label="Activity"
-                options={["recent", "active", "inactive", "stale", "dead"]}
-                labels={["Recent (<3m)", "Active (<1y)", "Inactive (1–2y)", "Stale (2y+)", "Ancient (5y+)"]}
-                value={activityFilter}
-                onChange={v => { setActivityFilter(v); setShowReviewed(false); setBreachedFilter(false); setPage(1); }}
-              />
-              <FilterGroup
-                label="Volume"
-                options={["oneoff", "low", "medium", "high"]}
-                labels={["One-off (≤5)", "Low (≤20)", "Medium (≤100)", "High (100+)"]}
-                value={volumeFilter}
-                onChange={v => { setVolumeFilter(v); setShowReviewed(false); setBreachedFilter(false); setPage(1); }}
-              />
-              <div>
-                <div className="text-sm text-base-content/40 mb-1.5">Breach</div>
-                <button
-                  className={`badge badge-sm cursor-pointer ${anyBreachFilter ? "badge-neutral" : "border border-current text-base-content/60"}`}
-                  onClick={() => { const next = !anyBreachFilter; setAnyBreachFilter(next); if (next) setBreachedFilter(false); setShowReviewed(false); setPage(1); }}
-                >
-                  On breach list
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
       </div>
 
       {loading ? (
@@ -473,7 +501,7 @@ export default function Accounts(): JSX.Element {
             {vendors.map((vendor) => {
               const displayName = vendor.name || vendor.root_domain || "Unknown";
               const computedRisk = vendor.risk_level ?? "unknown";
-              const groupKey = vendor.company_slug ?? vendor.root_domain ?? String(vendor.id);
+              const groupKey = vendor.root_domain ?? vendor.company_slug ?? String(vendor.id);
               const activitySignal = getActivitySignal(vendor.last_seen);
               const activityBadgeInfo = ACTIVITY_BADGE[activitySignal] ?? null;
 
@@ -485,7 +513,7 @@ export default function Accounts(): JSX.Element {
                   <div
                     className="p-4 cursor-pointer hover:bg-base-300 transition-colors rounded-2xl group"
                     onClick={() => navigate(`/accounts/${encodeURIComponent(groupKey)}`, {
-                      state: { accountsState: { page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, breachedFilter, anyBreachFilter, showReviewed } satisfies AccountsState },
+                      state: { accountsState: { page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, anyBreachFilter, showReviewed } satisfies AccountsState },
                     })}
                   >
                     <div className="flex items-center gap-3 w-full">

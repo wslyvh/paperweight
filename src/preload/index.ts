@@ -25,8 +25,6 @@ const api: ElectronAPI = {
 
   getDashboardTrend: () => ipcRenderer.invoke(IPC.getDashboardTrend),
 
-  getAttentionStats: () => ipcRenderer.invoke(IPC.getAttentionStats),
-
   queryVendors: (query) => ipcRenderer.invoke(IPC.queryVendors, query),
 
   getSettings: () => ipcRenderer.invoke(IPC.getSettings),
@@ -105,8 +103,8 @@ const api: ElectronAPI = {
   executeRfc8058: (url) =>
     ipcRenderer.invoke(IPC.executeRfc8058, url),
 
-  trashVendorMessages: (vendorId) =>
-    ipcRenderer.invoke(IPC.trashVendorMessages, vendorId),
+  trashVendorMessages: (vendorId, types) =>
+    ipcRenderer.invoke(IPC.trashVendorMessages, vendorId, types),
 
   reportSpamVendor: (vendorId) =>
     ipcRenderer.invoke(IPC.reportSpamVendor, vendorId),

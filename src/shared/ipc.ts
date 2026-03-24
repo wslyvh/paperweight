@@ -2,7 +2,6 @@ import type {
   AccountInfo,
   AccountSummary,
   ActivityEntry,
-  AttentionStats,
   DashboardStats,
   ChartTrend,
   EmailConnection,
@@ -10,6 +9,7 @@ import type {
   ImpactStats,
   LicenseStatus,
   Message,
+  MessageType,
   RiskCounts,
   Settings,
   SupportInfo,
@@ -32,7 +32,6 @@ export const IPC = {
   getSyncStatus: "get-sync-status",
   getDashboardStats: "get-dashboard-stats",
   getDashboardTrend: "get-dashboard-trend",
-  getAttentionStats: "get-attention-stats",
   queryVendors: "query-vendors",
   getSettings: "get-settings",
   saveSettings: "save-settings",
@@ -87,7 +86,6 @@ export interface ElectronAPI {
   getSyncStatus: () => Promise<SyncStatus>;
   getDashboardStats: () => Promise<DashboardStats>;
   getDashboardTrend: () => Promise<ChartTrend>;
-  getAttentionStats: () => Promise<AttentionStats>;
   queryVendors: (query: VendorQuery) => Promise<{ vendors: Vendor[]; total: number }>;
   getSettings: () => Promise<Settings>;
   saveSettings: (settings: Partial<Settings>) => Promise<void>;
@@ -116,7 +114,7 @@ export interface ElectronAPI {
   deleteVendor: (vendorId: number) => Promise<void>;
   getAllUnsubscribeMethods: (vendorId: number) => Promise<UnsubscribeEntry[]>;
   executeRfc8058: (url: string) => Promise<{ success: boolean; error?: string }>;
-  trashVendorMessages: (vendorId: number) => Promise<{ success: boolean; error?: string }>;
+  trashVendorMessages: (vendorId: number, types?: MessageType[]) => Promise<{ success: boolean; error?: string }>;
   reportSpamVendor: (vendorId: number) => Promise<{ success: boolean; error?: string }>;
   getImpactStats: () => Promise<ImpactStats>;
   getRiskCounts: () => Promise<RiskCounts>;

@@ -1,8 +1,8 @@
 import { useEffect, useState, useCallback, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import type { Vendor, VendorQuery, UnsubscribeEntry } from "@shared/types";
 import { formatRelativeDate } from "@shared/formatting";
-import { ArrowUpDown, BellOff, ChevronLeft, ChevronRight, Flag, Trash2 } from "lucide-react";
+import { ArrowUpDown, BadgeCheck, BellOff, ChevronLeft, ChevronRight, Flag, SlidersHorizontal, Trash2 } from "lucide-react";
 import ActionModal from "../components/ActionModal";
 
 // ---------- types ----------
@@ -48,6 +48,56 @@ interface BatchState {
   succeeded: number[];
   failed: string[];
 }
+
+// ---------- filter group ----------
+
+interface FilterGroupProps {
+  label: string;
+  options: string[];
+  labels: string[];
+  value: string;
+  onChange: (val: string) => void;
+  colors?: string[];
+}
+
+function FilterGroup({ label, options, labels, value, onChange, colors }: FilterGroupProps) {
+  return (
+    <div>
+      <div className="text-sm text-base-content/40 mb-1.5">{label}</div>
+      <div className="flex gap-1 flex-wrap">
+        {options.map((opt, i) => {
+          const color = colors?.[i];
+          const cls = color
+            ? value === opt
+              ? `badge-${color}`
+              : `badge-soft badge-${color}`
+            : value === opt
+            ? "badge-neutral"
+            : "badge-soft";
+          return (
+            <button
+              key={opt}
+              className={`badge badge-sm cursor-pointer ${cls}`}
+              onClick={() => onChange(value === opt ? "" : opt)}
+            >
+              {labels[i]}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// ---------- presets ----------
+
+const MAIL_PRESETS = [
+  { id: "whitelisted", label: "Whitelisted" },
+  { id: "priorities",  label: "Priorities" },
+  { id: "breached",    label: "Breached" },
+] as const;
+
+type MailPresetId = typeof MAIL_PRESETS[number]["id"];
 
 // ---------- helpers ----------
 
@@ -108,14 +158,29 @@ const BATCH_LABELS: Record<
 
 // ---------- component ----------
 
+interface MailState {
+  page: number;
+  sortBy: string;
+  search: string;
+  volumeFilter: string;
+  activityFilter: string;
+  whitelistedFilter: boolean;
+  priorityFilter: boolean;
+  breachedFilter: boolean;
+}
+
 export default function Mail(): JSX.Element {
   const navigate = useNavigate();
+  const location = useLocation();
+  const locState = location.state as { preset?: MailPresetId; restore?: MailState } | null;
+  const restore = locState?.restore;
+
   const [vendors, setVendors] = useState<Vendor[]>([]);
   const [total, setTotal] = useState(0);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(restore?.page ?? 1);
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
-  const [sortBy, setSortBy] = useState("message_count");
+  const [search, setSearch] = useState(restore?.search ?? "");
+  const [sortBy, setSortBy] = useState(restore?.sortBy ?? "message_count");
   const [expandedRows, setExpandedRows] = useState<Set<number>>(new Set());
   const [messagesCache, setMessagesCache] = useState<
     Map<number, Array<{ id: string; subject?: string; date: number }>>
@@ -132,12 +197,19 @@ export default function Mail(): JSX.Element {
   const [actionLoading, setActionLoading] = useState(false);
 
   const [showSort, setShowSort] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
+  const [volumeFilter, setVolumeFilter] = useState(restore?.volumeFilter ?? "");
+  const [activityFilter, setActivityFilter] = useState(restore?.activityFilter ?? "");
+  const [whitelistedFilter, setWhitelistedFilter] = useState(restore?.whitelistedFilter ?? locState?.preset === "whitelisted");
+  const [priorityFilter, setPriorityFilter] = useState(restore?.priorityFilter ?? locState?.preset === "priorities");
+  const [breachedFilter, setBreachedFilter] = useState(restore?.breachedFilter ?? locState?.preset === "breached");
 
   // Batch selection
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
   const [batch, setBatch] = useState<BatchState | null>(null);
   const selectAllRef = useRef<HTMLInputElement>(null);
   const sortRef = useRef<HTMLDivElement>(null);
+  const filterRef = useRef<HTMLDivElement>(null);
   const removedIdsRef = useRef<Set<number>>(new Set());
 
   const limit = 25;
@@ -159,13 +231,18 @@ export default function Mail(): JSX.Element {
             : "DESC",
         search: search || undefined,
         filter: "lists",
+        activity: activityFilter || undefined,
+        volume: volumeFilter || undefined,
+        activeSubscriptions: priorityFilter || undefined,
+        onBreachList: breachedFilter || undefined,
+        showWhitelisted: whitelistedFilter || undefined,
       };
       const data = await window.api.queryVendors(query);
       setVendors(data.vendors.filter((v) => !removedIdsRef.current.has(v.id)));
       setTotal(data.total);
       setLoading(false);
     },
-    [page, sortBy, search],
+    [page, sortBy, search, activityFilter, volumeFilter, priorityFilter, breachedFilter, whitelistedFilter],
   );
 
   useEffect(() => {
@@ -212,11 +289,16 @@ export default function Mail(): JSX.Element {
     removedIdsRef.current = new Set();
     setSearch("");
     setSortBy("message_count");
+    setVolumeFilter("");
+    setActivityFilter("");
+    setWhitelistedFilter(false);
+    setPriorityFilter(false);
+    setBreachedFilter(false);
     setPage(1);
     setSelectedIds(new Set());
   };
 
-  const hasAnyFilter = !!(search || sortBy !== "message_count" || page > 1);
+  const hasAnyFilter = !!(search || sortBy !== "message_count" || volumeFilter || activityFilter || whitelistedFilter || priorityFilter || breachedFilter || page > 1);
 
   const handleSortChange = (value: string) => {
     removedIdsRef.current = new Set();
@@ -236,10 +318,23 @@ export default function Mail(): JSX.Element {
       if (showSort && sortRef.current && !sortRef.current.contains(e.target as Node)) {
         setShowSort(false);
       }
+      if (showFilters && filterRef.current && !filterRef.current.contains(e.target as Node)) {
+        setShowFilters(false);
+      }
     }
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
-  }, [showSort]);
+  }, [showSort, showFilters]);
+
+  // Keep history entry in sync so navigate(-1) restores filter state
+  const pathname = location.pathname;
+  useEffect(() => {
+    navigate(pathname, {
+      replace: true,
+      state: { restore: { page, sortBy, search, volumeFilter, activityFilter, whitelistedFilter, priorityFilter, breachedFilter } satisfies MailState },
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page, sortBy, search, volumeFilter, activityFilter, whitelistedFilter, priorityFilter, breachedFilter]);
 
   // ---------- select-all ----------
 
@@ -385,7 +480,7 @@ export default function Mail(): JSX.Element {
             continue;
           }
           await window.api.markVendorUnsubscribed(vendor.id);
-          if (trashAlso) await window.api.trashVendorMessages(vendor.id);
+          if (trashAlso) await window.api.trashVendorMessages(vendor.id, ["bulk"]);
           succeeded.push(vendor.id);
         } else if (kind === "spam") {
           const result = await window.api.reportSpamVendor(vendor.id);
@@ -393,10 +488,10 @@ export default function Mail(): JSX.Element {
             failed.push(name);
             continue;
           }
-          if (trashAlso) await window.api.trashVendorMessages(vendor.id);
+          if (trashAlso) await window.api.trashVendorMessages(vendor.id, ["bulk"]);
           succeeded.push(vendor.id);
         } else if (kind === "trash") {
-          const result = await window.api.trashVendorMessages(vendor.id);
+          const result = await window.api.trashVendorMessages(vendor.id, ["bulk"]);
           if (!result.success) {
             failed.push(name);
             continue;
@@ -478,7 +573,7 @@ export default function Mail(): JSX.Element {
     setActionLoading(true);
     try {
       if (trashAlso) {
-        const result = await window.api.trashVendorMessages(vendor.id);
+        const result = await window.api.trashVendorMessages(vendor.id, ["bulk"]);
         if (!result.success) setToast(result.error ?? "Unsubscribed, but couldn't move emails to trash.");
       }
       setUnsubResult(null);
@@ -494,7 +589,7 @@ export default function Mail(): JSX.Element {
     setActionLoading(true);
     try {
       await window.api.reportSpamVendor(vendor.id);
-      if (trashAlso) await window.api.trashVendorMessages(vendor.id);
+      if (trashAlso) await window.api.trashVendorMessages(vendor.id, ["bulk"]);
       setUnsubResult(null);
       removeVendor(vendor.id);
     } finally {
@@ -522,7 +617,7 @@ export default function Mail(): JSX.Element {
     try {
       await window.api.markVendorUnsubscribed(vendor.id);
       if (trashAlso) {
-        const result = await window.api.trashVendorMessages(vendor.id);
+        const result = await window.api.trashVendorMessages(vendor.id, ["bulk"]);
         if (!result.success) setToast(result.error ?? "Unsubscribed, but couldn't move emails to trash.");
       }
       setUnsubCheck(null);
@@ -558,7 +653,7 @@ export default function Mail(): JSX.Element {
         setModalError(spamResult.error ?? "Failed to report spam.");
         return;
       }
-      if (trashAlso) await window.api.trashVendorMessages(vendor.id);
+      if (trashAlso) await window.api.trashVendorMessages(vendor.id, ["bulk"]);
       setModal(null);
       setModalError(null);
       removeVendor(vendor.id);
@@ -573,7 +668,7 @@ export default function Mail(): JSX.Element {
     setActionLoading(true);
     setModalError(null);
     try {
-      const result = await window.api.trashVendorMessages(vendor.id);
+      const result = await window.api.trashVendorMessages(vendor.id, ["bulk"]);
       if (!result.success) {
         setModalError(result.error ?? "Failed to move emails to trash.");
         return;
@@ -1004,7 +1099,10 @@ export default function Mail(): JSX.Element {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-bold">Mailing lists</h1>
+      <div>
+        <h1 className="text-2xl font-bold">Mailing lists</h1>
+        <p className="text-sm text-base-content/50 mt-1">Newsletters and promotional emails you can unsubscribe from. We unsubscribe automatically where possible, otherwise open the link for you.</p>
+      </div>
 
       {toast && (
         <div role="alert" className="alert alert-warning">
@@ -1023,7 +1121,7 @@ export default function Mail(): JSX.Element {
           onChange={(e) => handleSearchChange(e.target.value)}
         />
         <span className="text-sm text-base-content/60 shrink-0">
-          {total} list{total !== 1 ? "s" : ""} to review
+          {total.toLocaleString()} list{total !== 1 ? "s" : ""}
         </span>
 
         {hasAnyFilter && (
@@ -1074,6 +1172,74 @@ export default function Mail(): JSX.Element {
             </div>
           )}
         </div>
+
+        {/* Filter dropdown */}
+        <div className="relative" ref={filterRef}>
+          <button className="btn btn-sm btn-ghost btn-circle" onClick={() => setShowFilters(f => !f)}>
+            <SlidersHorizontal className="w-4 h-4" />
+          </button>
+          {showFilters && (
+            <div className="absolute right-0 top-full z-20 bg-base-200 rounded-xl shadow-lg mt-1 p-4 min-w-64 space-y-3">
+              <FilterGroup
+                label="Volume"
+                options={["oneoff", "low", "medium", "high"]}
+                labels={["One-off (≤5)", "Low (≤25)", "Medium (≤100)", "High (100+)"]}
+                value={volumeFilter}
+                onChange={v => { setVolumeFilter(v); setPage(1); }}
+              />
+              <FilterGroup
+                label="Activity"
+                options={["active", "inactive", "stale"]}
+                labels={["Active (<1y)", "1-2 years ago", "2+ years ago"]}
+                colors={["secondary", "secondary", "secondary"]}
+                value={activityFilter}
+                onChange={v => { setActivityFilter(v); setPage(1); }}
+              />
+              <div className="pt-2 border-t border-base-content/10">
+                <div className="text-sm text-base-content/40 mb-1.5">Breach</div>
+                <button
+                  className={`badge badge-sm cursor-pointer ${breachedFilter ? "badge-warning" : "badge-soft badge-warning"}`}
+                  onClick={() => { setBreachedFilter(v => !v); setPriorityFilter(false); setWhitelistedFilter(false); setPage(1); }}
+                >
+                  ⚠️ On breach list
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Row 2 — presets */}
+      <div className="flex items-center gap-2">
+        <button
+          className={`badge badge-sm cursor-pointer gap-1 ${whitelistedFilter ? "badge-accent" : "badge-soft badge-accent"}`}
+          onClick={() => { const next = !whitelistedFilter; setWhitelistedFilter(next); setPriorityFilter(false); setBreachedFilter(false); setPage(1); setSelectedIds(new Set()); }}
+        >
+          <BadgeCheck className="w-3 h-3" />
+          Whitelisted
+        </button>
+
+        <div className="w-px h-3 bg-base-content/20" />
+
+        {MAIL_PRESETS.filter(p => p.id !== "whitelisted").map(p => {
+          const active = p.id === "priorities" ? priorityFilter : breachedFilter;
+          return (
+            <button
+              key={p.id}
+              className={`badge badge-sm cursor-pointer ${active ? "badge-accent" : "badge-soft badge-accent"}`}
+              onClick={() => {
+                const next = !active;
+                setWhitelistedFilter(false);
+                setPriorityFilter(p.id === "priorities" ? next : false);
+                setBreachedFilter(p.id === "breached" ? next : false);
+                setPage(1);
+                setSelectedIds(new Set());
+              }}
+            >
+              {p.label}
+            </button>
+          );
+        })}
       </div>
 
       {loading ? (
@@ -1110,45 +1276,39 @@ export default function Mail(): JSX.Element {
               {/* Col 3: action buttons + selected count — aligned with sender name */}
               <div className="flex items-center gap-1">
                 <button
-                  className={`btn btn-ghost btn-sm btn-square tooltip text-base-content/50 hover:bg-base-content/10 hover:text-base-content/80 ${selectedIds.size > 0 ? "" : "invisible"}`}
+                  className="btn btn-ghost btn-sm btn-square tooltip text-base-content/50 hover:bg-base-content/10 hover:text-base-content/80 disabled:opacity-25"
                   data-tip="Unsubscribe"
-                  tabIndex={selectedIds.size > 0 ? undefined : -1}
+                  disabled={selectedIds.size === 0}
                   onClick={() => openBatch("unsubscribe")}
                 >
                   <BellOff className="w-4 h-4" strokeWidth={1.5} />
                 </button>
                 <button
-                  className={`btn btn-ghost btn-sm btn-square tooltip text-base-content/50 hover:bg-base-content/10 hover:text-base-content/80 ${selectedIds.size > 0 ? "" : "invisible"}`}
+                  className="btn btn-ghost btn-sm btn-square tooltip text-base-content/50 hover:bg-base-content/10 hover:text-base-content/80 disabled:opacity-25"
                   data-tip="Report spam"
-                  tabIndex={selectedIds.size > 0 ? undefined : -1}
+                  disabled={selectedIds.size === 0}
                   onClick={() => openBatch("spam")}
                 >
                   <Flag className="w-4 h-4" strokeWidth={1.5} />
                 </button>
                 <button
-                  className={`btn btn-ghost btn-sm btn-square tooltip text-base-content/50 hover:bg-base-content/10 hover:text-base-content/80 ${selectedIds.size > 0 ? "" : "invisible"}`}
+                  className="btn btn-ghost btn-sm btn-square tooltip text-base-content/50 hover:bg-base-content/10 hover:text-base-content/80 disabled:opacity-25"
                   data-tip="Move to trash"
-                  tabIndex={selectedIds.size > 0 ? undefined : -1}
+                  disabled={selectedIds.size === 0}
                   onClick={() => openBatch("trash")}
                 >
                   <Trash2 className="w-4 h-4" strokeWidth={1.5} />
                 </button>
-                <span className={`text-sm text-base-content/50 ml-1 ${selectedIds.size > 0 ? "" : "invisible"}`}>
-                  {selectedIds.size} selected
-                </span>
+                {selectedIds.size > 0 && (
+                  <span className="text-sm text-base-content/50 ml-1">
+                    {selectedIds.size} selected
+                  </span>
+                )}
               </div>
               {/* Col 4: empty */}
               <div />
-              {/* Col 5: clear */}
-              <div className="flex items-center justify-end">
-                <button
-                  className={`btn btn-ghost btn-xs ${selectedIds.size > 0 ? "" : "invisible"}`}
-                  tabIndex={selectedIds.size > 0 ? undefined : -1}
-                  onClick={() => setSelectedIds(new Set())}
-                >
-                  Clear
-                </button>
-              </div>
+              {/* Col 5: empty */}
+              <div />
             </div>
 
             {vendors.map((vendor) => {
@@ -1204,12 +1364,12 @@ export default function Mail(): JSX.Element {
                         <span className="font-medium truncate">
                           {displayName}
                         </span>
-                        {vendor.breachInfo?.likelyAffected && (
+                        {vendor.breachInfo && vendor.breachInfo.length > 0 && (
                           <span
-                            className="badge badge-xs badge-error shrink-0"
-                            title="You likely had an account when this company was breached"
+                            className="shrink-0 leading-none"
+                            title={vendor.breachInfo.some(b => b.likelyAffected) ? "You likely had an account when a breach occurred" : "Domain appears on a known breach list"}
                           >
-                            ⚠ Breached
+                            {vendor.breachInfo.some(b => b.likelyAffected) ? "⚠️" : "ℹ️"}
                           </span>
                         )}
                         <span
