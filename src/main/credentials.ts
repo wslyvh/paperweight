@@ -1,5 +1,7 @@
 import { join } from "path";
 import { existsSync, readFileSync, writeFileSync, unlinkSync } from "fs";
+import { createHash } from "crypto";
+import { getGlobalSetting, saveGlobalSetting } from "./services/globalSettings";
 
 export interface StoredCredentials {
   providerType: "gmail" | "imap" | "microsoft";
@@ -33,11 +35,13 @@ export interface AccountEntry {
 
 interface AccountRegistry {
   accounts: AccountEntry[];
-  activeEmail?: string;
 }
 
-export function sanitizeEmail(email: string): string {
-  return email.toLowerCase().replace(/@/g, "-at-").replace(/\./g, "-");
+export function emailToFileKey(email: string): string {
+  return createHash("sha256")
+    .update(email.toLowerCase())
+    .digest("hex")
+    .slice(0, 12);
 }
 
 function getRegistryPath(): string {
@@ -65,13 +69,11 @@ export function listAccounts(): AccountEntry[] {
 }
 
 export function getActiveEmail(): string | undefined {
-  return loadRegistry().activeEmail;
+  return getGlobalSetting("activeAccount");
 }
 
 export function setActiveEmail(email: string): void {
-  const registry = loadRegistry();
-  registry.activeEmail = email;
-  saveRegistry(registry);
+  saveGlobalSetting("activeAccount", email);
 }
 
 export function registerAccount(email: string, providerType: string, registeredAt?: number): void {
@@ -83,17 +85,17 @@ export function registerAccount(email: string, providerType: string, registeredA
   } else {
     registry.accounts.push(entry);
   }
-  registry.activeEmail = email;
   saveRegistry(registry);
+  setActiveEmail(email);
 }
 
 export function removeAccountEntry(email: string): void {
   const registry = loadRegistry();
   registry.accounts = registry.accounts.filter((a) => a.email !== email);
-  if (registry.activeEmail === email) {
-    registry.activeEmail = registry.accounts[0]?.email;
-  }
   saveRegistry(registry);
+  if (getActiveEmail() === email) {
+    saveGlobalSetting("activeAccount", registry.accounts[0]?.email);
+  }
 }
 
 // ── Credentials storage ───────────────────────────────────────────────────────
@@ -122,8 +124,11 @@ function getCredentialsPath(emailOverride?: string): string {
       : _stagingMode
         ? "__staging__"
         : getActiveEmail();
+  if (email === "__staging__") {
+    return join(app.getPath("userData"), "credentials-__staging__.enc");
+  }
   if (email) {
-    return join(app.getPath("userData"), `credentials-${sanitizeEmail(email)}.enc`);
+    return join(app.getPath("userData"), `credentials-${emailToFileKey(email)}.enc`);
   }
   // Legacy fallback (before migration runs, or during very first account setup)
   return join(app.getPath("userData"), "credentials.enc");

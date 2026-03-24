@@ -3,7 +3,7 @@ import { join } from "path";
 import { APP_CONFIG } from "@shared/config";
 import { existsSync, unlinkSync } from "fs";
 import { dbLog } from "./utils/log";
-import { getActiveEmail, sanitizeEmail } from "./credentials";
+import { getActiveEmail, emailToFileKey } from "./credentials";
 
 let db: Database.Database | undefined;
 
@@ -23,7 +23,7 @@ function getDbPath(): string {
   const { app } = require("electron") as typeof import("electron");
   const activeEmail = getActiveEmail();
   if (activeEmail) {
-    return join(app.getPath("userData"), `${sanitizeEmail(activeEmail)}.db`);
+    return join(app.getPath("userData"), `${emailToFileKey(activeEmail)}.db`);
   }
   // Legacy fallback: used before migration runs or during very first account setup
   return join(app.getPath("userData"), `${APP_CONFIG.DOMAIN}.db`);
@@ -56,17 +56,35 @@ export function getDb(): Database.Database {
     db = new Database(getDbPath());
     db.pragma("journal_mode = WAL");
     db.pragma("foreign_keys = ON");
-    initSchema();
-    attachCompaniesDb();
-    attachBreachesDb();
+    initSchema(db);
+    attachCompaniesDb(db);
+    attachBreachesDb(db);
     dbLog.info("Database initialized");
   }
   return db;
 }
 
-function initSchema() {
-  const d = getDb();
+export function reconnectDb(newDbPath: string): void {
+  if (db) {
+    db.close();
+    db = undefined;
+  }
+  _dbPath = newDbPath;
+  getDb();
+}
 
+export function createAccountDb(dbPath: string): void {
+  const newDb = new Database(dbPath);
+  newDb.pragma("journal_mode = WAL");
+  newDb.pragma("foreign_keys = ON");
+  initSchema(newDb);
+  attachCompaniesDb(newDb);
+  attachBreachesDb(newDb);
+  newDb.close();
+  dbLog.info(`Created account DB at ${dbPath}`);
+}
+
+function initSchema(d: Database.Database) {
   d.exec(`
     CREATE TABLE IF NOT EXISTS vendors (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -159,8 +177,7 @@ function initSchema() {
   d.prepare("INSERT OR IGNORE INTO sync_state (id) VALUES (1)").run();
 }
 
-function attachCompaniesDb() {
-  const d = getDb();
+function attachCompaniesDb(d: Database.Database) {
   const companiesPath = getCompaniesDbPath();
   if (!existsSync(companiesPath)) {
     dbLog.warn(`Companies DB not found at ${companiesPath} — skipping attach`);
@@ -169,8 +186,7 @@ function attachCompaniesDb() {
   d.exec(`ATTACH DATABASE '${companiesPath}' AS companies`);
 }
 
-function attachBreachesDb() {
-  const d = getDb();
+function attachBreachesDb(d: Database.Database) {
   const breachesPath = getBreachesDbPath();
   if (!existsSync(breachesPath)) {
     dbLog.warn(`Breaches DB not found at ${breachesPath} — skipping attach`);
@@ -182,7 +198,7 @@ function attachBreachesDb() {
 export function deleteDbFiles(email: string): void {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { app } = require("electron") as typeof import("electron");
-  const dbPath = join(app.getPath("userData"), `${sanitizeEmail(email)}.db`);
+  const dbPath = join(app.getPath("userData"), `${emailToFileKey(email)}.db`);
   try {
     if (existsSync(dbPath)) unlinkSync(dbPath);
     for (const suffix of ["-wal", "-shm"]) {

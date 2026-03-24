@@ -1,4 +1,4 @@
-import { app } from "electron";
+import { join } from "path";
 import {
   loadCredentials,
   saveCredentials,
@@ -7,12 +7,15 @@ import {
   setStagingMode,
   registerAccount,
   listAccounts,
+  getActiveEmail,
+  emailToFileKey,
 } from "../credentials";
 import { startLoopbackAuth, fetchGmailProfileEmail } from "../providers/gmail";
 import { startMicrosoftLoopbackAuth } from "../providers/microsoft";
 import { testImapConnection } from "../providers/imap";
 import { getProvider } from "../providers/ProviderFactory";
 import { addWhitelistEntry, getSetting, saveSetting, applyAutoLaunch } from "./settings";
+import { saveGlobalSetting } from "./globalSettings";
 import { getDashboardStats } from "./stats";
 import { getSyncState } from "./sync";
 import {
@@ -20,9 +23,47 @@ import {
   deleteVendorBulkMessages,
   insertActionLog,
 } from "./messages";
+import { createAccountDb, reconnectDb } from "../db";
+import { stopSync } from "../sync-manager";
 import { APP_CONFIG } from "@shared/config";
+import { IPC } from "@shared/ipc";
 import type { ImapConfig, AccountInfo, EmailConnection } from "@shared/types";
 import { authLog, actionLog } from "../utils/log";
+
+// Populate per-account settings in the DB if they are missing.
+// Called after every DB reconnect (account switch or new account setup).
+export function ensureAccountSettingsInDb(): void {
+  const activeEmail = getActiveEmail();
+  if (!activeEmail) return;
+
+  if (!getSetting("accountEmail")) {
+    saveSetting("accountEmail", activeEmail);
+    addWhitelistEntry(activeEmail.toLowerCase());
+    const domain = activeEmail.split("@")[1];
+    if (domain) addWhitelistEntry(domain);
+  }
+
+  if (!getSetting("registeredAt")) {
+    const account = listAccounts().find((a) => a.email === activeEmail);
+    if (account?.registeredAt) {
+      saveSetting("registeredAt", String(account.registeredAt));
+    }
+  }
+}
+
+// Create a fresh DB for a new account, switch to it, and notify the renderer.
+function switchToNewAccount(email: string): void {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { app, BrowserWindow } = require("electron") as typeof import("electron");
+  const newDbPath = join(app.getPath("userData"), `${emailToFileKey(email)}.db`);
+  createAccountDb(newDbPath);
+  stopSync();
+  reconnectDb(newDbPath);
+  ensureAccountSettingsInDb();
+  for (const win of BrowserWindow.getAllWindows()) {
+    win.webContents.send(IPC.accountSwitched, email);
+  }
+}
 
 function autoWhitelist(email: string): void {
   addWhitelistEntry(email.toLowerCase());
@@ -73,8 +114,6 @@ export async function startGmailAuthAndRecordAccount() {
   deleteCredentials("__staging__");
 
   if (isFirstAccount) {
-    // For non-first accounts the DB path is cached from the previous account's session.
-    // ensureAccountSettingsInDb() handles this on the next startup after relaunch.
     saveSetting("accountEmail", email);
     autoWhitelist(email);
   }
@@ -82,16 +121,16 @@ export async function startGmailAuthAndRecordAccount() {
   if (!getSetting("registeredAt")) {
     authLog.info("Account registered (first time setup)");
     saveSetting("registeredAt", String(registeredAt));
-    saveSetting("autoLaunch", "true");
-    saveSetting("launchMinimized", "true");
+    saveGlobalSetting("autoLaunch", true);
+    saveGlobalSetting("launchMinimized", true);
     applyAutoLaunch(true, true);
   }
 
   authLog.info("Gmail auth completed");
 
   if (isNewAccount && !isFirstAccount) {
-    authLog.info(`New account ${email} added, relaunching`);
-    setImmediate(() => { app.relaunch(); app.exit(0); });
+    authLog.info(`New account ${email} added, switching`);
+    switchToNewAccount(email);
   }
 
   return result;
@@ -150,8 +189,6 @@ export async function startMicrosoftAuthAndRecordAccount() {
   deleteCredentials("__staging__");
 
   if (isFirstAccount) {
-    // For non-first accounts the DB path is cached from the previous account's session.
-    // ensureAccountSettingsInDb() handles this on the next startup after relaunch.
     saveSetting("accountEmail", email);
     autoWhitelist(email);
   }
@@ -159,16 +196,16 @@ export async function startMicrosoftAuthAndRecordAccount() {
   if (!getSetting("registeredAt")) {
     authLog.info("Account registered (first time setup)");
     saveSetting("registeredAt", String(registeredAt));
-    saveSetting("autoLaunch", "true");
-    saveSetting("launchMinimized", "true");
+    saveGlobalSetting("autoLaunch", true);
+    saveGlobalSetting("launchMinimized", true);
     applyAutoLaunch(true, true);
   }
 
   authLog.info("Microsoft auth completed");
 
   if (isNewAccount && !isFirstAccount) {
-    authLog.info(`New account ${email} added, relaunching`);
-    setImmediate(() => { app.relaunch(); app.exit(0); });
+    authLog.info(`New account ${email} added, switching`);
+    switchToNewAccount(email);
   }
 
   return result;
@@ -197,8 +234,6 @@ export async function saveImapConfigAndRecordAccount(config: ImapConfig) {
 
     authLog.info("IMAP config saved");
     if (isFirstAccount) {
-      // For non-first accounts the DB path is cached from the previous account's session.
-      // ensureAccountSettingsInDb() handles this on the next startup after relaunch.
       saveSetting("accountEmail", email);
       autoWhitelist(email);
     }
@@ -206,14 +241,14 @@ export async function saveImapConfigAndRecordAccount(config: ImapConfig) {
     if (!getSetting("registeredAt")) {
       authLog.info("Account registered (first time setup)");
       saveSetting("registeredAt", String(registeredAt));
-      saveSetting("autoLaunch", "true");
-      saveSetting("launchMinimized", "true");
+      saveGlobalSetting("autoLaunch", true);
+      saveGlobalSetting("launchMinimized", true);
       applyAutoLaunch(true, true);
     }
 
     if (isNewAccount && !isFirstAccount) {
-      authLog.info(`New IMAP account ${email} added, relaunching`);
-      setImmediate(() => { app.relaunch(); app.exit(0); });
+      authLog.info(`New IMAP account ${email} added, switching`);
+      switchToNewAccount(email);
     }
 
     return { success: true };

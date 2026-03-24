@@ -3,53 +3,63 @@ import { is } from "@electron-toolkit/utils";
 import { join } from "path";
 import { Worker } from "node:worker_threads";
 import { IPC } from "@shared/ipc";
-import { loadCredentials, getActiveEmail, sanitizeEmail } from "./credentials";
+import { loadCredentials, getActiveEmail, emailToFileKey, listAccounts } from "./credentials";
 import { getLicenseStatus } from "./services/settings";
-import { APP_CONFIG } from "@shared/config";
 import { syncLog } from "./utils/log";
 import { appendFileLog } from "./utils/file-log";
 import type { SyncStatus } from "@shared/types";
 
-let activeWorker: Worker | undefined;
-let lastStatus: SyncStatus = {
-  running: false,
-  progress: 0,
-  total: 0,
-  message: "",
-};
+const workers = new Map<string, Worker>();
+const statuses = new Map<string, SyncStatus>();
 
-export function getSyncStatus(): SyncStatus {
-  return lastStatus;
+const idleStatus = (): SyncStatus => ({ running: false, progress: 0, total: 0, message: "" });
+
+export function getSyncStatus(email?: string): SyncStatus {
+  const key = email ?? getActiveEmail() ?? "";
+  return statuses.get(key) ?? idleStatus();
 }
 
-export function startSync(): void {
-  if (activeWorker) return; // already running
+export function stopSync(email?: string): void {
+  const key = email ?? getActiveEmail() ?? "";
+  const worker = workers.get(key);
+  if (worker) {
+    worker.terminate();
+    workers.delete(key);
+  }
+  statuses.set(key, idleStatus());
+}
 
-  const activeEmail = getActiveEmail();
-  const dbName = activeEmail ? `${sanitizeEmail(activeEmail)}.db` : `${APP_CONFIG.DOMAIN}.db`;
-  const dbPath = join(app.getPath("userData"), dbName);
+export function stopAllSyncs(): void {
+  for (const [email] of workers) {
+    stopSync(email);
+  }
+}
+
+export function startSync(email?: string): void {
+  const key = email ?? getActiveEmail() ?? "";
+  if (!key) return;
+  if (workers.has(key)) return; // already running for this account
+
+  const credentials = loadCredentials(key) ?? null;
+  if (!credentials) return; // account has no credentials yet
+
+  const dbPath = join(app.getPath("userData"), `${emailToFileKey(key)}.db`);
   const companiesDbPath = is.dev
     ? join(app.getAppPath(), "resources", "companies.db")
     : join(process.resourcesPath, "companies.db");
   const breachesDbPath = is.dev
     ? join(app.getAppPath(), "resources", "breaches.db")
     : join(process.resourcesPath, "breaches.db");
-  const credentials = loadCredentials() ?? null;
-  const licenseStatus = getLicenseStatus();
-  const licensed = licenseStatus.active;
+  const licensed = getLicenseStatus().active;
 
   const workerPath = join(__dirname, "sync-worker.js");
-  activeWorker = new Worker(workerPath, {
-    workerData: {
-      dbPath,
-      companiesDbPath,
-      breachesDbPath,
-      credentials,
-      licensed,
-    },
+  const worker = new Worker(workerPath, {
+    workerData: { dbPath, companiesDbPath, breachesDbPath, credentials, licensed },
   });
 
-  activeWorker.on(
+  workers.set(key, worker);
+
+  worker.on(
     "message",
     (msg: {
       type: string;
@@ -63,28 +73,37 @@ export function startSync(): void {
         return;
       }
       if (msg.type === "progress" && msg.status) {
-        lastStatus = msg.status;
-        for (const win of BrowserWindow.getAllWindows()) {
-          win.webContents.send(IPC.syncProgress, msg.status);
+        statuses.set(key, msg.status);
+        // Only broadcast to renderer for the currently active account
+        if (key === getActiveEmail()) {
+          for (const win of BrowserWindow.getAllWindows()) {
+            win.webContents.send(IPC.syncProgress, msg.status);
+          }
         }
       }
     },
   );
 
-  activeWorker.on("error", (err: Error) => {
-    syncLog.error("Sync worker error:", err.stack ?? err.message);
-    lastStatus = {
+  worker.on("error", (err: Error) => {
+    syncLog.error(`Sync worker error (${key}):`, err.stack ?? err.message);
+    statuses.set(key, {
       running: false,
       progress: 0,
       total: 0,
       message: "Sync failed",
       error: err.message,
-    };
-    activeWorker = undefined;
+    });
+    workers.delete(key);
   });
 
-  activeWorker.on("exit", (code) => {
-    if (code !== 0) syncLog.error(`Sync worker exited with code: ${code}`);
-    activeWorker = undefined;
+  worker.on("exit", (code) => {
+    if (code !== 0) syncLog.error(`Sync worker exited with code: ${code} (${key})`);
+    workers.delete(key);
   });
+}
+
+export function startAllSyncs(): void {
+  for (const acc of listAccounts()) {
+    startSync(acc.email);
+  }
 }

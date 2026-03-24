@@ -3,13 +3,15 @@ import { join } from "path";
 import { existsSync, readFileSync, renameSync, unlinkSync } from "fs";
 import { electronApp, optimizer, is } from "@electron-toolkit/utils";
 import { registerIpcHandlers } from "./ipc";
-import { startSync } from "./sync-manager";
+import { startAllSyncs } from "./sync-manager";
 import { APP_CONFIG } from "@shared/config";
-import { getSetting, saveSetting, applyAutoLaunch, wasLaunchedAsHidden, addWhitelistEntry } from "./services/settings";
+import { getSetting, applyAutoLaunch, wasLaunchedAsHidden } from "./services/settings";
+import { getGlobalSetting, saveGlobalSetting } from "./services/globalSettings";
 import { initDb } from "./db";
 import { appLog } from "./utils/log";
 import { initFileLog } from "./utils/file-log";
-import { sanitizeEmail, registerAccount, getActiveEmail, listAccounts } from "./credentials";
+import { emailToFileKey, registerAccount, getActiveEmail, listAccounts } from "./credentials";
+import { ensureAccountSettingsInDb } from "./services/account";
 import Database from "better-sqlite3";
 
 let startHidden = false;
@@ -44,6 +46,19 @@ function migrateToMultiAccount(): void {
   const legacyDbPath = join(userData, `${APP_CONFIG.DOMAIN}.db`);
   const accountsPath = join(userData, "accounts.json");
 
+  // Step 0: migrate activeEmail from old accounts.json format to settings.json (one-time).
+  // PR #7 stored activeEmail inside accounts.json; settings.json is now authoritative.
+  if (existsSync(accountsPath) && getGlobalSetting("activeAccount") === undefined) {
+    try {
+      const raw = JSON.parse(readFileSync(accountsPath, "utf-8")) as { accounts?: unknown[]; activeEmail?: string };
+      if (raw.activeEmail) {
+        saveGlobalSetting("activeAccount", raw.activeEmail);
+      }
+    } catch {
+      // ignore — accounts.json may be corrupt or already in new format
+    }
+  }
+
   // Case 1: nothing to migrate
   if (!existsSync(legacyCredPath) && !existsSync(legacyDbPath)) return;
 
@@ -55,7 +70,7 @@ function migrateToMultiAccount(): void {
       const accounts = listAccounts();
       const firstAccount = accounts[0]; // first account always used the legacy DB
       if (firstAccount) {
-        const newDbPath = join(userData, `${sanitizeEmail(firstAccount.email)}.db`);
+        const newDbPath = join(userData, `${emailToFileKey(firstAccount.email)}.db`);
         if (!existsSync(newDbPath)) {
           try {
             renameSync(legacyDbPath, newDbPath);
@@ -64,7 +79,7 @@ function migrateToMultiAccount(): void {
               const newP = newDbPath + suffix;
               if (existsSync(oldP)) renameSync(oldP, newP);
             }
-            appLog.info(`Migration: renamed legacy DB to ${sanitizeEmail(firstAccount.email)}.db`);
+            appLog.info(`Migration: renamed legacy DB to ${emailToFileKey(firstAccount.email)}.db`);
           } catch {
             appLog.error("Migration: failed to rename legacy database file");
           }
@@ -125,7 +140,7 @@ function migrateToMultiAccount(): void {
   registerAccount(email, providerType, registeredAt);
 
   if (existsSync(legacyCredPath)) {
-    const newCredPath = join(userData, `credentials-${sanitizeEmail(email)}.enc`);
+    const newCredPath = join(userData, `credentials-${emailToFileKey(email)}.enc`);
     try {
       renameSync(legacyCredPath, newCredPath);
     } catch {
@@ -135,7 +150,7 @@ function migrateToMultiAccount(): void {
   }
 
   if (existsSync(legacyDbPath)) {
-    const newDbPath = join(userData, `${sanitizeEmail(email)}.db`);
+    const newDbPath = join(userData, `${emailToFileKey(email)}.db`);
     try {
       renameSync(legacyDbPath, newDbPath);
       for (const suffix of ["-wal", "-shm"]) {
@@ -151,27 +166,16 @@ function migrateToMultiAccount(): void {
   appLog.info(`Migration: account ${email} migrated to per-account storage`);
 }
 
-// Ensure critical per-account settings are in the DB after a relaunch.
-// On a fresh account DB, these are populated from accounts.json.
-function ensureAccountSettingsInDb(): void {
-  const activeEmail = getActiveEmail();
-  if (!activeEmail) return;
-
-  if (!getSetting("accountEmail")) {
-    saveSetting("accountEmail", activeEmail);
-    // Also add to whitelist so the account's own email is excluded from vendor detection
-    addWhitelistEntry(activeEmail.toLowerCase());
-    const domain = activeEmail.split("@")[1];
-    if (domain) addWhitelistEntry(domain);
-  }
-
-  if (!getSetting("registeredAt")) {
-    const account = listAccounts().find((a) => a.email === activeEmail);
-    if (account?.registeredAt) {
-      saveSetting("registeredAt", String(account.registeredAt));
-    }
-  }
+// One-time migration: copy autoLaunch and launchMinimized from the per-account DB
+// settings table into settings.json. Must run after initDb() so getDb() is ready.
+function migrateGlobalSettings(): void {
+  if (getGlobalSetting("autoLaunch") !== undefined) return;
+  const autoLaunch = getSetting("autoLaunch");
+  const launchMinimized = getSetting("launchMinimized");
+  if (autoLaunch !== undefined) saveGlobalSetting("autoLaunch", autoLaunch === "true");
+  if (launchMinimized !== undefined) saveGlobalSetting("launchMinimized", launchMinimized === "true");
 }
+
 
 function createWindow(): BrowserWindow {
   const win = new BrowserWindow({
@@ -220,7 +224,7 @@ app.whenReady().then(() => {
   // Pre-compute paths using Electron APIs and store them so db.ts never needs to
   // call Electron APIs itself (enabling worker thread usage without Electron in scope).
   const activeEmail = getActiveEmail();
-  const dbName = activeEmail ? `${sanitizeEmail(activeEmail)}.db` : `${APP_CONFIG.DOMAIN}.db`;
+  const dbName = activeEmail ? `${emailToFileKey(activeEmail)}.db` : `${APP_CONFIG.DOMAIN}.db`;
   const dbPath = join(app.getPath("userData"), dbName);
   const companiesDbPath = is.dev
     ? join(app.getAppPath(), "resources", "companies.db")
@@ -229,6 +233,9 @@ app.whenReady().then(() => {
     ? join(app.getAppPath(), "resources", "breaches.db")
     : join(process.resourcesPath, "breaches.db");
   initDb(dbPath, companiesDbPath, breachesDbPath);
+
+  // Migrate autoLaunch/launchMinimized from per-account DB to settings.json (one-time)
+  migrateGlobalSettings();
 
   // Ensure per-account DB settings are populated (important after account switch/relaunch)
   ensureAccountSettingsInDb();
@@ -242,8 +249,8 @@ app.whenReady().then(() => {
   registerIpcHandlers();
 
   // Ensure OS login item state matches saved settings
-  const autoLaunch = getSetting("autoLaunch") === "true";
-  const launchMinimized = getSetting("launchMinimized") === "true";
+  const autoLaunch = getGlobalSetting("autoLaunch") ?? false;
+  const launchMinimized = getGlobalSetting("launchMinimized") ?? false;
   applyAutoLaunch(autoLaunch, launchMinimized);
 
   // Determine if we should start hidden (must be after DB is available)
@@ -252,16 +259,16 @@ app.whenReady().then(() => {
   createWindow();
   appLog.info("Window created");
 
-  // Sync on launch (delayed to let the window render)
+  // Sync all accounts on launch (delayed to let the window render)
   setTimeout(() => {
-    appLog.info("Initial sync scheduled");
-    startSync();
+    appLog.info("Initial sync scheduled (all accounts)");
+    startAllSyncs();
   }, 3000);
 
-  // Background sync every 20 minutes
+  // Background sync every 20 minutes — picks up any accounts whose worker has finished
   appLog.info("Background sync interval set (20 min)");
   setInterval(() => {
-    startSync();
+    startAllSyncs();
   }, 20 * 60 * 1000);
 
   app.on("activate", () => {

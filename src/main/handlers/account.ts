@@ -1,4 +1,4 @@
-import { app, ipcMain } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 import { readFileSync, statSync, existsSync, unlinkSync } from "fs";
 import { join } from "path";
 import { IPC } from "@shared/ipc";
@@ -18,10 +18,10 @@ import {
   markMessageAsRead,
   trashVendorMessages,
   spamVendorMessages,
+  ensureAccountSettingsInDb,
 } from "../services/account";
-import Database from "better-sqlite3";
-import { clearSyncData, clearSyncDataOnDb, getSyncState } from "../services/sync";
-import { startSync, getSyncStatus } from "../sync-manager";
+import { clearSyncData, getSyncState } from "../services/sync";
+import { startSync, getSyncStatus, stopSync, stopAllSyncs } from "../sync-manager";
 import { getLicenseStatus, deleteLicense } from "../services/settings";
 import { getDashboardStats } from "../services/stats";
 import {
@@ -31,9 +31,9 @@ import {
   getActiveEmail,
   setActiveEmail,
   removeAccountEntry,
-  sanitizeEmail,
+  emailToFileKey,
 } from "../credentials";
-import { wipeDatabase, deleteDbFiles } from "../db";
+import { wipeDatabase, deleteDbFiles, reconnectDb } from "../db";
 import { dataLog, actionLog } from "../utils/log";
 import { getFileLogPath } from "../utils/file-log";
 import os from "os";
@@ -57,7 +57,7 @@ function isImapConfig(value: unknown): value is ImapConfig {
 function getDbSizeMb(): number {
   try {
     const activeEmail = getActiveEmail();
-    const dbName = activeEmail ? `${sanitizeEmail(activeEmail)}.db` : `${APP_CONFIG.DOMAIN}.db`;
+    const dbName = activeEmail ? `${emailToFileKey(activeEmail)}.db` : `${APP_CONFIG.DOMAIN}.db`;
     const dbPath = join(app.getPath("userData"), dbName);
     const stats = statSync(dbPath);
     return Math.round((stats.size / (1024 * 1024)) * 100) / 100;
@@ -88,6 +88,21 @@ export function registerAccountHandlers(): void {
 
   // --- Multi-account management ---
 
+  // Pre-flight license check before the renderer starts an OAuth flow.
+  // Intentionally two-step: this returns immediately so the renderer can show
+  // the license modal inline, then the actual auth IPC (startGmailAuth etc.)
+  // is called separately once the user is cleared to proceed.
+  ipcMain.handle(IPC.addAccount, () => {
+    const existing = listAccounts();
+    if (existing.length >= 1) {
+      const license = getLicenseStatus();
+      if (!license.active) {
+        return { blocked: true, reason: "license_required" };
+      }
+    }
+    return null;
+  });
+
   ipcMain.handle(IPC.listAccounts, (): AccountSummary[] => {
     const activeEmail = getActiveEmail();
     return listAccounts().map((a) => ({
@@ -100,18 +115,31 @@ export function registerAccountHandlers(): void {
 
   ipcMain.handle(IPC.switchAccount, (_event, email: unknown) => {
     if (!isString(email) || !email.trim()) throw new Error("Invalid email");
-    const accounts = listAccounts();
-    if (!accounts.some((a) => a.email === email)) throw new Error("Account not found");
-    setActiveEmail(email);
-    setImmediate(() => { app.relaunch(); app.exit(0); });
+    if (!listAccounts().some((a) => a.email === email)) throw new Error("Account not found");
+    if (email === getActiveEmail()) return;
+
+    setActiveEmail(email as string);
+
+    const newDbPath = join(app.getPath("userData"), `${emailToFileKey(email as string)}.db`);
+    reconnectDb(newDbPath);
+    ensureAccountSettingsInDb();
+
+    // Ensure the newly active account is syncing (no-op if already running)
+    startSync(email as string);
+
+    for (const win of BrowserWindow.getAllWindows()) {
+      win.webContents.send(IPC.accountSwitched, email);
+    }
   });
 
   ipcMain.handle(IPC.removeAccount, (_event, email: unknown) => {
     if (!isString(email) || !email.trim()) throw new Error("Invalid email");
-    const accounts = listAccounts();
-    if (!accounts.some((a) => a.email === email)) throw new Error("Account not found");
+    if (!listAccounts().some((a) => a.email === email)) throw new Error("Account not found");
     const activeEmail = getActiveEmail();
     const isActive = email === activeEmail;
+
+    // Stop this account's sync worker regardless of whether it's active
+    stopSync(email);
 
     // Delete the account's credential file
     deleteCredentials(email);
@@ -125,15 +153,24 @@ export function registerAccountHandlers(): void {
       deleteDbFiles(email);
     }
 
-    removeAccountEntry(email);
+    removeAccountEntry(email); // also updates activeAccount in settings.json to next account
 
     if (isActive) {
       const remaining = listAccounts();
       if (remaining.length > 0) {
-        // Switch to next account
-        setImmediate(() => { app.relaunch(); app.exit(0); });
+        const nextEmail = getActiveEmail()!; // set by removeAccountEntry
+        const newDbPath = join(app.getPath("userData"), `${emailToFileKey(nextEmail)}.db`);
+        reconnectDb(newDbPath);
+        ensureAccountSettingsInDb();
+        for (const win of BrowserWindow.getAllWindows()) {
+          win.webContents.send(IPC.accountSwitched, nextEmail);
+        }
       }
-      // If no accounts remain, return normally — renderer navigates to onboarding
+      if (remaining.length === 0) {
+        for (const win of BrowserWindow.getAllWindows()) {
+          win.webContents.send(IPC.noAccountsRemaining);
+        }
+      }
     }
   });
 
@@ -178,29 +215,10 @@ export function registerAccountHandlers(): void {
 
   ipcMain.handle(IPC.getSyncStatus, () => getSyncStatus());
 
-  ipcMain.handle(IPC.clearSyncData, () => {
-    dataLog.warn("Clear sync data requested (all accounts)");
-    const accounts = listAccounts();
-    const userData = app.getPath("userData");
-    const activeEmail = getActiveEmail();
-
-    for (const acc of accounts) {
-      if (acc.email === activeEmail) {
-        clearSyncData(); // uses cached getDb() connection
-        continue;
-      }
-      const dbPath = join(userData, `${sanitizeEmail(acc.email)}.db`);
-      if (!existsSync(dbPath)) continue;
-      let db: Database.Database | undefined;
-      try {
-        db = new Database(dbPath);
-        clearSyncDataOnDb(db);
-      } catch {
-        // Non-fatal
-      } finally {
-        db?.close();
-      }
-    }
+  ipcMain.handle(IPC.resyncData, () => {
+    dataLog.warn("Re-sync data requested");
+    stopSync(); // stops active account's worker
+    clearSyncData();
   });
 
   ipcMain.handle(IPC.wipeData, () => {
@@ -208,26 +226,37 @@ export function registerAccountHandlers(): void {
     const accounts = listAccounts();
     const userData = app.getPath("userData");
 
+    stopAllSyncs();
+
     // Close the active DB connection before deleting (Windows file lock)
     wipeDatabase();
 
-    // Delete every account's database and credentials
+    // Delete every account's database and credentials.
+    // The active account's DB files are already gone via wipeDatabase() above.
+    const activeEmail = getActiveEmail();
     for (const acc of accounts) {
       deleteCredentials(acc.email);
-      deleteDbFiles(acc.email);
+      if (acc.email !== activeEmail) deleteDbFiles(acc.email);
     }
 
-    // Delete the accounts registry
-    const registryPath = join(userData, "accounts.json");
-    try {
-      if (existsSync(registryPath)) unlinkSync(registryPath);
-    } catch {
-      // Non-fatal
+    // Delete staging credentials (written during OAuth before email is known)
+    deleteCredentials("__staging__");
+
+    // Delete the accounts registry and global settings
+    for (const file of ["accounts.json", "settings.json"]) {
+      const filePath = join(userData, file);
+      try {
+        if (existsSync(filePath)) unlinkSync(filePath);
+      } catch {
+        // Non-fatal
+      }
     }
 
-    // Wipe license — renderer will navigate to onboarding
     deleteLicense();
-    return { willRelaunch: false };
+
+    for (const win of BrowserWindow.getAllWindows()) {
+      win.webContents.send(IPC.noAccountsRemaining);
+    }
   });
 
   // --- Support / diagnostics ---
