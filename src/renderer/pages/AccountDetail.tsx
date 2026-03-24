@@ -45,16 +45,39 @@ const RISK_BADGE_CLASS: Record<string, string> = {
 const TWO_YEARS_MS = 2 * 365.25 * 24 * 60 * 60 * 1000;
 const TEN_YEARS_MS = 10 * 365.25 * 24 * 60 * 60 * 1000;
 
-function buildDeletionEmail(
-  userEmail: string,
-  accountIdentifier?: string,
-): {
-  subject: string;
-  body: string;
-} {
-  return {
-    subject: `Personal Data Deletion Request`,
-    body: `To whom it may concern,
+const LANGUAGES: Record<string, { label: string; flag: string }> = {
+  en: { label: "English", flag: "🇬🇧" },
+  nl: { label: "Dutch", flag: "🇳🇱" },
+  de: { label: "German", flag: "🇩🇪" },
+  fr: { label: "French", flag: "🇫🇷" },
+  es: { label: "Spanish", flag: "🇪🇸" },
+  it: { label: "Italian", flag: "🇮🇹" },
+  pt: { label: "Portuguese", flag: "🇵🇹" },
+};
+
+const TLD_LANG: Record<string, string> = {
+  nl: "nl", de: "de", fr: "fr", es: "es", it: "it", pt: "pt",
+};
+
+function detectLanguageFromDomain(domain?: string): string {
+  if (!domain) return "en";
+  const tld = domain.split(".").pop()?.toLowerCase() ?? "";
+  return TLD_LANG[tld] ?? "en";
+}
+
+type EmailTemplate = {
+  deletionSubject: string;
+  deletion: string;
+  accessSubject: string;
+  access: string;
+  accountRefLabel: string;
+};
+
+const EMAIL_TEMPLATES: Record<string, EmailTemplate> = {
+  en: {
+    accountRefLabel: "Account reference",
+    deletionSubject: "Personal Data Deletion Request",
+    deletion: `To whom it may concern,
 
 I am writing to request the deletion of all personal data you hold about me. I no longer wish for you to process my data and there is no ongoing reason for you to retain it.
 
@@ -65,22 +88,16 @@ Please:
 - Notify any third parties you have shared my data with
 
 Account identifier:
-- Email: ${userEmail}
-${accountIdentifier ? `- Account reference: ${accountIdentifier}` : ""}
+- Email: %EMAIL%%ACCOUNT_REF%
 
 Please confirm completion of this request within 30 days.
 
 If you need any information to verify my identity, feel free to reach out. Thank you!
 
 Best regards,
-${userEmail}`,
-  };
-}
-
-function buildAccessEmail(userEmail: string): { subject: string; body: string } {
-  return {
-    subject: `Personal Data Access Request`,
-    body: `To whom it may concern,
+%NAME%`,
+    accessSubject: "Personal Data Access Request",
+    access: `To whom it may concern,
 
 I am writing to request access to the personal data you hold about me.
 
@@ -92,14 +109,277 @@ Please provide:
 - How long you intend to retain my data
 
 Account identifier:
-- Email: ${userEmail}
+- Email: %EMAIL%%ACCOUNT_REF%
 
-Please respond within 30 days.
+Please respond to this request within 30 days.
 
 If you need any information to verify my identity, feel free to reach out. Thank you!
 
 Best regards,
-${userEmail}`,
+%NAME%`,
+  },
+  nl: {
+    accountRefLabel: "Accountreferentie",
+    deletionSubject: "Verzoek tot verwijdering van persoonsgegevens",
+    deletion: `Geachte heer/mevrouw,
+
+Hierbij verzoek ik u alle persoonsgegevens die u over mij verwerkt te verwijderen. Ik wens niet langer dat u mijn gegevens verwerkt en er is geen geldige reden meer om deze te bewaren.
+
+Ik verzoek u het volgende te doen:
+- Alle persoonsgegevens en accountgeschiedenis te verwijderen
+- Mij af te melden voor alle marketingcommunicatie
+- Alle verdere verwerking van mijn gegevens te staken
+- Eventuele derde partijen waarmee mijn gegevens zijn gedeeld hiervan op de hoogte te stellen
+
+Accountgegevens:
+- E-mail: %EMAIL%%ACCOUNT_REF%
+
+Ik verzoek u de voltooiing van dit verzoek binnen 30 dagen te bevestigen.
+
+Met vriendelijke groet,
+%NAME%`,
+    accessSubject: "Verzoek tot inzage in persoonsgegevens",
+    access: `Geachte heer/mevrouw,
+
+Hierbij verzoek ik u inzage te verlenen in de persoonsgegevens die u over mij verwerkt.
+
+Ik verzoek u het volgende te verstrekken:
+- Een kopie van alle persoonsgegevens die u over mij beschikt
+- De doeleinden waarvoor mijn gegevens worden verwerkt
+- De categorieën gegevens die u verwerkt
+- Eventuele derde partijen waarmee mijn gegevens zijn gedeeld
+- De bewaartermijn van mijn gegevens
+
+Accountgegevens:
+- E-mail: %EMAIL%%ACCOUNT_REF%
+
+Ik verzoek u binnen 30 dagen op dit verzoek te reageren.
+
+Met vriendelijke groet,
+%NAME%`,
+  },
+  de: {
+    accountRefLabel: "Kontoreferenz",
+    deletionSubject: "Antrag auf Löschung personenbezogener Daten",
+    deletion: `Sehr geehrte Damen und Herren,
+
+Hiermit beantrage ich die Löschung aller personenbezogenen Daten, die Sie über mich verarbeiten. Ich wünsche nicht länger, dass Sie meine Daten verarbeiten, und es besteht kein berechtigter Grund mehr, diese aufzubewahren.
+
+Ich bitte Sie um folgendes:
+- Löschung aller personenbezogenen Daten und Kontodaten
+- Abmeldung von allen Marketingmitteilungen
+- Einstellung jeglicher weiterer Verarbeitung meiner Daten
+- Benachrichtigung etwaiger Dritter, an die meine Daten weitergegeben wurden
+
+Kontodaten:
+- E-Mail: %EMAIL%%ACCOUNT_REF%
+
+Ich bitte um eine Bestätigung der Durchführung innerhalb von 30 Tagen.
+
+Mit freundlichen Grüßen,
+%NAME%`,
+    accessSubject: "Antrag auf Auskunft über personenbezogene Daten",
+    access: `Sehr geehrte Damen und Herren,
+
+Hiermit beantrage ich Auskunft über die personenbezogenen Daten, die Sie über mich verarbeiten.
+
+Bitte stellen Sie mir folgendes zur Verfügung:
+- Eine Kopie aller personenbezogenen Daten, die Sie über mich gespeichert haben
+- Die Zwecke, für die meine Daten verarbeitet werden
+- Die Kategorien der verarbeiteten Daten
+- Etwaige Dritte, an die meine Daten weitergegeben wurden
+- Die geplante Speicherdauer meiner Daten
+
+Kontodaten:
+- E-Mail: %EMAIL%%ACCOUNT_REF%
+
+Ich bitte um eine Antwort innerhalb von 30 Tagen.
+
+Mit freundlichen Grüßen,
+%NAME%`,
+  },
+  fr: {
+    accountRefLabel: "Référence de compte",
+    deletionSubject: "Demande de suppression de données personnelles",
+    deletion: `Madame, Monsieur,
+
+Je vous adresse la présente afin de demander la suppression de toutes les données personnelles que vous détenez à mon sujet. Je ne souhaite plus que vous traitiez mes données et il n'existe aucune raison valable de les conserver.
+
+Veuillez procéder comme suit :
+- Supprimer toutes les données personnelles et l'historique de compte me concernant
+- Me désabonner de toutes les communications marketing
+- Cesser tout traitement ultérieur de mes données
+- Informer les éventuels tiers avec lesquels mes données ont été partagées
+
+Identifiant de compte :
+- E-mail : %EMAIL%%ACCOUNT_REF%
+
+Je vous prie de bien vouloir confirmer l'exécution de cette demande dans un délai de 30 jours.
+
+Cordialement,
+%NAME%`,
+    accessSubject: "Demande d'accès aux données personnelles",
+    access: `Madame, Monsieur,
+
+Je vous adresse la présente afin de demander accès aux données personnelles que vous détenez à mon sujet.
+
+Veuillez me fournir les éléments suivants :
+- Une copie de toutes les données personnelles que vous détenez à mon sujet
+- Les finalités pour lesquelles mes données sont traitées
+- Les catégories de données que vous détenez
+- Les éventuels tiers avec lesquels mes données ont été partagées
+- La durée de conservation prévue de mes données
+
+Identifiant de compte :
+- E-mail : %EMAIL%%ACCOUNT_REF%
+
+Je vous prie de bien vouloir répondre à cette demande dans un délai de 30 jours.
+
+Cordialement,
+%NAME%`,
+  },
+  es: {
+    accountRefLabel: "Referencia de cuenta",
+    deletionSubject: "Solicitud de eliminación de datos personales",
+    deletion: `Estimado/a señor/a,
+
+Por medio de la presente, solicito la eliminación de todos los datos personales que usted tiene sobre mí. Ya no deseo que trate mis datos y no existe ninguna razón válida para conservarlos.
+
+Le ruego que proceda de la siguiente manera:
+- Eliminar todos los datos personales e historial de cuenta asociados a mí
+- Darme de baja de todas las comunicaciones de marketing
+- Cesar cualquier tratamiento posterior de mis datos
+- Notificar a los terceros con quienes se hayan compartido mis datos
+
+Identificador de cuenta:
+- Correo electrónico: %EMAIL%%ACCOUNT_REF%
+
+Le ruego que confirme la realización de esta solicitud en un plazo de 30 días.
+
+Atentamente,
+%NAME%`,
+    accessSubject: "Solicitud de acceso a datos personales",
+    access: `Estimado/a señor/a,
+
+Por medio de la presente, solicito acceso a los datos personales que usted tiene sobre mí.
+
+Le ruego que me proporcione lo siguiente:
+- Una copia de todos los datos personales que tiene sobre mí
+- Los fines para los que se tratan mis datos
+- Las categorías de datos que tiene sobre mí
+- Los terceros con quienes se han compartido mis datos
+- El período de conservación previsto de mis datos
+
+Identificador de cuenta:
+- Correo electrónico: %EMAIL%%ACCOUNT_REF%
+
+Le ruego que responda a esta solicitud en un plazo de 30 días.
+
+Atentamente,
+%NAME%`,
+  },
+  it: {
+    accountRefLabel: "Riferimento account",
+    deletionSubject: "Richiesta di cancellazione dei dati personali",
+    deletion: `Gentile Signore/Signora,
+
+Con la presente, richiedo la cancellazione di tutti i dati personali che Lei detiene su di me. Non desidero più che i miei dati vengano trattati e non sussiste alcun motivo valido per conservarli.
+
+La prego di procedere come segue:
+- Cancellare tutti i dati personali e la cronologia dell'account a me associati
+- Annullare la mia iscrizione a tutte le comunicazioni di marketing
+- Cessare qualsiasi ulteriore trattamento dei miei dati
+- Informare eventuali terze parti con cui i miei dati sono stati condivisi
+
+Dati dell'account:
+- E-mail: %EMAIL%%ACCOUNT_REF%
+
+La prego di confermare il completamento di questa richiesta entro 30 giorni.
+
+Cordiali saluti,
+%NAME%`,
+    accessSubject: "Richiesta di accesso ai dati personali",
+    access: `Gentile Signore/Signora,
+
+Con la presente, richiedo l'accesso ai dati personali che Lei detiene su di me.
+
+La prego di fornirmi quanto segue:
+- Una copia di tutti i dati personali che detiene su di me
+- Le finalità per cui i miei dati vengono trattati
+- Le categorie di dati che detiene
+- Eventuali terze parti con cui i miei dati sono stati condivisi
+- Il periodo di conservazione previsto per i miei dati
+
+Dati dell'account:
+- E-mail: %EMAIL%%ACCOUNT_REF%
+
+La prego di rispondere a questa richiesta entro 30 giorni.
+
+Cordiali saluti,
+%NAME%`,
+  },
+  pt: {
+    accountRefLabel: "Referência de conta",
+    deletionSubject: "Pedido de eliminação de dados pessoais",
+    deletion: `Exmo./Exma. Senhor/Senhora,
+
+Por meio da presente, solicito a eliminação de todos os dados pessoais que detém sobre mim. Não desejo que os meus dados continuem a ser tratados e não existe qualquer razão válida para os conservar.
+
+Solicito que proceda da seguinte forma:
+- Eliminar todos os dados pessoais e histórico de conta associados a mim
+- Cancelar a minha subscrição de todas as comunicações de marketing
+- Cessar qualquer tratamento posterior dos meus dados
+- Notificar eventuais terceiros com quem os meus dados foram partilhados
+
+Identificador de conta:
+- E-mail: %EMAIL%%ACCOUNT_REF%
+
+Solicito que confirme a conclusão deste pedido no prazo de 30 dias.
+
+Com os melhores cumprimentos,
+%NAME%`,
+    accessSubject: "Pedido de acesso a dados pessoais",
+    access: `Exmo./Exma. Senhor/Senhora,
+
+Por meio da presente, solicito acesso aos dados pessoais que detém sobre mim.
+
+Solicito que me forneça o seguinte:
+- Uma cópia de todos os dados pessoais que detém sobre mim
+- As finalidades para as quais os meus dados são tratados
+- As categorias de dados que detém sobre mim
+- Eventuais terceiros com quem os meus dados foram partilhados
+- O período de retenção previsto para os meus dados
+
+Identificador de conta:
+- E-mail: %EMAIL%%ACCOUNT_REF%
+
+Solicito que responda a este pedido no prazo de 30 dias.
+
+Com os melhores cumprimentos,
+%NAME%`,
+  },
+};
+
+function applyTemplate(template: string, userEmail: string, accountIdentifier?: string, accountRefLabel = "Account reference", userName?: string): string {
+  return template
+    .replace(/%EMAIL%/g, userEmail)
+    .replace("%ACCOUNT_REF%", accountIdentifier ? `\n- ${accountRefLabel}: ${accountIdentifier}` : "")
+    .replace("%NAME%", userName?.trim() || userEmail);
+}
+
+function buildDeletionEmail(userEmail: string, accountIdentifier?: string, lang = "en", userName?: string): { subject: string; body: string } {
+  const t = EMAIL_TEMPLATES[lang] ?? EMAIL_TEMPLATES.en;
+  return {
+    subject: t.deletionSubject,
+    body: applyTemplate(t.deletion, userEmail, accountIdentifier, t.accountRefLabel, userName),
+  };
+}
+
+function buildAccessEmail(userEmail: string, accountIdentifier?: string, lang = "en", userName?: string): { subject: string; body: string } {
+  const t = EMAIL_TEMPLATES[lang] ?? EMAIL_TEMPLATES.en;
+  return {
+    subject: t.accessSubject,
+    body: applyTemplate(t.access, userEmail, accountIdentifier, t.accountRefLabel, userName),
   };
 }
 
@@ -239,8 +519,11 @@ export default function AccountDetail(): JSX.Element {
   const [error, setError] = useState<string>();
   const [riskOpen, setRiskOpen] = useState(false);
   const [breachOpen, setBreachOpen] = useState(false);
-  const [copiedRequest, setCopiedRequest] = useState(false);
+  const [copiedField, setCopiedField] = useState<"to" | "subject" | "body" | null>(null);
   const [dataRequestType, setDataRequestType] = useState<"access" | "deletion">("deletion");
+  const [accountIdentifier, setAccountIdentifier] = useState("");
+  const [emailLanguage, setEmailLanguage] = useState("en");
+  const [userName, setUserName] = useState("");
   const [pendingUnsub, setPendingUnsub] = useState<UnsubscribeEntry | null>(null);
   const [unsubCheck, setUnsubCheck] = useState<{ entry: UnsubscribeEntry; trashAlso: boolean } | null>(null);
   const [unsubResult, setUnsubResult] = useState<{
@@ -266,13 +549,16 @@ export default function AccountDetail(): JSX.Element {
     Promise.all([
       window.api.getVendorDetail(decodeURIComponent(groupKey)),
       window.api.getWhitelistEntries(),
+      window.api.getSettings(),
     ])
-      .then(([d, entries]) => {
+      .then(([d, entries, settings]) => {
         setDetail(d);
         setWhitelistEntries(entries);
+        setEmailLanguage(detectLanguageFromDomain(d.vendor.root_domain));
         setBreachOpen(
           d.vendor.breachInfo?.some((b) => b.likelyAffected) ?? false,
         );
+        if (settings.userName) setUserName(settings.userName);
       })
       .catch((err) => setError(err.message ?? "Failed to load"))
       .finally(() => setLoading(false));
@@ -356,8 +642,8 @@ export default function AccountDetail(): JSX.Element {
     riskInfo?.description ?? "Not enough data to determine a risk level";
 
   const contactEmail = company?.email ?? senders[0]?.sender_email;
-  const deletionEmail = user_email ? buildDeletionEmail(user_email) : undefined;
-  const accessEmail = user_email ? buildAccessEmail(user_email) : undefined;
+  const deletionEmail = user_email ? buildDeletionEmail(user_email, accountIdentifier || undefined, emailLanguage, userName || undefined) : undefined;
+  const accessEmail = user_email ? buildAccessEmail(user_email, accountIdentifier || undefined, emailLanguage, userName || undefined) : undefined;
 
   const domainUrl = company?.web
     ? company.web
@@ -438,12 +724,10 @@ export default function AccountDetail(): JSX.Element {
   const hasAnyActivity =
     sortedActivityLog.length > 0 || sortedWhitelistEntries.length > 0;
 
-  const handleCopyRequest = async (email: { subject: string; body: string }) => {
-    if (!contactEmail) return;
-    const full = `To: ${contactEmail}\nSubject: ${email.subject}\n\n${email.body}`;
-    await navigator.clipboard.writeText(full);
-    setCopiedRequest(true);
-    setTimeout(() => setCopiedRequest(false), 2000);
+  const handleCopyField = async (text: string, field: "to" | "subject" | "body") => {
+    await navigator.clipboard.writeText(text);
+    setCopiedField(field);
+    setTimeout(() => setCopiedField(null), 2000);
   };
 
   // Derive unique unsubscribe methods from bulk messages
@@ -1123,16 +1407,53 @@ export default function AccountDetail(): JSX.Element {
                   This contact address is not verified. We recommend checking their privacy policy before sending a request.
                 </p>
               )}
-              <div className="flex items-center gap-3">
-                <label className="text-xs text-base-content/50 uppercase shrink-0">Purpose</label>
-                <select
-                  className="select select-bordered select-sm"
-                  value={dataRequestType}
-                  onChange={(e) => { setDataRequestType(e.target.value as "access" | "deletion"); setCopiedRequest(false); }}
-                >
-                  <option value="deletion">Request data deletion</option>
-                  <option value="access">Request data access</option>
-                </select>
+              <div className="space-y-2">
+                <div className="flex items-center gap-3">
+                  <label className="text-xs text-base-content/50 uppercase shrink-0 w-20">Language</label>
+                  <select
+                    className="select select-bordered select-sm"
+                    value={emailLanguage}
+                    onChange={(e) => { setEmailLanguage(e.target.value); setCopiedField(null); }}
+                  >
+                    {Object.entries(LANGUAGES).map(([code, { label, flag }]) => (
+                      <option key={code} value={code}>{flag}  {label}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="flex items-center gap-3">
+                  <label className="text-xs text-base-content/50 uppercase shrink-0 w-20">Purpose</label>
+                  <select
+                    className="select select-bordered select-sm"
+                    value={dataRequestType}
+                    onChange={(e) => { setDataRequestType(e.target.value as "access" | "deletion"); setCopiedField(null); }}
+                  >
+                    <option value="deletion">Request data deletion</option>
+                    <option value="access">Request data access</option>
+                  </select>
+                </div>
+                <div className="flex items-center gap-3">
+                  <label className="text-xs text-base-content/50 uppercase shrink-0 w-20">Name</label>
+                  <input
+                    type="text"
+                    className="input input-bordered input-sm"
+                    placeholder="Your full name"
+                    value={userName}
+                    onChange={(e) => { setUserName(e.target.value); setCopiedField(null); }}
+                    onBlur={() => window.api.saveSettings({ userName })}
+                  />
+                  <span className="text-xs text-base-content/40 shrink-0">(optional)</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <label className="text-xs text-base-content/50 uppercase shrink-0 w-20">Account ID</label>
+                  <input
+                    type="text"
+                    className="input input-bordered input-sm"
+                    placeholder="Username, customer/reference id, etc."
+                    value={accountIdentifier}
+                    onChange={(e) => { setAccountIdentifier(e.target.value); setCopiedField(null); }}
+                  />
+                  <span className="text-xs text-base-content/40 shrink-0">(optional)</span>
+                </div>
               </div>
               {(() => {
                 const email = dataRequestType === "access" ? accessEmail : deletionEmail;
@@ -1141,11 +1462,29 @@ export default function AccountDetail(): JSX.Element {
                   <>
                     <div>
                       <p className="text-base-content/50 text-xs uppercase mb-1">To</p>
-                      <p className="font-mono">{contactEmail}</p>
+                      <div className="flex items-center gap-2">
+                        <p className="font-mono">{contactEmail}</p>
+                        <button
+                          className="btn btn-ghost btn-xs px-1"
+                          onClick={() => handleCopyField(contactEmail!, "to")}
+                          title="Copy"
+                        >
+                          {copiedField === "to" ? <span className="text-xs text-success">✓</span> : <Clipboard className="w-3.5 h-3.5 text-base-content/40" />}
+                        </button>
+                      </div>
                     </div>
                     <div>
                       <p className="text-base-content/50 text-xs uppercase mb-1">Subject</p>
-                      <p>{email.subject}</p>
+                      <div className="flex items-center gap-2">
+                        <p>{email.subject}</p>
+                        <button
+                          className="btn btn-ghost btn-xs px-1"
+                          onClick={() => handleCopyField(email.subject, "subject")}
+                          title="Copy"
+                        >
+                          {copiedField === "subject" ? <span className="text-xs text-success">✓</span> : <Clipboard className="w-3.5 h-3.5 text-base-content/40" />}
+                        </button>
+                      </div>
                     </div>
                     <div>
                       <p className="text-base-content/50 text-xs uppercase mb-1">Message</p>
@@ -1165,10 +1504,10 @@ export default function AccountDetail(): JSX.Element {
                       </button>
                       <button
                         className="btn btn-neutral btn-sm gap-1"
-                        onClick={() => handleCopyRequest(email)}
+                        onClick={() => handleCopyField(email.body, "body")}
                       >
-                        <Clipboard className="w-3.5 h-3.5" />
-                        {copiedRequest ? "Copied!" : "Copy message"}
+                        {copiedField === "body" ? <span className="text-success">✓</span> : <Clipboard className="w-3.5 h-3.5" />}
+                        {copiedField === "body" ? "Copied!" : "Copy message"}
                       </button>
                     </div>
                   </>

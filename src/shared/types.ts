@@ -244,6 +244,7 @@ export interface Settings {
   providerType: string;
   autoLaunch?: boolean;
   launchMinimized?: boolean;
+  userName?: string;
 }
 
 export interface LicenseStatus {

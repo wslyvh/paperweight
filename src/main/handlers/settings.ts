@@ -13,6 +13,7 @@ function getSettings() {
     providerType: creds?.providerType || "none",
     autoLaunch: getSetting("autoLaunch") === "true" || (registered && getSetting("autoLaunch") === undefined),
     launchMinimized: getSetting("launchMinimized") === "true" || (registered && getSetting("launchMinimized") === undefined),
+    userName: getSetting("userName") ?? "",
   };
 }
 
@@ -58,6 +59,11 @@ export function registerSettingsHandlers(): void {
         ? Boolean(s.autoLaunch)
         : getSetting("autoLaunch") === "true";
       applyAutoLaunch(autoLaunch, s.launchMinimized);
+    }
+
+    if (s.userName !== undefined) {
+      if (typeof s.userName !== "string") throw new Error("Invalid userName");
+      saveSetting("userName", s.userName);
     }
   });
 
