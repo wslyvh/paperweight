@@ -37,6 +37,8 @@ export default function Settings(): JSX.Element {
     [],
   );
   const [newEntry, setNewEntry] = useState("");
+  const [historySyncDays, setHistorySyncDays] = useState<number>(365);
+  const [pendingHistorySyncDays, setPendingHistorySyncDays] = useState<number | null>(null);
   const [reconnectLoading, setReconnectLoading] = useState(false);
   const [accounts, setAccounts] = useState<AccountSummary[]>([]);
   const [removeAccountEmail, setRemoveAccountEmail] = useState<string | null>(
@@ -59,6 +61,7 @@ export default function Settings(): JSX.Element {
     window.api.getSettings().then((s) => {
       setAutoLaunch(!!s.autoLaunch);
       setLaunchMinimized(!!s.launchMinimized);
+      setHistorySyncDays(s.historySyncDays ?? (license.active ? 365 : 30));
     });
     window.api.getEmailConnection().then(setConnection);
     window.api.listAccounts().then(setAccounts);
@@ -274,6 +277,28 @@ export default function Settings(): JSX.Element {
             ))}
           </div>
 
+          {account && (
+            <div className="flex items-center gap-3 pt-2 border-t border-base-300">
+              <span className="text-sm text-base-content/50 shrink-0">Sync period</span>
+              <select
+                className="select select-bordered select-xs w-36"
+                value={license.active ? historySyncDays : 30}
+                disabled={!license.active}
+                onChange={(e) => setPendingHistorySyncDays(Number(e.target.value))}
+              >
+                <option value={30}>30 days</option>
+                <option value={365}>1 year</option>
+                <option value={730}>2 years</option>
+                <option value={1825}>5 years</option>
+                <option value={3650}>10 years</option>
+                <option value={0}>Full history</option>
+              </select>
+              {!license.active && (
+                <span className="text-xs text-base-content/40">*requires a license</span>
+              )}
+            </div>
+          )}
+
           <div className="flex items-center gap-3 pt-1">
             <button
               className={`btn btn-sm w-fit ${needsLicense ? "btn-ghost" : "btn-primary"}`}
@@ -408,7 +433,15 @@ export default function Settings(): JSX.Element {
                 <span>{account.totalMessages.toLocaleString()}</span>
 
                 <span className="text-base-content/50">Sync period</span>
-                <span>{license.active ? "Full history" : "30 days"}</span>
+                <span>{license.active
+                  ? historySyncDays === 0 ? "Full history"
+                    : historySyncDays === 30 ? "30 days"
+                    : historySyncDays === 365 ? "1 year"
+                    : historySyncDays === 730 ? "2 years"
+                    : historySyncDays === 1825 ? "5 years"
+                    : historySyncDays === 3650 ? "10 years"
+                    : `${historySyncDays} days`
+                  : "30 days"}</span>
               </div>
 
               {(account.providerType === "gmail" ||
@@ -689,6 +722,56 @@ export default function Settings(): JSX.Element {
           </form>
         </dialog>
       )}
+
+      {/* Sync period change confirmation modal */}
+      {pendingHistorySyncDays !== null && (() => {
+        const label = pendingHistorySyncDays === 0 ? "full history"
+          : pendingHistorySyncDays === 30 ? "30 days"
+          : pendingHistorySyncDays === 365 ? "1 year"
+          : pendingHistorySyncDays === 730 ? "2 years"
+          : pendingHistorySyncDays === 1825 ? "5 years"
+          : pendingHistorySyncDays === 3650 ? "10 years"
+          : `${pendingHistorySyncDays} days`;
+        const isExtending = pendingHistorySyncDays === 0 ||
+          (historySyncDays !== 0 && pendingHistorySyncDays > historySyncDays);
+        return (
+          <dialog className="modal modal-open">
+            <div className="modal-box">
+              <h3 className="font-bold text-lg">Change sync period?</h3>
+              <p className="py-4">
+                {isExtending
+                  ? <>Switching to <strong>{label}</strong> will download additional email history in the background. No existing data will be removed.</>
+                  : <>Switching to <strong>{label}</strong> will remove emails older than that from your local database.</>
+                }
+              </p>
+              <div className="modal-action">
+                <button
+                  className="btn btn-ghost"
+                  onClick={() => setPendingHistorySyncDays(null)}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="btn btn-warning"
+                  onClick={async () => {
+                    const days = pendingHistorySyncDays!;
+                    await window.api.applySyncPeriod(days);
+                    setHistorySyncDays(days);
+                    window.api.startSync();
+                    window.api.getAccountInfo().then(setAccount);
+                    setPendingHistorySyncDays(null);
+                  }}
+                >
+                  Confirm
+                </button>
+              </div>
+            </div>
+            <form method="dialog" className="modal-backdrop">
+              <button onClick={() => setPendingHistorySyncDays(null)}>close</button>
+            </form>
+          </dialog>
+        );
+      })()}
 
       {/* Wipe confirmation modal */}
       {showWipeModal && (

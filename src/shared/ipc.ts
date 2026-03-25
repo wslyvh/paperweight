@@ -36,6 +36,7 @@ export const IPC = {
   getSettings: "get-settings",
   saveSettings: "save-settings",
   resyncData: "resync-data",
+  applySyncPeriod: "settings:apply-sync-period",
   wipeData: "wipe-data",
   noAccountsRemaining: "no-accounts-remaining",
   openExternal: "open-external",
@@ -90,6 +91,7 @@ export interface ElectronAPI {
   getSettings: () => Promise<Settings>;
   saveSettings: (settings: Partial<Settings>) => Promise<void>;
   resyncData: () => Promise<void>;
+  applySyncPeriod: (days: number) => Promise<void>;
   wipeData: () => Promise<void>;
   openExternal: (url: string) => Promise<void>;
   onSyncProgress: (callback: (status: SyncStatus) => void) => () => void;
