@@ -511,6 +511,47 @@ function ActionTaskRow({ index, label, description, done, spinning, anyLoading, 
   );
 }
 
+function WhitelistSection({
+  title,
+  entries,
+  isLoading,
+  onRemove,
+}: {
+  title: string;
+  entries: WhitelistEntry[];
+  isLoading: boolean;
+  onRemove: (value: string) => void;
+}): JSX.Element | null {
+  if (entries.length === 0) return null;
+
+  return (
+    <div className="pl-3">
+      <h4 className="text-xs font-medium text-base-content/60 mb-2 uppercase tracking-wide">
+        {title}
+      </h4>
+      <div className="font-mono text-sm divide-y divide-base-300">
+        {entries.map((entry) => (
+          <div key={entry.id} className="grid grid-cols-[1fr_auto] items-center gap-4 py-2">
+            <div className="flex items-center gap-3 min-w-0">
+              <span className="text-base-content/40 shrink-0">
+                {formatAbsoluteDate(Date.parse(entry.created_at))}
+              </span>
+              <span className="shrink-0 text-base-content/80">{entry.value}</span>
+            </div>
+            <button
+              className="btn btn-ghost btn-xs"
+              disabled={isLoading}
+              onClick={() => onRemove(entry.value)}
+            >
+              Remove
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function AccountDetail(): JSX.Element {
   const { groupKey } = useParams<{ groupKey: string }>();
   const navigate = useNavigate();
@@ -541,7 +582,6 @@ export default function AccountDetail(): JSX.Element {
   const [selectedWhitelistValues, setSelectedWhitelistValues] = useState<Set<string>>(new Set());
   const [whitelistLoading, setWhitelistLoading] = useState(false);
   const [whitelistEntries, setWhitelistEntries] = useState<WhitelistEntry[]>([]);
-  const [whitelistBusyValue, setWhitelistBusyValue] = useState<string | null>(null);
 
   useEffect(() => {
     if (!groupKey) return;
@@ -719,6 +759,22 @@ export default function AccountDetail(): JSX.Element {
 
   const sortedWhitelistEntries = [...knownWhitelistEntries].sort(
     (a, b) => Date.parse(b.created_at) - Date.parse(a.created_at),
+  );
+
+  const domainWhitelistEntries = sortedWhitelistEntries.filter(
+    (entry) => !entry.value.includes("@"),
+  );
+
+  const emailWhitelistEntries = sortedWhitelistEntries.filter((entry) =>
+    entry.value.includes("@"),
+  );
+
+  const addableDomainWhitelistOptions = addableWhitelistOptions.filter(
+    (option) => !option.includes("@"),
+  );
+
+  const addableEmailWhitelistOptions = addableWhitelistOptions.filter((option) =>
+    option.includes("@"),
   );
 
   const hasAnyActivity =
@@ -972,12 +1028,12 @@ export default function AccountDetail(): JSX.Element {
   };
 
   const handleWhitelistRemove = async (value: string): Promise<void> => {
-    setWhitelistBusyValue(value);
+    setWhitelistLoading(true);
     try {
       await window.api.removeWhitelistEntry(value);
       await refreshWhitelist();
     } finally {
-      setWhitelistBusyValue(null);
+      setWhitelistLoading(false);
     }
   };
 
@@ -1580,33 +1636,19 @@ export default function AccountDetail(): JSX.Element {
                 {sortedWhitelistEntries.length === 0 ? (
                   <p className="text-sm text-base-content/50">No whitelisted email or domain for this account.</p>
                 ) : (
-                  <div className="font-mono text-sm divide-y divide-base-300">
-                    {sortedWhitelistEntries.map((entry) => (
-                      <div
-                        key={entry.id}
-                        className="grid grid-cols-[1fr_auto] items-center gap-4 py-2"
-                      >
-                        <div className="flex items-center gap-3 min-w-0">
-                          <span className="text-base-content/40 shrink-0">
-                            {formatAbsoluteDate(Date.parse(entry.created_at))}
-                          </span>
-                          <span className="shrink-0 text-base-content/80">
-                            {entry.value}
-                          </span>
-                        </div>
-                        <button
-                          className="btn btn-ghost btn-xs"
-                          disabled={
-                            whitelistBusyValue === entry.value
-                          }
-                          onClick={() => handleWhitelistRemove(entry.value)}
-                        >
-                          {whitelistBusyValue === entry.value
-                            ? "Removing..."
-                            : "Remove"}
-                        </button>
-                      </div>
-                    ))}
+                  <div className="space-y-4">
+                    <WhitelistSection
+                      title="Domains"
+                      entries={domainWhitelistEntries}
+                      isLoading={whitelistLoading}
+                      onRemove={handleWhitelistRemove}
+                    />
+                    <WhitelistSection
+                      title="Emails"
+                      entries={emailWhitelistEntries}
+                      isLoading={whitelistLoading}
+                      onRemove={handleWhitelistRemove}
+                    />
                   </div>
                 )}
               </div>
@@ -1622,18 +1664,44 @@ export default function AccountDetail(): JSX.Element {
             <h3 className="font-bold text-lg mb-4">Add to whitelist</h3>
             <div className="text-sm text-base-content/80 space-y-3">
               <p>Select an email address or domain to whitelist.</p>
-              <div className="space-y-2">
-                {addableWhitelistOptions.map((option) => (
-                  <label key={option} className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      className="checkbox checkbox-sm"
-                      checked={selectedWhitelistValues.has(option)}
-                      onChange={() => handleToggleWhitelistValue(option)}
-                    />
-                    <span className="font-mono text-sm break-all">{option}</span>
-                  </label>
-                ))}
+              <div className="space-y-3">
+                {addableDomainWhitelistOptions.length > 0 && (
+                  <div>
+                    <h4 className="text-xs font-semibold uppercase tracking-wide text-base-content/60 mb-2">Domains</h4>
+                    <div className="space-y-2">
+                      {addableDomainWhitelistOptions.map((option) => (
+                        <label key={option} className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            className="checkbox checkbox-sm"
+                            checked={selectedWhitelistValues.has(option)}
+                            onChange={() => handleToggleWhitelistValue(option)}
+                          />
+                          <span className="font-mono text-sm break-all">{option}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {addableEmailWhitelistOptions.length > 0 && (
+                  <div>
+                    <h4 className="text-xs font-semibold uppercase tracking-wide text-base-content/60 mb-2">Emails</h4>
+                    <div className="space-y-2">
+                      {addableEmailWhitelistOptions.map((option) => (
+                        <label key={option} className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            className="checkbox checkbox-sm"
+                            checked={selectedWhitelistValues.has(option)}
+                            onChange={() => handleToggleWhitelistValue(option)}
+                          />
+                          <span className="font-mono text-sm break-all">{option}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             <div className="modal-action mt-6">
