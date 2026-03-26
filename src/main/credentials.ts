@@ -1,6 +1,7 @@
 import { join } from "path";
-import { existsSync, readFileSync, writeFileSync, unlinkSync } from "fs";
 import { createHash } from "crypto";
+import { existsSync, readFileSync, writeFileSync, unlinkSync } from "fs";
+
 import { getGlobalSetting, saveGlobalSetting } from "./services/globalSettings";
 
 export interface StoredCredentials {
@@ -38,10 +39,10 @@ interface AccountRegistry {
 }
 
 export function emailToFileKey(email: string): string {
-  return createHash("sha256")
-    .update(email.toLowerCase())
-    .digest("hex")
-    .slice(0, 12);
+  const normalized = email.toLowerCase();
+  const local = normalized.split("@")[0].replace(/[^a-z0-9.-]/g, "_");
+  const hash = createHash("sha256").update(normalized).digest("hex").slice(0, 6);
+  return `${local}_${hash}`;
 }
 
 function getRegistryPath(): string {
@@ -125,13 +126,10 @@ function getCredentialsPath(emailOverride?: string): string {
         ? "__staging__"
         : getActiveEmail();
   if (email === "__staging__") {
-    return join(app.getPath("userData"), "credentials-__staging__.enc");
+    return join(app.getPath("userData"), "__staging__.enc");
   }
-  if (email) {
-    return join(app.getPath("userData"), `credentials-${emailToFileKey(email)}.enc`);
-  }
-  // Legacy fallback (before migration runs, or during very first account setup)
-  return join(app.getPath("userData"), "credentials.enc");
+  if (!email) throw new Error("No active account");
+  return join(app.getPath("userData"), `${emailToFileKey(email)}.enc`);
 }
 
 export function saveCredentials(creds: StoredCredentials, emailOverride?: string) {
@@ -184,5 +182,6 @@ export function deleteCredentials(emailOverride?: string) {
 }
 
 export function hasCredentials(emailOverride?: string) {
+  if (!emailOverride && !_stagingMode && !getActiveEmail()) return false;
   return existsSync(getCredentialsPath(emailOverride));
 }

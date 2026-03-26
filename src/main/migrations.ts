@@ -7,15 +7,16 @@ import { appLog } from "./utils/log";
 /**
  * v0.2 — multi-account integration
  * Single-account layout (credentials.enc, paperweight.email.db) is no longer supported.
- * Remove legacy files so they don't linger in userData.
+ * Also cleans up any __staging__.enc left behind by a crashed OAuth flow.
  */
-function cleanupV01LegacyFiles(): void {
+function cleanupStaleFiles(): void {
   const userData = app.getPath("userData");
   const legacy = [
     `${APP_CONFIG.DOMAIN}.db`,
     `${APP_CONFIG.DOMAIN}.db-wal`,
     `${APP_CONFIG.DOMAIN}.db-shm`,
     "credentials.enc",
+    "__staging__.enc",
   ];
   for (const name of legacy) {
     const p = join(userData, name);
@@ -35,5 +36,5 @@ function cleanupV01LegacyFiles(): void {
  * is a no-op if there is nothing to do.
  */
 export function runMigrations(): void {
-  cleanupV01LegacyFiles();
+  cleanupStaleFiles();
 }

@@ -1,9 +1,8 @@
 import Database from "better-sqlite3";
 import { join } from "path";
-import { APP_CONFIG } from "@shared/config";
 import { existsSync, unlinkSync } from "fs";
 import { dbLog } from "./utils/log";
-import { getActiveEmail, emailToFileKey } from "./credentials";
+import { emailToFileKey } from "./credentials";
 
 let db: Database.Database | undefined;
 
@@ -19,14 +18,7 @@ export function initDb(dbPath: string, companiesDbPath: string, breachesDbPath: 
 
 function getDbPath(): string {
   if (_dbPath) return _dbPath;
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { app } = require("electron") as typeof import("electron");
-  const activeEmail = getActiveEmail();
-  if (activeEmail) {
-    return join(app.getPath("userData"), `${emailToFileKey(activeEmail)}.db`);
-  }
-  // Legacy fallback: used before migration runs or during very first account setup
-  return join(app.getPath("userData"), `${APP_CONFIG.DOMAIN}.db`);
+  throw new Error("Database not initialized: initDb() must be called before accessing the database");
 }
 
 function getCompaniesDbPath(): string {

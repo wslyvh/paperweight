@@ -24,9 +24,8 @@ import {
   insertActionLog,
 } from "./messages";
 import { createAccountDb, reconnectDb } from "../db";
-import { stopSync } from "../sync-manager";
-import { APP_CONFIG } from "@shared/config";
 import { IPC } from "@shared/ipc";
+import { APP_CONFIG } from "@shared/config";
 import type { ImapConfig, AccountInfo, EmailConnection, MessageType } from "@shared/types";
 import { authLog, actionLog } from "../utils/log";
 
@@ -40,7 +39,9 @@ export function ensureAccountSettingsInDb(): void {
     saveSetting("accountEmail", activeEmail);
     addWhitelistEntry(activeEmail.toLowerCase());
     const domain = activeEmail.split("@")[1];
-    if (domain) addWhitelistEntry(domain);
+    if (domain && !APP_CONFIG.PERSONAL_DOMAINS.includes(domain.toLowerCase())) {
+      addWhitelistEntry(domain);
+    }
   }
 
   if (!getSetting("registeredAt")) {
@@ -57,7 +58,6 @@ function switchToNewAccount(email: string): void {
   const { app, BrowserWindow } = require("electron") as typeof import("electron");
   const newDbPath = join(app.getPath("userData"), `${emailToFileKey(email)}.db`);
   createAccountDb(newDbPath);
-  stopSync();
   reconnectDb(newDbPath);
   ensureAccountSettingsInDb();
   for (const win of BrowserWindow.getAllWindows()) {
@@ -65,13 +65,6 @@ function switchToNewAccount(email: string): void {
   }
 }
 
-function autoWhitelist(email: string): void {
-  addWhitelistEntry(email.toLowerCase());
-  const domain = email.split("@")[1];
-  if (domain && !APP_CONFIG.PERSONAL_DOMAINS.includes(domain.toLowerCase())) {
-    addWhitelistEntry(domain);
-  }
-}
 
 export function getConnectionStatus() {
   return hasCredentials();
@@ -110,27 +103,20 @@ export async function startGmailAuthAndRecordAccount() {
   const registeredAt = isNewAccount ? now : (parseInt(getSetting("registeredAt") || "0", 10) || now);
 
   registerAccount(email, "gmail", registeredAt);
-  saveCredentials(stagingCreds);   // saves to credentials-{email}.enc (active email is now set)
+  saveCredentials(stagingCreds);   // saves to {email}.enc (active email is now set)
   deleteCredentials("__staging__");
-
-  if (isFirstAccount) {
-    saveSetting("accountEmail", email);
-    autoWhitelist(email);
-  }
-
-  if (!getSetting("registeredAt")) {
-    authLog.info("Account registered (first time setup)");
-    saveSetting("registeredAt", String(registeredAt));
-    saveGlobalSetting("autoLaunch", true);
-    saveGlobalSetting("launchMinimized", true);
-    applyAutoLaunch(true, true);
-  }
 
   authLog.info("Gmail auth completed");
 
-  if (isNewAccount && !isFirstAccount) {
-    authLog.info(`New account ${email} added, switching`);
-    switchToNewAccount(email);
+  if (isNewAccount) {
+    authLog.info(isFirstAccount ? `First account ${email} registered, switching to per-account DB` : `New account ${email} added, switching`);
+    switchToNewAccount(email); // creates DB, reconnects, calls ensureAccountSettingsInDb
+    saveSetting("registeredAt", String(registeredAt));
+    if (isFirstAccount) {
+      saveGlobalSetting("autoLaunch", true);
+      saveGlobalSetting("launchMinimized", true);
+      applyAutoLaunch(true, true);
+    }
   }
 
   return result;
@@ -185,27 +171,20 @@ export async function startMicrosoftAuthAndRecordAccount() {
   const registeredAt = isNewAccount ? now : (parseInt(getSetting("registeredAt") || "0", 10) || now);
 
   registerAccount(email, "microsoft", registeredAt);
-  saveCredentials(stagingCreds);   // saves to credentials-{email}.enc
+  saveCredentials(stagingCreds);   // saves to {email}.enc
   deleteCredentials("__staging__");
-
-  if (isFirstAccount) {
-    saveSetting("accountEmail", email);
-    autoWhitelist(email);
-  }
-
-  if (!getSetting("registeredAt")) {
-    authLog.info("Account registered (first time setup)");
-    saveSetting("registeredAt", String(registeredAt));
-    saveGlobalSetting("autoLaunch", true);
-    saveGlobalSetting("launchMinimized", true);
-    applyAutoLaunch(true, true);
-  }
 
   authLog.info("Microsoft auth completed");
 
-  if (isNewAccount && !isFirstAccount) {
-    authLog.info(`New account ${email} added, switching`);
-    switchToNewAccount(email);
+  if (isNewAccount) {
+    authLog.info(isFirstAccount ? `First account ${email} registered, switching to per-account DB` : `New account ${email} added, switching`);
+    switchToNewAccount(email); // creates DB, reconnects, calls ensureAccountSettingsInDb
+    saveSetting("registeredAt", String(registeredAt));
+    if (isFirstAccount) {
+      saveGlobalSetting("autoLaunch", true);
+      saveGlobalSetting("launchMinimized", true);
+      applyAutoLaunch(true, true);
+    }
   }
 
   return result;
@@ -233,22 +212,16 @@ export async function saveImapConfigAndRecordAccount(config: ImapConfig) {
     registerAccount(email, "imap", registeredAt);
 
     authLog.info("IMAP config saved");
-    if (isFirstAccount) {
-      saveSetting("accountEmail", email);
-      autoWhitelist(email);
-    }
 
-    if (!getSetting("registeredAt")) {
-      authLog.info("Account registered (first time setup)");
+    if (isNewAccount) {
+      authLog.info(isFirstAccount ? `First account ${email} registered, switching to per-account DB` : `New IMAP account ${email} added, switching`);
+      switchToNewAccount(email); // creates DB, reconnects, calls ensureAccountSettingsInDb
       saveSetting("registeredAt", String(registeredAt));
-      saveGlobalSetting("autoLaunch", true);
-      saveGlobalSetting("launchMinimized", true);
-      applyAutoLaunch(true, true);
-    }
-
-    if (isNewAccount && !isFirstAccount) {
-      authLog.info(`New IMAP account ${email} added, switching`);
-      switchToNewAccount(email);
+      if (isFirstAccount) {
+        saveGlobalSetting("autoLaunch", true);
+        saveGlobalSetting("launchMinimized", true);
+        applyAutoLaunch(true, true);
+      }
     }
 
     return { success: true };

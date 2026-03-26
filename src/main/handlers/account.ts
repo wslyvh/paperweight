@@ -2,7 +2,6 @@ import { app, BrowserWindow, ipcMain } from "electron";
 import { readFileSync, statSync, existsSync, unlinkSync } from "fs";
 import { join } from "path";
 import { IPC } from "@shared/ipc";
-import { APP_CONFIG } from "@shared/config";
 import { isIntInRange, isString } from "@shared/validation";
 import type { ImapConfig, SupportInfo, AccountSummary, MessageType } from "@shared/types";
 import { isMessageType } from "@shared/types";
@@ -58,8 +57,8 @@ function isImapConfig(value: unknown): value is ImapConfig {
 function getDbSizeMb(): number {
   try {
     const activeEmail = getActiveEmail();
-    const dbName = activeEmail ? `${emailToFileKey(activeEmail)}.db` : `${APP_CONFIG.DOMAIN}.db`;
-    const dbPath = join(app.getPath("userData"), dbName);
+    if (!activeEmail) return 0;
+    const dbPath = join(app.getPath("userData"), `${emailToFileKey(activeEmail)}.db`);
     const stats = statSync(dbPath);
     return Math.round((stats.size / (1024 * 1024)) * 100) / 100;
   } catch {

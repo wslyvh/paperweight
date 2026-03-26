@@ -77,20 +77,20 @@ app.whenReady().then(() => {
 
   runMigrations();
 
-  // Pre-compute paths using Electron APIs — db.ts and sync workers never call Electron APIs directly.
-  const activeEmail = getActiveEmail();
-  const dbName = activeEmail ? `${emailToFileKey(activeEmail)}.db` : `${APP_CONFIG.DOMAIN}.db`;
-  const dbPath = join(app.getPath("userData"), dbName);
   const companiesDbPath = is.dev
     ? join(app.getAppPath(), "resources", "companies.db")
     : join(process.resourcesPath, "companies.db");
   const breachesDbPath = is.dev
     ? join(app.getAppPath(), "resources", "breaches.db")
     : join(process.resourcesPath, "breaches.db");
-  initDb(dbPath, companiesDbPath, breachesDbPath);
 
-  // Ensure per-account DB settings are populated (important after account switch/relaunch)
-  ensureAccountSettingsInDb();
+  // Only open the DB if an account is already registered — onboarding creates it on first auth.
+  const activeEmail = getActiveEmail();
+  if (activeEmail) {
+    const dbPath = join(app.getPath("userData"), `${emailToFileKey(activeEmail)}.db`);
+    initDb(dbPath, companiesDbPath, breachesDbPath);
+    ensureAccountSettingsInDb();
+  }
 
   electronApp.setAppUserModelId(APP_CONFIG.DOMAIN);
 
