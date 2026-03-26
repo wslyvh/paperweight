@@ -33,6 +33,8 @@ const api: ElectronAPI = {
 
   resyncData: () => ipcRenderer.invoke(IPC.resyncData),
 
+  applySyncPeriod: (days) => ipcRenderer.invoke(IPC.applySyncPeriod, days),
+
   wipeData: () => ipcRenderer.invoke(IPC.wipeData),
 
   openExternal: (url) => ipcRenderer.invoke(IPC.openExternal, url),

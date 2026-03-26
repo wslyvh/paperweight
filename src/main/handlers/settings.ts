@@ -3,6 +3,8 @@ import { IPC } from "@shared/ipc";
 import { isLicenseKey, isString } from "@shared/validation";
 import { activateLicense, getLicenseStatus, deleteLicense, applyAutoLaunch } from "../services/settings";
 import { getSetting, saveSetting } from "../services/settings";
+import { applySyncPeriodChange } from "../services/sync";
+import { stopSync } from "../sync-manager";
 import { getGlobalSetting, saveGlobalSetting } from "../services/globalSettings";
 import { loadCredentials } from "../credentials";
 import { dataLog } from "../utils/log";
@@ -17,6 +19,9 @@ function getSettings() {
     autoLaunch: autoLaunchVal !== undefined ? autoLaunchVal : registered,
     launchMinimized: launchMinimizedVal !== undefined ? launchMinimizedVal : registered,
     userName: getSetting("userName") ?? "",
+    historySyncDays: getSetting("historySyncDays") !== undefined
+      ? parseInt(getSetting("historySyncDays")!, 10)
+      : undefined,
   };
 }
 
@@ -66,6 +71,20 @@ export function registerSettingsHandlers(): void {
       if (typeof s.userName !== "string") throw new Error("Invalid userName");
       saveSetting("userName", s.userName);
     }
+
+    if (s.historySyncDays !== undefined) {
+      if (typeof s.historySyncDays !== "number" || s.historySyncDays < 0)
+        throw new Error("Invalid historySyncDays");
+      saveSetting("historySyncDays", String(s.historySyncDays));
+    }
+  });
+
+  ipcMain.handle(IPC.applySyncPeriod, (_event, days: unknown) => {
+    if (typeof days !== "number" || days < 0)
+      throw new Error("Invalid days");
+    stopSync();
+    saveSetting("historySyncDays", String(days));
+    applySyncPeriodChange(days);
   });
 
   // --- Shell ---

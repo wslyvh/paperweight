@@ -252,6 +252,7 @@ export interface Settings {
   autoLaunch?: boolean;
   launchMinimized?: boolean;
   userName?: string;
+  historySyncDays?: number;   // undefined = default 365 days
 }
 
 export interface LicenseStatus {

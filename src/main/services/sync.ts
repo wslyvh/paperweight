@@ -65,7 +65,7 @@ const HISTORICAL_SYNC_DAYS = process.env.HISTORICAL_SYNC_DAYS
 const HISTORICAL_CHUNK_DAYS = 90;
 
 // Production floor: covers all consumer email back to Hotmail/early IMAP era.
-const HISTORICAL_FLOOR_DATE = new Date("1995-01-01");
+const ALL_TIME_FLOOR_DATE = new Date("1995-01-01");
 
 // --- Sync state ---
 
@@ -133,6 +133,37 @@ export function clearSyncDataOnDb(db: Database.Database): void {
 
 export function clearSyncData(): void {
   clearSyncDataOnDb(getDb());
+}
+
+// Applies a sync period change without a full resync:
+// - Extending (more days): resets historical_done so the backfill resumes from the cursor.
+// - Shortening (fewer days): deletes messages older than the new floor and updates the cursor.
+export function applySyncPeriodChange(newDays: number): void {
+  const syncState = getSyncState();
+
+  // Nothing has been synced yet — the new setting will take effect on first sync.
+  if (!syncState.quick_sync_done_at || syncState.historical_cursor === undefined) return;
+
+  const newFloorMs = newDays === 0
+    ? ALL_TIME_FLOOR_DATE.getTime()
+    : Date.now() - newDays * 86_400_000;
+
+  const currentCursor = syncState.historical_cursor;
+
+  if (newFloorMs < currentCursor) {
+    // Extending: new floor is further back — reset done flag so historical sync continues.
+    updateSyncState({ historical_done: 0 });
+    syncLog.info(`Sync period extended: historical sync will resume toward ${new Date(newFloorMs).toISOString().slice(0, 10)}`);
+  } else {
+    // Shortening: delete messages older than the new floor, then recompute stats.
+    const d = getDb();
+    const result = d.prepare("DELETE FROM messages WHERE date < ?").run(newFloorMs) as { changes: number };
+    syncLog.info(`Sync period shortened: removed ${result.changes} messages older than ${new Date(newFloorMs).toISOString().slice(0, 10)}`);
+    recomputeAllVendorFlags();
+    matchVendorCompanies();
+    categorizeVendors();
+    updateSyncState({ historical_cursor: newFloorMs, historical_done: 1 });
+  }
 }
 
 // --- Batch processing ---
@@ -295,9 +326,12 @@ async function runIncrementalSync(
 
   const isFirstRun = !syncState.quick_sync_done_at;
 
-  // First run window: licensed users get 1 year, free users get 30 days.
-  // Subsequent runs use last_sync_at so the window size only matters on first run.
-  const syncDays = licensed ? LICENSED_SYNC_DAYS : FREE_TIER_SYNC_DAYS;
+  // First run window: licensed users use their configured historySyncDays (default 1 year),
+  // free users are capped at FREE_TIER_SYNC_DAYS. Subsequent runs use last_sync_at.
+  const storedDays = getSetting("historySyncDays");
+  const syncDays = licensed
+    ? (storedDays !== undefined ? parseInt(storedDays, 10) : LICENSED_SYNC_DAYS)
+    : FREE_TIER_SYNC_DAYS;
   const since = syncState.last_sync_at
     ? new Date(syncState.last_sync_at)
     : new Date(Date.now() - syncDays * 86_400_000);
@@ -423,10 +457,16 @@ async function runHistoricalChunk(
   let since = new Date(cursor - chunkMs);
   let isLastChunk = false;
 
-  // Determine floor: dev limit via env var, otherwise hard floor of year 2000.
+  // Determine floor: dev limit via env var, then user setting, otherwise all-time floor.
   const floorDate = HISTORICAL_SYNC_DAYS
     ? new Date(Date.now() - HISTORICAL_SYNC_DAYS * 86_400_000)
-    : HISTORICAL_FLOOR_DATE;
+    : (() => {
+        const storedDays = getSetting("historySyncDays");
+        const days = storedDays !== undefined ? parseInt(storedDays, 10) : 365;
+        return days === 0
+          ? ALL_TIME_FLOOR_DATE
+          : new Date(Date.now() - days * 86_400_000);
+      })();
 
   if (since <= floorDate) {
     since = floorDate;
