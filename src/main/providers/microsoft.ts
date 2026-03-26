@@ -10,7 +10,8 @@ const CLIENT_ID = __MICROSOFT_CLIENT_ID__;
 
 const MS_AUTH_URL = "https://login.microsoftonline.com/common/oauth2/v2.0/authorize";
 const MS_TOKEN_URL = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
-const GRAPH_BASE = "https://graph.microsoft.com/v1.0/me";
+const GRAPH_API_BASE = "https://graph.microsoft.com/v1.0";
+const GRAPH_ME_BASE = `${GRAPH_API_BASE}/me`;
 
 const SCOPES = "offline_access openid profile User.Read Mail.ReadWrite";
 
@@ -144,53 +145,95 @@ async function getValidAccessToken(): Promise<string> {
 
 // --- Graph API helpers ---
 
-async function graphGet(url: string, extraHeaders?: Record<string, string>): Promise<unknown> {
-  const token = await getValidAccessToken();
-  const response = await fetch(url, {
-    headers: { Authorization: `Bearer ${token}`, ...extraHeaders },
-  });
+const GRAPH_MAX_RETRIES = 4;
 
-  if (!response.ok) {
-    const text = await response.text();
-    throw new Error(`Graph API error (${response.status}): ${text}`);
+// Returns how many ms to wait before the next retry.
+// Prefers the Retry-After header; falls back to exponential backoff.
+function retryDelayMs(response: Response, attempt: number): number {
+  const retryAfter = response.headers.get("Retry-After");
+  if (retryAfter) {
+    const seconds = parseInt(retryAfter, 10);
+    if (!isNaN(seconds)) return seconds * 1000;
   }
+  return Math.min(2 ** attempt * 1000, 30_000);
+}
 
-  return response.json();
+async function graphGet(url: string, extraHeaders?: Record<string, string>): Promise<unknown> {
+  let attempt = 0;
+  while (true) {
+    const token = await getValidAccessToken();
+    const response = await fetch(url, {
+      headers: { Authorization: `Bearer ${token}`, ...extraHeaders },
+    });
+
+    if (response.status === 429 && attempt < GRAPH_MAX_RETRIES) {
+      await new Promise((r) => setTimeout(r, retryDelayMs(response, attempt)));
+      attempt++;
+      continue;
+    }
+
+    if (!response.ok) {
+      const text = await response.text();
+      throw new Error(`Graph API error (${response.status}): ${text}`);
+    }
+
+    return response.json();
+  }
 }
 
 async function graphPost(url: string, body: Record<string, unknown>): Promise<unknown> {
-  const token = await getValidAccessToken();
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
+  let attempt = 0;
+  while (true) {
+    const token = await getValidAccessToken();
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
 
-  if (!response.ok) {
-    const text = await response.text();
-    throw new Error(`Graph API error (${response.status}): ${text}`);
+    if (response.status === 429 && attempt < GRAPH_MAX_RETRIES) {
+      await new Promise((r) => setTimeout(r, retryDelayMs(response, attempt)));
+      attempt++;
+      continue;
+    }
+
+    if (!response.ok) {
+      const text = await response.text();
+      throw new Error(`Graph API error (${response.status}): ${text}`);
+    }
+
+    return response.json();
   }
-
-  return response.json();
 }
 
 async function graphPatch(url: string, body: Record<string, unknown>): Promise<void> {
-  const token = await getValidAccessToken();
-  const response = await fetch(url, {
-    method: "PATCH",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
+  let attempt = 0;
+  while (true) {
+    const token = await getValidAccessToken();
+    const response = await fetch(url, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
 
-  if (!response.ok) {
-    const text = await response.text();
-    throw new Error(`Graph API error (${response.status}): ${text}`);
+    if (response.status === 429 && attempt < GRAPH_MAX_RETRIES) {
+      await new Promise((r) => setTimeout(r, retryDelayMs(response, attempt)));
+      attempt++;
+      continue;
+    }
+
+    if (!response.ok) {
+      const text = await response.text();
+      throw new Error(`Graph API error (${response.status}): ${text}`);
+    }
+
+    return;
   }
 }
 
@@ -217,6 +260,64 @@ interface GraphMessage {
     content: string;
   };
   internetMessageHeaders?: GraphHeader[];
+}
+
+interface GraphBatchResponse {
+  responses?: Array<{
+    id: string;
+    status: number;
+    body?: GraphMessage;
+  }>;
+}
+
+async function graphBatchGetMessages(
+  messageIds: string[],
+  select: string
+): Promise<GraphMessage[]> {
+  if (messageIds.length === 0) return [];
+
+  // Microsoft Graph $batch supports up to 20 requests per batch.
+  const requests = messageIds.map((messageId, index) => ({
+    id: String(index),
+    method: "GET",
+    url: `/me/messages/${messageId}?$select=${select}`,
+  }));
+
+  // Retry the whole batch if any per-response status is 429.
+  let attempt = 0;
+  while (true) {
+    const result = (await graphPost(`${GRAPH_API_BASE}/$batch`, {
+      requests,
+    })) as GraphBatchResponse;
+
+    const responses = result.responses ?? [];
+    const throttled = responses.filter((r) => r.status === 429);
+
+    if (throttled.length === 0) {
+      return responses
+        .filter(
+          (item): item is { id: string; status: number; body: GraphMessage } =>
+            item.status >= 200 && item.status < 300 && !!item.body
+        )
+        .map((item) => item.body);
+    }
+
+    if (attempt >= GRAPH_MAX_RETRIES) {
+      // Return whatever succeeded rather than failing entirely.
+      return responses
+        .filter(
+          (item): item is { id: string; status: number; body: GraphMessage } =>
+            item.status >= 200 && item.status < 300 && !!item.body
+        )
+        .map((item) => item.body);
+    }
+
+    // Back off based on attempt number (no Retry-After in batch sub-responses).
+    await new Promise((r) =>
+      setTimeout(r, Math.min(2 ** attempt * 1000, 30_000))
+    );
+    attempt++;
+  }
 }
 
 function parseGraphMessage(msg: GraphMessage): EmailMessage {
@@ -269,7 +370,7 @@ export function createMicrosoftProvider(): EmailProvider {
 
     async connect(): Promise<EmailConnection> {
       const profile = (await graphGet(
-        `${GRAPH_BASE}?$select=mail,userPrincipalName`
+        `${GRAPH_ME_BASE}?$select=mail,userPrincipalName`
       )) as { mail?: string; userPrincipalName?: string };
 
       return {
@@ -290,7 +391,7 @@ export function createMicrosoftProvider(): EmailProvider {
         const filterParts = [`receivedDateTime ge ${since.toISOString()}`];
         if (until) filterParts.push(`receivedDateTime lt ${until.toISOString()}`);
 
-        const url = new URL(`${GRAPH_BASE}/mailFolders/inbox/messages`);
+        const url = new URL(`${GRAPH_ME_BASE}/mailFolders/inbox/messages`);
         url.searchParams.set("$count", "true");
         url.searchParams.set("$filter", filterParts.join(" and "));
         url.searchParams.set("$top", "1");
@@ -322,9 +423,9 @@ export function createMicrosoftProvider(): EmailProvider {
         const filterParts = [`receivedDateTime ge ${since.toISOString()}`];
         if (until) filterParts.push(`receivedDateTime lt ${until.toISOString()}`);
 
-        const url = new URL(`${GRAPH_BASE}/mailFolders/inbox/messages`);
+        const url = new URL(`${GRAPH_ME_BASE}/mailFolders/inbox/messages`);
         url.searchParams.set("$select", "id,receivedDateTime,from,subject,bodyPreview");
-        url.searchParams.set("$top", "50");
+        url.searchParams.set("$top", "100");
         url.searchParams.set("$filter", filterParts.join(" and "));
         listUrl = url.toString();
       }
@@ -339,25 +440,32 @@ export function createMicrosoftProvider(): EmailProvider {
       }
 
       const emailMessages: EmailMessage[] = [];
+      // headersOnly: fetch internetMessageHeaders + metadata but skip body.
+      // Equivalent to Gmail's format=metadata — List-Unsubscribe is available,
+      // footer link extraction is not (no body). Body is the largest part of the
+      // response, so omitting it keeps historical sync fast.
+      const select = headersOnly
+        ? "id,receivedDateTime,from,subject,bodyPreview,internetMessageHeaders"
+        : "id,receivedDateTime,from,subject,bodyPreview,body,internetMessageHeaders";
 
-      for (const msgRef of listResult.value) {
+      const BATCH_SIZE = 20;
+      // Small pause between batch calls to avoid hitting the per-app request limit.
+      const BATCH_INTER_DELAY_MS = 200;
+      for (let i = 0; i < listResult.value.length; i += BATCH_SIZE) {
+        if (i > 0) {
+          await new Promise((r) => setTimeout(r, BATCH_INTER_DELAY_MS));
+        }
+        const chunk = listResult.value.slice(i, i + BATCH_SIZE);
+        const chunkIds = chunk.map((m) => m.id);
+
         try {
-          // headersOnly: fetch internetMessageHeaders + metadata but skip body.
-          // Equivalent to Gmail's format=metadata — List-Unsubscribe is available,
-          // footer link extraction is not (no body). Body is the largest part of the
-          // response, so omitting it keeps historical sync fast.
-          const select = headersOnly
-            ? "id,receivedDateTime,from,subject,bodyPreview,internetMessageHeaders"
-            : "id,receivedDateTime,from,subject,bodyPreview,body,internetMessageHeaders";
-
-          const msg = (await graphGet(
-            `${GRAPH_BASE}/messages/${msgRef.id}?$select=${select}`
-          )) as GraphMessage;
-
-          emailMessages.push(parseGraphMessage(msg));
-          onProgress?.(emailMessages.length);
+          const batchMessages = await graphBatchGetMessages(chunkIds, select);
+          for (const msg of batchMessages) {
+            emailMessages.push(parseGraphMessage(msg));
+            onProgress?.(emailMessages.length);
+          }
         } catch (err) {
-          console.error(`Failed to fetch message ${msgRef.id}:`, err);
+          console.error("Failed to fetch Microsoft message batch:", err);
         }
       }
 
@@ -369,26 +477,26 @@ export function createMicrosoftProvider(): EmailProvider {
 
     async getMessage(messageId: string): Promise<EmailMessage> {
       const msg = (await graphGet(
-        `${GRAPH_BASE}/messages/${messageId}?$select=id,receivedDateTime,from,subject,bodyPreview,body,internetMessageHeaders`
+        `${GRAPH_ME_BASE}/messages/${messageId}?$select=id,receivedDateTime,from,subject,bodyPreview,body,internetMessageHeaders`
       )) as GraphMessage;
 
       return parseGraphMessage(msg);
     },
 
     async trashMessage(messageId: string): Promise<void> {
-      await graphPost(`${GRAPH_BASE}/messages/${messageId}/move`, {
+      await graphPost(`${GRAPH_ME_BASE}/messages/${messageId}/move`, {
         destinationId: "deleteditems",
       });
     },
 
     async markAsSpam(messageId: string): Promise<void> {
-      await graphPost(`${GRAPH_BASE}/messages/${messageId}/move`, {
+      await graphPost(`${GRAPH_ME_BASE}/messages/${messageId}/move`, {
         destinationId: "junkemail",
       });
     },
 
     async markAsRead(messageId: string, isRead: boolean): Promise<void> {
-      await graphPatch(`${GRAPH_BASE}/messages/${messageId}`, { isRead });
+      await graphPatch(`${GRAPH_ME_BASE}/messages/${messageId}`, { isRead });
     },
 
     // --- Checkpoint sync (Graph Delta Query) ---
@@ -402,7 +510,7 @@ export function createMicrosoftProvider(): EmailProvider {
       try {
         // $deltaToken=latest returns an empty page with just the deltaLink immediately —
         // no need to paginate through the entire mailbox.
-        const url = new URL(`${GRAPH_BASE}/mailFolders/inbox/messages/delta`);
+        const url = new URL(`${GRAPH_ME_BASE}/mailFolders/inbox/messages/delta`);
         url.searchParams.set("$deltaToken", "latest");
         url.searchParams.set("$select", "id");
 
