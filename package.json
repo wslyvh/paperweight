@@ -74,7 +74,8 @@
       },
       "nsis": {
         "oneClick": true,
-        "perMachine": false
+        "perMachine": false,
+        "deleteAppDataOnUninstall": true
       }
     },
   "dependencies": {
