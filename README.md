@@ -36,12 +36,12 @@ Local-first. Your data stays on your computer. Respecting your privacy by defaul
 
 ## License
 
-All features available in free tier. Upgrade for unlimited email history.
+Core features available for free. Upgrade for unlimited history, multiple accounts and to support open-source software development.
 
-- **Free tier**: 30-day email scan, all features included
-- **Early supporters license**: All features, unlimited email history, lifetime updates.
+- **Free tier**: 30-day email scan, core features included
+- **Perpetual license**: All features, unlimited email history, permanent use of Paperweight
 
-[Buy a lifetime license and support development →](https://www.paperweight.email/#pricing)
+[Buy a perpetual license and support development →](https://www.paperweight.email/#pricing)
 
 ## Contributing
 
