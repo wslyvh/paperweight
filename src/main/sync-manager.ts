@@ -3,10 +3,9 @@ import { is } from "@electron-toolkit/utils";
 import { join } from "path";
 import { Worker } from "node:worker_threads";
 import { IPC } from "@shared/ipc";
-import { loadCredentials, getActiveEmail, emailToFileKey, listAccounts } from "./credentials";
+import { loadCredentials, getActiveEmail, emailToFileKey, listAccounts, accountTag } from "./credentials";
 import { getLicenseStatus } from "./services/settings";
-import { syncLog } from "./utils/log";
-import { appendFileLog } from "./utils/file-log";
+import log, { syncLog } from "./utils/log";
 import type { SyncStatus } from "@shared/types";
 
 const workers = new Map<string, Worker>();
@@ -51,6 +50,7 @@ export function startSync(email?: string): void {
     ? join(app.getAppPath(), "resources", "breaches.db")
     : join(process.resourcesPath, "breaches.db");
   const licensed = getLicenseStatus().active;
+  syncLog.info(`[${accountTag(key)}] Sync starting — ${licensed ? "licensed" : "incremental only (no license)"}`);
 
   const workerPath = join(__dirname, "sync-worker.js");
   const worker = new Worker(workerPath, {
@@ -69,7 +69,8 @@ export function startSync(email?: string): void {
       args?: unknown[];
     }) => {
       if (msg.type === "log" && msg.scope && msg.level && msg.args) {
-        appendFileLog(msg.level, msg.scope, ...msg.args);
+        const level = msg.level as "debug" | "info" | "warn" | "error" | "verbose";
+        log.scope(msg.scope)[level](`[${accountTag(key)}]`, ...(msg.args as unknown[]));
         return;
       }
       if (msg.type === "progress" && msg.status) {
@@ -85,7 +86,7 @@ export function startSync(email?: string): void {
   );
 
   worker.on("error", (err: Error) => {
-    syncLog.error(`Sync worker error (${key}):`, err.stack ?? err.message);
+    syncLog.error(`Sync worker error [${accountTag(key)}]:`, err.stack ?? err.message);
     statuses.set(key, {
       running: false,
       progress: 0,
@@ -97,7 +98,7 @@ export function startSync(email?: string): void {
   });
 
   worker.on("exit", (code) => {
-    if (code !== 0) syncLog.error(`Sync worker exited with code: ${code} (${key})`);
+    if (code !== 0) syncLog.error(`Sync worker exited with code: ${code} [${accountTag(key)}]`);
     workers.delete(key);
   });
 }

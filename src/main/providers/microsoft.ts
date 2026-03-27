@@ -2,6 +2,7 @@ import { createHash, randomBytes } from "node:crypto";
 import type { EmailProvider, EmailMessage, EmailConnection } from "./types";
 import { loadCredentials, saveCredentials } from "../credentials";
 import { resolveUnsubscribe, runLoopbackAuth, cleanHtml } from "./utils";
+import { syncLog } from "../utils/log";
 
 // Injected at build time via electron-vite define.
 // Set MICROSOFT_CLIENT_ID env var before building.
@@ -362,6 +363,20 @@ function parseGraphMessage(msg: GraphMessage): EmailMessage {
   };
 }
 
+export async function fetchMicrosoftProfileEmail(accessToken: string): Promise<string | undefined> {
+  try {
+    const resp = await fetch(
+      "https://graph.microsoft.com/v1.0/me?$select=mail,userPrincipalName",
+      { headers: { Authorization: `Bearer ${accessToken}` } },
+    );
+    if (!resp.ok) return undefined;
+    const profile = (await resp.json()) as { mail?: string; userPrincipalName?: string };
+    return profile.mail || profile.userPrincipalName;
+  } catch {
+    return undefined;
+  }
+}
+
 // --- Provider ---
 
 export function createMicrosoftProvider(): EmailProvider {
@@ -465,7 +480,7 @@ export function createMicrosoftProvider(): EmailProvider {
             onProgress?.(emailMessages.length);
           }
         } catch (err) {
-          console.error("Failed to fetch Microsoft message batch:", err);
+          syncLog.error("Failed to fetch Microsoft message batch:", err instanceof Error ? err.message : String(err));
         }
       }
 

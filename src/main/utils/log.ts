@@ -1,7 +1,7 @@
 import { parentPort } from "node:worker_threads";
 
 // Worker threads don't have access to 'electron' — electron-log requires it at load time.
-// Use a console-based fallback that also relays to the main process for file logging.
+// Relay all log messages to the main process, which logs them with the account-tagged scope.
 function createWorkerLogger() {
   const relay = (scope: string, level: string, args: unknown[]) => {
     if (parentPort) {
@@ -12,31 +12,13 @@ function createWorkerLogger() {
       }
     }
   };
-  const createScope = (name: string) => {
-    const prefix = `[${name}]`;
-    return {
-      debug: (...args: unknown[]) => {
-        console.log(prefix, ...args);
-        relay(name, "debug", args);
-      },
-      info: (...args: unknown[]) => {
-        console.info(prefix, ...args);
-        relay(name, "info", args);
-      },
-      warn: (...args: unknown[]) => {
-        console.warn(prefix, ...args);
-        relay(name, "warn", args);
-      },
-      error: (...args: unknown[]) => {
-        console.error(prefix, ...args);
-        relay(name, "error", args);
-      },
-      verbose: (...args: unknown[]) => {
-        console.log(prefix, ...args);
-        relay(name, "verbose", args);
-      },
-    };
-  };
+  const createScope = (name: string) => ({
+    debug: (...args: unknown[]) => relay(name, "debug", args),
+    info: (...args: unknown[]) => relay(name, "info", args),
+    warn: (...args: unknown[]) => relay(name, "warn", args),
+    error: (...args: unknown[]) => relay(name, "error", args),
+    verbose: (...args: unknown[]) => relay(name, "verbose", args),
+  });
   return {
     scope: createScope,
     transports: { file: { getFile: () => ({ path: "" }) } },

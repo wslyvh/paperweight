@@ -1,6 +1,7 @@
 import type { EmailProvider, EmailMessage, EmailConnection } from "./types";
 import { loadCredentials, saveCredentials } from "../credentials";
 import { cleanHtml, resolveUnsubscribe, runLoopbackAuth } from "./utils";
+import { syncLog } from "../utils/log";
 
 // Injected at build time via electron-vite define.
 // Set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET env vars before building.
@@ -422,7 +423,7 @@ export function createGmailProvider(): EmailProvider {
           emailMessages.push(parseGmailMessage(msg));
           onProgress?.(emailMessages.length, estimatedTotal);
         } catch (err) {
-          console.error(`Failed to fetch message ${msgRef.id}:`, err);
+          syncLog.error(`Failed to fetch message ${msgRef.id}:`, err instanceof Error ? err.message : String(err));
         }
       }
 

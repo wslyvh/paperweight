@@ -392,7 +392,6 @@ async function runIncrementalSync(
     const checkpoint = await provider.getCurrentSyncCheckpoint();
     if (checkpoint) {
       stateUpdate.sync_checkpoint = checkpoint;
-      syncLog.info(`Sync checkpoint saved: ${checkpoint}`);
     }
   }
 
@@ -518,7 +517,6 @@ export async function runSync(licensedOverride?: boolean): Promise<void> {
   });
 
   const startTime = Date.now();
-  syncLog.info("Sync started");
 
   try {
     const connection = await provider.connect();
@@ -531,14 +529,8 @@ export async function runSync(licensedOverride?: boolean): Promise<void> {
     let licensed: boolean;
     if (licensedOverride !== undefined) {
       licensed = licensedOverride;
-      syncLog.info(licensed ? "License: active" : "License: none");
     } else {
       const licenseStatus = getLicenseStatus();
-      syncLog.info(
-        licenseStatus.active
-          ? `License: valid (${licenseStatus.tier})`
-          : "License: none",
-      );
       licensed = licenseStatus.active && (await hasValidLicense());
     }
 

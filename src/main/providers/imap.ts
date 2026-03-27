@@ -5,6 +5,7 @@ import { loadCredentials } from "../credentials";
 import { cleanHtml, resolveUnsubscribe } from "./utils";
 import { friendlyConnectionError } from "../services/sync";
 import { getSetting } from "../services/settings";
+import { syncLog } from "../utils/log";
 
 function connectImapWithErrorHandling(client: ImapFlow): Promise<void> {
   return new Promise((resolve, reject) => {
@@ -313,7 +314,7 @@ export function createImapProvider(): EmailProvider {
             if (parsed) messages.push(parsed);
             onProgress?.(messages.length, inboxEstimate);
           } catch (err) {
-            console.error(`Failed to parse IMAP message ${msg.uid}:`, err);
+            syncLog.error(`Failed to parse IMAP message ${msg.uid}:`, err instanceof Error ? err.message : String(err));
           }
         }
       } finally {
@@ -346,10 +347,7 @@ export function createImapProvider(): EmailProvider {
                 if (parsed) messages.push(parsed);
                 onProgress?.(messages.length, combinedEstimate);
               } catch (err) {
-                console.error(
-                  `Failed to parse IMAP sent message ${msg.uid}:`,
-                  err
-                );
+                syncLog.error(`Failed to parse IMAP sent message ${msg.uid}:`, err instanceof Error ? err.message : String(err));
               }
             }
           } finally {
@@ -357,7 +355,7 @@ export function createImapProvider(): EmailProvider {
           }
         }
       } catch (err) {
-        console.error("Failed to fetch Sent folder:", err);
+        syncLog.error("Failed to fetch Sent folder:", err instanceof Error ? err.message : String(err));
       }
 
       return { messages };
@@ -571,7 +569,7 @@ export async function testImapConnection(config: {
     await client.logout();
     return { success: true };
   } catch (err) {
-    console.error("IMAP connection error:", err);
+    syncLog.error("IMAP connection error:", err instanceof Error ? err.message : String(err));
     return {
       success: false,
       error: friendlyConnectionError(err),

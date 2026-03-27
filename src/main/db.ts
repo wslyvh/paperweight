@@ -1,5 +1,5 @@
 import Database from "better-sqlite3";
-import { join } from "path";
+import { join, basename } from "path";
 import { existsSync, unlinkSync } from "fs";
 import { dbLog } from "./utils/log";
 import { emailToFileKey } from "./credentials";
@@ -51,7 +51,8 @@ export function getDb(): Database.Database {
     initSchema(db);
     attachCompaniesDb(db);
     attachBreachesDb(db);
-    dbLog.info("Database initialized");
+    const tag = basename(_dbPath, ".db").split("_").pop() ?? "?";
+    dbLog.info(`Database initialized [${tag}]`);
   }
   return db;
 }
@@ -73,7 +74,8 @@ export function createAccountDb(dbPath: string): void {
   attachCompaniesDb(newDb);
   attachBreachesDb(newDb);
   newDb.close();
-  dbLog.info(`Created account DB at ${dbPath}`);
+  const tag = basename(dbPath, ".db").split("_").pop() ?? "?";
+  dbLog.info(`Account DB created [${tag}]`);
 }
 
 function initSchema(d: Database.Database) {

@@ -45,6 +45,11 @@ export function emailToFileKey(email: string): string {
   return `${local}_${hash}`;
 }
 
+/** Short privacy-safe account identifier for logging (6-char hash, matches filename suffix). */
+export function accountTag(email: string): string {
+  return createHash("sha256").update(email.toLowerCase()).digest("hex").slice(0, 6);
+}
+
 function getRegistryPath(): string {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { app } = require("electron") as typeof import("electron");

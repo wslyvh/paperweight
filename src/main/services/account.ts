@@ -9,9 +9,10 @@ import {
   listAccounts,
   getActiveEmail,
   emailToFileKey,
+  accountTag,
 } from "../credentials";
 import { startLoopbackAuth, fetchGmailProfileEmail } from "../providers/gmail";
-import { startMicrosoftLoopbackAuth } from "../providers/microsoft";
+import { startMicrosoftLoopbackAuth, fetchMicrosoftProfileEmail } from "../providers/microsoft";
 import { testImapConnection } from "../providers/imap";
 import { getProvider } from "../providers/ProviderFactory";
 import { addWhitelistEntry, getSetting, saveSetting, applyAutoLaunch } from "./settings";
@@ -66,6 +67,29 @@ function switchToNewAccount(email: string): void {
 }
 
 
+// Register an account and set up its DB if new. Called after credentials are saved.
+function recordAccount(email: string, providerType: string): void {
+  const existingAccounts = listAccounts();
+  const isFirstAccount = existingAccounts.length === 0;
+  const isNewAccount = !existingAccounts.find((a) => a.email === email);
+
+  const now = Date.now();
+  const registeredAt = isNewAccount ? now : (parseInt(getSetting("registeredAt") || "0", 10) || now);
+
+  registerAccount(email, providerType, registeredAt);
+
+  if (isNewAccount) {
+    authLog.info(isFirstAccount ? `First account [${accountTag(email)}] registered` : `New account [${accountTag(email)}] added`);
+    switchToNewAccount(email);
+    saveSetting("registeredAt", String(registeredAt));
+    if (isFirstAccount) {
+      saveGlobalSetting("autoLaunch", true);
+      saveGlobalSetting("launchMinimized", true);
+      applyAutoLaunch(true, true);
+    }
+  }
+}
+
 export function getConnectionStatus() {
   return hasCredentials();
 }
@@ -95,29 +119,10 @@ export async function startGmailAuthAndRecordAccount() {
     return { success: false, error: "Auth failed: could not fetch account email" };
   }
 
-  const existingAccounts = listAccounts();
-  const isFirstAccount = existingAccounts.length === 0;
-  const isNewAccount = !existingAccounts.find((a) => a.email === email);
-
-  const now = Date.now();
-  const registeredAt = isNewAccount ? now : (parseInt(getSetting("registeredAt") || "0", 10) || now);
-
-  registerAccount(email, "gmail", registeredAt);
-  saveCredentials(stagingCreds);   // saves to {email}.enc (active email is now set)
-  deleteCredentials("__staging__");
-
   authLog.info("Gmail auth completed");
-
-  if (isNewAccount) {
-    authLog.info(isFirstAccount ? `First account ${email} registered, switching to per-account DB` : `New account ${email} added, switching`);
-    switchToNewAccount(email); // creates DB, reconnects, calls ensureAccountSettingsInDb
-    saveSetting("registeredAt", String(registeredAt));
-    if (isFirstAccount) {
-      saveGlobalSetting("autoLaunch", true);
-      saveGlobalSetting("launchMinimized", true);
-      applyAutoLaunch(true, true);
-    }
-  }
+  recordAccount(email, "gmail");
+  saveCredentials(stagingCreds);
+  deleteCredentials("__staging__");
 
   return result;
 }
@@ -141,51 +146,16 @@ export async function startMicrosoftAuthAndRecordAccount() {
     return { success: false, error: "Auth failed: no credentials stored" };
   }
 
-  let email: string | undefined;
-  try {
-    const resp = await fetch(
-      "https://graph.microsoft.com/v1.0/me?$select=mail,userPrincipalName",
-      { headers: { Authorization: `Bearer ${stagingCreds.microsoft.accessToken}` } }
-    );
-    if (resp.ok) {
-      const profile = (await resp.json()) as {
-        mail?: string;
-        userPrincipalName?: string;
-      };
-      email = profile.mail || profile.userPrincipalName;
-    }
-  } catch {
-    // Non-fatal — email just won't be set
-  }
-
+  const email = await fetchMicrosoftProfileEmail(stagingCreds.microsoft.accessToken);
   if (!email) {
     deleteCredentials("__staging__");
     return { success: false, error: "Auth failed: could not fetch account email" };
   }
 
-  const existingAccounts = listAccounts();
-  const isFirstAccount = existingAccounts.length === 0;
-  const isNewAccount = !existingAccounts.find((a) => a.email === email);
-
-  const now = Date.now();
-  const registeredAt = isNewAccount ? now : (parseInt(getSetting("registeredAt") || "0", 10) || now);
-
-  registerAccount(email, "microsoft", registeredAt);
-  saveCredentials(stagingCreds);   // saves to {email}.enc
-  deleteCredentials("__staging__");
-
   authLog.info("Microsoft auth completed");
-
-  if (isNewAccount) {
-    authLog.info(isFirstAccount ? `First account ${email} registered, switching to per-account DB` : `New account ${email} added, switching`);
-    switchToNewAccount(email); // creates DB, reconnects, calls ensureAccountSettingsInDb
-    saveSetting("registeredAt", String(registeredAt));
-    if (isFirstAccount) {
-      saveGlobalSetting("autoLaunch", true);
-      saveGlobalSetting("launchMinimized", true);
-      applyAutoLaunch(true, true);
-    }
-  }
+  recordAccount(email, "microsoft");
+  saveCredentials(stagingCreds);
+  deleteCredentials("__staging__");
 
   return result;
 }
@@ -199,38 +169,14 @@ export async function saveImapConfigAndRecordAccount(config: ImapConfig) {
     }
 
     const email = config.username;
-    const existingAccounts = listAccounts();
-    const isFirstAccount = existingAccounts.length === 0;
-    const isNewAccount = !existingAccounts.find((a) => a.email === email);
-
-    const now = Date.now();
-    const registeredAt = isNewAccount ? now : (parseInt(getSetting("registeredAt") || "0", 10) || now);
-
-    // For IMAP the email is known upfront — save directly to the right path
-    saveCredentials({ providerType: "imap", imap: config }, email);
-
-    registerAccount(email, "imap", registeredAt);
-
     authLog.info("IMAP config saved");
-
-    if (isNewAccount) {
-      authLog.info(isFirstAccount ? `First account ${email} registered, switching to per-account DB` : `New IMAP account ${email} added, switching`);
-      switchToNewAccount(email); // creates DB, reconnects, calls ensureAccountSettingsInDb
-      saveSetting("registeredAt", String(registeredAt));
-      if (isFirstAccount) {
-        saveGlobalSetting("autoLaunch", true);
-        saveGlobalSetting("launchMinimized", true);
-        applyAutoLaunch(true, true);
-      }
-    }
+    recordAccount(email, "imap");
+    saveCredentials({ providerType: "imap", imap: config }, email);
 
     return { success: true };
   } catch (err) {
     authLog.error("IMAP config save failed:", err instanceof Error ? err.message : String(err));
-    return {
-      success: false,
-      error: err instanceof Error ? err.message : String(err),
-    };
+    return { success: false, error: err instanceof Error ? err.message : String(err) };
   }
 }
 

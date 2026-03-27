@@ -7,18 +7,18 @@ import { getActivitySignal, ACTIVITY_BADGE } from "../utils/signals";
 import ActionModal from "../components/ActionModal";
 
 const RISK_BORDER: Record<string, string> = {
-  high:    "border-error",
-  medium:  "border-warning",
-  low:     "border-success",
+  high: "border-error",
+  medium: "border-warning",
+  low: "border-success",
   unknown: "border-base-300",
 };
 
 const SORT_OPTIONS = [
-  { value: "risk",            label: "Risk" },
-  { value: "message_count",   label: "Most emails" },
-  { value: "last_seen",       label: "Latest" },
-  { value: "last_seen_asc",   label: "Oldest" },
-  { value: "name",            label: "Name" },
+  { value: "risk", label: "Risk" },
+  { value: "message_count", label: "Most emails" },
+  { value: "last_seen", label: "Latest" },
+  { value: "last_seen_asc", label: "Oldest" },
+  { value: "name", label: "Name" },
 ];
 
 interface Preset {
@@ -33,14 +33,14 @@ interface Preset {
 }
 
 const FREE_PRESETS: Preset[] = [
-  { id: "highrisk",  label: "High risk",    risk: "high" },
-  { id: "onetime",   label: "Single orders", dataType: "has_orders", volume: "oneoff" },
-  { id: "breached",  label: "Breached",      breached: true, defaultSort: "risk" },
+  { id: "highrisk", label: "High risk", risk: "high" },
+  { id: "onetime", label: "Single orders", dataType: "has_orders", volume: "oneoff" },
+  { id: "breached", label: "Breached", breached: true, defaultSort: "risk" },
 ];
 
 const LICENSED_PRESETS: Preset[] = [
   { id: "oldaccounts", label: "Old accounts", risk: "high", activity: "stale" },
-  { id: "oldorders",   label: "Old orders",   dataType: "has_orders", activity: "stale" },
+  { id: "oldorders", label: "Old orders", dataType: "has_orders", activity: "stale" },
 ];
 
 interface FilterGroupProps {
@@ -64,8 +64,8 @@ function FilterGroup({ label, options, labels, value, onChange, colors }: Filter
               ? `badge-${color}`
               : `badge-soft badge-${color}`
             : value === opt
-            ? "badge-neutral"
-            : "badge-soft";
+              ? "badge-neutral"
+              : "badge-soft";
           return (
             <button
               key={opt}
@@ -125,9 +125,6 @@ export default function Accounts(): JSX.Element {
   const [showReviewed, setShowReviewed] = useState(restore?.showReviewed ?? false);
   const [showSort, setShowSort] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
-  const [bannerDismissed, setBannerDismissed] = useState(
-    () => localStorage.getItem("accounts_beta_dismissed") === "1"
-  );
   const limit = 25;
 
   const sortRef = useRef<HTMLDivElement>(null);
@@ -208,7 +205,7 @@ export default function Accounts(): JSX.Element {
       replace: true,
       state: { restore: { page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, anyBreachFilter, showReviewed } satisfies AccountsState },
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, anyBreachFilter, showReviewed]);
 
   useEffect(() => {
@@ -301,34 +298,6 @@ export default function Accounts(): JSX.Element {
         <p className="text-sm text-base-content/50 mt-1">Companies that likely hold your personal data, like orders, accounts, invoices, and more. Risk is based on data type and breach history.</p>
       </div>
 
-      {/* Beta banner */}
-      {!bannerDismissed && (
-        <div className="alert bg-base-200 text-sm py-2">
-          <span>
-            Account detection improves with more email data. Help us improve! Please{" "}
-            <button
-              className="link link-primary"
-              onClick={() =>
-                window.api.openExternal("https://github.com/wslyvh/paperweight/issues")
-              }
-            >
-              share feedback
-            </button>
-            {" "}
-            or{" "}
-            <button
-              className="link link-primary"
-              onClick={() =>
-                window.api.openExternal("mailto:hello@paperweight.email")
-              }
-            >
-              contact us
-            </button>.
-          </span>
-          <button onClick={dismissBanner} className="btn btn-xs btn-ghost ml-auto">×</button>
-        </div>
-      )}
-
       {/* Row 1 — toolbar */}
       <div className="flex items-center gap-3">
         <input
@@ -380,9 +349,8 @@ export default function Accounts(): JSX.Element {
               {SORT_OPTIONS.map(o => (
                 <button
                   key={o.value}
-                  className={`w-full text-left px-3 py-1.5 text-sm hover:bg-base-300 transition-colors ${
-                    sortBy === o.value ? "font-medium text-base-content" : "text-base-content/60"
-                  }`}
+                  className={`w-full text-left px-3 py-1.5 text-sm hover:bg-base-300 transition-colors ${sortBy === o.value ? "font-medium text-base-content" : "text-base-content/60"
+                    }`}
                   onClick={() => { setSortBy(o.value); setPage(1); setShowSort(false); }}
                 >
                   {o.label}
@@ -479,8 +447,8 @@ export default function Accounts(): JSX.Element {
               {activityFilter === "dead"
                 ? "No accounts found for this time range. Syncing older emails requires a license."
                 : search
-                ? "No accounts match your search"
-                : "Adjust your filters or sync to see more"}
+                  ? "No accounts match your search"
+                  : "Adjust your filters or sync to see more"}
             </p>
           </div>
         </div>
@@ -546,9 +514,8 @@ export default function Accounts(): JSX.Element {
                           </button>
                         )}
                         <button
-                          className={`btn btn-ghost btn-sm btn-square tooltip tooltip-top text-base-content/50 hover:bg-base-content/10 hover:text-base-content/80 ${
-                            vendor.status === "reviewed" ? "text-success" : ""
-                          }`}
+                          className={`btn btn-ghost btn-sm btn-square tooltip tooltip-top text-base-content/50 hover:bg-base-content/10 hover:text-base-content/80 ${vendor.status === "reviewed" ? "text-success" : ""
+                            }`}
                           data-tip={vendor.status === "reviewed" ? "Undo review" : "Mark reviewed"}
                           onClick={(e) => handleReviewedClick(e, vendor)}
                           aria-label="Mark reviewed"
