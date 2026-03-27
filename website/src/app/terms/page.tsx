@@ -42,8 +42,11 @@ export default async function TermsPage() {
         <ul>
           <li>Prices are shown in EUR including applicable taxes</li>
           <li>
-            <strong>Lifetime licenses</strong> grant you access to all updates
-            forever
+            <strong>Lifetime licenses</strong> grant you permanent use of Paperweight
+            and all updates within the current major version (e.g. v1.x).
+            Licenses purchased during beta (v0.x) include a free upgrade to the first major release (v1.x).
+            Future major versions with significant new features may require a new license,
+            with upgrade pricing available to existing license holders.
           </li>
           <li>
             Payments are processed by Polar.sh - we don't store payment

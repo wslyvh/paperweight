@@ -277,7 +277,7 @@ export default async function Home() {
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">Pricing</h2>
               <p className="text-xl opacity-80">
-                Try it free. Upgrade for unlimited history.
+                Try it free. Upgrade for unlimited history and multi-account support.
               </p>
             </div>
 
@@ -293,11 +293,11 @@ export default async function Home() {
                 <ul className="space-y-3 flex-1 mb-8">
                   <li className="flex items-start gap-2">
                     <span className="text-success">✓</span>
-                    <span>30-day email scan</span>
+                    <span>Core features included</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-success">✓</span>
-                    <span>All features included</span>
+                    <span>30-day email scan</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-success">✓</span>
@@ -314,6 +314,10 @@ export default async function Home() {
                   <li className="flex items-start gap-2">
                     <span className="text-success">✓</span>
                     <span>GDPR templates</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-success">✓</span>
+                    <span>Community support</span>
                   </li>
                 </ul>
 
@@ -332,21 +336,19 @@ export default async function Home() {
 
               {/* Paid Tier */}
               <div className="bg-base-100 rounded-lg p-8 border-2 border-primary relative flex flex-col">
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <span className="bg-primary text-primary-content px-4 py-1 rounded-full text-sm font-semibold">
-                    Early Supporter
-                  </span>
-                </div>
-
                 <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold mb-2">Lifetime License</h3>
-                  <div className="text-4xl font-bold mb-2">$49</div>
+                  <h3 className="text-2xl font-bold mb-2">Perpetual License</h3>
+                  <div className="text-4xl font-bold mb-2">$99</div>
                   <div className="text-sm opacity-60 mb-1">
                     One-time payment
                   </div>
                 </div>
 
                 <ul className="space-y-3 flex-1 mb-8">
+                  <li className="flex items-start gap-2">
+                    <span className="text-success">✓</span>
+                    <span><strong>All features included</strong></span>
+                  </li>
                   <li className="flex items-start gap-2">
                     <span className="text-success">✓</span>
                     <span>
@@ -361,19 +363,19 @@ export default async function Home() {
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-success">✓</span>
-                    <span>All features included</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-success">✓</span>
-                    <span>Lifetime updates</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-success">✓</span>
-                    <span>Priority support</span>
+                    <span>Permanent use of Paperweight</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-success">✓</span>
                     <span>Support development</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-success">✓</span>
+                    <span>V1 updates included</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-success">✓</span>
+                    <span>1 year email support</span>
                   </li>
                 </ul>
 
@@ -382,19 +384,14 @@ export default async function Home() {
                     href={SITE_CONFIG.LICENSE_URL}
                     className="btn btn-primary btn-block plausible-event-name=Buy+License"
                   >
-                    Buy lifetime license
+                    Buy License
                   </a>
-
-                  <p className="text-xs text-center mt-4 opacity-60">
-                    Limited early supporter pricing
-                  </p>
                 </div>
               </div>
             </div>
 
             <p className="text-center text-sm opacity-60 mt-8">
-              All features available in free tier. Upgrade for unlimited email
-              history.
+              Grab a license to unlock all features and support open-source software development.
             </p>
           </div>
         </div>
