@@ -1,5 +1,6 @@
 import type {
   AccountInfo,
+  AccountSummary,
   ActivityEntry,
   DashboardStats,
   ChartTrend,
@@ -34,8 +35,9 @@ export const IPC = {
   queryVendors: "query-vendors",
   getSettings: "get-settings",
   saveSettings: "save-settings",
-  clearSyncData: "clear-sync-data",
+  resyncData: "resync-data",
   wipeData: "wipe-data",
+  noAccountsRemaining: "no-accounts-remaining",
   openExternal: "open-external",
   syncProgress: "sync-progress",
   markUnsubscribed: "mark-unsubscribed",
@@ -64,6 +66,11 @@ export const IPC = {
   getImpactStats: "get-impact-stats",
   getRiskCounts: "get-risk-counts",
   getActivityLog: "get-activity-log",
+  listAccounts: "list-accounts",
+  addAccount: "add-account",
+  switchAccount: "switch-account",
+  removeAccount: "remove-account",
+  accountSwitched: "account-switched",
 } as const;
 
 export interface ElectronAPI {
@@ -82,7 +89,7 @@ export interface ElectronAPI {
   queryVendors: (query: VendorQuery) => Promise<{ vendors: Vendor[]; total: number }>;
   getSettings: () => Promise<Settings>;
   saveSettings: (settings: Partial<Settings>) => Promise<void>;
-  clearSyncData: () => Promise<void>;
+  resyncData: () => Promise<void>;
   wipeData: () => Promise<void>;
   openExternal: (url: string) => Promise<void>;
   onSyncProgress: (callback: (status: SyncStatus) => void) => () => void;
@@ -112,6 +119,12 @@ export interface ElectronAPI {
   getImpactStats: () => Promise<ImpactStats>;
   getRiskCounts: () => Promise<RiskCounts>;
   getActivityLog: (limit: number, offset: number) => Promise<{ entries: ActivityEntry[]; total: number }>;
+  listAccounts: () => Promise<AccountSummary[]>;
+  addAccount: () => Promise<{ blocked: true; reason: "license_required" } | null>;
+  switchAccount: (email: string) => Promise<void>;
+  removeAccount: (email: string) => Promise<void>;
+  onAccountSwitched: (callback: (email: string) => void) => () => void;
+  onNoAccountsRemaining: (callback: () => void) => () => void;
 }
 
 export type { SyncStatus };

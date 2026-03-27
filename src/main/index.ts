@@ -2,12 +2,16 @@ import { app, BrowserWindow, dialog, shell, Menu } from "electron";
 import { join } from "path";
 import { electronApp, optimizer, is } from "@electron-toolkit/utils";
 import { registerIpcHandlers } from "./ipc";
-import { startSync } from "./sync-manager";
+import { startAllSyncs } from "./sync-manager";
 import { APP_CONFIG } from "@shared/config";
-import { getSetting, applyAutoLaunch, wasLaunchedAsHidden } from "./services/settings";
+import { applyAutoLaunch, wasLaunchedAsHidden } from "./services/settings";
+import { getGlobalSetting } from "./services/globalSettings";
 import { initDb } from "./db";
 import { appLog } from "./utils/log";
 import { initFileLog } from "./utils/file-log";
+import { emailToFileKey, getActiveEmail } from "./credentials";
+import { ensureAccountSettingsInDb } from "./services/account";
+import { runMigrations } from "./migrations";
 
 let startHidden = false;
 
@@ -71,16 +75,22 @@ app.whenReady().then(() => {
 
   appLog.info(`Starting ${APP_CONFIG.NAME} v${app.getVersion()} (Electron ${process.versions.electron})`);
 
-  // Pre-compute paths using Electron APIs and store them so db.ts never needs to
-  // call Electron APIs itself (enabling worker thread usage without Electron in scope).
-  const dbPath = join(app.getPath("userData"), `${APP_CONFIG.DOMAIN}.db`);
+  runMigrations();
+
   const companiesDbPath = is.dev
     ? join(app.getAppPath(), "resources", "companies.db")
     : join(process.resourcesPath, "companies.db");
   const breachesDbPath = is.dev
     ? join(app.getAppPath(), "resources", "breaches.db")
     : join(process.resourcesPath, "breaches.db");
-  initDb(dbPath, companiesDbPath, breachesDbPath);
+
+  // Only open the DB if an account is already registered — onboarding creates it on first auth.
+  const activeEmail = getActiveEmail();
+  if (activeEmail) {
+    const dbPath = join(app.getPath("userData"), `${emailToFileKey(activeEmail)}.db`);
+    initDb(dbPath, companiesDbPath, breachesDbPath);
+    ensureAccountSettingsInDb();
+  }
 
   electronApp.setAppUserModelId(APP_CONFIG.DOMAIN);
 
@@ -91,8 +101,8 @@ app.whenReady().then(() => {
   registerIpcHandlers();
 
   // Ensure OS login item state matches saved settings
-  const autoLaunch = getSetting("autoLaunch") === "true";
-  const launchMinimized = getSetting("launchMinimized") === "true";
+  const autoLaunch = getGlobalSetting("autoLaunch") ?? false;
+  const launchMinimized = getGlobalSetting("launchMinimized") ?? false;
   applyAutoLaunch(autoLaunch, launchMinimized);
 
   // Determine if we should start hidden (must be after DB is available)
@@ -101,16 +111,16 @@ app.whenReady().then(() => {
   createWindow();
   appLog.info("Window created");
 
-  // Sync on launch (delayed to let the window render)
+  // Sync all accounts on launch (delayed to let the window render)
   setTimeout(() => {
-    appLog.info("Initial sync scheduled");
-    startSync();
+    appLog.info("Initial sync scheduled (all accounts)");
+    startAllSyncs();
   }, 3000);
 
-  // Background sync every 20 minutes
+  // Background sync every 20 minutes — picks up any accounts whose worker has finished
   appLog.info("Background sync interval set (20 min)");
   setInterval(() => {
-    startSync();
+    startAllSyncs();
   }, 20 * 60 * 1000);
 
   app.on("activate", () => {

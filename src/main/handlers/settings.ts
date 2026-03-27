@@ -1,18 +1,21 @@
 import { ipcMain, shell } from "electron";
 import { IPC } from "@shared/ipc";
 import { isLicenseKey, isString } from "@shared/validation";
-import { activateLicense, getLicenseStatus, deleteLicense } from "../services/settings";
-import { getSetting, saveSetting, applyAutoLaunch } from "../services/settings";
+import { activateLicense, getLicenseStatus, deleteLicense, applyAutoLaunch } from "../services/settings";
+import { getSetting, saveSetting } from "../services/settings";
+import { getGlobalSetting, saveGlobalSetting } from "../services/globalSettings";
 import { loadCredentials } from "../credentials";
 import { dataLog } from "../utils/log";
 
 function getSettings() {
   const creds = loadCredentials();
   const registered = !!getSetting("registeredAt");
+  const autoLaunchVal = getGlobalSetting("autoLaunch");
+  const launchMinimizedVal = getGlobalSetting("launchMinimized");
   return {
     providerType: creds?.providerType || "none",
-    autoLaunch: getSetting("autoLaunch") === "true" || (registered && getSetting("autoLaunch") === undefined),
-    launchMinimized: getSetting("launchMinimized") === "true" || (registered && getSetting("launchMinimized") === undefined),
+    autoLaunch: autoLaunchVal !== undefined ? autoLaunchVal : registered,
+    launchMinimized: launchMinimizedVal !== undefined ? launchMinimizedVal : registered,
     userName: getSetting("userName") ?? "",
   };
 }
@@ -45,20 +48,18 @@ export function registerSettingsHandlers(): void {
 
     if (s.autoLaunch !== undefined) {
       if (typeof s.autoLaunch !== "boolean") throw new Error("Invalid autoLaunch");
-      saveSetting("autoLaunch", String(s.autoLaunch));
-      const minimized = s.launchMinimized !== undefined
-        ? Boolean(s.launchMinimized)
-        : getSetting("launchMinimized") === "true";
-      applyAutoLaunch(s.autoLaunch, minimized);
+      saveGlobalSetting("autoLaunch", s.autoLaunch);
     }
 
     if (s.launchMinimized !== undefined) {
       if (typeof s.launchMinimized !== "boolean") throw new Error("Invalid launchMinimized");
-      saveSetting("launchMinimized", String(s.launchMinimized));
-      const autoLaunch = s.autoLaunch !== undefined
-        ? Boolean(s.autoLaunch)
-        : getSetting("autoLaunch") === "true";
-      applyAutoLaunch(autoLaunch, s.launchMinimized);
+      saveGlobalSetting("launchMinimized", s.launchMinimized);
+    }
+
+    if (s.autoLaunch !== undefined || s.launchMinimized !== undefined) {
+      const autoLaunch = getGlobalSetting("autoLaunch") ?? false;
+      const minimized = getGlobalSetting("launchMinimized") ?? false;
+      applyAutoLaunch(autoLaunch, minimized);
     }
 
     if (s.userName !== undefined) {

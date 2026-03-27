@@ -1,14 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import makeBlockie from "ethereum-blockies-base64";
-import { HelpCircle } from "lucide-react";
+import { HelpCircle, Lock } from "lucide-react";
 import type {
   AccountInfo,
+  AccountSummary,
   EmailConnection,
   LicenseStatus,
   WhitelistEntry,
 } from "@shared/types";
 import { useLicense, useRefreshLicense } from "../context/LicenseContext";
+import {
+  ProviderSelect,
+  GmailNotice,
+  GmailConnect,
+  MicrosoftConnect,
+  ImapConnect,
+} from "../components/ProviderConnect";
+
+type AddAccountView = "provider" | "gmail-notice" | "gmail" | "microsoft" | "imap";
 
 export default function Settings(): JSX.Element {
   const navigate = useNavigate();
@@ -16,7 +26,7 @@ export default function Settings(): JSX.Element {
   const [connection, setConnection] = useState<EmailConnection | null>(null);
   const [autoLaunch, setAutoLaunch] = useState(false);
   const [launchMinimized, setLaunchMinimized] = useState(false);
-  const [showClearModal, setShowClearModal] = useState(false);
+  const [showResyncModal, setShowResyncModal] = useState(false);
   const [licenseKey, setLicenseKey] = useState("");
   const license = useLicense();
   const refreshLicense = useRefreshLicense();
@@ -28,6 +38,16 @@ export default function Settings(): JSX.Element {
   );
   const [newEntry, setNewEntry] = useState("");
   const [reconnectLoading, setReconnectLoading] = useState(false);
+  const [accounts, setAccounts] = useState<AccountSummary[]>([]);
+  const [removeAccountEmail, setRemoveAccountEmail] = useState<string | null>(
+    null,
+  );
+  const [removeInProgress, setRemoveInProgress] = useState(false);
+  const [switchingEmail, setSwitchingEmail] = useState<string | null>(null);
+  const [showAddAccountModal, setShowAddAccountModal] = useState(false);
+  const [addAccountView, setAddAccountView] =
+    useState<AddAccountView>("provider");
+  const licenseSectionRef = useRef<HTMLDivElement>(null);
 
   const fetchWhitelist = async (): Promise<void> => {
     const entries = await window.api.getWhitelistEntries();
@@ -41,6 +61,7 @@ export default function Settings(): JSX.Element {
       setLaunchMinimized(!!s.launchMinimized);
     });
     window.api.getEmailConnection().then(setConnection);
+    window.api.listAccounts().then(setAccounts);
     fetchWhitelist();
   }, []);
 
@@ -84,21 +105,46 @@ export default function Settings(): JSX.Element {
     await refreshLicense();
   };
 
-  const handleClearSync = async (): Promise<void> => {
-    await window.api.clearSyncData();
-    setShowClearModal(false);
+  const handleResync = async (): Promise<void> => {
+    await window.api.resyncData();
+    setShowResyncModal(false);
+    window.api.startSync();
     window.api.getAccountInfo().then(setAccount);
   };
 
   const handleWipe = async (): Promise<void> => {
     await window.api.wipeData();
     setShowWipeModal(false);
-    navigate("/onboarding");
+  };
+
+  const handleSwitchAccount = async (email: string): Promise<void> => {
+    setSwitchingEmail(email);
+    try {
+      await window.api.switchAccount(email);
+      // accountSwitched event triggers App remount
+    } catch {
+      setSwitchingEmail(null);
+    }
+  };
+
+  const handleAddAccount = async (): Promise<void> => {
+    const result = await window.api.addAccount();
+    if (result?.blocked && result.reason === "license_required") {
+      licenseSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+    setAddAccountView("provider");
+    setShowAddAccountModal(true);
+  };
+
+  const handleAddAccountSuccess = (): void => {
+    setShowAddAccountModal(false);
+    window.api.listAccounts().then(setAccounts);
   };
 
   const formatProvider = (type: string): string => {
-    if (type === "gmail") return "Gmail (OAuth)";
-    if (type === "microsoft") return "Microsoft (OAuth)";
+    if (type === "gmail") return "Google";
+    if (type === "microsoft") return "Microsoft";
     if (type === "imap") return "IMAP";
     return "Not connected";
   };
@@ -151,6 +197,9 @@ export default function Settings(): JSX.Element {
     }
   };
 
+  const actionBusy = switchingEmail !== null || removeInProgress;
+  const needsLicense = !license.active && accounts.length >= 1;
+
   return (
     <div className="space-y-6 max-w-xl">
       <div className="flex items-center justify-between">
@@ -164,38 +213,91 @@ export default function Settings(): JSX.Element {
         </button>
       </div>
 
-      {/* Section 1: Account */}
+      {/* Section 1: Accounts */}
       <div className="card bg-base-200">
+        <div className="card-body space-y-3">
+          <h3 className="font-semibold">Accounts</h3>
+          <div className="space-y-2">
+            {accounts.map((acc) => (
+              <div
+                key={acc.email}
+                className="flex items-center justify-between gap-2"
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  <img
+                    src={makeBlockie(acc.email)}
+                    alt=""
+                    className="w-9 h-9 rounded-lg shrink-0"
+                  />
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-medium truncate">
+                        {acc.email}
+                      </span>
+                      {acc.isActive && (
+                        <span className="badge badge-xs badge-soft badge-success shrink-0">
+                          Active
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-xs text-base-content/50">
+                      {formatProvider(acc.providerType)}
+                      {acc.isActive && acc.registeredAt
+                        ? ` · Registered ${formatDate(acc.registeredAt)}`
+                        : ""}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 shrink-0">
+                  {!acc.isActive && (
+                    <button
+                      className="btn btn-ghost btn-xs"
+                      disabled={actionBusy}
+                      onClick={() => handleSwitchAccount(acc.email)}
+                    >
+                      {switchingEmail === acc.email ? (
+                        <span className="loading loading-spinner loading-xs" />
+                      ) : (
+                        "Switch"
+                      )}
+                    </button>
+                  )}
+                  <button
+                    className="btn btn-ghost btn-xs text-error"
+                    disabled={actionBusy}
+                    onClick={() => setRemoveAccountEmail(acc.email)}
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-3 pt-1">
+            <button
+              className={`btn btn-sm w-fit ${needsLicense ? "btn-ghost" : "btn-primary"}`}
+              onClick={handleAddAccount}
+            >
+              {needsLicense && <Lock className="w-3.5 h-3.5" />}
+              Add account
+            </button>
+            {needsLicense && (
+              <span className="text-xs text-base-content/50">
+                *requires a license
+              </span>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Section 2: License */}
+      <div ref={licenseSectionRef} className="card bg-base-200">
         <div className="card-body space-y-4">
-          <h3 className="font-semibold">Account</h3>
+          <h3 className="font-semibold">License</h3>
 
           {account && (
             <>
-              <div className="flex items-start gap-4">
-                <img
-                  src={makeBlockie(account.email)}
-                  alt=""
-                  className="w-12 h-12 rounded-lg"
-                />
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium truncate">
-                      {account.email}
-                    </span>
-                    <span className="badge badge-xs badge-soft badge-accent shrink-0">
-                      early adopter
-                    </span>
-                  </div>
-                  <p className="text-xs text-base-content/50 mt-0.5">
-                    Registered {formatDate(account.registeredAt)}
-                  </p>
-                </div>
-              </div>
-
-              <h4 className="text-sm font-semibold text-base-content/70 pt-2">
-                License
-              </h4>
-
               {license.active ? (
                 <div className="space-y-2">
                   <div className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-1 text-sm">
@@ -204,16 +306,16 @@ export default function Settings(): JSX.Element {
 
                     <span className="text-base-content/50">Key</span>
                     <span className="font-mono">
-                      {license.key ? `XXXX-XXXX-${license.key.slice(-4)}` : ""}
+                      {license.key
+                        ? `XXXX-XXXX-${license.key.slice(-4)}`
+                        : ""}
                     </span>
 
                     {license.expiresAt && (
                       <>
                         <span className="text-base-content/50">Expires</span>
                         <span>
-                          {new Date(
-                            license.expiresAt,
-                          ).toLocaleDateString()}
+                          {new Date(license.expiresAt).toLocaleDateString()}
                         </span>
                       </>
                     )}
@@ -223,8 +325,7 @@ export default function Settings(): JSX.Element {
                       className="btn btn-primary btn-sm"
                       onClick={() =>
                         window.api.openExternal(
-                          license.portalUrl ||
-                            "https://paperweight.email",
+                          license.portalUrl || "https://paperweight.email",
                         )
                       }
                     >
@@ -241,7 +342,7 @@ export default function Settings(): JSX.Element {
               ) : (
                 <div className="space-y-2">
                   <p className="text-sm text-base-content/60">
-                    Activate a license key to unlock full email history sync.
+                    Activate a license key to unlock full email history sync and multi-account support.
                   </p>
                   <div className="flex gap-2">
                     <input
@@ -284,17 +385,14 @@ export default function Settings(): JSX.Element {
         </div>
       </div>
 
-      {/* Section 2: Email Provider */}
+      {/* Section 3: Sync */}
       <div className="card bg-base-200">
         <div className="card-body space-y-3">
-          <h3 className="font-semibold">Email Provider</h3>
+          <h3 className="font-semibold">Sync</h3>
 
           {account && (
             <>
               <div className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-sm">
-                <span className="text-base-content/50">Email</span>
-                <span>{account.email}</span>
-
                 <span className="text-base-content/50">Connection</span>
                 <span className="flex items-center gap-2">
                   {formatProvider(account.providerType)}
@@ -313,25 +411,26 @@ export default function Settings(): JSX.Element {
                 <span>{license.active ? "Full history" : "30 days"}</span>
               </div>
 
-              {(account.providerType === "gmail" || account.providerType === "microsoft") && (
-                <button
-                  className="btn btn-sm btn-primary w-fit"
-                  onClick={handleReconnect}
-                  disabled={reconnectLoading}
-                >
-                  {reconnectLoading ? (
-                    <span className="loading loading-spinner loading-xs" />
-                  ) : (
-                    "Reconnect"
-                  )}
-                </button>
-              )}
+              {(account.providerType === "gmail" ||
+                account.providerType === "microsoft") && (
+                  <button
+                    className="btn btn-sm btn-primary w-fit"
+                    onClick={handleReconnect}
+                    disabled={reconnectLoading}
+                  >
+                    {reconnectLoading ? (
+                      <span className="loading loading-spinner loading-xs" />
+                    ) : (
+                      "Reconnect"
+                    )}
+                  </button>
+                )}
             </>
           )}
         </div>
       </div>
 
-      {/* Section 3: App Settings */}
+      {/* Section 4: App Settings */}
       <div className="card bg-base-200">
         <div className="card-body space-y-3">
           <h3 className="font-semibold">App Settings</h3>
@@ -377,7 +476,7 @@ export default function Settings(): JSX.Element {
         </div>
       </div>
 
-      {/* Section 4: Whitelist */}
+      {/* Section 5: Whitelist */}
       <div className="card bg-base-200">
         <div className="card-body space-y-3">
           <h3 className="font-semibold">Whitelist</h3>
@@ -420,26 +519,26 @@ export default function Settings(): JSX.Element {
         </div>
       </div>
 
-      {/* Section 5: Danger Zone */}
+      {/* Section 6: Danger Zone */}
       <div className="card bg-base-200 border border-error/30">
         <div className="card-body space-y-4">
           <h3 className="font-semibold text-error">Danger Zone</h3>
           <div>
             <p className="text-sm text-base-content/60">
-              Clear all synced emails and sender data. Your connection,
-              settings, and whitelist are kept so you can re-sync.
+              Re-sync email data for {account?.email ?? "this account"}. Your
+              connections, settings, and whitelists are kept.
             </p>
             <button
               className="btn btn-error btn-outline btn-sm w-fit mt-2"
-              onClick={() => setShowClearModal(true)}
+              onClick={() => setShowResyncModal(true)}
             >
-              Clear Data
+              Re-sync Data
             </button>
           </div>
           <div>
             <p className="text-sm text-base-content/60">
-              Delete everything including emails, settings, and stored
-              credentials.
+              Delete everything including all accounts, emails, settings,
+              stored credentials, and your license.
             </p>
             <button
               className="btn btn-error btn-sm w-fit mt-2"
@@ -451,29 +550,142 @@ export default function Settings(): JSX.Element {
         </div>
       </div>
 
-      {/* Clear sync data confirmation modal */}
-      {showClearModal && (
+      {/* Add account modal */}
+      {showAddAccountModal && (
         <dialog className="modal modal-open">
           <div className="modal-box">
-            <h3 className="font-bold text-lg">Clear sync data?</h3>
+            <h3 className="font-bold text-lg mb-4">Add account</h3>
+
+            {addAccountView === "provider" && (
+              <>
+                <ProviderSelect
+                  onGmail={() => setAddAccountView("gmail-notice")}
+                  onMicrosoft={() => setAddAccountView("microsoft")}
+                  onImap={() => setAddAccountView("imap")}
+                />
+                <div className="modal-action mt-4">
+                  <button
+                    className="btn btn-ghost"
+                    onClick={() => setShowAddAccountModal(false)}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </>
+            )}
+
+            {addAccountView === "gmail-notice" && (
+              <GmailNotice
+                onContinue={() => setAddAccountView("gmail")}
+                onBack={() => setAddAccountView("provider")}
+              />
+            )}
+
+            {addAccountView === "gmail" && (
+              <GmailConnect
+                onSuccess={handleAddAccountSuccess}
+                onBack={() => setAddAccountView("provider")}
+              />
+            )}
+
+            {addAccountView === "microsoft" && (
+              <MicrosoftConnect
+                onSuccess={handleAddAccountSuccess}
+                onBack={() => setAddAccountView("provider")}
+              />
+            )}
+
+            {addAccountView === "imap" && (
+              <ImapConnect
+                onSuccess={handleAddAccountSuccess}
+                onBack={() => setAddAccountView("provider")}
+              />
+            )}
+          </div>
+          {addAccountView === "provider" && (
+            <form method="dialog" className="modal-backdrop">
+              <button onClick={() => setShowAddAccountModal(false)}>
+                close
+              </button>
+            </form>
+          )}
+        </dialog>
+      )}
+
+      {/* Re-sync confirmation modal */}
+      {showResyncModal && (
+        <dialog className="modal modal-open">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">Re-sync data?</h3>
             <p className="py-4">
-              This will delete all synced emails, sender data, and detected
-              accounts. Your connection, settings, and whitelist will be kept.
+              All synced emails and sender data for{" "}
+              <span className="font-medium">{account?.email}</span> will be
+              deleted. Paperweight will re-sync from scratch. Your connections,
+              settings, and whitelists are kept.
             </p>
             <div className="modal-action">
               <button
                 className="btn btn-ghost"
-                onClick={() => setShowClearModal(false)}
+                onClick={() => setShowResyncModal(false)}
               >
                 Cancel
               </button>
-              <button className="btn btn-warning" onClick={handleClearSync}>
-                Clear Sync Data
+              <button className="btn btn-warning" onClick={handleResync}>
+                Re-sync
               </button>
             </div>
           </div>
           <form method="dialog" className="modal-backdrop">
-            <button onClick={() => setShowClearModal(false)}>close</button>
+            <button onClick={() => setShowResyncModal(false)}>close</button>
+          </form>
+        </dialog>
+      )}
+
+      {/* Remove account confirmation modal */}
+      {removeAccountEmail && (
+        <dialog className="modal modal-open">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">Remove account?</h3>
+            <p className="py-4">
+              This will permanently delete the account data for{" "}
+              <span className="font-medium">{removeAccountEmail}</span>, including
+              synced emails and settings.
+            </p>
+            <p className="py-4">Your license is not affected.</p>
+            <div className="modal-action">
+              <button
+                className="btn btn-ghost"
+                disabled={removeInProgress}
+                onClick={() => setRemoveAccountEmail(null)}
+              >
+                Cancel
+              </button>
+              <button
+                className="btn btn-error"
+                disabled={removeInProgress}
+                onClick={async () => {
+                  const email = removeAccountEmail;
+                  setRemoveInProgress(true);
+                  try {
+                    await window.api.removeAccount(email);
+                    const updated = await window.api.listAccounts();
+                    setAccounts(updated);
+                  } finally {
+                    setRemoveAccountEmail(null);
+                    setRemoveInProgress(false);
+                  }
+                }}
+              >
+                {removeInProgress ? (
+                  <span className="loading loading-spinner loading-xs" />
+                ) : (
+                  "Remove"
+                )}
+              </button>
+            </div>
+          </div>
+          <form method="dialog" className="modal-backdrop">
+            <button onClick={() => setRemoveAccountEmail(null)}>close</button>
           </form>
         </dialog>
       )}
@@ -482,10 +694,11 @@ export default function Settings(): JSX.Element {
       {showWipeModal && (
         <dialog className="modal modal-open">
           <div className="modal-box">
-            <h3 className="font-bold text-lg">Are you sure?</h3>
+            <h3 className="font-bold text-lg">Wipe all data?</h3>
             <p className="py-4">
-              This will permanently delete all local data, including your email
-              database and stored credentials. This action cannot be undone.
+              This will permanently delete <strong>all accounts</strong>,
+              synced emails, credentials, settings, and your license. This
+              action cannot be undone.
             </p>
             <div className="modal-action">
               <button
@@ -495,7 +708,7 @@ export default function Settings(): JSX.Element {
                 Cancel
               </button>
               <button className="btn btn-error" onClick={handleWipe}>
-                Wipe Everything
+                Wipe everything
               </button>
             </div>
           </div>

@@ -45,11 +45,28 @@ function AuthGate({ children }: { children: React.ReactNode }): JSX.Element {
 }
 
 export default function App(): JSX.Element {
+  const [accountKey, setAccountKey] = useState(0);
+
+  useEffect(() => {
+    return window.api.onAccountSwitched(() => {
+      window.location.hash = "#/dashboard";
+      setAccountKey((k) => k + 1);
+    });
+  }, []);
+
+  useEffect(() => {
+    return window.api.onNoAccountsRemaining(() => {
+      window.location.hash = "#/onboarding";
+      setAccountKey((k) => k + 1);
+    });
+  }, []);
+
   return (
     <HashRouter>
       <Routes>
         <Route path="/onboarding" element={<Onboarding />} />
         <Route
+          key={accountKey}
           path="/"
           element={
             <AuthGate>

@@ -31,7 +31,7 @@ const api: ElectronAPI = {
 
   saveSettings: (settings) => ipcRenderer.invoke(IPC.saveSettings, settings),
 
-  clearSyncData: () => ipcRenderer.invoke(IPC.clearSyncData),
+  resyncData: () => ipcRenderer.invoke(IPC.resyncData),
 
   wipeData: () => ipcRenderer.invoke(IPC.wipeData),
 
@@ -115,6 +115,30 @@ const api: ElectronAPI = {
 
   getActivityLog: (limit, offset) =>
     ipcRenderer.invoke(IPC.getActivityLog, limit, offset),
+
+  listAccounts: () => ipcRenderer.invoke(IPC.listAccounts),
+
+  addAccount: () => ipcRenderer.invoke(IPC.addAccount),
+
+  switchAccount: (email) => ipcRenderer.invoke(IPC.switchAccount, email),
+
+  removeAccount: (email) => ipcRenderer.invoke(IPC.removeAccount, email),
+
+  onAccountSwitched: (callback) => {
+    const handler = (_event: Electron.IpcRendererEvent, email: string): void => {
+      callback(email);
+    };
+    ipcRenderer.on(IPC.accountSwitched, handler);
+    return () => ipcRenderer.removeListener(IPC.accountSwitched, handler);
+  },
+
+  onNoAccountsRemaining: (callback) => {
+    const handler = (_event: Electron.IpcRendererEvent): void => {
+      callback();
+    };
+    ipcRenderer.on(IPC.noAccountsRemaining, handler);
+    return () => ipcRenderer.removeListener(IPC.noAccountsRemaining, handler);
+  },
 };
 
 contextBridge.exposeInMainWorld("api", api);

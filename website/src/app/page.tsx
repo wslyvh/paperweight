@@ -355,6 +355,12 @@ export default async function Home() {
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-success">✓</span>
+                    <span>
+                      <strong>Multi-account support</strong>
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-success">✓</span>
                     <span>All features included</span>
                   </li>
                   <li className="flex items-start gap-2">
