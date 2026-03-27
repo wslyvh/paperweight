@@ -1,6 +1,6 @@
 {
   "name": "paperweight",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "description": "Manage your digital footprint",
   "license": "GPL-3.0",
   "author": "wslyvh",
@@ -22,62 +22,64 @@
     "dist:win": "electron-rebuild -f -w better-sqlite3 && yarn build && electron-builder --win --publish never",
     "test": "jest"
   },
-    "build": {
-      "appId": "email.paperweight",
-      "productName": "Paperweight",
-      "artifactName": "Paperweight-${version}.${ext}",
-      "directories": {
-        "output": "dist"
+  "build": {
+    "appId": "email.paperweight",
+    "productName": "Paperweight",
+    "artifactName": "Paperweight-${version}.${ext}",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "out/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "resources/companies.db",
+        "to": "companies.db"
       },
-      "files": [
-        "out/**/*"
-      ],
-      "extraResources": [
+      {
+        "from": "resources/breaches.db",
+        "to": "breaches.db"
+      }
+    ],
+    "mac": {
+      "target": [
         {
-          "from": "resources/companies.db",
-          "to": "companies.db"
-        },
-        {
-          "from": "resources/breaches.db",
-          "to": "breaches.db"
+          "target": "dmg",
+          "arch": [
+            "universal"
+          ]
         }
       ],
-      "mac": {
-        "target": [
-          {
-            "target": "dmg",
-            "arch": ["universal"]
-          }
-        ],
-        "category": "public.app-category.productivity",
-        "icon": "build/icon.png",
-        "hardenedRuntime": true,
-        "gatekeeperAssess": false,
-        "entitlements": "build/entitlements.mac.plist",
-        "entitlementsInherit": "build/entitlements.mac.plist",
-        "notarize": true
-      },
-      "win": {
-        "target": [
-          "nsis"
-        ],
-        "icon": "build/icon.ico"
-      },
-      "linux": {
-        "target": [
-          "AppImage",
-          "deb"
-        ],
-        "category": "Utility",
-        "maintainer": "wslyvh",
-        "icon": "build/icon.png"
-      },
-      "nsis": {
-        "oneClick": true,
-        "perMachine": false,
-        "deleteAppDataOnUninstall": true
-      }
+      "category": "public.app-category.productivity",
+      "icon": "build/icon.png",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist",
+      "notarize": true
     },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "build/icon.ico"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Utility",
+      "maintainer": "wslyvh",
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "deleteAppDataOnUninstall": true
+    }
+  },
   "dependencies": {
     "@electron-toolkit/utils": "^4.0.0",
     "better-sqlite3": "12.6.0",
