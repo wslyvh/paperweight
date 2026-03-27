@@ -36,7 +36,9 @@ export function registerSettingsHandlers(): void {
 
   // --- App settings ---
 
-  ipcMain.handle(IPC.getSettings, () => getSettings());
+  ipcMain.on(IPC.getSettings, (event) => {
+    event.returnValue = getSettings();
+  });
 
   ipcMain.handle(IPC.saveSettings, (_event, settings: unknown) => {
     if (!settings || typeof settings !== "object") {

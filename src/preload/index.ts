@@ -27,7 +27,7 @@ const api: ElectronAPI = {
 
   queryVendors: (query) => ipcRenderer.invoke(IPC.queryVendors, query),
 
-  getSettings: () => ipcRenderer.invoke(IPC.getSettings),
+  getSettings: () => ipcRenderer.sendSync(IPC.getSettings),
 
   saveSettings: (settings) => ipcRenderer.invoke(IPC.saveSettings, settings),
 

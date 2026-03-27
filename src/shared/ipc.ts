@@ -87,7 +87,7 @@ export interface ElectronAPI {
   getDashboardStats: () => Promise<DashboardStats>;
   getDashboardTrend: () => Promise<ChartTrend>;
   queryVendors: (query: VendorQuery) => Promise<{ vendors: Vendor[]; total: number }>;
-  getSettings: () => Promise<Settings>;
+  getSettings: () => Settings;
   saveSettings: (settings: Partial<Settings>) => Promise<void>;
   resyncData: () => Promise<void>;
   wipeData: () => Promise<void>;

@@ -24,8 +24,8 @@ export default function Settings(): JSX.Element {
   const navigate = useNavigate();
   const [account, setAccount] = useState<AccountInfo>();
   const [connection, setConnection] = useState<EmailConnection | null>(null);
-  const [autoLaunch, setAutoLaunch] = useState(false);
-  const [launchMinimized, setLaunchMinimized] = useState(false);
+  const [autoLaunch, setAutoLaunch] = useState(() => !!window.api.getSettings().autoLaunch);
+  const [launchMinimized, setLaunchMinimized] = useState(() => !!window.api.getSettings().launchMinimized);
   const [showResyncModal, setShowResyncModal] = useState(false);
   const [licenseKey, setLicenseKey] = useState("");
   const license = useLicense();
@@ -56,12 +56,7 @@ export default function Settings(): JSX.Element {
 
   useEffect(() => {
     window.api.getAccountInfo().then(setAccount);
-    window.api.getSettings().then((s) => {
-      setAutoLaunch(!!s.autoLaunch);
-      setLaunchMinimized(!!s.launchMinimized);
-    });
     window.api.getEmailConnection().then(setConnection);
-    refreshAccounts();
     fetchWhitelist();
   }, []);
 
