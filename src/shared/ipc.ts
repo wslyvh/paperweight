@@ -119,7 +119,7 @@ export interface ElectronAPI {
   getImpactStats: () => Promise<ImpactStats>;
   getRiskCounts: () => Promise<RiskCounts>;
   getActivityLog: (limit: number, offset: number) => Promise<{ entries: ActivityEntry[]; total: number }>;
-  listAccounts: () => Promise<AccountSummary[]>;
+  listAccounts: () => AccountSummary[];
   addAccount: () => Promise<{ blocked: true; reason: "license_required" } | null>;
   switchAccount: (email: string) => Promise<void>;
   removeAccount: (email: string) => Promise<void>;

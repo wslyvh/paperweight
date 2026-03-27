@@ -4,7 +4,6 @@ import makeBlockie from "ethereum-blockies-base64";
 import { HelpCircle, Lock } from "lucide-react";
 import type {
   AccountInfo,
-  AccountSummary,
   EmailConnection,
   LicenseStatus,
   WhitelistEntry,
@@ -17,6 +16,7 @@ import {
   MicrosoftConnect,
   ImapConnect,
 } from "../components/ProviderConnect";
+import { useAccounts } from "../hooks/useAccounts";
 
 type AddAccountView = "provider" | "gmail-notice" | "gmail" | "microsoft" | "imap";
 
@@ -38,7 +38,7 @@ export default function Settings(): JSX.Element {
   );
   const [newEntry, setNewEntry] = useState("");
   const [reconnectLoading, setReconnectLoading] = useState(false);
-  const [accounts, setAccounts] = useState<AccountSummary[]>([]);
+  const { accounts, refresh: refreshAccounts } = useAccounts();
   const [removeAccountEmail, setRemoveAccountEmail] = useState<string | null>(
     null,
   );
@@ -61,7 +61,7 @@ export default function Settings(): JSX.Element {
       setLaunchMinimized(!!s.launchMinimized);
     });
     window.api.getEmailConnection().then(setConnection);
-    window.api.listAccounts().then(setAccounts);
+    refreshAccounts();
     fetchWhitelist();
   }, []);
 
@@ -139,7 +139,7 @@ export default function Settings(): JSX.Element {
 
   const handleAddAccountSuccess = (): void => {
     setShowAddAccountModal(false);
-    window.api.listAccounts().then(setAccounts);
+    refreshAccounts();
   };
 
   const formatProvider = (type: string): string => {
@@ -242,7 +242,7 @@ export default function Settings(): JSX.Element {
                     </div>
                     <p className="text-xs text-base-content/50">
                       {formatProvider(acc.providerType)}
-                      {acc.isActive && acc.registeredAt
+                      {acc.registeredAt
                         ? ` · Registered ${formatDate(acc.registeredAt)}`
                         : ""}
                     </p>
@@ -668,8 +668,7 @@ export default function Settings(): JSX.Element {
                   setRemoveInProgress(true);
                   try {
                     await window.api.removeAccount(email);
-                    const updated = await window.api.listAccounts();
-                    setAccounts(updated);
+                    refreshAccounts();
                   } finally {
                     setRemoveAccountEmail(null);
                     setRemoveInProgress(false);

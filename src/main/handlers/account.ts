@@ -103,9 +103,9 @@ export function registerAccountHandlers(): void {
     return null;
   });
 
-  ipcMain.handle(IPC.listAccounts, (): AccountSummary[] => {
+  ipcMain.on(IPC.listAccounts, (event) => {
     const activeEmail = getActiveEmail();
-    return listAccounts().map((a) => ({
+    event.returnValue = listAccounts().map((a) => ({
       email: a.email,
       providerType: a.providerType,
       registeredAt: a.registeredAt,

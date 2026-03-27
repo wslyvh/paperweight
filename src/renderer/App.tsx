@@ -49,8 +49,7 @@ export default function App(): JSX.Element {
 
   useEffect(() => {
     return window.api.onAccountSwitched(() => {
-      window.location.hash = "#/dashboard";
-      setAccountKey((k) => k + 1);
+      window.location.reload();
     });
   }, []);
 
