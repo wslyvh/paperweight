@@ -325,12 +325,6 @@ export default async function Home() {
                   <a href="#download" className="btn btn-outline btn-block">
                     Download free
                   </a>
-                  <div
-                    className="text-xs text-center mt-4 opacity-0"
-                    aria-hidden="true"
-                  >
-                    &nbsp;
-                  </div>
                 </div>
               </div>
 
