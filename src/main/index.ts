@@ -1,6 +1,7 @@
-import { app, BrowserWindow, dialog, shell, Menu } from "electron";
+import { app, BrowserWindow, dialog, shell, Menu, ipcMain } from "electron";
 import { join } from "path";
 import { electronApp, optimizer, is } from "@electron-toolkit/utils";
+import { autoUpdater } from "electron-updater";
 import { registerIpcHandlers } from "./ipc";
 import { startAllSyncs } from "./sync-manager";
 import { APP_CONFIG } from "@shared/config";
@@ -12,8 +13,11 @@ import { initFileLog } from "./utils/file-log";
 import { emailToFileKey, getActiveEmail } from "./credentials";
 import { ensureAccountSettingsInDb } from "./services/account";
 import { runMigrations } from "./migrations";
+import { IPC } from "@shared/ipc";
+import type { UpdateInfo } from "@shared/ipc";
 
 let startHidden = false;
+let lastUpdateInfo: UpdateInfo | null = null;
 
 function handleFatalError(err: Error, context: string): void {
   const message = err.message || String(err);
@@ -99,6 +103,7 @@ app.whenReady().then(() => {
   });
 
   registerIpcHandlers();
+  ipcMain.handle(IPC.getLastUpdateInfo, () => lastUpdateInfo);
 
   // Ensure OS login item state matches saved settings
   const autoLaunch = getGlobalSetting("autoLaunch") ?? false;
@@ -108,8 +113,27 @@ app.whenReady().then(() => {
   // Determine if we should start hidden (must be after DB is available)
   startHidden = wasLaunchedAsHidden(launchMinimized);
 
-  createWindow();
+  const win = createWindow();
   appLog.info("Window created");
+
+  const emitUpdateDownloaded = (latest: string) => {
+    const current = app.getVersion();
+    const isMajor = latest.split(".")[0] !== current.split(".")[0];
+    lastUpdateInfo = { latest, current, isMajor };
+    win.webContents.send(IPC.updateDownloaded, lastUpdateInfo);
+  };
+
+  if (!is.dev) {
+    autoUpdater.logger = appLog;
+    autoUpdater.allowPrerelease = true;
+    autoUpdater.autoDownload = true;
+    autoUpdater.on("update-downloaded", (info) => {
+      emitUpdateDownloaded(info.version);
+    });
+    autoUpdater.checkForUpdates().catch((err) => {
+      appLog.warn("Auto-update check failed:", err);
+    });
+  }
 
   // Sync all accounts on launch (delayed to let the window render)
   setTimeout(() => {
