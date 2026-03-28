@@ -60,7 +60,9 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: macos-installers
-          path: dist/*.dmg
+          path: |
+            dist/*.dmg
+            dist/latest-mac.yml
           archive: false
 
   build-linux:
@@ -90,7 +92,9 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: linux-appimage
-          path: dist/*.AppImage
+          path: |
+            dist/*.AppImage
+            dist/latest-linux.yml
           archive: false
       - name: Upload deb
         uses: actions/upload-artifact@v7
@@ -126,7 +130,9 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: windows-installers
-          path: dist/*.exe
+          path: |
+            dist/*.exe
+            dist/latest.yml
           archive: false
 
   create-release:
