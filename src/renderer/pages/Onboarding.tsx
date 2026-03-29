@@ -84,6 +84,14 @@ export default function Onboarding(): JSX.Element {
   const [showHelpModal, setShowHelpModal] = useState(false);
   const [supportInfo, setSupportInfo] = useState<SupportInfo>();
 
+  // If the page reloads while on /onboarding (e.g. after accountSwitched fires)
+  // and credentials are already present, redirect straight to dashboard.
+  useEffect(() => {
+    window.api.getConnectionStatus().then((connected) => {
+      if (connected) navigate("/dashboard", { replace: true });
+    });
+  }, [navigate]);
+
   useEffect(() => {
     if (showHelpModal) {
       window.api.getSupportInfo().then(setSupportInfo);
