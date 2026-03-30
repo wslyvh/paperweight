@@ -6,7 +6,6 @@ import DeviceInfoCard from "../components/DeviceInfoCard";
 import HelpSection from "../components/HelpSection";
 import {
   ProviderSelect,
-  GmailNotice,
   GmailConnect,
   MicrosoftConnect,
   ImapConnect,
@@ -79,7 +78,7 @@ function OnboardingCarousel(): JSX.Element {
 export default function Onboarding(): JSX.Element {
   const navigate = useNavigate();
   const [view, setView] = useState<
-    "select" | "gmail-notice" | "gmail" | "microsoft" | "imap"
+    "select" | "gmail" | "microsoft" | "imap"
   >("select");
   const [showHelpModal, setShowHelpModal] = useState(false);
   const [supportInfo, setSupportInfo] = useState<SupportInfo>();
@@ -126,15 +125,9 @@ export default function Onboarding(): JSX.Element {
 
           {view === "select" && (
             <ProviderSelect
-              onGmail={() => setView("gmail-notice")}
+              onGmail={() => setView("gmail")}
               onMicrosoft={() => setView("microsoft")}
               onImap={() => setView("imap")}
-            />
-          )}
-          {view === "gmail-notice" && (
-            <GmailNotice
-              onContinue={() => setView("gmail")}
-              onBack={() => setView("select")}
             />
           )}
           {view === "gmail" && (
