@@ -1,6 +1,6 @@
 import type { ChartTrend } from "@shared/types";
-import { computeTrend } from "@shared/math";
-import { Line, LineChart, ResponsiveContainer, XAxis } from "recharts";
+import { computeTrend, niceMax } from "@shared/math";
+import { Line, LineChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import { formatUtcStrictDate } from "@shared/formatting";
 
 export interface TrendChartProps {
@@ -18,7 +18,12 @@ export default function TrendChart({
   height = 240,
   trendDirection,
 }: TrendChartProps) {
-  const t = computeTrend(trend.series[0]?.values ?? [], 7);
+  const values = trend.series[0]?.values ?? [];
+  const rawMax = Math.max(0, ...values);
+  const { max: yMax, ticks: yTicks } = niceMax(rawMax, 5);
+  const yAxisWidth = yMax >= 1000 ? 36 : yMax >= 100 ? 28 : 22;
+
+  const t = computeTrend(values, 7);
 
   const badgeText =
     t.direction === "flat"
@@ -57,6 +62,15 @@ export default function TrendChart({
                 value: trend.series[0]?.values?.[i] ?? 0,
               }))}
             >
+              <YAxis
+                domain={[0, yMax]}
+                ticks={yTicks}
+                width={yAxisWidth}
+                tick={{ fontSize: 12 }}
+                stroke="currentColor"
+                tickLine={false}
+                axisLine={false}
+              />
               <XAxis
                 dataKey="label"
                 tickFormatter={(label) => formatUtcStrictDate(label, "MMM D")}
@@ -79,15 +93,26 @@ export default function TrendChart({
                 activeDot={(p) => {
                   if (p.cx === undefined || p.cy === undefined) return null;
                   return (
-                    <circle
-                      className="text-info"
-                      cx={p.cx}
-                      cy={p.cy}
-                      r={3}
-                      fill="currentColor"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    />
+                    <g className="text-info">
+                      <text
+                        x={p.cx}
+                        y={p.cy - 10}
+                        textAnchor="middle"
+                        fontSize={11}
+                        fontWeight={600}
+                        fill="currentColor"
+                      >
+                        {(p as { value?: number }).value}
+                      </text>
+                      <circle
+                        cx={p.cx}
+                        cy={p.cy}
+                        r={3}
+                        fill="currentColor"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      />
+                    </g>
                   );
                 }}
               />
