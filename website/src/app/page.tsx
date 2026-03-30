@@ -332,7 +332,7 @@ export default async function Home() {
               <div className="bg-base-100 rounded-lg p-8 border-2 border-primary relative flex flex-col">
                 <div className="text-center mb-6">
                   <h3 className="text-2xl font-bold mb-2">Perpetual License</h3>
-                  <div className="text-4xl font-bold mb-2">$99</div>
+                  <div className="text-4xl font-bold mb-2">$69</div>
                   <div className="text-sm opacity-60 mb-1">
                     One-time payment
                   </div>
