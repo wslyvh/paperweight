@@ -330,6 +330,11 @@ export default async function Home() {
 
               {/* Paid Tier */}
               <div className="bg-base-100 rounded-lg p-8 border-2 border-primary relative flex flex-col">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <span className="bg-primary text-primary-content px-4 py-1 rounded-full text-sm font-semibold">
+                    Early Supporter
+                  </span>
+                </div>
                 <div className="text-center mb-6">
                   <h3 className="text-2xl font-bold mb-2">Perpetual License</h3>
                   <div className="text-4xl font-bold mb-2">$69</div>
@@ -361,7 +366,7 @@ export default async function Home() {
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-success">✓</span>
-                    <span>Support development</span>
+                    <span>Supports open-source software</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-success">✓</span>
@@ -385,7 +390,7 @@ export default async function Home() {
             </div>
 
             <p className="text-center text-sm opacity-60 mt-8">
-              Grab a license to unlock all features and support open-source software development.
+              *Early supporter pricing. Your license includes support and updates through the first major release (v1).
             </p>
           </div>
         </div>
