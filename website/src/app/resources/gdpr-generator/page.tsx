@@ -27,6 +27,22 @@ export default function GdprGeneratorPage() {
         </div>
 
         <Generator />
+
+        <div className="card bg-base-300 mt-24">
+          <div className="card-body">
+            <h2 className="card-title">Do this automatically with Paperweight</h2>
+            <p className="opacity-80 max-w-4xl">
+              Paperweight scans your inbox to find every company that has your
+              data, and helps you send deletion requests, unsubscribe from
+              mailing lists, and clean up your digital footprint in one place.
+            </p>
+            <div className="flex items-center gap-4 mt-4">
+              <Link href="/#download" className="btn btn-sm btn-primary">
+                Download
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

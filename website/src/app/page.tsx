@@ -183,69 +183,59 @@ export default async function Home() {
             Free to try. All features included for 30 days.
           </p>
 
-          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 mb-4">
-            <Link
-              href={`${SITE_CONFIG.GITHUB_URL}/releases/download/v${latestVersion}/Paperweight-${latestVersion}.exe`}
-              className="btn btn-soft btn-lg w-full sm:flex-1 sm:min-w-[8rem] sm:max-w-48 plausible-event-name=Download+Windows"
-            >
-              Windows
-            </Link>
-            <Link
-              href={`${SITE_CONFIG.GITHUB_URL}/releases/download/v${latestVersion}/Paperweight-${latestVersion}.dmg`}
-              className="btn btn-soft btn-lg w-full sm:flex-1 sm:min-w-[8rem] sm:max-w-48 plausible-event-name=Download+macOS"
-            >
-              macOS
-            </Link>
+          <div className="max-w-2xl mx-auto mb-4">
+            <div className="grid gap-4 sm:grid-cols-3">
+              <Link
+                href={`${SITE_CONFIG.GITHUB_URL}/releases/download/v${latestVersion}/Paperweight-${latestVersion}.exe`}
+                className="btn btn-soft btn-lg w-full plausible-event-name=Download+Windows"
+              >
+                Windows
+              </Link>
+              <Link
+                href={`${SITE_CONFIG.GITHUB_URL}/releases/download/v${latestVersion}/Paperweight-${latestVersion}.dmg`}
+                className="btn btn-soft btn-lg w-full plausible-event-name=Download+macOS"
+              >
+                macOS
+              </Link>
 
-            <div className="w-full sm:flex-1 sm:min-w-[8rem] sm:max-w-48">
-              <Link
-                href={`${SITE_CONFIG.GITHUB_URL}/releases/download/v${latestVersion}/Paperweight-${latestVersion}.AppImage`}
-                className="btn btn-soft btn-lg w-full plausible-event-name=Download+Linux"
-              >
-                Linux
-              </Link>
-              <br />
-              <Link
-                href={`${SITE_CONFIG.GITHUB_URL}/releases/download/v${latestVersion}/Paperweight-${latestVersion}.deb`}
-                className="link text-sm plausible-event-name=Download+Linux+deb"
-              >
-                or <span className="font-bold">.deb</span> package
-              </Link>
+              <div className="w-full">
+                <Link
+                  href={`${SITE_CONFIG.GITHUB_URL}/releases/download/v${latestVersion}/Paperweight-${latestVersion}.AppImage`}
+                  className="btn btn-soft btn-lg w-full plausible-event-name=Download+Linux"
+                >
+                  Linux
+                </Link>
+                <br />
+                <Link
+                  href={`${SITE_CONFIG.GITHUB_URL}/releases/download/v${latestVersion}/Paperweight-${latestVersion}.deb`}
+                  className="link text-sm plausible-event-name=Download+Linux+deb"
+                >
+                  or <span className="font-bold">.deb</span> package
+                </Link>
+              </div>
             </div>
           </div>
 
           {/* Installation notes */}
-          <div className="collapse collapse-arrow bg-base-200 rounded-lg border border-base-300 my-8 text-left max-w-xl mx-auto">
+          <div className="collapse collapse-arrow bg-base-200 rounded-lg border border-base-300 my-8 text-left max-w-2xl mx-auto">
             <input type="checkbox" />
             <div className="collapse-title min-h-0 py-4 pr-12">
-              <h3 className="text-lg font-bold mb-2 flex items-center gap-2">
+              <h3 className="text-lg font-bold flex items-center gap-2">
                 <Info className="w-5 h-5 shrink-0" strokeWidth={2} />
                 Installation notes
               </h3>
-              <p className="text-sm opacity-80">
-                The app is not code-signed or verified by a trusted certificate
-                authority. Your system may block or warn about it. Expand for
-                platform steps.
-              </p>
             </div>
             <div className="collapse-content">
               <ul className="space-y-3 text-sm opacity-80 pt-2">
                 <li>
-                  <strong>Windows</strong> - Run the installer. Windows
-                  SmartScreen may show a warning because the app is unsigned.
-                  Click &quot;More info&quot; and then &quot;Run anyway&quot; to
-                  proceed.
+                  <strong>Windows</strong> - Run the installer. If Windows
+                  SmartScreen shows a warning, click &quot;More info&quot; and then &quot;Run anyway&quot; to proceed.
                 </li>
                 <li>
-                  <strong>macOS</strong> - Go to System Settings → Privacy &
-                  Security, scroll to the Security section, and click &quot;Open
-                  Anyway&quot; next to the blocked app. You may need to enter
-                  your admin password. Alternatively, hold Control, click the
-                  app, and select Open (security bypass).
+                  <strong>macOS</strong> - Open the downloaded DMG and drag Paperweight to your Applications folder.
                 </li>
                 <li>
-                  <strong>Linux AppImage</strong> - Right-click the file →
-                  Properties → Permissions → check &quot;Allow executing file as
+                  <strong>Linux AppImage</strong> - Right-click → Properties → Permissions → check &quot;Allow executing file as
                   program&quot;, or run{" "}
                   <code className="bg-base-300 px-1 rounded">
                     chmod +x Paperweight*.AppImage

@@ -151,7 +151,7 @@ export function Generator() {
           <div className="card bg-base-200/50">
             <div className="card-body space-y-4">
               <div className="flex items-start justify-between gap-3">
-                <h2 className="card-title">Organization</h2>
+                <h2 className="card-title">Your request</h2>
                 <button
                   type="button"
                   className="btn btn-ghost btn-xs"
@@ -225,7 +225,11 @@ export function Generator() {
               </details>
 
               <div className="space-y-2">
-                <p className="text-sm font-medium">Select organization</p>
+                <p className="text-sm font-medium">Organization</p>
+                <p className="text-xs opacity-70">
+                  <Link href="/#download" className="link">Try our App</Link> to automatically detect every company that has ever emailed
+                  you.
+                </p>
                 <div className="relative">
                   <label className="input input-bordered flex items-center gap-2 w-full">
                     <Search className="w-4 h-4 shrink-0 opacity-60" />
@@ -351,7 +355,32 @@ export function Generator() {
         <div className="lg:col-span-7 space-y-6">
           <div className="card bg-base-200/50">
             <div className="card-body space-y-4">
-              <h2 className="card-title">Your details</h2>
+              <div className="flex items-start justify-between gap-3">
+                <h2 className="card-title">Your details</h2>
+                <div className="dropdown dropdown-end">
+                  <button
+                    type="button"
+                    className="badge badge-sm badge-soft badge-primary inline-flex shrink-0 cursor-pointer items-center gap-1 border-0 font-normal"
+                    aria-label="How your details are used"
+                    aria-haspopup="dialog"
+                  >
+                    <Info className="h-3 w-3 shrink-0 opacity-80" />
+                    Info
+                  </button>
+                  <div
+                    tabIndex={0}
+                    role="dialog"
+                    aria-label="How your details are used"
+                    className="dropdown-content mt-2 w-[min(20rem,calc(100vw-2rem))] max-h-[min(24rem,70vh)] overflow-y-auto rounded-box border border-base-300 bg-base-100 p-4 shadow-xl outline-none"
+                  >
+                    <p className="text-sm leading-relaxed opacity-90">
+                      Your details are used to generate the email template locally
+                      in your browser. Nothing you enter here is sent to our
+                      servers or processed on your behalf.
+                    </p>
+                  </div>
+                </div>
+              </div>
               <input
                 className="input input-bordered w-full"
                 placeholder="Full name *"
