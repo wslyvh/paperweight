@@ -12,6 +12,8 @@ import {
   Info,
 } from "lucide-react";
 
+export const HOME_LAST_UPDATED = "2026-04-02";
+
 export default async function Home() {
   const latestVersion = await getLatestVersion();
   if (!latestVersion) {
@@ -31,9 +33,9 @@ export default async function Home() {
           <p className="text-accent mb-8 text-lg">
             Your inbox knows where your data lives.
           </p>
-          <a href="#download" className="btn btn-primary btn-lg">
+          <Link href="/#download" className="btn btn-primary btn-lg">
             Download for free
-          </a>
+          </Link>
           <p className="mt-4 text-sm opacity-60">macOS · Windows · Linux</p>
         </div>
       </section>
@@ -184,13 +186,13 @@ export default async function Home() {
           <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 mb-4">
             <Link
               href={`${SITE_CONFIG.GITHUB_URL}/releases/download/v${latestVersion}/Paperweight-${latestVersion}.exe`}
-              className="btn btn-outline btn-lg w-full sm:flex-1 sm:min-w-[8rem] sm:max-w-48 plausible-event-name=Download+Windows"
+              className="btn btn-soft btn-lg w-full sm:flex-1 sm:min-w-[8rem] sm:max-w-48 plausible-event-name=Download+Windows"
             >
               Windows
             </Link>
             <Link
               href={`${SITE_CONFIG.GITHUB_URL}/releases/download/v${latestVersion}/Paperweight-${latestVersion}.dmg`}
-              className="btn btn-outline btn-lg w-full sm:flex-1 sm:min-w-[8rem] sm:max-w-48 plausible-event-name=Download+macOS"
+              className="btn btn-soft btn-lg w-full sm:flex-1 sm:min-w-[8rem] sm:max-w-48 plausible-event-name=Download+macOS"
             >
               macOS
             </Link>
@@ -198,7 +200,7 @@ export default async function Home() {
             <div className="w-full sm:flex-1 sm:min-w-[8rem] sm:max-w-48">
               <Link
                 href={`${SITE_CONFIG.GITHUB_URL}/releases/download/v${latestVersion}/Paperweight-${latestVersion}.AppImage`}
-                className="btn btn-outline btn-lg w-full plausible-event-name=Download+Linux"
+                className="btn btn-soft btn-lg w-full plausible-event-name=Download+Linux"
               >
                 Linux
               </Link>
@@ -322,9 +324,9 @@ export default async function Home() {
                 </ul>
 
                 <div className="mt-auto">
-                  <a href="#download" className="btn btn-outline btn-block">
+                  <Link href="/#download" className="btn btn-soft btn-block">
                     Download free
-                  </a>
+                  </Link>
                 </div>
               </div>
 

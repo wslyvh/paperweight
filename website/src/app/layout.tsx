@@ -5,6 +5,7 @@ import { SITE_CONFIG } from "@/utils/config";
 import "@/assets/globals.css";
 import Link from "next/link";
 import { Newsletter } from "@/components/Newsletter";
+import { Github } from "lucide-react";
 
 export const metadata: Metadata = {
   applicationName: SITE_CONFIG.NAME,
@@ -53,17 +54,41 @@ export default function RootLayout(props: PropsWithChildren) {
                     <span>🗿</span>
                     <span>Paperweight</span>
                   </Link>
-                  <div className="flex items-center gap-6">
+                  <div className="flex items-center gap-3">
+                    <div className="dropdown dropdown-end">
+                      <label
+                        tabIndex={0}
+                        className="btn btn-ghost btn-sm"
+                      >
+                        Resources
+                      </label>
+                      <ul
+                        tabIndex={0}
+                        className="dropdown-content menu rounded-box z-10 mt-2 w-52 bg-base-200 p-2 shadow-lg backdrop-blur"
+                      >
+                        <li>
+                          <Link href="/resources/gdpr-generator">
+                            GDPR Generator
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/resources/authorities">
+                            DPA Overview
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                    <Link href="/#download" className="btn btn-primary btn-sm">
+                      Download
+                    </Link>
                     <Link
                       href={SITE_CONFIG.GITHUB_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:underline"
+                      className="btn btn-ghost btn-sm btn-square"
+                      aria-label="GitHub"
                     >
-                      GitHub
-                    </Link>
-                    <Link href="#download" className="btn btn-primary btn-sm">
-                      Download
+                      <Github className="h-4 w-4" />
                     </Link>
                   </div>
                 </nav>

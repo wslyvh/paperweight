@@ -1,11 +1,18 @@
+import dayjs from "dayjs";
+import { SubpageHeader } from "@/components/SubpageHeader";
 import { SITE_CONFIG } from "@/utils/config";
 
+export const TERMS_LAST_UPDATED = "2026-02-09";
+
 export default async function TermsPage() {
-  const lastUpdated = "Feb 9, 2026";
+  const lastUpdated = dayjs(TERMS_LAST_UPDATED).format("MMM DD, YYYY");
 
   return (
     <div className="container mx-auto w-full px-4 pt-24 pb-12">
-      <h1 className="text-3xl font-semibold mb-6">Terms of Service</h1>
+      <SubpageHeader
+        label="Resources"
+        title="Terms of Service"
+      />
       <p className="text-sm mt-2">Last updated: {lastUpdated}</p>
       <div className="divider"></div>
 
@@ -42,11 +49,12 @@ export default async function TermsPage() {
         <ul>
           <li>Prices are shown in EUR including applicable taxes</li>
           <li>
-            <strong>Lifetime licenses</strong> grant you permanent use of Paperweight
-            and all updates within the current major version (e.g. v1.x).
-            Licenses purchased during beta (v0.x) include a free upgrade to the first major release (v1.x).
-            Future major versions with significant new features may require a new license,
-            with upgrade pricing available to existing license holders.
+            <strong>Lifetime licenses</strong> grant you permanent use of
+            Paperweight and all updates within the current major version (e.g.
+            v1.x). Licenses purchased during beta (v0.x) include a free upgrade
+            to the first major release (v1.x). Future major versions with
+            significant new features may require a new license, with upgrade
+            pricing available to existing license holders.
           </li>
           <li>
             Payments are processed by Polar.sh - we don't store payment

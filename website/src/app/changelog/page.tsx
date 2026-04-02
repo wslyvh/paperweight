@@ -1,18 +1,20 @@
+import dayjs from "dayjs";
 import { marked } from "marked";
+import { SubpageHeader } from "@/components/SubpageHeader";
 import { getReleases } from "@/lib/github";
 import { SITE_CONFIG } from "@/utils/config";
-import dayjs from "dayjs";
 
 export const dynamic = "force-static";
 
 export default async function ChangelogPage() {
-  let releases;
-  try {
-    releases = await getReleases();
-  } catch (err) {
+  const releases = await getReleases().catch(() => null);
+  if (!releases) {
     return (
       <div className="container mx-auto w-full px-4 pt-24 pb-12">
-        <h1 className="text-3xl font-semibold mb-6">Changelog</h1>
+        <SubpageHeader
+          label="Resources"
+          title="Changelog"
+        />
         <p className="text-error">
           Could not load releases. Please try again later or view{" "}
           <a
@@ -31,7 +33,10 @@ export default async function ChangelogPage() {
 
   return (
     <div className="container mx-auto w-full px-4 pt-24 pb-12">
-      <h1 className="text-3xl font-semibold mb-6">Changelog</h1>
+      <SubpageHeader
+        label="Resources"
+        title="Changelog"
+      />
       <div className="divider"></div>
 
       <div className="space-y-0">
