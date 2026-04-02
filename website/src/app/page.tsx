@@ -397,6 +397,39 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl font-bold mb-3">Resources & Tools</h2>
+              <p className="text-lg opacity-80">
+                Free tools and guides to help you manage your digital footprint.
+              </p>
+            </div>
+
+            <div className="max-w-4xl mx-auto">
+              <div className="card bg-base-200/50">
+                <div className="card-body">
+                  <h3 className="card-title">GDPR Request Generator</h3>
+                  <p className="opacity-80">
+                    Generate a data deletion or access request for any company.
+                    Free, no download required.
+                  </p>
+                  <div className="card-actions">
+                    <Link
+                      href="/resources/gdpr-generator"
+                      className="btn btn-primary btn-sm"
+                    >
+                      Try it →
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
