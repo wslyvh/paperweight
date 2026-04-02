@@ -49,6 +49,20 @@ export const EU_DPAS: Dpa[] = [
       "Online form requires MitID (Danish national eID). Non-residents should file by email or use the PDF form instead.",
   },
   {
+    flag: "🇫🇮",
+    country: "Finland",
+    dpaName:
+      "Office of the Data Protection Ombudsman (Tietosuojavaltuutetun toimisto)",
+    phone: "+358 29 56 66700",
+    email: "tietosuoja@om.fi",
+    address: "P.O. Box 800, FI-00531 Helsinki",
+    complaintUrl:
+      "https://tietosuoja.fi/en/notification-to-the-data-protection-ombudsman",
+    websiteUrl: "https://www.tietosuoja.fi/en/",
+    warning:
+      "Complaints are processed in Finnish or Swedish. English submissions may be accepted but Finnish is strongly preferred.",
+  },
+  {
     flag: "🇫🇷",
     country: "France",
     dpaName: "Commission Nationale de l'Informatique et des Libertés (CNIL)",
@@ -70,6 +84,20 @@ export const EU_DPAS: Dpa[] = [
     websiteUrl: "https://www.bfdi.bund.de",
     warning:
       "For private companies, file with the state DPA where the company is headquartered, not the federal BfDI. Forms are German only.",
+  },
+  {
+    flag: "🇮🇪",
+    country: "Ireland",
+    dpaName: "Data Protection Commission (DPC)",
+    phone: "+353 1 765 0100",
+    email: "info@dataprotection.ie",
+    address: "6 Pembroke Row, Dublin 2, D02 X963",
+    complaintUrl:
+      "https://www.dataprotection.ie/en/individuals/exercising-your-rights/raising-concern-commission",
+    websiteUrl: "https://www.dataprotection.ie/en",
+    englishOk: true,
+    warning:
+      "Ireland is the EU lead supervisory authority for most major US tech companies (Google, Meta, Apple, Microsoft). Complaints cannot be accepted by phone — submit via webform or email only.",
   },
   {
     flag: "🇮🇹",
@@ -94,6 +122,31 @@ export const EU_DPAS: Dpa[] = [
     complaintUrl: "https://klachten.autoriteitpersoonsgegevens.nl/",
     websiteUrl: "https://www.autoriteitpersoonsgegevens.nl/en",
     englishOk: true,
+  },
+  {
+    flag: "🇵🇱",
+    country: "Poland",
+    dpaName: "Urząd Ochrony Danych Osobowych (UODO)",
+    phone: "+48 22 531 03 00",
+    email: "kancelaria@uodo.gov.pl",
+    address: "ul. Stanisława Moniuszki 1A, 00-014 Warsaw",
+    complaintUrl: "https://uodo.gov.pl/en/664/1408",
+    websiteUrl: "https://uodo.gov.pl/en",
+    warning:
+      "Polish only. Formal complaints must be submitted via the electronic inbox (ePUAP) or by post — email is not a formal complaint channel.",
+  },
+  {
+    flag: "🇱🇺",
+    country: "Luxembourg",
+    dpaName: "Commission Nationale pour la Protection des Données (CNPD)",
+    phone: "+352 26 10 60 1",
+    email: "info@cnpd.lu",
+    address: "15, Boulevard du Jazz, L-4370 Belvaux",
+    complaintUrl:
+      "https://cnpd.public.lu/en/particuliers/faire-valoir/formulaire-plainte.html",
+    websiteUrl: "https://cnpd.public.lu/en.html",
+    warning:
+      "Luxembourg is the EU lead supervisory authority for Amazon, PayPal, Skype, and Spotify. Complaint form is primarily in French — download a PDF copy of your submission before closing the form.",
   },
   {
     flag: "🇵🇹",
@@ -161,5 +214,31 @@ export const NON_EU_DPAS: Dpa[] = [
     englishOk: true,
     warning:
       "Switzerland operates under nFADP, not GDPR. The FDPIC cannot impose fines directly, for individual enforcement civil court is the primary route.",
+  },
+  {
+    flag: "🇳🇴",
+    country: "Norway",
+    dpaName: "Datatilsynet",
+    phone: "+47 22 39 69 00",
+    email: "postkasse@datatilsynet.no",
+    address: "Tollbugata 3, 0152 Oslo",
+    complaintUrl:
+      "https://www.datatilsynet.no/en/about-us/contact-us/how-to-complain-to-the-norwegian-dpa/",
+    websiteUrl: "https://www.datatilsynet.no/en/",
+    warning:
+      "Norway is EEA, not EU — GDPR applies via the EEA Agreement. Online form requires BankID (Norwegian eID). Non-residents should file by email or post.",
+  },
+  {
+    flag: "🇮🇸",
+    country: "Iceland",
+    dpaName: "Persónuvernd (Icelandic Data Protection Authority)",
+    phone: "+354 510 9600",
+    email: "postur@personuvernd.is",
+    address: "Laugarvegur 166, 4th floor, 105 Reykjavík",
+    complaintUrl: "https://island.is/en/complaint-to-the-data-protection-authority",
+    websiteUrl: "https://island.is/s/personuvernd/en/",
+    englishOk: true,
+    warning:
+      "Iceland is EEA, not EU — GDPR applies via the EEA Agreement. English is widely accepted.",
   },
 ];
