@@ -5,7 +5,7 @@ import { SITE_CONFIG } from "@/utils/config";
 import "@/assets/globals.css";
 import Link from "next/link";
 import { Newsletter } from "@/components/Newsletter";
-import { Github } from "lucide-react";
+import { Github, TwitterIcon } from "lucide-react";
 
 export const metadata: Metadata = {
   applicationName: SITE_CONFIG.NAME,
@@ -111,44 +111,64 @@ export default function RootLayout(props: PropsWithChildren) {
                 </div>
 
                 {/* Divider */}
-                <div className="border-t border-base-300"></div>
+                <div className="divider my-0"></div>
 
                 {/* Footer Links */}
                 <div className="py-8">
-                  <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-                    <div className="flex items-center gap-2">
-                      <span>
-                        Built by{" "}
-                        <a
-                          href="https://x.com/wslyvh"
+                  <footer className="footer sm:footer-horizontal text-sm">
+                    <nav>
+                      <span className="text-2xl leading-none mb-4" aria-hidden>
+                        {SITE_CONFIG.ICON}
+                      </span>
+                      <span className="font-medium opacity-80 mb-2">{SITE_CONFIG.TAGLINE}</span>
+                      <div className="flex items-center gap-4">
+                        <Link
+                          href={SITE_CONFIG.GITHUB_URL}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="link link-primary"
+                          className="inline-flex items-center"
+                          aria-label="GitHub"
                         >
-                          wslyvh
-                        </a>
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <Link href="/changelog" className="hover:underline">
+                          <Github className="h-5 w-5" />
+                        </Link>
+                        <Link
+                          href={`https://x.com/${SITE_CONFIG.SOCIAL_TWITTER}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center"
+                          aria-label="Twitter"
+                        ><TwitterIcon className="h-5 w-5" />
+                        </Link>
+                      </div>
+                    </nav>
+                    <nav>
+                      <h6 className="footer-title">Resources</h6>
+                      <Link href="/changelog" className="link link-hover">
                         Changelog
                       </Link>
-                      <Link href="/privacy" className="hover:underline">
-                        Privacy
-                      </Link>
-                      <Link href="/terms" className="hover:underline">
-                        Terms
+                      <Link
+                        href="/resources/gdpr-generator"
+                        className="link link-hover"
+                      >
+                        GDPR Generator
                       </Link>
                       <Link
-                        href={SITE_CONFIG.GITHUB_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:underline"
+                        href="/resources/authorities"
+                        className="link link-hover"
                       >
-                        Open source
+                        DPA Overview
                       </Link>
-                    </div>
-                  </div>
+                    </nav>
+                    <nav>
+                      <h6 className="footer-title">Legal</h6>
+                      <Link href="/terms" className="link link-hover">
+                        Terms
+                      </Link>
+                      <Link href="/privacy" className="link link-hover">
+                        Privacy
+                      </Link>
+                    </nav>
+                  </footer>
                 </div>
               </div>
             </footer>
