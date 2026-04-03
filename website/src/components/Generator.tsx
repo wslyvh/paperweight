@@ -225,7 +225,7 @@ export function Generator() {
               </details>
 
               <div className="space-y-2">
-                <p className="text-sm font-medium">Organization</p>
+                <p className="text-sm font-medium">Organization *</p>
                 <p className="text-xs opacity-70">
                   <Link href="/#download" className="link">Try our App</Link> to automatically detect every company that has ever emailed
                   you.
@@ -348,6 +348,8 @@ export function Generator() {
                   ))}
                 </select>
               </div>
+
+              <p className="text-xs opacity-70 mt-4">* Company data sourced from <Link href='https://github.com/datenanfragen/data' className="link">Datenanfragen</Link>.</p>
             </div>
           </div>
         </div>
