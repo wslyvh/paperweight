@@ -16,8 +16,9 @@ export function niceMax(value: number, tickCount = 5): NiceAxis {
   const niceFraction =
     fraction <= 1 ? 1 : fraction <= 2 ? 2 : fraction <= 5 ? 5 : 10;
   const max = niceFraction * magnitude;
-  const step = max / (tickCount - 1);
-  const ticks = Array.from({ length: tickCount }, (_, i) =>
+  const effectiveTickCount = Math.min(tickCount, max + 1);
+  const step = effectiveTickCount > 1 ? max / (effectiveTickCount - 1) : max;
+  const ticks = Array.from({ length: effectiveTickCount }, (_, i) =>
     Math.round(i * step)
   );
   return { max, ticks };
