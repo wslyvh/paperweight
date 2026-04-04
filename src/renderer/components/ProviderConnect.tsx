@@ -96,58 +96,6 @@ export function ProviderSelect({
   );
 }
 
-// ── Gmail Notice ─────────────────────────────────────────────────────────────
-
-export function GmailNotice({
-  onContinue,
-  onBack,
-}: {
-  onContinue: () => void;
-  onBack: () => void;
-}): JSX.Element {
-  return (
-    <div className="space-y-5">
-      <div className="space-y-2">
-        <h3 className="text-lg font-semibold">Google verification pending</h3>
-        <p className="text-sm text-base-content/70 leading-relaxed">
-          Paperweight is awaiting Google's verification process. You'll see a
-          warning screen — click{" "}
-          <span className="font-medium text-base-content">Advanced</span> then{" "}
-          <span className="font-medium text-base-content">
-            Go to Paperweight (unsafe)
-          </span>{" "}
-          to continue.
-        </p>
-      </div>
-
-      <div className="alert text-xs">
-        <span>
-          Paperweight is{" "}
-          <a
-            href="https://github.com/wslyvh/paperweight"
-            className="link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            open source
-          </a>
-          . You can review exactly what the app does with your account before
-          connecting.
-        </span>
-      </div>
-
-      <div className="flex gap-3">
-        <button className="btn btn-primary flex-1" onClick={onContinue}>
-          Continue
-        </button>
-        <button className="btn btn-ghost flex-1" onClick={onBack}>
-          Back
-        </button>
-      </div>
-    </div>
-  );
-}
-
 // ── Gmail Connect ─────────────────────────────────────────────────────────────
 
 export function GmailConnect({
@@ -190,29 +138,45 @@ export function GmailConnect({
   return (
     <div className="space-y-4">
       {step === "authorizing" && (
-        <div className="flex flex-col items-center gap-4 py-10">
-          <span className="loading loading-spinner loading-lg"></span>
-          <div className="text-center mt-2">
-            <p className="text-sm">Complete sign-in in your browser...</p>
-            <p className="text-xs text-base-content/50 mt-1">
-              Waiting for Google authorization
-            </p>
+        <>
+          <div className="alert alert-warning text-xs text-left">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="h-6 w-6 shrink-0 stroke-current">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span>
+              Google verification is still pending. If you see a warning page,
+              click{" "}
+              <span className="font-medium">Advanced</span> then{" "}
+              <span className="font-medium">
+                Go to Paperweight (unsafe)
+              </span>.
+            </span>
           </div>
-          <div className="flex gap-3 mt-6 w-full">
-            <button className="btn btn-outline flex-1" onClick={handleConnect}>
-              Retry
-            </button>
-            <button
-              className="btn btn-ghost flex-1"
-              onClick={() => {
-                attemptRef.current++;
-                onBack();
-              }}
-            >
-              Cancel
-            </button>
+
+          <div className="flex flex-col items-center gap-4 py-10">
+            <span className="loading loading-spinner loading-lg"></span>
+            <div className="text-center mt-2">
+              <p className="text-sm">Complete sign-in in your browser...</p>
+              <p className="text-xs text-base-content/50 mt-1">
+                Waiting for Google authorization
+              </p>
+            </div>
+            <div className="flex gap-3 mt-6 w-full">
+              <button className="btn btn-outline flex-1" onClick={handleConnect}>
+                Retry
+              </button>
+              <button
+                className="btn btn-ghost flex-1"
+                onClick={() => {
+                  attemptRef.current++;
+                  onBack();
+                }}
+              >
+                Cancel
+              </button>
+            </div>
           </div>
-        </div>
+        </>
       )}
 
       {step === "success" && (

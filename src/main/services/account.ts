@@ -120,9 +120,9 @@ export async function startGmailAuthAndRecordAccount() {
   }
 
   authLog.info("Gmail auth completed");
-  recordAccount(email, "gmail");
-  saveCredentials(stagingCreds);
+  saveCredentials(stagingCreds, email);
   deleteCredentials("__staging__");
+  recordAccount(email, "gmail");
 
   return result;
 }
@@ -153,9 +153,9 @@ export async function startMicrosoftAuthAndRecordAccount() {
   }
 
   authLog.info("Microsoft auth completed");
-  recordAccount(email, "microsoft");
-  saveCredentials(stagingCreds);
+  saveCredentials(stagingCreds, email);
   deleteCredentials("__staging__");
+  recordAccount(email, "microsoft");
 
   return result;
 }
@@ -170,8 +170,8 @@ export async function saveImapConfigAndRecordAccount(config: ImapConfig) {
 
     const email = config.username;
     authLog.info("IMAP config saved");
-    recordAccount(email, "imap");
     saveCredentials({ providerType: "imap", imap: config }, email);
+    recordAccount(email, "imap");
 
     return { success: true };
   } catch (err) {

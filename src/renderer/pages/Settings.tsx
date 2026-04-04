@@ -11,14 +11,13 @@ import type {
 import { useLicense, useRefreshLicense } from "../context/LicenseContext";
 import {
   ProviderSelect,
-  GmailNotice,
   GmailConnect,
   MicrosoftConnect,
   ImapConnect,
 } from "../components/ProviderConnect";
 import { useAccounts } from "../hooks/useAccounts";
 
-type AddAccountView = "provider" | "gmail-notice" | "gmail" | "microsoft" | "imap";
+type AddAccountView = "provider" | "gmail" | "microsoft" | "imap";
 
 export default function Settings(): JSX.Element {
   const navigate = useNavigate();
@@ -554,7 +553,7 @@ export default function Settings(): JSX.Element {
             {addAccountView === "provider" && (
               <>
                 <ProviderSelect
-                  onGmail={() => setAddAccountView("gmail-notice")}
+                  onGmail={() => setAddAccountView("gmail")}
                   onMicrosoft={() => setAddAccountView("microsoft")}
                   onImap={() => setAddAccountView("imap")}
                 />
@@ -567,13 +566,6 @@ export default function Settings(): JSX.Element {
                   </button>
                 </div>
               </>
-            )}
-
-            {addAccountView === "gmail-notice" && (
-              <GmailNotice
-                onContinue={() => setAddAccountView("gmail")}
-                onBack={() => setAddAccountView("provider")}
-              />
             )}
 
             {addAccountView === "gmail" && (

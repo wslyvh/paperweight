@@ -3,6 +3,7 @@ const DOMAIN = "paperweight.email";
 export const SITE_CONFIG = {
   NODE_ENV: process.env.NODE_ENV ?? "development",
 
+  ICON: "🗿",
   NAME: "Paperweight",
   DESCRIPTION:
     "Paperweight scans your inbox to map your digital footprint, then helps you take back control and delete your data. Local-first and open source.",

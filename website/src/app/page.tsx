@@ -12,6 +12,8 @@ import {
   Info,
 } from "lucide-react";
 
+export const HOME_LAST_UPDATED = "2026-04-02";
+
 export default async function Home() {
   const latestVersion = await getLatestVersion();
   if (!latestVersion) {
@@ -31,9 +33,9 @@ export default async function Home() {
           <p className="text-accent mb-8 text-lg">
             Your inbox knows where your data lives.
           </p>
-          <a href="#download" className="btn btn-primary btn-lg">
+          <Link href="/#download" className="btn btn-primary btn-lg">
             Download for free
-          </a>
+          </Link>
           <p className="mt-4 text-sm opacity-60">macOS · Windows · Linux</p>
         </div>
       </section>
@@ -181,69 +183,59 @@ export default async function Home() {
             Free to try. All features included for 30 days.
           </p>
 
-          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 mb-4">
-            <Link
-              href={`${SITE_CONFIG.GITHUB_URL}/releases/download/v${latestVersion}/Paperweight-${latestVersion}.exe`}
-              className="btn btn-outline btn-lg w-full sm:flex-1 sm:min-w-[8rem] sm:max-w-48 plausible-event-name=Download+Windows"
-            >
-              Windows
-            </Link>
-            <Link
-              href={`${SITE_CONFIG.GITHUB_URL}/releases/download/v${latestVersion}/Paperweight-${latestVersion}.dmg`}
-              className="btn btn-outline btn-lg w-full sm:flex-1 sm:min-w-[8rem] sm:max-w-48 plausible-event-name=Download+macOS"
-            >
-              macOS
-            </Link>
+          <div className="max-w-2xl mx-auto mb-4">
+            <div className="grid gap-4 sm:grid-cols-3">
+              <Link
+                href={`${SITE_CONFIG.GITHUB_URL}/releases/download/v${latestVersion}/Paperweight-${latestVersion}.exe`}
+                className="btn btn-soft btn-lg w-full plausible-event-name=Download+Windows"
+              >
+                Windows
+              </Link>
+              <Link
+                href={`${SITE_CONFIG.GITHUB_URL}/releases/download/v${latestVersion}/Paperweight-${latestVersion}.dmg`}
+                className="btn btn-soft btn-lg w-full plausible-event-name=Download+macOS"
+              >
+                macOS
+              </Link>
 
-            <div className="w-full sm:flex-1 sm:min-w-[8rem] sm:max-w-48">
-              <Link
-                href={`${SITE_CONFIG.GITHUB_URL}/releases/download/v${latestVersion}/Paperweight-${latestVersion}.AppImage`}
-                className="btn btn-outline btn-lg w-full plausible-event-name=Download+Linux"
-              >
-                Linux
-              </Link>
-              <br />
-              <Link
-                href={`${SITE_CONFIG.GITHUB_URL}/releases/download/v${latestVersion}/Paperweight-${latestVersion}.deb`}
-                className="link text-sm plausible-event-name=Download+Linux+deb"
-              >
-                or <span className="font-bold">.deb</span> package
-              </Link>
+              <div className="w-full">
+                <Link
+                  href={`${SITE_CONFIG.GITHUB_URL}/releases/download/v${latestVersion}/Paperweight-${latestVersion}.AppImage`}
+                  className="btn btn-soft btn-lg w-full plausible-event-name=Download+Linux"
+                >
+                  Linux
+                </Link>
+                <br />
+                <Link
+                  href={`${SITE_CONFIG.GITHUB_URL}/releases/download/v${latestVersion}/Paperweight-${latestVersion}.deb`}
+                  className="link text-sm plausible-event-name=Download+Linux+deb"
+                >
+                  or <span className="font-bold">.deb</span> package
+                </Link>
+              </div>
             </div>
           </div>
 
           {/* Installation notes */}
-          <div className="collapse collapse-arrow bg-base-200 rounded-lg border border-base-300 my-8 text-left max-w-xl mx-auto">
+          <div className="collapse collapse-arrow bg-base-200 rounded-lg border border-base-300 my-8 text-left max-w-2xl mx-auto">
             <input type="checkbox" />
             <div className="collapse-title min-h-0 py-4 pr-12">
-              <h3 className="text-lg font-bold mb-2 flex items-center gap-2">
+              <h3 className="text-lg font-bold flex items-center gap-2">
                 <Info className="w-5 h-5 shrink-0" strokeWidth={2} />
                 Installation notes
               </h3>
-              <p className="text-sm opacity-80">
-                The app is not code-signed or verified by a trusted certificate
-                authority. Your system may block or warn about it. Expand for
-                platform steps.
-              </p>
             </div>
             <div className="collapse-content">
               <ul className="space-y-3 text-sm opacity-80 pt-2">
                 <li>
-                  <strong>Windows</strong> - Run the installer. Windows
-                  SmartScreen may show a warning because the app is unsigned.
-                  Click &quot;More info&quot; and then &quot;Run anyway&quot; to
-                  proceed.
+                  <strong>Windows</strong> - Run the installer. If Windows
+                  SmartScreen shows a warning, click &quot;More info&quot; and then &quot;Run anyway&quot; to proceed.
                 </li>
                 <li>
-                  <strong>macOS</strong> - Go to System Settings → Privacy &
-                  Security, scroll to the Security section, and click &quot;Open
-                  Anyway&quot; next to the blocked app. You may need to enter
-                  your admin password. Alternatively, hold Control, click the
-                  app, and select Open (security bypass).
+                  <strong>macOS</strong> - Open the downloaded DMG and drag Paperweight to your Applications folder.
                 </li>
                 <li>
-                  <strong>Linux AppImage</strong> - Right-click the file →
-                  Properties → Permissions → check &quot;Allow executing file as
+                  <strong>Linux AppImage</strong> - Right-click → Properties → Permissions → check &quot;Allow executing file as
                   program&quot;, or run{" "}
                   <code className="bg-base-300 px-1 rounded">
                     chmod +x Paperweight*.AppImage
@@ -322,17 +314,22 @@ export default async function Home() {
                 </ul>
 
                 <div className="mt-auto">
-                  <a href="#download" className="btn btn-outline btn-block">
+                  <Link href="/#download" className="btn btn-soft btn-block">
                     Download free
-                  </a>
+                  </Link>
                 </div>
               </div>
 
               {/* Paid Tier */}
               <div className="bg-base-100 rounded-lg p-8 border-2 border-primary relative flex flex-col">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <span className="bg-primary text-primary-content px-4 py-1 rounded-full text-sm font-semibold">
+                    Early Supporter
+                  </span>
+                </div>
                 <div className="text-center mb-6">
                   <h3 className="text-2xl font-bold mb-2">Perpetual License</h3>
-                  <div className="text-4xl font-bold mb-2">$99</div>
+                  <div className="text-4xl font-bold mb-2">$69</div>
                   <div className="text-sm opacity-60 mb-1">
                     One-time payment
                   </div>
@@ -361,7 +358,7 @@ export default async function Home() {
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-success">✓</span>
-                    <span>Support development</span>
+                    <span>Supports open-source software</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-success">✓</span>
@@ -385,8 +382,41 @@ export default async function Home() {
             </div>
 
             <p className="text-center text-sm opacity-60 mt-8">
-              Grab a license to unlock all features and support open-source software development.
+              *Early supporter pricing. Your license includes support and updates through the first major release (v1).
             </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl font-bold mb-3">Resources & Tools</h2>
+              <p className="text-lg opacity-80">
+                Free tools and guides to help you manage your digital footprint.
+              </p>
+            </div>
+
+            <div className="max-w-4xl mx-auto">
+              <div className="card bg-base-200/50">
+                <div className="card-body">
+                  <h3 className="card-title">GDPR Request Generator</h3>
+                  <p className="opacity-80">
+                    Generate a data deletion or access request for any company.
+                    Free, no download required.
+                  </p>
+                  <div className="card-actions">
+                    <Link
+                      href="/resources/gdpr-generator"
+                      className="btn btn-primary btn-sm"
+                    >
+                      Try it →
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

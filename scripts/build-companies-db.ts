@@ -7,7 +7,14 @@
  */
 
 import Database from "better-sqlite3";
-import { readdirSync, readFileSync, mkdirSync, unlinkSync, existsSync } from "fs";
+import {
+  existsSync,
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  unlinkSync,
+  writeFileSync,
+} from "fs";
 import { join, resolve } from "path";
 import { fileURLToPath } from "url";
 
@@ -16,6 +23,8 @@ const ROOT = resolve(__dirname, "..");
 const COMPANIES_DIR = join(ROOT, "data", "datenanfragen");
 const PAPERWEIGHT_NL_PATH = join(ROOT, "data", "paperweight", "nl.json");
 const OUT_PATH = join(ROOT, "resources", "companies.db");
+const WEBSITE_OUT_DIR = join(ROOT, "website", "src", "data");
+const WEBSITE_OUT_PATH = join(WEBSITE_OUT_DIR, "companies.generated.json");
 
 interface CompanyJson {
   slug: string;
@@ -31,6 +40,16 @@ interface CompanyJson {
   comments?: string[];
   "suggested-transport-medium"?: string;
   "relevant-countries"?: string[];
+}
+
+interface WebsiteCompany
+  extends Omit<
+    CompanyJson,
+    "categories" | "suggested-transport-medium" | "relevant-countries"
+  > {
+  categories?: string[];
+  domains: string[];
+  suggestedTransportMedium?: string;
 }
 
 // Map datenanfragen source categories → app categories (from RISK_CATEGORIES in languages.ts)
@@ -101,8 +120,29 @@ function extractDomains(company: CompanyJson): string[] {
   return [...domains];
 }
 
+function toWebsiteCompany(company: CompanyJson): WebsiteCompany {
+  const mappedCategories = mapCategories(company.categories);
+  const domains = extractDomains(company);
+  return {
+    slug: company.slug,
+    name: company.name,
+    runs: company.runs,
+    categories: mappedCategories.length > 0 ? mappedCategories : undefined,
+    domains,
+    address: company.address,
+    web: company.web,
+    webform: company.webform,
+    email: company.email,
+    phone: company.phone,
+    quality: company.quality,
+    comments: company.comments,
+    suggestedTransportMedium: company["suggested-transport-medium"],
+  };
+}
+
 function main() {
   mkdirSync(join(ROOT, "resources"), { recursive: true });
+  mkdirSync(WEBSITE_OUT_DIR, { recursive: true });
 
   // Start fresh
   if (existsSync(OUT_PATH)) unlinkSync(OUT_PATH);
@@ -133,6 +173,7 @@ function main() {
   const qualityCounts: Record<string, number> = {};
   let withDomains = 0;
   let imported = 0;
+  const websiteCompanies = new Map<string, WebsiteCompany>();
 
   for (const file of files) {
     try {
@@ -141,6 +182,7 @@ function main() {
       const domains = extractDomains(c);
 
       const categories = mapCategories(c.categories);
+      websiteCompanies.set(c.slug, toWebsiteCompany(c));
 
       const values = [
         escSql(c.slug),
@@ -178,6 +220,7 @@ function main() {
       try {
         const domains = extractDomains(c);
         const categories = mapCategories(c.categories);
+        websiteCompanies.set(c.slug, toWebsiteCompany(c));
         const values = [
           escSql(c.slug),
           escSql(c.name),
@@ -211,7 +254,13 @@ function main() {
   db.exec(sql);
   db.close();
 
+  const websiteList = [...websiteCompanies.values()].sort((a, b) =>
+    a.name.localeCompare(b.name),
+  );
+  writeFileSync(WEBSITE_OUT_PATH, `${JSON.stringify(websiteList)}\n`, "utf-8");
+
   console.log(`\nWrote ${OUT_PATH}`);
+  console.log(`Wrote ${WEBSITE_OUT_PATH}`);
   console.log(`datenanfragen: ${imported} companies`);
   console.log(`paperweight/nl: ${paperweightImported} companies`);
   console.log(`With domains: ${withDomains + paperweightImported}`);

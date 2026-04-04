@@ -1,11 +1,18 @@
+import dayjs from "dayjs";
+import { SubpageHeader } from "@/components/SubpageHeader";
 import { SITE_CONFIG } from "@/utils/config";
 
+export const PRIVACY_LAST_UPDATED = "2026-03-12";
+
 export default async function PrivacyPage() {
-  const lastUpdated = "Mar 12, 2026";
+  const lastUpdated = dayjs(PRIVACY_LAST_UPDATED).format("MMM DD, YYYY");
 
   return (
     <div className="container mx-auto w-full px-4 pt-24 pb-12">
-      <h1 className="text-3xl font-semibold mb-6">Privacy Policy</h1>
+      <SubpageHeader
+        label="Resources"
+        title="Privacy Policy"
+      />
       <p className="text-sm mt-2">Last updated: {lastUpdated}</p>
       <div className="divider"></div>
       <div className="prose max-w-none">
@@ -124,21 +131,19 @@ export default async function PrivacyPage() {
           found accounts, and OAuth tokens) strictly locally on your own device.
           We do not retain any of this data on external servers.
         </p>
-        <p>
-          You can delete this local data at any time by:
-          <ul>
-            <li>
-              <strong>Wipe all data</strong> within the Paperweight app.
-            </li>
-            <li>
-              <strong>Uninstalling the application</strong> from your device.
-            </li>
-            <li>
-              <strong>Revoking Paperweight's OAuth access</strong> from your
-              Provider's Account settings.
-            </li>
-          </ul>
-        </p>
+        <p>You can delete this local data at any time by:</p>
+        <ul>
+          <li>
+            <strong>Wipe all data</strong> within the Paperweight app.
+          </li>
+          <li>
+            <strong>Uninstalling the application</strong> from your device.
+          </li>
+          <li>
+            <strong>Revoking Paperweight's OAuth access</strong> from your
+            Provider&apos;s account settings.
+          </li>
+        </ul>
 
         <h3>Contact</h3>
         <p>
