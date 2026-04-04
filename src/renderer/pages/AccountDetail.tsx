@@ -50,6 +50,7 @@ const RISK_BADGE_CLASS: Record<string, string> = {
 
 const TWO_YEARS_MS = 2 * 365.25 * 24 * 60 * 60 * 1000;
 const TEN_YEARS_MS = 10 * 365.25 * 24 * 60 * 60 * 1000;
+const NINETY_DAYS_MS = 90 * 24 * 60 * 60 * 1000;
 
 function EmailsBySender({
   messages,
@@ -471,8 +472,30 @@ export default function AccountDetail(): JSX.Element {
 
   // Action item derivation
   const now = Date.now();
+  const ninetyDaysAgo = now - NINETY_DAYS_MS;
   const twoYearsAgo = now - TWO_YEARS_MS;
   const tenYearsAgo = now - TEN_YEARS_MS;
+
+  const latestResetPasswordSignalAt = detail.latestResetPasswordSignalAt;
+  const latestMfaCodeSignalAt = detail.latestMfaCodeSignalAt;
+  const latestLikelyAffectedBreachAt = detail.latestLikelyAffectedBreachAt;
+  const latestBreachRecommendsPasswordReset =
+    !!detail.latestLikelyAffectedBreachRecommendsPasswordReset;
+
+  const shouldRecommendPasswordChange =
+    !!latestLikelyAffectedBreachAt &&
+    latestBreachRecommendsPasswordReset &&
+    (!latestResetPasswordSignalAt ||
+      latestResetPasswordSignalAt < latestLikelyAffectedBreachAt);
+
+  const hasPasswordResetAfterLatestBreach =
+    !!latestLikelyAffectedBreachAt &&
+    latestBreachRecommendsPasswordReset &&
+    !!latestResetPasswordSignalAt &&
+    latestResetPasswordSignalAt >= latestLikelyAffectedBreachAt;
+
+  const hasRecentMfaCodeSignal =
+    !!latestMfaCodeSignalAt && latestMfaCodeSignalAt >= ninetyDaysAgo;
 
   const activeBulkMessages = detail.bulkMessages.filter(
     (m) => m.date > twoYearsAgo && m.status == null
@@ -491,6 +514,9 @@ export default function AccountDetail(): JSX.Element {
 
   const actionItems: string[] = [
     ...(anyLikelyAffected ? ["breachReview", "breachAccess", "breachDeletion"] : []),
+    ...(shouldRecommendPasswordChange ? ["breachPasswordChange"] : []),
+    ...(hasPasswordResetAfterLatestBreach ? ["breachPasswordResetDone"] : []),
+    ...(hasRecentMfaCodeSignal ? ["mfaCodeRecent"] : []),
     ...(hasActiveSubscription ? unsubMethods.map((m) => `unsub-${m.method}`) : []),
     ...(showDeleteMarketing ? ["deleteMarketing"] : []),
     ...(showDeleteAll ? ["deleteAll"] : []),
@@ -520,6 +546,11 @@ export default function AccountDetail(): JSX.Element {
     } else if (id === "breachReview") {
       setBreachOpen(true);
       document.getElementById("breach-alert")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else if (id === "breachPasswordChange" || id === "breachPasswordResetDone") {
+      setBreachOpen(true);
+      document.getElementById("breach-alert")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else if (id === "mfaCodeRecent") {
+      setActiveTab("emails");
     }
   }
 
@@ -1032,6 +1063,43 @@ export default function AccountDetail(): JSX.Element {
                   anyLoading={actionLoading}
                   actionLabel="Open"
                   onAction={() => handleItemAction("breachDeletion")}
+                />
+              )}
+              {shouldRecommendPasswordChange && (
+                <ActionTaskRow
+                  index={actionItems.indexOf("breachPasswordChange") + 1}
+                  label="Change your password"
+                  description={`The latest likely-affected breach (${latestLikelyAffectedBreachAt ? formatAbsoluteDate(latestLikelyAffectedBreachAt) : "unknown date"}) includes credential risk and no password reset was detected afterwards.`}
+                  done={doneIds.has("breachPasswordChange")}
+                  spinning={false}
+                  anyLoading={actionLoading}
+                  actionLabel="Review"
+                  variant="warning"
+                  onAction={() => handleItemAction("breachPasswordChange")}
+                />
+              )}
+              {hasPasswordResetAfterLatestBreach && (
+                <ActionTaskRow
+                  index={actionItems.indexOf("breachPasswordResetDone") + 1}
+                  label="Password reset detected after breach"
+                  description={`Latest reset email: ${latestResetPasswordSignalAt ? formatAbsoluteDate(latestResetPasswordSignalAt) : "unknown"}. This appears to be after the latest likely-affected breach.`}
+                  done={doneIds.has("breachPasswordResetDone")}
+                  spinning={false}
+                  anyLoading={actionLoading}
+                  actionLabel="Review"
+                  onAction={() => handleItemAction("breachPasswordResetDone")}
+                />
+              )}
+              {hasRecentMfaCodeSignal && (
+                <ActionTaskRow
+                  index={actionItems.indexOf("mfaCodeRecent") + 1}
+                  label="MFA code activity detected"
+                  description={`Latest MFA code email: ${latestMfaCodeSignalAt ? formatAbsoluteDate(latestMfaCodeSignalAt) : "unknown"}. Review recent sign-in activity if this was unexpected.`}
+                  done={doneIds.has("mfaCodeRecent")}
+                  spinning={false}
+                  anyLoading={actionLoading}
+                  actionLabel="Review emails"
+                  onAction={() => handleItemAction("mfaCodeRecent")}
                 />
               )}
               {hasActiveSubscription && unsubMethods.map((entry) => {
