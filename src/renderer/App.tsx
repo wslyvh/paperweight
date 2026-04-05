@@ -1,7 +1,9 @@
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import type { LicenseStatus } from "@shared/types";
+import type { UpdateInfo } from "@shared/ipc";
 import AppShell from "./components/AppShell";
+import UpdateBanner from "./components/UpdateBanner";
 import { LicenseProvider } from "./context/LicenseContext";
 import Onboarding from "./pages/Onboarding";
 import Dashboard from "./pages/Dashboard";
@@ -46,6 +48,20 @@ function AuthGate({ children }: { children: React.ReactNode }): JSX.Element {
 
 export default function App(): JSX.Element {
   const [accountKey, setAccountKey] = useState(0);
+  const [updateInfo, setUpdateInfo] = useState<UpdateInfo | null>(null);
+
+  useEffect(() => {
+    window.api
+      .getLastUpdateInfo()
+      .then((info) => {
+        if (info) setUpdateInfo(info);
+      })
+      .catch(() => {
+        // no-op; this is best-effort hydration for missed early events
+      });
+
+    return window.api.onUpdateDownloaded((info) => setUpdateInfo(info));
+  }, []);
 
   useEffect(() => {
     return window.api.onAccountSwitched(() => {
@@ -62,6 +78,9 @@ export default function App(): JSX.Element {
 
   return (
     <HashRouter>
+      <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[60] w-[min(720px,calc(100vw-2rem))]">
+        <UpdateBanner info={updateInfo} onDismiss={() => setUpdateInfo(null)} />
+      </div>
       <Routes>
         <Route path="/onboarding" element={<Onboarding />} />
         <Route

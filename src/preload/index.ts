@@ -1,10 +1,12 @@
 import { contextBridge, ipcRenderer } from "electron";
 import { IPC } from "@shared/ipc";
-import type { ElectronAPI, SyncStatus } from "@shared/ipc";
+import type { ElectronAPI, SyncStatus, UpdateInfo } from "@shared/ipc";
 
 export type { ElectronAPI } from "@shared/ipc";
 
 const api: ElectronAPI = {
+  getLastUpdateInfo: () => ipcRenderer.invoke(IPC.getLastUpdateInfo),
+
   getConnectionStatus: () => ipcRenderer.invoke(IPC.getConnectionStatus),
 
   startGmailAuth: () => ipcRenderer.invoke(IPC.startGmailAuth),
@@ -139,6 +141,16 @@ const api: ElectronAPI = {
     ipcRenderer.on(IPC.noAccountsRemaining, handler);
     return () => ipcRenderer.removeListener(IPC.noAccountsRemaining, handler);
   },
+
+  onUpdateDownloaded: (callback) => {
+    const handler = (_event: Electron.IpcRendererEvent, info: UpdateInfo): void => {
+      callback(info);
+    };
+    ipcRenderer.on(IPC.updateDownloaded, handler);
+    return () => ipcRenderer.removeListener(IPC.updateDownloaded, handler);
+  },
+
+  installUpdate: () => ipcRenderer.invoke(IPC.installUpdate),
 };
 
 contextBridge.exposeInMainWorld("api", api);

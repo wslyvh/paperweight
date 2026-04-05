@@ -22,6 +22,7 @@ import type {
 } from "./types";
 
 export const IPC = {
+  getLastUpdateInfo: "get-last-update-info",
   getConnectionStatus: "get-connection-status",
   startGmailAuth: "start-gmail-auth",
   startMicrosoftAuth: "start-microsoft-auth",
@@ -71,9 +72,18 @@ export const IPC = {
   switchAccount: "switch-account",
   removeAccount: "remove-account",
   accountSwitched: "account-switched",
+  updateDownloaded: "update-downloaded",
+  installUpdate: "install-update",
 } as const;
 
+export interface UpdateInfo {
+  latest: string;
+  current: string;
+  isMajor: boolean;
+}
+
 export interface ElectronAPI {
+  getLastUpdateInfo: () => Promise<UpdateInfo | null>;
   getConnectionStatus: () => Promise<boolean>;
   startGmailAuth: () => Promise<{ success: boolean; error?: string }>;
   startMicrosoftAuth: () => Promise<{ success: boolean; error?: string }>;
@@ -125,6 +135,8 @@ export interface ElectronAPI {
   removeAccount: (email: string) => Promise<void>;
   onAccountSwitched: (callback: (email: string) => void) => () => void;
   onNoAccountsRemaining: (callback: () => void) => () => void;
+  onUpdateDownloaded: (callback: (info: UpdateInfo) => void) => () => void;
+  installUpdate: () => Promise<void>;
 }
 
 export type { SyncStatus };
