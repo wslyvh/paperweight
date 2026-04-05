@@ -104,6 +104,7 @@ app.whenReady().then(() => {
 
   registerIpcHandlers();
   ipcMain.handle(IPC.getLastUpdateInfo, () => lastUpdateInfo);
+  ipcMain.handle(IPC.installUpdate, () => autoUpdater.quitAndInstall());
 
   // Ensure OS login item state matches saved settings
   const autoLaunch = getGlobalSetting("autoLaunch") ?? false;

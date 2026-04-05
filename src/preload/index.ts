@@ -149,6 +149,8 @@ const api: ElectronAPI = {
     ipcRenderer.on(IPC.updateDownloaded, handler);
     return () => ipcRenderer.removeListener(IPC.updateDownloaded, handler);
   },
+
+  installUpdate: () => ipcRenderer.invoke(IPC.installUpdate),
 };
 
 contextBridge.exposeInMainWorld("api", api);

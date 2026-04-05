@@ -30,6 +30,12 @@ export default function UpdateBanner({ info, onDismiss }: UpdateBannerProps): JS
             View release
           </button>
         </p>
+        <button
+          className="btn btn-primary btn-sm mt-2"
+          onClick={() => window.api.installUpdate()}
+        >
+          Restart to update
+        </button>
       </div>
       <button
         className="btn btn-ghost btn-xs"
