@@ -78,6 +78,11 @@
       "oneClick": true,
       "perMachine": false,
       "deleteAppDataOnUninstall": true
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "wslyvh",
+      "repo": "paperweight"
     }
   },
   "dependencies": {
@@ -85,6 +90,7 @@
     "better-sqlite3": "12.6.0",
     "dayjs": "^1.11.19",
     "electron-log": "^5.4.3",
+    "electron-updater": "^6.8.3",
     "ethereum-blockies-base64": "^1.0.2",
     "imapflow": "^1.0.172",
     "lucide-react": "^0.563.0",
