@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback, useRef, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import type { Vendor, VendorQuery } from "@shared/types";
 import { useLicense } from "../context/LicenseContext";
@@ -261,10 +261,9 @@ export default function Accounts(): JSX.Element {
     }
   }
 
-  const fetchVendors = useCallback(async (silent = false) => {
-    if (!silent) setLoading(true);
+  const currentQuery = useMemo((): VendorQuery => {
     const actualSortBy = sortBy === "last_seen_asc" ? "last_seen" : sortBy;
-    const query: VendorQuery = {
+    return {
       page,
       limit,
       sortBy: actualSortBy,
@@ -278,11 +277,15 @@ export default function Accounts(): JSX.Element {
       showReviewed,
       onBreachList: anyBreachFilter || undefined,
     };
-    const data = await window.api.queryVendors(query);
+  }, [page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, showReviewed, anyBreachFilter]);
+
+  const fetchVendors = useCallback(async (silent = false) => {
+    if (!silent) setLoading(true);
+    const data = await window.api.queryVendors(currentQuery);
     setVendors(data.vendors);
     setTotal(data.total);
     setLoading(false);
-  }, [page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, showReviewed, anyBreachFilter]);
+  }, [currentQuery]);
 
   useEffect(() => {
     fetchVendors();
@@ -469,9 +472,16 @@ export default function Accounts(): JSX.Element {
                 >
                   <div
                     className="p-4 cursor-pointer hover:bg-base-300 transition-colors rounded-2xl group"
-                    onClick={() => navigate(`/accounts/${encodeURIComponent(groupKey)}`, {
-                      state: { accountsState: { page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, anyBreachFilter, showReviewed } satisfies AccountsState },
-                    })}
+                    onClick={() => {
+                      const allGroupKeys = vendors.map(v => v.root_domain ?? v.company_slug ?? String(v.id));
+                      const currentIndex = allGroupKeys.indexOf(groupKey);
+                      navigate(`/accounts/${encodeURIComponent(groupKey)}`, {
+                        state: {
+                          accountsState: { page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, anyBreachFilter, showReviewed } satisfies AccountsState,
+                          accountNav: { groupKeys: allGroupKeys, currentIndex, vendorQuery: currentQuery, total, restoreState: { page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, anyBreachFilter, showReviewed } },
+                        },
+                      });
+                    }}
                   >
                     <div className="flex items-center gap-3 w-full">
                       {/* Name + count */}

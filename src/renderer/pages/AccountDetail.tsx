@@ -1,7 +1,8 @@
 import { useEffect, useCallback, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import type {
   VendorDetail,
+  VendorQuery,
   Message,
   UnsubscribeEntry,
   ActivityEntry,
@@ -23,6 +24,7 @@ import { getRootDomain } from "@shared/utils";
 import {
   ArrowLeft,
   BadgeCheck,
+  ChevronLeft,
   ChevronRight,
   Clipboard,
   ExternalLink,
@@ -223,6 +225,18 @@ function WhitelistSection({
 export default function AccountDetail(): JSX.Element {
   const { groupKey } = useParams<{ groupKey: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
+  const locState = location.state as {
+    accountNav?: {
+      groupKeys: string[];
+      currentIndex: number;
+      vendorQuery: VendorQuery;
+      total: number;
+      restoreState: Record<string, unknown>;
+    };
+  } | null;
+
+  const accountNav = locState?.accountNav ?? null;
   const [detail, setDetail] = useState<VendorDetail>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>();
@@ -283,6 +297,50 @@ export default function AccountDetail(): JSX.Element {
     setWhitelistEntries(entries);
   }, []);
 
+  const navigateToNeighbor = useCallback(async (direction: "prev" | "next") => {
+    if (!accountNav) return;
+    const { groupKeys, currentIndex, vendorQuery, total } = accountNav;
+    const totalPages = Math.max(1, Math.ceil(total / vendorQuery.limit));
+    const page = vendorQuery.page;
+
+    if (direction === "prev") {
+      if (currentIndex > 0) {
+        const targetKey = groupKeys[currentIndex - 1];
+        navigate(`/accounts/${encodeURIComponent(targetKey)}`, {
+          state: { accountNav: { ...accountNav, currentIndex: currentIndex - 1 } },
+        });
+      } else if (page > 1) {
+        const prevQuery = { ...vendorQuery, page: page - 1 };
+        const data = await window.api.queryVendors(prevQuery);
+        if (data.vendors.length > 0) {
+          const newGroupKeys = data.vendors.map(v => v.root_domain ?? v.company_slug ?? String(v.id));
+          navigate(`/accounts/${encodeURIComponent(newGroupKeys[newGroupKeys.length - 1])}`, {
+            state: { accountNav: { groupKeys: newGroupKeys, currentIndex: newGroupKeys.length - 1, vendorQuery: prevQuery, total, restoreState: accountNav.restoreState } },
+          });
+        }
+      }
+    } else {
+      if (currentIndex < groupKeys.length - 1) {
+        const targetKey = groupKeys[currentIndex + 1];
+        navigate(`/accounts/${encodeURIComponent(targetKey)}`, {
+          state: { accountNav: { ...accountNav, currentIndex: currentIndex + 1 } },
+        });
+      } else if (page < totalPages) {
+        const nextQuery = { ...vendorQuery, page: page + 1 };
+        const data = await window.api.queryVendors(nextQuery);
+        if (data.vendors.length > 0) {
+          const newGroupKeys = data.vendors.map(v => v.root_domain ?? v.company_slug ?? String(v.id));
+          navigate(`/accounts/${encodeURIComponent(newGroupKeys[0])}`, {
+            state: { accountNav: { groupKeys: newGroupKeys, currentIndex: 0, vendorQuery: nextQuery, total, restoreState: accountNav.restoreState } },
+          });
+        }
+      }
+    }
+  }, [accountNav, navigate]);
+
+  const isFirstInList = !accountNav || (accountNav.currentIndex === 0 && accountNav.vendorQuery.page === 1);
+  const isLastInList = !accountNav || (accountNav.currentIndex === accountNav.groupKeys.length - 1 && accountNav.vendorQuery.page >= Math.ceil(accountNav.total / accountNav.vendorQuery.limit));
+
   const handleToggleReviewed = async () => {
     if (!detail) return;
     const newValue = detail.vendor.status !== "reviewed";
@@ -306,7 +364,7 @@ export default function AccountDetail(): JSX.Element {
       <div className="space-y-4">
         <button
           className="btn btn-ghost btn-sm gap-1"
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/accounts", { state: accountNav ? { restore: accountNav.restoreState } : undefined })}
         >
           <ArrowLeft className="w-4 h-4" /> Back to overview
         </button>
@@ -709,12 +767,34 @@ export default function AccountDetail(): JSX.Element {
     <div className="space-y-6">
       {/* Top bar */}
       <div className="flex items-center justify-between">
-        <button
-          className="btn btn-ghost btn-sm gap-1"
-          onClick={() => navigate(-1)}
-        >
-          <ArrowLeft className="w-4 h-4" /> Back to overview
-        </button>
+        <div className="flex items-center gap-1">
+          <button
+            className="btn btn-ghost btn-sm gap-1"
+          onClick={() => navigate("/accounts", { state: accountNav ? { restore: accountNav.restoreState } : undefined })}
+          >
+            <ArrowLeft className="w-4 h-4" /> Back to overview
+          </button>
+          {accountNav && (
+            <>
+              <button
+                className="btn btn-ghost btn-sm btn-circle"
+                disabled={isFirstInList}
+                onClick={() => navigateToNeighbor("prev")}
+                title="Previous account"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <button
+                className="btn btn-ghost btn-sm btn-circle"
+                disabled={isLastInList}
+                onClick={() => navigateToNeighbor("next")}
+                title="Next account"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </>
+          )}
+        </div>
         <div className="flex items-center gap-2">
           <button
             className="btn btn-sm btn-ghost"
