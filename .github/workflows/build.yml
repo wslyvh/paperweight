@@ -56,13 +56,18 @@ jobs:
       - name: Build macOS installer
         run: yarn dist:mac
 
-      - name: Upload artifacts
+      - name: Upload macOS installer
         uses: actions/upload-artifact@v7
         with:
-          name: macos-installers
-          path: |
-            dist/*.dmg
-            dist/latest-mac.yml
+          name: macos-dmg
+          path: dist/*.dmg
+          archive: false
+
+      - name: Upload macOS update manifest
+        uses: actions/upload-artifact@v7
+        with:
+          name: macos-yml
+          path: dist/latest-mac.yml
           archive: false
 
   build-linux:
@@ -92,9 +97,14 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: linux-appimage
-          path: |
-            dist/*.AppImage
-            dist/latest-linux.yml
+          path: dist/*.AppImage
+          archive: false
+
+      - name: Upload Linux update manifest
+        uses: actions/upload-artifact@v7
+        with:
+          name: linux-yml
+          path: dist/latest-linux.yml
           archive: false
       - name: Upload deb
         uses: actions/upload-artifact@v7
@@ -126,13 +136,18 @@ jobs:
       - name: Build Windows installer
         run: yarn dist:win
 
-      - name: Upload artifacts
+      - name: Upload Windows installer
         uses: actions/upload-artifact@v7
         with:
-          name: windows-installers
-          path: |
-            dist/*.exe
-            dist/latest.yml
+          name: windows-exe
+          path: dist/*.exe
+          archive: false
+
+      - name: Upload Windows update manifest
+        uses: actions/upload-artifact@v7
+        with:
+          name: windows-yml
+          path: dist/latest.yml
           archive: false
 
   create-release:
