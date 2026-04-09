@@ -242,3 +242,107 @@ export const NON_EU_DPAS: Dpa[] = [
       "Iceland is EEA, not EU — GDPR applies via the EEA Agreement. English is widely accepted.",
   },
 ];
+
+// Maps lower-cased address country strings (including local-language variants) to DPA country names
+const ADDRESS_COUNTRY_MAP: Record<string, string> = {
+  netherlands: "Netherlands",
+  nederland: "Netherlands",
+  france: "France",
+  germany: "Germany",
+  deutschland: "Germany",
+  ireland: "Ireland",
+  "united kingdom": "United Kingdom",
+  uk: "United Kingdom",
+  spain: "Spain",
+  españa: "Spain",
+  italy: "Italy",
+  italia: "Italy",
+  sweden: "Sweden",
+  sverige: "Sweden",
+  norway: "Norway",
+  norge: "Norway",
+  switzerland: "Switzerland",
+  schweiz: "Switzerland",
+  suisse: "Switzerland",
+  austria: "Austria",
+  österreich: "Austria",
+  belgium: "Belgium",
+  belgique: "Belgium",
+  belgië: "Belgium",
+  denmark: "Denmark",
+  danmark: "Denmark",
+  finland: "Finland",
+  poland: "Poland",
+  polska: "Poland",
+  portugal: "Portugal",
+  luxembourg: "Luxembourg",
+  iceland: "Iceland",
+  island: "Iceland",
+};
+
+const TLD_TO_DPA_COUNTRY: Record<string, string> = {
+  nl: "Netherlands",
+  de: "Germany",
+  fr: "France",
+  ie: "Ireland",
+  it: "Italy",
+  es: "Spain",
+  pt: "Portugal",
+  be: "Belgium",
+  at: "Austria",
+  dk: "Denmark",
+  fi: "Finland",
+  pl: "Poland",
+  se: "Sweden",
+  lu: "Luxembourg",
+  no: "Norway",
+  is: "Iceland",
+  ch: "Switzerland",
+  uk: "United Kingdom",
+};
+
+/**
+ * Finds the relevant DPA for a company.
+ * Tries dpaCountryCode (2-letter ISO, e.g. "NL") first, then falls back to
+ * extracting the last line of the address and normalising to a country name.
+ */
+export function findDpaByAddress(
+  address: string | null,
+  dpaCountryCode?: string | null
+): Dpa | null {
+  const all = [...EU_DPAS, ...NON_EU_DPAS];
+
+  if (dpaCountryCode) {
+    // Flag emoji encodes ISO 3166-1 alpha-2: regional indicator A = U+1F1E6
+    const base = 0x1f1e6 - 65;
+    const flag = String.fromCodePoint(
+      base + dpaCountryCode.toUpperCase().charCodeAt(0),
+      base + dpaCountryCode.toUpperCase().charCodeAt(1)
+    );
+    const match = all.find((d) => d.flag === flag);
+    if (match) return match;
+  }
+
+  if (address) {
+    const last =
+      address
+        .split("\n")
+        .map((l) => l.trim())
+        .filter(Boolean)
+        .at(-1)
+        ?.toLowerCase() ?? "";
+    const country = ADDRESS_COUNTRY_MAP[last];
+    if (country) return all.find((d) => d.country === country) ?? null;
+  }
+
+  return null;
+}
+
+export function findDpaByDomain(domain: string): Dpa | null {
+  const tld = domain.toLowerCase().split(".").at(-1);
+  if (!tld) return null;
+  const mappedCountry = TLD_TO_DPA_COUNTRY[tld];
+  if (!mappedCountry) return null;
+  const all = [...EU_DPAS, ...NON_EU_DPAS];
+  return all.find((entry) => entry.country === mappedCountry) ?? null;
+}

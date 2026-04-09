@@ -67,6 +67,9 @@ export default function RootLayout(props: PropsWithChildren) {
                         className="dropdown-content menu rounded-box z-10 mt-2 w-52 bg-base-200 p-2 shadow-lg backdrop-blur"
                       >
                         <li>
+                          <Link href="/breaches">Data Breaches</Link>
+                        </li>
+                        <li>
                           <Link href="/resources/gdpr-generator">
                             GDPR Generator
                           </Link>
@@ -145,6 +148,9 @@ export default function RootLayout(props: PropsWithChildren) {
                       <h6 className="footer-title">Resources</h6>
                       <Link href="/changelog" className="link link-hover">
                         Changelog
+                      </Link>
+                      <Link href="/breaches" className="link link-hover">
+                        Data Breaches
                       </Link>
                       <Link
                         href="/resources/gdpr-generator"
