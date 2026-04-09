@@ -1,0 +1,45 @@
+{
+  "slug": "under-armour",
+  "generated_at": "2026-04-09T17:32:38.109Z",
+  "breach": {
+    "name": "UnderArmour",
+    "title": "Under Armour",
+    "domain": "underarmour.com",
+    "breach_date": "2025-11-17",
+    "added_date": "2026-01-21T06:34:18Z",
+    "modified_date": "2026-01-21T06:42:44Z",
+    "pwn_count": 72742892,
+    "description": "In November 2025, <a href=\"https://hackread.com/everest-ransomware-under-armour-users-data/\" target=\"_blank\" rel=\"noopener\">the Everest ransomware group claimed Under Armour as a victim and attempted to extort a ransom</a>, alleging they had obtained access to 343GB of data. <a href=\"https://x.com/justabreach/status/2012933753853657288\" target=\"_blank\" rel=\"noopener\">In January 2026, customer data from the incident was published publicly on a popular hacking forum</a>, including 72M email addresses. Many records also contained additional personal information such as names, dates of birth, genders, geographic locations and purchase information.",
+    "attribution": "DeHashed",
+    "data_classes": [
+      "Dates of birth",
+      "Email addresses",
+      "Genders",
+      "Geographic locations",
+      "Names",
+      "Purchases"
+    ],
+    "is_verified": true,
+    "is_sensitive": false,
+    "logo_path": "https://logos.haveibeenpwned.com/UnderArmour.png",
+    "slug": "under-armour",
+    "company_name": "Under Armour, Inc.",
+    "runs": [
+      "UA Record"
+    ],
+    "categories": [],
+    "address": "c/o Under Armour Europe B.V.\nStadionplein 10\n1076 CM Amsterdam\nThe Netherlands",
+    "web": "https://www.underarmour.com/",
+    "email": "privacy@underarmour.com",
+    "suggested_transport_medium": "email"
+  },
+  "enforcement": {
+    "records": [],
+    "total_fines": 0
+  },
+  "content": {
+    "aboutCompany": "Under Armour, Inc. is an American company that manufactures footwear, sports and casual apparel. The company's global headquarters are located in Baltimore, Maryland.",
+    "incidentAndExposure": "In November 2025, the Everest ransomware group claimed responsibility for an attack on Under Armour. The group alleged they had accessed 343GB of data and attempted to extort a ransom from the company. \n\nIn January 2026, data associated with this incident was published publicly on a hacking forum. This data included 72.7 million email addresses. Many of these records also contained additional personal information.\n\nThe exposed data includes names, dates of birth, genders, geographic locations, and purchase information. The combination of email addresses with other personal details increases the risk of targeted phishing attacks and identity theft. Purchase information could also be used to craft more convincing social engineering attempts.",
+    "nextSteps": "You should immediately change your password for any Under Armour accounts. If you used the same password on other websites, change those passwords as well. Enable two-factor authentication (2FA) on all online accounts where it is available, especially for email and financial services.\n\nMonitor your email for suspicious messages. Be wary of any emails claiming to be from Under Armour or other companies that ask for personal information or direct you to log in through a link. These could be phishing attempts using your exposed data. Do not click on unfamiliar links or download attachments from unknown senders.\n\nRegularly review your financial statements and credit reports for any unauthorized activity. Given that names, dates of birth, and geographic locations were exposed, there is an increased risk of identity theft. Consider placing a fraud alert or credit freeze with credit bureaus if you are concerned."
+  }
+}

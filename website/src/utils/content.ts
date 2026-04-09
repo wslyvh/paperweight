@@ -3,95 +3,112 @@ import { join } from "path";
 
 const CONTENT_DIR = join(process.cwd(), "src", "content", "breaches");
 
-export interface BreachFrontmatter {
-  created_at: string;
-  modified_at: string;
-}
-
 export interface BreachContent {
-  slug: string;
-  meta: BreachFrontmatter;
   aboutCompany: string;
   incidentAndExposure: string;
   nextSteps: string;
   enforcementNarrative?: string;
 }
 
-export interface ParsedMarkdownFile {
-  meta: Record<string, string>;
-  body: string;
+export interface BreachRecord {
+  name: string;
+  title: string;
+  domain: string;
+  breach_date: string;
+  added_date: string;
+  modified_date: string;
+  pwn_count: number;
+  description: string;
+  attribution?: string;
+  disclosure_url?: string;
+  logo_path?: string;
+  data_classes: string[];
+  is_verified: boolean;
+  is_sensitive: boolean;
+  slug: string;
+  company_name: string;
+  runs: string[];
+  categories: string[];
+  address?: string;
+  web?: string;
+  webform?: string;
+  email?: string;
+  phone?: string;
+  suggested_transport_medium?: string;
 }
 
-export function parseFrontmatter(raw: string): ParsedMarkdownFile {
-  if (!raw.startsWith("---")) return { meta: {}, body: raw };
-  const end = raw.indexOf("\n---\n", 4);
-  if (end === -1) return { meta: {}, body: raw };
-  const meta: Record<string, string> = {};
-  for (const line of raw.slice(4, end).split("\n")) {
-    const colon = line.indexOf(": ");
-    if (colon !== -1) meta[line.slice(0, colon).trim()] = line.slice(colon + 2).trim();
-  }
-  return { meta, body: raw.slice(end + 5).trim() };
+export interface EnforcementRecord {
+  etid: string;
+  controller: string;
+  fine_eur: number;
+  decision_date: string;
+  authority: string;
+  dpa_country?: string;
+  articles_violated?: string;
+  violation_type?: string;
+  description?: string;
+  source_url?: string;
+  company_slug: string;
 }
 
-function extractSection(markdown: string, heading: string): string {
-  const pattern = new RegExp(`## ${heading}\\n([\\s\\S]*?)(?=\\n## |$)`, "i");
-  return markdown.match(pattern)?.[1]?.trim() ?? "";
-}
-
-function extractFirstSection(markdown: string, headings: string[]): string {
-  for (const heading of headings) {
-    const section = extractSection(markdown, heading);
-    if (section) return section;
-  }
-  return "";
-}
-
-function parseFile(slug: string): BreachContent | null {
-  const filePath = join(CONTENT_DIR, `${slug}.md`);
-  if (!existsSync(filePath)) return null;
-
-  const raw = readFileSync(filePath, "utf-8");
-  const { meta, body } = parseFrontmatter(raw);
-
-  const enforcementRaw = extractSection(body, "GDPR Enforcement Record");
-
-  return {
-    slug,
-    meta: {
-      created_at: meta.created_at ?? "",
-      modified_at: meta.modified_at ?? "",
-    },
-    aboutCompany: extractFirstSection(body, ["About Company", "Hero Summary"]),
-    incidentAndExposure: extractFirstSection(body, ["Incident and Exposure", "What Happened"]),
-    nextSteps: extractFirstSection(body, ["Next Steps", "What This Means For You"]),
-    ...(enforcementRaw ? { enforcementNarrative: enforcementRaw } : {}),
+export interface BreachJsonFile {
+  slug: string;
+  generated_at: string;
+  breach: BreachRecord;
+  enforcement: {
+    records: EnforcementRecord[];
+    total_fines: number;
   };
+  content: BreachContent;
+}
+
+function readBreachFile(slug: string): BreachJsonFile | null {
+  const filePath = join(CONTENT_DIR, `${slug}.json`);
+  if (!existsSync(filePath)) return null;
+  const raw = readFileSync(filePath, "utf-8");
+  return JSON.parse(raw) as BreachJsonFile;
+}
+
+export function getBreachFile(slug: string): BreachJsonFile | null {
+  return readBreachFile(slug);
 }
 
 export function getBreach(slug: string): BreachContent | null {
-  return parseFile(slug);
+  return readBreachFile(slug)?.content ?? null;
+}
+
+export function getBreachedCompanies(since = "2024-01-01"): BreachRecord[] {
+  return getBreachSlugs()
+    .map((slug) => getBreachFile(slug)?.breach)
+    .filter((row): row is BreachRecord => row !== undefined)
+    .filter((row) => row.breach_date >= since)
+    .sort((a, b) => b.pwn_count - a.pwn_count);
+}
+
+export function getBreachBySlug(slug: string): BreachRecord | null {
+  return getBreachFile(slug)?.breach ?? null;
+}
+
+export function getEnforcementBySlug(slug: string): EnforcementRecord[] {
+  return getBreachFile(slug)?.enforcement.records ?? [];
 }
 
 export function getBreaches(): BreachContent[] {
   if (!existsSync(CONTENT_DIR)) return [];
   return readdirSync(CONTENT_DIR)
-    .filter((f) => f.endsWith(".md"))
-    .map((f) => parseFile(f.replace(/\.md$/, "")))
-    .filter((b): b is BreachContent => b !== null);
+    .filter((f) => f.endsWith(".json"))
+    .map((f) => readBreachFile(f.replace(/\.json$/, ""))?.content)
+    .filter((b): b is BreachContent => b !== undefined);
 }
 
 export function getBreachSlugs(): string[] {
   if (!existsSync(CONTENT_DIR)) return [];
   return readdirSync(CONTENT_DIR)
-    .filter((f) => f.endsWith(".md"))
-    .map((f) => f.replace(/\.md$/, ""));
+    .filter((f) => f.endsWith(".json"))
+    .map((f) => f.replace(/\.json$/, ""))
+    .sort((a, b) => a.localeCompare(b));
 }
 
 export function getBreachLastModified(slug: string): string | undefined {
-  const filePath = join(CONTENT_DIR, `${slug}.md`);
-  if (!existsSync(filePath)) return undefined;
-  const raw = readFileSync(filePath, "utf-8");
-  const { meta } = parseFrontmatter(raw);
-  return meta.modified_at || undefined;
+  return readBreachFile(slug)?.generated_at;
 }

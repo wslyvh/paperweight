@@ -1,0 +1,53 @@
+{
+  "slug": "odido",
+  "generated_at": "2026-04-09T17:32:26.830Z",
+  "breach": {
+    "name": "Odido",
+    "title": "Odido",
+    "domain": "odido.nl",
+    "breach_date": "2026-02-12",
+    "added_date": "2026-02-26T23:25:29Z",
+    "modified_date": "2026-03-01T05:34:14Z",
+    "pwn_count": 6077025,
+    "description": "In February 2026, Dutch telco <a href=\"https://www.rtl.nl/nieuws/binnenland/artikel/5571885/odido-data-dark-web-oud-klanten-shinyhunters\" target=\"_blank\" rel=\"noopener\">Odido was the victim of a data breach and subsequent extortion attempt</a>. Shortly after, a total of 6M unique email addresses were published across four separate data releases over consecutive days. The exposed data includes names, physical addresses, phone numbers, bank account numbers, dates of birth, customer service notes and passport, driver’s licence and European national ID numbers. <a href=\"https://www.odido.nl/veiligheid\" target=\"_blank\" rel=\"noopener\">Odido has published a disclosure notice</a> including an FAQ to support affected customers.",
+    "disclosure_url": "https://www.odido.nl/veiligheid",
+    "data_classes": [
+      "Bank account numbers",
+      "Customer service comments",
+      "Dates of birth",
+      "Driver's licenses",
+      "Email addresses",
+      "Genders",
+      "Government issued IDs",
+      "Names",
+      "Passport numbers",
+      "Phone numbers",
+      "Physical addresses"
+    ],
+    "is_verified": true,
+    "is_sensitive": false,
+    "logo_path": "https://logos.haveibeenpwned.com/Odido.png",
+    "slug": "odido",
+    "company_name": "Odido",
+    "runs": [
+      "Tele2",
+      "Ben",
+      "Simpel"
+    ],
+    "categories": [
+      "communication"
+    ],
+    "web": "https://www.odido.nl",
+    "webform": "https://www.odido.nl/privacy",
+    "suggested_transport_medium": "webform"
+  },
+  "enforcement": {
+    "records": [],
+    "total_fines": 0
+  },
+  "content": {
+    "aboutCompany": "Odido is a telecommunications provider in the Netherlands, offering mobile and internet services. The company was formerly known as T-Mobile Netherlands before rebranding.",
+    "incidentAndExposure": "On February 12, 2026, Odido experienced a data breach. This incident led to an extortion attempt against the company. Following the breach, data associated with 6.1 million records was released publicly across four separate disclosures over several days.\n\nThe exposed data includes a range of personal and sensitive information. Specifically, the breach compromised names, physical addresses, phone numbers, and email addresses. More sensitive data such as bank account numbers, dates of birth, and genders were also exposed. Additionally, government-issued identification details, including passport numbers, driver's license numbers, and European national ID numbers, were compromised. Customer service comments were also part of the exposed data.\n\nThis combination of personal identifiers, financial information, and government ID numbers significantly increases the risk of identity theft and financial fraud for affected individuals. The exposure of customer service comments could also reveal additional personal details or insights into customer interactions with Odido, potentially aiding social engineering attacks.",
+    "nextSteps": "If your data was part of the Odido breach, you should take immediate steps to protect yourself. Given the exposure of bank account numbers, monitor your financial statements and credit reports closely for any unauthorized activity. Consider placing a fraud alert or credit freeze with credit bureaus to prevent new accounts from being opened in your name.\n\nChange passwords for any online accounts where you used information similar to what was exposed, especially your email and any accounts linked to your Odido services. Enable two-factor authentication (2FA) on all accounts where it is available. This adds an extra layer of security beyond just a password.\n\nBe highly suspicious of unsolicited communications, particularly emails, texts, or calls that claim to be from Odido or other organizations requesting personal information. Phishing attempts are common after data breaches, as attackers use exposed data to make their scams more convincing. Do not click on suspicious links or download attachments from unknown senders."
+  }
+}

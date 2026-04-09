@@ -1,0 +1,41 @@
+{
+  "slug": "tibber-de",
+  "generated_at": "2026-04-09T17:32:34.910Z",
+  "breach": {
+    "name": "Tibber",
+    "title": "Tibber",
+    "domain": "tibber.com",
+    "breach_date": "2024-11-10",
+    "added_date": "2024-12-14T06:49:41Z",
+    "modified_date": "2024-12-14T06:49:41Z",
+    "pwn_count": 50002,
+    "description": "In November 2024, <a href=\"https://www.heise.de/en/news/Electricity-provider-Tibber-hacked-50-000-German-customers-affected-10031690.html\" target=\"_blank\" rel=\"noopener\">the German electricity provider Tibber suffered a data breach that exposed the personal information of 50k customers</a>. The data included names, email addresses, geographic locations (city and postcode) and total spend on purchases.",
+    "attribution": "Threat Actor 888",
+    "data_classes": [
+      "Email addresses",
+      "Geographic locations",
+      "Names",
+      "Purchases"
+    ],
+    "is_verified": true,
+    "is_sensitive": false,
+    "logo_path": "https://logos.haveibeenpwned.com/Tibber.png",
+    "slug": "tibber-de",
+    "company_name": "Tibber Deutschland GmbH",
+    "runs": [],
+    "categories": [
+      "services"
+    ],
+    "address": "Strelitzer Str. 60\n10115 Berlin\nDeutschland",
+    "email": "hello@tibber.com"
+  },
+  "enforcement": {
+    "records": [],
+    "total_fines": 0
+  },
+  "content": {
+    "aboutCompany": "Tibber Deutschland GmbH is a German electricity provider operating under the domain tibber.com. They offer digital energy services to consumers.",
+    "incidentAndExposure": "On November 10, 2024, Tibber Deutschland GmbH experienced a data breach affecting 50,000 customer records. This incident exposed personal information including names, email addresses, geographic locations (city and postcode), and total spend on purchases. The breach details have been confirmed.\n\nThe exposed data combination of names, email addresses, and geographic locations can increase the risk of targeted phishing attacks. Malicious actors could use this information to craft convincing scam emails or messages, attempting to trick individuals into revealing more sensitive data or performing actions that compromise their accounts. The inclusion of purchase spend, while not directly financial account information, could be used to add legitimacy to these social engineering attempts.",
+    "nextSteps": "Individuals affected by this breach should immediately change their passwords for their Tibber account and any other online accounts where they may have used the same password. Using unique, strong passwords for each service is critical to prevent credential stuffing attacks, where attackers use leaked credentials from one breach to access other accounts.\n\nIt is important to be vigilant for unsolicited communications, particularly emails or messages that appear to be from Tibber or related services. Exercise caution with any requests for personal information, login credentials, or financial details. Verify the legitimacy of such requests directly with Tibber through official channels, not by responding to the suspicious communication.\n\nMonitor your financial statements and credit reports for any unusual activity. While direct financial account details were not exposed in this breach, the combination of personal information can be used for identity theft attempts. Regularly reviewing your financial accounts can help detect and mitigate potential fraud early."
+  }
+}

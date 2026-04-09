@@ -1,7 +1,16 @@
 import { findDpaByAddress, findDpaByDomain, type Dpa } from "@shared/gdpr-authorities";
 import { RISK_CATEGORIES, RISK_LEVELS } from "@shared/languages";
-import { getBreachBySlug, getBreachedCompanies, getEnforcementBySlug, type BreachRecord, type EnforcementRecord } from "./db";
-import { getBreach, getBreachLastModified, getBreachSlugs, type BreachContent } from "./content";
+import {
+  getBreachBySlug,
+  getBreachedCompanies,
+  getBreachFile,
+  getBreachLastModified,
+  getBreachSlugs,
+  getEnforcementBySlug,
+  type BreachContent,
+  type BreachRecord,
+  type EnforcementRecord,
+} from "./content";
 
 interface RiskSeverity {
   level: "high" | "medium" | "low";
@@ -187,22 +196,19 @@ function buildBreachModel(
 }
 
 export function getBreachIndexItems(since = "2024-01-01"): BreachIndexItem[] {
-  const slugs = new Set(getBreachSlugs());
   return getBreachedCompanies(since)
-    .filter((breach) => slugs.has(breach.slug))
     .sort((a, b) => b.breach_date.localeCompare(a.breach_date))
     .map(buildIndexItem);
 }
 
 export function getBreachPageModel(slug: string): BreachPageModel | null {
-  const content = getBreach(slug);
-  if (!content) return null;
-
+  const breachFile = getBreachFile(slug);
+  if (!breachFile) return null;
   const breach = getBreachBySlug(slug);
   if (!breach) return null;
 
   const enforcement = getEnforcementBySlug(slug);
-  return buildBreachModel(slug, breach, content, enforcement);
+  return buildBreachModel(slug, breach, breachFile.content, enforcement);
 }
 
 export function getBreachSitemapEntries(): BreachSitemapEntry[] {

@@ -28,6 +28,7 @@
     "next-env.d.ts",
     "src/**/*.ts",
     "src/**/*.tsx",
+    "src/**/*.json",
     "../src/shared/gdpr.ts",
     "../src/shared/gdpr-authorities.ts",
     "src/**/*.d.ts",

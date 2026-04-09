@@ -1,0 +1,46 @@
+{
+  "slug": "instagram",
+  "generated_at": "2026-04-09T17:32:18.824Z",
+  "breach": {
+    "name": "Facebook",
+    "title": "Facebook",
+    "domain": "facebook.com",
+    "breach_date": "2019-08-01",
+    "added_date": "2021-04-04T03:20:45Z",
+    "modified_date": "2021-04-06T09:09:21Z",
+    "pwn_count": 509458528,
+    "description": "In April 2021, <a href=\"https://www.bleepingcomputer.com/news/security/533-million-facebook-users-phone-numbers-leaked-on-hacker-forum/\" target=\"_blank\" rel=\"noopener\">a large data set of over 500 million Facebook users was made freely available for download</a>. Encompassing approximately 20% of Facebook's subscribers, the data was allegedly obtained by exploiting a vulnerability Facebook advises they rectified in August 2019. The primary value of the data is the association of phone numbers to identities; whilst each record included phone, only 2.5 million contained an email address. Most records contained names and genders with many also including dates of birth, location, relationship status and employer.",
+    "data_classes": [
+      "Dates of birth",
+      "Email addresses",
+      "Employers",
+      "Genders",
+      "Geographic locations",
+      "Names",
+      "Phone numbers",
+      "Relationship statuses"
+    ],
+    "is_verified": true,
+    "is_sensitive": false,
+    "logo_path": "https://logos.haveibeenpwned.com/Facebook.png",
+    "slug": "instagram",
+    "company_name": "Instagram",
+    "runs": [],
+    "categories": [
+      "entertainment",
+      "social"
+    ],
+    "address": "c/o Meta Platforms Ireland Limited\n4 Grand Canal Square\nGrand Canal Harbour\nDublin 2\nIreland",
+    "web": "https://www.instagram.com/",
+    "webform": "https://www.facebook.com/help/contact/540977946302970"
+  },
+  "enforcement": {
+    "records": [],
+    "total_fines": 0
+  },
+  "content": {
+    "aboutCompany": "Instagram is a photo and video sharing social networking service owned by Meta Platforms. It allows users to upload media, edit it with filters, organize it with hashtags, and share it publicly or with private followers.",
+    "incidentAndExposure": "In April 2021, a dataset containing information from over 500 million Facebook users, including Instagram users, became publicly available. This data was reportedly obtained by exploiting a vulnerability that Facebook stated it fixed in August 2019. The breach date is listed as August 1, 2019, aligning with the reported fix date.\n\nThe dataset primarily linked phone numbers to user identities. While all 509.5 million affected records included a phone number, only 2.5 million also contained an email address. Most records included names and genders. Many records also exposed dates of birth, geographic locations, relationship statuses, and employers.\n\nThis exposure means that personal identifiers such as names and phone numbers are now publicly associated. The inclusion of dates of birth, locations, and relationship statuses provides additional data points that could be used for social engineering attacks or identity verification bypass attempts. The association of phone numbers with other personal details increases the risk of targeted phishing, spam calls, and potential SIM-swapping attacks.",
+    "nextSteps": "You should assume your phone number and other associated personal details are publicly available. Be highly suspicious of unsolicited calls or messages, especially those claiming to be from Instagram, Facebook, or other services you use. Verify the legitimacy of any communication through official channels before clicking links or providing information.\n\nStrengthen the security of your online accounts. Enable two-factor authentication (2FA) on your Instagram, Facebook, and all other critical online accounts. Use strong, unique passwords for each service. Consider changing your Instagram and Facebook passwords if you have not done so recently.\n\nMonitor your accounts for suspicious activity. Regularly review your Instagram activity log and Facebook's 'Where You're Logged In' section. Be vigilant for any unusual login attempts or changes to your profile. Consider signing up for a credit monitoring service to detect any potential identity theft attempts, although this breach primarily exposed contact information rather than financial data."
+  }
+}

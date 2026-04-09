@@ -1,0 +1,40 @@
+{
+  "slug": "duolingo",
+  "generated_at": "2026-04-09T17:32:10.250Z",
+  "breach": {
+    "name": "Duolingo",
+    "title": "Duolingo",
+    "domain": "duolingo.com",
+    "breach_date": "2023-01-24",
+    "added_date": "2023-08-23T04:31:08Z",
+    "modified_date": "2023-08-23T04:31:08Z",
+    "pwn_count": 2676696,
+    "description": "In August 2023, <a href=\"https://www.bleepingcomputer.com/news/security/scraped-data-of-26-million-duolingo-users-released-on-hacking-forum/\" target=\"_blank\" rel=\"noopener\">2.6M records of data scraped from Duolingo were broadly distributed on a popular hacking forum</a>. Obtained by enumerating a vulnerable API, the data had earlier appeared for sale in January 2023 and contained email addresses, names, the languages being learned, XP (experience points), and other data related to learning progress on Duolingo. Whilst some of the data attributes are intentionally public, the ability to map private email addresses to them presents an ongoing risk to user privacy.",
+    "data_classes": [
+      "Email addresses",
+      "Names",
+      "Spoken languages",
+      "Usernames"
+    ],
+    "is_verified": true,
+    "is_sensitive": false,
+    "logo_path": "https://logos.haveibeenpwned.com/Duolingo.png",
+    "slug": "duolingo",
+    "company_name": "Duolingo, Inc.",
+    "runs": [],
+    "categories": [],
+    "address": "5900 Penn Avenue\nPittsburgh\nPA 15206\nUnited States of America",
+    "web": "https://www.duolingo.com/",
+    "email": "privacy@duolingo.com",
+    "suggested_transport_medium": "email"
+  },
+  "enforcement": {
+    "records": [],
+    "total_fines": 0
+  },
+  "content": {
+    "aboutCompany": "Duolingo, Inc. operates a language-learning platform accessible via a website and mobile application. Users engage in lessons and exercises to learn new languages.",
+    "incidentAndExposure": "On January 24, 2023, data scraped from Duolingo's platform was first offered for sale. This data was later broadly distributed on a hacking forum in August 2023, affecting approximately 2.7 million records. The breach occurred due to the enumeration of a vulnerable API, which allowed unauthorized access to user information.\n\nThe exposed data includes email addresses, names, spoken languages, and usernames. While some of this information, such as usernames and spoken languages, may be publicly visible on the platform, the exposure of private email addresses linked to these profiles creates a privacy risk. This combination of data can be used for targeted phishing attacks or other forms of social engineering, as it allows malicious actors to connect personal contact information with specific user activity on Duolingo.",
+    "nextSteps": "Users whose data was exposed should immediately change their Duolingo password. It is critical to use a strong, unique password that has not been used on any other online service. If the same password was used for other accounts, those passwords should also be changed.\n\nMonitor email inboxes for suspicious messages. Be cautious of any emails claiming to be from Duolingo or other services that request personal information, login credentials, or direct you to unfamiliar websites. These could be phishing attempts using the exposed data to appear legitimate. Enable multi-factor authentication (MFA) on your Duolingo account and any other online services that offer it, as this adds an extra layer of security beyond just a password.\n\nRegularly review account activity on Duolingo for any unauthorized changes or usage. Additionally, be vigilant for any unusual activity across your other online accounts, as the exposed email address could be used to attempt access to other services where you might have reused credentials or where password reset attempts could be initiated."
+  }
+}

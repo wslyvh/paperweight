@@ -1,0 +1,97 @@
+{
+  "slug": "free-fr",
+  "generated_at": "2026-04-09T17:32:14.682Z",
+  "breach": {
+    "name": "FreeMobile",
+    "title": "Free",
+    "domain": "free.fr",
+    "breach_date": "2024-10-17",
+    "added_date": "2025-05-27T07:03:21Z",
+    "modified_date": "2025-05-27T07:03:21Z",
+    "pwn_count": 13926173,
+    "description": "In October 2024, <a href=\"https://www.bleepingcomputer.com/news/security/free-frances-second-largest-isp-confirms-data-breach-after-leak/\" target=\"_blank\" rel=\"noopener\">French ISP \"Free\" suffered a data breach</a> which was subsequently posted for sale and later, leaked publicly. The data included 14M unique email addresses along with names, physical addresses, phone numbers, genders, dates of birth and for many records, IBAN bank account numbers. Free advised that the numbers were \"not enough to make a direct debit from a bank\".",
+    "data_classes": [
+      "Bank account numbers",
+      "Dates of birth",
+      "Genders",
+      "Names",
+      "Phone numbers",
+      "Physical addresses"
+    ],
+    "is_verified": true,
+    "is_sensitive": false,
+    "logo_path": "https://logos.haveibeenpwned.com/FreeMobile.png",
+    "slug": "free-fr",
+    "company_name": "Free SAS",
+    "runs": [],
+    "categories": [
+      "communication"
+    ],
+    "address": "8 rue de la Ville l’Évêque\n75008 Paris\nFrance",
+    "web": "https://www.free.fr/",
+    "phone": "+33 32 44"
+  },
+  "enforcement": {
+    "records": [
+      {
+        "etid": "ETid-2993",
+        "controller": "FREE MOBILE",
+        "fine_eur": 27000000,
+        "decision_date": "2026-01-08",
+        "authority": "French Data Protection Authority (CNIL)",
+        "dpa_country": "France",
+        "articles_violated": "Art. 5 (1) e) GDPR, Art. 32 GDPR",
+        "violation_type": "Insufficient technical and organisational measures to ensure information security",
+        "description": "The French DPA has imposed a fine of EUR 27,000,000 on FREE MOBILE. The controller suffered a data breach due to insufficient technical and organisational measures. This was caused by using an inadequate authentication procedure to connect to their VPN for remote working. Additionally, the controller failed to adequately inform the affected data subjects due to necessary information being missing from the information email. Lastly, the controller failed to adequately sort data and retain personal data for a limited amount of time.",
+        "source_url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000053352664",
+        "company_slug": "free-fr"
+      },
+      {
+        "etid": "ETid-2994",
+        "controller": "FREE",
+        "fine_eur": 15000000,
+        "decision_date": "2026-01-08",
+        "authority": "French Data Protection Authority (CNIL)",
+        "dpa_country": "France",
+        "articles_violated": "Art. 32 GDPR, Art. 34 GDPR",
+        "violation_type": "Insufficient technical and organisational measures to ensure information security",
+        "description": "The French DPA has imposed a fine of EUR 15,000,000 on FREE. The controller suffered a data breach due to insufficient technical and organisational measures. This was caused by using an inadequate authentication procedure to connect to their VPN for remote working. Additionally, the controller failed to adequately inform the affected data subjects due to necessary information being missing from the information email.",
+        "source_url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000053352643",
+        "company_slug": "free-fr"
+      },
+      {
+        "etid": "ETid-1527",
+        "controller": "FREE SAS",
+        "fine_eur": 300000,
+        "decision_date": "2022-12-08",
+        "authority": "French Data Protection Authority (CNIL)",
+        "dpa_country": "France",
+        "articles_violated": "Art. 12 GDPR, Art. 15 GDPR, Art. 17 GDPR, Art. 32 GDPR, Art. 33 GDPR",
+        "violation_type": "Insufficient fulfilment of data subjects rights",
+        "description": "The French DPA has imposed a fine of EUR 300,000 on FREE SAS. The DPA had received several complaints from individuals experiencing difficulties in exercising their rights to access and delete their personal data at FREE. During its investigation, the DPA found that the company did not process the requests for access and deletion of personal data in a timely manner. The DPA also found that the company failed to ensure the security of personal data. For example, the company allowed users to use insecure passwords and user passwords were stored unencrypted in the company's databases. Finally, the DPA found that the company had not adequately documented a data breach.",
+        "source_url": "https://www.cnil.fr/fr/securite-des-donnees-et-droits-des-personnes-sanction-de-300-000-euros-lencontre-de-la-societe-free",
+        "company_slug": "free-fr"
+      },
+      {
+        "etid": "ETid-972",
+        "controller": "FREE MOBILE",
+        "fine_eur": 300000,
+        "decision_date": "2021-12-28",
+        "authority": "French Data Protection Authority (CNIL)",
+        "dpa_country": "France",
+        "articles_violated": "Art. 12 GDPR, Art. 15 GDPR, Art. 21 GDPR, Art. 25 GDPR, Art. 32 GDPR",
+        "violation_type": "Insufficient fulfilment of data subjects rights",
+        "description": "The French DPA (CNIL) has imposed a fine of EUR 300,000 on FREEE MOBILE. The CNIL had received numerous complaints regarding the company's failure to comply with data subjects' rights. During its investigation, the CNIL found that the company had failed to respond to data subjects' requests in a timely manner. In addition, the company failed to comply with the data subjects' right to object, as it continued to send advertisements to the data subjects despite them having exercised their right to object. In addition, the CNIL found that the company had failed to implement adequate technical and organizational measures to ensure a level of security appropriate to the risk to the data subjects. For example, it had sent users passwords by email in clear text.",
+        "source_url": "https://www.cnil.fr/fr/node/121974",
+        "company_slug": "free-fr"
+      }
+    ],
+    "total_fines": 42600000
+  },
+  "content": {
+    "aboutCompany": "Free SAS is a French internet service provider operating under the domain free.fr. It provides telecommunications services to customers in France.",
+    "incidentAndExposure": "On October 17, 2024, Free SAS experienced a data breach affecting 13.9 million records. The compromised data was subsequently offered for sale and later made public.\n\nThe exposed information includes names, physical addresses, phone numbers, genders, and dates of birth. For many records, bank account numbers (IBANs) were also compromised. Free stated that these bank account numbers are not sufficient to initiate direct debits.\n\nThis exposure of personal information, including names, addresses, and phone numbers, increases the risk of targeted phishing attempts and other social engineering attacks. The inclusion of dates of birth and genders can be used to build more convincing fraudulent communications. While Free indicated that the exposed bank account numbers are not directly usable for unauthorized debits, their presence alongside other personal data could still be leveraged in more sophisticated fraud schemes.",
+    "nextSteps": "Change passwords for your Free.fr account and any other online accounts where you used the same or similar credentials. Enable two-factor authentication (2FA) wherever available to add an extra layer of security.\n\nMonitor your bank accounts and credit reports for any suspicious activity. Even though Free stated that the exposed bank account numbers are not sufficient for direct debits, it is prudent to remain vigilant for any unauthorized transactions or new accounts opened in your name. Report any unusual activity to your bank immediately.\n\nBe cautious of unsolicited communications, especially those claiming to be from Free or other financial institutions. Phishing attempts may use the exposed personal information to appear more legitimate. Do not click on suspicious links or download attachments from unknown senders. Verify the authenticity of any urgent requests for personal or financial information through official channels, not by responding directly to the communication.",
+    "enforcementNarrative": "The French Data Protection Authority (CNIL) has issued multiple fines against Free SAS. On January 8, 2026, CNIL imposed two fines totaling EUR 42.0 million (EUR 27.0 million and EUR 15.0 million) for insufficient technical and organizational measures to ensure information security, citing violations of GDPR Articles 5(1)e, 32, and 34. Additionally, CNIL issued fines of EUR 300,000 on December 8, 2022, and EUR 300,000 on December 28, 2021, for insufficient fulfillment of data subjects' rights under GDPR Articles 12, 15, 17, 21, 25, 32, and 33."
+  }
+}

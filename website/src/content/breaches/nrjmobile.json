@@ -1,0 +1,47 @@
+{
+  "slug": "nrjmobile",
+  "generated_at": "2026-04-09T17:32:22.842Z",
+  "breach": {
+    "name": "BouyguesTelecom",
+    "title": "Bouygues Telecom",
+    "domain": "bouyguestelecom.fr",
+    "breach_date": "2025-08-04",
+    "added_date": "2025-09-24T06:37:56Z",
+    "modified_date": "2025-09-24T06:37:56Z",
+    "pwn_count": 5685771,
+    "description": "In August 2025, <a href=\"https://www.bleepingcomputer.com/news/security/bouygues-telecom-confirms-data-breach-impacting-64-million-customers/\" target=\"_blank\" rel=\"noopener\">the French telecommunications company Bouygues Telecom detected a cyber attack against their services</a>. The incident resulted in a data breach that exposed almost 6.4M customer records, including 5.7M unique email addresses. The breach also exposed names, physical addresses, phone numbers, dates of birth and IBANs (International Bank Account Numbers). Bouygues Telecom advised that all affected customers had been notified about the incident.",
+    "disclosure_url": "https://www.corporate.bouyguestelecom.fr/wp-content/uploads/2025/08/CP-20250806-Bouygues-Telecom-annonce-avoir-ete-victime-dune-cyberattaque.pdf",
+    "data_classes": [
+      "Bank account numbers",
+      "Dates of birth",
+      "Email addresses",
+      "Names",
+      "Phone numbers",
+      "Physical addresses"
+    ],
+    "is_verified": true,
+    "is_sensitive": false,
+    "logo_path": "https://logos.haveibeenpwned.com/BouyguesTelecom.png",
+    "slug": "nrjmobile",
+    "company_name": "Bouygues Telecom S.A",
+    "runs": [
+      "NRJ Mobile"
+    ],
+    "categories": [
+      "communication"
+    ],
+    "address": "13/15 avenue du Maréchal Juin\n92360 Meudon-la-Forêt\nFrance",
+    "web": "https://www.nrjmobile.fr/",
+    "email": "data@bouyguestelecom.fr",
+    "suggested_transport_medium": "email"
+  },
+  "enforcement": {
+    "records": [],
+    "total_fines": 0
+  },
+  "content": {
+    "aboutCompany": "Bouygues Telecom S.A. is a French telecommunications company. It provides mobile, landline, and internet services.",
+    "incidentAndExposure": "On August 4, 2025, Bouygues Telecom detected a cyber attack on its systems. This incident led to a data breach affecting approximately 5.7 million unique email addresses.\n\nThe exposed data includes names, physical addresses, phone numbers, dates of birth, email addresses, and bank account numbers (IBANs). This combination of personal and financial information increases the risk of identity theft, targeted phishing attacks, and financial fraud. The company stated that all affected customers have been notified.\n\nWith names, addresses, and phone numbers exposed, individuals may receive unsolicited communications or be targeted by social engineering attempts. The inclusion of bank account numbers (IBANs) creates a direct risk of financial fraud, as this information can be used to attempt unauthorized transactions or set up fraudulent direct debits. Dates of birth can be used in conjunction with other data for identity verification bypasses.",
+    "nextSteps": "First, change passwords for any online accounts where you used the same or similar credentials as those associated with your Bouygues Telecom account. Enable two-factor authentication (2FA) wherever possible, especially for email, banking, and other critical services. This adds an extra layer of security beyond just a password.\n\nMonitor your bank and credit card statements closely for any unauthorized activity. Given that bank account numbers were exposed, regularly review your financial accounts for suspicious transactions or new accounts opened in your name. Consider placing a fraud alert or credit freeze with credit bureaus if you are concerned about identity theft.\n\nBe highly suspicious of unsolicited emails, phone calls, or text messages, particularly those claiming to be from Bouygues Telecom or other financial institutions. These could be phishing attempts designed to trick you into revealing more personal information or installing malware. Do not click on suspicious links or download attachments from unknown senders."
+  }
+}
