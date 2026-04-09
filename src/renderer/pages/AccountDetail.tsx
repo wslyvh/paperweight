@@ -1072,7 +1072,7 @@ export default function AccountDetail(): JSX.Element {
                   }
                   if ((showDeleteMarketing || showDeleteAll) && !hasActiveSubscription && !isStaleAccount && !isAncientAccount && !anyLikelyAffected) {
                     const base = `Deleting these emails removes personal data tied to this sender from your inbox.`;
-                    parts.push(totalCount > 25 ? `This sender has sent you a lot of emails over time. ${base}` : base);
+                    parts.push(totalCount > 100 ? `This sender has sent you a lot of emails over time. ${base}` : base);
                   }
                   return parts.join(" ");
                 })()}
