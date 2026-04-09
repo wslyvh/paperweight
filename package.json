@@ -8,7 +8,7 @@
   "scripts": {
     "postinstall": "electron-rebuild -f -w better-sqlite3",
     "dev": "electron-vite dev",
-    "prebuild": "yarn build:companies && yarn build:breaches",
+    "prebuild": "yarn build:companies && yarn build:breaches && yarn build:enforcement",
     "build": "electron-vite build",
     "preview": "electron-vite preview",
     "typecheck:node": "tsc --noEmit -p tsconfig.node.json",
@@ -16,6 +16,7 @@
     "typecheck": "yarn typecheck:node && yarn typecheck:web",
     "build:companies": "cross-env ELECTRON_RUN_AS_NODE=1 electron --import tsx scripts/build-companies-db.ts",
     "build:breaches": "cross-env ELECTRON_RUN_AS_NODE=1 electron --import tsx scripts/build-breaches-db.ts",
+    "build:enforcement": "cross-env ELECTRON_RUN_AS_NODE=1 electron --import tsx scripts/build-enforcement-db.ts",
     "dist": "yarn dist:mac && yarn dist:linux && yarn dist:win",
     "dist:mac": "electron-rebuild -f -w better-sqlite3 && yarn build && electron-builder --mac --publish never",
     "dist:linux": "electron-rebuild -f -w better-sqlite3 && yarn build && electron-builder --linux --publish never",
@@ -40,6 +41,10 @@
       {
         "from": "resources/breaches.db",
         "to": "breaches.db"
+      },
+      {
+        "from": "resources/enforcement.db",
+        "to": "enforcement.db"
       }
     ],
     "mac": {

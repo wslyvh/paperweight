@@ -5,16 +5,17 @@ import { setProgressEmitter, runSync } from "./services/sync";
 import type { StoredCredentials } from "./credentials";
 import type { SyncStatus } from "@shared/types";
 
-const { dbPath, companiesDbPath, breachesDbPath, credentials, licensed } = workerData as {
+const { dbPath, companiesDbPath, breachesDbPath, enforcementDbPath, credentials, licensed } = workerData as {
   dbPath: string;
   companiesDbPath: string;
   breachesDbPath: string;
+  enforcementDbPath: string;
   credentials: StoredCredentials | null;
   licensed: boolean;
 };
 
 // Initialize before any module calls getDb() or loadCredentials()
-initDb(dbPath, companiesDbPath, breachesDbPath);
+initDb(dbPath, companiesDbPath, breachesDbPath, enforcementDbPath);
 setPreloadedCredentials(credentials);
 
 setProgressEmitter((status: SyncStatus) => {

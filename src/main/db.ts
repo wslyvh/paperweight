@@ -9,11 +9,14 @@ let db: Database.Database | undefined;
 let _dbPath: string | undefined;
 let _companiesDbPath: string | undefined;
 let _breachesDbPath: string | undefined;
+let _enforcementDbPath: string | undefined;
 
-export function initDb(dbPath: string, companiesDbPath: string, breachesDbPath: string): void {
+
+export function initDb(dbPath: string, companiesDbPath: string, breachesDbPath: string, enforcementDbPath: string): void {
   _dbPath = dbPath;
   _companiesDbPath = companiesDbPath;
   _breachesDbPath = breachesDbPath;
+  _enforcementDbPath = enforcementDbPath;
 }
 
 function getDbPath(): string {
@@ -43,6 +46,17 @@ function getBreachesDbPath(): string {
     : join(process.resourcesPath, "breaches.db");
 }
 
+function getEnforcementDbPath(): string {
+  if (_enforcementDbPath) return _enforcementDbPath;
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { app } = require("electron") as typeof import("electron");
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { is } = require("@electron-toolkit/utils") as typeof import("@electron-toolkit/utils");
+  return is.dev
+    ? join(app.getAppPath(), "resources", "enforcement.db")
+    : join(process.resourcesPath, "enforcement.db");
+}
+
 export function getDb(): Database.Database {
   if (!db) {
     db = new Database(getDbPath());
@@ -51,6 +65,7 @@ export function getDb(): Database.Database {
     initSchema(db);
     attachCompaniesDb(db);
     attachBreachesDb(db);
+    attachEnforcementDb(db);
     const tag = basename(_dbPath, ".db").split("_").pop() ?? "?";
     dbLog.info(`Database initialized [${tag}]`);
   }
@@ -73,6 +88,7 @@ export function createAccountDb(dbPath: string): void {
   initSchema(newDb);
   attachCompaniesDb(newDb);
   attachBreachesDb(newDb);
+  attachEnforcementDb(newDb);
   newDb.close();
   const tag = basename(dbPath, ".db").split("_").pop() ?? "?";
   dbLog.info(`Account DB created [${tag}]`);
@@ -187,6 +203,15 @@ function attachBreachesDb(d: Database.Database) {
     return;
   }
   d.exec(`ATTACH DATABASE '${breachesPath}' AS breaches`);
+}
+
+function attachEnforcementDb(d: Database.Database) {
+  const enforcementPath = getEnforcementDbPath();
+  if (!existsSync(enforcementPath)) {
+    dbLog.warn(`Enforcement DB not found at ${enforcementPath} — skipping attach`);
+    return;
+  }
+  d.exec(`ATTACH DATABASE '${enforcementPath}' AS enforcement`);
 }
 
 export function deleteDbFiles(email: string): void {

@@ -49,12 +49,15 @@ export function startSync(email?: string): void {
   const breachesDbPath = is.dev
     ? join(app.getAppPath(), "resources", "breaches.db")
     : join(process.resourcesPath, "breaches.db");
+  const enforcementDbPath = is.dev
+    ? join(app.getAppPath(), "resources", "enforcement.db")
+    : join(process.resourcesPath, "enforcement.db");
   const licensed = getLicenseStatus().active;
   syncLog.info(`[${accountTag(key)}] Sync starting — ${licensed ? "licensed" : "incremental only (no license)"}`);
 
   const workerPath = join(__dirname, "sync-worker.js");
   const worker = new Worker(workerPath, {
-    workerData: { dbPath, companiesDbPath, breachesDbPath, credentials, licensed },
+    workerData: { dbPath, companiesDbPath, breachesDbPath, enforcementDbPath, credentials, licensed },
   });
 
   workers.set(key, worker);

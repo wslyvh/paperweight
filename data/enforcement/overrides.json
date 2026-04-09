@@ -1,0 +1,11 @@
+{
+  "_comment": "ETid → company_slug from companies.db, or null to reject a false positive the auto-matcher produced. Positive entries: brand name too short/generic for auto-matching (< 6 chars after normalization). Null entries: auto-matcher found a name match but it's the wrong company.",
+  "ETid-972":  "free-fr",
+  "ETid-1527": "free-fr",
+  "ETid-2993": "free-fr",
+  "ETid-2994": "free-fr",
+  "ETid-1511": null,
+  "ETid-19":   null,
+  "ETid-57":   null,
+  "ETid-2688": null
+}

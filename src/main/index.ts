@@ -87,12 +87,15 @@ app.whenReady().then(() => {
   const breachesDbPath = is.dev
     ? join(app.getAppPath(), "resources", "breaches.db")
     : join(process.resourcesPath, "breaches.db");
+  const enforcementDbPath = is.dev
+    ? join(app.getAppPath(), "resources", "enforcement.db")
+    : join(process.resourcesPath, "enforcement.db");
 
   // Only open the DB if an account is already registered — onboarding creates it on first auth.
   const activeEmail = getActiveEmail();
   if (activeEmail) {
     const dbPath = join(app.getPath("userData"), `${emailToFileKey(activeEmail)}.db`);
-    initDb(dbPath, companiesDbPath, breachesDbPath);
+    initDb(dbPath, companiesDbPath, breachesDbPath, enforcementDbPath);
     ensureAccountSettingsInDb();
   }
 
