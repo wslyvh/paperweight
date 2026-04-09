@@ -1071,7 +1071,8 @@ export default function AccountDetail(): JSX.Element {
                     parts.push(`This sender is still sending you marketing emails. Unsubscribing reduces clutter and cuts down the data they collect about you.`);
                   }
                   if ((showDeleteMarketing || showDeleteAll) && !hasActiveSubscription && !isStaleAccount && !isAncientAccount && !anyLikelyAffected) {
-                    parts.push(`This sender has sent you a lot of emails over time. Deleting them reduces the amount of data stored in your inbox.`);
+                    const base = `Deleting these emails removes personal data tied to this sender from your inbox.`;
+                    parts.push(totalCount > 25 ? `This sender has sent you a lot of emails over time. ${base}` : base);
                   }
                   return parts.join(" ");
                 })()}
