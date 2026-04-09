@@ -24,8 +24,11 @@ interface HibpBreach {
   Domain: string;
   BreachDate: string;
   AddedDate: string;
+  ModifiedDate: string;
   PwnCount: number;
   Description: string;
+  Attribution: string | null;
+  DisclosureUrl: string;
   DataClasses: string[];
   IsVerified: boolean;
   IsSensitive: boolean;
@@ -56,8 +59,11 @@ async function main() {
       domain TEXT,
       breach_date TEXT,
       added_date TEXT,
+      modified_date TEXT,
       pwn_count INTEGER,
       description TEXT,
+      attribution TEXT,
+      disclosure_url TEXT,
       data_classes TEXT,
       is_verified INTEGER NOT NULL DEFAULT 0,
       is_sensitive INTEGER NOT NULL DEFAULT 0,
@@ -78,8 +84,11 @@ async function main() {
       escSql(domain),
       escSql(b.BreachDate || null),
       escSql(b.AddedDate || null),
+      escSql(b.ModifiedDate || null),
       b.PwnCount != null ? String(b.PwnCount) : "NULL",
       escSql(b.Description || null),
+      escSql(b.Attribution || null),
+      escSql(b.DisclosureUrl || null),
       b.DataClasses ? escSql(JSON.stringify(b.DataClasses)) : "NULL",
       b.IsVerified ? "1" : "0",
       b.IsSensitive ? "1" : "0",
