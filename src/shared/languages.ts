@@ -53,6 +53,51 @@ export const UNSUBSCRIBE_LINK_TEXT: RegExp[] = [
 // Order: order confirmation, receipt, invoice, shipping, billing.
 // Personal (not here): 1:1 human email, colleague — no data at risk.
 
+export const RESET_PASSWORD_PATTERNS: RegExp[] = [
+  // English
+  /\breset your password\b/i,
+  /\bpassword reset\b/i,
+  /\bforgot (your )?password\b/i,
+  /\bchange your password\b/i,
+  // Dutch
+  /\bwachtwoord (opnieuw )?instellen\b/i,
+  /\bwachtwoord wijzigen\b/i,
+  /\bwachtwoord vergeten\b/i,
+  // German
+  /\bpasswort zur[uü]cksetzen\b/i,
+  // French
+  /\br[eé]initialiser (le )?mot de passe\b/i,
+  // Spanish
+  /\brestaurar contraseña\b/i,
+  // Italian
+  /\bresetta (la )?password\b/i,
+  // Portuguese
+  /\bredefinir senha\b/i,
+];
+
+export const MFA_CODE_PATTERNS: RegExp[] = [
+  // English
+  /\bverification code\b/i,
+  /\blogin code\b/i,
+  /\bsecurity code\b/i,
+  /\bone-time (password|code)\b/i,
+  /\b2fa code\b/i,
+  /\bauthentication code\b/i,
+  /\bsign[- ]?in code\b/i,
+  // Dutch
+  /\bverificatiecode\b/i,
+  // German
+  /\bverifizierungscode\b/i,
+  // French
+  /\bcode de v[eé]rification\b/i,
+  // Spanish
+  /\bc[oó]digo de verificaci[oó]n\b/i,
+  // Italian
+  /\bcodice di verifica\b/i,
+  // Portuguese
+  /\bc[oó]digo de verifica[cç][aã]o\b/i,
+];
+
 export const TRANSACTIONAL_PATTERNS: RegExp[] = [
   // English
   /\bwelcome to\b/i,
@@ -61,17 +106,8 @@ export const TRANSACTIONAL_PATTERNS: RegExp[] = [
   /\bconfirm your (email|account)\b/i,
   /\bactivate your account\b/i,
   /\bget started with\b/i,
-  /\breset your password\b/i,
-  /\bpassword reset\b/i,
-  /\bforgot (your )?password\b/i,
-  /\bchange your password\b/i,
-  /\bverification code\b/i,
-  /\blogin code\b/i,
-  /\bsecurity code\b/i,
-  /\bone-time (password|code)\b/i,
-  /\b2fa code\b/i,
-  /\bauthentication code\b/i,
-  /\bsign[- ]?in code\b/i,
+  ...RESET_PASSWORD_PATTERNS,
+  ...MFA_CODE_PATTERNS,
   // English — appointments, bookings, lessons, support
   /\b(appointment|booking|reservation) (confirmation|confirmed|reminder|cancelled|rescheduled)\b/i,
   /\b(lesson|session|class) (cancellation|cancelled|confirmation|confirmed|scheduled|reminder)\b/i,
@@ -82,36 +118,23 @@ export const TRANSACTIONAL_PATTERNS: RegExp[] = [
   /\bafspraak\b/i,
   /\bcontactverzoek\b/i,
   /\bbevestig (je |uw )?e-?mail\b/i,
-  /\bwachtwoord (opnieuw )?instellen\b/i,
-  /\bverificatiecode\b/i,
   /\bwijzig (je |uw )?wachtwoord\b/i,
-  /\bwachtwoord wijzigen\b/i,
-  /\bwachtwoord vergeten\b/i,
   // German
   /\bwillkommen bei\b/i,
   /\be-?mail best[aä]tigen\b/i,
-  /\bpasswort zur[uü]cksetzen\b/i,
-  /\bverifizierungscode\b/i,
   // French
   /\bbienvenue\b/i,
   /\bconfirmez? votre e-?mail\b/i,
-  /\br[eé]initialiser (le )?mot de passe\b/i,
-  /\bcode de v[eé]rification\b/i,
   // Spanish
   /\bbienvenido\b/i,
   /\bconfirma tu e-?mail\b/i,
-  /\brestaurar contraseña\b/i,
-  /\bc[oó]digo de verificaci[oó]n\b/i,
   // Italian
   /\bbenvenuto\b/i,
   /\bconferma la tua e-?mail\b/i,
-  /\bresetta (la )?password\b/i,
-  /\bcodice di verifica\b/i,
   // Portuguese
   /\bbem-vindo\b/i,
   /\bconfirme seu e-?mail\b/i,
-  /\bredefinir senha\b/i,
-  /\bc[oó]digo de verifica[cç][aã]o\b/i,
+  /\bbevestigingscode\b/i,
 ];
 
 export const ORDER_PATTERNS: RegExp[] = [

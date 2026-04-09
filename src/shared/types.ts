@@ -7,6 +7,10 @@ export type MessageType =
   | "personal"       // 1:1 conversation
   | "unknown";       // Classification failed — needs improvement
 
+export type MessageSignal =
+  | "reset_password" // Password reset intent detected from mail content
+  | "mfa_code";      // MFA / OTP / verification code intent detected from mail content
+
 export const MESSAGE_TYPES: readonly MessageType[] = ["bulk", "transactional", "order", "personal", "unknown"];
 export function isMessageType(value: unknown): value is MessageType {
   return typeof value === "string" && (MESSAGE_TYPES as readonly string[]).includes(value);
@@ -72,6 +76,8 @@ export interface Breach {
   dataClasses: string[];
   isVerified: boolean;
   isSensitive: boolean;
+  // Optional provider-native recommendations (if available in breach source payload).
+  recommendationActions?: string[];
 }
 
 export interface BreachInfo {
@@ -127,6 +133,8 @@ export interface Message {
   unsubscribe_url?: string;
   unsubscribe_method?: UnsubscribeMethod;
   status?: MessageStatus;
+  // Optional, derived from subject/body classification.
+  signals?: MessageSignal[];
 }
 
 export interface WhitelistEntry {
@@ -228,6 +236,14 @@ export interface VendorDetail {
   first_activity?: number;
   user_email?: string;
   activityLog: ActivityEntry[];
+  // Timestamp of latest message classified with reset_password signal.
+  latestResetPasswordSignalAt?: number;
+  // Timestamp of latest message classified with mfa_code signal.
+  latestMfaCodeSignalAt?: number;
+  // Timestamp of most recent likely-affected breach for this vendor.
+  latestLikelyAffectedBreachAt?: number;
+  // Whether latest likely-affected breach implies password reset recommendation.
+  latestLikelyAffectedBreachRecommendsPasswordReset?: boolean;
 }
 
 // Account / settings

@@ -51,7 +51,7 @@ export function getDb(): Database.Database {
     initSchema(db);
     attachCompaniesDb(db);
     attachBreachesDb(db);
-    const tag = basename(_dbPath, ".db").split("_").pop() ?? "?";
+    const tag = basename(_dbPath!, ".db").split("_").pop() ?? "?";
     dbLog.info(`Database initialized [${tag}]`);
   }
   return db;
@@ -168,7 +168,18 @@ function initSchema(d: Database.Database) {
     );
   `);
 
+  ensureMessageSignalColumn(d);
   d.prepare("INSERT OR IGNORE INTO sync_state (id) VALUES (1)").run();
+}
+
+function ensureMessageSignalColumn(d: Database.Database): void {
+  const cols = d
+    .prepare("PRAGMA table_info(messages)")
+    .all() as Array<{ name: string }>;
+  const hasMessageSignals = cols.some((c) => c.name === "message_signals");
+  if (!hasMessageSignals) {
+    d.exec("ALTER TABLE messages ADD COLUMN message_signals TEXT");
+  }
 }
 
 function attachCompaniesDb(d: Database.Database) {

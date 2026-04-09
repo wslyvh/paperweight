@@ -75,6 +75,22 @@ function parseBreachInfo(vendor: Vendor, row: BreachRow): BreachInfo {
   return { breach, likelyAffected };
 }
 
+const PASSWORD_RESET_DATA_CLASSES = new Set([
+  "passwords",
+  "password hints",
+  "credentials",
+]);
+
+function breachRecommendsPasswordReset(breach: Breach): boolean {
+  const actions = breach.recommendationActions ?? [];
+  if (actions.some((a) => a.toLowerCase().includes("password"))) {
+    return true;
+  }
+  return breach.dataClasses.some((c) =>
+    PASSWORD_RESET_DATA_CLASSES.has(c.toLowerCase())
+  );
+}
+
 // SQL condition: any vendor whose domain appears in the breach database, regardless of first_seen.
 const ON_BREACH_LIST_SQL = `EXISTS (
   SELECT 1 FROM breaches.breaches b
@@ -898,6 +914,34 @@ export function getVendorDetail(groupKey: string): VendorDetail {
     }
   }
 
+  const likelyBreaches = (enrichedVendor.breachInfo ?? [])
+    .filter((bi) => bi.likelyAffected)
+    .sort(
+      (a, b) =>
+        new Date(b.breach.breachDate).getTime() -
+        new Date(a.breach.breachDate).getTime()
+    );
+  const latestLikelyAffectedBreach = likelyBreaches[0];
+  const latestLikelyAffectedBreachAt = latestLikelyAffectedBreach
+    ? new Date(latestLikelyAffectedBreach.breach.breachDate).getTime()
+    : undefined;
+  const latestLikelyAffectedBreachRecommendsPasswordReset = latestLikelyAffectedBreach
+    ? breachRecommendsPasswordReset(latestLikelyAffectedBreach.breach)
+    : undefined;
+
+  const signalRows = d
+    .prepare(
+      `SELECT
+        MAX(CASE WHEN message_signals LIKE '%"reset_password"%' THEN date END) AS latest_reset_password_signal_at,
+        MAX(CASE WHEN message_signals LIKE '%"mfa_code"%' THEN date END) AS latest_mfa_code_signal_at
+       FROM messages
+       WHERE vendor_id = ?`
+    )
+    .get(vendor.id) as {
+      latest_reset_password_signal_at: number | null;
+      latest_mfa_code_signal_at: number | null;
+    };
+
   const activityRows = d
     .prepare(
       `SELECT id, vendor_id, action_type, message_count, size_bytes, actioned_at
@@ -919,5 +963,19 @@ export function getVendorDetail(groupKey: string): VendorDetail {
     actionedAt: r.actioned_at,
   }));
 
-  return { vendor: enrichedVendor, company, senders, bulkMessages, bulkMessageCount, accountMessages, allMessages, activityLog };
+  return {
+    vendor: enrichedVendor,
+    company,
+    senders,
+    bulkMessages,
+    bulkMessageCount,
+    accountMessages,
+    allMessages,
+    activityLog,
+    latestResetPasswordSignalAt:
+      signalRows.latest_reset_password_signal_at ?? undefined,
+    latestMfaCodeSignalAt: signalRows.latest_mfa_code_signal_at ?? undefined,
+    latestLikelyAffectedBreachAt,
+    latestLikelyAffectedBreachRecommendsPasswordReset,
+  };
 }

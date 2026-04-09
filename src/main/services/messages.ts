@@ -1,7 +1,12 @@
 import { getDb } from "../db";
-import type { Message, MessageType, MessageStatus, UnsubscribeEntry } from "@shared/types";
+import type { Message, MessageType, MessageStatus, MessageSignal, UnsubscribeEntry } from "@shared/types";
 import { BODY_PREVIEW_LENGTH } from "@shared/types";
-import { TRANSACTIONAL_PATTERNS, ORDER_PATTERNS } from "@shared/languages";
+import {
+  TRANSACTIONAL_PATTERNS,
+  ORDER_PATTERNS,
+  RESET_PASSWORD_PATTERNS,
+  MFA_CODE_PATTERNS,
+} from "@shared/languages";
 import type { EmailMessage } from "../providers/types";
 import { hasBulkHeaders, matchesAny } from "@shared/utils";
 
@@ -66,17 +71,35 @@ export function classifyMessageType(msg: EmailMessage): MessageType {
   return "personal";
 }
 
+export function detectMessageSignals(msg: EmailMessage): MessageSignal[] {
+  const subject = msg.subject || "";
+  const body = msg.bodyPreview || msg.snippet || "";
+  const text = `${subject} ${body}`;
+  const signals: MessageSignal[] = [];
+
+  if (matchesAny(text, RESET_PASSWORD_PATTERNS)) {
+    signals.push("reset_password");
+  }
+
+  if (matchesAny(text, MFA_CODE_PATTERNS)) {
+    signals.push("mfa_code");
+  }
+
+  return signals;
+}
+
 export function insertMessageVendor(
   msg: EmailMessage,
   vendorId: number,
-  type: MessageType
+  type: MessageType,
+  signals: MessageSignal[] = []
 ) {
   const d = getDb();
   d.prepare(
     `INSERT OR IGNORE INTO messages (
       id, vendor_id, sender_email, sender_name, subject, date, body_preview,
-      raw_headers, type, unsubscribe_url, unsubscribe_method, status, size_bytes
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+      raw_headers, type, unsubscribe_url, unsubscribe_method, status, size_bytes, message_signals
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
   ).run(
     msg.id,
     vendorId,
@@ -90,7 +113,8 @@ export function insertMessageVendor(
     msg.unsubscribeUrl ?? null,
     msg.unsubscribeMethod ?? "none",
     null,
-    msg.sizeBytes ?? 0
+    msg.sizeBytes ?? 0,
+    signals.length > 0 ? JSON.stringify(signals) : null
   );
 }
 

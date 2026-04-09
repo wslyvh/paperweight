@@ -12,6 +12,7 @@ import {
 import {
   insertMessageVendor,
   classifyMessageType,
+  detectMessageSignals,
   deleteMessagesByIds,
   getVendorIdsByMessageIds,
 } from "./messages";
@@ -161,7 +162,8 @@ export function processMessagesBatch(messages: EmailMessage[]): void {
     vendorIds.add(vendorId);
 
     const type = classifyMessageType(msg);
-    insertMessageVendor(msg, vendorId, type);
+    const signals = detectMessageSignals(msg);
+    insertMessageVendor(msg, vendorId, type, signals);
   }
 
   for (const vid of vendorIds) {
