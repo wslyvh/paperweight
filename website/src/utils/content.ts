@@ -83,9 +83,10 @@ export function getBreachedCompanies(since = "2024-01-01"): BreachRecord[] {
     .map((slug) => {
       const breachFile = getBreachFile(slug);
       if (!breachFile) return undefined;
+      const logoPath = breachFile.logoUrl ?? breachFile.breach.logo_path;
       return {
         ...breachFile.breach,
-        logo_path: breachFile.logoUrl ?? breachFile.breach.logo_path,
+        ...(logoPath ? { logo_path: logoPath } : {}),
       };
     })
     .filter((row): row is BreachRecord => row !== undefined)
