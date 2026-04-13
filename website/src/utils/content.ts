@@ -35,6 +35,7 @@ export interface BreachRecord {
   email?: string;
   phone?: string;
   suggested_transport_medium?: string;
+  source?: { name: string; url: string };
 }
 
 export interface EnforcementRecord {

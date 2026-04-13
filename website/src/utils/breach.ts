@@ -59,7 +59,7 @@ export interface BreachPageModel {
     dataClasses: string[];
     riskLabel: string;
     riskBadgeClass: string;
-    hibpWebsiteUrl: string;
+    source: { name: string; url: string };
   };
   content: {
     incidentAndExposure: string;
@@ -177,7 +177,10 @@ function buildBreachModel(
       dataClasses: breach.data_classes,
       riskLabel: RISK_LEVELS[severity.level].label,
       riskBadgeClass: severity.badgeClass,
-      hibpWebsiteUrl: `https://haveibeenpwned.com/Breach/${breach.name}`,
+      source: breach.source ?? {
+        name: "haveibeenpwned.com",
+        url: `https://haveibeenpwned.com/Breach/${breach.name}`,
+      },
     },
     content: {
       incidentAndExposure: content.incidentAndExposure,

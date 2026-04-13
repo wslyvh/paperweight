@@ -84,7 +84,7 @@ export default async function BreachPage({
             <img
               src={model.company.logoPath}
               alt={`${model.company.name} logo`}
-                className="h-28 w-28 rounded-xl object-contain bg-base-200 p-2"
+              className="h-28 w-28 rounded-xl object-contain bg-base-200 p-2"
               loading="lazy"
             />
           )}
@@ -208,10 +208,8 @@ export default async function BreachPage({
                   label="Status"
                   value={
                     <span className="flex flex-wrap items-center gap-2">
-                      {model.breach.isVerified ? (
+                      {model.breach.isVerified && (
                         <span className="badge badge-sm badge-info badge-soft">Verified</span>
-                      ) : (
-                        <span className="badge badge-sm badge-ghost">Unverified</span>
                       )}
                       {model.breach.isSensitive ? (
                         <span className="badge badge-sm badge-error badge-soft">Sensitive</span>
@@ -243,12 +241,12 @@ export default async function BreachPage({
                 <p className="text-xs opacity-55">
                   Source:{" "}
                   <a
-                    href={model.breach.hibpWebsiteUrl}
+                    href={model.breach.source.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="link"
                   >
-                    haveibeenpwned.com
+                    {model.breach.source.name}
                   </a>
                 </p>
               </div>

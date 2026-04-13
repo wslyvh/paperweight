@@ -28,7 +28,11 @@
     "address": "Wegalaan 60, 2132 JC Hoofddorp\nNetherlands",
     "web": "https://www.basic-fit.com",
     "webform": "https://www.basic-fit.com/en-nl/about-basic-fit/privacy-statement",
-    "suggested_transport_medium": "webform"
+    "suggested_transport_medium": "webform",
+    "source": {
+      "name": "Reuters",
+      "url": "https://www.reuters.com/business/basic-fit-says-data-breach-exposes-details-200000-members-netherlands-2026-04-13/"
+    }
   },
   "enforcement": {
     "records": [],
