@@ -22,6 +22,7 @@
     "dist:mac": "electron-rebuild -f -w better-sqlite3 && yarn build && electron-builder --mac --publish never",
     "dist:linux": "electron-rebuild -f -w better-sqlite3 && yarn build && electron-builder --linux --publish never",
     "dist:win": "electron-rebuild -f -w better-sqlite3 && yarn build && electron-builder --win --publish never",
+    "scripts:stats": "tsx scripts/release-stats.ts",
     "test": "jest"
   },
   "build": {

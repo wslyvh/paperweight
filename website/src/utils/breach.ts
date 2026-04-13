@@ -142,6 +142,7 @@ function buildBreachModel(
   breach: BreachRecord,
   content: BreachContent,
   enforcement: EnforcementRecord[],
+  logoPath?: string,
 ): BreachPageModel {
   const severity = getSeverityFromDataClasses(breach.data_classes);
   const category = mapCategoryInfo(breach.categories);
@@ -160,7 +161,7 @@ function buildBreachModel(
       categoryLabel: category.label,
       categoryIcon: category.icon,
       runs: breach.runs,
-      logoPath: breach.logo_path,
+      logoPath: logoPath ?? breach.logo_path,
       about: content.aboutCompany,
       address: breach.address,
       webform: breach.webform,
@@ -208,7 +209,13 @@ export function getBreachPageModel(slug: string): BreachPageModel | null {
   if (!breach) return null;
 
   const enforcement = getEnforcementBySlug(slug);
-  return buildBreachModel(slug, breach, breachFile.content, enforcement);
+  return buildBreachModel(
+    slug,
+    breach,
+    breachFile.content,
+    enforcement,
+    breachFile.logoUrl ?? breach.logo_path,
+  );
 }
 
 export function getBreachSitemapEntries(): BreachSitemapEntry[] {

@@ -54,6 +54,7 @@ export interface EnforcementRecord {
 export interface BreachJsonFile {
   slug: string;
   generated_at: string;
+  logoUrl?: string;
   breach: BreachRecord;
   enforcement: {
     records: EnforcementRecord[];
@@ -79,7 +80,14 @@ export function getBreach(slug: string): BreachContent | null {
 
 export function getBreachedCompanies(since = "2024-01-01"): BreachRecord[] {
   return getBreachSlugs()
-    .map((slug) => getBreachFile(slug)?.breach)
+    .map((slug) => {
+      const breachFile = getBreachFile(slug);
+      if (!breachFile) return undefined;
+      return {
+        ...breachFile.breach,
+        logo_path: breachFile.logoUrl ?? breachFile.breach.logo_path,
+      };
+    })
     .filter((row): row is BreachRecord => row !== undefined)
     .filter((row) => row.breach_date >= since)
     .sort((a, b) => b.pwn_count - a.pwn_count);

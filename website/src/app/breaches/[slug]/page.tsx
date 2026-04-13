@@ -52,6 +52,9 @@ export async function generateMetadata({
       description,
       url: `${SITE_CONFIG.URL}/breaches/${slug}`,
     },
+    twitter: {
+      card: "summary_large_image",
+    },
   };
 }
 
