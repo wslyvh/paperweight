@@ -1,0 +1,42 @@
+{
+  "slug": "basic-fit",
+  "generated_at": "2026-04-13T18:00:00.000Z",
+  "logoUrl": "https://www.paperweight.email/logos/Basic-fit.png",
+  "breach": {
+    "name": "BasicFit",
+    "title": "Basic-Fit",
+    "domain": "basic-fit.com",
+    "breach_date": "2026-04-13",
+    "added_date": "2026-04-13T18:00:00Z",
+    "modified_date": "2026-04-13T18:00:00Z",
+    "pwn_count": 200000,
+    "description": "In April 2026, European gym chain <a href=\"https://www.basic-fit.com\" target=\"_blank\" rel=\"noopener\">Basic-Fit</a> suffered a data breach affecting members across multiple countries, including at least 200,000 in the Netherlands. The unauthorised access was detected by the company's monitoring tools and stopped within minutes, but the attackers had already exfiltrated data. The exposed data includes names, physical addresses, email addresses, phone numbers, dates of birth and bank account details. Basic-Fit confirmed that no identity documents or passwords were compromised.",
+    "data_classes": [
+      "Bank account numbers",
+      "Dates of birth",
+      "Email addresses",
+      "Names",
+      "Phone numbers",
+      "Physical addresses"
+    ],
+    "is_verified": false,
+    "is_sensitive": false,
+    "slug": "basic-fit",
+    "company_name": "Basic-Fit",
+    "runs": [],
+    "categories": [],
+    "address": "Wegalaan 60, 2132 JC Hoofddorp\nNetherlands",
+    "web": "https://www.basic-fit.com",
+    "webform": "https://www.basic-fit.com/en-nl/about-basic-fit/privacy-statement",
+    "suggested_transport_medium": "webform"
+  },
+  "enforcement": {
+    "records": [],
+    "total_fines": 0
+  },
+  "content": {
+    "aboutCompany": "Basic-Fit is Europe's largest fitness chain, operating over 1,600 gyms across the Netherlands, Belgium, France, Luxembourg, Spain and Germany. Headquartered in Hoofddorp, the Netherlands, the company serves approximately 4.7 million members with affordable, flexible gym memberships.",
+    "incidentAndExposure": "In April 2026, Basic-Fit disclosed that hackers had gained unauthorised access to its systems, compromising the personal data of members across several European countries. In the Netherlands alone, around 200,000 members were affected, with the full scope across other countries still unclear. The company stated that the breach was detected by its system monitoring tools and stopped within minutes, but the attackers had already downloaded member data before the intrusion was contained.\n\nThe exposed data includes names, physical addresses, email addresses, phone numbers, dates of birth and bank account details. Basic-Fit confirmed that no identity documents were compromised, as the company does not store copies of members' identification documents. Passwords were also not part of the breach.\n\nThe combination of contact information with bank account details and dates of birth presents a significant risk for targeted phishing, social engineering and potential financial fraud. Affected members in the Netherlands, Belgium, France, Spain, Germany and Luxembourg should be vigilant for suspicious communications. Basic-Fit's franchise operations in six additional countries use a separate system and were not affected.",
+    "nextSteps": "If you are a Basic-Fit member, take steps to protect yourself even if you have not yet received a notification. Monitor your bank account closely for unauthorised transactions, particularly any new direct debits you did not authorise. Contact your bank to discuss additional protections such as alerts for new direct debit mandates.\n\nBe highly suspicious of unsolicited emails, text messages or phone calls claiming to be from Basic-Fit or your bank. Attackers may use your leaked personal details to craft convincing phishing messages. Do not click links in unexpected messages and never share additional personal information or login credentials in response to such communications.\n\nChange the password on your Basic-Fit account and any other accounts where you may have reused similar credentials. Enable two-factor authentication wherever possible. Consider placing a fraud alert with your bank and, if you are in the Netherlands, check your credit registration at BKR (Bureau Krediet Registratie) for any unfamiliar entries."
+  }
+}
