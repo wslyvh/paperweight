@@ -9,7 +9,7 @@
     "breach_date": "2026-04-13",
     "added_date": "2026-04-13T18:00:00Z",
     "modified_date": "2026-04-13T18:00:00Z",
-    "pwn_count": 200000,
+    "pwn_count": 1000000,
     "description": "In April 2026, European gym chain <a href=\"https://www.basic-fit.com\" target=\"_blank\" rel=\"noopener\">Basic-Fit</a> suffered a data breach affecting members across multiple countries, including at least 200,000 in the Netherlands. The unauthorised access was detected by the company's monitoring tools and stopped within minutes, but the attackers had already exfiltrated data. The exposed data includes names, physical addresses, email addresses, phone numbers, dates of birth and bank account details. Basic-Fit confirmed that no identity documents or passwords were compromised.",
     "data_classes": [
       "Bank account numbers",
