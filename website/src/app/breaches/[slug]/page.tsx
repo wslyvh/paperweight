@@ -70,6 +70,9 @@ export default async function BreachPage({
   }
 
   const breachOverviewHtml = await marked.parse(model.content.incidentAndExposure);
+  const timelineAndCauseHtml = model.content.timelineAndCause
+    ? await marked.parse(model.content.timelineAndCause)
+    : undefined;
   const nextStepsHtml = await marked.parse(model.content.nextSteps);
   const enforcementHtml = model.content.enforcementNarrative
     ? await marked.parse(model.content.enforcementNarrative)
@@ -123,6 +126,21 @@ export default async function BreachPage({
 
       <div className="mt-8 grid grid-cols-1 gap-10 xl:grid-cols-[minmax(0,1fr)_420px] xl:gap-14">
         <div className="space-y-8 xl:pr-4">
+          {model.content.keyTakeaways && model.content.keyTakeaways.length > 0 ? (
+            <section className="card border border-base-300 bg-base-200/50">
+              <div className="card-body">
+                <h2 className="text-xl font-semibold">Key Takeaways</h2>
+                <ul className="mt-1 space-y-2 list-disc pl-5 text-base-content/85">
+                  {model.content.keyTakeaways.map((takeaway) => (
+                    <li key={takeaway} className="leading-relaxed">
+                      {takeaway}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </section>
+          ) : null}
+
           <section className="space-y-4">
             <h2 className="text-xl font-semibold">Breach Overview</h2>
             <div
@@ -140,6 +158,16 @@ export default async function BreachPage({
               </div>
             </div>
           </section>
+
+          {timelineAndCauseHtml ? (
+            <section className="space-y-4">
+              <h2 className="text-xl font-semibold">Timeline &amp; Cause</h2>
+              <div
+                className="prose prose-sm max-w-none"
+                dangerouslySetInnerHTML={{ __html: timelineAndCauseHtml }}
+              />
+            </section>
+          ) : null}
 
           <section className="space-y-4">
             <h2 className="text-xl font-semibold">Next Steps</h2>
@@ -253,9 +281,9 @@ export default async function BreachPage({
             </div>
           </section>
 
-          <section className="space-y-4">
-            <h2 className="text-xl font-semibold">Data Protection Authority</h2>
-            {model.dpa ? (
+          {model.dpa ? (
+            <section className="space-y-4">
+              <h2 className="text-xl font-semibold">Data Protection Authority</h2>
               <article className="card bg-base-200/50">
                 <div className="card-body gap-4">
                   <div className="flex items-start justify-between gap-4">
@@ -300,13 +328,8 @@ export default async function BreachPage({
                   </div>
                 </div>
               </article>
-            ) : (
-              <p className="opacity-70 text-sm">
-                We could not resolve a clear lead DPA for this case. You can still file a complaint
-                with your own national authority.
-              </p>
-            )}
-          </section>
+            </section>
+          ) : null}
         </aside>
       </div>
 

@@ -21,7 +21,7 @@ import { fileURLToPath } from "url";
 const __dirname = join(fileURLToPath(import.meta.url), "..");
 const ROOT = resolve(__dirname, "..");
 const COMPANIES_DIR = join(ROOT, "data", "datenanfragen");
-const PAPERWEIGHT_NL_PATH = join(ROOT, "data", "paperweight", "nl.json");
+const PAPERWEIGHT_PATH = join(ROOT, "data", "paperweight", "paperweight.json");
 const OUT_PATH = join(ROOT, "resources", "companies.db");
 const WEBSITE_OUT_DIR = join(ROOT, "website", "src", "data");
 const WEBSITE_OUT_PATH = join(WEBSITE_OUT_DIR, "companies.generated.json");
@@ -213,10 +213,10 @@ function main() {
 
   // --- Paperweight curated companies (override datenanfragen on slug conflict) ---
   let paperweightImported = 0;
-  if (existsSync(PAPERWEIGHT_NL_PATH)) {
-    const nlCompanies: CompanyJson[] = JSON.parse(readFileSync(PAPERWEIGHT_NL_PATH, "utf-8"));
-    console.log(`Found ${nlCompanies.length} paperweight/nl companies`);
-    for (const c of nlCompanies) {
+  if (existsSync(PAPERWEIGHT_PATH)) {
+    const pwCompanies: CompanyJson[] = JSON.parse(readFileSync(PAPERWEIGHT_PATH, "utf-8"));
+    console.log(`Found ${pwCompanies.length} paperweight companies`);
+    for (const c of pwCompanies) {
       try {
         const domains = extractDomains(c);
         const categories = mapCategories(c.categories);
@@ -262,7 +262,7 @@ function main() {
   console.log(`\nWrote ${OUT_PATH}`);
   console.log(`Wrote ${WEBSITE_OUT_PATH}`);
   console.log(`datenanfragen: ${imported} companies`);
-  console.log(`paperweight/nl: ${paperweightImported} companies`);
+  console.log(`paperweight: ${paperweightImported} companies`);
   console.log(`With domains: ${withDomains + paperweightImported}`);
   console.log("Quality:", qualityCounts);
 }

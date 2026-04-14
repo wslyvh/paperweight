@@ -801,5 +801,43 @@
     "comments": [
       "Onbemande tankstations."
     ]
+  },
+  {
+    "slug": "basic-fit",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Basic-Fit",
+    "categories": [
+      "services"
+    ],
+    "address": "Basic-Fit International BV, Wegalaan 60, 2132 JC Hoofddorp, The Netherlands",
+    "web": "https://www.basic-fit.com",
+    "webform": "https://www.basic-fit.com/en-nl/about-basic-fit/privacy-statement",
+    "email": "requestprivacy@basic-fit.com",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Operates across multiple EU countries; requestprivacy@basic-fit.com for DSARs; privacy@basic-fit.com is the DPO mailbox."
+    ]
+  },
+  {
+    "slug": "hallmark",
+    "relevant-countries": [
+      "us"
+    ],
+    "name": "Hallmark",
+    "categories": [
+      "shopping"
+    ],
+    "address": "Hallmark Cards, Inc., P.O. Box 419034, Kansas City, MO 64141, USA",
+    "web": "https://www.hallmark.com",
+    "webform": "https://care.hallmark.com/s/privacy-form",
+    "phone": "1-877-203-2262",
+    "suggested-transport-medium": "webform",
+    "quality": "verified",
+    "comments": [
+      "Consumer Care postal address used; corporate HQ is 2501 McGee Street, Kansas City, MO 64108."
+    ]
   }
 ]

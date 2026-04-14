@@ -17,7 +17,7 @@
     "build:companies": "cross-env ELECTRON_RUN_AS_NODE=1 electron --import tsx scripts/build-companies-db.ts",
     "build:breaches": "cross-env ELECTRON_RUN_AS_NODE=1 electron --import tsx scripts/build-breaches-db.ts",
     "build:enforcement": "cross-env ELECTRON_RUN_AS_NODE=1 electron --import tsx scripts/build-enforcement-db.ts",
-    "build:website-breach-content": "cross-env ELECTRON_RUN_AS_NODE=1 electron --import tsx scripts/generate-breach-content.ts",
+    "build:breach": "cross-env ELECTRON_RUN_AS_NODE=1 electron --import tsx scripts/generate-breach-content.ts",
     "dist": "yarn dist:mac && yarn dist:linux && yarn dist:win",
     "dist:mac": "electron-rebuild -f -w better-sqlite3 && yarn build && electron-builder --mac --publish never",
     "dist:linux": "electron-rebuild -f -w better-sqlite3 && yarn build && electron-builder --linux --publish never",

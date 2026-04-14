@@ -62,7 +62,9 @@ export interface BreachPageModel {
     source: { name: string; url: string };
   };
   content: {
+    keyTakeaways?: string[];
     incidentAndExposure: string;
+    timelineAndCause?: string;
     nextSteps: string;
     enforcementNarrative?: string;
   };
@@ -183,7 +185,9 @@ function buildBreachModel(
       },
     },
     content: {
+      keyTakeaways: content.keyTakeaways,
       incidentAndExposure: content.incidentAndExposure,
+      timelineAndCause: content.timelineAndCause,
       nextSteps: content.nextSteps,
       enforcementNarrative: content.enforcementNarrative,
     },

@@ -5,7 +5,9 @@ const CONTENT_DIR = join(process.cwd(), "src", "content", "breaches");
 
 export interface BreachContent {
   aboutCompany: string;
+  keyTakeaways?: string[];
   incidentAndExposure: string;
+  timelineAndCause?: string;
   nextSteps: string;
   enforcementNarrative?: string;
 }
