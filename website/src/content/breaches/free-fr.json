@@ -1,7 +1,16 @@
 {
   "slug": "free-fr",
-  "generated_at": "2026-04-09T17:32:14.682Z",
+  "generated_at": "2026-04-14T11:53:45.510Z",
   "breach": {
+    "slug": "free-fr",
+    "company_name": "Free SAS",
+    "runs": [],
+    "categories": [
+      "communication"
+    ],
+    "address": "8 rue de la Ville l’Évêque\n75008 Paris\nFrance",
+    "web": "https://www.free.fr/",
+    "phone": "+33 32 44",
     "name": "FreeMobile",
     "title": "Free",
     "domain": "free.fr",
@@ -10,6 +19,7 @@
     "modified_date": "2025-05-27T07:03:21Z",
     "pwn_count": 13926173,
     "description": "In October 2024, <a href=\"https://www.bleepingcomputer.com/news/security/free-frances-second-largest-isp-confirms-data-breach-after-leak/\" target=\"_blank\" rel=\"noopener\">French ISP \"Free\" suffered a data breach</a> which was subsequently posted for sale and later, leaked publicly. The data included 14M unique email addresses along with names, physical addresses, phone numbers, genders, dates of birth and for many records, IBAN bank account numbers. Free advised that the numbers were \"not enough to make a direct debit from a bank\".",
+    "logo_path": "https://logos.haveibeenpwned.com/FreeMobile.png",
     "data_classes": [
       "Bank account numbers",
       "Dates of birth",
@@ -19,17 +29,7 @@
       "Physical addresses"
     ],
     "is_verified": true,
-    "is_sensitive": false,
-    "logo_path": "https://logos.haveibeenpwned.com/FreeMobile.png",
-    "slug": "free-fr",
-    "company_name": "Free SAS",
-    "runs": [],
-    "categories": [
-      "communication"
-    ],
-    "address": "8 rue de la Ville l’Évêque\n75008 Paris\nFrance",
-    "web": "https://www.free.fr/",
-    "phone": "+33 32 44"
+    "is_sensitive": false
   },
   "enforcement": {
     "records": [
@@ -89,9 +89,15 @@
     "total_fines": 42600000
   },
   "content": {
-    "aboutCompany": "Free SAS is a French internet service provider operating under the domain free.fr. It provides telecommunications services to customers in France.",
-    "incidentAndExposure": "On October 17, 2024, Free SAS experienced a data breach affecting 13.9 million records. The compromised data was subsequently offered for sale and later made public.\n\nThe exposed information includes names, physical addresses, phone numbers, genders, and dates of birth. For many records, bank account numbers (IBANs) were also compromised. Free stated that these bank account numbers are not sufficient to initiate direct debits.\n\nThis exposure of personal information, including names, addresses, and phone numbers, increases the risk of targeted phishing attempts and other social engineering attacks. The inclusion of dates of birth and genders can be used to build more convincing fraudulent communications. While Free indicated that the exposed bank account numbers are not directly usable for unauthorized debits, their presence alongside other personal data could still be leveraged in more sophisticated fraud schemes.",
-    "nextSteps": "Change passwords for your Free.fr account and any other online accounts where you used the same or similar credentials. Enable two-factor authentication (2FA) wherever available to add an extra layer of security.\n\nMonitor your bank accounts and credit reports for any suspicious activity. Even though Free stated that the exposed bank account numbers are not sufficient for direct debits, it is prudent to remain vigilant for any unauthorized transactions or new accounts opened in your name. Report any unusual activity to your bank immediately.\n\nBe cautious of unsolicited communications, especially those claiming to be from Free or other financial institutions. Phishing attempts may use the exposed personal information to appear more legitimate. Do not click on suspicious links or download attachments from unknown senders. Verify the authenticity of any urgent requests for personal or financial information through official channels, not by responding directly to the communication.",
-    "enforcementNarrative": "The French Data Protection Authority (CNIL) has issued multiple fines against Free SAS. On January 8, 2026, CNIL imposed two fines totaling EUR 42.0 million (EUR 27.0 million and EUR 15.0 million) for insufficient technical and organizational measures to ensure information security, citing violations of GDPR Articles 5(1)e, 32, and 34. Additionally, CNIL issued fines of EUR 300,000 on December 8, 2022, and EUR 300,000 on December 28, 2021, for insufficient fulfillment of data subjects' rights under GDPR Articles 12, 15, 17, 21, 25, 32, and 33."
+    "aboutCompany": "Free SAS is a French internet service provider. It offers telecommunications services, including internet, television, and mobile phone services, primarily in France.",
+    "keyTakeaways": [
+      "Names, physical addresses, phone numbers, genders, dates of birth, and bank account numbers for 13.9 million people were exposed in October 2024.",
+      "This incident is part of a pattern of data breaches affecting telecommunications companies.",
+      "You should be alert to potential fraud attempts, especially those using your personal information or bank account details."
+    ],
+    "incidentAndExposure": "In October 2024, a data breach at Free SAS exposed the personal information of 13.9 million people. The exposed data included names, physical addresses, phone numbers, genders, and dates of birth. For many records, bank account numbers (IBANs) were also exposed. Free SAS has publicly acknowledged this incident, stating that the exposed bank account numbers were \"not enough to make a direct debit from a bank.\"\n\nThis exposure means that a significant amount of personal and financial information is now accessible to unauthorized parties.",
+    "timelineAndCause": "The data breach occurred in October 2024. The incident was disclosed on May 27, 2025. The specific cause of the breach was not detailed in the provided information.",
+    "nextSteps": "Given the exposure of names, addresses, phone numbers, dates of birth, and bank account numbers, you should be vigilant about potential fraud. While Free SAS stated that the bank account numbers are not sufficient for direct debits, this information combined with other exposed data could be used for targeted phishing attempts or identity theft. Monitor your bank statements and other financial accounts for any suspicious activity. Be cautious of unexpected calls, emails, or messages asking for personal information, even if they appear to be from Free SAS or your bank. Consider placing a fraud alert on your credit file to help prevent new accounts from being opened in your name.",
+    "enforcementNarrative": "The French Data Protection Authority (CNIL) issued two fines totaling EUR 42.0 million to Free SAS on January 8, 2026. These fines were for insufficient technical and organizational measures to ensure information security, violating Articles 5 (1) e) and 32 of the GDPR, and Article 34 of the GDPR. Additionally, CNIL previously fined Free SAS EUR 300,000 on December 8, 2022, and EUR 300,000 on December 28, 2021, for insufficient fulfillment of data subjects' rights."
   }
 }

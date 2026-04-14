@@ -1,7 +1,20 @@
 {
   "slug": "odido",
-  "generated_at": "2026-04-09T17:32:26.830Z",
+  "generated_at": "2026-04-14T11:52:56.580Z",
   "breach": {
+    "slug": "odido",
+    "company_name": "Odido",
+    "runs": [
+      "Tele2",
+      "Ben",
+      "Simpel"
+    ],
+    "categories": [
+      "communication"
+    ],
+    "web": "https://www.odido.nl",
+    "webform": "https://www.odido.nl/privacy",
+    "suggested_transport_medium": "webform",
     "name": "Odido",
     "title": "Odido",
     "domain": "odido.nl",
@@ -11,6 +24,7 @@
     "pwn_count": 6077025,
     "description": "In February 2026, Dutch telco <a href=\"https://www.rtl.nl/nieuws/binnenland/artikel/5571885/odido-data-dark-web-oud-klanten-shinyhunters\" target=\"_blank\" rel=\"noopener\">Odido was the victim of a data breach and subsequent extortion attempt</a>. Shortly after, a total of 6M unique email addresses were published across four separate data releases over consecutive days. The exposed data includes names, physical addresses, phone numbers, bank account numbers, dates of birth, customer service notes and passport, driver’s licence and European national ID numbers. <a href=\"https://www.odido.nl/veiligheid\" target=\"_blank\" rel=\"noopener\">Odido has published a disclosure notice</a> including an FAQ to support affected customers.",
     "disclosure_url": "https://www.odido.nl/veiligheid",
+    "logo_path": "https://logos.haveibeenpwned.com/Odido.png",
     "data_classes": [
       "Bank account numbers",
       "Customer service comments",
@@ -25,29 +39,21 @@
       "Physical addresses"
     ],
     "is_verified": true,
-    "is_sensitive": false,
-    "logo_path": "https://logos.haveibeenpwned.com/Odido.png",
-    "slug": "odido",
-    "company_name": "Odido",
-    "runs": [
-      "Tele2",
-      "Ben",
-      "Simpel"
-    ],
-    "categories": [
-      "communication"
-    ],
-    "web": "https://www.odido.nl",
-    "webform": "https://www.odido.nl/privacy",
-    "suggested_transport_medium": "webform"
+    "is_sensitive": false
   },
   "enforcement": {
     "records": [],
     "total_fines": 0
   },
   "content": {
-    "aboutCompany": "Odido is a telecommunications provider in the Netherlands, offering mobile and internet services. The company was formerly known as T-Mobile Netherlands before rebranding.",
-    "incidentAndExposure": "On February 12, 2026, Odido experienced a data breach. This incident led to an extortion attempt against the company. Following the breach, data associated with 6.1 million records was released publicly across four separate disclosures over several days.\n\nThe exposed data includes a range of personal and sensitive information. Specifically, the breach compromised names, physical addresses, phone numbers, and email addresses. More sensitive data such as bank account numbers, dates of birth, and genders were also exposed. Additionally, government-issued identification details, including passport numbers, driver's license numbers, and European national ID numbers, were compromised. Customer service comments were also part of the exposed data.\n\nThis combination of personal identifiers, financial information, and government ID numbers significantly increases the risk of identity theft and financial fraud for affected individuals. The exposure of customer service comments could also reveal additional personal details or insights into customer interactions with Odido, potentially aiding social engineering attacks.",
-    "nextSteps": "If your data was part of the Odido breach, you should take immediate steps to protect yourself. Given the exposure of bank account numbers, monitor your financial statements and credit reports closely for any unauthorized activity. Consider placing a fraud alert or credit freeze with credit bureaus to prevent new accounts from being opened in your name.\n\nChange passwords for any online accounts where you used information similar to what was exposed, especially your email and any accounts linked to your Odido services. Enable two-factor authentication (2FA) on all accounts where it is available. This adds an extra layer of security beyond just a password.\n\nBe highly suspicious of unsolicited communications, particularly emails, texts, or calls that claim to be from Odido or other organizations requesting personal information. Phishing attempts are common after data breaches, as attackers use exposed data to make their scams more convincing. Do not click on suspicious links or download attachments from unknown senders."
+    "aboutCompany": "Odido is a telecommunications company operating in the Netherlands. It provides mobile and internet services to consumers and businesses.",
+    "keyTakeaways": [
+      "Personal data for 6.1 million people, including names, addresses, phone numbers, bank account numbers, dates of birth, customer service comments, and government IDs, was exposed in a data breach that occurred on February 12, 2026.",
+      "This incident is part of a pattern of large-scale data breaches affecting telecommunications companies.",
+      "Affected individuals should be vigilant about phishing attempts and potential identity theft due to the exposed personal and financial information."
+    ],
+    "incidentAndExposure": "On February 12, 2026, Dutch telecommunications provider Odido experienced a data breach affecting 6.1 million customers. The exposed data includes a wide range of personal information such as names, physical addresses, phone numbers, email addresses, bank account numbers, dates of birth, genders, and customer service comments. Additionally, sensitive identification documents like driver's licenses, passport numbers, and government-issued ID numbers were exposed. The company has publicly acknowledged the incident and provided an FAQ for affected customers.\n\nThe breach also reportedly included data from individuals who were no longer Odido customers, indicating that the company may have retained personal data for an extended period. This incident exposed a significant amount of personally identifiable information, raising concerns about potential identity theft and targeted scams.",
+    "timelineAndCause": "The data breach at Odido occurred on February 12, 2026, and was publicly disclosed on February 26, 2026. The incident involved attackers accessing a customer contact system used for communications, rather than the core telecom service operations. The attackers, identified as ShinyHunters, reportedly attempted to extort Odido before releasing the stolen customer data online in several batches, beginning on March 1, 2026.",
+    "nextSteps": "If you are an Odido customer, you should be extremely cautious about any unsolicited communications, especially those asking for personal information or directing you to click on links. Odido has warned of new phishing emails that appear to be from them, asking users to install app updates via external links; do not click on these links, download anything, or reply, and delete such emails immediately. Odido states they will never ask you to install updates this way. Given the exposure of bank account numbers and government IDs, monitor your financial statements and credit reports for any suspicious activity. While Odido does not believe changing your bank account number is necessary due to this breach, remaining vigilant is crucial. Consider implementing multi-factor authentication on all your online accounts where available to add an extra layer of security."
   }
 }

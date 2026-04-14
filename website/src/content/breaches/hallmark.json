@@ -1,0 +1,50 @@
+{
+  "slug": "hallmark",
+  "generated_at": "2026-04-14T11:51:52.521Z",
+  "breach": {
+    "slug": "hallmark",
+    "company_name": "Hallmark",
+    "runs": [],
+    "categories": [
+      "shopping"
+    ],
+    "address": "Hallmark Cards, Inc., P.O. Box 419034, Kansas City, MO 64141, USA",
+    "web": "https://www.hallmark.com",
+    "webform": "https://care.hallmark.com/s/privacy-form",
+    "phone": "1-877-203-2262",
+    "suggested_transport_medium": "webform",
+    "name": "Hallmark",
+    "title": "Hallmark",
+    "domain": "hallmark.com",
+    "breach_date": "2026-03-31",
+    "added_date": "2026-04-12T02:01:11Z",
+    "modified_date": "2026-04-12T02:01:11Z",
+    "pwn_count": 1736520,
+    "description": "In March 2026, <a href=\"https://cybernews.com/security/hallmark-data-breach-shinyhunters/\" target=\"_blank\" rel=\"noopener\">Hallmark suffered an alleged breach and subsequent extortion</a> after attackers gained access to data stored within Salesforce. The data was later published after the extortion deadline passed, exposing 1.7M unique email addresses across both Hallmark and the Hallmark+ streaming service, along with names, phone numbers, physical addresses and support tickets.",
+    "logo_path": "https://logos.haveibeenpwned.com/Hallmark.png",
+    "data_classes": [
+      "Email addresses",
+      "Names",
+      "Phone numbers",
+      "Physical addresses",
+      "Support tickets"
+    ],
+    "is_verified": true,
+    "is_sensitive": false
+  },
+  "enforcement": {
+    "records": [],
+    "total_fines": 0
+  },
+  "content": {
+    "aboutCompany": "Hallmark is a company known for its greeting cards and gifts. It also operates the Hallmark+ streaming service.",
+    "keyTakeaways": [
+      "In March 2026, a data breach exposed the email addresses, names, phone numbers, physical addresses, and support tickets of 1.7 million Hallmark customers.",
+      "This incident is part of a broader pattern of data breaches involving the ShinyHunters extortion group, which has targeted other companies by gaining access to data stored within Salesforce.",
+      "Individuals affected by this breach should be vigilant about potential phishing attempts and identity theft, as their personal information has been exposed."
+    ],
+    "incidentAndExposure": "In March 2026, Hallmark experienced a data breach that exposed the personal information of approximately 1.7 million customers. The exposed data included email addresses, names, phone numbers, physical addresses, and support tickets. This incident affected both Hallmark and Hallmark+ streaming service users. The company has publicly acknowledged the incident, and it has been verified by Have I Been Pwned.",
+    "timelineAndCause": "The data breach occurred in March 2026, specifically around March 9, 2026, when attackers gained access to data stored within Salesforce. The incident was disclosed on April 12, 2026, after the attackers, identified as the ShinyHunters extortion group, published the stolen data when Hallmark reportedly did not meet their extortion demands.",
+    "nextSteps": "If you are a Hallmark customer, you should be aware that your email address, name, phone number, and physical address may have been exposed. It is recommended to be cautious of any suspicious emails, calls, or mail that may attempt to trick you into revealing more personal information or clicking on malicious links. Consider changing your password for your Hallmark account and any other accounts where you might have used the same password. Additionally, monitor your financial statements and credit reports for any unusual activity that could indicate identity theft."
+  }
+}

@@ -1,8 +1,19 @@
 {
   "slug": "basic-fit",
-  "generated_at": "2026-04-13T18:00:00.000Z",
+  "generated_at": "2026-04-14T11:58:57.532Z",
   "logoUrl": "https://www.paperweight.email/logos/Basic-fit.png",
   "breach": {
+    "slug": "basic-fit",
+    "company_name": "Basic-Fit",
+    "runs": [],
+    "categories": [
+      "services"
+    ],
+    "address": "Basic-Fit International BV, Wegalaan 60, 2132 JC Hoofddorp, The Netherlands",
+    "web": "https://www.basic-fit.com",
+    "webform": "https://www.basic-fit.com/en-nl/about-basic-fit/privacy-statement",
+    "email": "requestprivacy@basic-fit.com",
+    "suggested_transport_medium": "email",
     "name": "BasicFit",
     "title": "Basic-Fit",
     "domain": "basic-fit.com",
@@ -21,14 +32,6 @@
     ],
     "is_verified": false,
     "is_sensitive": false,
-    "slug": "basic-fit",
-    "company_name": "Basic-Fit",
-    "runs": [],
-    "categories": [],
-    "address": "Wegalaan 60, 2132 JC Hoofddorp\nNetherlands",
-    "web": "https://www.basic-fit.com",
-    "webform": "https://www.basic-fit.com/en-nl/about-basic-fit/privacy-statement",
-    "suggested_transport_medium": "webform",
     "source": {
       "name": "Reuters",
       "url": "https://www.reuters.com/business/basic-fit-says-data-breach-exposes-details-200000-members-netherlands-2026-04-13/"
@@ -39,8 +42,14 @@
     "total_fines": 0
   },
   "content": {
-    "aboutCompany": "Basic-Fit is Europe's largest fitness chain, operating over 1,600 gyms across the Netherlands, Belgium, France, Luxembourg, Spain and Germany. Headquartered in Hoofddorp, the Netherlands, the company serves approximately 4.7 million members with affordable, flexible gym memberships.",
-    "incidentAndExposure": "In April 2026, Basic-Fit disclosed that hackers had gained unauthorised access to its systems, compromising the personal data of members across several European countries. In the Netherlands alone, around 200,000 members were affected, with the full scope across other countries still unclear. The company stated that the breach was detected by its system monitoring tools and stopped within minutes, but the attackers had already downloaded member data before the intrusion was contained.\n\nThe exposed data includes names, physical addresses, email addresses, phone numbers, dates of birth and bank account details. Basic-Fit confirmed that no identity documents were compromised, as the company does not store copies of members' identification documents. Passwords were also not part of the breach.\n\nThe combination of contact information with bank account details and dates of birth presents a significant risk for targeted phishing, social engineering and potential financial fraud. Affected members in the Netherlands, Belgium, France, Spain, Germany and Luxembourg should be vigilant for suspicious communications. Basic-Fit's franchise operations in six additional countries use a separate system and were not affected.",
-    "nextSteps": "If you are a Basic-Fit member, take steps to protect yourself even if you have not yet received a notification. Monitor your bank account closely for unauthorised transactions, particularly any new direct debits you did not authorise. Contact your bank to discuss additional protections such as alerts for new direct debit mandates.\n\nBe highly suspicious of unsolicited emails, text messages or phone calls claiming to be from Basic-Fit or your bank. Attackers may use your leaked personal details to craft convincing phishing messages. Do not click links in unexpected messages and never share additional personal information or login credentials in response to such communications.\n\nChange the password on your Basic-Fit account and any other accounts where you may have reused similar credentials. Enable two-factor authentication wherever possible. Consider placing a fraud alert with your bank and, if you are in the Netherlands, check your credit registration at BKR (Bureau Krediet Registratie) for any unfamiliar entries."
+    "aboutCompany": "Basic-Fit is a European gym chain operating in 12 countries. It provides fitness facilities and services to its members.",
+    "keyTakeaways": [
+      "In April 2026, a data breach at Basic-Fit exposed the names, physical addresses, email addresses, phone numbers, dates of birth, and bank account numbers of approximately 1 million members, including 200,000 in the Netherlands.",
+      "This incident is part of a pattern of data breaches affecting gym members in Europe.",
+      "Individuals affected by this breach should be vigilant about potential phishing attempts and unauthorized financial activity due to the exposed personal and banking information."
+    ],
+    "incidentAndExposure": "In April 2026, Basic-Fit experienced a data breach that affected approximately 1 million of its members across multiple European countries, with at least 200,000 members in the Netherlands alone having their data exposed. The exposed data includes names, physical addresses, email addresses, phone numbers, dates of birth, and bank account numbers. Basic-Fit has publicly acknowledged the incident, stating that no identity documents or passwords were stolen.",
+    "timelineAndCause": "The data breach occurred on April 13, 2026, and Basic-Fit disclosed it on the same day. The company's monitoring tools detected the unauthorized access, and the access was stopped within minutes. However, the attackers had already taken the data before they were stopped.",
+    "nextSteps": "If you are a Basic-Fit member, you should be extremely cautious about any unsolicited communications, especially those asking for personal information or directing you to log in to accounts. Monitor your bank statements and other financial accounts closely for any suspicious activity. Consider placing a fraud alert on your credit if you are concerned about potential misuse of your personal information. Since bank account numbers were exposed, it is crucial to watch for any unauthorized transactions."
   }
 }
