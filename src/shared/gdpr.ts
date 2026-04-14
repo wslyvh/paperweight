@@ -27,7 +27,7 @@ export interface CompanyOption {
   domains: string[];
 }
 
-export type GdprRequestAction = "access" | "delete" | "follow-up";
+export type GdprRequestAction = "access" | "delete";
 
 export interface GdprRequestContext {
   language: string;
@@ -347,42 +347,6 @@ Com os melhores cumprimentos,
   },
 };
 
-const FOLLOW_UP_TEMPLATE = {
-  subject: "Follow-up: GDPR Request",
-  body: `To whom it may concern,
-
-I am following up on my earlier GDPR request. I have not yet received a response.
-
-Please confirm receipt of my original request and share a timeline for completion.
-
-Account identifier:
-- Email: %EMAIL%%ACCOUNT_REF%
-
-Best regards,
-%NAME%`,
-};
-
-export const GDPR_INFO_BY_ACTION: Record<
-  GdprRequestAction,
-  { title: string; details: string }
-> = {
-  access: {
-    title: "Right of access",
-    details:
-      "Mock legal help: this maps to GDPR Article 15. You can ask which data is stored, why it is processed, who receives it, and retention periods.",
-  },
-  delete: {
-    title: "Right to erasure",
-    details:
-      "Mock legal help: this maps to GDPR Article 17. You can ask for deletion where there is no lawful reason to keep processing your data.",
-  },
-  "follow-up": {
-    title: "Follow-up request",
-    details:
-      "Mock legal help: use this when you already sent a request and need a status update. Most organizations should answer within one month (Article 12(3)).",
-  },
-};
-
 export function applyTemplate(
   template: string,
   userEmail: string,
@@ -450,16 +414,6 @@ export function buildGdprMessage(context: GdprRequestContext) {
     );
     subject = email.subject;
     bodyTemplate = email.body;
-  } else if (context.action === "follow-up") {
-    const t = EMAIL_TEMPLATES[context.language] ?? EMAIL_TEMPLATES.en;
-    subject = FOLLOW_UP_TEMPLATE.subject;
-    bodyTemplate = applyTemplate(
-      FOLLOW_UP_TEMPLATE.body,
-      context.userEmail,
-      context.accountReference,
-      t.accountRefLabel,
-      context.userName,
-    );
   } else {
     const email = buildAccessEmail(
       context.userEmail,

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { marked } from "marked";
-import { AlertTriangle, Download, ExternalLink, Shield } from "lucide-react";
+import { Download, ExternalLink, Shield } from "lucide-react";
 import { formatCount, formatFine, getBreachPageModel } from "@/utils/breach";
 import { getBreachSlugs } from "@/utils/content";
 import { SITE_CONFIG } from "@/utils/config";
@@ -81,7 +81,15 @@ export default async function BreachPage({
   return (
     <section className="container mx-auto px-4 py-12">
       <header className="space-y-3">
-        <p className="badge badge-primary badge-soft tracking-wider">Data Breaches</p>
+        <div className="flex items-center justify-between gap-3">
+          <p className="badge badge-primary badge-soft tracking-wider">Data Breaches</p>
+          <Link
+            href="/breaches"
+            className="text-sm font-medium opacity-80 hover:opacity-100 transition-opacity"
+          >
+            ← Breach overview
+          </Link>
+        </div>
         <div className="flex items-start gap-4">
           {model.company.logoPath && (
             <img
@@ -338,24 +346,39 @@ export default async function BreachPage({
       <section className="space-y-4">
         <h2 className="text-xl font-semibold">Take Action</h2>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-          <Link href="/resources/gdpr-generator" className="card bg-base-200/50 hover:bg-base-200">
-            <div className="card-body p-4">
-              <p className="font-semibold flex items-center gap-2">
-                <Shield className="h-4 w-4" />
+          <Link
+            href={{
+              pathname: "/resources/gdpr-generator",
+              query: {
+                company: model.company.name,
+              },
+            }}
+            className="card border border-primary/30 bg-base-300 shadow-lg transition-colors hover:border-primary/55"
+          >
+            <div className="card-body gap-4 p-5">
+              <p className="font-semibold text-lg leading-tight flex items-center gap-3">
+                <span className="shrink-0 rounded-lg bg-primary/20 text-primary p-2">
+                  <Shield className="h-5 w-5" />
+                </span>
                 Generate a GDPR request
               </p>
-              <p className="text-sm opacity-75">
+              <p className="text-sm sm:text-base opacity-90">
                 Build a ready-to-send access or deletion request for this company.
               </p>
             </div>
           </Link>
-          <Link href="/#download" className="card bg-base-200/50 hover:bg-base-200">
-            <div className="card-body p-4">
-              <p className="font-semibold flex items-center gap-2">
-                <Download className="h-4 w-4" />
+          <Link
+            href="/#download"
+            className="card border border-info/30 bg-base-300 shadow-lg transition-colors hover:border-info/55"
+          >
+            <div className="card-body gap-4 p-5">
+              <p className="font-semibold text-lg leading-tight flex items-center gap-3">
+                <span className="shrink-0 rounded-lg bg-info/20 text-info p-2">
+                  <Download className="h-5 w-5" />
+                </span>
                 Download Paperweight
               </p>
-              <p className="text-sm opacity-75">
+              <p className="text-sm sm:text-base opacity-90">
                 Scan your inbox to find other accounts linked to exposed data.
               </p>
             </div>

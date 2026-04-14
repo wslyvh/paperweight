@@ -1,3 +1,5 @@
+import { type CompanyOption, detectLanguageFromDomain } from "./gdpr";
+
 export interface Dpa {
   flag: string;
   country: string;
@@ -9,6 +11,15 @@ export interface Dpa {
   websiteUrl: string;
   englishOk?: boolean;
   warning?: string;
+  tld?: string;
+  languageCode?: string;
+  countryAliases?: string[];
+}
+
+export interface GdprGeneratorInitialState {
+  companyQuery?: string;
+  selectedCompany?: CompanyOption;
+  manualOrgEmail?: string;
 }
 
 export const EU_DPAS: Dpa[] = [
@@ -22,6 +33,8 @@ export const EU_DPAS: Dpa[] = [
     complaintUrl: "https://dsb.gv.at/eingabe-an-die-dsb/formulare",
     websiteUrl: "https://data-protection-authority.gv.at",
     englishOk: true,
+    tld: "at",
+    countryAliases: ["österreich"],
   },
   {
     flag: "🇧🇪",
@@ -35,6 +48,8 @@ export const EU_DPAS: Dpa[] = [
     websiteUrl: "https://www.dataprotectionauthority.be",
     warning:
       "Complaints must be in French, Dutch, or German. English submissions are not accepted.",
+    tld: "be",
+    countryAliases: ["belgique", "belgië"],
   },
   {
     flag: "🇩🇰",
@@ -47,6 +62,8 @@ export const EU_DPAS: Dpa[] = [
     websiteUrl: "https://www.datatilsynet.dk/english",
     warning:
       "Online form requires MitID (Danish national eID). Non-residents should file by email or use the PDF form instead.",
+    tld: "dk",
+    countryAliases: ["danmark"],
   },
   {
     flag: "🇫🇮",
@@ -61,6 +78,7 @@ export const EU_DPAS: Dpa[] = [
     websiteUrl: "https://www.tietosuoja.fi/en/",
     warning:
       "Complaints are processed in Finnish or Swedish. English submissions may be accepted but Finnish is strongly preferred.",
+    tld: "fi",
   },
   {
     flag: "🇫🇷",
@@ -71,6 +89,8 @@ export const EU_DPAS: Dpa[] = [
     complaintUrl: "https://www.cnil.fr/fr/plaintes",
     websiteUrl: "https://www.cnil.fr/en/",
     warning: "Complaint process is French only. No English submission accepted.",
+    tld: "fr",
+    languageCode: "fr",
   },
   {
     flag: "🇩🇪",
@@ -84,6 +104,9 @@ export const EU_DPAS: Dpa[] = [
     websiteUrl: "https://www.bfdi.bund.de",
     warning:
       "For private companies, file with the state DPA where the company is headquartered, not the federal BfDI. Forms are German only.",
+    tld: "de",
+    languageCode: "de",
+    countryAliases: ["deutschland"],
   },
   {
     flag: "🇮🇪",
@@ -98,6 +121,7 @@ export const EU_DPAS: Dpa[] = [
     englishOk: true,
     warning:
       "Ireland is the EU lead supervisory authority for most major US tech companies (Google, Meta, Apple, Microsoft). Complaints cannot be accepted by phone — submit via webform or email only.",
+    tld: "ie",
   },
   {
     flag: "🇮🇹",
@@ -111,6 +135,9 @@ export const EU_DPAS: Dpa[] = [
     websiteUrl: "https://www.garanteprivacy.it/web/garante-privacy-en",
     warning:
       "Italian only. Download the template and submit by registered mail (raccomandata). PEC email is not available to non-residents.",
+    tld: "it",
+    languageCode: "it",
+    countryAliases: ["italia"],
   },
   {
     flag: "🇳🇱",
@@ -122,6 +149,9 @@ export const EU_DPAS: Dpa[] = [
     complaintUrl: "https://klachten.autoriteitpersoonsgegevens.nl/",
     websiteUrl: "https://www.autoriteitpersoonsgegevens.nl/en",
     englishOk: true,
+    tld: "nl",
+    languageCode: "nl",
+    countryAliases: ["nederland", "the netherlands"],
   },
   {
     flag: "🇵🇱",
@@ -134,6 +164,8 @@ export const EU_DPAS: Dpa[] = [
     websiteUrl: "https://uodo.gov.pl/en",
     warning:
       "Polish only. Formal complaints must be submitted via the electronic inbox (ePUAP) or by post — email is not a formal complaint channel.",
+    tld: "pl",
+    countryAliases: ["polska"],
   },
   {
     flag: "🇱🇺",
@@ -147,6 +179,7 @@ export const EU_DPAS: Dpa[] = [
     websiteUrl: "https://cnpd.public.lu/en.html",
     warning:
       "Luxembourg is the EU lead supervisory authority for Amazon, PayPal, Skype, and Spotify. Complaint form is primarily in French — download a PDF copy of your submission before closing the form.",
+    tld: "lu",
   },
   {
     flag: "🇵🇹",
@@ -159,6 +192,8 @@ export const EU_DPAS: Dpa[] = [
     websiteUrl: "https://www.cnpd.pt/en/",
     warning:
       "Portuguese only. No telephone assistance, all contact must be in writing.",
+    tld: "pt",
+    languageCode: "pt",
   },
   {
     flag: "🇪🇸",
@@ -172,6 +207,9 @@ export const EU_DPAS: Dpa[] = [
     websiteUrl: "https://www.aepd.es/en",
     warning:
       "Online filing requires a Spanish digital certificate (Cl@ve). Non-residents should file by post in Spanish.",
+    tld: "es",
+    languageCode: "es",
+    countryAliases: ["españa"],
   },
   {
     flag: "🇸🇪",
@@ -185,6 +223,8 @@ export const EU_DPAS: Dpa[] = [
     englishOk: true,
     warning:
       "All submissions become public documents under Sweden's access principle. Use email or post if you have a protected identity.",
+    tld: "se",
+    countryAliases: ["sverige"],
   },
 ];
 
@@ -202,6 +242,8 @@ export const NON_EU_DPAS: Dpa[] = [
     englishOk: true,
     warning:
       "Post-Brexit: the UK operates under UK GDPR, not EU GDPR. Substantively similar but legally separate.",
+    tld: "uk",
+    countryAliases: ["uk", "united kingdom"],
   },
   {
     flag: "🇨🇭",
@@ -214,6 +256,8 @@ export const NON_EU_DPAS: Dpa[] = [
     englishOk: true,
     warning:
       "Switzerland operates under nFADP, not GDPR. The FDPIC cannot impose fines directly, for individual enforcement civil court is the primary route.",
+    tld: "ch",
+    countryAliases: ["schweiz", "suisse"],
   },
   {
     flag: "🇳🇴",
@@ -227,6 +271,8 @@ export const NON_EU_DPAS: Dpa[] = [
     websiteUrl: "https://www.datatilsynet.no/en/",
     warning:
       "Norway is EEA, not EU — GDPR applies via the EEA Agreement. Online form requires BankID (Norwegian eID). Non-residents should file by email or post.",
+    tld: "no",
+    countryAliases: ["norge"],
   },
   {
     flag: "🇮🇸",
@@ -240,66 +286,22 @@ export const NON_EU_DPAS: Dpa[] = [
     englishOk: true,
     warning:
       "Iceland is EEA, not EU — GDPR applies via the EEA Agreement. English is widely accepted.",
+    tld: "is",
+    countryAliases: ["island"],
   },
 ];
 
-// Maps lower-cased address country strings (including local-language variants) to DPA country names
-const ADDRESS_COUNTRY_MAP: Record<string, string> = {
-  netherlands: "Netherlands",
-  nederland: "Netherlands",
-  france: "France",
-  germany: "Germany",
-  deutschland: "Germany",
-  ireland: "Ireland",
-  "united kingdom": "United Kingdom",
-  uk: "United Kingdom",
-  spain: "Spain",
-  españa: "Spain",
-  italy: "Italy",
-  italia: "Italy",
-  sweden: "Sweden",
-  sverige: "Sweden",
-  norway: "Norway",
-  norge: "Norway",
-  switzerland: "Switzerland",
-  schweiz: "Switzerland",
-  suisse: "Switzerland",
-  austria: "Austria",
-  österreich: "Austria",
-  belgium: "Belgium",
-  belgique: "Belgium",
-  belgië: "Belgium",
-  denmark: "Denmark",
-  danmark: "Denmark",
-  finland: "Finland",
-  poland: "Poland",
-  polska: "Poland",
-  portugal: "Portugal",
-  luxembourg: "Luxembourg",
-  iceland: "Iceland",
-  island: "Iceland",
-};
+const ALL_DPAS = [...EU_DPAS, ...NON_EU_DPAS];
 
-const TLD_TO_DPA_COUNTRY: Record<string, string> = {
-  nl: "Netherlands",
-  de: "Germany",
-  fr: "France",
-  ie: "Ireland",
-  it: "Italy",
-  es: "Spain",
-  pt: "Portugal",
-  be: "Belgium",
-  at: "Austria",
-  dk: "Denmark",
-  fi: "Finland",
-  pl: "Poland",
-  se: "Sweden",
-  lu: "Luxembourg",
-  no: "Norway",
-  is: "Iceland",
-  ch: "Switzerland",
-  uk: "United Kingdom",
-};
+function countryFromIsoCode(dpaCountryCode: string): string | undefined {
+  // Flag emoji encodes ISO 3166-1 alpha-2: regional indicator A = U+1F1E6
+  const base = 0x1f1e6 - 65;
+  const flag = String.fromCodePoint(
+    base + dpaCountryCode.toUpperCase().charCodeAt(0),
+    base + dpaCountryCode.toUpperCase().charCodeAt(1),
+  );
+  return ALL_DPAS.find((d) => d.flag === flag)?.country;
+}
 
 /**
  * Finds the relevant DPA for a company.
@@ -310,29 +312,45 @@ export function findDpaByAddress(
   address: string | null,
   dpaCountryCode?: string | null
 ): Dpa | null {
-  const all = [...EU_DPAS, ...NON_EU_DPAS];
-
   if (dpaCountryCode) {
-    // Flag emoji encodes ISO 3166-1 alpha-2: regional indicator A = U+1F1E6
-    const base = 0x1f1e6 - 65;
-    const flag = String.fromCodePoint(
-      base + dpaCountryCode.toUpperCase().charCodeAt(0),
-      base + dpaCountryCode.toUpperCase().charCodeAt(1)
-    );
-    const match = all.find((d) => d.flag === flag);
-    if (match) return match;
+    const byCodeCountry = countryFromIsoCode(dpaCountryCode);
+    const byCode = byCodeCountry
+      ? ALL_DPAS.find((d) => d.country === byCodeCountry) ?? null
+      : null;
+    if (byCode) return byCode;
   }
 
   if (address) {
-    const last =
+    const normalizedAddress =
+      address
+        .toLowerCase()
+        .replace(/[.,;]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    const lastLine =
       address
         .split("\n")
-        .map((l) => l.trim())
+        .map((line) => line.trim())
         .filter(Boolean)
         .at(-1)
         ?.toLowerCase() ?? "";
-    const country = ADDRESS_COUNTRY_MAP[last];
-    if (country) return all.find((d) => d.country === country) ?? null;
+    const normalizedLastLine = lastLine
+      .replace(/[.,;]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    const byAddress =
+      ALL_DPAS.find((dpa) => {
+        const aliases = [dpa.country, ...(dpa.countryAliases ?? [])].map((v) =>
+          v.toLowerCase().replace(/\s+/g, " ").trim(),
+        );
+        return aliases.some(
+          (alias) =>
+            normalizedLastLine === alias ||
+            normalizedLastLine.endsWith(` ${alias}`) ||
+            normalizedAddress.endsWith(` ${alias}`),
+        );
+      }) ?? null;
+    return byAddress;
   }
 
   return null;
@@ -341,8 +359,64 @@ export function findDpaByAddress(
 export function findDpaByDomain(domain: string): Dpa | null {
   const tld = domain.toLowerCase().split(".").at(-1);
   if (!tld) return null;
-  const mappedCountry = TLD_TO_DPA_COUNTRY[tld];
-  if (!mappedCountry) return null;
-  const all = [...EU_DPAS, ...NON_EU_DPAS];
-  return all.find((entry) => entry.country === mappedCountry) ?? null;
+  return ALL_DPAS.find((dpa) => dpa.tld === tld) ?? null;
+}
+
+export function findCompanyByName(
+  companies: CompanyOption[],
+  query?: string,
+): CompanyOption | undefined {
+  const normalized = query?.trim().toLowerCase();
+  if (!normalized) return undefined;
+  return companies.find((item) => item.name.trim().toLowerCase() === normalized);
+}
+
+export function getPreferredDomain(
+  company: CompanyOption | undefined,
+  manualOrgEmail: string,
+): string | undefined {
+  const manual = manualOrgEmail.trim();
+  if (manual.includes("@")) {
+    const host = manual.split("@")[1]?.toLowerCase();
+    if (host) return host;
+  }
+  const companyEmail = company?.email?.trim();
+  if (companyEmail?.includes("@")) {
+    const host = companyEmail.split("@")[1]?.toLowerCase();
+    if (host) return host;
+  }
+  if (company?.domains?.length) {
+    return company.domains[0];
+  }
+  return undefined;
+}
+
+export function detectPreferredGdprLanguage(
+  company: CompanyOption | undefined,
+  manualOrgEmail: string,
+): string {
+  const domain = getPreferredDomain(company, manualOrgEmail);
+  const dpaByAddress = company?.address
+    ? findDpaByAddress(company.address, null)
+    : null;
+  const dpaByDomain = domain ? findDpaByDomain(domain) : null;
+  const dpa = dpaByAddress ?? dpaByDomain;
+  return dpa?.languageCode ?? detectLanguageFromDomain(domain);
+}
+
+export function buildGdprGeneratorInitialState(
+  companies: CompanyOption[],
+  companyParam?: string,
+): GdprGeneratorInitialState | undefined {
+  const company = findCompanyByName(companies, companyParam);
+  if (!company) {
+    const companyQuery = companyParam?.trim();
+    return companyQuery ? { companyQuery } : undefined;
+  }
+
+  return {
+    companyQuery: company.name,
+    selectedCompany: company,
+    manualOrgEmail: company.email ?? "",
+  };
 }

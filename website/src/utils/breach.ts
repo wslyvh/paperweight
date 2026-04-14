@@ -149,8 +149,9 @@ function buildBreachModel(
   const severity = getSeverityFromDataClasses(breach.data_classes);
   const category = mapCategoryInfo(breach.categories);
   const totalFines = enforcement.reduce((sum, row) => sum + row.fine_eur, 0);
-  const addressDpa = findDpaByAddress(breach.address ?? null, enforcement[0]?.dpa_country);
-  const dpa = addressDpa ?? findDpaByDomain(breach.domain);
+  const dpa =
+    findDpaByAddress(breach.address ?? null, enforcement[0]?.dpa_country) ??
+    findDpaByDomain(breach.domain);
   const contactUrl = breach.webform ?? (breach.email ? `mailto:${breach.email}` : undefined);
 
   return {

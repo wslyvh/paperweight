@@ -3,41 +3,37 @@
 import {
   buildGdprMessage,
   type CompanyOption,
-  detectLanguageFromDomain,
   type GdprRequestAction,
   LANGUAGES,
 } from "@shared/gdpr";
+import {
+  detectPreferredGdprLanguage,
+  getPreferredDomain,
+  type GdprGeneratorInitialState,
+} from "@shared/gdpr-authorities";
 import { Info, Search } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-function domainForLanguage(
-  company: CompanyOption | undefined,
-  manualOrgEmail: string,
-): string | undefined {
-  const manual = manualOrgEmail.trim();
-  if (manual.includes("@")) {
-    const host = manual.split("@")[1]?.toLowerCase();
-    if (host) return host;
-  }
-  const companyEmail = company?.email?.trim();
-  if (companyEmail?.includes("@")) {
-    const host = companyEmail.split("@")[1]?.toLowerCase();
-    if (host) return host;
-  }
-  if (company?.domains?.length) {
-    return company.domains[0];
-  }
-  return undefined;
+interface GeneratorProps {
+  initialState?: GdprGeneratorInitialState;
 }
 
-export function Generator() {
-  const [language, setLanguage] = useState("en");
+export function Generator({ initialState }: GeneratorProps) {
+  const [relatedBreach, setRelatedBreach] = useState<
+    { slug: string; title: string } | undefined
+  >(undefined);
+  const [language, setLanguage] = useState(() =>
+    detectPreferredGdprLanguage(
+      initialState?.selectedCompany,
+      initialState?.manualOrgEmail ?? "",
+    ),
+  );
   const [action, setAction] = useState<GdprRequestAction>("access");
-  const [companyQuery, setCompanyQuery] = useState("");
+  const [companyQuery, setCompanyQuery] = useState(initialState?.companyQuery ?? "");
   const [selectedCompany, setSelectedCompany] = useState<
     CompanyOption | undefined
-  >(undefined);
+  >(initialState?.selectedCompany);
   const [companyResults, setCompanyResults] = useState<CompanyOption[]>([]);
   const [companyResultsForQuery, setCompanyResultsForQuery] = useState("");
   const [orgInputFocused, setOrgInputFocused] = useState(false);
@@ -45,7 +41,9 @@ export function Generator() {
   const orgBlurTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(
     undefined,
   );
-  const [manualOrgEmail, setManualOrgEmail] = useState("");
+  const [manualOrgEmail, setManualOrgEmail] = useState(
+    initialState?.manualOrgEmail ?? "",
+  );
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [accountReference, setAccountReference] = useState("");
@@ -101,14 +99,44 @@ export function Generator() {
     showOrgDropdown && !orgSearchStale && matchedCompanyResults.length === 0;
 
   useEffect(() => {
-    const d = domainForLanguage(selectedCompany, manualOrgEmail);
-    setLanguage(detectLanguageFromDomain(d));
+    setLanguage(detectPreferredGdprLanguage(selectedCompany, manualOrgEmail));
   }, [selectedCompany, manualOrgEmail]);
 
   const recipientOrgEmail =
     manualOrgEmail.trim() || selectedCompany?.email?.trim() || undefined;
 
   const companyName = selectedCompany?.name || companyQuery;
+  const selectedDomain = useMemo(
+    () => getPreferredDomain(selectedCompany, manualOrgEmail),
+    [manualOrgEmail, selectedCompany],
+  );
+
+  useEffect(() => {
+    if (!selectedDomain) {
+      setRelatedBreach(undefined);
+      return;
+    }
+
+    let isCancelled = false;
+    void fetch(`/api/breaches?domain=${encodeURIComponent(selectedDomain)}`)
+      .then(async (response) => {
+        const data = (await response.json()) as {
+          breach?: { slug: string; title: string } | null;
+        };
+        if (!isCancelled) {
+          setRelatedBreach(data.breach ?? undefined);
+        }
+      })
+      .catch(() => {
+        if (!isCancelled) {
+          setRelatedBreach(undefined);
+        }
+      });
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [selectedDomain]);
 
   const generated = useMemo(
     () =>
@@ -352,6 +380,20 @@ export function Generator() {
               <p className="text-xs opacity-70 mt-4">* Company data sourced from <Link href='https://github.com/datenanfragen/data' className="link">Datenanfragen</Link>.</p>
             </div>
           </div>
+          {relatedBreach ? (
+            <Link
+              href={`/breaches/${relatedBreach.slug}`}
+              className="card mt-3 bg-warning/10 border border-warning/30 hover:bg-warning/15 transition-colors"
+            >
+              <div className="card-body p-4">
+                <p className="text-xs uppercase tracking-wide opacity-70">Data breach</p>
+                <p className="text-sm">
+                  <span className="font-semibold">{selectedCompany?.name ?? relatedBreach.title}</span>{" "}
+                  appears in our breach database. Click here for more information.
+                </p>
+              </div>
+            </Link>
+          ) : null}
         </div>
 
         <div className="lg:col-span-7 space-y-6">
