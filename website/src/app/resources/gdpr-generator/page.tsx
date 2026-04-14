@@ -1,5 +1,6 @@
 import { SubpageHeader } from "@/components/SubpageHeader";
 import { Generator } from "@/components/Generator";
+import type { GdprRequestAction } from "@shared/gdpr/types";
 import { buildGdprGeneratorInitialState } from "@shared/gdpr/resolution";
 import Link from "next/link";
 import { Sparkles } from "lucide-react";
@@ -10,6 +11,7 @@ export const GDPR_GENERATOR_LAST_UPDATED = "2026-04-02";
 interface GdprGeneratorPageProps {
   searchParams: Promise<{
     company?: string;
+    action?: string;
   }>;
 }
 
@@ -21,6 +23,8 @@ export default async function GdprGeneratorPage({
     companies,
     query.company,
   );
+  const initialAction: GdprRequestAction =
+    query.action === "delete" ? "delete" : "access";
 
   return (
     <section className="container mx-auto px-4 py-12">
@@ -43,7 +47,7 @@ export default async function GdprGeneratorPage({
           </p>
         </div>
 
-        <Generator initialState={initialState} />
+        <Generator initialState={initialState} initialAction={initialAction} />
 
         <div className="card mt-24 border border-primary/30 bg-base-300 shadow-lg">
           <div className="card-body gap-5 sm:gap-6">

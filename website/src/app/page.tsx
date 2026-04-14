@@ -1,7 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
+import dayjs from "dayjs";
 import { SITE_CONFIG } from "@/utils/config";
 import { getLatestVersion } from "@/lib/github";
+import { getBreachIndexItems } from "@/utils/breach";
 import {
   Mail,
   ShieldAlert,
@@ -10,12 +12,22 @@ import {
   Lock,
   Github,
   Info,
+  ChevronRight,
 } from "lucide-react";
 
 export const HOME_LAST_UPDATED = "2026-04-02";
 
 export default async function Home() {
   const latestVersion = await getLatestVersion();
+  const latestBreaches = getBreachIndexItems("1900-01-01")
+    .slice(0, 3)
+    .map((breach) => {
+      const daysAgo = dayjs().diff(breach.breachDate, "day");
+      const daysAgoLabel = daysAgo === 0
+        ? "Today"
+        : `${daysAgo} day${daysAgo === 1 ? "" : "s"} ago`;
+      return { ...breach, daysAgoLabel };
+    });
   if (!latestVersion) {
     throw new Error("No releases found from GitHub API");
   }
@@ -398,20 +410,73 @@ export default async function Home() {
               </p>
             </div>
 
-            <div className="max-w-4xl mx-auto">
-              <div className="card bg-base-200/50">
-                <div className="card-body">
+            <div className="max-w-5xl mx-auto grid gap-6 md:grid-cols-2 items-stretch">
+              <div className="card bg-base-200/50 h-full">
+                <div className="card-body h-full flex flex-col">
                   <h3 className="card-title">GDPR Request Generator</h3>
-                  <p className="opacity-80">
-                    Generate a data deletion or access request for any company.
-                    Free, no download required.
+                  <div className="space-y-5">
+                    <p className="opacity-80">
+                      Access or delete your data with a pre-filled GDPR request.
+                      Choose your action, select an organization, add your
+                      details, and copy or open the generated email template.
+                    </p>
+
+                    <div className="grid gap-2">
+                      <Link
+                        href="/resources/gdpr-generator?action=access"
+                        className="btn btn-outline justify-start w-full"
+                      >
+                        Access my data
+                      </Link>
+                      <Link
+                        href="/resources/gdpr-generator?action=delete"
+                        className="btn btn-primary justify-start w-full"
+                      >
+                        Remove my data
+                      </Link>
+                    </div>
+
+                    <p className="text-sm opacity-75">
+                      Or find more information about your local{" "}
+                      <Link href="/resources/authorities" className="link">
+                        data protection authority
+                      </Link>
+                      .
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="card bg-base-200/50 h-full">
+                <div className="card-body h-full flex flex-col">
+                  <h3 className="card-title">Latest Data Breaches</h3>
+                  <p className="opacity-80 mb-3">
+                    Recent breach guides with impact details and what to do next.
                   </p>
-                  <div className="card-actions">
-                    <Link
-                      href="/resources/gdpr-generator"
-                      className="btn btn-primary btn-sm"
-                    >
-                      Try it →
+
+                  <ul className="space-y-2">
+                    {latestBreaches.map((breach) => (
+                      <li key={breach.slug}>
+                        <Link
+                          href={`/breaches/${breach.slug}`}
+                          className="flex items-center justify-between gap-3 rounded-lg bg-base-100 px-3 py-2.5 hover:bg-base-100/80 transition-colors"
+                        >
+                          <p className="font-medium truncate min-w-0">{breach.title}</p>
+                          <div className="shrink-0 flex items-center gap-2 text-xs opacity-80">
+                            <span>{breach.daysAgoLabel}</span>
+                            <span className={`badge badge-xs badge-soft ${breach.riskBadgeClass}`}>
+                              {breach.riskLabel}
+                            </span>
+                            <ChevronRight className="h-4 w-4 opacity-50" />
+                          </div>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="card-actions mt-auto pt-4 justify-end">
+                    <Link href="/breaches" className="btn btn-soft btn-sm">
+                      View all data breaches →
                     </Link>
                   </div>
                 </div>

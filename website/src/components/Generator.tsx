@@ -17,9 +17,10 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 interface GeneratorProps {
   initialState?: GdprGeneratorInitialState;
+  initialAction?: GdprRequestAction;
 }
 
-export function Generator({ initialState }: GeneratorProps) {
+export function Generator({ initialState, initialAction }: GeneratorProps) {
   const [relatedBreach, setRelatedBreach] = useState<
     { slug: string; title: string } | undefined
   >(undefined);
@@ -29,7 +30,9 @@ export function Generator({ initialState }: GeneratorProps) {
       initialState?.manualOrgEmail ?? "",
     ),
   );
-  const [action, setAction] = useState<GdprRequestAction>("access");
+  const [action, setAction] = useState<GdprRequestAction>(
+    initialAction ?? "access",
+  );
   const [companyQuery, setCompanyQuery] = useState(initialState?.companyQuery ?? "");
   const [selectedCompany, setSelectedCompany] = useState<
     CompanyOption | undefined
