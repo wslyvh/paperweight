@@ -9,7 +9,7 @@
  * Enrichment during build:
  *   1. controller_slug  — auto-normalized from controller name (strip legal/geo suffixes, lowercase, hyphenate)
  *   2. company_slug     — matched against companies.db (exact, then longest-prefix); overrides.json takes precedence
- *   3. dpa_country      — matched against gdpr-authorities.ts by country name; enables direct DPA lookup on website
+ *   3. dpa_country      — matched against shared GDPR resolution data by country name; enables direct DPA lookup on website
  *
  * Add entries to data/enforcement/overrides.json only when auto-matching produces the wrong result.
  *
@@ -20,7 +20,7 @@ import Database from "better-sqlite3";
 import { mkdirSync, unlinkSync, existsSync, readFileSync } from "fs";
 import { join, resolve } from "path";
 import { fileURLToPath } from "url";
-import { EU_DPAS, NON_EU_DPAS } from "../src/shared/gdpr-authorities.js";
+import { EU_DPAS, NON_EU_DPAS } from "../src/shared/gdpr/resolution.js";
 
 const __dirname = join(fileURLToPath(import.meta.url), "..");
 const ROOT = resolve(__dirname, "..");
@@ -193,16 +193,16 @@ function buildCompanyMatcher(companiesDbPath: string): (controllerSlug: string) 
   };
 }
 
-// ------- DPA country matching against gdpr-authorities.ts --------
+// ------- DPA country matching against shared GDPR resolution --------
 
 function buildDpaMatcher(): (enforcementCountry: string) => string | null {
-  // Build lookup: normalized country name → canonical country name from gdpr-authorities
+  // Build lookup: normalized country name → canonical country name from shared GDPR resolution
   const lookup = new Map<string, string>();
   for (const dpa of [...EU_DPAS, ...NON_EU_DPAS]) {
     lookup.set(dpa.country.toLowerCase(), dpa.country);
   }
 
-  // Normalize enforcement tracker country names to match gdpr-authorities country names
+  // Normalize enforcement tracker country names to match shared GDPR resolution country names
   const aliases: Record<string, string> = {
     "the netherlands": "Netherlands",
     "united kingdom": "United Kingdom",

@@ -1,16 +1,16 @@
 "use client";
 
 import {
-  buildGdprMessage,
   type CompanyOption,
+  type GdprGeneratorInitialState,
   type GdprRequestAction,
-  LANGUAGES,
-} from "@shared/gdpr";
+} from "@shared/gdpr/types";
+import { buildGdprMessage } from "@shared/gdpr/templates";
 import {
+  LANGUAGES,
   detectPreferredGdprLanguage,
   getPreferredDomain,
-  type GdprGeneratorInitialState,
-} from "@shared/gdpr-authorities";
+} from "@shared/gdpr/resolution";
 import { Info, Search } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";

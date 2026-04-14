@@ -1,64 +1,7 @@
-export interface LanguageOption {
-  label: string;
-  flag: string;
-}
-
-export interface EmailTemplate {
-  deletionSubject: string;
-  deletion: string;
-  accessSubject: string;
-  access: string;
-  accountRefLabel: string;
-}
-
-export interface CompanyOption {
-  slug: string;
-  name: string;
-  runs?: string[];
-  categories?: string[];
-  address?: string;
-  web?: string;
-  email?: string;
-  phone?: string;
-  quality?: string;
-  comments?: string[];
-  suggestedTransportMedium?: string;
-  webform?: string;
-  domains: string[];
-}
-
-export type GdprRequestAction = "access" | "delete";
-
-export interface GdprRequestContext {
-  language: string;
-  action: GdprRequestAction;
-  companyName: string;
-  companyEmail?: string;
-  companyWebform?: string;
-  userName: string;
-  userEmail: string;
-  accountReference?: string;
-}
-
-export const LANGUAGES: Record<string, LanguageOption> = {
-  en: { label: "English", flag: "🇬🇧" },
-  nl: { label: "Dutch", flag: "🇳🇱" },
-  de: { label: "German", flag: "🇩🇪" },
-  fr: { label: "French", flag: "🇫🇷" },
-  es: { label: "Spanish", flag: "🇪🇸" },
-  it: { label: "Italian", flag: "🇮🇹" },
-  pt: { label: "Portuguese", flag: "🇵🇹" },
-};
-
-const TLD_LANG_CODES = new Set(
-  Object.keys(LANGUAGES).filter((code) => code !== "en"),
-);
-
-export function detectLanguageFromDomain(domain?: string) {
-  if (!domain) return "en";
-  const tld = domain.split(".").pop()?.toLowerCase() ?? "";
-  return TLD_LANG_CODES.has(tld) ? tld : "en";
-}
+import type {
+  EmailTemplate,
+  GdprRequestContext,
+} from "./types";
 
 export const EMAIL_TEMPLATES: Record<string, EmailTemplate> = {
   en: {

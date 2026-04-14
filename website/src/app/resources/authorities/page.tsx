@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
-import { type Dpa, EU_DPAS, NON_EU_DPAS } from "@shared/gdpr-authorities";
+import type { Dpa } from "@shared/gdpr/types";
+import { EU_DPAS, NON_EU_DPAS } from "@shared/gdpr/resolution";
 import { AlertTriangle } from "lucide-react";
 import { SubpageHeader } from "@/components/SubpageHeader";
 import Link from "next/link";

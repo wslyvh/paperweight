@@ -1,25 +1,28 @@
-import { type CompanyOption, detectLanguageFromDomain } from "./gdpr";
+import type {
+  CompanyOption,
+  Dpa,
+  GdprGeneratorInitialState,
+  LanguageOption,
+} from "./types";
 
-export interface Dpa {
-  flag: string;
-  country: string;
-  dpaName: string;
-  phone: string;
-  email?: string;
-  address: string;
-  complaintUrl: string;
-  websiteUrl: string;
-  englishOk?: boolean;
-  warning?: string;
-  tld?: string;
-  languageCode?: string;
-  countryAliases?: string[];
-}
+export const LANGUAGES: Record<string, LanguageOption> = {
+  en: { label: "English", flag: "🇬🇧" },
+  nl: { label: "Dutch", flag: "🇳🇱" },
+  de: { label: "German", flag: "🇩🇪" },
+  fr: { label: "French", flag: "🇫🇷" },
+  es: { label: "Spanish", flag: "🇪🇸" },
+  it: { label: "Italian", flag: "🇮🇹" },
+  pt: { label: "Portuguese", flag: "🇵🇹" },
+};
 
-export interface GdprGeneratorInitialState {
-  companyQuery?: string;
-  selectedCompany?: CompanyOption;
-  manualOrgEmail?: string;
+const TLD_LANG_CODES = new Set(
+  Object.keys(LANGUAGES).filter((code) => code !== "en"),
+);
+
+export function detectLanguageFromDomain(domain?: string) {
+  if (!domain) return "en";
+  const tld = domain.split(".").pop()?.toLowerCase() ?? "";
+  return TLD_LANG_CODES.has(tld) ? tld : "en";
 }
 
 export const EU_DPAS: Dpa[] = [
@@ -34,6 +37,7 @@ export const EU_DPAS: Dpa[] = [
     websiteUrl: "https://data-protection-authority.gv.at",
     englishOk: true,
     tld: "at",
+    languageCode: "de",
     countryAliases: ["österreich"],
   },
   {
@@ -49,6 +53,7 @@ export const EU_DPAS: Dpa[] = [
     warning:
       "Complaints must be in French, Dutch, or German. English submissions are not accepted.",
     tld: "be",
+    languageCode: "fr",
     countryAliases: ["belgique", "belgië"],
   },
   {
@@ -63,6 +68,7 @@ export const EU_DPAS: Dpa[] = [
     warning:
       "Online form requires MitID (Danish national eID). Non-residents should file by email or use the PDF form instead.",
     tld: "dk",
+    languageCode: "en",
     countryAliases: ["danmark"],
   },
   {
@@ -79,6 +85,8 @@ export const EU_DPAS: Dpa[] = [
     warning:
       "Complaints are processed in Finnish or Swedish. English submissions may be accepted but Finnish is strongly preferred.",
     tld: "fi",
+    languageCode: "en",
+    countryAliases: [],
   },
   {
     flag: "🇫🇷",
@@ -91,6 +99,7 @@ export const EU_DPAS: Dpa[] = [
     warning: "Complaint process is French only. No English submission accepted.",
     tld: "fr",
     languageCode: "fr",
+    countryAliases: [],
   },
   {
     flag: "🇩🇪",
@@ -122,6 +131,8 @@ export const EU_DPAS: Dpa[] = [
     warning:
       "Ireland is the EU lead supervisory authority for most major US tech companies (Google, Meta, Apple, Microsoft). Complaints cannot be accepted by phone — submit via webform or email only.",
     tld: "ie",
+    languageCode: "en",
+    countryAliases: [],
   },
   {
     flag: "🇮🇹",
@@ -165,6 +176,7 @@ export const EU_DPAS: Dpa[] = [
     warning:
       "Polish only. Formal complaints must be submitted via the electronic inbox (ePUAP) or by post — email is not a formal complaint channel.",
     tld: "pl",
+    languageCode: "en",
     countryAliases: ["polska"],
   },
   {
@@ -180,6 +192,8 @@ export const EU_DPAS: Dpa[] = [
     warning:
       "Luxembourg is the EU lead supervisory authority for Amazon, PayPal, Skype, and Spotify. Complaint form is primarily in French — download a PDF copy of your submission before closing the form.",
     tld: "lu",
+    languageCode: "fr",
+    countryAliases: [],
   },
   {
     flag: "🇵🇹",
@@ -194,6 +208,7 @@ export const EU_DPAS: Dpa[] = [
       "Portuguese only. No telephone assistance, all contact must be in writing.",
     tld: "pt",
     languageCode: "pt",
+    countryAliases: [],
   },
   {
     flag: "🇪🇸",
@@ -224,6 +239,7 @@ export const EU_DPAS: Dpa[] = [
     warning:
       "All submissions become public documents under Sweden's access principle. Use email or post if you have a protected identity.",
     tld: "se",
+    languageCode: "en",
     countryAliases: ["sverige"],
   },
 ];
@@ -243,6 +259,7 @@ export const NON_EU_DPAS: Dpa[] = [
     warning:
       "Post-Brexit: the UK operates under UK GDPR, not EU GDPR. Substantively similar but legally separate.",
     tld: "uk",
+    languageCode: "en",
     countryAliases: ["uk", "united kingdom"],
   },
   {
@@ -257,6 +274,7 @@ export const NON_EU_DPAS: Dpa[] = [
     warning:
       "Switzerland operates under nFADP, not GDPR. The FDPIC cannot impose fines directly, for individual enforcement civil court is the primary route.",
     tld: "ch",
+    languageCode: "de",
     countryAliases: ["schweiz", "suisse"],
   },
   {
@@ -272,6 +290,7 @@ export const NON_EU_DPAS: Dpa[] = [
     warning:
       "Norway is EEA, not EU — GDPR applies via the EEA Agreement. Online form requires BankID (Norwegian eID). Non-residents should file by email or post.",
     tld: "no",
+    languageCode: "en",
     countryAliases: ["norge"],
   },
   {
@@ -287,6 +306,7 @@ export const NON_EU_DPAS: Dpa[] = [
     warning:
       "Iceland is EEA, not EU — GDPR applies via the EEA Agreement. English is widely accepted.",
     tld: "is",
+    languageCode: "en",
     countryAliases: ["island"],
   },
 ];
@@ -310,7 +330,7 @@ function countryFromIsoCode(dpaCountryCode: string): string | undefined {
  */
 export function findDpaByAddress(
   address: string | null,
-  dpaCountryCode?: string | null
+  dpaCountryCode?: string | null,
 ): Dpa | null {
   if (dpaCountryCode) {
     const byCodeCountry = countryFromIsoCode(dpaCountryCode);
@@ -340,7 +360,7 @@ export function findDpaByAddress(
       .trim();
     const byAddress =
       ALL_DPAS.find((dpa) => {
-        const aliases = [dpa.country, ...(dpa.countryAliases ?? [])].map((v) =>
+        const aliases = [dpa.country, ...dpa.countryAliases].map((v) =>
           v.toLowerCase().replace(/\s+/g, " ").trim(),
         );
         return aliases.some(
@@ -401,7 +421,7 @@ export function detectPreferredGdprLanguage(
     : null;
   const dpaByDomain = domain ? findDpaByDomain(domain) : null;
   const dpa = dpaByAddress ?? dpaByDomain;
-  return dpa?.languageCode ?? detectLanguageFromDomain(domain);
+  return dpa ? dpa.languageCode : detectLanguageFromDomain(domain);
 }
 
 export function buildGdprGeneratorInitialState(

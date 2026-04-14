@@ -16,9 +16,11 @@ import {
 import {
   LANGUAGES,
   detectLanguageFromDomain,
+} from "@shared/gdpr/resolution";
+import {
   buildDeletionEmail,
   buildAccessEmail,
-} from "@shared/gdpr";
+} from "@shared/gdpr/templates";
 import { RISK_CATEGORIES, RISK_LEVELS } from "@shared/languages";
 import { getRootDomain } from "@shared/utils";
 import {

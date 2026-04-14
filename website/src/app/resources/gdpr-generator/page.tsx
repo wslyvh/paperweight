@@ -1,6 +1,6 @@
 import { SubpageHeader } from "@/components/SubpageHeader";
 import { Generator } from "@/components/Generator";
-import { buildGdprGeneratorInitialState } from "@shared/gdpr-authorities";
+import { buildGdprGeneratorInitialState } from "@shared/gdpr/resolution";
 import Link from "next/link";
 import { Sparkles } from "lucide-react";
 import companies from "@/data/companies.generated.json";
