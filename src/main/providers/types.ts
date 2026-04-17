@@ -16,9 +16,6 @@ export interface EmailMessage {
 export interface EmailConnection {
   type: "gmail-oauth" | "imap" | "microsoft-oauth";
   email: string;
-  canRead: boolean;
-  canModify: boolean;
-  canSend: boolean;
 }
 
 export interface EmailProvider {
@@ -49,7 +46,7 @@ export interface EmailProvider {
     nextCheckpoint: string;
   } | null>;
 
-  // Write operations (requires canModify)
+  // Write operations
   trashMessage(messageId: string): Promise<void>;
   markAsSpam(messageId: string): Promise<void>;
   markAsRead(messageId: string, isRead: boolean): Promise<void>;

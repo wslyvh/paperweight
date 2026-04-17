@@ -14,7 +14,7 @@ const MS_TOKEN_URL = "https://login.microsoftonline.com/common/oauth2/v2.0/token
 const GRAPH_API_BASE = "https://graph.microsoft.com/v1.0";
 const GRAPH_ME_BASE = `${GRAPH_API_BASE}/me`;
 
-const SCOPES = "offline_access openid profile User.Read Mail.ReadWrite";
+const SCOPES = "offline_access openid profile User.Read Mail.ReadWrite Mail.Send";
 
 // --- PKCE helpers ---
 
@@ -391,9 +391,6 @@ export function createMicrosoftProvider(): EmailProvider {
       return {
         type: "microsoft-oauth",
         email: profile.mail || profile.userPrincipalName || "",
-        canRead: true,
-        canModify: true,
-        canSend: false,
       };
     },
 

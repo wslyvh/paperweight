@@ -520,9 +520,7 @@ export async function runSync(licensedOverride?: boolean): Promise<void> {
 
   try {
     const connection = await provider.connect();
-    syncLog.info(
-      `Provider connected (${connection.type}, canModify: ${connection.canModify})`,
-    );
+    syncLog.info(`Provider connected (${connection.type})`);
 
     // getLicenseStatus() calls loadLicense() which uses safeStorage — unavailable in
     // worker threads. When licensedOverride is provided (worker context), skip it entirely.

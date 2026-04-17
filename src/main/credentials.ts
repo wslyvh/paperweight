@@ -23,6 +23,11 @@ export interface StoredCredentials {
     username: string;
     password: string;
     allowSelfSigned?: boolean;
+    smtp?: {
+      host: string;
+      port: number;
+      tls: boolean;
+    };
   };
 }
 

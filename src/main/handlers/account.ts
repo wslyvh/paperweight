@@ -42,7 +42,7 @@ function isImapConfig(value: unknown): value is ImapConfig {
   if (!value || typeof value !== "object") return false;
   const cfg = value as Record<string, unknown>;
 
-  return (
+  const baseValid =
     isString(cfg.host) &&
     cfg.host.trim() !== "" &&
     isIntInRange(cfg.port, 1, 65535) &&
@@ -50,8 +50,24 @@ function isImapConfig(value: unknown): value is ImapConfig {
     isString(cfg.username) &&
     cfg.username.trim() !== "" &&
     isString(cfg.password) &&
-    cfg.password.trim() !== ""
-  );
+    cfg.password.trim() !== "";
+
+  if (!baseValid) return false;
+
+  if (cfg.smtp !== undefined) {
+    if (!cfg.smtp || typeof cfg.smtp !== "object") return false;
+    const smtp = cfg.smtp as Record<string, unknown>;
+    if (
+      !isString(smtp.host) ||
+      smtp.host.trim() === "" ||
+      !isIntInRange(smtp.port, 1, 65535) ||
+      typeof smtp.tls !== "boolean"
+    ) {
+      return false;
+    }
+  }
+
+  return true;
 }
 
 function getDbSizeMb(): number {

@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { CheckCircle2, Mail } from "lucide-react";
+import { findPresetById, PROVIDER_PRESETS } from "@shared/email-providers";
+import type { ProviderPreset } from "@shared/email-providers";
 
 // ── Logos ─────────────────────────────────────────────────────────────────────
 
@@ -338,6 +340,64 @@ export function MicrosoftConnect({
   );
 }
 
+// ── Server Row (compact IMAP/SMTP editor) ────────────────────────────────
+
+function ServerRow({
+  label,
+  host,
+  port,
+  tls,
+  onHost,
+  onPort,
+  onTls,
+}: {
+  label: string;
+  host: string;
+  port: number;
+  tls: boolean;
+  onHost: (v: string) => void;
+  onPort: (v: number) => void;
+  onTls: (v: boolean) => void;
+}): JSX.Element {
+  return (
+    <div>
+      <p className="text-xs font-medium text-base-content/60 uppercase tracking-wide mb-1.5">
+        {label}
+      </p>
+      <div className="flex gap-2 items-center">
+        <input
+          type="text"
+          className="input input-bordered input-sm flex-1 min-w-0"
+          placeholder="Host"
+          value={host}
+          onChange={(e) => onHost(e.target.value)}
+          required
+        />
+        <input
+          type="number"
+          className="input input-bordered input-sm w-20"
+          placeholder="Port"
+          value={port}
+          onChange={(e) => onPort(parseInt(e.target.value, 10))}
+          required
+        />
+        <label
+          className="flex items-center gap-1.5 cursor-pointer select-none shrink-0"
+          title="Implicit TLS"
+        >
+          <input
+            type="checkbox"
+            className="toggle toggle-primary toggle-sm"
+            checked={tls}
+            onChange={(e) => onTls(e.target.checked)}
+          />
+          <span className="text-xs">TLS</span>
+        </label>
+      </div>
+    </div>
+  );
+}
+
 // ── Apple / iCloud Connect ───────────────────────────────────────────────
 
 export function AppleConnect({
@@ -347,10 +407,13 @@ export function AppleConnect({
   onSuccess: () => void;
   onBack: () => void;
 }): JSX.Element {
-  const [host, setHost] = useState("imap.mail.me.com");
-  const [port, setPort] = useState(993);
-  const [tls, setTls] = useState(true);
-  const [allowSelfSigned, setAllowSelfSigned] = useState(false);
+  const preset = findPresetById("apple")!;
+  const [host, setHost] = useState(preset.imap.host);
+  const [port, setPort] = useState(preset.imap.port);
+  const [tls, setTls] = useState(preset.imap.tls);
+  const [smtpHost, setSmtpHost] = useState(preset.smtp.host);
+  const [smtpPort, setSmtpPort] = useState(preset.smtp.port);
+  const [smtpTls, setSmtpTls] = useState(preset.smtp.tls);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -365,9 +428,10 @@ export function AppleConnect({
       host,
       port,
       tls,
-      allowSelfSigned,
+      allowSelfSigned: preset.allowSelfSigned ?? false,
       username,
       password,
+      smtp: { host: smtpHost, port: smtpPort, tls: smtpTls },
     });
     setLoading(false);
 
@@ -388,74 +452,57 @@ export function AppleConnect({
         <div>
           <p>
             iCloud Mail requires third-party email access to connect over IMAP.
-            This requires an app-specific password. <a
-              href="https://support.apple.com/en-us/102525"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="link"
-            >Read more</a>
+            This requires an app-specific password.{" "}
+            {preset.supportUrl && (
+              <a
+                href={preset.supportUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link"
+              >
+                Read more
+              </a>
+            )}
           </p>
-          <p className="text-xs text-base-content mt-2">
-            <a
-              href="https://account.apple.com/sign-in"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="link"
-            >
-              Sign in to your Apple Account
-            </a>
-            {" > "} Sign-In and Security &gt; to generate one.
-          </p>
+          {preset.appSpecificPasswordUrl && (
+            <p className="text-xs text-base-content mt-2">
+              <a
+                href={preset.appSpecificPasswordUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link"
+              >
+                Sign in to your Apple Account
+              </a>
+              {" > "} Sign-In and Security &gt; to generate one.
+            </p>
+          )}
         </div>
       </div>
 
       <details className="collapse collapse-arrow border border-base-300 rounded-lg">
         <summary className="collapse-title text-xs font-medium py-2 min-h-0">
-          IMAP Settings
+          Server Settings
         </summary>
         <div className="collapse-content space-y-3 pb-3">
-          <div className="space-y-2">
-            <label className="text-sm font-medium">IMAP Host</label>
-            <input
-              type="text"
-              className="input input-bordered w-full"
-              value={host}
-              onChange={(e) => setHost(e.target.value)}
-              required
-            />
-          </div>
-          <div className="flex gap-3">
-            <div className="space-y-2 flex-1">
-              <label className="text-sm font-medium">Port</label>
-              <input
-                type="number"
-                className="input input-bordered w-full"
-                value={port}
-                onChange={(e) => setPort(parseInt(e.target.value, 10))}
-                required
-              />
-            </div>
-            <div className="flex flex-col justify-end gap-2 pb-1">
-              <label className="flex items-center gap-3 cursor-pointer select-none">
-                <input
-                  type="checkbox"
-                  className="toggle toggle-primary toggle-sm"
-                  checked={tls}
-                  onChange={(e) => setTls(e.target.checked)}
-                />
-                <span className="text-xs">Implicit TLS</span>
-              </label>
-              <label className="flex items-center gap-3 cursor-pointer select-none">
-                <input
-                  type="checkbox"
-                  className="toggle toggle-primary toggle-sm"
-                  checked={allowSelfSigned}
-                  onChange={(e) => setAllowSelfSigned(e.target.checked)}
-                />
-                <span className="text-xs">Self-signed cert</span>
-              </label>
-            </div>
-          </div>
+          <ServerRow
+            label="IMAP"
+            host={host}
+            port={port}
+            tls={tls}
+            onHost={setHost}
+            onPort={setPort}
+            onTls={setTls}
+          />
+          <ServerRow
+            label="SMTP"
+            host={smtpHost}
+            port={smtpPort}
+            tls={smtpTls}
+            onHost={setSmtpHost}
+            onPort={setSmtpPort}
+            onTls={setSmtpTls}
+          />
         </div>
       </details>
 
@@ -485,7 +532,7 @@ export function AppleConnect({
 
       {error && (
         <div className="alert alert-error text-sm">
-          <span>{error}</span>
+          <span className="whitespace-pre-line">{error}</span>
         </div>
       )}
 
@@ -514,10 +561,13 @@ export function ProtonConnect({
   onSuccess: () => void;
   onBack: () => void;
 }): JSX.Element {
-  const [host, setHost] = useState("127.0.0.1");
-  const [port, setPort] = useState(1144);
-  const [tls, setTls] = useState(false);
-  const [allowSelfSigned, setAllowSelfSigned] = useState(true);
+  const preset = findPresetById("proton")!;
+  const [host, setHost] = useState(preset.imap.host);
+  const [port, setPort] = useState(preset.imap.port);
+  const [tls, setTls] = useState(preset.imap.tls);
+  const [smtpHost, setSmtpHost] = useState(preset.smtp.host);
+  const [smtpPort, setSmtpPort] = useState(preset.smtp.port);
+  const [smtpTls, setSmtpTls] = useState(preset.smtp.tls);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -532,9 +582,10 @@ export function ProtonConnect({
       host,
       port,
       tls,
-      allowSelfSigned,
+      allowSelfSigned: preset.allowSelfSigned ?? false,
       username,
       password,
+      smtp: { host: smtpHost, port: smtpPort, tls: smtpTls },
     });
     setLoading(false);
 
@@ -555,66 +606,46 @@ export function ProtonConnect({
         <div>
           <p>
             Proton Mail connects over IMAP via{" "}
-            <a
-              href="https://proton.me/support/bridge"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="link"
-            >
-              Proton Bridge
-            </a>
-            , which must be installed and running to sync.
+            {preset.supportUrl ? (
+              <a
+                href={preset.supportUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link"
+              >
+                Proton Bridge
+              </a>
+            ) : (
+              "Proton Bridge"
+            )}
+            , which must be running to sync.
           </p>
         </div>
       </div>
 
       <details className="collapse collapse-arrow border border-base-300 rounded-lg">
         <summary className="collapse-title text-xs font-medium py-2 min-h-0">
-          IMAP Settings
+          Server Settings
         </summary>
         <div className="collapse-content space-y-3 pb-3">
-          <div className="space-y-2">
-            <label className="text-sm font-medium">IMAP Host</label>
-            <input
-              type="text"
-              className="input input-bordered w-full"
-              value={host}
-              onChange={(e) => setHost(e.target.value)}
-              required
-            />
-          </div>
-          <div className="flex gap-3">
-            <div className="space-y-2 flex-1">
-              <label className="text-sm font-medium">Port</label>
-              <input
-                type="number"
-                className="input input-bordered w-full"
-                value={port}
-                onChange={(e) => setPort(parseInt(e.target.value, 10))}
-                required
-              />
-            </div>
-            <div className="flex flex-col justify-end gap-2 pb-1">
-              <label className="flex items-center gap-3 cursor-pointer select-none">
-                <input
-                  type="checkbox"
-                  className="toggle toggle-primary toggle-sm"
-                  checked={tls}
-                  onChange={(e) => setTls(e.target.checked)}
-                />
-                <span className="text-xs">Implicit TLS</span>
-              </label>
-              <label className="flex items-center gap-3 cursor-pointer select-none">
-                <input
-                  type="checkbox"
-                  className="toggle toggle-primary toggle-sm"
-                  checked={allowSelfSigned}
-                  onChange={(e) => setAllowSelfSigned(e.target.checked)}
-                />
-                <span className="text-xs">Self-signed cert</span>
-              </label>
-            </div>
-          </div>
+          <ServerRow
+            label="IMAP"
+            host={host}
+            port={port}
+            tls={tls}
+            onHost={setHost}
+            onPort={setPort}
+            onTls={setTls}
+          />
+          <ServerRow
+            label="SMTP"
+            host={smtpHost}
+            port={smtpPort}
+            tls={smtpTls}
+            onHost={setSmtpHost}
+            onPort={setSmtpPort}
+            onTls={setSmtpTls}
+          />
         </div>
       </details>
 
@@ -643,7 +674,7 @@ export function ProtonConnect({
 
       {error && (
         <div className="alert alert-error text-sm">
-          <span>{error}</span>
+          <span className="whitespace-pre-line">{error}</span>
         </div>
       )}
 
@@ -665,6 +696,28 @@ export function ProtonConnect({
 
 // ── IMAP Connect ──────────────────────────────────────────────────────────────
 
+interface FormState {
+  host: string;
+  port: number;
+  tls: boolean;
+  allowSelfSigned: boolean;
+  smtpHost: string;
+  smtpPort: number;
+  smtpTls: boolean;
+}
+
+function matchesPreset(preset: ProviderPreset, s: FormState): boolean {
+  return (
+    preset.imap.host === s.host &&
+    preset.imap.port === s.port &&
+    preset.imap.tls === s.tls &&
+    (preset.allowSelfSigned ?? false) === s.allowSelfSigned &&
+    preset.smtp.host === s.smtpHost &&
+    preset.smtp.port === s.smtpPort &&
+    preset.smtp.tls === s.smtpTls
+  );
+}
+
 export function ImapConnect({
   onSuccess,
   onBack,
@@ -672,14 +725,50 @@ export function ImapConnect({
   onSuccess: () => void;
   onBack: () => void;
 }): JSX.Element {
+  const [presetId, setPresetId] = useState("custom");
   const [host, setHost] = useState("");
   const [port, setPort] = useState(993);
   const [tls, setTls] = useState(true);
   const [allowSelfSigned, setAllowSelfSigned] = useState(false);
+  const [smtpHost, setSmtpHost] = useState("");
+  const [smtpPort, setSmtpPort] = useState(465);
+  const [smtpTls, setSmtpTls] = useState(true);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const preset = findPresetById(presetId);
+
+  const applyPreset = (id: string): void => {
+    setPresetId(id);
+    const p = findPresetById(id);
+    if (p) {
+      setHost(p.imap.host);
+      setPort(p.imap.port);
+      setTls(p.imap.tls);
+      setAllowSelfSigned(p.allowSelfSigned ?? false);
+      setSmtpHost(p.smtp.host);
+      setSmtpPort(p.smtp.port);
+      setSmtpTls(p.smtp.tls);
+    }
+  };
+
+  const checkDrift = (next: Partial<FormState>): void => {
+    if (!preset) return;
+    const state: FormState = {
+      host, port, tls, allowSelfSigned, smtpHost, smtpPort, smtpTls, ...next,
+    };
+    if (!matchesPreset(preset, state)) setPresetId("custom");
+  };
+
+  const updateHost = (v: string): void => { setHost(v); checkDrift({ host: v }); };
+  const updatePort = (v: number): void => { setPort(v); checkDrift({ port: v }); };
+  const updateTls = (v: boolean): void => { setTls(v); checkDrift({ tls: v }); };
+  const updateAllowSelfSigned = (v: boolean): void => { setAllowSelfSigned(v); checkDrift({ allowSelfSigned: v }); };
+  const updateSmtpHost = (v: string): void => { setSmtpHost(v); checkDrift({ smtpHost: v }); };
+  const updateSmtpPort = (v: number): void => { setSmtpPort(v); checkDrift({ smtpPort: v }); };
+  const updateSmtpTls = (v: boolean): void => { setSmtpTls(v); checkDrift({ smtpTls: v }); };
 
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
@@ -693,6 +782,7 @@ export function ImapConnect({
       allowSelfSigned,
       username,
       password,
+      smtp: { host: smtpHost, port: smtpPort, tls: smtpTls },
     });
     setLoading(false);
 
@@ -707,49 +797,102 @@ export function ImapConnect({
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
       <div className="space-y-2">
-        <label className="text-sm font-medium">IMAP Host</label>
-        <input
-          type="text"
-          className="input input-bordered w-full"
-          placeholder="imap.example.com"
-          value={host}
-          onChange={(e) => setHost(e.target.value)}
-          required
-        />
+        <label className="text-sm font-medium">Provider</label>
+        <select
+          className="select select-bordered w-full"
+          value={presetId}
+          onChange={(e) => applyPreset(e.target.value)}
+        >
+          <option value="custom">Custom / Other</option>
+          {PROVIDER_PRESETS.map((p) => (
+            <option key={p.id} value={p.id}>
+              {p.name}
+            </option>
+          ))}
+        </select>
       </div>
 
-      <div className="flex gap-3">
-        <div className="space-y-2 flex-1">
-          <label className="text-sm font-medium">Port</label>
-          <input
-            type="number"
-            className="input input-bordered w-full"
-            value={port}
-            onChange={(e) => setPort(parseInt(e.target.value, 10))}
-            required
-          />
+      {preset && (preset.appSpecificPasswordUrl || preset.notes || preset.supportUrl) && (
+        <div className="alert text-xs text-left">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="h-6 w-6 shrink-0 stroke-current">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <div>
+            {preset.appSpecificPasswordUrl && (
+              <p>
+                {preset.name} requires an app-specific password for third-party email access.{" "}
+                {preset.supportUrl && (
+                  <a
+                    href={preset.supportUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link"
+                  >
+                    Read more
+                  </a>
+                )}
+              </p>
+            )}
+            {!preset.appSpecificPasswordUrl && preset.supportUrl && (
+              <p>
+                <a
+                  href={preset.supportUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link"
+                >
+                  {preset.name} setup guide
+                </a>
+              </p>
+            )}
+            {preset.appSpecificPasswordUrl && (
+              <p className="text-xs text-base-content mt-2">
+                <a
+                  href={preset.appSpecificPasswordUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link"
+                >
+                  Generate an app-specific password
+                </a>
+              </p>
+            )}
+            {preset.notes && (
+              <p className="text-xs text-base-content mt-2">{preset.notes}</p>
+            )}
+          </div>
         </div>
-        <div className="flex flex-col justify-end gap-2 pb-1">
-          <label className="flex items-center gap-3 cursor-pointer select-none">
-            <input
-              type="checkbox"
-              className="toggle toggle-primary toggle-sm"
-              checked={tls}
-              onChange={(e) => setTls(e.target.checked)}
-            />
-            <span className="text-xs">Implicit TLS</span>
-          </label>
-          <label className="flex items-center gap-3 cursor-pointer select-none">
-            <input
-              type="checkbox"
-              className="toggle toggle-primary toggle-sm"
-              checked={allowSelfSigned}
-              onChange={(e) => setAllowSelfSigned(e.target.checked)}
-            />
-            <span className="text-xs">Self-signed cert</span>
-          </label>
-        </div>
-      </div>
+      )}
+
+      <ServerRow
+        label="IMAP"
+        host={host}
+        port={port}
+        tls={tls}
+        onHost={updateHost}
+        onPort={updatePort}
+        onTls={updateTls}
+      />
+
+      <label className="flex items-center gap-2 cursor-pointer select-none -mt-1">
+        <input
+          type="checkbox"
+          className="toggle toggle-primary toggle-sm"
+          checked={allowSelfSigned}
+          onChange={(e) => updateAllowSelfSigned(e.target.checked)}
+        />
+        <span className="text-xs">Allow self-signed certificate</span>
+      </label>
+
+      <ServerRow
+        label="SMTP"
+        host={smtpHost}
+        port={smtpPort}
+        tls={smtpTls}
+        onHost={updateSmtpHost}
+        onPort={updateSmtpPort}
+        onTls={updateSmtpTls}
+      />
 
       <div className="space-y-2">
         <label className="text-sm font-medium">Email / Username</label>
@@ -775,7 +918,7 @@ export function ImapConnect({
 
       {error && (
         <div className="alert alert-error text-sm">
-          <span>{error}</span>
+          <span className="whitespace-pre-line">{error}</span>
         </div>
       )}
 

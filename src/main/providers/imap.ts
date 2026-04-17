@@ -257,9 +257,6 @@ export function createImapProvider(): EmailProvider {
       return {
         type: "imap",
         email: getSetting("accountEmail") || creds.imap.username,
-        canRead: true,
-        canModify: true,
-        canSend: false,
       };
     },
 

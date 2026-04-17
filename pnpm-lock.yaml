@@ -35,6 +35,9 @@ importers:
       mailparser:
         specifier: ^3.7.2
         version: 3.9.8
+      nodemailer:
+        specifier: ^8.0.5
+        version: 8.0.5
       react:
         specifier: ^18.3.1
         version: 18.3.1

@@ -14,6 +14,7 @@ import {
 import { startLoopbackAuth, fetchGmailProfileEmail } from "../providers/gmail";
 import { startMicrosoftLoopbackAuth, fetchMicrosoftProfileEmail } from "../providers/microsoft";
 import { testImapConnection } from "../providers/imap";
+import { testSmtpConnection } from "../providers/smtp";
 import { getProvider } from "../providers/ProviderFactory";
 import { addWhitelistEntry, getSetting, saveSetting, applyAutoLaunch } from "./settings";
 import { saveGlobalSetting } from "./globalSettings";
@@ -162,14 +163,41 @@ export async function startMicrosoftAuthAndRecordAccount() {
 
 export async function saveImapConfigAndRecordAccount(config: ImapConfig) {
   try {
-    const testResult = await testImapConnection(config);
-    if (!testResult.success) {
-      authLog.info("IMAP connection test failed");
-      return testResult;
+    authLog.info(
+      `Testing IMAP ${config.host}:${config.port} + SMTP ${config.smtp ? `${config.smtp.host}:${config.smtp.port}` : "(not provided)"}`,
+    );
+    const [imapResult, smtpResult] = await Promise.all([
+      testImapConnection(config),
+      config.smtp
+        ? testSmtpConnection({
+            host: config.smtp.host,
+            port: config.smtp.port,
+            tls: config.smtp.tls,
+            username: config.username,
+            password: config.password,
+            allowSelfSigned: config.allowSelfSigned,
+          })
+        : Promise.resolve({ success: true as const }),
+    ]);
+    authLog.info(
+      `Test results — IMAP: ${imapResult.success ? "ok" : `fail (${imapResult.error})`}, SMTP: ${smtpResult.success ? "ok" : `fail (${smtpResult.error})`}`,
+    );
+
+    if (!imapResult.success && !smtpResult.success) {
+      return {
+        success: false,
+        error: `IMAP: ${imapResult.error}\nSMTP: ${smtpResult.error}`,
+      };
+    }
+    if (!imapResult.success) {
+      return { success: false, error: `IMAP: ${imapResult.error}` };
+    }
+    if (!smtpResult.success) {
+      return { success: false, error: `SMTP: ${smtpResult.error}` };
     }
 
     const email = config.username;
-    authLog.info("IMAP config saved");
+    authLog.info("IMAP+SMTP config saved");
     saveCredentials({ providerType: "imap", imap: config }, email);
     recordAccount(email, "imap");
 
@@ -283,26 +311,18 @@ async function bulkActionVendorMessages(
   types?: MessageType[],
 ): Promise<{ success: boolean; error?: string }> {
   const label = actionType === "trashed" ? "trashVendorMessages" : "spamVendorMessages";
-  const permissionVerb = actionType === "trashed" ? "move emails to trash" : "report spam";
 
   const ids = getMessageIdsByVendor(vendorId, types);
   actionLog.info(`${label}: found ${ids.length} messages for vendor ${vendorId}`);
 
   if (ids.length > 0) {
     const provider = getProvider();
-    let canModify: boolean;
     try {
-      const connection = await provider.connect();
-      canModify = connection.canModify;
+      await provider.connect();
       await provider.disconnect();
     } catch (err) {
       actionLog.error(`${label}: connection failed (vendor ${vendorId}): ${err instanceof Error ? err.message : String(err)}`);
       return { success: false, error: "Failed to connect to your email account." };
-    }
-
-    if (!canModify) {
-      actionLog.warn(`${label}: provider lacks modify access (vendor ${vendorId})`);
-      return { success: false, error: `Your account doesn't have permission to ${permissionVerb}. Reconnect your account in Settings to grant full access.` };
     }
 
     const p = getProvider();

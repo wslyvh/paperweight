@@ -336,9 +336,6 @@ export function createGmailProvider(): EmailProvider {
       return {
         type: "gmail-oauth",
         email: email || "",
-        canRead: true,
-        canModify: true,
-        canSend: false,
       };
     },
 

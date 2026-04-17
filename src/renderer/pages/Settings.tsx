@@ -171,7 +171,7 @@ export default function Settings(): JSX.Element {
     return "Licensed";
   };
 
-  const connectionHealthy = connection ? connection.canRead : false;
+  const connectionHealthy = !!connection;
 
   const handleReconnect = async (): Promise<void> => {
     setReconnectLoading(true);

@@ -283,9 +283,6 @@ export interface SupportInfo {
 export interface EmailConnection {
   type: "gmail-oauth" | "imap" | "microsoft-oauth";
   email: string;
-  canRead: boolean;
-  canModify: boolean;
-  canSend: boolean;
 }
 
 export interface ImapConfig {
@@ -295,6 +292,11 @@ export interface ImapConfig {
   username: string;
   password: string;
   allowSelfSigned?: boolean;
+  smtp?: {
+    host: string;
+    port: number;
+    tls: boolean;
+  };
 }
 
 export interface SyncStatus {
