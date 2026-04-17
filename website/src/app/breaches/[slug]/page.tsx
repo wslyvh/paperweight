@@ -239,7 +239,14 @@ export default async function BreachPage({
             <div className="card bg-base-200/50">
               <div className="card-body p-4 space-y-3">
                 <InfoRow label="Date" value={model.breach.date} />
-                <InfoRow label="Records" value={`${formatCount(model.breach.pwnCount)} affected`} />
+                <InfoRow
+                  label="Records"
+                  value={
+                    model.breach.pwnCount > 0
+                      ? `${formatCount(model.breach.pwnCount)} affected`
+                      : "Unknown"
+                  }
+                />
                 <InfoRow
                   label="Status"
                   value={

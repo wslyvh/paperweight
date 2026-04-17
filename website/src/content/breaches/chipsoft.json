@@ -1,0 +1,50 @@
+{
+  "slug": "chipsoft",
+  "generated_at": "2026-04-17T13:08:59.393Z",
+  "logoUrl": "/logos/ChipSoft.png",
+  "breach": {
+    "slug": "chipsoft",
+    "company_name": "ChipSoft",
+    "runs": [],
+    "categories": [
+      "healthcare"
+    ],
+    "web": "https://www.chipsoft.com",
+    "suggested_transport_medium": "webform",
+    "name": "ChipSoft",
+    "title": "ChipSoft",
+    "domain": "chipsoft.com",
+    "breach_date": "2026-04-07",
+    "added_date": "2026-04-12T21:15:00Z",
+    "modified_date": "2026-04-16T18:15:00Z",
+    "pwn_count": 0,
+    "description": "In April 2026, Dutch healthcare software vendor <a href=\"https://informatie.chipsoft.com/chip-soft-informatiepagina-ransomware-incident/\" target=\"_blank\" rel=\"noopener\">ChipSoft disclosed a ransomware incident</a> in which attackers exfiltrated patient personal data, including medical records, from hosted services used by Dutch healthcare institutions. The affected products were Zorgportaal, HiX Mobile, HAS Relay and Zorgplatform. <a href=\"https://nos.nl/artikel/2610742-toch-patientgegevens-buitgemaakt-bij-hacken-van-softwarebedrijf-chipsoft\" target=\"_blank\" rel=\"noopener\">Reporting by NOS</a> identifies affected customers as dozens of general practices (largely in Noord-Limburg), several rehabilitation clinics and the Rotterdam Eye Hospital (Oogziekenhuis) using HiX 365. ChipSoft's Belgian operations were unaffected, and the Dutch Data Protection Authority (Autoriteit Persoonsgegevens) received over 60 breach notifications linked to the incident. The total number of affected individuals has not been disclosed.",
+    "disclosure_url": "https://informatie.chipsoft.com/chip-soft-informatiepagina-ransomware-incident/",
+    "data_classes": [
+      "Medical records",
+      "Names",
+      "Patient personal data"
+    ],
+    "is_verified": true,
+    "is_sensitive": false,
+    "source": {
+      "name": "ChipSoft disclosure",
+      "url": "https://informatie.chipsoft.com/chip-soft-informatiepagina-ransomware-incident/"
+    }
+  },
+  "enforcement": {
+    "records": [],
+    "total_fines": 0
+  },
+  "content": {
+    "aboutCompany": "ChipSoft is a Dutch healthcare software vendor that provides electronic patient record systems. Its products are widely used in Dutch healthcare institutions.",
+    "keyTakeaways": [
+      "A ransomware attack on April 7, 2026, exposed patient personal data, including medical records and names, from ChipSoft's hosted services affecting an unknown number of individuals.",
+      "This incident is part of a broader pattern of ransomware attacks targeting the healthcare sector.",
+      "Individuals whose medical records were exposed face a heightened risk of medical identity theft and targeted fraud."
+    ],
+    "incidentAndExposure": "On April 7, 2026, ChipSoft, a Dutch healthcare software vendor, experienced a ransomware incident. The company publicly acknowledged that attackers exfiltrated patient personal data, including medical records and names, from its hosted services. The affected products included Zorgportaal, HiX Mobile, HAS Relay, and Zorgplatform. While the total number of affected individuals has not been disclosed, the incident impacted dozens of general practices, several rehabilitation clinics, and the Rotterdam Eye Hospital (Oogziekenhuis) using HiX 365. The Dutch Data Protection Authority received over 60 breach notifications related to this incident. ChipSoft's Belgian operations were unaffected.",
+    "timelineAndCause": "The ransomware attack on ChipSoft occurred on April 7, 2026, and the company disclosed the incident on April 12, 2026. The attack was carried out by cybercriminals who gained access to ChipSoft's systems and exfiltrated patient data. Following the discovery, ChipSoft proactively took measures to block further access to potentially affected systems, including temporarily disabling connections to Zorgportaal, HiX Mobile, HAS Relay, and Zorgplatform.",
+    "nextSteps": "If you are a patient of a Dutch healthcare institution that uses ChipSoft's services, you should monitor communications from your healthcare provider for specific guidance. Given that medical records and personal data were exposed, it is advisable to be vigilant for any suspicious activity related to your medical or financial accounts. Consider placing a fraud alert on your credit and reviewing your medical bills and explanation of benefits for services you did not receive. Be cautious of unsolicited communications, especially those asking for personal information."
+  }
+}

@@ -69,7 +69,11 @@ export default function BreachIndexPage() {
                   </div>
                   <div className="flex flex-wrap gap-x-3 gap-y-0.5 text-xs opacity-60">
                     <span>{breach.breachDate.slice(0, 7)}</span>
-                    <span>{formatCount(breach.pwnCount)} records</span>
+                    <span>
+                      {breach.pwnCount > 0
+                        ? `${formatCount(breach.pwnCount)} records`
+                        : "Unknown records"}
+                    </span>
                     <span className="hidden sm:inline">
                       {breach.dataClasses.slice(0, 3).join(", ")}
                       {breach.dataClasses.length > 3 && ` +${breach.dataClasses.length - 3} more`}

@@ -86,6 +86,7 @@ export interface BreachSitemapEntry {
 }
 
 export function formatCount(n: number): string {
+  if (n <= 0) return "Unknown";
   if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)} million`;
   if (n >= 1_000) return `${(n / 1_000).toFixed(0)}K`;
   return n.toLocaleString();
@@ -136,7 +137,11 @@ function buildIndexItem(breach: BreachRecord): BreachIndexItem {
 
 function buildMetadata(breach: BreachRecord) {
   const title = `${breach.title} Data Breach - What to Do`;
-  const description = `${formatCount(breach.pwn_count)} records exposed in the ${breach.title} breach (${breach.breach_date.slice(0, 4)}). Find out what data was leaked and what steps to take now.`;
+  const year = breach.breach_date.slice(0, 4);
+  const description =
+    breach.pwn_count > 0
+      ? `${formatCount(breach.pwn_count)} records exposed in the ${breach.title} breach (${year}). Find out what data was leaked and what steps to take now.`
+      : `Records exposed in the ${breach.title} breach (${year}) have not been disclosed. Find out what data was leaked and what steps to take now.`;
   return { title, description };
 }
 

@@ -839,5 +839,22 @@
     "comments": [
       "Consumer Care postal address used; corporate HQ is 2501 McGee Street, Kansas City, MO 64108."
     ]
+  },
+  {
+    "slug": "chipsoft",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "ChipSoft",
+    "categories": [
+      "healthcare"
+    ],
+    "web": "https://www.chipsoft.com",
+    "suggested-transport-medium": "webform",
+    "quality": "tested",
+    "comments": [
+      "Healthcare IT vendor (HiX EPD). ChipSoft processes patient data on behalf of hospitals, so DSARs normally go to the hospital or GP acting as controller.",
+      "Dedicated DPO/privacy email or webform not verified — add after confirmation."
+    ]
   }
 ]
