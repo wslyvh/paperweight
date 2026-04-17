@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type {
+  AccountInfo,
   ChartTrend,
   DashboardStats,
 } from "@shared/types";
 import { useLicense } from "../context/LicenseContext";
 import TrendChartCard from "../components/TrendChartCard";
 import ImpactBlock from "../components/ImpactBlock";
-import { ArrowRight, ChevronRight, Contact, Inbox, Mail } from "lucide-react";
+import { AlertTriangle, ArrowRight, ChevronRight, Contact, Inbox, Mail } from "lucide-react";
 
 export default function Dashboard(): JSX.Element {
   const navigate = useNavigate();
@@ -29,21 +30,27 @@ export default function Dashboard(): JSX.Element {
   const license = useLicense();
   const [loading, setLoading] = useState(true);
   const [impactKey] = useState(0);
+  const [account, setAccount] = useState<AccountInfo>();
 
   const fetchData = async (silent = false): Promise<void> => {
     if (!silent) setLoading(true);
-    const [statsData, trendData] = await Promise.all([
+    const [statsData, trendData, accountData] = await Promise.all([
       window.api.getDashboardStats(),
       window.api.getDashboardTrend(),
+      window.api.getAccountInfo(),
     ]);
     setStats(statsData);
     setTrend(trendData);
+    setAccount(accountData);
     setLoading(false);
   };
 
   useEffect(() => {
     fetchData();
   }, []);
+
+  const needsSmtpSetup =
+    account?.providerType === "imap" && account.server && !account.server.smtp;
 
 
   if (loading) {
@@ -76,6 +83,34 @@ export default function Dashboard(): JSX.Element {
           </div>
           <ArrowRight
             className="w-5 h-5 text-primary shrink-0"
+            aria-hidden="true"
+          />
+        </div>
+      )}
+
+      {needsSmtpSetup && (
+        <div
+          className="flex items-center justify-between p-4 bg-warning/10 border border-warning/20 rounded-box cursor-pointer hover:bg-warning/15 transition-colors"
+          onClick={() =>
+            navigate("/settings", { state: { openServerSettings: true } })
+          }
+        >
+          <div className="flex items-center gap-3 min-w-0">
+            <AlertTriangle
+              className="w-5 h-5 text-warning shrink-0"
+              aria-hidden="true"
+            />
+            <div className="min-w-0">
+              <p className="font-semibold text-base-content">
+                Finish setting up your account
+              </p>
+              <p className="text-sm text-base-content/60">
+                Add your outgoing (SMTP) server to enable sending from this account.
+              </p>
+            </div>
+          </div>
+          <ArrowRight
+            className="w-5 h-5 text-warning shrink-0"
             aria-hidden="true"
           />
         </div>

@@ -15,6 +15,9 @@ const api: ElectronAPI = {
 
   saveImapConfig: (config) => ipcRenderer.invoke(IPC.saveImapConfig, config),
 
+  updateServerConfig: (server) =>
+    ipcRenderer.invoke(IPC.updateServerConfig, server),
+
   testConnection: () => ipcRenderer.invoke(IPC.testConnection),
 
   getAccountInfo: () => ipcRenderer.invoke(IPC.getAccountInfo),

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import makeBlockie from "ethereum-blockies-base64";
 import { HelpCircle, Lock } from "lucide-react";
 import type {
@@ -17,13 +17,16 @@ import {
   ProtonConnect,
   ImapConnect,
 } from "../components/ProviderConnect";
+import ServerSettingsModal from "../components/ServerSettingsModal";
 import { useAccounts } from "../hooks/useAccounts";
 
 type AddAccountView = "provider" | "gmail" | "microsoft" | "apple" | "proton" | "imap";
 
 export default function Settings(): JSX.Element {
   const navigate = useNavigate();
+  const location = useLocation();
   const [account, setAccount] = useState<AccountInfo>();
+  const [showServerSettings, setShowServerSettings] = useState(false);
   const [connection, setConnection] = useState<EmailConnection | null>(null);
   const [autoLaunch, setAutoLaunch] = useState(() => !!window.api.getSettings().autoLaunch);
   const [launchMinimized, setLaunchMinimized] = useState(() => !!window.api.getSettings().launchMinimized);
@@ -60,6 +63,14 @@ export default function Settings(): JSX.Element {
     window.api.getEmailConnection().then(setConnection);
     fetchWhitelist();
   }, []);
+
+  useEffect(() => {
+    const state = location.state as { openServerSettings?: boolean } | null;
+    if (state?.openServerSettings) {
+      setShowServerSettings(true);
+      navigate(location.pathname, { replace: true, state: null });
+    }
+  }, [location, navigate]);
 
   const handleAddEntry = async (): Promise<void> => {
     const value = newEntry.trim().toLowerCase();
@@ -256,6 +267,15 @@ export default function Settings(): JSX.Element {
                       ) : (
                         "Switch"
                       )}
+                    </button>
+                  )}
+                  {acc.isActive && acc.providerType === "imap" && account?.server && (
+                    <button
+                      className="btn btn-ghost btn-xs"
+                      disabled={actionBusy}
+                      onClick={() => setShowServerSettings(true)}
+                    >
+                      Configure
                     </button>
                   )}
                   <button
@@ -644,6 +664,19 @@ export default function Settings(): JSX.Element {
             <button onClick={() => setShowResyncModal(false)}>close</button>
           </form>
         </dialog>
+      )}
+
+      {/* Server settings modal (IMAP accounts only) */}
+      {showServerSettings && account?.server && (
+        <ServerSettingsModal
+          email={account.email}
+          initial={account.server}
+          onClose={() => setShowServerSettings(false)}
+          onSaved={() => {
+            setShowServerSettings(false);
+            window.api.getAccountInfo().then(setAccount);
+          }}
+        />
       )}
 
       {/* Remove account confirmation modal */}

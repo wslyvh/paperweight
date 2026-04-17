@@ -11,6 +11,7 @@ import type {
   Message,
   MessageType,
   RiskCounts,
+  ServerConfig,
   Settings,
   SupportInfo,
   SyncStatus,
@@ -27,6 +28,7 @@ export const IPC = {
   startGmailAuth: "start-gmail-auth",
   startMicrosoftAuth: "start-microsoft-auth",
   saveImapConfig: "save-imap-config",
+  updateServerConfig: "update-server-config",
   testConnection: "test-connection",
   getAccountInfo: "get-account-info",
   startSync: "start-sync",
@@ -89,6 +91,9 @@ export interface ElectronAPI {
   startMicrosoftAuth: () => Promise<{ success: boolean; error?: string }>;
   saveImapConfig: (
     config: ImapConfig
+  ) => Promise<{ success: boolean; error?: string }>;
+  updateServerConfig: (
+    server: ServerConfig & { smtp: NonNullable<ServerConfig["smtp"]> },
   ) => Promise<{ success: boolean; error?: string }>;
   testConnection: () => Promise<{ success: boolean; error?: string }>;
   getAccountInfo: () => Promise<AccountInfo>;

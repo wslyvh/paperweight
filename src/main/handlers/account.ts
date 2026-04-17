@@ -3,7 +3,7 @@ import { readFileSync, statSync, existsSync, unlinkSync } from "fs";
 import { join } from "path";
 import { IPC } from "@shared/ipc";
 import { isIntInRange, isString } from "@shared/validation";
-import type { ImapConfig, SupportInfo, AccountSummary, MessageType } from "@shared/types";
+import type { ImapConfig, ServerConfig, SupportInfo, MessageType } from "@shared/types";
 import { isMessageType } from "@shared/types";
 import {
   getAccountInfo,
@@ -13,6 +13,7 @@ import {
   startGmailAuthAndRecordAccount,
   startMicrosoftAuthAndRecordAccount,
   testCurrentConnection,
+  updateServerConfig,
   trashMessage,
   markMessageAsSpam,
   markMessageAsRead,
@@ -37,6 +38,30 @@ import { wipeDatabase, deleteDbFiles, reconnectDb } from "../db";
 import { dataLog, actionLog } from "../utils/log";
 import { getFileLogPath } from "../utils/file-log";
 import os from "os";
+
+type ServerConfigInput = ServerConfig & { smtp: NonNullable<ServerConfig["smtp"]> };
+
+function isServerConfigInput(value: unknown): value is ServerConfigInput {
+  if (!value || typeof value !== "object") return false;
+  const v = value as Record<string, unknown>;
+  if (!v.imap || typeof v.imap !== "object") return false;
+  if (!v.smtp || typeof v.smtp !== "object") return false;
+
+  const imap = v.imap as Record<string, unknown>;
+  const smtp = v.smtp as Record<string, unknown>;
+
+  return (
+    isString(imap.host) &&
+    imap.host.trim() !== "" &&
+    isIntInRange(imap.port, 1, 65535) &&
+    typeof imap.tls === "boolean" &&
+    typeof imap.allowSelfSigned === "boolean" &&
+    isString(smtp.host) &&
+    smtp.host.trim() !== "" &&
+    isIntInRange(smtp.port, 1, 65535) &&
+    typeof smtp.tls === "boolean"
+  );
+}
 
 function isImapConfig(value: unknown): value is ImapConfig {
   if (!value || typeof value !== "object") return false;
@@ -94,6 +119,11 @@ export function registerAccountHandlers(): void {
   ipcMain.handle(IPC.saveImapConfig, (_event, config: unknown) => {
     if (!isImapConfig(config)) throw new Error("Invalid IMAP config");
     return saveImapConfigAndRecordAccount(config);
+  });
+
+  ipcMain.handle(IPC.updateServerConfig, (_event, server: unknown) => {
+    if (!isServerConfigInput(server)) throw new Error("Invalid server config");
+    return updateServerConfig(server);
   });
 
   ipcMain.handle(IPC.testConnection, () => testCurrentConnection());

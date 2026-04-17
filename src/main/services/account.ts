@@ -28,7 +28,7 @@ import {
 import { createAccountDb, reconnectDb } from "../db";
 import { IPC } from "@shared/ipc";
 import { APP_CONFIG } from "@shared/config";
-import type { ImapConfig, AccountInfo, EmailConnection, MessageType } from "@shared/types";
+import type { ImapConfig, AccountInfo, EmailConnection, MessageType, ServerConfig } from "@shared/types";
 import { authLog, actionLog } from "../utils/log";
 
 // Populate per-account settings in the DB if they are missing.
@@ -208,6 +208,57 @@ export async function saveImapConfigAndRecordAccount(config: ImapConfig) {
   }
 }
 
+export async function updateServerConfig(
+  server: ServerConfig & { smtp: NonNullable<ServerConfig["smtp"]> },
+): Promise<{ success: boolean; error?: string }> {
+  const creds = loadCredentials();
+  if (!creds?.imap) {
+    return { success: false, error: "No IMAP account to update" };
+  }
+
+  const imapCfg: ImapConfig = {
+    host: server.imap.host,
+    port: server.imap.port,
+    tls: server.imap.tls,
+    allowSelfSigned: server.imap.allowSelfSigned,
+    username: creds.imap.username,
+    password: creds.imap.password,
+    smtp: server.smtp,
+  };
+
+  authLog.info(
+    `Update server config: IMAP ${server.imap.host}:${server.imap.port} + SMTP ${server.smtp.host}:${server.smtp.port}`,
+  );
+  const [imapResult, smtpResult] = await Promise.all([
+    testImapConnection(imapCfg),
+    testSmtpConnection({
+      host: server.smtp.host,
+      port: server.smtp.port,
+      tls: server.smtp.tls,
+      username: creds.imap.username,
+      password: creds.imap.password,
+      allowSelfSigned: server.imap.allowSelfSigned,
+    }),
+  ]);
+  authLog.info(
+    `Test results — IMAP: ${imapResult.success ? "ok" : `fail (${imapResult.error})`}, SMTP: ${smtpResult.success ? "ok" : `fail (${smtpResult.error})`}`,
+  );
+
+  if (!imapResult.success && !smtpResult.success) {
+    return {
+      success: false,
+      error: `IMAP: ${imapResult.error}\nSMTP: ${smtpResult.error}`,
+    };
+  }
+  if (!imapResult.success) return { success: false, error: `IMAP: ${imapResult.error}` };
+  if (!smtpResult.success) return { success: false, error: `SMTP: ${smtpResult.error}` };
+
+  saveCredentials({ ...creds, imap: imapCfg });
+  authLog.info("Server config updated");
+
+  return { success: true };
+}
+
 export async function testCurrentConnection() {
   const creds = loadCredentials();
   if (!creds) return { success: false, error: "No credentials stored" };
@@ -251,12 +302,25 @@ export function getAccountInfo(): AccountInfo {
   const stats = getDashboardStats();
   const syncState = getSyncState();
 
+  const server = creds?.imap
+    ? {
+        imap: {
+          host: creds.imap.host,
+          port: creds.imap.port,
+          tls: creds.imap.tls,
+          allowSelfSigned: creds.imap.allowSelfSigned ?? false,
+        },
+        smtp: creds.imap.smtp ? { ...creds.imap.smtp } : undefined,
+      }
+    : undefined;
+
   return {
     email: getSetting("accountEmail") || "",
     providerType: creds?.providerType || "none",
     registeredAt: parseInt(getSetting("registeredAt") || "0", 10) || undefined,
     lastSyncAt: syncState.last_sync_at,
     totalMessages: stats.totalMessages,
+    server,
   };
 }
 

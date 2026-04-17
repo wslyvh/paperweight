@@ -239,12 +239,28 @@ export interface AccountSummary {
   isActive: boolean;
 }
 
+export interface ServerConfig {
+  imap: {
+    host: string;
+    port: number;
+    tls: boolean;
+    allowSelfSigned: boolean;
+  };
+  smtp?: {
+    host: string;
+    port: number;
+    tls: boolean;
+  };
+}
+
 export interface AccountInfo {
   email: string;
   providerType: string;
   registeredAt?: number;
   lastSyncAt?: number;
   totalMessages: number;
+  /** IMAP+SMTP server config, sans credentials. Present only for IMAP accounts. */
+  server?: ServerConfig;
 }
 
 export interface Settings {

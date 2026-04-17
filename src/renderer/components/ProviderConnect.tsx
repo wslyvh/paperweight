@@ -342,7 +342,7 @@ export function MicrosoftConnect({
 
 // ── Server Row (compact IMAP/SMTP editor) ────────────────────────────────
 
-function ServerRow({
+export function ServerRow({
   label,
   host,
   port,

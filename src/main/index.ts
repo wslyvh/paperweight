@@ -73,13 +73,13 @@ function createWindow(): BrowserWindow {
   return win;
 }
 
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
   Menu.setApplicationMenu(null);
   initFileLog(join(app.getPath("logs"), "main.log"));
 
   appLog.info(`Starting ${APP_CONFIG.NAME} v${app.getVersion()} (Electron ${process.versions.electron})`);
 
-  runMigrations();
+  await runMigrations();
 
   const companiesDbPath = is.dev
     ? join(app.getAppPath(), "resources", "companies.db")
