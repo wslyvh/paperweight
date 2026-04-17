@@ -50,10 +50,12 @@ export function AppleLogo(): JSX.Element {
 export function ProviderSelect({
   onGmail,
   onMicrosoft,
+  onApple,
   onImap,
 }: {
   onGmail: () => void;
   onMicrosoft: () => void;
+  onApple: () => void;
   onImap: () => void;
 }): JSX.Element {
   return (
@@ -76,11 +78,10 @@ export function ProviderSelect({
 
       <button
         className="btn btn-outline btn-block justify-start gap-3"
-        disabled
+        onClick={onApple}
       >
         <AppleLogo />
         Connect with Apple
-        <span className="badge badge-ghost badge-xs ml-auto">Soon</span>
       </button>
 
       <div className="divider">OR</div>
@@ -308,6 +309,118 @@ export function MicrosoftConnect({
   );
 }
 
+// ── Apple / iCloud Connect ───────────────────────────────────────────────
+
+export function AppleConnect({
+  onSuccess,
+  onBack,
+}: {
+  onSuccess: () => void;
+  onBack: () => void;
+}): JSX.Element {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    const result = await window.api.saveImapConfig({
+      host: "imap.mail.me.com",
+      port: 993,
+      tls: true,
+      username,
+      password,
+    });
+    setLoading(false);
+
+    if (result.success) {
+      window.api.startSync();
+      onSuccess();
+    } else {
+      setError(result.error || "Connection failed");
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-3">
+      <div className="alert text-xs text-left">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="h-6 w-6 shrink-0 stroke-current">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <div>
+          <p>
+            iCloud Mail requires third-party email access to connect over IMAP.
+            This requires an app-specific password. <a
+              href="https://support.apple.com/en-us/102525"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link"
+            >Read more</a>
+          </p>
+          <p className="text-xs text-base-content mt-2">
+            <a
+              href="https://account.apple.com/sign-in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link"
+            >
+              Sign in to your Apple Account
+            </a>
+            {" > "} Sign-In and Security &gt; to generate one.
+          </p>
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <label className="text-sm font-medium">Apple ID Email</label>
+        <input
+          type="text"
+          className="input input-bordered w-full"
+          placeholder="you@icloud.com"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+      </div>
+
+      <div className="space-y-2">
+        <label className="text-sm font-medium">App-Specific Password</label>
+        <input
+          type="password"
+          className="input input-bordered w-full"
+          placeholder="xxxx-xxxx-xxxx-xxxx"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+      </div>
+
+      {error && (
+        <div className="alert alert-error text-sm">
+          <span>{error}</span>
+        </div>
+      )}
+
+      <div className="flex gap-3 pt-2">
+        <button
+          type="submit"
+          className="btn btn-primary flex-1"
+          disabled={loading}
+        >
+          {loading ? <><span className="loading loading-spinner loading-xs" /> Connecting...</> : "Connect"}
+        </button>
+        <button type="button" className="btn btn-ghost flex-1" onClick={onBack}>
+          Back
+        </button>
+      </div>
+    </form>
+  );
+}
+
 // ── IMAP Connect ──────────────────────────────────────────────────────────────
 
 export function ImapConnect({
@@ -427,10 +540,10 @@ export function ImapConnect({
       <div className="flex gap-3 pt-2">
         <button
           type="submit"
-          className={`btn btn-primary flex-1 ${loading ? "loading" : ""}`}
+          className="btn btn-primary flex-1"
           disabled={loading}
         >
-          {loading ? "Connecting..." : "Connect"}
+          {loading ? <><span className="loading loading-spinner loading-xs" /> Connecting...</> : "Connect"}
         </button>
         <button type="button" className="btn btn-ghost flex-1" onClick={onBack}>
           Back

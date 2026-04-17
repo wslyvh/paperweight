@@ -569,7 +569,9 @@ export async function testImapConnection(config: {
     await client.logout();
     return { success: true };
   } catch (err) {
-    syncLog.error("IMAP connection error:", err instanceof Error ? err.message : String(err));
+    const raw = err instanceof Error ? err.message : String(err);
+    const responseText = (err as { responseText?: string })?.responseText;
+    syncLog.error("IMAP connection error:", raw, responseText ? `— ${responseText}` : "");
     return {
       success: false,
       error: friendlyConnectionError(err),

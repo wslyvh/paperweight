@@ -40,7 +40,7 @@ export function friendlyConnectionError(err: unknown): string {
   if (/ETIMEDOUT|ENOTFOUND/i.test(msg)) {
     return "Could not reach the mail server. Check the host and port.";
   }
-  if (/authenticate|login|credentials|invalid/i.test(msg)) {
+  if (/authenticate|login|credentials|invalid|Command failed/i.test(msg)) {
     return "Authentication failed. Check your username and password.";
   }
   if (

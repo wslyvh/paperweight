@@ -13,11 +13,12 @@ import {
   ProviderSelect,
   GmailConnect,
   MicrosoftConnect,
+  AppleConnect,
   ImapConnect,
 } from "../components/ProviderConnect";
 import { useAccounts } from "../hooks/useAccounts";
 
-type AddAccountView = "provider" | "gmail" | "microsoft" | "imap";
+type AddAccountView = "provider" | "gmail" | "microsoft" | "apple" | "imap";
 
 export default function Settings(): JSX.Element {
   const navigate = useNavigate();
@@ -555,6 +556,7 @@ export default function Settings(): JSX.Element {
                 <ProviderSelect
                   onGmail={() => setAddAccountView("gmail")}
                   onMicrosoft={() => setAddAccountView("microsoft")}
+                  onApple={() => setAddAccountView("apple")}
                   onImap={() => setAddAccountView("imap")}
                 />
                 <div className="modal-action mt-4">
@@ -577,6 +579,13 @@ export default function Settings(): JSX.Element {
 
             {addAccountView === "microsoft" && (
               <MicrosoftConnect
+                onSuccess={handleAddAccountSuccess}
+                onBack={() => setAddAccountView("provider")}
+              />
+            )}
+
+            {addAccountView === "apple" && (
+              <AppleConnect
                 onSuccess={handleAddAccountSuccess}
                 onBack={() => setAddAccountView("provider")}
               />
