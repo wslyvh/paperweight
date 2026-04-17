@@ -45,17 +45,38 @@ export function AppleLogo(): JSX.Element {
   );
 }
 
+export function ProtonLogo(): JSX.Element {
+  return (
+    <svg viewBox="0 0 36 36" className="w-4 h-4" fill="none">
+      <path fillRule="evenodd" clipRule="evenodd" d="M1 16.8C1 7.52162 8.52162 0 17.8 0C27.0784 0 34.6 7.52162 34.6 16.8V33C34.6 34.6569 33.2569 36 31.6 36H27.4L4.6 32.4L1 18V16.8ZM27.4 16.8C27.4 11.4981 23.1019 7.2 17.8 7.2C12.4981 7.2 8.2 11.4981 8.2 16.8L15.4294 23.1257C16.7867 24.3133 18.8133 24.3133 20.1706 23.1257L24.9853 22.3629L27.4 16.8Z" fill="url(#proton-grad0)" />
+      <path d="M1 18L11.2402 26.7773C12.5958 27.9392 14.5981 27.9321 15.9453 26.7606L27.4 16.8V36H4C2.34315 36 1 34.6569 1 33V18Z" fill="url(#proton-grad1)" />
+      <defs>
+        <radialGradient id="proton-grad0" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(32.6204 38.9636) rotate(-138.788) scale(42.0132 34.2426)">
+          <stop stopColor="#E2DBFF" />
+          <stop offset="1" stopColor="#6D4AFF" />
+        </radialGradient>
+        <linearGradient id="proton-grad1" x1="14.3512" y1="26.5887" x2="5.56632" y2="45.8192" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#6D4AFF" />
+          <stop offset="1" stopColor="#28B0E8" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+}
+
 // ── Provider Select ──────────────────────────────────────────────────────────
 
 export function ProviderSelect({
   onGmail,
   onMicrosoft,
   onApple,
+  onProton,
   onImap,
 }: {
   onGmail: () => void;
   onMicrosoft: () => void;
   onApple: () => void;
+  onProton: () => void;
   onImap: () => void;
 }): JSX.Element {
   return (
@@ -82,6 +103,14 @@ export function ProviderSelect({
       >
         <AppleLogo />
         Connect with Apple
+      </button>
+
+      <button
+        className="btn btn-outline btn-block justify-start gap-3"
+        onClick={onProton}
+      >
+        <ProtonLogo />
+        Connect with Proton Mail
       </button>
 
       <div className="divider">OR</div>
@@ -318,6 +347,10 @@ export function AppleConnect({
   onSuccess: () => void;
   onBack: () => void;
 }): JSX.Element {
+  const [host, setHost] = useState("imap.mail.me.com");
+  const [port, setPort] = useState(993);
+  const [tls, setTls] = useState(true);
+  const [allowSelfSigned, setAllowSelfSigned] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -329,9 +362,10 @@ export function AppleConnect({
     setError("");
 
     const result = await window.api.saveImapConfig({
-      host: "imap.mail.me.com",
-      port: 993,
-      tls: true,
+      host,
+      port,
+      tls,
+      allowSelfSigned,
       username,
       password,
     });
@@ -375,6 +409,56 @@ export function AppleConnect({
         </div>
       </div>
 
+      <details className="collapse collapse-arrow border border-base-300 rounded-lg">
+        <summary className="collapse-title text-xs font-medium py-2 min-h-0">
+          IMAP Settings
+        </summary>
+        <div className="collapse-content space-y-3 pb-3">
+          <div className="space-y-2">
+            <label className="text-sm font-medium">IMAP Host</label>
+            <input
+              type="text"
+              className="input input-bordered w-full"
+              value={host}
+              onChange={(e) => setHost(e.target.value)}
+              required
+            />
+          </div>
+          <div className="flex gap-3">
+            <div className="space-y-2 flex-1">
+              <label className="text-sm font-medium">Port</label>
+              <input
+                type="number"
+                className="input input-bordered w-full"
+                value={port}
+                onChange={(e) => setPort(parseInt(e.target.value, 10))}
+                required
+              />
+            </div>
+            <div className="flex flex-col justify-end gap-2 pb-1">
+              <label className="flex items-center gap-3 cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  className="toggle toggle-primary toggle-sm"
+                  checked={tls}
+                  onChange={(e) => setTls(e.target.checked)}
+                />
+                <span className="text-xs">Implicit TLS</span>
+              </label>
+              <label className="flex items-center gap-3 cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  className="toggle toggle-primary toggle-sm"
+                  checked={allowSelfSigned}
+                  onChange={(e) => setAllowSelfSigned(e.target.checked)}
+                />
+                <span className="text-xs">Self-signed cert</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </details>
+
       <div className="space-y-2">
         <label className="text-sm font-medium">Apple ID Email</label>
         <input
@@ -393,6 +477,164 @@ export function AppleConnect({
           type="password"
           className="input input-bordered w-full"
           placeholder="xxxx-xxxx-xxxx-xxxx"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+      </div>
+
+      {error && (
+        <div className="alert alert-error text-sm">
+          <span>{error}</span>
+        </div>
+      )}
+
+      <div className="flex gap-3 pt-2">
+        <button
+          type="submit"
+          className="btn btn-primary flex-1"
+          disabled={loading}
+        >
+          {loading ? <><span className="loading loading-spinner loading-xs" /> Connecting...</> : "Connect"}
+        </button>
+        <button type="button" className="btn btn-ghost flex-1" onClick={onBack}>
+          Back
+        </button>
+      </div>
+    </form>
+  );
+}
+
+// ── Proton Mail Connect ──────────────────────────────────────────────────
+
+export function ProtonConnect({
+  onSuccess,
+  onBack,
+}: {
+  onSuccess: () => void;
+  onBack: () => void;
+}): JSX.Element {
+  const [host, setHost] = useState("127.0.0.1");
+  const [port, setPort] = useState(1144);
+  const [tls, setTls] = useState(false);
+  const [allowSelfSigned, setAllowSelfSigned] = useState(true);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    const result = await window.api.saveImapConfig({
+      host,
+      port,
+      tls,
+      allowSelfSigned,
+      username,
+      password,
+    });
+    setLoading(false);
+
+    if (result.success) {
+      window.api.startSync();
+      onSuccess();
+    } else {
+      setError(result.error || "Connection failed");
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-3">
+      <div className="alert text-xs text-left">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="h-6 w-6 shrink-0 stroke-current">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <div>
+          <p>
+            Proton Mail connects over IMAP via{" "}
+            <a
+              href="https://proton.me/support/bridge"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link"
+            >
+              Proton Bridge
+            </a>
+            , which must be installed and running to sync.
+          </p>
+        </div>
+      </div>
+
+      <details className="collapse collapse-arrow border border-base-300 rounded-lg">
+        <summary className="collapse-title text-xs font-medium py-2 min-h-0">
+          IMAP Settings
+        </summary>
+        <div className="collapse-content space-y-3 pb-3">
+          <div className="space-y-2">
+            <label className="text-sm font-medium">IMAP Host</label>
+            <input
+              type="text"
+              className="input input-bordered w-full"
+              value={host}
+              onChange={(e) => setHost(e.target.value)}
+              required
+            />
+          </div>
+          <div className="flex gap-3">
+            <div className="space-y-2 flex-1">
+              <label className="text-sm font-medium">Port</label>
+              <input
+                type="number"
+                className="input input-bordered w-full"
+                value={port}
+                onChange={(e) => setPort(parseInt(e.target.value, 10))}
+                required
+              />
+            </div>
+            <div className="flex flex-col justify-end gap-2 pb-1">
+              <label className="flex items-center gap-3 cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  className="toggle toggle-primary toggle-sm"
+                  checked={tls}
+                  onChange={(e) => setTls(e.target.checked)}
+                />
+                <span className="text-xs">Implicit TLS</span>
+              </label>
+              <label className="flex items-center gap-3 cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  className="toggle toggle-primary toggle-sm"
+                  checked={allowSelfSigned}
+                  onChange={(e) => setAllowSelfSigned(e.target.checked)}
+                />
+                <span className="text-xs">Self-signed cert</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <div className="space-y-2">
+        <label className="text-sm font-medium">Proton Email</label>
+        <input
+          type="text"
+          className="input input-bordered w-full"
+          placeholder="you@proton.me"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+      </div>
+
+      <div className="space-y-2">
+        <label className="text-sm font-medium">Bridge Password</label>
+        <input
+          type="password"
+          className="input input-bordered w-full"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required

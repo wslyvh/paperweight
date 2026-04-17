@@ -9,6 +9,7 @@ import {
   GmailConnect,
   MicrosoftConnect,
   AppleConnect,
+  ProtonConnect,
   ImapConnect,
 } from "../components/ProviderConnect";
 
@@ -79,7 +80,7 @@ function OnboardingCarousel(): JSX.Element {
 export default function Onboarding(): JSX.Element {
   const navigate = useNavigate();
   const [view, setView] = useState<
-    "select" | "gmail" | "microsoft" | "apple" | "imap"
+    "select" | "gmail" | "microsoft" | "apple" | "proton" | "imap"
   >("select");
   const [showHelpModal, setShowHelpModal] = useState(false);
   const [supportInfo, setSupportInfo] = useState<SupportInfo>();
@@ -129,6 +130,7 @@ export default function Onboarding(): JSX.Element {
               onGmail={() => setView("gmail")}
               onMicrosoft={() => setView("microsoft")}
               onApple={() => setView("apple")}
+              onProton={() => setView("proton")}
               onImap={() => setView("imap")}
             />
           )}
@@ -146,6 +148,12 @@ export default function Onboarding(): JSX.Element {
           )}
           {view === "apple" && (
             <AppleConnect
+              onSuccess={handleSuccess}
+              onBack={() => setView("select")}
+            />
+          )}
+          {view === "proton" && (
+            <ProtonConnect
               onSuccess={handleSuccess}
               onBack={() => setView("select")}
             />
