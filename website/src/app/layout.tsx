@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { PropsWithChildren } from "react";
 import { Providers } from "@/context";
 import { SITE_CONFIG } from "@/utils/config";
+import { RESOURCE_NAV_LINKS } from "@/utils/nav";
 import "@/assets/globals.css";
 import Link from "next/link";
 import { Newsletter } from "@/components/Newsletter";
@@ -55,30 +56,22 @@ export default function RootLayout(props: PropsWithChildren) {
                     <span>Paperweight</span>
                   </Link>
                   <div className="flex items-center gap-3">
-                    <div className="dropdown dropdown-end">
-                      <label
-                        tabIndex={0}
-                        className="btn btn-ghost btn-sm"
-                      >
+                    <div className="dropdown dropdown-end dropdown-hover relative">
+                      <Link href="/resources" className="btn btn-ghost btn-sm">
                         Resources
-                      </label>
+                      </Link>
+                      <div aria-hidden className="absolute top-full right-0 h-2 w-52" />
                       <ul
                         tabIndex={0}
                         className="dropdown-content menu rounded-box z-10 mt-2 w-52 bg-base-200 p-2 shadow-lg backdrop-blur"
                       >
-                        <li>
-                          <Link href="/breaches">Data Breaches</Link>
-                        </li>
-                        <li>
-                          <Link href="/resources/gdpr-generator">
-                            GDPR Generator
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/resources/authorities">
-                            DPA Overview
-                          </Link>
-                        </li>
+                        {RESOURCE_NAV_LINKS.filter((item) => item.href !== "/resources").map(
+                          (item) => (
+                            <li key={item.href}>
+                              <Link href={item.href}>{item.label}</Link>
+                            </li>
+                          ),
+                        )}
                       </ul>
                     </div>
                     <Link href="/#download" className="btn btn-primary btn-sm">
@@ -146,24 +139,11 @@ export default function RootLayout(props: PropsWithChildren) {
                     </nav>
                     <nav>
                       <h6 className="footer-title">Resources</h6>
-                      <Link href="/changelog" className="link link-hover">
-                        Changelog
-                      </Link>
-                      <Link href="/breaches" className="link link-hover">
-                        Data Breaches
-                      </Link>
-                      <Link
-                        href="/resources/gdpr-generator"
-                        className="link link-hover"
-                      >
-                        GDPR Generator
-                      </Link>
-                      <Link
-                        href="/resources/authorities"
-                        className="link link-hover"
-                      >
-                        DPA Overview
-                      </Link>
+                      {RESOURCE_NAV_LINKS.map((item) => (
+                        <Link key={item.href} href={item.href} className="link link-hover">
+                          {item.label}
+                        </Link>
+                      ))}
                     </nav>
                     <nav>
                       <h6 className="footer-title">Legal</h6>

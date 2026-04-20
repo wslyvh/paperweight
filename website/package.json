@@ -12,6 +12,7 @@
   "dependencies": {
     "@tailwindcss/typography": "^0.5",
     "dayjs": "^1.11.20",
+    "gray-matter": "^4.0.3",
     "lucide-react": "^0.562.0",
     "marked": "^17",
     "next": "^16",

@@ -7,10 +7,19 @@ import { GDPR_GENERATOR_LAST_UPDATED } from "@/app/resources/gdpr-generator/page
 import { HOME_LAST_UPDATED } from "@/app/page";
 import { SITE_CONFIG } from "@/utils/config";
 import { getBreachSitemapEntries } from "@/utils/breach";
+import { GetGuides } from "@/utils/guides";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const releases = await getReleases().catch(() => []);
   const latestRelease = releases[0]?.published_at ?? HOME_LAST_UPDATED;
+  const guideEntries = GetGuides()
+    .map((guide) => ({
+      url: `${SITE_CONFIG.URL}/guides/${guide.slug}`,
+      lastModified: HOME_LAST_UPDATED,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }))
+    .sort((a, b) => a.url.localeCompare(b.url));
   const breachEntries = getBreachSitemapEntries()
     .map((entry) => ({
       url: `${SITE_CONFIG.URL}/breaches/${entry.slug}`,
@@ -40,6 +49,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly",
       priority: 0.7,
     },
+    {
+      url: `${SITE_CONFIG.URL}/resources`,
+      lastModified: HOME_LAST_UPDATED,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+    ...guideEntries,
     ...breachEntries,
     {
       url: `${SITE_CONFIG.URL}/resources/gdpr-generator`,

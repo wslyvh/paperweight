@@ -408,6 +408,11 @@ export default async function Home() {
               <p className="text-lg opacity-80">
                 Free tools and guides to help you manage your digital footprint.
               </p>
+              <div className="mt-4">
+                <Link href="/resources" className="btn btn-soft btn-sm">
+                  View all resources
+                </Link>
+              </div>
             </div>
 
             <div className="max-w-5xl mx-auto grid gap-6 md:grid-cols-2 items-stretch">
