@@ -55,8 +55,14 @@ This means you can request that your personal details, including your name, addr
 
 One note on returns: a returned order generates a credit note, which is itself a financial document the seller must retain. A return does not cancel the retention obligation. For a trial that expired without any charge being made, there is no financial record and no retention obligation, so the request for full deletion applies.
 
+## Request access before deletion
 
-## What You Can Actually Request, and When
+A deletion request tells a company to remove your data. An access request tells you what they actually have. If you delete first, you lose your evidence baseline. You will never know what existed, who it was shared with, or whether the deletion was complete.
+
+The access response becomes your record. It shows you what data categories they hold, which third parties they have shared it with, and what retention periods apply to each category. That information shapes a more specific and harder-to-refuse deletion request, and gives you documentation if you need to escalate to a data protection authority.
+The sequence is: access first, review what they hold, then send a targeted deletion or anonymization request based on their own response.
+
+## What you can actually request, and when
 
 **No financial interaction, inactive for 2 or more years:** full deletion request. The company has no remaining legal grounds to hold your data.
 
@@ -66,6 +72,7 @@ One note on returns: a returned order generates a credit note, which is itself a
 
 **Any sender, more than 10 years ago:** start by checking whether the company still exists. Many will not. If they do, begin with an access request, providing only the minimum information needed to find your record. Confirm what they still hold and in what form, then follow up with a full deletion request based on their response.
 
+When requesting access, you can ask that personal data be transmitted securely rather than via unencrypted email. A standard email response passes your personal data through your email provider and theirs. You can request that responses be sent via a password-protected file or a secure download link. Most companies will not have this capability, but the request puts the obligation on record.
 
 ## What happens when you send a request
 
@@ -75,6 +82,7 @@ A refusal citing a statutory retention obligation is legitimate if the company i
 
 Smaller companies often comply with anonymization requests even when they are not strictly required to, because it takes less effort than arguing about it. Larger companies with integrated systems are more likely to cite technical reasons for declining. Neither outcome is bad. Either your data gets cleaner, or you have documented evidence of a refusal that supports a follow-up complaint.
 
+You can also request that the correspondence relating to your request be deleted after handling. A support ticket created to process your deletion request has a specific purpose to delete your data. Once that purpose is fulfilled, there is no legitimate basis to retain it. This is worth stating explicitly in your request, so the new support ticket doesn't remain open again with all your data attached to it.
 
 ## Reducing your exposure going forward
 
