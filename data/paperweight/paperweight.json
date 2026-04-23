@@ -856,5 +856,25 @@
       "Healthcare IT vendor (HiX EPD). ChipSoft processes patient data on behalf of hospitals, so DSARs normally go to the hospital or GP acting as controller.",
       "Dedicated DPO/privacy email or webform not verified — add after confirmation."
     ]
+  },
+  {
+    "slug": "rituals",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Rituals",
+    "categories": [
+      "shopping"
+    ],
+    "address": "Rituals Cosmetics Enterprise B.V., Keizersgracht 683, 1017 DW Amsterdam, The Netherlands",
+    "web": "https://www.rituals.com",
+    "webform": "https://service.rituals.com/",
+    "email": "privacy@rituals.com",
+    "phone": "+31 20 241 5948",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "Rituals directs rights requests to the service.rituals.com portal; under GDPR you can also email privacy@rituals.com directly."
+    ]
   }
 ]

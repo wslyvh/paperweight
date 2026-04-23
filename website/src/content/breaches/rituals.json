@@ -1,0 +1,57 @@
+{
+  "slug": "rituals",
+  "generated_at": "2026-04-23T00:00:00.000Z",
+  "logoUrl": "/logos/Rituals.png",
+  "breach": {
+    "slug": "rituals",
+    "company_name": "Rituals",
+    "runs": [],
+    "categories": [
+      "shopping"
+    ],
+    "address": "Rituals Cosmetics Enterprise B.V., Keizersgracht 683, 1017 DW Amsterdam, The Netherlands",
+    "web": "https://www.rituals.com",
+    "webform": "https://service.rituals.com/",
+    "email": "privacy@rituals.com",
+    "phone": "+31 20 241 5948",
+    "suggested_transport_medium": "email",
+    "name": "Rituals",
+    "title": "Rituals",
+    "domain": "rituals.com",
+    "breach_date": "2026-04-22",
+    "added_date": "2026-04-22T18:00:00Z",
+    "modified_date": "2026-04-23T00:00:00Z",
+    "pwn_count": 0,
+    "description": "In April 2026, Dutch cosmetics and wellbeing multinational <a href=\"https://www.rituals.com\" target=\"_blank\" rel=\"noopener\">Rituals</a> disclosed an unauthorised download of data belonging to members of its My Rituals loyalty programme. According to <a href=\"https://www.rituals.com/en-gb/faq/data/?qid=ka0Px000000MbP7IAK\" target=\"_blank\" rel=\"noopener\">Rituals' own disclosure</a>, the exposed information covered full name, email address, phone number, date of birth, gender and home address. <a href=\"https://techcrunch.com/2026/04/22/cosmetics-giant-rituals-confirms-data-breach-of-customer-membership-records/\" target=\"_blank\" rel=\"noopener\">Reporting by TechCrunch</a> adds that preferred store location and account type were also part of the stolen membership records, and that affected customers span Europe, the United Kingdom and some of the United States. Rituals stated that no passwords or payment information were involved, that it stopped the unauthorised download and contained the situation on discovery, and that it reported the incident to the relevant authorities. The total number of affected members was not disclosed; the My Rituals programme has more than 41 million members worldwide.",
+    "disclosure_url": "https://www.rituals.com/en-gb/faq/data/?qid=ka0Px000000MbP7IAK",
+    "data_classes": [
+      "Dates of birth",
+      "Email addresses",
+      "Genders",
+      "Names",
+      "Phone numbers",
+      "Physical addresses"
+    ],
+    "is_verified": true,
+    "is_sensitive": false,
+    "source": {
+      "name": "Rituals disclosure",
+      "url": "https://www.rituals.com/en-gb/faq/data/?qid=ka0Px000000MbP7IAK"
+    }
+  },
+  "enforcement": {
+    "records": [],
+    "total_fines": 0
+  },
+  "content": {
+    "aboutCompany": "Rituals is a Dutch luxury beauty and wellbeing brand founded in Amsterdam in 2000. It sells bath, body, skincare, men's care and home fragrance products through more than 1,400 of its own boutiques across 33+ countries and runs the My Rituals loyalty programme with over 41 million members.",
+    "keyTakeaways": [
+      "In April 2026, Rituals confirmed an unauthorised download of My Rituals membership records exposing names, email addresses, phone numbers, dates of birth, gender, home addresses, preferred store location and account type. Rituals has stated that no passwords or payment information were involved.",
+      "Loyalty programmes concentrate large, identity-rich customer databases in retail, which makes them an attractive target for attackers even when payment data is handled separately by a payment processor.",
+      "If you'd rather Rituals not hold this data any longer, email privacy@rituals.com and ask them to close your My Rituals account and delete your personal data — they have 30 days to confirm, and you don't have to use their own webform."
+    ],
+    "incidentAndExposure": "Rituals disclosed that attackers performed an unauthorised download of personal data from its My Rituals loyalty membership database. The exposed fields named in Rituals' own customer FAQ are full name, email address, phone number, date of birth, gender and home address; TechCrunch additionally reports that preferred store location and account type were exfiltrated. Rituals has explicitly stated that no passwords and no payment information were involved. The company declined to publish the number of members affected or the exact dates of the incident, citing unspecified security reasons; customers in Europe, the United Kingdom and parts of the United States are confirmed to be in scope.",
+    "timelineAndCause": "Rituals says the unauthorised download took place in April 2026 and publicly disclosed the incident on 22 April 2026. The company has not described the attack technique or named a threat actor, and said it would not share timeline details for security reasons. According to Rituals, it stopped the unauthorised download immediately on discovery, engaged external cyber security experts to run an in-depth forensic investigation, and reported the incident to the relevant authorities. Rituals states that, to its knowledge, the extracted data has not become publicly available and that the situation is now contained.",
+    "nextSteps": "The stolen fields — your name, date of birth, phone number, home address, the Rituals store you shop at and your loyalty level — are a toolkit for very personalised scams, and Rituals has already flagged one pattern itself: messages that greet you by name and use your date of birth to dangle a \"free birthday gift\" or voucher. Expect variants of that over the coming months: \"happy birthday from Rituals\" emails with a voucher link, SMS or letters about a Rituals delivery that failed or a loyalty reward that needs a small \"processing\" fee, emails saying your order is ready to collect at the store you actually use, or phone calls that drop your name, birthday and address in to sound legitimate. The rule of thumb: anything Rituals-branded that arrives out of the blue and leans on details only Rituals would know is using this stolen data. Don't click, don't call back, don't pay.\n\nIf you'd rather Rituals stop holding your data at all, email privacy@rituals.com and ask them to close your My Rituals account and delete your personal data. You don't have to give a reason, email is fine even though Rituals points people to <a href=\"https://service.rituals.com/\" target=\"_blank\" rel=\"noopener\">its own form</a>, and they have 30 days to confirm it's done.\n\nRituals says no passwords were taken, so your Rituals login itself doesn't need changing. But if you reuse that password on other sites, change it there — your email address was in the leak and is the bridge an attacker would use to try it elsewhere."
+  }
+}
