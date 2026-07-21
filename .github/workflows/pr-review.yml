@@ -3,9 +3,16 @@ name: PR Review
 on:
   pull_request:
     types: [opened, synchronize, ready_for_review, reopened]
+  # Manual re-run without closing/reopening the PR (use for open PRs / debugging).
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: Pull request number to review
+        required: true
+        type: string
 
 concurrency:
-  group: pr-review-${{ github.event.pull_request.number }}
+  group: pr-review-${{ github.event.pull_request.number || inputs.pr_number }}
   cancel-in-progress: true
 
 permissions:
@@ -14,11 +21,39 @@ permissions:
 
 jobs:
   review:
-    if: github.event.pull_request.draft == false
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
+      - name: Resolve PR
+        id: pr
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber =
+              context.eventName === "workflow_dispatch"
+                ? Number("${{ inputs.pr_number }}")
+                : context.payload.pull_request.number;
+
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber,
+            });
+
+            if (pr.draft) {
+              core.setFailed(`PR #${prNumber} is a draft — skipping review.`);
+              return;
+            }
+
+            core.setOutput("number", String(pr.number));
+            core.setOutput("head_repo", pr.head.repo.full_name);
+            core.setOutput("head_ref", pr.head.ref);
+            core.setOutput("head_sha", pr.head.sha);
+
       - uses: actions/checkout@v6
         with:
+          repository: ${{ steps.pr.outputs.head_repo }}
+          ref: ${{ steps.pr.outputs.head_sha }}
           fetch-depth: 1
 
       - name: Claude Code Review
@@ -29,7 +64,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           prompt: |
             REPO: ${{ github.repository }}
-            PR NUMBER: ${{ github.event.pull_request.number }}
+            PR NUMBER: ${{ steps.pr.outputs.number }}
 
             Review this PR. Read AGENTS.md and docs/lessons.md first — treat them as
             project standards. Consider surrounding code, not just the diff.
