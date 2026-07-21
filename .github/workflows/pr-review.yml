@@ -1,0 +1,57 @@
+name: PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review, reopened]
+
+concurrency:
+  group: pr-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  review:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Claude Code Review
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.OPENROUTER_API_KEY }}
+          prompt: |
+            REPO: ${{ github.repository }}
+            PR NUMBER: ${{ github.event.pull_request.number }}
+
+            Review this PR. Read AGENTS.md and docs/lessons.md first — treat them as
+            project standards. Consider surrounding code, not just the diff.
+
+            Flag ONLY high-signal issues you are confident are real (≥ ~80 confidence):
+            - Logic bugs / wrong results
+            - Security or privacy issues (secrets, PII logging, unsafe SQL/IPC)
+            - Clear AGENTS.md / lessons.md violations (quote the rule)
+            - Regressions vs existing behavior in nearby code
+
+            Do NOT flag:
+            - Style nits, praise, or subjective quality notes
+            - Pre-existing issues outside the diff
+            - Things a linter/typecheck would catch
+            - Speculative "might fail if…" without evidence
+
+            Be concise. One top-level summary via `gh pr comment`.
+            Inline comments (`mcp__github_inline_comment__create_inline_comment`
+            with `confirmed: true`) only for specific code issues — one per issue.
+            If nothing significant: one-line comment saying so.
+            Only post GitHub comments — don't submit review text as messages.
+          claude_args: |
+            --allowedTools "mcp__github_inline_comment__create_inline_comment,Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Read,Grep,Glob"
+            --max-turns 20
+        env:
+          ANTHROPIC_BASE_URL: https://openrouter.ai/api
+          ANTHROPIC_MODEL: anthropic/claude-sonnet-5
