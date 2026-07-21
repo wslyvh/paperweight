@@ -9,7 +9,7 @@ import type {
 import { useLicense } from "../context/LicenseContext";
 import TrendChartCard from "../components/TrendChartCard";
 import ImpactBlock from "../components/ImpactBlock";
-import { AlertTriangle, ArrowRight, ChevronRight, Contact, Inbox, Mail } from "lucide-react";
+import { AlertTriangle, ArrowRight, ChevronRight, Contact, FolderClosed, Inbox, Mail } from "lucide-react";
 
 export default function Dashboard(): JSX.Element {
   const navigate = useNavigate();
@@ -33,6 +33,7 @@ export default function Dashboard(): JSX.Element {
   const [impactKey] = useState(0);
   const [account, setAccount] = useState<AccountInfo>();
   const [dueCases, setDueCases] = useState<GdprCaseSummary[]>([]);
+  const [activeCasesCount, setActiveCasesCount] = useState(0);
 
   const fetchData = async (silent = false): Promise<void> => {
     if (!silent) setLoading(true);
@@ -45,6 +46,7 @@ export default function Dashboard(): JSX.Element {
     setStats(statsData);
     setTrend(trendData);
     setAccount(accountData);
+    setActiveCasesCount(activeCases.length);
     setDueCases(activeCases.filter((c) => c.nextAction));
     setLoading(false);
   };
@@ -123,8 +125,8 @@ export default function Dashboard(): JSX.Element {
         </div>
       )}
 
-      {/* Stat tiles — 3 in 1 row */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      {/* Stat tiles — 4 in 1 row */}
+      <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
         <div
           className="stat border-none bg-base-200 rounded-box cursor-pointer hover:bg-base-300 transition-colors flex flex-col justify-between"
           onClick={() => navigate("/dashboard")}
@@ -174,6 +176,26 @@ export default function Dashboard(): JSX.Element {
           </div>
           <p className="text-base-content/50 text-xs mt-1">
             {stats.reviewedVendors.toLocaleString()} reviewed · {stats.highRiskUnreviewed.toLocaleString()} high risk
+          </p>
+        </div>
+
+        <div
+          className="stat border-none bg-base-200 rounded-box cursor-pointer hover:bg-base-300 transition-colors flex flex-col justify-between"
+          onClick={() => navigate("/cases")}
+        >
+          <div className="flex items-center justify-between mb-1">
+            <div className="font-semibold text-base text-base-content">
+              Cases
+            </div>
+            <FolderClosed className="w-5 h-5 text-case" aria-hidden="true" />
+          </div>
+          <div className="stat-value text-case">
+            {activeCasesCount.toLocaleString()}
+          </div>
+          <p className="text-base-content/50 text-xs mt-1">
+            {dueCases.length > 0
+              ? `${dueCases.length.toLocaleString()} need${dueCases.length !== 1 ? "" : "s"} attention`
+              : " "}
           </p>
         </div>
       </div>
