@@ -36,6 +36,7 @@ import ActionModal from "../components/ActionModal";
 import { CaseListRow } from "../components/CaseListRow";
 import { canAccountSend } from "../utils/account";
 import { errText } from "../utils/errText";
+import { APP_CONFIG } from "@shared/config";
 import {
   ACTION_COLORS,
   activityEntryLabel,
@@ -51,6 +52,7 @@ const RISK_BADGE_CLASS: Record<string, string> = {
 
 const TWO_YEARS_MS = 2 * 365.25 * 24 * 60 * 60 * 1000;
 const TEN_YEARS_MS = 10 * 365.25 * 24 * 60 * 60 * 1000;
+const CLEANUP_GUIDE_URL = `${APP_CONFIG.WEBSITE}/guides/email-cleanup-tools-compared#the-tools`;
 
 function isNoReplyEmail(email: string): boolean {
   const local = email.split("@")[0]?.toLowerCase() ?? "";
@@ -1738,7 +1740,20 @@ export default function AccountDetail(): JSX.Element {
           loading={actionLoading}
         >
           {pendingDelete === "all" ? (
-            <p>Move all <strong>{vendor.message_count}</strong> emails from <strong>{displayName}</strong> to trash? This includes all email types.</p>
+            <>
+              <p>Move all <strong>{vendor.message_count}</strong> emails from <strong>{displayName}</strong> to trash? This includes all email types.</p>
+              <p className="text-xs text-base-content/60">
+                This moves every message to trash, not just marketing mail, and can't be undone from here. If you only want to clear a subset (e.g. old receipts) or want a dedicated cleanup tool, see our{" "}
+                <button
+                  type="button"
+                  className="link link-hover inline"
+                  onClick={() => window.api.openExternal(CLEANUP_GUIDE_URL)}
+                >
+                  email cleanup tools comparison
+                </button>
+                {" "}or use your email provider's own tools instead.
+              </p>
+            </>
           ) : (
             <p>Move marketing emails from <strong>{displayName}</strong> to trash?</p>
           )}
