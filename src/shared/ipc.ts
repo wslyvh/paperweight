@@ -21,6 +21,7 @@ import type {
   RiskCounts,
   ServerConfig,
   Settings,
+  StorageBreakdown,
   SupportInfo,
   SyncStatus,
   UnsubscribeEntry,
@@ -69,6 +70,7 @@ export const IPC = {
   getLicenseStatus: "get-license-status",
   deactivateLicense: "deactivate-license",
   getSupportInfo: "get-support-info",
+  getStorageBreakdown: "get-storage-breakdown",
   readLogFile: "read-log-file",
   getVendorDetail: "get-vendor-detail",
   deleteVendor: "delete-vendor",
@@ -147,6 +149,7 @@ export interface ElectronAPI {
   getLicenseStatus: () => Promise<LicenseStatus>;
   deactivateLicense: () => Promise<void>;
   getSupportInfo: () => Promise<SupportInfo>;
+  getStorageBreakdown: () => Promise<StorageBreakdown>;
   readLogFile: () => Promise<string>;
   getVendorDetail: (groupKey: string) => Promise<VendorDetail>;
   deleteVendor: (vendorId: number) => Promise<void>;

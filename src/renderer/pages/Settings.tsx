@@ -9,6 +9,7 @@ import {
   type LicenseStatus,
   type WhitelistEntry,
 } from "@shared/types";
+import { formatBytes } from "@shared/formatting";
 import { useLicense, useRefreshLicense } from "../context/LicenseContext";
 import {
   ProviderSelect,
@@ -286,6 +287,7 @@ export default function Settings(): JSX.Element {
                       {acc.registeredAt
                         ? ` · Registered ${formatDate(acc.registeredAt)}`
                         : ""}
+                      {` · ${formatBytes(acc.sizeBytes)}`}
                     </p>
                   </div>
                 </div>

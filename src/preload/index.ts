@@ -106,6 +106,7 @@ const api: ElectronAPI = {
   deactivateLicense: () => ipcRenderer.invoke(IPC.deactivateLicense),
 
   getSupportInfo: () => ipcRenderer.invoke(IPC.getSupportInfo),
+  getStorageBreakdown: () => ipcRenderer.invoke(IPC.getStorageBreakdown),
 
   readLogFile: () => ipcRenderer.invoke(IPC.readLogFile),
 

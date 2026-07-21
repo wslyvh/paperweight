@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, RefreshCw, Copy } from "lucide-react";
-import type { SupportInfo } from "@shared/types";
+import type { StorageBreakdown, SupportInfo } from "@shared/types";
+import { formatBytes } from "@shared/formatting";
 import DeviceInfoCard from "../components/DeviceInfoCard";
 import HelpSection from "../components/HelpSection";
 import { useLicense } from "../context/LicenseContext";
@@ -10,12 +11,14 @@ export default function Support(): JSX.Element {
   const navigate = useNavigate();
   const license = useLicense();
   const [info, setInfo] = useState<SupportInfo>();
+  const [storage, setStorage] = useState<StorageBreakdown>();
   const [logContent, setLogContent] = useState("");
   const [copied, setCopied] = useState(false);
   const logRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     window.api.getSupportInfo().then(setInfo);
+    window.api.getStorageBreakdown().then(setStorage);
     window.api.readLogFile().then(setLogContent);
   }, []);
 
@@ -81,10 +84,86 @@ export default function Support(): JSX.Element {
 
                 <span className="text-base-content/50">Last sync</span>
                 <span>{formatDateTime(info.lastSyncAt)}</span>
-
-                <span className="text-base-content/50">Database size</span>
-                <span>{info.dbSizeMb} MB</span>
               </div>
+            )}
+          </div>
+        </div>
+
+        {/* Storage */}
+        <div className="card bg-base-200">
+          <div className="card-body space-y-4">
+            <h3 className="font-semibold">Storage</h3>
+            {storage && (
+              <>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="font-medium">Account data</span>
+                    <span>{formatBytes(storage.accountsTotalBytes)}</span>
+                  </div>
+                  {storage.accounts.length > 0 && (
+                    <div className="space-y-1.5 pl-1">
+                      {storage.accounts.map((a) => {
+                        const pct =
+                          storage.accountsTotalBytes > 0
+                            ? (a.sizeBytes / storage.accountsTotalBytes) * 100
+                            : 0;
+                        return (
+                          <div key={a.email} className="space-y-1">
+                            <div className="flex items-center justify-between text-xs text-base-content/60">
+                              <span className="truncate mr-2">{a.email}</span>
+                              <span className="shrink-0">
+                                {formatBytes(a.sizeBytes)}
+                              </span>
+                            </div>
+                            {storage.accounts.length > 1 && (
+                              <div className="h-1.5 rounded-full bg-base-300 overflow-hidden">
+                                <div
+                                  className="h-full bg-primary rounded-full"
+                                  style={{ width: `${pct}%` }}
+                                />
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+
+                <div className="border-t border-base-300" />
+
+                <div className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-sm">
+                  <span className="text-base-content/50">Caches</span>
+                  <span className="text-right">
+                    {formatBytes(storage.cacheBytes)}
+                  </span>
+
+                  <span className="text-base-content/50">Logs</span>
+                  <span className="text-right">
+                    {formatBytes(storage.logsBytes)}
+                  </span>
+
+                  <span className="text-base-content/50">App data</span>
+                  <span className="text-right">
+                    {formatBytes(storage.appDataBytes)}
+                  </span>
+
+                  <span className="text-base-content/50">App resources</span>
+                  <span className="text-right">
+                    {formatBytes(storage.resourcesBytes)}
+                  </span>
+
+                  <span className="text-base-content/50">Runtime</span>
+                  <span className="text-right">
+                    {formatBytes(storage.runtimeBytes)}
+                  </span>
+
+                  <span className="font-medium">Total</span>
+                  <span className="text-right font-medium">
+                    {formatBytes(storage.totalBytes)}
+                  </span>
+                </div>
+              </>
             )}
           </div>
         </div>

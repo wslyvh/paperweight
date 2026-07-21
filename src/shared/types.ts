@@ -308,6 +308,29 @@ export interface AccountSummary {
   providerType: string;
   registeredAt?: number;
   isActive: boolean;
+  /** On-disk size of this account's SQLite db (incl. -wal/-shm sidecars). */
+  sizeBytes: number;
+}
+
+export interface StorageAccount {
+  email: string;
+  sizeBytes: number;
+}
+
+export interface StorageBreakdown {
+  /** Per-account SQLite db sizes, incl. -wal/-shm sidecars. */
+  accounts: StorageAccount[];
+  accountsTotalBytes: number;
+  /** Reclaimable Chromium/Electron caches. */
+  cacheBytes: number;
+  logsBytes: number;
+  /** Persistent userData remainder: settings, credentials, Local Storage, etc. */
+  appDataBytes: number;
+  /** Bundled asar + reference DBs + future embedded models — grows with our changes. */
+  resourcesBytes: number;
+  /** Private Electron/Chromium framework bundled with the app — fixed baseline. */
+  runtimeBytes: number;
+  totalBytes: number;
 }
 
 export interface ServerConfig {
@@ -362,7 +385,6 @@ export interface SupportInfo {
   licenseActive: boolean;
   totalMessages: number;
   lastSyncAt?: number;
-  dbSizeMb: number;
   logPath: string;
 }
 

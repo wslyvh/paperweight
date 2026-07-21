@@ -1,5 +1,5 @@
 import { app, BrowserWindow, ipcMain } from "electron";
-import { readFileSync, statSync, existsSync, unlinkSync } from "fs";
+import { readFileSync, existsSync, unlinkSync } from "fs";
 import { join } from "path";
 import { IPC } from "@shared/ipc";
 import { isIntInRange, isString } from "@shared/validation";
@@ -22,6 +22,7 @@ import {
   ensureAccountSettingsInDb,
 } from "../services/account";
 import { clearSyncData, getSyncState } from "../services/sync";
+import { getStorageBreakdown, accountDbBytes } from "../services/storage";
 import { getProvider } from "../providers/ProviderFactory";
 import { startSync, getSyncStatus, stopSync, stopAllSyncs } from "../sync-manager";
 import { getLicenseStatus, deleteLicense } from "../services/settings";
@@ -96,17 +97,6 @@ function isImapConfig(value: unknown): value is ImapConfig {
   return true;
 }
 
-function getDbSizeMb(): number {
-  try {
-    const activeEmail = getActiveEmail();
-    if (!activeEmail) return 0;
-    const dbPath = join(app.getPath("userData"), `${emailToFileKey(activeEmail)}.db`);
-    const stats = statSync(dbPath);
-    return Math.round((stats.size / (1024 * 1024)) * 100) / 100;
-  } catch {
-    return 0;
-  }
-}
 
 export function registerAccountHandlers(): void {
   // --- Auth & connection ---
@@ -161,6 +151,7 @@ export function registerAccountHandlers(): void {
       providerType: a.providerType,
       registeredAt: a.registeredAt,
       isActive: a.email === activeEmail,
+      sizeBytes: accountDbBytes(a.email),
     }));
   });
 
@@ -332,10 +323,11 @@ export function registerAccountHandlers(): void {
       licenseActive: license.active,
       totalMessages: stats.totalMessages,
       lastSyncAt: syncState.last_sync_at,
-      dbSizeMb: getDbSizeMb(),
       logPath: getFileLogPath() || join(app.getPath("logs"), "main.log"),
     };
   });
+
+  ipcMain.handle(IPC.getStorageBreakdown, () => getStorageBreakdown());
 
   ipcMain.handle(
     IPC.sendEmail,
