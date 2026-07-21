@@ -125,15 +125,15 @@ export default function Dashboard(): JSX.Element {
         </div>
       )}
 
-      {/* Stat tiles — 4 in 1 row */}
-      <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+      {/* Stat tiles — 2×2 at min window (800), 4 across from lg */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <div
           className="stat border-none bg-base-200 rounded-box cursor-pointer hover:bg-base-300 transition-colors flex flex-col justify-between"
           onClick={() => navigate("/dashboard")}
         >
           <div className="flex items-center justify-between mb-1">
             <div className="font-semibold text-base text-base-content">
-              Emails analyzed
+              Emails
             </div>
             <Inbox className="w-5 h-5 text-info" aria-hidden="true" />
           </div>
@@ -149,7 +149,7 @@ export default function Dashboard(): JSX.Element {
         >
           <div className="flex items-center justify-between mb-1">
             <div className="font-semibold text-base text-base-content">
-              Mailing lists
+              Lists
             </div>
             <Mail className="w-5 h-5 text-primary" aria-hidden="true" />
           </div>
