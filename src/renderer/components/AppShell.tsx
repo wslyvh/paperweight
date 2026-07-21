@@ -56,6 +56,15 @@ export default function AppShell(): JSX.Element {
     refreshUnseenCaseReplies();
   }, [location.pathname, refreshUnseenCaseReplies]);
 
+  // Re-fetch when a case is marked as viewed (the pathname effect above
+  // runs before the child effect that marks it, so the count would be
+  // stale by one without this).
+  useEffect(() => {
+    const handler = () => refreshUnseenCaseReplies();
+    window.addEventListener("case-viewed", handler);
+    return () => window.removeEventListener("case-viewed", handler);
+  }, [refreshUnseenCaseReplies]);
+
   useEffect(() => {
     if (!dropdownOpen) return;
     const handler = (e: MouseEvent) => {

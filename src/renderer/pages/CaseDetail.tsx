@@ -350,7 +350,12 @@ export default function CaseDetail(): JSX.Element {
         if (settings.userName) setUserName(settings.userName);
         // Fire-and-forget: clears the unseen-reply state for next time, after
         // this render already used the pre-view lastViewedAt to highlight it.
-        if (id) window.api.markGdprCaseViewed(id);
+        // Notify the shell so the nav badge re-queries with the updated count.
+        if (id) {
+          window.api.markGdprCaseViewed(id).then(() => {
+            window.dispatchEvent(new CustomEvent("case-viewed"));
+          });
+        }
       })
       .finally(() => setLoading(false));
   }, [refresh, id]);
