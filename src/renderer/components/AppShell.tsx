@@ -1,6 +1,6 @@
 import { APP_CONFIG } from "@shared/config";
-import { Outlet, NavLink } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { Outlet, NavLink, useLocation } from "react-router-dom";
+import { useCallback, useEffect, useRef, useState } from "react";
 import makeBlockie from "ethereum-blockies-base64";
 import SyncStatusBar from "./SyncStatusBar";
 import { Check, Contact, FolderClosed, Inbox, Mail, Settings } from "lucide-react";
@@ -33,8 +33,28 @@ export default function AppShell(): JSX.Element {
   const { accounts } = useAccounts();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const [unseenCaseReplies, setUnseenCaseReplies] = useState(0);
+  const location = useLocation();
 
   const activeAccount = accounts.find((a) => a.isActive);
+
+  const refreshUnseenCaseReplies = useCallback(() => {
+    window.api.getUnseenCaseReplyCount().then(setUnseenCaseReplies);
+  }, []);
+
+  // Refresh on mount, whenever a sync finishes (new replies may have landed),
+  // and on navigation (viewing a case clears its unseen flag).
+  useEffect(() => {
+    refreshUnseenCaseReplies();
+    const unsub = window.api.onSyncProgress((status) => {
+      if (!status.running) refreshUnseenCaseReplies();
+    });
+    return unsub;
+  }, [refreshUnseenCaseReplies]);
+
+  useEffect(() => {
+    refreshUnseenCaseReplies();
+  }, [location.pathname, refreshUnseenCaseReplies]);
 
   useEffect(() => {
     if (!dropdownOpen) return;
@@ -69,24 +89,41 @@ export default function AppShell(): JSX.Element {
 
         {/* Nav */}
         <nav className="flex flex-col gap-1 p-2 mt-2 flex-1">
-          {navItems.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              className={({ isActive }) =>
-                `flex items-center gap-3 rounded-lg px-3 py-2 transition-colors justify-center xl:justify-start tooltip tooltip-right xl:before:hidden xl:after:hidden ${isActive
-                  ? "bg-neutral text-neutral-content"
-                  : "hover:bg-base-300"
-                }`
-              }
-              data-tip={item.label}
-            >
-              {item.icon}
-              <span className="hidden xl:inline text-sm font-medium">
-                {item.label}
-              </span>
-            </NavLink>
-          ))}
+          {navItems.map((item) => {
+            const badgeCount = item.to === "/cases" ? unseenCaseReplies : 0;
+            return (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                className={({ isActive }) =>
+                  `flex items-center gap-3 rounded-lg px-3 py-2 transition-colors justify-center xl:justify-start tooltip tooltip-right xl:before:hidden xl:after:hidden ${isActive
+                    ? "bg-neutral text-neutral-content"
+                    : "hover:bg-base-300"
+                  }`
+                }
+                data-tip={item.label}
+              >
+                {badgeCount > 0 ? (
+                  <span className="indicator">
+                    {item.icon}
+                    <span className="indicator-item badge badge-error badge-xs xl:hidden">
+                      {badgeCount > 9 ? "9+" : badgeCount}
+                    </span>
+                  </span>
+                ) : (
+                  item.icon
+                )}
+                <span className="hidden xl:inline text-sm font-medium flex-1 flex items-center justify-between gap-2">
+                  {item.label}
+                  {badgeCount > 0 && (
+                    <span className="badge badge-error badge-sm">
+                      {badgeCount > 9 ? "9+" : badgeCount}
+                    </span>
+                  )}
+                </span>
+              </NavLink>
+            );
+          })}
         </nav>
 
         {/* Active account switcher */}

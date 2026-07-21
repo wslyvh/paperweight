@@ -195,6 +195,10 @@ const api: ElectronAPI = {
 
   unlinkGdprCaseMessage: (caseId, messageId) =>
     ipcRenderer.invoke(IPC.unlinkGdprCaseMessage, caseId, messageId),
+
+  markGdprCaseViewed: (caseId) => ipcRenderer.invoke(IPC.markGdprCaseViewed, caseId),
+
+  getUnseenCaseReplyCount: () => ipcRenderer.invoke(IPC.getUnseenCaseReplyCount),
 };
 
 contextBridge.exposeInMainWorld("api", api);

@@ -87,6 +87,16 @@ export default function Cases(): JSX.Element {
     loadCases().finally(() => setLoading(false));
   }, [loadCases, location.pathname]);
 
+  // Sync ingests mail (and materializes case replies) in the background — if
+  // the user is already sitting on this page when it finishes, the list would
+  // otherwise stay stale until they navigate away and back.
+  useEffect(() => {
+    const unsub = window.api.onSyncProgress((status) => {
+      if (!status.running) loadCases();
+    });
+    return unsub;
+  }, [loadCases]);
+
   useEffect(() => {
     function handler(e: MouseEvent) {
       if (showSort && sortRef.current && !sortRef.current.contains(e.target as Node)) {

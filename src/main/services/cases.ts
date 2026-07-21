@@ -58,6 +58,7 @@ interface CaseRow {
   sent_message_id: string | null;
   opened_at: number;
   closed_at: number | null;
+  last_viewed_at: number | null;
   account_email?: string | null;
 }
 
@@ -131,6 +132,21 @@ export function deriveNextAction(
   if (days >= FOLLOWUP_AFTER_DAYS && !followupSent) return "followup";
   if (days >= REMINDER_AFTER_DAYS && !reminderSent && !followupSent) return "reminder";
   return undefined;
+}
+
+// A case has an unseen reply when an inbound event (thread-matched or manually
+// linked) landed after the case was last opened. `lastViewedAt` is null until
+// the user first opens the case, so any prior reply counts as unseen.
+function hasUnseenReply(
+  lastViewedAt: number | null,
+  events: Array<{ actionType: ActionType; actionedAt: number }>,
+): boolean {
+  const since = lastViewedAt ?? 0;
+  return events.some(
+    (e) =>
+      (e.actionType === "reply_received" || e.actionType === "case_message_linked") &&
+      e.actionedAt > since,
+  );
 }
 
 export function createGdprCase(input: CreateGdprCaseInput): GdprCase {
@@ -318,6 +334,8 @@ export function getGdprCaseById(id: number): GdprCaseDetail | undefined {
     vendorDomain: row.vendor_domain ?? undefined,
     accountEmail: row.account_email ?? undefined,
     nextAction: row.closed_at ? undefined : deriveNextAction(row.opened_at, events),
+    hasUnseenReply: row.closed_at ? false : hasUnseenReply(row.last_viewed_at, eventRows.map((r) => ({ actionType: r.action_type as ActionType, actionedAt: r.actioned_at }))),
+    lastViewedAt: row.last_viewed_at ?? undefined,
     events,
   };
 }
@@ -343,35 +361,55 @@ export function queryGdprCases(filter?: { status?: GdprCaseStatus; vendorId?: nu
     )
     .all(...params) as Array<CaseRow & { vendor_name: string; vendor_domain: string | null }>;
 
-  // Pull the action types for every active case in one query (keyed by case_id)
-  // instead of a per-case round trip, then derive nextAction in memory.
+  // Pull the events for every active case in one query (keyed by case_id)
+  // instead of a per-case round trip, then derive nextAction/hasUnseenReply in memory.
   const activeIds = rows.filter((r) => !r.closed_at).map((r) => r.id);
-  const eventsByCase = new Map<number, Array<{ actionType: ActionType }>>();
+  const eventsByCase = new Map<number, Array<{ actionType: ActionType; actionedAt: number }>>();
   if (activeIds.length > 0) {
     const placeholders = activeIds.map(() => "?").join(", ");
     const eventRows = d
       .prepare(
-        `SELECT case_id, action_type FROM action_log WHERE case_id IN (${placeholders})`,
+        `SELECT case_id, action_type, actioned_at FROM action_log WHERE case_id IN (${placeholders})`,
       )
-      .all(...activeIds) as Array<{ case_id: number; action_type: string }>;
+      .all(...activeIds) as Array<{ case_id: number; action_type: string; actioned_at: number }>;
     for (const e of eventRows) {
       const list = eventsByCase.get(e.case_id) ?? [];
-      list.push({ actionType: e.action_type as ActionType });
+      list.push({ actionType: e.action_type as ActionType, actionedAt: e.actioned_at });
       eventsByCase.set(e.case_id, list);
     }
   }
   return rows.map((row) => {
-    const nextAction = row.closed_at
-      ? undefined
-      : deriveNextAction(row.opened_at, eventsByCase.get(row.id) ?? []);
+    const events = eventsByCase.get(row.id) ?? [];
+    const nextAction = row.closed_at ? undefined : deriveNextAction(row.opened_at, events);
     return {
       ...mapCase(row),
       vendorName: row.vendor_name,
       vendorDomain: row.vendor_domain ?? undefined,
       accountEmail: row.account_email ?? undefined,
       nextAction,
+      hasUnseenReply: row.closed_at ? false : hasUnseenReply(row.last_viewed_at, events),
     };
   });
+}
+
+export function markGdprCaseViewed(id: number): void {
+  getDb().prepare("UPDATE gdpr_cases SET last_viewed_at = ? WHERE id = ?").run(Date.now(), id);
+}
+
+// Nav-badge count: active cases with an inbound event newer than the case was
+// last opened. Closed cases don't need a follow-up nudge, so they're excluded.
+export function getUnseenCaseReplyCount(): number {
+  const row = getDb()
+    .prepare(
+      `SELECT COUNT(DISTINCT a.case_id) as count
+       FROM action_log a
+       JOIN gdpr_cases c ON c.id = a.case_id
+       WHERE c.closed_at IS NULL
+         AND a.action_type IN ('reply_received', 'case_message_linked')
+         AND a.actioned_at > COALESCE(c.last_viewed_at, 0)`,
+    )
+    .get() as { count: number };
+  return row.count;
 }
 
 

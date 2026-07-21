@@ -343,6 +343,15 @@ export default function AccountDetail(): JSX.Element {
     setVendorCases(cases);
   }, [groupKey]);
 
+  // Mirrors the Cases list: pick up replies materialized by a sync that
+  // finishes while the user is already sitting on this page.
+  useEffect(() => {
+    const unsub = window.api.onSyncProgress((status) => {
+      if (!status.running) refreshDetail();
+    });
+    return unsub;
+  }, [refreshDetail]);
+
   const refreshWhitelist = useCallback(async () => {
     const entries = await window.api.getWhitelistEntries();
     setWhitelistEntries(entries);

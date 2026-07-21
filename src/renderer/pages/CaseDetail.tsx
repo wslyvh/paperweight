@@ -50,6 +50,8 @@ interface CommunicationItem {
   manuallyLinked?: boolean;
   /** Expandable body text — the sent email (outbound) or the message preview (inbound). */
   content?: string;
+  /** Inbound case message that arrived after the case was last viewed. */
+  isNew?: boolean;
 }
 
 function messagePreview(preview?: string): string | undefined {
@@ -68,6 +70,7 @@ function buildCommunicationTimeline(
   events: GdprCaseDetail["events"],
   replies: GdprCaseReplies,
   requestType: GdprRequestType,
+  lastViewedAt?: number,
 ): CommunicationItem[] {
   const items: CommunicationItem[] = [];
   const threadIds = new Set(replies.threadMatches.map((m) => m.id));
@@ -115,6 +118,7 @@ function buildCommunicationTimeline(
       muted: !inCase,
       manuallyLinked,
       content: messagePreview(message.body_preview),
+      isNew: inCase && message.date > (lastViewedAt ?? 0),
     });
   }
 
@@ -142,8 +146,8 @@ function CommunicationRow({ item, caseActive, linkLoading, onToggleLink }: Commu
   return (
     <div
       className={`rounded-lg transition-colors ${item.muted ? "opacity-70" : ""} ${
-        expandable ? "hover:bg-base-300" : ""
-      }`}
+        item.isNew ? "bg-base-300/60" : ""
+      } ${expandable ? "hover:bg-base-300" : ""}`}
     >
       <button
         type="button"
@@ -158,6 +162,9 @@ function CommunicationRow({ item, caseActive, linkLoading, onToggleLink }: Commu
         </span>
         <span className="min-w-0">
           <span className="flex flex-wrap items-center gap-2">
+            {item.isNew && (
+              <span className="badge badge-xs badge-error shrink-0">New</span>
+            )}
             {item.badge && (
               <span
                 className={`badge badge-xs badge-soft shrink-0 ${
@@ -341,13 +348,21 @@ export default function CaseDetail(): JSX.Element {
         setAccountEmail(info.email);
         setCanSend(canAccountSend(info));
         if (settings.userName) setUserName(settings.userName);
+        // Fire-and-forget: clears the unseen-reply state for next time, after
+        // this render already used the pre-view lastViewedAt to highlight it.
+        if (id) window.api.markGdprCaseViewed(id);
       })
       .finally(() => setLoading(false));
-  }, [refresh]);
+  }, [refresh, id]);
 
   const communication = useMemo(() => {
     if (!caseDetail) return [];
-    return buildCommunicationTimeline(caseDetail.events, replies, caseDetail.requestType);
+    return buildCommunicationTimeline(
+      caseDetail.events,
+      replies,
+      caseDetail.requestType,
+      caseDetail.lastViewedAt,
+    );
   }, [caseDetail, replies]);
 
   if (loading) {
@@ -382,8 +397,6 @@ export default function CaseDetail(): JSX.Element {
   } = caseDetail;
   const isActive = status === "active";
   const requestEvent = [...events].reverse().find((e) => e.actionType === "gdpr_request_sent");
-  const hasCaseResponse =
-    replies.threadMatches.length > 0 || replies.linkedMessageIds.length > 0;
 
   const handleToggleLink = async (messageId: string, linked: boolean): Promise<void> => {
     setLinkLoading(true);
@@ -571,7 +584,7 @@ export default function CaseDetail(): JSX.Element {
 
       {isActive && <Timeline openedAt={openedAt} nextAction={nextAction} />}
 
-      {isActive && hasCaseResponse && (
+      {isActive && caseDetail.hasUnseenReply && (
         <div className="card bg-base-200">
           <div className="card-body p-4 flex-row items-center justify-between gap-4">
             <p className="text-sm">

@@ -186,6 +186,16 @@ export function migrateVendors(d: Database.Database): void {
   }
 }
 
+/** Schema migration — last_viewed_at on gdpr_cases, tracks unseen-reply state. */
+export function migrateGdprCases(d: Database.Database): void {
+  const caseCols = new Set(
+    (d.pragma("table_info(gdpr_cases)") as Array<{ name: string }>).map((c) => c.name),
+  );
+  if (!caseCols.has("last_viewed_at")) {
+    d.exec("ALTER TABLE gdpr_cases ADD COLUMN last_viewed_at INTEGER");
+  }
+}
+
 /**
  * Run all migrations in order. Safe to call on every launch — each migration
  * is a no-op if there is nothing to do.

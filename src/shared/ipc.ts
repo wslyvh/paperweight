@@ -99,6 +99,8 @@ export const IPC = {
   getGdprCaseReplies: "get-gdpr-case-replies",
   linkGdprCaseMessage: "link-gdpr-case-message",
   unlinkGdprCaseMessage: "unlink-gdpr-case-message",
+  markGdprCaseViewed: "mark-gdpr-case-viewed",
+  getUnseenCaseReplyCount: "get-unseen-case-reply-count",
 } as const;
 
 export interface UpdateInfo {
@@ -184,6 +186,8 @@ export interface ElectronAPI {
   getGdprCaseReplies: (caseId: number) => Promise<GdprCaseReplies>;
   linkGdprCaseMessage: (caseId: number, messageId: string) => Promise<void>;
   unlinkGdprCaseMessage: (caseId: number, messageId: string) => Promise<void>;
+  markGdprCaseViewed: (caseId: number) => Promise<void>;
+  getUnseenCaseReplyCount: () => Promise<number>;
 }
 
 export type { SyncStatus };

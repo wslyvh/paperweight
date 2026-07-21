@@ -12,8 +12,10 @@ import {
   escalateGdprCase,
   getGdprCaseById,
   getGdprCaseReplies,
+  getUnseenCaseReplyCount,
   insertGdprCaseEvent,
   linkGdprCaseMessage,
+  markGdprCaseViewed,
   queryGdprCases,
   reopenGdprCase,
   unlinkGdprCaseMessage,
@@ -55,4 +57,8 @@ export function registerCaseHandlers(): void {
   ipcMain.handle(IPC.unlinkGdprCaseMessage, (_e, caseId: number, messageId: string) =>
     unlinkGdprCaseMessage(caseId, messageId),
   );
+
+  ipcMain.handle(IPC.markGdprCaseViewed, (_e, caseId: number) => markGdprCaseViewed(caseId));
+
+  ipcMain.handle(IPC.getUnseenCaseReplyCount, () => getUnseenCaseReplyCount());
 }

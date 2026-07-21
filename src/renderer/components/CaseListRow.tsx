@@ -24,6 +24,11 @@ export function CaseListRow({
         onClick={onOpen}
       >
         <span className="font-medium truncate flex-1 min-w-0">{primary}</span>
+        {item.hasUnseenReply && (
+          <span className="badge badge-xs badge-error shrink-0" aria-label="New reply">
+            New
+          </span>
+        )}
         <CaseStatusBadge item={item} />
         <CaseRequestBadge requestType={item.requestType} />
         <span className="text-sm text-base-content/60 tabular-nums shrink-0 w-24 text-right">

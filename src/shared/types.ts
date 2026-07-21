@@ -247,10 +247,14 @@ export interface GdprCaseSummary extends GdprCase {
   /** From vendors.account_email — identity for reminder/follow-up copy. */
   accountEmail?: string;
   nextAction?: GdprCaseAction;
+  /** True when a reply/link event landed after the case was last opened. */
+  hasUnseenReply: boolean;
 }
 
 export interface GdprCaseDetail extends GdprCaseSummary {
   events: ActivityEntry[];
+  /** When this case was last opened, before this load (undefined = never viewed). */
+  lastViewedAt?: number;
 }
 
 export interface CreateGdprCaseInput {
