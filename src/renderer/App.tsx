@@ -51,6 +51,27 @@ function AuthGate({ children }: { children: React.ReactNode }): JSX.Element {
 export default function App(): JSX.Element {
   const [accountKey, setAccountKey] = useState(0);
   const [updateInfo, setUpdateInfo] = useState<UpdateInfo | null>(null);
+  const [paperweightEgg, setPaperweightEgg] = useState(false);
+
+  useEffect(() => {
+    let buffer = "";
+    const onKeyDown = (e: KeyboardEvent): void => {
+      if (e.key.length !== 1) return;
+      buffer = (buffer + e.key.toLowerCase()).slice(-11);
+      if (buffer === "paperweight") {
+        buffer = "";
+        setPaperweightEgg(true);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
+  useEffect(() => {
+    if (!paperweightEgg) return;
+    const t = setTimeout(() => setPaperweightEgg(false), 1600);
+    return () => clearTimeout(t);
+  }, [paperweightEgg]);
 
   useEffect(() => {
     window.api
@@ -80,32 +101,48 @@ export default function App(): JSX.Element {
 
   return (
     <HashRouter>
-      <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[60] w-[min(720px,calc(100vw-2rem))]">
-        <UpdateBanner info={updateInfo} onDismiss={() => setUpdateInfo(null)} />
+      <div
+        className={
+          paperweightEgg ? "animate-[shake_0.5s_ease-in-out_2]" : undefined
+        }
+      >
+        <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[60] w-[min(720px,calc(100vw-2rem))]">
+          <UpdateBanner
+            info={updateInfo}
+            onDismiss={() => setUpdateInfo(null)}
+          />
+        </div>
+        {paperweightEgg && (
+          <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[70]">
+            <div role="alert" className="alert alert-info shadow-lg">
+              <span>Immovable. Like a paperweight.</span>
+            </div>
+          </div>
+        )}
+        <Routes>
+          <Route path="/onboarding" element={<Onboarding />} />
+          <Route
+            key={accountKey}
+            path="/"
+            element={
+              <AuthGate>
+                <AppShell />
+              </AuthGate>
+            }
+          >
+            <Route index element={<Navigate to="/dashboard" replace />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="mail" element={<Mail />} />
+            <Route path="accounts" element={<Accounts />} />
+            <Route path="accounts/:groupKey" element={<AccountDetail />} />
+            <Route path="cases" element={<Cases />} />
+            <Route path="cases/:caseId" element={<CaseDetail />} />
+            <Route path="settings" element={<Settings />} />
+            <Route path="support" element={<Support />} />
+            <Route path="activity" element={<Activity />} />
+          </Route>
+        </Routes>
       </div>
-      <Routes>
-        <Route path="/onboarding" element={<Onboarding />} />
-        <Route
-          key={accountKey}
-          path="/"
-          element={
-            <AuthGate>
-              <AppShell />
-            </AuthGate>
-          }
-        >
-          <Route index element={<Navigate to="/dashboard" replace />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="mail" element={<Mail />} />
-          <Route path="accounts" element={<Accounts />} />
-          <Route path="accounts/:groupKey" element={<AccountDetail />} />
-          <Route path="cases" element={<Cases />} />
-          <Route path="cases/:caseId" element={<CaseDetail />} />
-          <Route path="settings" element={<Settings />} />
-          <Route path="support" element={<Support />} />
-          <Route path="activity" element={<Activity />} />
-        </Route>
-      </Routes>
     </HashRouter>
   );
 }

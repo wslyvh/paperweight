@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
 @plugin "daisyui" {
-  themes: dim --default, silk;
+  themes:
+    dim --default,
+    silk;
 }
 
 @theme {
@@ -14,8 +16,16 @@
  */
 .badge.badge-request-access {
   border-width: 1px;
-  background-color: color-mix(in oklch, var(--color-base-content) 12%, transparent);
-  color: color-mix(in oklch, var(--color-base-content) 72%, var(--color-base-100));
+  background-color: color-mix(
+    in oklch,
+    var(--color-base-content) 12%,
+    transparent
+  );
+  color: color-mix(
+    in oklch,
+    var(--color-base-content) 72%,
+    var(--color-base-100)
+  );
   border-color: color-mix(in oklch, var(--color-base-content) 20%, transparent);
 }
 
@@ -24,6 +34,26 @@
   background-color: color-mix(in oklch, var(--color-primary) 18%, transparent);
   color: var(--color-primary);
   border-color: color-mix(in oklch, var(--color-primary) 35%, transparent);
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translateX(-1px);
+  }
+  20%,
+  80% {
+    transform: translateX(2px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-4px);
+  }
+  40%,
+  60% {
+    transform: translateX(4px);
+  }
 }
 
 .recharts-wrapper :focus,
