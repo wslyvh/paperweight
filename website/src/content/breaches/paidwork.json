@@ -1,0 +1,59 @@
+{
+  "slug": "paidwork",
+  "generated_at": "2026-07-22T14:21:26.670Z",
+  "breach": {
+    "slug": "paidwork",
+    "company_name": "Paidwork LLC",
+    "runs": [],
+    "categories": [
+      "services"
+    ],
+    "address": "Paidwork LLC, 3400 Cottage Way Ste G2 #27204, Sacramento, CA 95825, USA",
+    "web": "https://www.paidwork.com",
+    "webform": "https://support.paidwork.com",
+    "email": "support@paidwork.com",
+    "suggested_transport_medium": "email",
+    "name": "Paidwork",
+    "title": "Paidwork",
+    "domain": "paidwork.com",
+    "breach_date": "2026-03-29",
+    "added_date": "2026-07-19T22:57:18Z",
+    "modified_date": "2026-07-19T22:57:18Z",
+    "pwn_count": 23272765,
+    "description": "In March 2026, <a href=\"https://cybernews.com/security/paidwork-data-breach-22-million-users/\" target=\"_blank\" rel=\"noopener\">hackers claimed they had obtained data from the gig economy platform Paidwork which they then listed for sale</a>. Almost 11GB of data allegedly obtained from the platform was subsequently <a href=\"https://x.com/dailydarkweb/status/2078527237809131674?s=61&t=beHN95Zd9G3fQiuO1h_jzA\" target=\"_blank\" rel=\"noopener\">posted publicly in July</a> and contained over 23M unique email addresses. The breach also included a broad range of other data relating to the operation of the platform including user profile data, banking information, payout history for workers and passwords stored as bcrypt hashes.",
+    "logo_path": "https://logos.haveibeenpwned.com/Paidwork.png",
+    "data_classes": [
+      "Bank account numbers",
+      "Dates of birth",
+      "Device information",
+      "Education levels",
+      "Email addresses",
+      "Financial transactions",
+      "Genders",
+      "IP addresses",
+      "Names",
+      "Passwords",
+      "Personal interests",
+      "Phone numbers",
+      "Physical addresses",
+      "Profile photos"
+    ],
+    "is_verified": true,
+    "is_sensitive": false
+  },
+  "enforcement": {
+    "records": [],
+    "total_fines": 0
+  },
+  "content": {
+    "aboutCompany": "Paidwork LLC runs a gig economy platform where users earn money by completing microtasks like watching videos, testing apps, and filling out surveys. It operates globally.",
+    "keyTakeaways": [
+      "In March 2026, a data breach at Paidwork exposed 23.3 million user records, including names, email addresses, phone numbers, physical addresses, bank account numbers, transaction histories, and bcrypt-hashed passwords.",
+      "This incident is part of a pattern of data breaches affecting gig economy platforms, where financial and identity data create outsized fraud risks for workers.",
+      "Affected users should watch for phishing emails that reference real payout amounts and change their Paidwork password immediately."
+    ],
+    "incidentAndExposure": "In March 2026, a threat actor using the alias 'hackformetome' advertised a database allegedly obtained from Paidwork's production systems on a cybercrime forum, claiming records on over 22 million users. In July 2026, nearly 11GB of the dataset was posted publicly, containing over 23 million unique email addresses. The exposed data includes names, email addresses, phone numbers, physical addresses, dates of birth, genders, education levels, personal interests, profile photos, IP addresses, device information, bank account numbers, transaction records, and worker payout histories. Passwords were stored as bcrypt hashes. The breach has been verified and added to Have I Been Pwned. Paidwork has not issued a public statement acknowledging the incident.",
+    "timelineAndCause": "The breach occurred in March 2026 when a threat actor accessed Paidwork's production systems. The stolen data was first advertised for sale on a cybercrime forum in April 2026. After failing to find a buyer, the full 11GB dataset was posted publicly in July 2026. The incident was added to Have I Been Pwned on July 19, 2026.",
+    "nextSteps": "The exposure of bank account numbers, transaction histories, and payout records puts affected individuals at direct risk of financial fraud. Attackers can use real past payout amounts to make phishing emails more convincing. A scam message claiming 'your payout was reversed, click here to re-verify your bank details' is far more dangerous than a generic warning. The names, addresses, and dates of birth also enable identity theft and account takeover attempts on other platforms. Since passwords were exposed as bcrypt hashes, change your Paidwork password immediately and any other account where you reused the same password. Monitor your bank accounts and payment platform statements for unauthorized transactions. Be suspicious of any unsolicited email, text, or call referencing your Paidwork activity, even if it includes accurate payout details. Paidwork has not issued an official response, so treat any message claiming to be from Paidwork support with extreme caution."
+  }
+}
