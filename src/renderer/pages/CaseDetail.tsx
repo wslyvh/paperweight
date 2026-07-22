@@ -15,6 +15,7 @@ import {
 } from "@shared/cases";
 import { detectLanguageFromDomain } from "@shared/gdpr/resolution";
 import { buildReminderEmail, buildFollowupEmail } from "@shared/gdpr/templates";
+import { APP_CONFIG } from "@shared/config";
 import { ArrowLeft, ChevronDown, ExternalLink } from "lucide-react";
 import ActionModal from "../components/ActionModal";
 import { canAccountSend } from "../utils/account";
@@ -27,8 +28,8 @@ import {
 } from "../utils/activityLabels";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
-const GUIDE_URL = "https://www.paperweight.email/guides/how-to-exercise-your-gdpr-rights";
-const AUTHORITIES_URL = "https://www.paperweight.email/resources/authorities";
+const GUIDE_URL = `${APP_CONFIG.WEBSITE}/guides/how-to-exercise-your-gdpr-rights`;
+const AUTHORITIES_URL = `${APP_CONFIG.WEBSITE}/resources/authorities`;
 
 const NEXT_ACTION_DAY = {
   reminder: REMINDER_AFTER_DAYS,
