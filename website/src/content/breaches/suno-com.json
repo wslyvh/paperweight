@@ -1,0 +1,50 @@
+{
+  "slug": "suno-com",
+  "generated_at": "2026-07-22T10:29:13.092Z",
+  "breach": {
+    "slug": "suno-com",
+    "company_name": "Suno, Inc.",
+    "runs": [],
+    "categories": [
+      "entertainment"
+    ],
+    "address": "17 Dunster Street\nFloor 4\nCambridge, MA 02138\nUnited States of America",
+    "web": "https://suno.com",
+    "email": "privacy@suno.ai",
+    "suggested_transport_medium": "email",
+    "name": "Suno",
+    "title": "Suno",
+    "domain": "suno.com",
+    "breach_date": "2025-11-25",
+    "added_date": "2026-07-20T19:49:51Z",
+    "modified_date": "2026-07-20T19:49:51Z",
+    "pwn_count": 55282226,
+    "description": "In November 2025, <a href=\"https://www.404media.co/hack-reveals-suno-ai-music-generator-scraped-youtube-deezer-and-genius/\" target=\"_blank\" rel=\"noopener\">AI music generation tool Suno suffered a data breach that later came to light in July the following year</a>. The data contained over 55M unique email addresses. Phone numbers were also present where they had been used as the sign-up method. Although representing a small portion of the corpus, the breach also included tens of thousands of Stripe records relating to purchases, containing names, physical addresses, purchase amounts and partial credit card data including the card type, expiry date and last 4 digits. The company advised that \"Suno does not have access to customers' full credit card numbers in Stripe\".",
+    "logo_path": "https://logos.haveibeenpwned.com/Suno.png",
+    "data_classes": [
+      "Email addresses",
+      "Names",
+      "Partial credit card data",
+      "Phone numbers",
+      "Physical addresses",
+      "Purchases"
+    ],
+    "is_verified": true,
+    "is_sensitive": false
+  },
+  "enforcement": {
+    "records": [],
+    "total_fines": 0
+  },
+  "content": {
+    "aboutCompany": "Suno, Inc. is a company based in Cambridge, Massachusetts, that develops an AI music generation platform. This platform allows users to create music, including vocals and instrumentation, from text or audio prompts.",
+    "keyTakeaways": [
+      "In November 2025, Suno experienced a data breach that exposed email addresses, names, phone numbers, physical addresses, purchase details, and partial credit card data for 55.3 million records.",
+      "This incident is part of a pattern of data breaches affecting companies in the same sector, with other music and education platforms also reporting significant exposures around the same time.",
+      "Individuals affected by this breach should be vigilant about phishing attempts and other scams that use their exposed personal and purchase information."
+    ],
+    "incidentAndExposure": "In November 2025, Suno, Inc. suffered a data breach that affected 55.3 million records. The exposed data included email addresses, names, phone numbers (for those who used them to sign up), physical addresses, and details of purchases. Partial credit card data was also exposed, specifically the card type, expiry date, and the last four digits. Suno has publicly acknowledged this incident, stating that they do not have access to customers' full credit card numbers in Stripe. The breach was later confirmed by Have I Been Pwned in July 2026.",
+    "timelineAndCause": "The data breach at Suno, Inc. occurred in November 2025. It was publicly disclosed on July 20, 2026. The specific cause or method of how the breach happened was not detailed in the provided information.",
+    "nextSteps": "The exposed data, including names, email addresses, phone numbers, physical addresses, and purchase details, could be used by attackers to craft highly convincing phishing emails, text messages, or phone calls. These scams might impersonate Suno or other services to trick you into revealing more sensitive information or making fraudulent payments. Be extremely cautious of any unsolicited communications asking for personal details or directing you to suspicious websites. Since partial credit card data was exposed, monitor your bank and credit card statements for any unauthorized transactions, even though full card numbers were not revealed. If you notice any suspicious activity, contact your bank or credit card provider immediately."
+  }
+}
