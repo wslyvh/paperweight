@@ -40,6 +40,7 @@
     "aboutCompany": "Suno, Inc. is a company based in Cambridge, Massachusetts, that develops an AI music generation platform. This platform allows users to create music, including vocals and instrumentation, from text or audio prompts.",
     "keyTakeaways": [
       "In November 2025, Suno experienced a data breach that exposed email addresses, names, phone numbers, physical addresses, purchase details, and partial credit card data for 55.3 million records.",
+      "The same hack also leaked internal source code confirming Suno scraped copyrighted music from YouTube Music, Deezer, and Genius for training data — while publicly arguing that training on copyrighted works is fair use.",
       "This incident is part of a pattern of data breaches affecting companies in the same sector, with other music and education platforms also reporting significant exposures around the same time.",
       "Individuals affected by this breach should be vigilant about phishing attempts and other scams that use their exposed personal and purchase information."
     ],
