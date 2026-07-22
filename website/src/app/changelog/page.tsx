@@ -1,8 +1,8 @@
 import dayjs from "dayjs";
-import { marked } from "marked";
 import { SubpageHeader } from "@/components/SubpageHeader";
 import { getReleases } from "@/lib/github";
 import { SITE_CONFIG } from "@/utils/config";
+import { parseMarkdown } from "@/utils/markdown";
 import { buildMetadata } from "@/utils/seo";
 
 export const dynamic = "force-static";
@@ -39,6 +39,13 @@ export default async function ChangelogPage() {
     );
   }
 
+  const releasesWithHtml = await Promise.all(
+    releases.map(async (release) => ({
+      ...release,
+      bodyHtml: release.body ? await parseMarkdown(release.body) : undefined,
+    })),
+  );
+
   return (
     <div className="container mx-auto w-full px-4 pt-24 pb-12">
       <SubpageHeader
@@ -48,7 +55,7 @@ export default async function ChangelogPage() {
       <div className="divider"></div>
 
       <div className="space-y-0">
-        {releases.map((release, i) => (
+        {releasesWithHtml.map((release, i) => (
           <div key={release.tag_name}>
             {i > 0 && <div className="divider my-8" />}
             <article className="flex flex-col md:flex-row gap-4 md:gap-8">
@@ -73,11 +80,11 @@ export default async function ChangelogPage() {
                 )}
               </aside>
               <div className="flex-1 min-w-0">
-                {release.body ? (
+                {release.bodyHtml ? (
                   <div
                     className="prose prose-sm max-w-none prose-headings:font-semibold"
                     dangerouslySetInnerHTML={{
-                      __html: marked.parse(release.body) as string,
+                      __html: release.bodyHtml,
                     }}
                   />
                 ) : null}

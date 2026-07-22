@@ -1,30 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import dayjs from "dayjs";
-import { Marked, type Tokens } from "marked";
 import { TakeActionCards } from "@/components/TakeActionCards";
 import { GetGuide, GetGuides } from "@/utils/guides";
+import { parseMarkdown } from "@/utils/markdown";
 import { buildMetadata } from "@/utils/seo";
-
-function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9\s-]/g, "")
-    .replace(/\s+/g, "-");
-}
-
-// Isolated instance (not the shared `marked` singleton) so heading ids for
-// deep-linkable anchors (e.g. #the-tools) don't leak into other pages that
-// render markdown.
-const markdown = new Marked({
-  renderer: {
-    heading({ tokens, depth, text }: Tokens.Heading) {
-      const id = slugify(text);
-      return `<h${depth} id="${id}">${this.parser.parseInline(tokens)}</h${depth}>\n`;
-    },
-  },
-});
 
 export function generateStaticParams() {
   return GetGuides().map((guide) => ({ slug: guide.slug }));
@@ -64,7 +44,7 @@ export default async function Page({
     );
   }
 
-  const bodyHtml = await markdown.parse(guide.body);
+  const bodyHtml = await parseMarkdown(guide.body);
   const lastUpdated = dayjs(guide.last_updated).format("MMM D, YYYY");
 
   return (

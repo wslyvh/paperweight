@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
-import { marked } from "marked";
 import { ExternalLink } from "lucide-react";
 import { TakeActionCards } from "@/components/TakeActionCards";
 import { RelatedBreaches } from "@/components/RelatedBreaches";
@@ -12,6 +11,7 @@ import {
   getRelatedBreaches,
 } from "@/utils/breach";
 import { getBreachSlugs } from "@/utils/content";
+import { parseMarkdown } from "@/utils/markdown";
 import { buildMetadata } from "@/utils/seo";
 
 interface InfoRowProps {
@@ -72,13 +72,13 @@ export default async function BreachPage({
   }
 
   const related = getRelatedBreaches(slug);
-  const breachOverviewHtml = await marked.parse(model.content.incidentAndExposure);
+  const breachOverviewHtml = await parseMarkdown(model.content.incidentAndExposure);
   const timelineAndCauseHtml = model.content.timelineAndCause
-    ? await marked.parse(model.content.timelineAndCause)
+    ? await parseMarkdown(model.content.timelineAndCause)
     : undefined;
-  const nextStepsHtml = await marked.parse(model.content.nextSteps);
+  const nextStepsHtml = await parseMarkdown(model.content.nextSteps);
   const enforcementHtml = model.content.enforcementNarrative
-    ? await marked.parse(model.content.enforcementNarrative)
+    ? await parseMarkdown(model.content.enforcementNarrative)
     : undefined;
 
   return (

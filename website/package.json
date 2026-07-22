@@ -15,6 +15,7 @@
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.562.0",
     "marked": "^17",
+    "marked-gfm-heading-id": "^4.1.4",
     "next": "^16",
     "next-plausible": "^3",
     "react": "^19",
