@@ -352,6 +352,8 @@ function parseGraphMessage(msg: GraphMessage): EmailMessage {
 
   const senderEmail = msg.from?.emailAddress?.address?.toLowerCase() || "";
   const senderName = msg.from?.emailAddress?.name || "";
+  const to = getHeader("To");
+  const cc = getHeader("Cc");
   const subject = msg.subject || "";
   const listUnsub = getHeader("List-Unsubscribe");
   const listUnsubPost = getHeader("List-Unsubscribe-Post");
@@ -379,6 +381,8 @@ function parseGraphMessage(msg: GraphMessage): EmailMessage {
     bodyPreview,
     senderEmail,
     senderName,
+    to,
+    cc,
     unsubscribeUrl: unsub?.url,
     unsubscribeMethod: unsub?.method ?? "none",
     headersJson: JSON.stringify(rawHeaders),

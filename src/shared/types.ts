@@ -127,6 +127,9 @@ export interface Message {
   unsubscribe_url?: string;
   unsubscribe_method?: UnsubscribeMethod;
   status?: MessageStatus;
+  recipient_to?: string;
+  recipient_cc?: string;
+  is_recipient_match?: number;
 }
 
 export interface WhitelistEntry {

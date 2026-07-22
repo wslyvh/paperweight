@@ -10,7 +10,7 @@ import { join, basename } from "path";
 import { existsSync, unlinkSync } from "fs";
 import { dbLog } from "./utils/log";
 import { emailToFileKey } from "./credentials";
-import { migrateActionLog, migrateGdprCases, migrateVendors } from "./migrations";
+import { migrateActionLog, migrateGdprCases, migrateMessages, migrateVendors } from "./migrations";
 
 let db: Database.Database | undefined;
 
@@ -145,6 +145,9 @@ function initSchema(d: Database.Database) {
       unsubscribe_method TEXT,
       status TEXT,
       size_bytes INTEGER NOT NULL DEFAULT 0,
+      recipient_to TEXT,
+      recipient_cc TEXT,
+      is_recipient_match INTEGER NOT NULL DEFAULT 0,
       FOREIGN KEY (vendor_id) REFERENCES vendors(id) ON DELETE CASCADE
     );
 
@@ -216,6 +219,7 @@ function initSchema(d: Database.Database) {
   migrateActionLog(d);
   migrateVendors(d);
   migrateGdprCases(d);
+  migrateMessages(d);
 
   d.prepare("INSERT OR IGNORE INTO sync_state (id) VALUES (1)").run();
 }

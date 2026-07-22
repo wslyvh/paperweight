@@ -7,6 +7,10 @@ export interface EmailMessage {
   bodyPreview: string;
   senderEmail: string;
   senderName: string;
+  /** Raw To/Cc header value(s), comma-separated. Used to flag which connected
+   * address actually received the message (a mailbox can have multiple). */
+  to?: string;
+  cc?: string;
   unsubscribeUrl?: string;
   unsubscribeMethod?: "rfc8058" | "list-unsubscribe" | "footer" | "none";
   headersJson: string;

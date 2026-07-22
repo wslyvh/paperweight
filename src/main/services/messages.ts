@@ -66,17 +66,32 @@ export function classifyMessageType(msg: EmailMessage): MessageType {
   return "personal";
 }
 
+// First-pass check only: does the connected account's address appear in the
+// raw To/Cc header text? Good enough to tell which alias received a message
+// when a mailbox has multiple connected addresses; doesn't attempt full
+// address-list parsing (display names, plus-addressing, etc).
+export function isRecipientMatch(msg: EmailMessage, accountEmail?: string): boolean {
+  if (!accountEmail) return false;
+  const needle = accountEmail.toLowerCase();
+  return (
+    (msg.to?.toLowerCase().includes(needle) ?? false) ||
+    (msg.cc?.toLowerCase().includes(needle) ?? false)
+  );
+}
+
 export function insertMessageVendor(
   msg: EmailMessage,
   vendorId: number,
-  type: MessageType
+  type: MessageType,
+  accountEmail?: string
 ) {
   const d = getDb();
   d.prepare(
     `INSERT OR IGNORE INTO messages (
       id, vendor_id, sender_email, sender_name, subject, date, body_preview,
-      raw_headers, type, unsubscribe_url, unsubscribe_method, status, size_bytes
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+      raw_headers, type, unsubscribe_url, unsubscribe_method, status, size_bytes,
+      recipient_to, recipient_cc, is_recipient_match
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
   ).run(
     msg.id,
     vendorId,
@@ -90,7 +105,10 @@ export function insertMessageVendor(
     msg.unsubscribeUrl ?? null,
     msg.unsubscribeMethod ?? "none",
     null,
-    msg.sizeBytes ?? 0
+    msg.sizeBytes ?? 0,
+    msg.to ?? null,
+    msg.cc ?? null,
+    isRecipientMatch(msg, accountEmail) ? 1 : 0
   );
 }
 

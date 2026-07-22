@@ -196,6 +196,113 @@ export function migrateGdprCases(d: Database.Database): void {
   }
 }
 
+/** Schema migration — recipient columns on messages, flags which connected address received it. */
+export function migrateMessages(d: Database.Database): void {
+  const messageCols = new Set(
+    (d.pragma("table_info(messages)") as Array<{ name: string }>).map((c) => c.name),
+  );
+  if (!messageCols.has("recipient_to")) {
+    d.exec("ALTER TABLE messages ADD COLUMN recipient_to TEXT");
+  }
+  if (!messageCols.has("recipient_cc")) {
+    d.exec("ALTER TABLE messages ADD COLUMN recipient_cc TEXT");
+  }
+  if (!messageCols.has("is_recipient_match")) {
+    d.exec("ALTER TABLE messages ADD COLUMN is_recipient_match INTEGER NOT NULL DEFAULT 0");
+  }
+}
+
+function findHeaderCaseInsensitive(
+  headers: Record<string, string>,
+  name: string
+): string | undefined {
+  const key = Object.keys(headers).find((k) => k.toLowerCase() === name);
+  return key ? headers[key] : undefined;
+}
+
+/**
+ * v0.5 — backfill recipient columns (added by migrateMessages) on messages synced
+ * before those columns existed. Parses To/Cc out of the raw_headers JSON already
+ * stored at sync time — no provider API calls. Rows whose raw_headers never captured
+ * To/Cc (pre-fix Gmail fast-sync path) are left NULL; they never had the data.
+ * Idempotent per account via the `migration:recipient-backfill` settings marker.
+ * Runs before initDb(), so each account DB is opened directly with no active
+ * connection — mirrors migrateScanScopeAllMail above.
+ */
+function backfillMessageRecipients(): void {
+  const userData = userDataDir();
+
+  for (const acc of listAccounts()) {
+    const dbPath = join(userData, `${emailToFileKey(acc.email)}.db`);
+    if (!existsSync(dbPath)) continue;
+
+    let db: Database.Database | undefined;
+    try {
+      db = new Database(dbPath);
+
+      const done = db
+        .prepare("SELECT 1 FROM settings WHERE key = 'migration:recipient-backfill'")
+        .get();
+      if (done) continue;
+
+      // Ensure the columns exist regardless of whether this account's DB has been
+      // opened (and thus schema-migrated) via initSchema yet this launch.
+      migrateMessages(db);
+
+      const accountEmail = (
+        db.prepare("SELECT value FROM settings WHERE key = 'accountEmail'").get() as
+          | { value: string }
+          | undefined
+      )?.value?.toLowerCase();
+
+      const rows = db
+        .prepare(
+          "SELECT id, raw_headers FROM messages WHERE recipient_to IS NULL AND raw_headers IS NOT NULL"
+        )
+        .all() as Array<{ id: string; raw_headers: string }>;
+
+      const update = db.prepare(
+        "UPDATE messages SET recipient_to = ?, recipient_cc = ?, is_recipient_match = ? WHERE id = ?"
+      );
+
+      const applyAll = db.transaction((items: typeof rows) => {
+        for (const row of items) {
+          let headers: Record<string, string>;
+          try {
+            headers = JSON.parse(row.raw_headers);
+          } catch {
+            continue;
+          }
+          const to = findHeaderCaseInsensitive(headers, "to");
+          const cc = findHeaderCaseInsensitive(headers, "cc");
+          if (!to && !cc) continue;
+
+          const isMatch =
+            !!accountEmail &&
+            ((to?.toLowerCase().includes(accountEmail) ?? false) ||
+              (cc?.toLowerCase().includes(accountEmail) ?? false));
+
+          update.run(to ?? null, cc ?? null, isMatch ? 1 : 0, row.id);
+        }
+      });
+      applyAll(rows);
+
+      db.prepare(
+        "INSERT OR REPLACE INTO settings (key, value) VALUES ('migration:recipient-backfill', '1')"
+      ).run();
+      appLog.info(
+        `migrations: recipient backfill applied for [${accountTag(acc.email)}] (${rows.length} rows scanned)`
+      );
+    } catch (err) {
+      appLog.warn(
+        `migrations: recipient backfill failed for [${accountTag(acc.email)}]: ${err instanceof Error ? err.message : String(err)}`
+      );
+    } finally {
+      db?.close();
+    }
+  }
+}
+
 /**
  * Run all migrations in order. Safe to call on every launch — each migration
  * is a no-op if there is nothing to do.
@@ -204,4 +311,5 @@ export async function runMigrations(): Promise<void> {
   cleanupStaleFiles();
   await backfillSmtpFromPreset();
   migrateScanScopeAllMail();
+  backfillMessageRecipients();
 }

@@ -292,6 +292,8 @@ function parseGmailMessage(msg: GmailRawMessage): EmailMessage {
 
   const fromRaw = getHeader("From");
   const { name: senderName, email: senderEmail } = parseEmailAddress(fromRaw);
+  const to = getHeader("To") || undefined;
+  const cc = getHeader("Cc") || undefined;
   const listUnsub = getHeader("List-Unsubscribe") || undefined;
   const listUnsubPost = getHeader("List-Unsubscribe-Post") || undefined;
 
@@ -335,6 +337,8 @@ function parseGmailMessage(msg: GmailRawMessage): EmailMessage {
     bodyPreview: bodyPreview || msg.snippet?.substring(0, 150) || "",
     senderEmail,
     senderName,
+    to,
+    cc,
     unsubscribeUrl: unsub?.url,
     unsubscribeMethod: unsub?.method ?? "none",
     headersJson,
@@ -428,6 +432,8 @@ export function createGmailProvider(): EmailProvider {
           if (headersOnly) {
             params.metadataHeaders = [
               "From",
+              "To",
+              "Cc",
               "Subject",
               "Date",
               "List-Unsubscribe",

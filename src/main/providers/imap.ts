@@ -156,6 +156,15 @@ function buildHeadersJson(parsed: import("mailparser").ParsedMail): string {
   return JSON.stringify(flat);
 }
 
+// mailparser's to/cc can be a single AddressObject or an array (rare, multiple
+// address groups) — .text is the original comma-separated header string either way.
+function addressObjectText(
+  addr: import("mailparser").AddressObject | import("mailparser").AddressObject[] | undefined
+): string | undefined {
+  if (!addr) return undefined;
+  return Array.isArray(addr) ? addr.map((a) => a.text).join(", ") : addr.text;
+}
+
 async function parseImapMessage(
   msg: { uid: number; source?: Buffer; size?: number },
   idPrefix: string
@@ -167,6 +176,8 @@ async function parseImapMessage(
     msg.source
   )) as import("mailparser").ParsedMail;
   const from = parsed.from?.value?.[0];
+  const to = addressObjectText(parsed.to);
+  const cc = addressObjectText(parsed.cc);
   const { listUnsubStr, listUnsubPostStr } = extractListHeaders(parsed);
 
   const unsub = resolveUnsubscribe(
@@ -192,6 +203,8 @@ async function parseImapMessage(
     bodyPreview: bodyPreview || (parsed.text || "").substring(0, 150) || "",
     senderEmail: (from?.address || "").toLowerCase(),
     senderName: from?.name || "",
+    to,
+    cc,
     unsubscribeUrl: unsub?.url,
     unsubscribeMethod: unsub?.method ?? "none",
     headersJson: buildHeadersJson(parsed),
@@ -209,6 +222,8 @@ async function parseImapHeadersOnly(
   // simpleParser handles a headers-only buffer (no body section required)
   const parsed = (await simpleParser(msg.headers)) as import("mailparser").ParsedMail;
   const from = parsed.from?.value?.[0];
+  const to = addressObjectText(parsed.to);
+  const cc = addressObjectText(parsed.cc);
   const { listUnsubStr, listUnsubPostStr } = extractListHeaders(parsed);
 
   // No body available — only header-based unsubscribe methods (rfc8058, list-unsubscribe)
@@ -223,6 +238,8 @@ async function parseImapHeadersOnly(
     bodyPreview: "",
     senderEmail: (from?.address || "").toLowerCase(),
     senderName: from?.name || "",
+    to,
+    cc,
     unsubscribeUrl: unsub?.url,
     unsubscribeMethod: unsub?.method ?? "none",
     headersJson: buildHeadersJson(parsed),

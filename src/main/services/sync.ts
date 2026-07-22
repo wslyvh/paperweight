@@ -172,7 +172,7 @@ export function processMessagesBatch(messages: EmailMessage[]): void {
     vendorIds.add(vendorId);
 
     const type = classifyMessageType(msg);
-    insertMessageVendor(msg, vendorId, type);
+    insertMessageVendor(msg, vendorId, type, accountEmail);
   }
 
   for (const vid of vendorIds) {
