@@ -43,7 +43,7 @@ export default async function Home() {
   const latestBreaches = getBreachIndexItems()
     .slice(0, 3)
     .map((breach) => {
-      const daysAgo = dayjs().diff(breach.breachDate, "day");
+      const daysAgo = dayjs().diff(breach.addedDate?.slice(0, 10) || breach.breachDate, "day");
       const daysAgoLabel = daysAgo === 0
         ? "Today"
         : `${daysAgo} day${daysAgo === 1 ? "" : "s"} ago`;

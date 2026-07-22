@@ -23,6 +23,7 @@ export interface BreachIndexItem {
   title: string;
   logoPath?: string;
   breachDate: string;
+  addedDate: string;
   pwnCount: number;
   dataClasses: string[];
   categoryLabel?: string;
@@ -126,6 +127,7 @@ function buildIndexItem(breach: BreachRecord): BreachIndexItem {
     title: breach.title,
     logoPath: breach.logo_path,
     breachDate: breach.breach_date,
+    addedDate: breach.added_date,
     pwnCount: breach.pwn_count,
     dataClasses: breach.data_classes,
     categoryLabel: category.label,
@@ -212,7 +214,7 @@ function buildBreachModel(
 
 export function getBreachIndexItems(): BreachIndexItem[] {
   return getBreachedCompanies()
-    .sort((a, b) => b.breach_date.localeCompare(a.breach_date))
+    .sort((a, b) => (b.added_date || b.breach_date).localeCompare(a.added_date || a.breach_date))
     .map(buildIndexItem);
 }
 
