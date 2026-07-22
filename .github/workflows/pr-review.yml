@@ -1,9 +1,11 @@
 name: PR Review
 
-# Manual only. Auto on fork PRs needs privileged secrets + agent risk we don't want;
-# same-repo auto isn't useful if we also skip the owner. Dispatch when you want a
-# bot comment on the PR: gh workflow run "PR Review" -f pr_number=N
+# Auto for same-repo PRs from write collaborators (e.g. Lendl).
+# Forks / non-writers still fail Claude's write gate — skip them; use dispatch if needed.
+# Skip owner PRs. Manual: gh workflow run "PR Review" -f pr_number=N
 on:
+  pull_request:
+    types: [opened, ready_for_review, reopened]
   workflow_dispatch:
     inputs:
       pr_number:
@@ -12,7 +14,7 @@ on:
         type: string
 
 concurrency:
-  group: pr-review-${{ inputs.pr_number }}
+  group: pr-review-${{ github.event.pull_request.number || inputs.pr_number }}
   cancel-in-progress: true
 
 permissions:
@@ -21,6 +23,12 @@ permissions:
 
 jobs:
   review:
+    if: |
+      github.event_name == 'workflow_dispatch' || (
+        github.event.pull_request.draft == false &&
+        github.event.pull_request.user.login != 'wslyvh' &&
+        github.event.pull_request.head.repo.full_name == github.repository
+      )
     runs-on: ubuntu-latest
     steps:
       - name: Resolve PR
@@ -28,12 +36,17 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const prNumber = Number("${{ inputs.pr_number }}");
+            const prNumber =
+              context.eventName === "workflow_dispatch"
+                ? Number("${{ inputs.pr_number }}")
+                : context.payload.pull_request.number;
+
             const { data: pr } = await github.rest.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: prNumber,
             });
+
             core.setOutput("number", String(pr.number));
             core.setOutput("head_repo", pr.head.repo.full_name);
             core.setOutput("head_sha", pr.head.sha);
