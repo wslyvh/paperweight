@@ -1,10 +1,9 @@
 name: PR Review
 
+# Manual only. Auto on fork PRs needs privileged secrets + agent risk we don't want;
+# same-repo auto isn't useful if we also skip the owner. Dispatch when you want a
+# bot comment on the PR: gh workflow run "PR Review" -f pr_number=N
 on:
-  # pull_request_target: runs on OUR repo (workflow from main) with secrets,
-  # so fork PRs can be reviewed without a maintainer click.
-  pull_request_target:
-    types: [opened, ready_for_review, reopened]
   workflow_dispatch:
     inputs:
       pr_number:
@@ -13,7 +12,7 @@ on:
         type: string
 
 concurrency:
-  group: pr-review-${{ github.event.pull_request.number || inputs.pr_number }}
+  group: pr-review-${{ inputs.pr_number }}
   cancel-in-progress: true
 
 permissions:
@@ -22,12 +21,6 @@ permissions:
 
 jobs:
   review:
-    # Skip drafts, and skip PRs authored by the repo owner (manual dispatch still works).
-    if: |
-      github.event_name == 'workflow_dispatch' || (
-        github.event.pull_request.draft == false &&
-        github.event.pull_request.user.login != 'wslyvh'
-      )
     runs-on: ubuntu-latest
     steps:
       - name: Resolve PR
@@ -35,29 +28,16 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const prNumber =
-              context.eventName === "workflow_dispatch"
-                ? Number("${{ inputs.pr_number }}")
-                : context.payload.pull_request.number;
-
+            const prNumber = Number("${{ inputs.pr_number }}");
             const { data: pr } = await github.rest.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: prNumber,
             });
-
-            if (pr.draft) {
-              core.setFailed(`PR #${prNumber} is a draft — skipping review.`);
-              return;
-            }
-
             core.setOutput("number", String(pr.number));
             core.setOutput("head_repo", pr.head.repo.full_name);
-            core.setOutput("head_ref", pr.head.ref);
             core.setOutput("head_sha", pr.head.sha);
 
-      # Checkout PR head (may be a fork). Workflow YAML still comes from main —
-      # we never execute untrusted scripts; agent may only Read + gh comment.
       - uses: actions/checkout@v6
         with:
           repository: ${{ steps.pr.outputs.head_repo }}
@@ -69,9 +49,6 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.OPENROUTER_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # Required for fork authors (read-only on this repo). Safe here because
-          # tools are comment/read-only — no code push or arbitrary shell.
-          allowed_non_write_users: "*"
           prompt: |
             REPO: ${{ github.repository }}
             PR NUMBER: ${{ steps.pr.outputs.number }}
