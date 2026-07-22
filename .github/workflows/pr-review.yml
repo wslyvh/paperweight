@@ -1,8 +1,9 @@
 name: PR Review
 
 on:
-  pull_request:
-    # Not on every push (synchronize) — re-review via workflow_dispatch if needed.
+  # pull_request_target: runs on OUR repo (workflow from main) with secrets,
+  # so fork PRs can be reviewed without a maintainer click.
+  pull_request_target:
     types: [opened, ready_for_review, reopened]
   workflow_dispatch:
     inputs:
@@ -55,6 +56,8 @@ jobs:
             core.setOutput("head_ref", pr.head.ref);
             core.setOutput("head_sha", pr.head.sha);
 
+      # Checkout PR head (may be a fork). Workflow YAML still comes from main —
+      # we never execute untrusted scripts; agent may only Read + gh comment.
       - uses: actions/checkout@v6
         with:
           repository: ${{ steps.pr.outputs.head_repo }}
@@ -66,6 +69,9 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.OPENROUTER_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Required for fork authors (read-only on this repo). Safe here because
+          # tools are comment/read-only — no code push or arbitrary shell.
+          allowed_non_write_users: "*"
           prompt: |
             REPO: ${{ github.repository }}
             PR NUMBER: ${{ steps.pr.outputs.number }}
