@@ -15,4 +15,10 @@ export const ita: Lexicon = {
     /\b(?:annullare?|cancellare?)\s*(?:l[a']?\s*)?iscrizione\b/i,
   ],
   unsubscribeUrl: [/disiscriversi/i],
+  footerCue: [
+    /\bricevi questa\b/i,
+    /\btutti i diritti riservati\b/i,
+    /\binformativa sulla privacy\b/i,
+    /\bpartita iva\b/i,
+  ],
 };

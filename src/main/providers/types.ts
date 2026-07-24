@@ -1,16 +1,31 @@
+import type { Analysis } from "@paperweight/analysis";
+
 export interface EmailMessage {
   id: string;
   date: number;
   subject: string;
+  /** Provider-supplied teaser. Only used as the preview fallback for a message
+   *  whose body text came out empty. */
   snippet: string;
-  /** First 150 chars for preview/classification */
-  bodyPreview: string;
   senderEmail: string;
   senderName: string;
-  unsubscribeUrl?: string;
-  unsubscribeMethod?: "rfc8058" | "list-unsubscribe" | "footer" | "none";
   headersJson: string;
   sizeBytes?: number;
+  /**
+   * The engine's verdict for this message: type, unsubscribe target/method,
+   * findings, and `text` — the body those were derived from, which is what
+   * gets stored (finding offsets index into it). One analyzeMessage call per
+   * message, made where the message is parsed, so the raw HTML never outlives
+   * a single message.
+   */
+  analysis: Analysis;
+  /**
+   * True when analyzed text hit Paperweight's storage cap, or the fetched body
+   * may be incomplete (IMAP conservatively marks a capped raw source).
+   * Persisted as body_state 'truncated' as provenance. The message still counts
+   * as scanned, and finding offsets remain valid within the stored text.
+   */
+  bodyTruncated?: boolean;
 }
 
 export interface EmailConnection {
@@ -32,8 +47,7 @@ export interface EmailProvider {
     since: Date,
     until?: Date,
     pageToken?: string,
-    onProgress?: (fetched: number, estimatedTotal?: number) => void,
-    headersOnly?: boolean
+    onProgress?: (fetched: number, estimatedTotal?: number) => void
   ): Promise<{ messages: EmailMessage[]; nextPageToken?: string }>;
   getMessage(messageId: string): Promise<EmailMessage>;
 

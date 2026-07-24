@@ -13,4 +13,8 @@ export interface Lexicon {
   unsubscribeLinkText: RegExp[];
   // Matched against the href when the link text is generic ("click here").
   unsubscribeUrl: RegExp[];
+  // Boilerplate that marks the start of a message's closing block: legal and
+  // company details, "you are receiving this because". Matched line by line,
+  // and only in the last stretch of the body (see detect/footer.ts).
+  footerCue: RegExp[];
 }

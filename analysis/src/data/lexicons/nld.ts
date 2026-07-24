@@ -28,4 +28,13 @@ export const nld: Lexicon = {
     /\bniet?\s*meer\s*ontvangen\b/i,
   ],
   unsubscribeUrl: [/uitschrijven/i, /afmelden/i],
+  footerCue: [
+    /\b(?:je|u) (?:ontvangt|krijgt) (?:deze|dit)\b/i,
+    /\bdeze (?:e-?mail|bericht) is (?:verstuurd|verzonden) naar\b/i,
+    /\balle rechten voorbehouden\b/i,
+    /\bkvk[-\s]?(?:nummer|nr)?\b/i,
+    /\bbtw[-\s]?(?:nummer|nr)\b/i,
+    /\bprivacybeleid\b/i,
+    /\balgemene voorwaarden\b/i,
+  ],
 };

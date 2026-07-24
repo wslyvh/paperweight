@@ -16,4 +16,10 @@ export const por: Lexicon = {
     /\bdescadastrar\b/i,
   ],
   unsubscribeUrl: [/desinscrever/i, /descadastrar/i],
+  footerCue: [
+    /\brecebeu est[ea]\b/i,
+    /\btodos os direitos reservados\b/i,
+    /\bpol[íi]tica de privacidade\b/i,
+    /\bnif\b/i,
+  ],
 };

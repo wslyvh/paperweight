@@ -1,5 +1,5 @@
 // Header facts from a RawMessage. Extractors return structured facts; Signal
-// objects are minted by the deciders that cite them (ENGINE_DESIGN.md §4).
+// objects are minted by the deciders that cite them.
 import type { RawMessage } from "../types";
 
 export interface HeaderFacts {
@@ -16,7 +16,7 @@ export interface HeaderFacts {
   dkimDomains: string[];
 }
 
-export interface Mailbox {
+interface Mailbox {
   address: string;
   domain: string;
   displayName?: string;
@@ -33,7 +33,10 @@ export function extractHeaderFacts(headers: RawMessage["headers"]): HeaderFacts 
   const all = (name: string): string[] => lookup.get(name) ?? [];
 
   const facts: HeaderFacts = {
-    listUnsubscribePost: /one-click/i.test(first("list-unsubscribe-post") ?? ""),
+    listUnsubscribePost:
+      /^\s*List-Unsubscribe\s*=\s*One-Click\s*$/i.test(
+        first("list-unsubscribe-post") ?? "",
+      ),
     isNoreplyFrom: false,
     isReply: Boolean(first("in-reply-to") || first("references")),
     dkimDomains: [],
@@ -65,10 +68,19 @@ export function extractHeaderFacts(headers: RawMessage["headers"]): HeaderFacts 
   const urls: string[] = [];
   const mailtos: string[] = [];
   for (const value of all("list-unsubscribe")) {
+    let foundBracketedTarget = false;
     for (const entry of value.matchAll(/<([^>]+)>/g)) {
+      foundBracketedTarget = true;
       const target = entry[1]!.trim();
       if (/^mailto:/i.test(target)) mailtos.push(target);
       else if (/^https?:/i.test(target)) urls.push(target);
+    }
+    // RFC 2369 recommends angle brackets, but a meaningful share of real mail
+    // sends one bare URI. Preserve that safe legacy fallback.
+    if (!foundBracketedTarget) {
+      const target = value.trim();
+      if (/^mailto:[^\s,]+$/i.test(target)) mailtos.push(target);
+      else if (/^https?:\/\/[^\s,]+$/i.test(target)) urls.push(target);
     }
   }
   if (urls.length > 0 || mailtos.length > 0) facts.listUnsubscribe = { urls, mailtos };

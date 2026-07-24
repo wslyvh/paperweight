@@ -155,6 +155,75 @@ function migrateScanScopeAllMail(): void {
 }
 
 /**
+ * v0.5 — the switch release. `@paperweight/analysis` replaces the old classifier,
+ * so every stored row needs re-deriving and every account needs one more full
+ * pass over its mailbox (this time fetching bodies, which history never did).
+ * Idempotent per account via the `migration:engine-switch` settings marker.
+ * Runs before initDb(), so each account DB is opened directly with no active
+ * connection.
+ *
+ * **Nothing is cleared.** Message IDs are stable for all three providers, so
+ * resetting the sync cursors is enough to make the next sync behave like a fresh
+ * install — quick window first, then the licensed walk back to the start — and
+ * every re-visited row merges through insertMessageVendor's upsert. Vendors,
+ * messages, action_log, gdpr_cases, whitelist, pii_findings, pii_suppressions,
+ * settings and the license all survive untouched.
+ *
+ * `sync_checkpoint` is deliberately left alone: it is the removal-pass cursor
+ * (Gmail's History API), unrelated to the add path, and re-baselining it would
+ * throw away deletion tracking for no gain.
+ *
+ * `migration:reclassify` tells the next sync to run runReclassifyPass() before
+ * it connects, converting the existing rows to the engine's vocabulary from
+ * local data alone.
+ */
+export function applyEngineSwitch(d: Database.Database): boolean {
+  const done = d
+    .prepare("SELECT 1 FROM settings WHERE key = 'migration:engine-switch'")
+    .get();
+  if (done) return false;
+
+  // One transaction: the cursor reset and the marker land together, so a crash
+  // mid-migration can never leave an account reset but unmarked (which would
+  // reset it again next launch) or marked but not reset.
+  d.transaction(() => {
+    d.exec(`
+      UPDATE sync_state SET
+        last_sync_at = NULL, next_page_token = NULL, quick_sync_done_at = NULL,
+        historical_cursor = NULL, historical_done = 0
+      WHERE id = 1;
+      INSERT OR REPLACE INTO settings (key, value) VALUES ('migration:reclassify', '1');
+      INSERT OR REPLACE INTO settings (key, value) VALUES ('migration:engine-switch', '1');
+    `);
+  })();
+
+  return true;
+}
+
+function migrateEngineSwitch(): void {
+  const userData = userDataDir();
+
+  for (const acc of listAccounts()) {
+    const dbPath = join(userData, `${emailToFileKey(acc.email)}.db`);
+    if (!existsSync(dbPath)) continue;
+
+    let db: Database.Database | undefined;
+    try {
+      db = new Database(dbPath);
+      if (applyEngineSwitch(db)) {
+        appLog.info(`migrations: engine switch applied for [${accountTag(acc.email)}]`);
+      }
+    } catch (err) {
+      appLog.warn(
+        `migrations: engine switch failed for [${accountTag(acc.email)}]: ${err instanceof Error ? err.message : String(err)}`
+      );
+    } finally {
+      db?.close();
+    }
+  }
+}
+
+/**
  * Schema migration — adds GDPR case columns to action_log tables created before
  * gdpr_cases existed. CREATE TABLE IF NOT EXISTS skips existing tables, so new
  * columns need ALTER. Called from initSchema (not runMigrations) so it fires on
@@ -186,6 +255,30 @@ export function migrateVendors(d: Database.Database): void {
   }
 }
 
+/**
+ * Schema migration — PII body/analysis columns on messages. Additive: existing
+ * rows have no stored body, so body_state defaults to 'missing' (the constant
+ * default applies to every pre-existing row). body_text/analysis_version stay
+ * NULL until a message is (re)synced with a body / analyzed.
+ *
+ * Rollback: purely additive and non-destructive — reverting the code leaves the
+ * columns inert, or `ALTER TABLE messages DROP COLUMN {body_text,body_state,
+ * analysis_version}` removes them (bundled SQLite supports DROP COLUMN).
+ */
+export function migrateMessages(d: Database.Database): void {
+  const cols = new Set(
+    (d.pragma("table_info(messages)") as Array<{ name: string }>).map((c) => c.name),
+  );
+  const additions: Array<[string, string]> = [
+    ["body_text", "body_text TEXT"],
+    ["body_state", "body_state TEXT NOT NULL DEFAULT 'missing'"],
+    ["analysis_version", "analysis_version TEXT"],
+  ];
+  for (const [name, ddl] of additions) {
+    if (!cols.has(name)) d.exec(`ALTER TABLE messages ADD COLUMN ${ddl}`);
+  }
+}
+
 /** Schema migration — last_viewed_at on gdpr_cases, tracks unseen-reply state. */
 export function migrateGdprCases(d: Database.Database): void {
   const caseCols = new Set(
@@ -204,4 +297,5 @@ export async function runMigrations(): Promise<void> {
   cleanupStaleFiles();
   await backfillSmtpFromPreset();
   migrateScanScopeAllMail();
+  migrateEngineSwitch();
 }

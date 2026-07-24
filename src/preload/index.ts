@@ -199,6 +199,17 @@ const api: ElectronAPI = {
   markGdprCaseViewed: (caseId) => ipcRenderer.invoke(IPC.markGdprCaseViewed, caseId),
 
   getUnseenCaseReplyCount: () => ipcRenderer.invoke(IPC.getUnseenCaseReplyCount),
+
+  getVendorPiiSummary: (vendorId) =>
+    ipcRenderer.invoke(IPC.getVendorPiiSummary, vendorId),
+
+  revealVendorPiiValues: (vendorId) =>
+    ipcRenderer.invoke(IPC.revealVendorPiiValues, vendorId),
+
+  suppressPiiFinding: (ref) => ipcRenderer.invoke(IPC.suppressPiiFinding, ref),
+
+  unsuppressPiiFinding: (ref) =>
+    ipcRenderer.invoke(IPC.unsuppressPiiFinding, ref),
 };
 
 contextBridge.exposeInMainWorld("api", api);

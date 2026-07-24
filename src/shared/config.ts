@@ -13,67 +13,15 @@ export const APP_CONFIG = {
   CONTACT_EMAIL: "hello@paperweight.email",
 
   LICENSE_API_URL: "https://www.paperweight.email/api/license",
-
-  PERSONAL_DOMAINS: [
-    // Google
-    "gmail.com",
-    "googlemail.com",
-    // Microsoft
-    "outlook.com",
-    "hotmail.com",
-    "hotmail.co.uk",
-    "hotmail.de",
-    "hotmail.fr",
-    "hotmail.nl",
-    "live.com",
-    "live.co.uk",
-    "live.be",
-    "live.de",
-    "live.fr",
-    "live.nl",
-    "msn.com",
-    // Yahoo
-    "yahoo.com",
-    "yahoo.co.uk",
-    "yahoo.de",
-    "yahoo.fr",
-    "ymail.com",
-    // Apple
-    "icloud.com",
-    "me.com",
-    "mac.com",
-    // Proton
-    "protonmail.com",
-    "proton.me",
-    "pm.me",
-    // Privacy / independent
-    "fastmail.com",
-    "tutanota.com",
-    "tuta.com",
-    // AOL
-    "aol.com",
-    // German providers
-    "gmx.de",
-    "gmx.net",
-    "gmx.com",
-    "web.de",
-    "t-online.de",
-    // French providers
-    "laposte.net",
-    "orange.fr",
-    "wanadoo.fr",
-    // UK providers
-    "btinternet.com",
-    // Italian providers
-    "libero.it",
-    // Dutch ISPs
-    "hetnet.nl",
-    "planet.nl",
-    "kpnmail.nl",
-    "xs4all.nl",
-    "ziggo.nl",
-    "upcmail.nl",
-    "casema.nl",
-    "home.nl",
-  ],
 };
+
+// Public webmail and ISP domains live in @paperweight/analysis — the engine
+// needs the same list to tell a person's mail from a company's, and two copies
+// would drift. Main-process consumers import PERSONAL_DOMAINS from the engine
+// directly; it is not re-exported here because this module is also bundled into
+// the renderer, which only ever sees the engine's dependency-free contracts.
+
+// The production walk measured 11,890 stored bodies: 99.7% were at or below
+// 50 KB, with only 34 above it. Cap before analysis so persisted text and
+// finding offsets remain the same contract.
+export const BODY_TEXT_MAX_LENGTH = 50 * 1024;

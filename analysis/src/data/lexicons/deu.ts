@@ -21,4 +21,13 @@ export const deu: Lexicon = {
     /\bnicht\s*mehr\s*erhalten\b/i,
   ],
   unsubscribeUrl: [/abmelden/i, /abbestellen/i],
+  footerCue: [
+    /\bsie (?:erhalten|bekommen) diese\b/i,
+    /\balle rechte vorbehalten\b/i,
+    /\bimpressum\b/i,
+    /\bhandelsregister\b/i,
+    /\bust-?\s?idnr\b/i,
+    /\bdatenschutz(?:erkl[aä]rung)?\b/i,
+    /\bagb\b/i,
+  ],
 };

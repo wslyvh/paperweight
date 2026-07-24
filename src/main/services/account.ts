@@ -27,8 +27,9 @@ import {
 } from "./messages";
 import { createAccountDb, reconnectDb } from "../db";
 import { IPC } from "@shared/ipc";
-import { APP_CONFIG } from "@shared/config";
+import { PERSONAL_DOMAINS } from "@paperweight/analysis/contracts";
 import type { ImapConfig, AccountInfo, EmailConnection, MessageType, ServerConfig } from "@shared/types";
+import { MARKETING_ACTION_TYPES } from "@shared/types";
 import { authLog, actionLog } from "../utils/log";
 
 // Populate per-account settings in the DB if they are missing.
@@ -41,7 +42,7 @@ export function ensureAccountSettingsInDb(): void {
     saveSetting("accountEmail", activeEmail);
     addWhitelistEntry(activeEmail.toLowerCase());
     const domain = activeEmail.split("@")[1];
-    if (domain && !APP_CONFIG.PERSONAL_DOMAINS.includes(domain.toLowerCase())) {
+    if (domain && !PERSONAL_DOMAINS.includes(domain.toLowerCase())) {
       addWhitelistEntry(domain);
     }
   }
@@ -427,5 +428,5 @@ export async function trashVendorMessages(vendorId: number, types?: MessageType[
 }
 
 export async function spamVendorMessages(vendorId: number): Promise<{ success: boolean; error?: string }> {
-  return bulkActionVendorMessages(vendorId, "spam_reported", ["bulk"]);
+  return bulkActionVendorMessages(vendorId, "spam_reported", [...MARKETING_ACTION_TYPES]);
 }

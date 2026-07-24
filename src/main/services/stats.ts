@@ -11,7 +11,8 @@ import type {
 import { getSetting } from "./settings";
 import { COMPUTED_RISK_CASE } from "./vendors";
 import { caseActivityFilter, mapCaseActivityFields } from "./cases";
-import { APP_CONFIG } from "@shared/config";
+import { PERSONAL_DOMAINS } from "@paperweight/analysis/contracts";
+import { actionableListMailSql } from "./messageVocabulary";
 
 export function getDashboardStats(): DashboardStats {
   const d = getDb();
@@ -19,8 +20,8 @@ export function getDashboardStats(): DashboardStats {
     d.prepare("SELECT COUNT(*) as c FROM messages").get() as { c: number }
   ).c;
   const personalDomainFilterStats =
-    APP_CONFIG.PERSONAL_DOMAINS.length > 0
-      ? `AND (root_domain IS NULL OR root_domain NOT IN (${APP_CONFIG.PERSONAL_DOMAINS.map(() => "?").join(",")}))`
+    PERSONAL_DOMAINS.length > 0
+      ? `AND (root_domain IS NULL OR root_domain NOT IN (${PERSONAL_DOMAINS.map(() => "?").join(",")}))`
       : "";
   const actionedStats = `(status = 'reviewed' OR EXISTS (SELECT 1 FROM action_log al WHERE al.vendor_id = vendors.id LIMIT 1))`;
 
@@ -57,7 +58,7 @@ export function getDashboardStats(): DashboardStats {
            )
          ) OR ${actionedStats})`
       )
-      .get(...APP_CONFIG.PERSONAL_DOMAINS) as { c: number }
+      .get(...PERSONAL_DOMAINS) as { c: number }
   ).c;
   const mailingListCount = (
     d
@@ -67,7 +68,7 @@ export function getDashboardStats(): DashboardStats {
          AND EXISTS (
            SELECT 1 FROM messages m
            WHERE m.vendor_id = v.id
-             AND m.type = 'bulk'
+             AND ${actionableListMailSql("m")}
              AND (m.status IS NULL OR m.status != 'unsubscribed')
              AND NOT EXISTS (
                SELECT 1 FROM whitelist w
@@ -112,13 +113,11 @@ export function getDashboardStats(): DashboardStats {
   const activeSubscriptions = (
     d
       .prepare(
-        `SELECT COUNT(DISTINCT m.vendor_id) as c
+       `SELECT COUNT(DISTINCT m.vendor_id) as c
          FROM messages m
-         WHERE m.type = 'bulk'
+         WHERE ${actionableListMailSql("m")}
            AND m.date > (CAST(strftime('%s','now') AS INTEGER) * 1000 - 63115200000) -- 2 * 365.25 days in ms
            AND (m.status IS NULL OR m.status != 'unsubscribed')
-           AND m.unsubscribe_method IS NOT NULL
-           AND m.unsubscribe_method != 'none'
            AND NOT EXISTS (
              SELECT 1 FROM action_log al
              WHERE al.vendor_id = m.vendor_id
@@ -167,7 +166,7 @@ export function getDashboardStats(): DashboardStats {
              )
            ) OR ${actionedStats})`
       )
-      .get(...APP_CONFIG.PERSONAL_DOMAINS) as { c: number }
+      .get(...PERSONAL_DOMAINS) as { c: number }
   ).c;
 
   return {

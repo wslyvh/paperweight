@@ -51,4 +51,4 @@ in the same pass.
   no `/i` flag needed (except `unsubscribeLinkText`/`unsubscribeUrl`, which
   run against original link text and hrefs).
 - Every new pattern needs a test or fixture that exercises it. False
-  positives found later become regression fixtures — see ENGINE_DESIGN.md §8.
+  positives found later become regression fixtures.

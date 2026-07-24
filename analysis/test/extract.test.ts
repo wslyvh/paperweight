@@ -41,12 +41,30 @@ describe("extractHeaderFacts", () => {
     });
   });
 
+  it("accepts a single unbracketed list-unsubscribe target", () => {
+    expect(
+      extractHeaderFacts({
+        "list-unsubscribe": "https://shop.example/u?id=1",
+      }).listUnsubscribe,
+    ).toEqual({
+      urls: ["https://shop.example/u?id=1"],
+      mailtos: [],
+    });
+  });
+
   it("detects RFC 8058 one-click", () => {
     const facts = extractHeaderFacts({
       "list-unsubscribe": "<https://shop.example/u>",
       "list-unsubscribe-post": "List-Unsubscribe=One-Click",
     });
     expect(facts.listUnsubscribePost).toBe(true);
+  });
+
+  it("does not treat an incidental one-click phrase as RFC 8058", () => {
+    const facts = extractHeaderFacts({
+      "list-unsubscribe-post": "Visit one-click preferences",
+    });
+    expect(facts.listUnsubscribePost).toBe(false);
   });
 
   it("keeps precedence and auto-submitted raw values", () => {

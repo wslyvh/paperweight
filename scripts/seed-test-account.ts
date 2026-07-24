@@ -1,7 +1,7 @@
 /**
  * Populate a second, throwaway account in the real dev userData dir with a
- * realistic-looking inbox — dozens of vendors, a mix of bulk/transactional/
- * order/personal mail, some already unsubscribed/trashed/reported, and GDPR
+ * realistic-looking inbox — dozens of vendors, a mix of promotion/social/
+ * update/purchase/personal mail, some already unsubscribed/trashed/reported, and GDPR
  * cases on a minority of vendors covering every case-lifecycle stage. Lets
  * you walk through cases, unsubscribe, dashboard and activity flows in the
  * UI without emailing real companies or touching a real inbox.
@@ -30,6 +30,9 @@ import {
   insertGdprCaseEvent,
 } from "../src/main/services/cases";
 import type { CategoryId, RiskLevel, MessageType, UnsubscribeMethod } from "../src/shared/types";
+import { LIST_MAIL_TYPES } from "../src/shared/types";
+import { ENGINE_VERSION } from "@paperweight/analysis";
+import type { FindingType } from "@paperweight/analysis/contracts";
 
 const TEST_EMAIL = "test-cases@paperweight.local";
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -133,6 +136,19 @@ const d = getDb();
 // as a pre-v0.4 IMAP account on next app start and wipes every seeded message.
 d.prepare("INSERT OR REPLACE INTO settings (key, value) VALUES ('migration:all-mail-scope', '1')").run();
 
+// This seed writes rows already in the engine's vocabulary (types, unsubscribe
+// state and pii_findings). Mark the engine switch as done so applyEngineSwitch()
+// (migrations.ts) never sets `migration:reclassify`, which would make the next
+// sync's runReclassifyPass() re-derive every message from its (synthetic) body
+// and flatten the seeded type/unsubscribe distribution the Mailing Lists and
+// Accounts views depend on.
+d.prepare("INSERT OR REPLACE INTO settings (key, value) VALUES ('migration:engine-switch', '1')").run();
+
+// Pin the findings version to the current engine so runAnalysisPass() (analysis.ts)
+// treats the mailbox as fully analyzed and no-ops — the seeded pii_findings and
+// per-message analysis_version below stand in for a completed analysis pass.
+d.prepare("INSERT OR REPLACE INTO settings (key, value) VALUES ('analysis:findings-version', ?)").run(ENGINE_VERSION);
+
 const CATEGORY_RISK: Record<CategoryId, RiskLevel> = {
   financial: "high",
   healthcare: "high",
@@ -166,6 +182,7 @@ function insertMessage(input: {
   fromName: string;
   subject: string;
   preview: string;
+  bodyText?: string;
   type: MessageType;
   unsubscribeUrl?: string;
   unsubscribeMethod?: UnsubscribeMethod;
@@ -174,9 +191,14 @@ function insertMessage(input: {
   id?: string;
 }): string {
   const id = input.id ?? `${input.domain}-msg-${++messageSeq}`;
+  // body_state='available' + a stored body_text + analysis_version=ENGINE_VERSION
+  // mirror a message the analysis pass has already processed: coverage
+  // (getVendorPiiCoverage) counts scanned messages by analysis_version, and a
+  // stored body means an engine-version bump can re-analyze locally like a real one.
+  const bodyText = input.bodyText ?? `${input.subject}\n\n${input.preview}`;
   d.prepare(
-    `INSERT INTO messages (id, vendor_id, sender_email, sender_name, subject, date, body_preview, raw_headers, type, unsubscribe_url, unsubscribe_method, status, size_bytes)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    `INSERT INTO messages (id, vendor_id, sender_email, sender_name, subject, date, body_preview, body_text, body_state, analysis_version, raw_headers, type, unsubscribe_url, unsubscribe_method, status, size_bytes)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'available', ?, ?, ?, ?, ?, ?, ?)`,
   ).run(
     id,
     input.vendorId,
@@ -185,6 +207,8 @@ function insertMessage(input: {
     input.subject,
     daysAgo(input.daysAgo),
     input.preview,
+    bodyText,
+    ENGINE_VERSION,
     input.references ? JSON.stringify({ references: input.references }) : null,
     input.type,
     input.unsubscribeUrl ?? null,
@@ -232,20 +256,22 @@ const PERSONAL_SUBJECTS = [
 const UNKNOWN_SUBJECTS = ["Update", "(no subject)", "Info", "Notice"];
 
 const SENDER_LOCAL_PARTS: Record<MessageType, string[]> = {
-  bulk: ["newsletter", "hello", "news"],
-  transactional: ["noreply", "security", "account"],
-  order: ["orders", "shipping", "receipts"],
+  promotion: ["newsletter", "hello", "news"],
+  social: ["notify", "updates", "no-reply"],
+  update: ["noreply", "security", "account"],
+  purchase: ["orders", "shipping", "receipts"],
   personal: ["support", "hello", "team"],
   unknown: ["info", "noreply"],
 };
 
 function subjectFor(type: MessageType): string {
   switch (type) {
-    case "bulk":
+    case "promotion":
+    case "social":
       return pick(BULK_SUBJECTS);
-    case "transactional":
+    case "update":
       return pick(TRANSACTIONAL_SUBJECTS);
-    case "order":
+    case "purchase":
       return pick(ORDER_SUBJECTS(int(1000, 9999)));
     case "personal":
       return pick(PERSONAL_SUBJECTS);
@@ -255,17 +281,17 @@ function subjectFor(type: MessageType): string {
 }
 
 const PREVIEW_SNIPPETS: Record<MessageType, string[]> = {
-  bulk: [
+  promotion: [
     "Hi there — here's what's new this week. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tap below to shop the collection.",
     "Don't miss out: limited-time offers inside. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "Your curated picks are ready. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
   ],
-  transactional: [
+  update: [
     "We noticed a new sign-in to your account. If this was you, no action is needed. Otherwise reset your password immediately.",
     "Please verify your email address by clicking the link below. This link expires in 24 hours.",
     "Your security settings were updated. Review recent activity in your account dashboard.",
   ],
-  order: [
+  purchase: [
     "Good news — your order is on its way. Track your package using the link below. Estimated delivery: 2–4 business days.",
     "Thanks for your purchase. Your receipt is attached. Items will ship within 1–2 business days.",
     "Your order has been confirmed. We'll email you again when it ships.",
@@ -274,6 +300,11 @@ const PREVIEW_SNIPPETS: Record<MessageType, string[]> = {
     "Thanks for reaching out. We're looking into your question and will get back to you shortly.",
     "Following up on your message — could you share a few more details so we can help?",
     "Hi — just checking in regarding your recent inquiry.",
+  ],
+  social: [
+    "You have 3 new notifications waiting. See what you missed while you were away.",
+    "Someone you may know just joined. Say hello and grow your network.",
+    "Your weekly activity digest is ready — highlights from people you follow.",
   ],
   unknown: [
     "Please see the information below. Contact support if you have questions.",
@@ -288,10 +319,10 @@ function previewFor(type: MessageType): string {
 type Profile = "newsletter" | "account" | "shop" | "mixed";
 
 const PROFILE_WEIGHTS: Record<Profile, Record<MessageType, number>> = {
-  newsletter: { bulk: 0.85, personal: 0.05, unknown: 0.1, transactional: 0, order: 0 },
-  account: { transactional: 0.6, order: 0.05, personal: 0.2, unknown: 0.15, bulk: 0 },
-  shop: { order: 0.45, bulk: 0.35, transactional: 0.1, personal: 0.1, unknown: 0 },
-  mixed: { personal: 0.4, transactional: 0.3, bulk: 0.2, unknown: 0.1, order: 0 },
+  newsletter: { promotion: 0.85, personal: 0.05, unknown: 0.1, update: 0, purchase: 0, social: 0 },
+  account: { update: 0.6, purchase: 0.05, personal: 0.2, unknown: 0.15, promotion: 0, social: 0 },
+  shop: { purchase: 0.45, promotion: 0.35, update: 0.1, personal: 0.1, unknown: 0, social: 0 },
+  mixed: { personal: 0.4, update: 0.3, promotion: 0.15, social: 0.05, unknown: 0.1, purchase: 0 },
 };
 
 const PROFILE_COUNT_RANGE: Record<Profile, [number, number]> = {
@@ -321,7 +352,7 @@ function seedInbox(vendorId: number, domain: string, profile: Profile, alreadyAc
     const type = weighted(weights);
     const daysBack = rng() * ageDays;
     const from = `${pick(SENDER_LOCAL_PARTS[type])}@${domain}`;
-    const hasUnsub = type === "bulk" && rng() < 0.8;
+    const hasUnsub = LIST_MAIL_TYPES.includes(type) && rng() < 0.8;
     const method = hasUnsub ? weighted(UNSUB_METHOD_WEIGHTS) : undefined;
     const id = insertMessage({
       vendorId,
@@ -335,7 +366,7 @@ function seedInbox(vendorId: number, domain: string, profile: Profile, alreadyAc
       unsubscribeUrl: hasUnsub ? `https://${domain}/unsubscribe?u=${int(1000, 99999)}` : undefined,
       unsubscribeMethod: method,
     });
-    if (type === "bulk") bulkIds.push(id);
+    if (LIST_MAIL_TYPES.includes(type)) bulkIds.push(id);
   }
 
   if (alreadyActioned && bulkIds.length > 0) {
@@ -355,13 +386,19 @@ function seedInbox(vendorId: number, domain: string, profile: Profile, alreadyAc
 
 // Mirrors updateVendorStats/updateVendorFlags in src/main/services/vendors.ts —
 // duplicated here to avoid pulling that module's heavier import chain into this script.
+// has_marketing must match actionableListMailSql() (messageVocabulary.ts): a list-type
+// message only counts when the engine also resolved a concrete unsubscribe action, so
+// the Mailing Lists view (has_marketing=1 AND EXISTS actionable list mail) shows the vendor.
 function recomputeVendorStatsAndFlags(vendorId: number): void {
   const stats = d
     .prepare(
       `SELECT COUNT(*) as message_count, COUNT(DISTINCT sender_email) as sender_count,
               MIN(date) as first_seen, MAX(date) as last_seen,
-              MAX(CASE WHEN type = 'bulk' THEN 1 ELSE 0 END) as has_marketing,
-              MAX(CASE WHEN type IN ('transactional', 'order') THEN 1 ELSE 0 END) as has_account
+              MAX(CASE WHEN type IN ('promotion', 'social')
+                        AND unsubscribe_url IS NOT NULL AND unsubscribe_url != ''
+                        AND unsubscribe_method IS NOT NULL AND unsubscribe_method != 'none'
+                       THEN 1 ELSE 0 END) as has_marketing,
+              MAX(CASE WHEN type IN ('purchase', 'update', 'social') THEN 1 ELSE 0 END) as has_account
        FROM messages WHERE vendor_id = ?`,
     )
     .get(vendorId) as {
@@ -651,11 +688,196 @@ function vendorWithCase(
   });
 }
 
+// ── Mailing-list showcase: one vendor per unsubscribe configuration ──
+//
+// The Mailing Lists view keys off actionableListMailSql() (a list-type message
+// with a resolved unsubscribe_url and a method other than 'none'). These vendors
+// pin down each branch explicitly instead of leaving it to the RNG.
+
+function unsubUrlFor(method: UnsubscribeMethod, domain: string): string {
+  switch (method) {
+    case "rfc8058":
+      return `https://${domain}/one-click?u=${int(10000, 99999)}`;
+    case "list-unsubscribe":
+      return `mailto:unsubscribe@${domain}?subject=unsubscribe`;
+    case "footer":
+      return `https://${domain}/preferences?u=${int(10000, 99999)}`;
+    case "none":
+      return "";
+  }
+}
+
+function seedListShowcase(opts: {
+  name: string;
+  domain: string;
+  category: CategoryId;
+  type: "promotion" | "social";
+  method?: UnsubscribeMethod; // omit for mail with no unsubscribe at all
+  count?: number;
+  actioned?: "unsubscribed" | "spam_reported" | "trashed";
+}): number {
+  const vendorId = insertVendor(opts.domain, opts.name, opts.category);
+  const count = opts.count ?? int(6, 14);
+  const hasUnsub = !!opts.method && opts.method !== "none";
+  const ids: string[] = [];
+  for (let i = 0; i < count; i++) {
+    ids.push(
+      insertMessage({
+        vendorId,
+        domain: opts.domain,
+        daysAgo: rng() * 120,
+        from: `${pick(SENDER_LOCAL_PARTS[opts.type])}@${opts.domain}`,
+        fromName: opts.name,
+        subject: subjectFor(opts.type),
+        preview: previewFor(opts.type),
+        type: opts.type,
+        unsubscribeUrl: hasUnsub ? unsubUrlFor(opts.method!, opts.domain) : undefined,
+        unsubscribeMethod: opts.method,
+      }),
+    );
+  }
+  if (opts.actioned === "unsubscribed") {
+    for (const id of ids) {
+      d.prepare("UPDATE messages SET status = 'unsubscribed' WHERE id = ?").run(id);
+    }
+  }
+  if (opts.actioned) {
+    d.prepare(
+      `INSERT INTO action_log (vendor_id, action_type, message_count, actioned_at)
+       VALUES (?, ?, ?, ?)`,
+    ).run(vendorId, opts.actioned, ids.length, daysAgo(int(1, 20)));
+  }
+  recomputeVendorStatsAndFlags(vendorId);
+  return vendorId;
+}
+
+// Actionable — each resolved unsubscribe method the engine can hand back.
+seedListShowcase({ name: "Loopmail Newsletter", domain: "loopmail-news.test", category: "marketing", type: "promotion", method: "rfc8058" });
+seedListShowcase({ name: "Brightbox Deals", domain: "brightbox-deals.test", category: "marketing", type: "promotion", method: "list-unsubscribe" });
+seedListShowcase({ name: "Trailhead Weekly", domain: "trailhead-weekly.test", category: "entertainment", type: "promotion", method: "footer" });
+// Social with a resolved unsubscribe is actionable; social without one is not.
+seedListShowcase({ name: "Pingboard Social", domain: "pingboard-social.test", category: "social", type: "social", method: "list-unsubscribe" });
+seedListShowcase({ name: "Chirpwire Alerts", domain: "chirpwire-alerts.test", category: "social", type: "social" });
+// Promotion with no resolvable unsubscribe — kept out of Mailing Lists.
+seedListShowcase({ name: "Deadend Promos", domain: "deadend-promos.test", category: "marketing", type: "promotion", method: "none" });
+// Already-actioned states, one per action_type the Activity view renders.
+seedListShowcase({ name: "Quietuben Mail", domain: "quietuben-mail.test", category: "marketing", type: "promotion", method: "rfc8058", actioned: "unsubscribed" });
+seedListShowcase({ name: "Spamworks Blasts", domain: "spamworks-blasts.test", category: "marketing", type: "promotion", method: "list-unsubscribe", actioned: "spam_reported" });
+seedListShowcase({ name: "Junkpile Offers", domain: "junkpile-offers.test", category: "marketing", type: "promotion", method: "footer", actioned: "trashed" });
+
+// ── Breached vendors: real domains present in resources/breaches.db ──
+// ON_BREACH_LIST_SQL matches vendors.root_domain against breaches.domain, so
+// these exercise the breach badge, the on-breach-list filter and (via Accounts'
+// admission rule) breach-only promotion into the Accounts view.
+const BREACH_VENDORS: Array<{ name: string; domain: string; category: CategoryId; profile: Profile }> = [
+  { name: "LinkedIn", domain: "linkedin.com", category: "social", profile: "mixed" },
+  { name: "Adobe", domain: "adobe.com", category: "services", profile: "account" },
+  { name: "MyFitnessPal", domain: "myfitnesspal.com", category: "services", profile: "account" },
+  { name: "Deezer", domain: "deezer.com", category: "entertainment", profile: "newsletter" },
+];
+const breachVendorIds: Record<string, number> = {};
+for (const v of BREACH_VENDORS) {
+  const vendorId = insertVendor(v.domain, v.name, v.category);
+  seedInbox(vendorId, v.domain, v.profile, false);
+  breachVendorIds[v.domain] = vendorId;
+}
+
+// ── Whitelist ──
+// The account's own address (the app whitelists it on first run) plus one vendor
+// domain, so the activeSubscriptions exclusion has something to skip.
+for (const value of [TEST_EMAIL, "glowreel-studios.test"]) {
+  d.prepare("INSERT OR IGNORE INTO whitelist (value) VALUES (?)").run(value);
+}
+
+// ── PII findings: every finding type across every confidence tier ──
+//
+// Rows written the way persistFindings() does (masking happens in the main
+// process at read time). Confidence in FoundInEmails is derived, not stored:
+//   High     — own address (email == vendor.account_email) OR value seen at >1 company
+//   Low      — single company AND (foreign-format locale value OR frequent identifier)
+//   Possible — single company, home-locale, not frequent
+// A home country (NL) is inferred from values that recur across companies, which
+// is what turns a DE-format value at one company into a Low "foreign format" row.
+
+const insertFinding = d.prepare(
+  `INSERT INTO pii_findings (message_id, type, value_normalized, country, in_quoted_text, in_footer, self_reference)
+   VALUES (?, ?, ?, ?, 0, 0, 0)`,
+);
+const piiCursor = new Map<number, number>();
+function pidFor(domain: string): number {
+  const row = d.prepare("SELECT id FROM vendors WHERE root_domain = ?").get(domain) as { id: number } | undefined;
+  if (!row) throw new Error(`seed: no vendor for PII domain ${domain}`);
+  return row.id;
+}
+function vendorMessageIds(vendorId: number): string[] {
+  return (
+    d.prepare("SELECT id FROM messages WHERE vendor_id = ? ORDER BY date DESC").all(vendorId) as Array<{ id: string }>
+  ).map((r) => r.id);
+}
+// Attach one finding to the vendor's next message (cursor cycles through its mail).
+function addFinding(domain: string, type: FindingType, value: string, country: string | null = null): void {
+  const vendorId = pidFor(domain);
+  const ids = vendorMessageIds(vendorId);
+  if (ids.length === 0) return;
+  const i = (piiCursor.get(vendorId) ?? 0) % ids.length;
+  piiCursor.set(vendorId, i + 1);
+  insertFinding.run(ids[i], type, value, country);
+}
+// Repeat a value across enough of the vendor's mail to trip the spread rule
+// (>=20 messages, or >=5 and >=40% share) → an identifier flagged frequent-at-company.
+function addFrequentFinding(domain: string, type: FindingType, value: string, country: string | null = null): void {
+  const vendorId = pidFor(domain);
+  const ids = vendorMessageIds(vendorId);
+  const n = Math.min(ids.length, Math.max(5, Math.ceil(ids.length * 0.5)));
+  for (let i = 0; i < n; i++) insertFinding.run(ids[i], type, value, country);
+}
+function setAccountEmail(domain: string): void {
+  d.prepare("UPDATE vendors SET account_email = ? WHERE id = ?").run(TEST_EMAIL, pidFor(domain));
+}
+
+// Own address (High, "Exact match") — vendors the user has an account with.
+for (const domain of ["meridian-bank.test", "everwell-health.test", "boltwood-market.test", "linkedin.com"]) {
+  setAccountEmail(domain);
+  addFinding(domain, "email", TEST_EMAIL);
+}
+
+// Cross-company values (High, "Found elsewhere") — same value at two companies.
+addFinding("meridian-bank.test", "email", "wesley.tenholt@gmail.com");
+addFinding("vault-trust.test", "email", "wesley.tenholt@gmail.com");
+addFinding("meridian-bank.test", "iban", "NL13INGB0001234567", "NL");
+addFinding("ledger-finance.test", "iban", "NL13INGB0001234567", "NL");
+addFinding("meridian-bank.test", "phone", "+31612345678", "NL");
+addFinding("everwell-health.test", "phone", "+31612345678", "NL");
+addFinding("boltwood-market.test", "postal_code", "1054ED", "NL");
+addFinding("palewick-store.test", "postal_code", "1054ED", "NL");
+
+// Possible (single company, home locale, not frequent).
+addFinding("meridian-bank.test", "credit_card", "4111111111111111");
+addFinding("meridian-bank.test", "address", "herengracht 482", "NL");
+addFinding("everwell-health.test", "national_id", "891234567", "NL");
+addFinding("vitalis-medical.test", "iban", "NL91ABNA0417164300", "NL");
+addFinding("vitalis-medical.test", "phone", "+31205551234", "NL");
+addFinding("boltwood-market.test", "credit_card", "5555555555554444");
+
+// Low (single company, weaker ownership signal).
+addFinding("meridian-bank.test", "phone", "+493055551234", "DE"); // foreign format (home is NL)
+addFinding("everwell-health.test", "postal_code", "10115", "DE"); // foreign format
+addFrequentFinding("meridian-bank.test", "iban", "NL02RABO0123456789", "NL"); // frequent-at-company
+
+// Accounts admission on observed findings alone — a marketing vendor with no
+// account mail, promoted by a single home-locale non-identifier value.
+addFinding("pulse-marketing.test", "phone", "+31207001122", "NL");
+
+// A breached vendor also carrying data, so its Accounts row shows both signals.
+addFinding("linkedin.com", "phone", "+31612345678", "NL"); // also cross-company (High)
+addFinding("adobe.com", "email", "wesley.tenholt@gmail.com"); // cross-company (High)
+
 const totalVendors = (d.prepare("SELECT COUNT(*) c FROM vendors").get() as { c: number }).c;
 const totalCases = (d.prepare("SELECT COUNT(*) c FROM gdpr_cases").get() as { c: number }).c;
 const totalMessages = (d.prepare("SELECT COUNT(*) c FROM messages").get() as { c: number }).c;
+const totalFindings = (d.prepare("SELECT COUNT(*) c FROM pii_findings").get() as { c: number }).c;
 
 console.info(`Seeded ${TEST_EMAIL} [${fileKey}] in ${userDataDir}`);
-console.info(`${totalVendors} vendors, ${totalMessages} messages, ${totalCases} GDPR cases.`);
+console.info(`${totalVendors} vendors, ${totalMessages} messages, ${totalCases} GDPR cases, ${totalFindings} PII findings.`);
 console.info(`Switch to it from the account switcher — the one sync attempt will fail harmlessly (fake host).`);
 console.info(`Re-run this script any time to reset it back to this same data.`);

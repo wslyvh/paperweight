@@ -17,4 +17,11 @@ export const spa: Lexicon = {
     /\bcancelar\s*suscripci[oó]n\b/i,
   ],
   unsubscribeUrl: [/desuscribirse/i, /darse-de-baja/i],
+  footerCue: [
+    /\brecibes? este\b/i,
+    /\btodos los derechos reservados\b/i,
+    /\bpol[íi]tica de privacidad\b/i,
+    /\baviso legal\b/i,
+    /\b(?:nif|cif)\b/i,
+  ],
 };

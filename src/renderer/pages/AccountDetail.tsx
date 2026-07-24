@@ -8,6 +8,7 @@ import type {
   WhitelistEntry,
   GdprCaseSummary,
 } from "@shared/types";
+import { MARKETING_ACTION_TYPES } from "@shared/types";
 import {
   formatRelativeDate,
   formatAbsoluteDate,
@@ -21,7 +22,7 @@ import {
   buildDeletionEmail,
   buildAccessEmail,
 } from "@shared/gdpr/templates";
-import { RISK_CATEGORIES, RISK_LEVELS } from "@shared/languages";
+import { RISK_CATEGORIES, RISK_LEVELS } from "@shared/vendor-risk";
 import { getRootDomain, parseMailto, PAPERWEIGHT_UNSUB_BODY } from "@shared/utils";
 import {
   ArrowLeft,
@@ -34,6 +35,7 @@ import {
 } from "lucide-react";
 import ActionModal from "../components/ActionModal";
 import { CaseListRow } from "../components/CaseListRow";
+import FoundInEmails from "../components/FoundInEmails";
 import { canAccountSend } from "../utils/account";
 import { errText } from "../utils/errText";
 import { APP_CONFIG } from "@shared/config";
@@ -53,6 +55,14 @@ const RISK_BADGE_CLASS: Record<string, string> = {
 const TWO_YEARS_MS = 2 * 365.25 * 24 * 60 * 60 * 1000;
 const TEN_YEARS_MS = 10 * 365.25 * 24 * 60 * 60 * 1000;
 const CLEANUP_GUIDE_URL = `${APP_CONFIG.WEBSITE}/guides/email-cleanup-tools-compared#the-tools`;
+
+function tabClass(active: boolean): string {
+  return `tab rounded-lg transition-colors ${
+    active
+      ? "tab-active bg-base-100 shadow-sm"
+      : "text-base-content/50 hover:bg-base-100/50 hover:text-base-content/80"
+  }`;
+}
 
 function isNoReplyEmail(email: string): boolean {
   const local = email.split("@")[0]?.toLowerCase() ?? "";
@@ -468,6 +478,8 @@ export default function AccountDetail(): JSX.Element {
   const riskBadge = riskInfo?.badge ?? "⚪";
   const riskDescription =
     riskInfo?.description ?? "Not enough data to determine a risk level";
+  const hasRiskDetails =
+    !!catInfo || !!(company?.runs && company.runs.length > 0);
 
   const contactEmail = pickContactEmail(company, senders);
   const requesterEmail = requestEmail.trim();
@@ -715,7 +727,7 @@ export default function AccountDetail(): JSX.Element {
     const { entry, trashAlso } = unsubResult;
     setActionLoading(true);
     try {
-      if (trashAlso) await window.api.trashVendorMessages(detail.vendor.id, ["bulk"]);
+      if (trashAlso) await window.api.trashVendorMessages(detail.vendor.id, [...MARKETING_ACTION_TYPES]);
       setUnsubResult(null);
       setDoneIds((prev) => new Set(prev).add(`unsub-${entry.method}`));
       setActiveItemId(null);
@@ -731,7 +743,7 @@ export default function AccountDetail(): JSX.Element {
     setActionLoading(true);
     try {
       await window.api.reportSpamVendor(detail.vendor.id);
-      if (trashAlso) await window.api.trashVendorMessages(detail.vendor.id, ["bulk"]);
+      if (trashAlso) await window.api.trashVendorMessages(detail.vendor.id, [...MARKETING_ACTION_TYPES]);
       setUnsubResult(null);
       setDoneIds((prev) => new Set(prev).add(`unsub-${entry.method}`));
       setActiveItemId(null);
@@ -782,7 +794,7 @@ export default function AccountDetail(): JSX.Element {
     setActionLoading(true);
     try {
       await window.api.markVendorUnsubscribed(detail.vendor.id);
-      if (trashAlso) await window.api.trashVendorMessages(detail.vendor.id, ["bulk"]);
+      if (trashAlso) await window.api.trashVendorMessages(detail.vendor.id, [...MARKETING_ACTION_TYPES]);
       setUnsubCheck(null);
       setDoneIds((prev) => new Set(prev).add(`unsub-${entry.method}`));
       setActiveItemId(null);
@@ -813,7 +825,7 @@ export default function AccountDetail(): JSX.Element {
     try {
       const result = pendingDelete === "all"
         ? await window.api.trashVendorMessages(detail.vendor.id)
-        : await window.api.trashVendorMessages(detail.vendor.id, ["bulk"]);
+        : await window.api.trashVendorMessages(detail.vendor.id, [...MARKETING_ACTION_TYPES]);
       if (!result.success) {
         setPendingDelete(null);
         setActiveItemId(null);
@@ -1116,15 +1128,17 @@ export default function AccountDetail(): JSX.Element {
         </div>
       )}
 
-      {/* Risk profile */}
+      {/* Risk profile is category-based context, not observed email data. */}
       <div className="card bg-base-200">
         <div
-          className={`p-4 flex items-center gap-3 ${catInfo ? "cursor-pointer" : ""}`}
-          onClick={catInfo ? () => setRiskOpen(!riskOpen) : undefined}
+          className={`p-4 flex items-center gap-3 ${hasRiskDetails ? "cursor-pointer" : ""}`}
+          onClick={hasRiskDetails ? () => setRiskOpen(!riskOpen) : undefined}
         >
-          {catInfo && (
+          {hasRiskDetails && (
             <ChevronRight
-              className={`w-4 h-4 text-base-content/50 shrink-0 transition-transform ${riskOpen ? "rotate-90" : ""}`}
+              className={`w-4 h-4 text-base-content/50 shrink-0 transition-transform ${
+                riskOpen ? "rotate-90" : ""
+              }`}
               strokeWidth={2}
             />
           )}
@@ -1134,23 +1148,23 @@ export default function AccountDetail(): JSX.Element {
             {riskDescription}
           </span>
         </div>
-        {riskOpen && catInfo && (
+        {riskOpen && hasRiskDetails && (
           <div className="px-4 pb-4 space-y-4">
-            <div>
-              <p className="text-sm font-medium mt-2 mb-4">
-                Data they likely hold
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {catInfo.dataAtRisk.map((item) => (
-                  <span key={item} className="badge badge-sm badge-soft">
-                    {item}
-                  </span>
-                ))}
+            {catInfo && (
+              <div>
+                <p className="text-sm font-medium mb-3">Data they likely hold</p>
+                <div className="flex flex-wrap gap-2">
+                  {catInfo.dataAtRisk.map((item) => (
+                    <span key={item} className="badge badge-sm badge-soft">
+                      {item}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
             {company?.runs && company.runs.length > 0 && (
               <div>
-                <p className="text-sm font-medium mt-6 mb-4">
+                <p className="text-sm font-medium mb-3">
                   {company.name} is also responsible for:
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -1166,13 +1180,18 @@ export default function AccountDetail(): JSX.Element {
         )}
       </div>
 
+      <FoundInEmails
+        vendorId={vendor.id}
+        vendorName={displayName}
+      />
+
       {/* Tabs */}
       <div className="tabs tabs-box p-2">
-        <div role="tablist" className="flex">
+        <div role="tablist" className="tabs tabs-md flex gap-1">
           <button
             role="tab"
             aria-selected={activeTab === "actions"}
-            className={`tab ${activeTab === "actions" ? "tab-active" : ""}`}
+            className={tabClass(activeTab === "actions")}
             onClick={() => setActiveTab("actions")}
           >
             Actions
@@ -1181,7 +1200,7 @@ export default function AccountDetail(): JSX.Element {
           <button
             role="tab"
             aria-selected={activeTab === "data"}
-            className={`tab ${activeTab === "data" ? "tab-active" : ""}`}
+            className={tabClass(activeTab === "data")}
             onClick={() => setActiveTab("data")}
           >
             Data requests
@@ -1190,7 +1209,7 @@ export default function AccountDetail(): JSX.Element {
           <button
             role="tab"
             aria-selected={activeTab === "emails"}
-            className={`tab ${activeTab === "emails" ? "tab-active" : ""}`}
+            className={tabClass(activeTab === "emails")}
             onClick={() => setActiveTab("emails")}
           >
             Emails
@@ -1199,7 +1218,7 @@ export default function AccountDetail(): JSX.Element {
           <button
             role="tab"
             aria-selected={activeTab === "cases"}
-            className={`tab ${activeTab === "cases" ? "tab-active" : ""}`}
+            className={tabClass(activeTab === "cases")}
             onClick={() => setActiveTab("cases")}
           >
             Cases{vendorCases.length > 0 ? ` (${vendorCases.length})` : ""}
@@ -1209,7 +1228,7 @@ export default function AccountDetail(): JSX.Element {
             <button
               role="tab"
               aria-selected={activeTab === "activity"}
-              className={`tab ${activeTab === "activity" ? "tab-active" : ""} ${hasAnyActivity ? "" : "tab-disabled opacity-40 cursor-not-allowed"}`}
+              className={`${tabClass(activeTab === "activity")} ${hasAnyActivity ? "" : "tab-disabled opacity-40 cursor-not-allowed"}`}
               onClick={() => { if (hasAnyActivity) setActiveTab("activity"); }}
             >
               Activity
@@ -1218,7 +1237,7 @@ export default function AccountDetail(): JSX.Element {
         </div>
 
         {/* Actions tab */}
-        <div className={`tab-content px-4 py-3 ${activeTab === "actions" ? "!block" : ""}`}>
+        <div className={`tab-content mt-2 rounded-box bg-base-100/50 w-full px-4 py-3 ${activeTab === "actions" ? "!block" : ""}`}>
           {actionItems.length === 0 ? (
             <p className="text-base-content/50 text-sm">No recommended actions for this company.</p>
           ) : (
@@ -1358,7 +1377,7 @@ export default function AccountDetail(): JSX.Element {
         </div>
 
         {/* Data requests tab */}
-        <div className={`tab-content px-4 py-3 text-sm space-y-3 ${activeTab === "data" ? "!block" : ""}`}>
+        <div className={`tab-content mt-2 rounded-box bg-base-100/50 w-full px-4 py-3 text-sm space-y-3 ${activeTab === "data" ? "!block" : ""}`}>
           {company?.comments &&
             company.comments.length > 0 &&
             company.comments.map((comment, i) => (
@@ -1536,7 +1555,7 @@ export default function AccountDetail(): JSX.Element {
         </div>
 
         {/* Emails tab */}
-        <div className={`tab-content py-2 ${activeTab === "emails" ? "!block" : ""}`}>
+        <div className={`tab-content mt-2 rounded-box bg-base-100/50 w-full py-2 ${activeTab === "emails" ? "!block" : ""}`}>
           {allMessages.length > 0 ? (
             <EmailsBySender
               messages={allMessages}
@@ -1550,7 +1569,7 @@ export default function AccountDetail(): JSX.Element {
         </div>
 
         {/* Cases tab */}
-        <div className={`tab-content px-4 py-3 ${activeTab === "cases" ? "!block" : ""}`}>
+        <div className={`tab-content mt-2 rounded-box bg-base-100/50 w-full px-4 py-3 ${activeTab === "cases" ? "!block" : ""}`}>
           {vendorCases.length === 0 ? (
             <p className="text-sm text-base-content/50">
               No cases yet. Send a data request from the Data requests tab to start tracking.
@@ -1570,7 +1589,7 @@ export default function AccountDetail(): JSX.Element {
         </div>
 
         {/* Activity tab */}
-        <div className={`tab-content px-4 py-3 ${activeTab === "activity" ? "!block" : ""}`}>
+        <div className={`tab-content mt-2 rounded-box bg-base-100/50 w-full px-4 py-3 ${activeTab === "activity" ? "!block" : ""}`}>
           {!hasAnyActivity ? (
             <p className="text-sm text-base-content/50">
               No actions taken yet.

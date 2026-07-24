@@ -2,7 +2,8 @@
   "extends": "@electron-toolkit/tsconfig/tsconfig.web.json",
   "include": [
     "src/renderer/**/*",
-    "src/shared/**/*"
+    "src/shared/**/*",
+    "analysis/src/contracts.ts"
   ],
   "compilerOptions": {
     "composite": true,
@@ -10,7 +11,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/renderer/*"],
-      "@shared/*": ["src/shared/*"]
+      "@shared/*": ["src/shared/*"],
+      "@paperweight/analysis/contracts": ["analysis/src/contracts"]
     },
     "jsx": "react-jsx",
     "strict": true,

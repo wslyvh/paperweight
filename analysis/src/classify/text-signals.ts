@@ -26,7 +26,6 @@ export function textTypeSignals(text: string): Signal[] {
     const code = /^([A-Za-z0-9][A-Za-z0-9-]{4,})/.exec(text.slice(prefix.index + prefix[0].length))?.[1];
     if (code && (/\d/.test(code) || code === code.toUpperCase())) {
       signals.push({ id: "text.reference-code", detail: code });
-      break;
     }
   }
 

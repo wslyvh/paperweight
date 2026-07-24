@@ -1,16 +1,32 @@
 // --- Domain types ---
 
-export type MessageType =
-  | "bulk"           // Has List-Unsubscribe or bulk headers
-  | "transactional"  // Account activity (password, security, verify, login)
-  | "order"          // Purchase activity (orders, invoices, shipping, receipts)
-  | "personal"       // 1:1 conversation
-  | "unknown";       // Classification failed — needs improvement
+import {
+  ACCOUNT_MESSAGE_TYPES,
+  FINDING_SENSITIVITY_ORDER,
+  FINDING_TYPES,
+  LIST_MESSAGE_TYPES,
+  MESSAGE_TYPES as ANALYSIS_MESSAGE_TYPES,
+} from "@paperweight/analysis/contracts";
+import type {
+  FindingType,
+  MessageType as AnalysisMessageType,
+} from "@paperweight/analysis/contracts";
 
-export const MESSAGE_TYPES: readonly MessageType[] = ["bulk", "transactional", "order", "personal", "unknown"];
+export type MessageType = AnalysisMessageType;
+const MESSAGE_TYPES: readonly MessageType[] = ANALYSIS_MESSAGE_TYPES;
 export function isMessageType(value: unknown): value is MessageType {
   return typeof value === "string" && (MESSAGE_TYPES as readonly string[]).includes(value);
 }
+
+// Product aliases kept for existing callers; the engine owns their membership.
+export const LIST_MAIL_TYPES: readonly MessageType[] = LIST_MESSAGE_TYPES;
+
+export const ACCOUNT_TYPES: readonly MessageType[] = ACCOUNT_MESSAGE_TYPES;
+
+// Destructive mailbox actions are deliberately narrower than the Mailing Lists
+// view. Social notifications can be unsubscribable, but must not be trained as
+// spam or trashed alongside marketing mail.
+export const MARKETING_ACTION_TYPES: readonly MessageType[] = ["promotion"];
 
 export type UnsubscribeMethod =
   | "rfc8058"           // POST with List-Unsubscribe=One-Click
@@ -18,7 +34,7 @@ export type UnsubscribeMethod =
   | "footer"            // Link found in body
   | "none";             // No unsubscribe method found
 
-export type MessageStatus =
+type MessageStatus =
   | "unsubscribed"
   | "reported_spam"
   | "trashed";
@@ -48,7 +64,6 @@ export type CategoryId =
 // Fallbacks — should be rare, indicate classification needs improvement
 export const DEFAULT_CATEGORY: CategoryId = "unknown";
 export const DEFAULT_RISK: RiskLevel = "unknown";
-export const DEFAULT_MESSAGE_TYPE: MessageType = "unknown";
 
 // Incremental sync windows
 export const FREE_TIER_SYNC_DAYS = 90;    // Free tier: 90-day window
@@ -112,6 +127,8 @@ export interface Vendor {
   /** Email this company knows the user by (e.g. hide-my-email alias). */
   account_email?: string;
   breachInfo?: BreachInfo[];
+  /** True when the company holds PII the detail panel classifies High or Possible. */
+  hasNotablePii?: boolean;
 }
 
 export interface Message {
@@ -122,7 +139,6 @@ export interface Message {
   subject?: string;
   date: number;
   body_preview?: string;
-  raw_headers?: string;
   type?: MessageType;
   unsubscribe_url?: string;
   unsubscribe_method?: UnsubscribeMethod;
@@ -135,9 +151,63 @@ export interface WhitelistEntry {
   created_at: string;
 }
 
+// --- PII findings ---
+
+export type PiiType = FindingType;
+export { FINDING_SENSITIVITY_ORDER };
+export function isPiiType(value: unknown): value is PiiType {
+  return (
+    typeof value === "string" &&
+    (FINDING_TYPES as readonly string[]).includes(value)
+  );
+}
+
+// One masked, de-duplicated value found for a vendor. Raw values never leave the
+// main process — maskedValue is display-safe. lastSeen is used only as the
+// stable tie-breaker after the UI's factual confidence ordering.
+export interface VendorPiiValue {
+  /** Opaque handle for `Not mine`: a representative pii_findings.id, resolved to
+   *  (type, value) in the main process. Carries no meaning in the renderer. */
+  ref: number;
+  type: PiiType;
+  maskedValue: string;
+  lastSeen: number;
+  /** The user's own address (a connected account, or the alias this company
+   *  mails them at) — labelled, never hidden. */
+  isOwnAddress?: boolean;
+  /** Finding country differs from the locally inferred home country. Display
+   *  ordering only: the finding remains visible and revealable. */
+  isForeignFormat?: boolean;
+  /** Distinct company identities where this exact normalized value occurs. */
+  companyCount: number;
+  /** Existing within-company spread rule matched. Identifiers remain visible;
+   *  this only lowers their display order when confined to one company. */
+  isFrequentAtCompany?: boolean;
+}
+
+// A full value, handed over only when the user reveals the list to review it.
+// Keyed by the same opaque ref the masked row carries. Renderer-side this lives
+// in component state for as long as the toggle is on — never stored, never logged.
+export interface VendorPiiRevealedValue {
+  ref: number;
+  value: string;
+}
+
+// What the numbers below the findings are counted from: every message stored for
+// this company, and how many of those have been through the analysis engine.
+export interface VendorPiiCoverage {
+  totalMessages: number;
+  scannedMessages: number;
+}
+
+export interface VendorPiiSummary {
+  values: VendorPiiValue[];
+  coverage: VendorPiiCoverage;
+}
+
 // Query / filter
 
-export interface SearchFilterQuery {
+interface SearchFilterQuery {
   page: number;
   limit: number;
   sortBy?: string;
@@ -158,12 +228,7 @@ export interface VendorQuery extends SearchFilterQuery {
   onBreachList?: boolean;     // vendor whose domain appears in the breach database
   activeSubscriptions?: boolean; // vendors with actionable recent bulk mail (< 2yr, has unsub method, not yet actioned)
   showWhitelisted?: boolean;     // invert whitelist exclusion — show vendors whose senders are all whitelisted
-}
-
-export interface MessageQuery extends SearchFilterQuery {
-  vendorId?: number;
-  type?: MessageType;
-  hasUnsubscribe?: boolean;
+  piiType?: PiiType;             // vendors with at least one visible finding of this type
 }
 
 // Stats / UI

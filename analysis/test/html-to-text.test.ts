@@ -37,7 +37,15 @@ describe("htmlToText", () => {
       '<p>Click <a href="https://shop.example/u?id=1">here to unsubscribe</a> today</p>',
     );
     expect(text).toBe("Click here to unsubscribe today");
-    expect(links).toEqual([{ href: "https://shop.example/u?id=1", text: "here to unsubscribe" }]);
+    expect(links).toEqual([
+      {
+        href: "https://shop.example/u?id=1",
+        text: "here to unsubscribe",
+        start: 6,
+        end: 25,
+      },
+    ]);
+    expect(text.slice(links[0]!.start!, links[0]!.end!)).toBe("here to unsubscribe");
   });
 
   it("skips links without visible text but still counts them", () => {
@@ -84,8 +92,18 @@ describe("htmlToText", () => {
       '<p>Bel <a href="tel:+31612345678">06 12 34 56 78</a> of mail <a href="mailto:hi@x.example">ons</a></p>',
     );
     expect(links).toEqual([
-      { href: "tel:+31612345678", text: "06 12 34 56 78" },
-      { href: "mailto:hi@x.example", text: "ons" },
+      {
+        href: "tel:+31612345678",
+        text: "06 12 34 56 78",
+        start: 4,
+        end: 18,
+      },
+      {
+        href: "mailto:hi@x.example",
+        text: "ons",
+        start: 27,
+        end: 30,
+      },
     ]);
   });
 });

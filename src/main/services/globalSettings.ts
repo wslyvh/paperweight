@@ -8,7 +8,7 @@ interface GlobalSettings {
   colorTheme?: "dim" | "silk";
 }
 
-export function getSettingsPath(): string {
+function getSettingsPath(): string {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { app } = require("electron") as typeof import("electron");
   return join(app.getPath("userData"), "settings.json");

@@ -52,7 +52,7 @@ interface WebsiteCompany
   suggestedTransportMedium?: string;
 }
 
-// Map datenanfragen source categories → app categories (from RISK_CATEGORIES in languages.ts)
+// Map datenanfragen source categories → Paperweight vendor categories.
 const CATEGORY_MAP: Record<string, string> = {
   finance: "financial",
   insurance: "financial",

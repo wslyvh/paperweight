@@ -1,4 +1,3 @@
-import Database from "better-sqlite3";
 import { getDb } from "../db";
 import {
   findOrCreateVendor,
@@ -7,15 +6,15 @@ import {
   updateVendorFlags,
   recomputeAllVendorFlags,
   matchVendorCompanies,
-  categorizeVendors,
+  enrichVendorCategories,
 } from "./vendors";
 import {
   insertMessageVendor,
-  classifyMessageType,
   deleteMessagesByIds,
   getVendorIdsByMessageIds,
   reapplyUnsubscribedFromActionLog,
 } from "./messages";
+import { persistFindings, runAnalysisPass, runReclassifyPass } from "./analysis";
 import {
   getSetting,
   saveSetting,
@@ -25,41 +24,13 @@ import {
 import { syncCaseRepliesForVendors } from "./cases";
 import { loadCredentials } from "../credentials";
 import { getProvider } from "../providers/ProviderFactory";
-import { APP_CONFIG } from "@shared/config";
+import { friendlyConnectionError } from "../providers/utils";
+import { PERSONAL_DOMAINS } from "@paperweight/analysis/contracts";
 import { getRootDomain } from "@shared/utils";
 import type { SyncStatus } from "@shared/types";
 import { FREE_TIER_SYNC_DAYS, LICENSED_SYNC_DAYS } from "@shared/types";
 import { syncLog } from "../utils/log";
 import type { EmailMessage, EmailProvider } from "../providers/types";
-
-export function friendlyConnectionError(err: unknown): string {
-  const msg = err instanceof Error ? err.message : String(err);
-
-  if (/self.signed cert/i.test(msg)) {
-    return 'Invalid server certificate. Try toggling "Self-signed cert".';
-  }
-  if (/WRONG_VERSION_NUMBER/i.test(msg)) {
-    return 'TLS handshake failed. Try toggling "Implicit TLS".';
-  }
-  if (/ECONNREFUSED/i.test(msg)) {
-    return `Connection refused at ${msg.match(/\d+\.\d+\.\d+\.\d+:\d+/)?.[0] ?? "the specified host/port"}. Check the mail server.`;
-  }
-  if (/ETIMEDOUT|ENOTFOUND/i.test(msg)) {
-    return "Could not reach the mail server. Check the host and port.";
-  }
-  if (/authenticate|login|credentials|invalid|Command failed/i.test(msg)) {
-    return "Authentication failed. Check your username and password.";
-  }
-  if (
-    /Failed to refresh access token|invalid_grant|token.*expired|token.*revoked/i.test(
-      msg,
-    )
-  ) {
-    return "Authorization expired. Reconnect your account to continue syncing.";
-  }
-
-  return msg;
-}
 
 // --- Config ---
 
@@ -70,12 +41,18 @@ const HISTORICAL_SYNC_DAYS = process.env.HISTORICAL_SYNC_DAYS
   : undefined;
 
 const HISTORICAL_CHUNK_DAYS = 90;
+// Isolated gaps are normal, but three empty windows (~270 days) are enough
+// evidence that the account predates no more mail. The 1995 floor remains only
+// an absolute fallback.
+const HISTORICAL_EMPTY_CHUNK_LIMIT = 3;
 
 // Incremental date-range adds re-query a small window before last_sync_at so a message
-// arriving around the previous sync boundary isn't missed. INSERT OR IGNORE dedupes the overlap.
+// arriving around the previous sync boundary isn't missed. Re-visited ids merge through
+// insertMessageVendor's upsert, which keeps user state and takes the fuller capture.
 const INCREMENTAL_OVERLAP_MS = 60 * 60 * 1000; // 1 hour
 
-// Production floor: covers all consumer email back to Hotmail/early IMAP era.
+// Absolute production fallback: covers consumer email back to Hotmail/early
+// IMAP. Normal walks stop after HISTORICAL_EMPTY_CHUNK_LIMIT empty chunks.
 const HISTORICAL_FLOOR_DATE = new Date("1995-01-01");
 
 // --- Sync state ---
@@ -116,7 +93,7 @@ export function getSyncState() {
   };
 }
 
-export function updateSyncState(update: SyncStateUpdate): void {
+function updateSyncState(update: SyncStateUpdate): void {
   const d = getDb();
   // Build SET clause from only the provided keys (named params)
   const keys = Object.keys(update).filter(
@@ -127,8 +104,8 @@ export function updateSyncState(update: SyncStateUpdate): void {
   d.prepare(`UPDATE sync_state SET ${setClause} WHERE id = 1`).run(update);
 }
 
-export function clearSyncDataOnDb(db: Database.Database): void {
-  db.exec(`
+export function clearSyncData(): void {
+  getDb().exec(`
     DELETE FROM messages;
     DELETE FROM vendors;
     UPDATE sync_state SET
@@ -142,17 +119,21 @@ export function clearSyncDataOnDb(db: Database.Database): void {
   `);
 }
 
-export function clearSyncData(): void {
-  clearSyncDataOnDb(getDb());
-}
-
 // --- Batch processing ---
 
-export function processMessagesBatch(messages: EmailMessage[]): void {
+function processMessagesBatch(messages: EmailMessage[]): void {
   if (messages.length === 0) return;
 
   const accountEmail = getSetting("accountEmail")?.toLowerCase();
   const vendorIds = new Set<number>();
+  const storeAnalyzedMessage = getDb().transaction(
+    (msg: EmailMessage, vendorId: number) => {
+      const changed = insertMessageVendor(msg, vendorId);
+      if (changed && msg.analysis.text.length > 0) {
+        persistFindings(msg.id, msg.analysis.findings);
+      }
+    },
+  );
 
   for (const msg of messages) {
     if (accountEmail && msg.senderEmail.toLowerCase() === accountEmail)
@@ -162,8 +143,8 @@ export function processMessagesBatch(messages: EmailMessage[]): void {
     if (!domain) continue;
 
     if (
-      APP_CONFIG.PERSONAL_DOMAINS.includes(domain) ||
-      APP_CONFIG.PERSONAL_DOMAINS.includes(getRootDomain(domain))
+      PERSONAL_DOMAINS.includes(domain) ||
+      PERSONAL_DOMAINS.includes(getRootDomain(domain))
     )
       continue;
 
@@ -171,8 +152,12 @@ export function processMessagesBatch(messages: EmailMessage[]): void {
     const vendorId = findOrCreateVendor(vendorDomain);
     vendorIds.add(vendorId);
 
-    const type = classifyMessageType(msg);
-    insertMessageVendor(msg, vendorId, type);
+    // The engine already ran once, where the provider parsed this message: type
+    // and unsubscribe go in with the row, findings atomically beside it (the FK
+    // needs the row to exist). An identical overlap fetch is a no-op. Only a
+    // message that actually carried a body gets its analysis_version stamped —
+    // leaving it NULL on a body-less row lets a later full fetch be analyzed.
+    storeAnalyzedMessage(msg, vendorId);
   }
 
   for (const vid of vendorIds) {
@@ -202,10 +187,6 @@ let _progressEmitter: ProgressEmitter = () => {};
 
 export function setProgressEmitter(fn: ProgressEmitter): void {
   _progressEmitter = fn;
-}
-
-export function getSyncStatus(): SyncStatus {
-  return currentStatus;
 }
 
 function emitProgress(partial: Omit<SyncStatus, "lastSyncAt">) {
@@ -337,8 +318,6 @@ async function runIncrementalSync(
     if (result.messages.length > 0) {
       processMessagesBatch(result.messages);
       totalFetched += result.messages.length;
-      matchVendorCompanies();
-      categorizeVendors();
 
       emitProgress({
         running: true,
@@ -359,8 +338,6 @@ async function runIncrementalSync(
   }
 
   recomputeAllVendorFlags();
-  matchVendorCompanies();
-  categorizeVendors();
 
   const now = Date.now();
   const stateUpdate: SyncStateUpdate = {
@@ -404,7 +381,7 @@ async function runHistoricalChunk(
   let since = new Date(cursor - chunkMs);
   let isLastChunk = false;
 
-  // Determine floor: dev limit via env var, otherwise hard floor of year 2000.
+  // Determine floor: dev limit via env var, otherwise the 1995 fallback.
   const floorDate = HISTORICAL_SYNC_DAYS
     ? new Date(Date.now() - HISTORICAL_SYNC_DAYS * 86_400_000)
     : HISTORICAL_FLOOR_DATE;
@@ -417,6 +394,7 @@ async function runHistoricalChunk(
   syncLog.debug(
     `Historical chunk: ${since.toISOString().slice(0, 10)} → ${until.toISOString().slice(0, 10)}`,
   );
+  const chunkStart = Date.now();
 
   const chunkEstimate = (await provider.getMessageCount(since, until)) ?? 0;
 
@@ -448,14 +426,11 @@ async function runHistoricalChunk(
           historicalCursor: since.getTime(),
         });
       },
-      true /* headersOnly — historical uses headers only, no body scan */,
     );
 
     if (result.messages.length > 0) {
       processMessagesBatch(result.messages);
       totalFetched += result.messages.length;
-      matchVendorCompanies();
-      categorizeVendors();
     }
 
     if (result.nextPageToken) {
@@ -465,8 +440,17 @@ async function runHistoricalChunk(
     }
   }
 
-  // Always advance cursor backward (even through empty chunks — email gaps are normal).
-  // Only stop when we've reached the floor date.
+  // Counts and elapsed time only — never a subject, sender or body. This is the
+  // number that tells us whether the walk is fetch-bound or engine-bound.
+  const chunkSeconds = ((Date.now() - chunkStart) / 1000).toFixed(0);
+  syncLog.info(
+    `Historical chunk ${since.toISOString().slice(0, 10)} → ${until.toISOString().slice(0, 10)}` +
+      ` — ${totalFetched} messages in ${chunkSeconds}s`,
+  );
+
+  // Always advance through this chunk, including an empty one. The caller
+  // stops after a bounded consecutive-empty streak; the floor is the absolute
+  // fallback for accounts whose history remains populated throughout.
   if (isLastChunk) {
     recomputeAllVendorFlags();
     updateSyncState({ historical_cursor: since.getTime(), historical_done: 1 });
@@ -499,8 +483,27 @@ export async function runSync(licensedOverride?: boolean): Promise<void> {
   });
 
   const startTime = Date.now();
-
   try {
+    // Phase 0: convert a pre-switch database to the engine's vocabulary. Local
+    // data only, so it runs before we connect — an offline launch still gets a
+    // converged dataset, and no freshly-synced row exists yet for it to
+    // re-derive down to a header-only verdict. A no-op after the first run.
+    await runReclassifyPass((done, total) => {
+      emitProgress({
+        running: true,
+        progress: done,
+        total,
+        message: "Updating your mail",
+        phase: "incremental",
+      });
+    });
+
+    // Findings-version catch-up is local too. Run it before provider access so
+    // an engine upgrade converges the stored mailbox even when the account is
+    // temporarily offline. Newly fetched messages persist current findings
+    // inline and do not need a second pass.
+    await runAnalysisPass();
+
     const connection = await provider.connect();
     syncLog.info(`Provider connected (${connection.type})`);
 
@@ -521,7 +524,9 @@ export async function runSync(licensedOverride?: boolean): Promise<void> {
     // providers with a delta layer (Gmail, Microsoft). No-op for IMAP.
     await runRemovalPass(provider);
 
-    // Phase 2: Historical headers-only sync (licensed users only, walks back to year 2000)
+    // Phase 2: Historical sync (licensed users only). Full fetch, same as
+    // incremental — bodies and findings land for history too. Isolated empty
+    // chunks are crossed; three consecutive empty chunks finish the walk.
     if (licensed) {
       const syncState = getSyncState();
       if (
@@ -539,11 +544,11 @@ export async function runSync(licensedOverride?: boolean): Promise<void> {
           historicalMessages += result.count;
           historicalChunks++;
           emptyChunks = result.count === 0 ? emptyChunks + 1 : 0;
-          if (emptyChunks > 2) {
+          if (hasMore && emptyChunks >= HISTORICAL_EMPTY_CHUNK_LIMIT) {
             recomputeAllVendorFlags();
             updateSyncState({ historical_done: 1 });
             syncLog.info(
-              "Historical sync: no messages in 2 consecutive chunks, stopping early",
+              `Historical sync: no messages in ${HISTORICAL_EMPTY_CHUNK_LIMIT} consecutive chunks, stopping early`,
             );
             break;
           }
@@ -553,6 +558,13 @@ export async function runSync(licensedOverride?: boolean): Promise<void> {
         );
       }
     }
+
+    // Catalogue enrichment is global, static work. Run it once after both sync
+    // phases; the transaction exposes either the old or the fully derived
+    // category set and only writes rows whose result changed.
+    recomputeAllVendorFlags();
+    matchVendorCompanies();
+    enrichVendorCategories();
 
     // Re-derive "unsubscribed" message status after an all-mail migration re-sync.
     maybeReapplyUnsubscribed(licensed);
@@ -571,7 +583,6 @@ export async function runSync(licensedOverride?: boolean): Promise<void> {
     syncLog.info(
       `Sync completed (${duration}s) — ${msgCount.toLocaleString()} messages, ${vendorCount.toLocaleString()} vendors`,
     );
-
     currentStatus.lastSyncAt = Date.now();
     emitProgress({
       running: false,

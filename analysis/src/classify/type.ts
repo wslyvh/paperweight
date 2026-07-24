@@ -1,4 +1,4 @@
-// Rule-based message type classifier, v1 (ENGINE_DESIGN.md §6).
+// Rule-based message type classifier, v1.
 // Always emits a best guess + confidence + the signals that drove it;
 // 'unknown' is reserved for empty input. A consumer-provider sender (gmail
 // etc.) without list evidence beats everything: organizations send from
@@ -9,6 +9,7 @@
 // vocabulary; replies never classify as update (resets/alerts are not
 // replies); strong list headers beat incidental update vocabulary.
 import { PERSONAL_DOMAINS, SOCIAL_DOMAINS } from "../data/sender-domains";
+import { sameOrg } from "../detect/email";
 import type { Extracted } from "../extract/body";
 import type { MessageType, Signal } from "../types";
 import type { UnsubscribeResult } from "./unsubscribe";
@@ -80,7 +81,10 @@ export function classifyType(
     };
   }
 
-  if (has("header.list-unsubscribe") || strongList || unsubscribe) {
+  // Product contract: promotion means actionable bulk mail. List-ID,
+  // Precedence: bulk and layout are useful supporting evidence, but without a
+  // resolved unsubscribe target they must not put a message on Mailing Lists.
+  if (unsubscribe) {
     const listCueIds = new Set([
       "header.list-unsubscribe", "header.one-click", "header.list-id",
       "header.precedence-bulk", "header.dkim-mismatch", "html.bulk-layout",
@@ -130,8 +134,4 @@ function collectHeaderSignals(extracted: Extracted): Signal[] {
     signals.push({ id: "html.bulk-layout" });
   }
   return signals;
-}
-
-function sameOrg(a: string, b: string): boolean {
-  return a === b || a.endsWith("." + b) || b.endsWith("." + a);
 }

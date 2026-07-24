@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import type { Vendor, VendorQuery, UnsubscribeEntry } from "@shared/types";
+import { MARKETING_ACTION_TYPES } from "@shared/types";
 import { formatRelativeDate } from "@shared/formatting";
 import { parseMailto, PAPERWEIGHT_UNSUB_BODY } from "@shared/utils";
 import { ArrowUpDown, BadgeCheck, BellOff, ChevronLeft, ChevronRight, Flag, SlidersHorizontal, Trash2 } from "lucide-react";
@@ -495,7 +496,7 @@ export default function Mail(): JSX.Element {
           }
           if (success) {
             await window.api.markVendorUnsubscribed(vendor.id);
-            if (trashAlso) await window.api.trashVendorMessages(vendor.id, ["bulk"]);
+            if (trashAlso) await window.api.trashVendorMessages(vendor.id, [...MARKETING_ACTION_TYPES]);
             succeeded.push(vendor.id);
           } else {
             failed.push(name);
@@ -513,10 +514,10 @@ export default function Mail(): JSX.Element {
             failed.push(name);
             continue;
           }
-          if (trashAlso) await window.api.trashVendorMessages(vendor.id, ["bulk"]);
+          if (trashAlso) await window.api.trashVendorMessages(vendor.id, [...MARKETING_ACTION_TYPES]);
           succeeded.push(vendor.id);
         } else if (kind === "trash") {
-          const result = await window.api.trashVendorMessages(vendor.id, ["bulk"]);
+          const result = await window.api.trashVendorMessages(vendor.id, [...MARKETING_ACTION_TYPES]);
           if (!result.success) {
             failed.push(name);
             continue;
@@ -610,7 +611,7 @@ export default function Mail(): JSX.Element {
     setActionLoading(true);
     try {
       if (trashAlso) {
-        const result = await window.api.trashVendorMessages(vendor.id, ["bulk"]);
+        const result = await window.api.trashVendorMessages(vendor.id, [...MARKETING_ACTION_TYPES]);
         if (!result.success) setToast(result.error ?? "Unsubscribed, but couldn't move emails to trash.");
       }
       setUnsubResult(null);
@@ -626,7 +627,7 @@ export default function Mail(): JSX.Element {
     setActionLoading(true);
     try {
       await window.api.reportSpamVendor(vendor.id);
-      if (trashAlso) await window.api.trashVendorMessages(vendor.id, ["bulk"]);
+      if (trashAlso) await window.api.trashVendorMessages(vendor.id, [...MARKETING_ACTION_TYPES]);
       setUnsubResult(null);
       removeVendor(vendor.id);
     } finally {
@@ -665,7 +666,7 @@ export default function Mail(): JSX.Element {
     try {
       await window.api.markVendorUnsubscribed(vendor.id);
       if (trashAlso) {
-        const result = await window.api.trashVendorMessages(vendor.id, ["bulk"]);
+        const result = await window.api.trashVendorMessages(vendor.id, [...MARKETING_ACTION_TYPES]);
         if (!result.success) setToast(result.error ?? "Unsubscribed, but couldn't move emails to trash.");
       }
       setUnsubCheck(null);
@@ -701,7 +702,7 @@ export default function Mail(): JSX.Element {
         setModalError(spamResult.error ?? "Failed to report spam.");
         return;
       }
-      if (trashAlso) await window.api.trashVendorMessages(vendor.id, ["bulk"]);
+      if (trashAlso) await window.api.trashVendorMessages(vendor.id, [...MARKETING_ACTION_TYPES]);
       setModal(null);
       setModalError(null);
       removeVendor(vendor.id);
@@ -716,7 +717,7 @@ export default function Mail(): JSX.Element {
     setActionLoading(true);
     setModalError(null);
     try {
-      const result = await window.api.trashVendorMessages(vendor.id, ["bulk"]);
+      const result = await window.api.trashVendorMessages(vendor.id, [...MARKETING_ACTION_TYPES]);
       if (!result.success) {
         setModalError(result.error ?? "Failed to move emails to trash.");
         return;

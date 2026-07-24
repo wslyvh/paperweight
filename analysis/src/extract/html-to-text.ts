@@ -9,6 +9,10 @@ import { Parser } from "htmlparser2";
 export interface HtmlLink {
   href: string;
   text: string;
+  /** Offsets into `HtmlToTextResult.text`. Only meaningful when that converted
+   *  HTML text is the body selected for analysis. */
+  start?: number;
+  end?: number;
 }
 
 export interface HtmlFacts {
@@ -45,7 +49,7 @@ export function htmlToText(html: string): HtmlToTextResult {
   let pendingNewlines = 0;
   let pendingSpace = false;
   let skipDepth = 0;
-  let link: { href: string; parts: string[] } | undefined;
+  let link: { href: string; parts: string[]; start?: number; end?: number } | undefined;
 
   function flush(): void {
     if (pendingNewlines > 0) {
@@ -95,7 +99,19 @@ export function htmlToText(html: string): HtmlToTextResult {
       if (skipDepth > 0) return;
       if (name === "a") {
         const text = link?.parts.join(" ").trim();
-        if (link && text) links.push({ href: link.href, text });
+        if (
+          link &&
+          text &&
+          link.start !== undefined &&
+          link.end !== undefined
+        ) {
+          links.push({
+            href: link.href,
+            text,
+            start: link.start,
+            end: link.end,
+          });
+        }
         link = undefined;
         return;
       }
@@ -111,9 +127,14 @@ export function htmlToText(html: string): HtmlToTextResult {
       }
       if (collapsed.startsWith(" ")) pendingSpace = true;
       flush();
+      const start = out.length;
       out += trimmed;
+      if (link) {
+        link.start ??= start;
+        link.end = out.length;
+        link.parts.push(trimmed);
+      }
       if (collapsed.endsWith(" ")) pendingSpace = true;
-      if (link) link.parts.push(trimmed);
     },
   });
 

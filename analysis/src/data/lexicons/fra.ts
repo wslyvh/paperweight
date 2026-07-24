@@ -18,4 +18,12 @@ export const fra: Lexicon = {
     /\bne\s*plus\s*recevoir\b/i,
   ],
   unsubscribeUrl: [/desabonner/i, /desinscription/i],
+  footerCue: [
+    /\bvous recevez cet?\b/i,
+    /\btous droits r[ée]serv[ée]s\b/i,
+    /\bmentions l[ée]gales\b/i,
+    /\bpolitique de confidentialit[ée]\b/i,
+    /\bconditions g[ée]n[ée]rales\b/i,
+    /\bsiret\b/i,
+  ],
 };

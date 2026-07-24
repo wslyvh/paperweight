@@ -21,7 +21,7 @@ if (existsSync(fixtureDir)) {
 }
 
 const message = await parseEml(new Uint8Array(readFileSync(emlPath)));
-const analysis = analyzeMessage(message);
+const analysis = await analyzeMessage(message);
 
 mkdirSync(fixtureDir, { recursive: true });
 copyFileSync(emlPath, join(fixtureDir, "input.eml"));
@@ -41,6 +41,5 @@ function draftExpected(a: Analysis): Record<string, unknown> {
     })),
   };
   if (a.unsubscribe) draft["unsubscribe"] = a.unsubscribe;
-  if (a.vendor) draft["vendor"] = a.vendor;
   return draft;
 }

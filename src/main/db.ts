@@ -10,7 +10,12 @@ import { join, basename } from "path";
 import { existsSync, unlinkSync } from "fs";
 import { dbLog } from "./utils/log";
 import { emailToFileKey } from "./credentials";
-import { migrateActionLog, migrateGdprCases, migrateVendors } from "./migrations";
+import {
+  migrateActionLog,
+  migrateGdprCases,
+  migrateMessages,
+  migrateVendors,
+} from "./migrations";
 
 let db: Database.Database | undefined;
 
@@ -145,6 +150,9 @@ function initSchema(d: Database.Database) {
       unsubscribe_method TEXT,
       status TEXT,
       size_bytes INTEGER NOT NULL DEFAULT 0,
+      body_text TEXT,
+      body_state TEXT NOT NULL DEFAULT 'missing',
+      analysis_version TEXT,
       FOREIGN KEY (vendor_id) REFERENCES vendors(id) ON DELETE CASCADE
     );
 
@@ -211,11 +219,41 @@ function initSchema(d: Database.Database) {
       value TEXT NOT NULL UNIQUE,
       created_at TEXT NOT NULL DEFAULT (datetime('now'))
     );
+
+    -- Only what a query reads. The raw value, its offsets and the detector's
+    -- confidence stay in the engine's in-memory Finding; the analyzing engine
+    -- version is stamped once per message on messages.analysis_version, which
+    -- is what the catch-up pass compares against.
+    CREATE TABLE IF NOT EXISTS pii_findings (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      message_id TEXT NOT NULL,
+      type TEXT NOT NULL,
+      value_normalized TEXT NOT NULL,
+      country TEXT,
+      in_quoted_text INTEGER NOT NULL DEFAULT 0,
+      in_footer INTEGER NOT NULL DEFAULT 0,
+      self_reference INTEGER NOT NULL DEFAULT 0,
+      FOREIGN KEY (message_id) REFERENCES messages(id) ON DELETE CASCADE
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_pii_findings_message ON pii_findings(message_id);
+    CREATE INDEX IF NOT EXISTS idx_pii_findings_type_value ON pii_findings(type, value_normalized);
+
+    -- Global across accounts and vendors: a suppressed (type, value) is hidden
+    -- from every aggregate. Company joins go through messages.vendor_id.
+    CREATE TABLE IF NOT EXISTS pii_suppressions (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      type TEXT NOT NULL,
+      value_normalized TEXT NOT NULL,
+      created_at INTEGER NOT NULL,
+      UNIQUE (type, value_normalized)
+    );
   `);
 
   migrateActionLog(d);
   migrateVendors(d);
   migrateGdprCases(d);
+  migrateMessages(d);
 
   d.prepare("INSERT OR IGNORE INTO sync_state (id) VALUES (1)").run();
 }

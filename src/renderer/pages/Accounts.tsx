@@ -1,10 +1,11 @@
 import { useEffect, useState, useCallback, useRef, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import type { Vendor, VendorQuery } from "@shared/types";
-import { RISK_CATEGORIES } from "@shared/languages";
+import { RISK_CATEGORIES } from "@shared/vendor-risk";
 import { useLicense } from "../context/LicenseContext";
-import { BadgeCheck, ChevronRight, ChevronLeft, ArrowUpDown, SlidersHorizontal, Check } from "lucide-react";
+import { BadgeCheck, ChevronRight, ChevronLeft, ArrowUpDown, SlidersHorizontal, Check, Tag } from "lucide-react";
 import { getActivitySignal, ACTIVITY_BADGE } from "../utils/signals";
+import { PII_LABELS, PII_TYPES } from "../utils/piiLabels";
 import ActionModal from "../components/ActionModal";
 
 const RISK_BORDER: Record<string, string> = {
@@ -98,6 +99,7 @@ interface AccountsState {
   dataTypeFilter: string;
   volumeFilter: string;
   categoryFilter: string;
+  piiTypeFilter: string;
   anyBreachFilter: boolean;
   showReviewed: boolean;
 }
@@ -127,6 +129,7 @@ export default function Accounts(): JSX.Element {
   const [dataTypeFilter, setDataTypeFilter] = useState(restore?.dataTypeFilter ?? initialPreset?.dataType ?? "");
   const [volumeFilter, setVolumeFilter] = useState(restore?.volumeFilter ?? initialPreset?.volume ?? "");
   const [categoryFilter, setCategoryFilter] = useState(restore?.categoryFilter ?? "");
+  const [piiTypeFilter, setPiiTypeFilter] = useState(restore?.piiTypeFilter ?? "");
   const [anyBreachFilter, setAnyBreachFilter] = useState(restore?.anyBreachFilter ?? !!(initialPreset?.breached));
   const [showReviewed, setShowReviewed] = useState(restore?.showReviewed ?? false);
   const [showSort, setShowSort] = useState(false);
@@ -139,6 +142,7 @@ export default function Accounts(): JSX.Element {
   function isPresetActive(p: Preset): boolean {
     return (
       !showReviewed &&
+      !piiTypeFilter &&
       (p.risk ?? "") === riskFilter &&
       (p.activity ?? "") === activityFilter &&
       (p.dataType ?? "") === dataTypeFilter &&
@@ -154,6 +158,7 @@ export default function Accounts(): JSX.Element {
       setDataTypeFilter("");
       setVolumeFilter("");
       setCategoryFilter("");
+      setPiiTypeFilter("");
       setAnyBreachFilter(false);
       setSortBy("risk");
     } else {
@@ -162,6 +167,7 @@ export default function Accounts(): JSX.Element {
       setDataTypeFilter(p.dataType ?? "");
       setVolumeFilter(p.volume ?? "");
       setCategoryFilter("");
+      setPiiTypeFilter("");
       setAnyBreachFilter(!!(p.breached));
       setSortBy(p.defaultSort ?? "message_count");
       setShowReviewed(false);
@@ -178,6 +184,7 @@ export default function Accounts(): JSX.Element {
       setDataTypeFilter("");
       setVolumeFilter("");
       setCategoryFilter("");
+      setPiiTypeFilter("");
       setAnyBreachFilter(false);
       setShowReviewed(true);
     }
@@ -191,6 +198,7 @@ export default function Accounts(): JSX.Element {
     setDataTypeFilter("");
     setVolumeFilter("");
     setCategoryFilter("");
+    setPiiTypeFilter("");
     setAnyBreachFilter(false);
     setShowReviewed(false);
     setSortBy("risk");
@@ -199,7 +207,8 @@ export default function Accounts(): JSX.Element {
 
   const hasAnyFilter = !!(
     search || riskFilter || activityFilter || dataTypeFilter ||
-    volumeFilter || categoryFilter || anyBreachFilter || showReviewed || sortBy !== "risk" || page > 1
+    volumeFilter || categoryFilter || piiTypeFilter || anyBreachFilter || showReviewed ||
+    sortBy !== "risk" || page > 1
   );
 
   // Keep the current history entry in sync with filter state so the browser back button
@@ -208,10 +217,10 @@ export default function Accounts(): JSX.Element {
   useEffect(() => {
     navigate(pathname, {
       replace: true,
-      state: { restore: { page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, categoryFilter, anyBreachFilter, showReviewed } satisfies AccountsState },
+      state: { restore: { page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, categoryFilter, piiTypeFilter, anyBreachFilter, showReviewed } satisfies AccountsState },
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, categoryFilter, anyBreachFilter, showReviewed]);
+  }, [page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, categoryFilter, piiTypeFilter, anyBreachFilter, showReviewed]);
 
   useEffect(() => {
     function handler(e: MouseEvent) {
@@ -280,10 +289,11 @@ export default function Accounts(): JSX.Element {
       dataType: dataTypeFilter || undefined,
       volume: volumeFilter || undefined,
       category: categoryFilter || undefined,
+      piiType: (piiTypeFilter || undefined) as VendorQuery["piiType"],
       showReviewed,
       onBreachList: anyBreachFilter || undefined,
     };
-  }, [page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, categoryFilter, showReviewed, anyBreachFilter]);
+  }, [page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, categoryFilter, piiTypeFilter, showReviewed, anyBreachFilter]);
 
   const fetchVendors = useCallback(async (silent = false) => {
     if (!silent) setLoading(true);
@@ -413,6 +423,13 @@ export default function Accounts(): JSX.Element {
                 value={categoryFilter}
                 onChange={v => { setCategoryFilter(v); setShowReviewed(false); setPage(1); }}
               />
+              <FilterGroup
+                label="Found in your emails"
+                options={PII_TYPES}
+                labels={PII_TYPES.map(t => PII_LABELS[t])}
+                value={piiTypeFilter}
+                onChange={v => { setPiiTypeFilter(v); setShowReviewed(false); setPage(1); }}
+              />
               <div className="pt-2 border-t border-base-content/10">
                 <div className="text-sm text-base-content/40 mb-1.5">Breach</div>
                 <button
@@ -490,8 +507,8 @@ export default function Accounts(): JSX.Element {
                       const currentIndex = allGroupKeys.indexOf(groupKey);
                       navigate(`/accounts/${encodeURIComponent(groupKey)}`, {
                         state: {
-                          accountsState: { page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, categoryFilter, anyBreachFilter, showReviewed } satisfies AccountsState,
-                          accountNav: { groupKeys: allGroupKeys, currentIndex, vendorQuery: currentQuery, total, restoreState: { page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, categoryFilter, anyBreachFilter, showReviewed } },
+                          accountsState: { page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, categoryFilter, piiTypeFilter, anyBreachFilter, showReviewed } satisfies AccountsState,
+                          accountNav: { groupKeys: allGroupKeys, currentIndex, vendorQuery: currentQuery, total, restoreState: { page, sortBy, search, riskFilter, activityFilter, dataTypeFilter, volumeFilter, categoryFilter, piiTypeFilter, anyBreachFilter, showReviewed } },
                         },
                       });
                     }}
@@ -513,6 +530,18 @@ export default function Accounts(): JSX.Element {
                         >
                           {vendor.message_count}
                         </span>
+                        {vendor.hasNotablePii && (
+                          <span
+                            className="shrink-0 leading-none"
+                            title="Personal data found in these emails"
+                          >
+                            <Tag
+                              className="w-4 h-4 text-base-content/50"
+                              strokeWidth={2}
+                              aria-label="Personal data found in emails"
+                            />
+                          </span>
+                        )}
                         {vendor.breachInfo && vendor.breachInfo.length > 0 && (
                           <span
                             className="shrink-0 leading-none"
@@ -560,7 +589,7 @@ export default function Accounts(): JSX.Element {
                           <span className="badge badge-xs badge-soft">Account</span>
                         )}
                         {vendor.has_marketing && !vendor.has_account && (
-                          <span className="badge badge-xs badge-soft">Bulk</span>
+                          <span className="badge badge-xs badge-soft">Marketing</span>
                         )}
                       </div>
                       <ChevronRight

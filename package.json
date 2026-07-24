@@ -124,7 +124,6 @@
     "recharts": "^3.7.0"
   },
   "devDependencies": {
-    "@electron-toolkit/preload": "^3.0.2",
     "@electron-toolkit/tsconfig": "^1.0.1",
     "@electron/rebuild": "^4.0.3",
     "@tailwindcss/postcss": "^4.1.18",

@@ -29,7 +29,7 @@ export interface Trend {
   pct: number;
 }
 
-export function average(nums: number[]): number {
+function average(nums: number[]): number {
   if (nums.length === 0) return 0;
   const sum = nums.reduce((acc, n) => acc + n, 0);
   return sum / nums.length;

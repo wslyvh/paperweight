@@ -33,7 +33,11 @@ export function selectBody(msg: RawMessage): ExtractedBody {
 // only exists in the html part).
 function pickBody(msg: RawMessage, converted: HtmlToTextResult | undefined): ExtractedBody {
   if (msg.text !== undefined && msg.text.trim() !== "") {
-    return { text: msg.text, source: "text", links: converted?.links ?? [] };
+    // HTML link offsets index into the converted HTML text, not this preferred
+    // plain part. Keep the unsubscribe facts but drop offsets that would point
+    // into the wrong body.
+    const links = converted?.links.map(({ href, text }) => ({ href, text })) ?? [];
+    return { text: msg.text, source: "text", links };
   }
   if (converted) {
     return { text: converted.text, source: "html", links: converted.links };

@@ -27,6 +27,8 @@ import type {
   UnsubscribeEntry,
   Vendor,
   VendorDetail,
+  VendorPiiRevealedValue,
+  VendorPiiSummary,
   VendorQuery,
   WhitelistEntry,
 } from "./types";
@@ -101,6 +103,10 @@ export const IPC = {
   unlinkGdprCaseMessage: "unlink-gdpr-case-message",
   markGdprCaseViewed: "mark-gdpr-case-viewed",
   getUnseenCaseReplyCount: "get-unseen-case-reply-count",
+  getVendorPiiSummary: "get-vendor-pii-summary",
+  revealVendorPiiValues: "reveal-vendor-pii-values",
+  suppressPiiFinding: "suppress-pii-finding",
+  unsuppressPiiFinding: "unsuppress-pii-finding",
 } as const;
 
 export interface UpdateInfo {
@@ -188,6 +194,15 @@ export interface ElectronAPI {
   unlinkGdprCaseMessage: (caseId: number, messageId: string) => Promise<void>;
   markGdprCaseViewed: (caseId: number) => Promise<void>;
   getUnseenCaseReplyCount: () => Promise<number>;
+  getVendorPiiSummary: (vendorId: number) => Promise<VendorPiiSummary>;
+  /** The one channel that carries full values, and only on an explicit reveal:
+   *  a masked row can't be judged "mine or not". Keyed by the same opaque refs
+   *  the summary handed out. The renderer keeps the result in memory only. */
+  revealVendorPiiValues: (vendorId: number) => Promise<VendorPiiRevealedValue[]>;
+  /** `Not mine`. `ref` is the opaque handle from a VendorPiiValue — the main
+   *  process resolves it to the value it hides and returns nothing. */
+  suppressPiiFinding: (ref: number) => Promise<void>;
+  unsuppressPiiFinding: (ref: number) => Promise<void>;
 }
 
 export type { SyncStatus };
