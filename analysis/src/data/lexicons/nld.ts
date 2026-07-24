@@ -37,4 +37,6 @@ export const nld: Lexicon = {
     /\bprivacybeleid\b/i,
     /\balgemene voorwaarden\b/i,
   ],
+  referenceCodeStem: [/bestell?/, /boekings?/, /reserverings?/, /transactie/, /factuur/],
+  referenceCodeLabel: [/nummer/, /referentie/],
 };

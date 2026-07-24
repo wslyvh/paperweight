@@ -41,4 +41,6 @@ export const eng: Lexicon = {
     /\bterms (?:of use|of service|and conditions)\b/i,
     /\bvat (?:no|number|registration)\b/i,
   ],
+  referenceCodeStem: [/order/, /booking/, /invoice/, /reservation/, /transaction/],
+  referenceCodeLabel: [/number/, /code/, /reference/, /no\.?/, /id/],
 };
