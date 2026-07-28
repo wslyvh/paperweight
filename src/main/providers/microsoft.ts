@@ -3,7 +3,7 @@ import type { EmailProvider, EmailMessage, EmailConnection } from "./types";
 import { loadCredentials, saveCredentials } from "../credentials";
 import { runLoopbackAuth } from "./utils";
 import { analyzeMessage } from "@paperweight/analysis";
-import type { RawMessage } from "@paperweight/analysis";
+import type { AnalyzeOptions, RawMessage } from "@paperweight/analysis";
 import { BODY_TEXT_MAX_LENGTH } from "@shared/config";
 import { headerRecord } from "@shared/utils";
 import { syncLog, authLog } from "../utils/log";
@@ -348,7 +348,10 @@ async function graphBatchGetMessages(
   }
 }
 
-async function parseGraphMessage(msg: GraphMessage): Promise<EmailMessage> {
+async function parseGraphMessage(
+  msg: GraphMessage,
+  analysisOptions?: AnalyzeOptions,
+): Promise<EmailMessage> {
   const bodyHtml =
     msg.body?.contentType === "html" ? msg.body.content : undefined;
   const bodyText =
@@ -363,6 +366,7 @@ async function parseGraphMessage(msg: GraphMessage): Promise<EmailMessage> {
   if (bodyText) raw.text = bodyText;
   if (bodyHtml) raw.html = bodyHtml;
   const analysis = await analyzeMessage(raw, {
+    ...analysisOptions,
     maxTextLength: BODY_TEXT_MAX_LENGTH,
   });
 
@@ -405,7 +409,9 @@ export async function fetchMicrosoftProfileEmail(accessToken: string): Promise<s
 
 // --- Provider ---
 
-export function createMicrosoftProvider(): EmailProvider {
+export function createMicrosoftProvider(
+  analysisOptions?: AnalyzeOptions,
+): EmailProvider {
   // Folders excluded from the all-mail scan (Junk/Deleted/Sent/Drafts). Resolved once per
   // sync session and cached. /me/messages spans every folder, so we filter by parentFolderId.
   let excludedFolderIds: Set<string> | undefined;
@@ -534,7 +540,7 @@ export function createMicrosoftProvider(): EmailProvider {
         try {
           const batchMessages = await graphBatchGetMessages(chunkIds, select);
           for (const msg of batchMessages) {
-            emailMessages.push(await parseGraphMessage(msg));
+            emailMessages.push(await parseGraphMessage(msg, analysisOptions));
             onProgress?.(emailMessages.length);
           }
         } catch (err) {
@@ -553,7 +559,7 @@ export function createMicrosoftProvider(): EmailProvider {
         `${GRAPH_ME_BASE}/messages/${messageId}?$select=id,receivedDateTime,from,subject,bodyPreview,body,internetMessageHeaders`
       )) as GraphMessage;
 
-      return parseGraphMessage(msg);
+      return parseGraphMessage(msg, analysisOptions);
     },
 
     async trashMessage(messageId: string): Promise<void> {

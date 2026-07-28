@@ -10,8 +10,10 @@ import Dashboard from "./pages/Dashboard";
 import Mail from "./pages/Mail";
 import Accounts from "./pages/Accounts";
 import AccountDetail from "./pages/AccountDetail";
+import Data from "./pages/Data";
 import Cases from "./pages/Cases";
 import CaseDetail from "./pages/CaseDetail";
+import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import Support from "./pages/Support";
 import Activity from "./pages/Activity";
@@ -135,8 +137,10 @@ export default function App(): JSX.Element {
             <Route path="mail" element={<Mail />} />
             <Route path="accounts" element={<Accounts />} />
             <Route path="accounts/:groupKey" element={<AccountDetail />} />
+            <Route path="data" element={<Data />} />
             <Route path="cases" element={<Cases />} />
             <Route path="cases/:caseId" element={<CaseDetail />} />
+            <Route path="profile" element={<Profile />} />
             <Route path="settings" element={<Settings />} />
             <Route path="support" element={<Support />} />
             <Route path="activity" element={<Activity />} />

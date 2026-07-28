@@ -1,5 +1,8 @@
-import { join } from "path";
-import { readFileSync, writeFileSync, existsSync } from "fs";
+import {
+  getGlobalDb,
+  hasReadableGlobalState,
+  resetGlobalDb,
+} from "../globalDb";
 
 interface GlobalSettings {
   autoLaunch?: boolean;
@@ -8,42 +11,35 @@ interface GlobalSettings {
   colorTheme?: "dim" | "silk";
 }
 
-function getSettingsPath(): string {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { app } = require("electron") as typeof import("electron");
-  return join(app.getPath("userData"), "settings.json");
-}
-
-let _cache: GlobalSettings | undefined;
-
-function loadSettings(): GlobalSettings {
-  if (_cache) return _cache;
-  const path = getSettingsPath();
-  if (!existsSync(path)) return (_cache = {});
+export function getGlobalSetting<K extends keyof GlobalSettings>(key: K): GlobalSettings[K] {
+  if (!hasReadableGlobalState()) return undefined;
+  const row = getGlobalDb()
+    .prepare("SELECT value_json FROM app_settings WHERE key = ?")
+    .get(key) as { value_json: string } | undefined;
+  if (!row) return undefined;
   try {
-    _cache = JSON.parse(readFileSync(path, "utf-8")) as GlobalSettings;
-    return _cache;
+    return JSON.parse(row.value_json) as GlobalSettings[K];
   } catch {
-    return (_cache = {});
+    return undefined;
   }
 }
 
-function saveSettings(settings: GlobalSettings): void {
-  _cache = settings;
-  writeFileSync(getSettingsPath(), JSON.stringify(settings, null, 2), "utf-8");
-}
-
-export function getGlobalSetting<K extends keyof GlobalSettings>(key: K): GlobalSettings[K] {
-  return loadSettings()[key];
-}
-
 export function saveGlobalSetting<K extends keyof GlobalSettings>(key: K, value: GlobalSettings[K]): void {
-  const settings = loadSettings();
-  settings[key] = value;
-  saveSettings(settings);
+  const target = getGlobalDb();
+  if (value === undefined) {
+    target.prepare("DELETE FROM app_settings WHERE key = ?").run(key);
+    return;
+  }
+  target
+    .prepare(
+      `INSERT INTO app_settings (key, value_json)
+       VALUES (?, ?)
+       ON CONFLICT(key) DO UPDATE SET value_json = excluded.value_json`,
+    )
+    .run(key, JSON.stringify(value));
 }
 
-/** Clears the in-memory settings cache (for tests). */
+/** Closes the global connection and clears its configured path (for tests). */
 export function resetGlobalSettingsCache(): void {
-  _cache = undefined;
+  resetGlobalDb();
 }

@@ -14,7 +14,11 @@ import {
   getVendorIdsByMessageIds,
   reapplyUnsubscribedFromActionLog,
 } from "./messages";
-import { persistFindings, runAnalysisPass, runReclassifyPass } from "./analysis";
+import {
+  getKnownPiiValues,
+  persistFindings,
+  runReclassifyPass,
+} from "./analysis";
 import {
   getSetting,
   saveSetting,
@@ -31,6 +35,7 @@ import type { SyncStatus } from "@shared/types";
 import { FREE_TIER_SYNC_DAYS, LICENSED_SYNC_DAYS } from "@shared/types";
 import { syncLog } from "../utils/log";
 import type { EmailMessage, EmailProvider } from "../providers/types";
+import { seedProfileEmailsFromCurrentAccount } from "./profileSeed";
 
 // --- Config ---
 
@@ -472,7 +477,10 @@ export async function runSync(licensedOverride?: boolean): Promise<void> {
   const creds = loadCredentials();
   if (!creds) return;
 
-  const provider = getProvider();
+  const knownValues = getKnownPiiValues();
+  const provider = getProvider(
+    knownValues.length > 0 ? { knownValues } : undefined,
+  );
 
   emitProgress({
     running: true,
@@ -497,12 +505,6 @@ export async function runSync(licensedOverride?: boolean): Promise<void> {
         phase: "incremental",
       });
     });
-
-    // Findings-version catch-up is local too. Run it before provider access so
-    // an engine upgrade converges the stored mailbox even when the account is
-    // temporarily offline. Newly fetched messages persist current findings
-    // inline and do not need a second pass.
-    await runAnalysisPass();
 
     const connection = await provider.connect();
     syncLog.info(`Provider connected (${connection.type})`);
@@ -568,6 +570,7 @@ export async function runSync(licensedOverride?: boolean): Promise<void> {
 
     // Re-derive "unsubscribed" message status after an all-mail migration re-sync.
     maybeReapplyUnsubscribed(licensed);
+    seedProfileEmailsFromCurrentAccount(getDb());
 
     await provider.disconnect();
 

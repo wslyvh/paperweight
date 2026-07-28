@@ -1,9 +1,13 @@
 import { describe, expect, it } from "vitest";
 import {
   ENGINE_VERSION,
+  isSupportedCountryCode,
   isSenderContact,
+  normalizeValue,
+  normalizeCountryCode,
   PERSONAL_DOMAINS,
   regionFromDomain,
+  validateValue,
 } from "../src/index";
 
 // These are part of the public API — consumers that supply the region hint
@@ -29,5 +33,15 @@ describe("public exports", () => {
   it("exposes a non-empty ENGINE_VERSION", () => {
     expect(typeof ENGINE_VERSION).toBe("string");
     expect(ENGINE_VERSION.length).toBeGreaterThan(0);
+  });
+
+  it("exposes profile normalization and validation", () => {
+    expect(typeof normalizeValue).toBe("function");
+    expect(typeof validateValue).toBe("function");
+  });
+
+  it("exposes country-code normalization and validation", () => {
+    expect(normalizeCountryCode(" nl ")).toBe("NL");
+    expect(isSupportedCountryCode("NL")).toBe(true);
   });
 });

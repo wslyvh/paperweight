@@ -65,6 +65,8 @@ export default function SyncStatusBar(): JSX.Element {
   };
 
   const showReconnect = isGmailTokenError(status.error);
+  const analyzingMessages =
+    status.running && status.message === "Analyzing messages";
 
   return (
     <div className="flex items-center justify-between px-4 py-2 bg-base-200 border-b border-base-300">
@@ -73,7 +75,11 @@ export default function SyncStatusBar(): JSX.Element {
           <>
             <span className="loading loading-spinner loading-xs"></span>
             <span className="text-warning">
-              {status.phase === "historical" ? "Syncing history" : "Syncing..."}
+              {analyzingMessages
+                ? "Analyzing messages…"
+                : status.phase === "historical"
+                  ? "Syncing history"
+                  : "Syncing..."}
             </span>
             {status.phase === "historical" && status.historicalCursor ? (
               <span className="text-base-content/50">
@@ -98,6 +104,13 @@ export default function SyncStatusBar(): JSX.Element {
               {status.error}
             </span>
           </>
+        ) : status.analysisPending ? (
+          <>
+            <span className="inline-block w-2 h-2 rounded-full bg-warning"></span>
+            <span className="text-base-content/70">
+              Refresh to analyze messages
+            </span>
+          </>
         ) : (
           <>
             <span className="inline-block w-2 h-2 rounded-full bg-success"></span>
@@ -116,17 +129,23 @@ export default function SyncStatusBar(): JSX.Element {
         )}
       </div>
       <button
-        className="btn btn-xs btn-ghost"
+        className={`btn btn-xs ${
+          status.analysisPending && !status.running
+            ? "btn-primary"
+            : "btn-ghost"
+        }`}
         onClick={showReconnect ? handleReconnect : handleSync}
         disabled={status.running || reconnecting}
       >
         {status.running
-          ? "Syncing..."
+          ? analyzingMessages
+            ? "Analyzing..."
+            : "Syncing..."
           : reconnecting
             ? "Reconnecting..."
             : showReconnect
               ? "Reconnect"
-              : "Sync Now"}
+              : "Refresh"}
       </button>
     </div>
   );

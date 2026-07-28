@@ -192,8 +192,8 @@ function insertMessage(input: {
 }): string {
   const id = input.id ?? `${input.domain}-msg-${++messageSeq}`;
   // body_state='available' + a stored body_text + analysis_version=ENGINE_VERSION
-  // mirror a message the analysis pass has already processed: coverage
-  // (getVendorPiiCoverage) counts scanned messages by analysis_version, and a
+  // mirror a message the analysis pass has already processed: Account Detail
+  // counts scanned messages by analysis_version, and a
   // stored body means an engine-version bump can re-analyze locally like a real one.
   const bodyText = input.bodyText ?? `${input.subject}\n\n${input.preview}`;
   d.prepare(

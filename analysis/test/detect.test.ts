@@ -299,6 +299,7 @@ describe("detectAddressBlocks", () => {
       "Voorbeeldstraat 12,\n1234 XB Voorbeeldstad",
       "Voorbeeldstraat 12\n1234 XB  Voorbeeldstad",
       "Voorbeeldstraat 12 - 1234 XB, Voorbeeldstad",
+      "Voorbeeldstraat 12 - 1234XB, Voorbeeldstad",
     ];
     const normalized = new Set(
       variants.map((text) => {
@@ -334,6 +335,24 @@ describe("detectAddressBlocks", () => {
     const text = "Sinds 2019 zijn wij gevestigd aan de Voorbeeldstraat 12 in het centrum";
     const postal = detectPostalCodes(text);
     expect(detectAddressBlocks(text, postal.candidates)).toEqual([]);
+  });
+
+  it("never reaches back over a line break for the sender's name", () => {
+    // The street pattern accepts leading words for names like "Jan van
+    // Galenstraat", which used to let it swallow the line above.
+    const text = "ShopExample B.V.\nVoorbeeldgracht 45, 1015 BA Voorbeeldstad";
+    const postal = detectPostalCodes(text);
+    const [f] = detectAddressBlocks(text, postal.candidates);
+
+    expect(f!.valueRaw).toBe("Voorbeeldgracht 45, 1015 BA Voorbeeldstad");
+  });
+
+  it("still takes leading words when they sit on the street's own line", () => {
+    const text = "Jan van Voorbeeldstraat 12, 1234 XB Voorbeeldstad";
+    const postal = detectPostalCodes(text);
+    const [f] = detectAddressBlocks(text, postal.candidates);
+
+    expect(f!.valueRaw).toBe("Jan van Voorbeeldstraat 12, 1234 XB Voorbeeldstad");
   });
 
   it("never joins a street to a copyright year as a Belgian postcode", () => {

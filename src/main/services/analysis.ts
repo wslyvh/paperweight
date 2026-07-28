@@ -2,17 +2,25 @@ import {
   analyzeMessage,
   analyzeText,
   ENGINE_VERSION,
+  extractKnownAddressComponents,
   isSenderContact,
+  normalizeValue,
   regionFromDomain,
 } from "@paperweight/analysis";
 import type {
   AnalyzeMessageOptions,
   Finding,
+  KnownAddressComponents,
+  KnownPiiValue,
   RawMessage,
   SenderContacts,
   UnsubscribeMethod,
 } from "@paperweight/analysis";
+import Database from "better-sqlite3";
+import { existsSync } from "fs";
+import { join } from "path";
 import { getDb } from "../db";
+import { accountTag, emailToFileKey, listAccounts } from "../credentials";
 import { getSetting, saveSetting } from "./settings";
 import { recomputeAllVendorFlags } from "./vendors";
 import { headerRecord, parseHeaderPairs } from "@shared/utils";
@@ -37,9 +45,136 @@ interface CompanySelfRow {
   sender_email: string | null;
 }
 
+interface ProfileAddressAnalysisRow {
+  street: string | null;
+  house_number: string | null;
+  postal_code: string | null;
+  country: string | null;
+  raw: string | null;
+  value_normalized: string;
+}
+
 // Whether companies.db is attached and carries the table. Fixed for the life of
 // a connection, so probing per message during a full pass is pure overhead.
 const catalogueReady = new WeakMap<object, boolean>();
+
+export function getKnownPiiValues(): KnownPiiValue[] {
+  const target = getDb();
+  const values = target
+    .prepare(
+      `SELECT DISTINCT type, value_normalized AS valueNormalized
+       FROM global.profile_match_values
+       WHERE value_normalized IS NOT NULL
+         AND value_normalized != ''
+       ORDER BY type, value_normalized`,
+    )
+    .all() as KnownPiiValue[];
+  const addressRows = target
+    .prepare(
+      `SELECT street, house_number, postal_code, country, raw, value_normalized
+       FROM global.profile_addresses
+       ORDER BY value_normalized, raw IS NULL`,
+    )
+    .all() as ProfileAddressAnalysisRow[];
+  const addressAnchors = new Map<string, KnownAddressComponents>();
+  for (const row of addressRows) {
+    const components = row.raw
+      ? extractKnownAddressComponents(row.raw)
+      : row.street && row.house_number && row.postal_code
+        ? {
+            street: normalizeValue("address", row.street),
+            houseNumber: normalizeValue("address", row.house_number),
+            postalCode: normalizeValue("address", row.postal_code),
+            ...(row.country ? { country: row.country } : {}),
+          }
+        : undefined;
+    if (components) addressAnchors.set(row.value_normalized, components);
+  }
+
+  return values.map((value) => {
+    const addressComponents =
+      value.type === "address"
+        ? addressAnchors.get(value.valueNormalized)
+        : undefined;
+    return addressComponents ? { ...value, addressComponents } : value;
+  });
+}
+
+// Profile values are detector input, so changing that set invalidates the same
+// two gates as an engine update. Findings stay visible until each message is
+// replaced atomically by runAnalysisPass().
+export function invalidateAnalysisPass(
+  target: Database.Database = getDb(),
+): number {
+  const invalidate = target.transaction(() => {
+    const result = target
+      .prepare(
+        `UPDATE messages
+         SET analysis_version = NULL
+         WHERE body_state IN ('available', 'truncated')
+           AND body_text IS NOT NULL`,
+      )
+      .run();
+    target
+      .prepare("DELETE FROM settings WHERE key = ?")
+      .run(ANALYSIS_VERSION_SETTING);
+    return result.changes;
+  });
+  return invalidate();
+}
+
+export function invalidateAnalysisPassAtPath(path: string): boolean {
+  if (!existsSync(path)) return false;
+
+  const target = new Database(path);
+  try {
+    target.pragma("busy_timeout = 5000");
+    invalidateAnalysisPass(target);
+    return true;
+  } finally {
+    target.close();
+  }
+}
+
+export function needsAnalysisPass(path: string): boolean {
+  if (!existsSync(path)) return false;
+
+  const target = new Database(path, { readonly: true });
+  try {
+    target.pragma("busy_timeout = 5000");
+    const row = target
+      .prepare("SELECT value FROM settings WHERE key = ?")
+      .get(ANALYSIS_VERSION_SETTING) as { value: string } | undefined;
+    return row?.value !== ENGINE_VERSION;
+  } finally {
+    target.close();
+  }
+}
+
+// Main-thread entry point used immediately after an ownership-changing profile
+// mutation. Persisting invalidation before returning means quitting the app
+// cannot lose the need for a later Refresh catch-up pass.
+export function invalidateAllAnalysisPasses(): number {
+  // Lazy: this service also runs inside the worker thread, where Electron's app
+  // module is unavailable.
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { app } = require("electron") as typeof import("electron");
+  const userData = app.getPath("userData");
+  let failures = 0;
+
+  for (const account of listAccounts()) {
+    const path = join(userData, `${emailToFileKey(account.email)}.db`);
+    try {
+      invalidateAnalysisPassAtPath(path);
+    } catch {
+      failures++;
+      syncLog.warn(
+        `Could not invalidate profile analysis [${accountTag(account.email)}]`,
+      );
+    }
+  }
+  return failures;
+}
 
 function hasCompanyCatalogue(d: ReturnType<typeof getDb>): boolean {
   const cached = catalogueReady.get(d);
@@ -150,6 +285,7 @@ export function persistFindings(
 export async function runAnalysisPass(): Promise<number> {
   const d = getDb();
   if (getSetting(ANALYSIS_VERSION_SETTING) === ENGINE_VERSION) return 0;
+  const knownValues = getKnownPiiValues();
 
   // NULL-safe: `analysis_version != ?` alone would drop the never-analyzed rows
   // (NULL != x is NULL), so the IS NULL branch is required.
@@ -193,6 +329,7 @@ export async function runAnalysisPass(): Promise<number> {
           ...(row.unsubscribe_method === "footer"
             ? { footerLinkPresent: true }
             : {}),
+          ...(knownValues.length > 0 ? { knownValues } : {}),
         });
         persistFindings(
           id,

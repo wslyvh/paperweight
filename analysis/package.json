@@ -16,6 +16,14 @@
     "./contracts": {
       "types": "./dist/contracts.d.ts",
       "default": "./dist/contracts.js"
+    },
+    "./country": {
+      "types": "./dist/country.d.ts",
+      "default": "./dist/country.js"
+    },
+    "./profile-values": {
+      "types": "./dist/profile-values.d.ts",
+      "default": "./dist/profile-values.js"
     }
   },
   "scripts": {

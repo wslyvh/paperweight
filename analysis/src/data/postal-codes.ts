@@ -11,6 +11,9 @@ export interface PostalSpec {
   country: string;
   pattern: RegExp; // /g, uppercase-only on purpose: lowercase kills precision
   tier: "standalone" | "anchor-only";
+  // The canonical form contains one space that valid raw text may omit.
+  // Currently true only for NL and GB.
+  optionalInternalSpace?: boolean;
   // Optional second gate on the normalized value, where the pattern alone is
   // too generous to be a fact (GB: the outward area must be a real one).
   validate?: (normalized: string) => boolean;
@@ -25,11 +28,17 @@ const BARE_4 = /(?<![\d-])[1-9]\d{3}(?![\dA-Za-z-])/g; // BE, AT
 
 export const POSTAL_CODES: PostalSpec[] = [
   // SA/SD/SS are never issued (official rule)
-  { country: "NL", pattern: /(?<![A-Z0-9])[1-9]\d{3} ?(?!SA|SD|SS)[A-Z]{2}(?![A-Z0-9])/g, tier: "standalone" },
+  {
+    country: "NL",
+    pattern: /(?<![A-Z0-9])[1-9]\d{3} ?(?!SA|SD|SS)[A-Z]{2}(?![A-Z0-9])/g,
+    tier: "standalone",
+    optionalInternalSpace: true,
+  },
   {
     country: "GB",
     pattern: /(?<![A-Z0-9])[A-Z]{1,2}\d[A-Z\d]? ?\d[A-Z]{2}(?![A-Z0-9])/g,
     tier: "standalone",
+    optionalInternalSpace: true,
     validate: isUkPostcodeArea,
   },
   { country: "PT", pattern: /(?<![\d-])\d{4}-\d{3}(?![\d-])/g, tier: "standalone" },

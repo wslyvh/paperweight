@@ -35,8 +35,8 @@ export function detectCreditCards(text: string): Finding[] {
   const findings: Finding[] = [];
 
   for (const m of text.matchAll(CANDIDATE)) {
-    const digits = m[0].replace(/[ -]/g, "");
-    if (!luhnValid(digits)) continue;
+    const digits = normalizeCardNumber(m[0]);
+    if (!isValidCardNumber(digits)) continue;
     const scheme = CARD_SCHEMES.find((s) => s.prefix.test(digits) && s.lengths.includes(digits.length));
     if (!scheme) continue;
     const before = text.slice(Math.max(0, m.index - 30), m.index);
@@ -72,7 +72,16 @@ export function detectCreditCards(text: string): Finding[] {
   return findings;
 }
 
-function luhnValid(digits: string): boolean {
+export function normalizeCardNumber(value: string): string {
+  return value.replace(/[ -]/g, "");
+}
+
+export function isValidCardNumber(digits: string): boolean {
+  if (!/^\d+$/.test(digits)) return false;
+  if (!CARD_SCHEMES.some((scheme) => (
+    scheme.prefix.test(digits) && scheme.lengths.includes(digits.length)
+  ))) return false;
+
   let sum = 0;
   let double = false;
   for (let i = digits.length - 1; i >= 0; i--) {

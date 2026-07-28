@@ -17,8 +17,29 @@ export interface RawMessage {
   text?: string;
 }
 
+export interface KnownAddressComponents {
+  /** Components already reduced with normalizeValue("address", value). */
+  street: string;
+  houseNumber: string;
+  postalCode: string;
+  /** Metadata only; a country label is not required in the message text. */
+  country?: string;
+}
+
+export interface KnownPiiValue {
+  type: FindingType;
+  /** Already reduced with normalizeValue(type, value). */
+  valueNormalized: string;
+  /** Present only for a structured profile address. */
+  addressComponents?: KnownAddressComponents;
+}
+
 export interface AnalyzeOptions {
   ownIdentifiers?: { emails?: string[] };
+  /** Normalized values supplied by the consumer. These add findings but do
+   * not change engine confidence into an ownership assertion. Structured
+   * addresses may also carry their exact street/house/postcode anchors. */
+  knownValues?: readonly KnownPiiValue[];
   locale?: string; // region hint for phone/postcode detection ("NL", "nl-NL")
   // Sender's domain, for the selfReference tag. analyzeMessage fills it from
   // the From header; a consumer analyzing stored text supplies it the same way

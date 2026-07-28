@@ -132,6 +132,35 @@ describe("parseImapMessage — what the engine is handed", () => {
     expect(JSON.parse(msg!.headersJson)).toContainEqual(["From", "Acme <hello@acme.com>"]);
   });
 
+  it("passes known profile values into new-message analysis", async () => {
+    const source = raw([
+      "From: Acme <hello@acme.com>",
+      "Subject: Profile match",
+      "Content-Type: text/plain; charset=utf-8",
+      "",
+      "Call 06 1234 5678",
+      "",
+    ]);
+    const knownValues = [{
+      type: "phone" as const,
+      valueNormalized: "0612345678",
+    }];
+
+    await parseImapMessage(
+      { uid: 6, source, size: source.length },
+      "imap-",
+      { knownValues },
+    );
+
+    expect(mockAnalyze).toHaveBeenCalledWith(
+      expect.any(Object),
+      {
+        knownValues,
+        maxTextLength: expect.any(Number),
+      },
+    );
+  });
+
   it("marks the body truncated when the real size exceeds the fetched source", async () => {
     const source = raw([
       "From: Acme <hello@acme.com>",

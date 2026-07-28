@@ -1,4 +1,19 @@
-jest.mock("../credentials", () => ({ emailToFileKey: jest.fn() }));
+let analysisUserDataDir = "/tmp";
+const mockListAccounts = jest.fn((): Array<{
+  email: string;
+  providerType: string;
+}> => []);
+
+jest.mock("electron", () => ({
+  app: {
+    getPath: () => analysisUserDataDir,
+  },
+}));
+jest.mock("../credentials", () => ({
+  accountTag: () => "account",
+  emailToFileKey: (email: string) => email.split("@")[0],
+  listAccounts: mockListAccounts,
+}));
 jest.mock("../utils/log", () => {
   const l = { debug: jest.fn(), info: jest.fn(), warn: jest.fn(), error: jest.fn() };
   return { dbLog: l, syncLog: l, appLog: l };
@@ -10,7 +25,11 @@ jest.mock("@paperweight/analysis", () => ({
   ENGINE_VERSION: "test-v1",
   analyzeText: jest.fn(),
   analyzeMessage: jest.fn(),
+  extractKnownAddressComponents: jest.fn(),
   regionFromDomain: jest.fn(),
+  normalizeValue: (_type: string, value: string) => (
+    value.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim()
+  ),
   // Catalogue matching is the engine's call; its own suite covers the
   // comparison. Here it stays off unless a test opts in.
   isSenderContact: jest.fn(() => false),
@@ -19,17 +38,32 @@ jest.mock("@paperweight/analysis", () => ({
 import {
   analyzeMessage,
   analyzeText,
+  extractKnownAddressComponents,
   isSenderContact,
   regionFromDomain,
   ENGINE_VERSION,
 } from "@paperweight/analysis";
 import type { Analysis, Finding, RawMessage } from "@paperweight/analysis";
 import { BODY_TEXT_MAX_LENGTH } from "@shared/config";
+import Database from "better-sqlite3";
+import { mkdtempSync, rmSync } from "fs";
+import { tmpdir } from "os";
+import { join } from "path";
 import { getDb, initDb } from "../db";
-import { persistFindings, runAnalysisPass, runReclassifyPass } from "./analysis";
+import {
+  invalidateAllAnalysisPasses,
+  invalidateAnalysisPass,
+  needsAnalysisPass,
+  persistFindings,
+  runAnalysisPass,
+  runReclassifyPass,
+} from "./analysis";
 
 const mockAnalyze = analyzeText as jest.MockedFunction<typeof analyzeText>;
 const mockAnalyzeMessage = analyzeMessage as jest.MockedFunction<typeof analyzeMessage>;
+const mockExtractAddress = extractKnownAddressComponents as jest.MockedFunction<
+  typeof extractKnownAddressComponents
+>;
 const mockRegion = regionFromDomain as jest.MockedFunction<typeof regionFromDomain>;
 const mockIsSenderContact = isSenderContact as jest.MockedFunction<typeof isSenderContact>;
 
@@ -108,13 +142,16 @@ beforeAll(() => {
 });
 beforeEach(() => {
   getDb().exec(
-    "DELETE FROM pii_findings; DELETE FROM messages; DELETE FROM vendors; DELETE FROM settings; DELETE FROM companies.companies;",
+    "DELETE FROM pii_findings; DELETE FROM messages; DELETE FROM vendors; DELETE FROM settings; DELETE FROM companies.companies; DELETE FROM global.profile_phones; DELETE FROM global.profile_addresses;",
   );
   mockAnalyze.mockReset();
   mockAnalyzeMessage.mockReset();
+  mockExtractAddress.mockReset();
+  mockExtractAddress.mockReturnValue(undefined);
   mockRegion.mockReset();
   mockIsSenderContact.mockReset();
   mockIsSenderContact.mockReturnValue(false);
+  mockListAccounts.mockReturnValue([]);
 });
 
 describe("runAnalysisPass", () => {
@@ -230,6 +267,182 @@ describe("runAnalysisPass", () => {
       senderDomain: "acme.com",
       footerLinkPresent: true,
     });
+  });
+
+  it("passes global profile match values into stored-body analysis", async () => {
+    const vid = insertVendor();
+    insertMsg("known-profile-value", vid);
+    getDb()
+      .prepare(
+        `INSERT INTO global.profile_phones (number_raw, value_normalized)
+         VALUES (?, ?)`,
+      )
+      .run("06 1234 5678", "0612345678");
+    resolveWith([]);
+
+    await runAnalysisPass();
+
+    expect(mockAnalyze).toHaveBeenCalledWith("some body text", {
+      senderDomain: "acme.com",
+      knownValues: [{
+        type: "phone",
+        valueNormalized: "0612345678",
+      }],
+    });
+  });
+
+  it("passes structured profile address components into analysis", async () => {
+    const vid = insertVendor();
+    insertMsg("known-structured-address", vid);
+    getDb()
+      .prepare(
+        `INSERT INTO global.profile_addresses (
+           street, house_number, postal_code, city, country,
+           value_normalized, postal_code_normalized
+         ) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      )
+      .run(
+        "Voorbeeldsingel",
+        "7",
+        "1234 AB",
+        "Teststad",
+        "NL",
+        "voorbeeldsingel 7 1234 ab teststad",
+        "1234 AB",
+      );
+    resolveWith([]);
+
+    await runAnalysisPass();
+
+    expect(mockAnalyze).toHaveBeenCalledWith("some body text", {
+      senderDomain: "acme.com",
+      knownValues: [
+        {
+          type: "address",
+          valueNormalized: "voorbeeldsingel 7 1234 ab teststad",
+          addressComponents: {
+            street: "voorbeeldsingel",
+            houseNumber: "7",
+            postalCode: "1234 ab",
+            country: "NL",
+          },
+        },
+        {
+          type: "postal_code",
+          valueNormalized: "1234 AB",
+        },
+      ],
+    });
+  });
+
+  it("passes anchors derived from one complete raw address into analysis", async () => {
+    const vid = insertVendor();
+    insertMsg("known-raw-address", vid);
+    getDb()
+      .prepare(
+        `INSERT INTO global.profile_addresses
+           (raw, value_normalized)
+         VALUES (?, ?)`,
+      )
+      .run(
+        "Voorbeeldsingel 7, 1234 AB Teststad",
+        "voorbeeldsingel 7 1234 ab teststad",
+      );
+    mockExtractAddress.mockReturnValue({
+      street: "voorbeeldsingel",
+      houseNumber: "7",
+      postalCode: "1234 ab",
+    });
+    resolveWith([]);
+
+    await runAnalysisPass();
+
+    expect(mockExtractAddress).toHaveBeenCalledWith(
+      "Voorbeeldsingel 7, 1234 AB Teststad",
+    );
+    expect(mockAnalyze).toHaveBeenCalledWith("some body text", {
+      senderDomain: "acme.com",
+      knownValues: [{
+        type: "address",
+        valueNormalized: "voorbeeldsingel 7 1234 ab teststad",
+        addressComponents: {
+          street: "voorbeeldsingel",
+          houseNumber: "7",
+          postalCode: "1234 ab",
+        },
+      }],
+    });
+  });
+
+  it("invalidates both analysis gates before a profile-aware rebuild", () => {
+    const vid = insertVendor();
+    insertMsg("available", vid, { analysis_version: "test-v1" });
+    insertMsg("missing", vid, {
+      body_state: "missing",
+      body_text: null,
+      analysis_version: "test-v1",
+    });
+    getDb()
+      .prepare("INSERT INTO settings (key, value) VALUES (?, ?)")
+      .run("analysis:findings-version", "test-v1");
+
+    expect(invalidateAnalysisPass()).toBe(1);
+    expect(versionOf("available")).toBeNull();
+    expect(versionOf("missing")).toBe("test-v1");
+    expect(
+      getDb()
+        .prepare(
+          "SELECT value FROM settings WHERE key = 'analysis:findings-version'",
+        )
+        .get(),
+    ).toBeUndefined();
+  });
+
+  it("persists profile-analysis invalidation in every account database", () => {
+    const previousUserData = analysisUserDataDir;
+    const userData = mkdtempSync(join(tmpdir(), "paperweight-analysis-"));
+    analysisUserDataDir = userData;
+    mockListAccounts.mockReturnValue([
+      { email: "one@example.com", providerType: "gmail" },
+      { email: "two@example.com", providerType: "imap" },
+    ]);
+
+    try {
+      for (const key of ["one", "two"]) {
+        const account = new Database(join(userData, `${key}.db`));
+        account.exec(`
+          CREATE TABLE messages (
+            body_state TEXT,
+            body_text TEXT,
+            analysis_version TEXT
+          );
+          CREATE TABLE settings (key TEXT PRIMARY KEY, value TEXT);
+          INSERT INTO messages
+            VALUES ('available', 'stored body', 'test-v1');
+          INSERT INTO settings
+            VALUES ('analysis:findings-version', 'test-v1');
+        `);
+        account.close();
+        expect(needsAnalysisPass(join(userData, `${key}.db`))).toBe(false);
+      }
+
+      expect(invalidateAllAnalysisPasses()).toBe(0);
+
+      for (const key of ["one", "two"]) {
+        expect(needsAnalysisPass(join(userData, `${key}.db`))).toBe(true);
+        const account = new Database(join(userData, `${key}.db`), {
+          readonly: true,
+        });
+        expect(
+          account.prepare("SELECT analysis_version FROM messages").get(),
+        ).toEqual({ analysis_version: null });
+        expect(account.prepare("SELECT * FROM settings").all()).toEqual([]);
+        account.close();
+      }
+    } finally {
+      analysisUserDataDir = previousUserData;
+      rmSync(userData, { recursive: true, force: true });
+    }
   });
 
   it("leaves analysis_version unset when analysis throws (retried next pass)", async () => {

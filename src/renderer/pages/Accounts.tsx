@@ -3,10 +3,11 @@ import { useNavigate, useLocation } from "react-router-dom";
 import type { Vendor, VendorQuery } from "@shared/types";
 import { RISK_CATEGORIES } from "@shared/vendor-risk";
 import { useLicense } from "../context/LicenseContext";
-import { BadgeCheck, ChevronRight, ChevronLeft, ArrowUpDown, SlidersHorizontal, Check, Tag } from "lucide-react";
+import { BadgeCheck, ChevronRight, ChevronLeft, ArrowUpDown, SlidersHorizontal, Check, IdCard } from "lucide-react";
 import { getActivitySignal, ACTIVITY_BADGE } from "../utils/signals";
 import { PII_LABELS, PII_TYPES } from "../utils/piiLabels";
 import ActionModal from "../components/ActionModal";
+import FilterGroup from "../components/FilterGroup";
 
 const RISK_BORDER: Record<string, string> = {
   high: "border-error",
@@ -47,44 +48,6 @@ const LICENSED_PRESETS: Preset[] = [
   { id: "oldaccounts", label: "Old accounts", risk: "high", activity: "stale" },
   { id: "oldorders", label: "Old orders", dataType: "has_orders", activity: "stale" },
 ];
-
-interface FilterGroupProps {
-  label: string;
-  options: string[];
-  labels: string[];
-  value: string;
-  onChange: (val: string) => void;
-  colors?: string[];
-}
-
-function FilterGroup({ label, options, labels, value, onChange, colors }: FilterGroupProps) {
-  return (
-    <div>
-      <div className="text-sm text-base-content/40 mb-1.5">{label}</div>
-      <div className="flex gap-1 flex-wrap">
-        {options.map((opt, i) => {
-          const color = colors?.[i];
-          const cls = color
-            ? value === opt
-              ? `badge-${color}`
-              : `badge-soft badge-${color}`
-            : value === opt
-              ? "badge-neutral"
-              : "badge-soft";
-          return (
-            <button
-              key={opt}
-              className={`badge badge-sm cursor-pointer ${cls}`}
-              onClick={() => onChange(value === opt ? "" : opt)}
-            >
-              {labels[i]}
-            </button>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
 
 type AccountModal =
   | { kind: "whitelist"; vendor: Vendor }
@@ -535,7 +498,7 @@ export default function Accounts(): JSX.Element {
                             className="shrink-0 leading-none"
                             title="Personal data found in these emails"
                           >
-                            <Tag
+                            <IdCard
                               className="w-4 h-4 text-base-content/50"
                               strokeWidth={2}
                               aria-label="Personal data found in emails"

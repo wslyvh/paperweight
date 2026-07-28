@@ -8,10 +8,9 @@ const CANDIDATE = /\b[A-Z]{2}\d{2}(?:[ .]?[A-Z0-9]){11,30}\b/g;
 export function detectIbans(text: string): Finding[] {
   const findings: Finding[] = [];
   for (const m of text.matchAll(CANDIDATE)) {
-    const normalized = m[0].replace(/[ .]/g, "");
+    const normalized = normalizeIban(m[0]);
     const country = normalized.slice(0, 2);
-    if (IBAN_LENGTHS[country] !== normalized.length) continue;
-    if (!mod97Valid(normalized)) continue;
+    if (!isValidIban(normalized)) continue;
     findings.push({
       type: "iban",
       valueRaw: m[0],
@@ -26,7 +25,15 @@ export function detectIbans(text: string): Finding[] {
   return findings;
 }
 
-function mod97Valid(iban: string): boolean {
+export function normalizeIban(value: string): string {
+  return value.toUpperCase().replace(/[ .]/g, "");
+}
+
+export function isValidIban(iban: string): boolean {
+  const country = iban.slice(0, 2);
+  if (IBAN_LENGTHS[country] !== iban.length) return false;
+  if (!/^[A-Z]{2}\d{2}[A-Z0-9]+$/.test(iban)) return false;
+
   const rearranged = iban.slice(4) + iban.slice(0, 4);
   let remainder = 0;
   for (const ch of rearranged) {

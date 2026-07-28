@@ -6,7 +6,11 @@ import {
   actionableListMailSql,
   LIST_MAIL_TYPES_SQL,
 } from "./messageVocabulary";
-import { inferHomeCountry, vendorHasObservedPiiSql, vendorHasNotablePiiSql } from "./pii";
+import {
+  getProfileCountry,
+  vendorHasObservedPiiSql,
+  vendorHasNotablePiiSql,
+} from "./pii";
 import { RISK_CATEGORIES } from "@shared/vendor-risk";
 import { PERSONAL_DOMAINS } from "@paperweight/analysis/contracts";
 import { getRootDomain } from "@shared/utils";
@@ -489,13 +493,12 @@ export function queryVendors(
   const d = getDb();
   const breachDataReady = isBreachesAttached();
   // Only Accounts admits companies on observed findings. The predicate is a
-  // per-vendor grouped scan with a cross-company subquery inside it — expensive
-  // enough that no other view should pay for it. inferHomeCountry() scans all
-  // findings, so it is only called when that predicate is actually built.
+  // per-vendor grouped scan with a cross-company subquery inside it, expensive
+  // enough that no other view should pay for it.
   const isAccountsView = query.filter === "accounts";
-  // Inferred once and shared: both the Accounts admission gate and the notable-
-  // findings column below need it, and inferHomeCountry() scans every finding.
-  const homeCountry = isAccountsView ? inferHomeCountry() : undefined;
+  // Read once and shared: both the Accounts admission gate and the notable
+  // findings column below use the profile's stored current location.
+  const homeCountry = isAccountsView ? getProfileCountry() : undefined;
   const observedFindings = isAccountsView
     ? vendorHasObservedPiiSql({
         nonEmailOnly: true,

@@ -20,6 +20,15 @@ import type {
 
 export * from "./types";
 export { parseEml } from "./parse/eml";
+export {
+  isSupportedCountryCode,
+  normalizeCountryCode,
+} from "./country";
+export {
+  extractKnownAddressComponents,
+  normalizeValue,
+  validateValue,
+} from "./profile-values";
 // The sender-domain → region resolver (ccTLD, with uk→GB etc.). Exposed so a
 // consumer analyzing stored bodies can supply the same phone/postcode region
 // hint that analyzeMessage derives internally, without reimplementing it.
@@ -68,6 +77,7 @@ async function analyzeTextWithFooter(
     footer,
     region: regionFromLocale(opts?.locale),
     ownEmails: opts?.ownIdentifiers?.emails,
+    knownValues: opts?.knownValues,
     senderDomain: opts?.senderDomain,
   });
   return { version: ENGINE_VERSION, lang: detectLanguage(text), findings };

@@ -2,7 +2,7 @@ import type { EmailProvider, EmailMessage, EmailConnection } from "./types";
 import { loadCredentials, saveCredentials } from "../credentials";
 import { buildRfc822Message, runLoopbackAuth } from "./utils";
 import { analyzeMessage } from "@paperweight/analysis";
-import type { RawMessage } from "@paperweight/analysis";
+import type { AnalyzeOptions, RawMessage } from "@paperweight/analysis";
 import { BODY_TEXT_MAX_LENGTH } from "@shared/config";
 import { headerRecord } from "@shared/utils";
 import { syncLog, authLog } from "../utils/log";
@@ -288,7 +288,10 @@ interface GmailRawMessage {
   };
 }
 
-async function parseGmailMessage(msg: GmailRawMessage): Promise<EmailMessage> {
+async function parseGmailMessage(
+  msg: GmailRawMessage,
+  analysisOptions?: AnalyzeOptions,
+): Promise<EmailMessage> {
   const headers = msg.payload.headers;
   const getHeader = (name: string): string =>
     headers.find((h) => h.name.toLowerCase() === name.toLowerCase())?.value ||
@@ -318,6 +321,7 @@ async function parseGmailMessage(msg: GmailRawMessage): Promise<EmailMessage> {
   if (bodyText) raw.text = bodyText;
   if (bodyHtml) raw.html = bodyHtml;
   const analysis = await analyzeMessage(raw, {
+    ...analysisOptions,
     maxTextLength: BODY_TEXT_MAX_LENGTH,
   });
 
@@ -345,7 +349,9 @@ async function parseGmailMessage(msg: GmailRawMessage): Promise<EmailMessage> {
 
 // --- Provider ---
 
-export function createGmailProvider(): EmailProvider {
+export function createGmailProvider(
+  analysisOptions?: AnalyzeOptions,
+): EmailProvider {
   return {
     type: "gmail",
 
@@ -423,7 +429,7 @@ export function createGmailProvider(): EmailProvider {
             format: "full",
           })) as GmailRawMessage;
 
-          emailMessages.push(await parseGmailMessage(msg));
+          emailMessages.push(await parseGmailMessage(msg, analysisOptions));
           onProgress?.(emailMessages.length, estimatedTotal);
         } catch (err) {
           syncLog.error(`Failed to fetch message ${msgRef.id}:`, err instanceof Error ? err.message : String(err));
@@ -441,7 +447,7 @@ export function createGmailProvider(): EmailProvider {
         format: "full",
       })) as GmailRawMessage;
 
-      return await parseGmailMessage(msg);
+      return await parseGmailMessage(msg, analysisOptions);
     },
 
     async trashMessage(messageId: string): Promise<void> {

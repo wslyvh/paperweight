@@ -3,7 +3,16 @@ import { Outlet, NavLink, useLocation } from "react-router-dom";
 import { useCallback, useEffect, useRef, useState } from "react";
 import makeBlockie from "ethereum-blockies-base64";
 import SyncStatusBar from "./SyncStatusBar";
-import { Check, Contact, FolderClosed, Inbox, Mail, Settings } from "lucide-react";
+import {
+  Check,
+  Contact,
+  FolderClosed,
+  IdCard,
+  Inbox,
+  Mail,
+  Settings,
+  UserRound,
+} from "lucide-react";
 import { useAccounts } from "../hooks/useAccounts";
 
 const navItems = [
@@ -21,6 +30,11 @@ const navItems = [
     to: "/accounts",
     label: "Accounts",
     icon: <Contact className="w-5 h-5" aria-hidden="true" />,
+  },
+  {
+    to: "/data",
+    label: "Personal Data",
+    icon: <IdCard className="w-5 h-5" aria-hidden="true" />,
   },
   {
     to: "/cases",
@@ -176,6 +190,17 @@ export default function AppShell(): JSX.Element {
 
         {/* Settings at bottom */}
         <nav className="flex flex-col gap-1 p-2 border-t border-base-300">
+          <NavLink
+            to="/profile"
+            className={({ isActive }) =>
+              `flex items-center gap-3 rounded-lg px-3 py-2 transition-colors justify-center xl:justify-start tooltip tooltip-right xl:before:hidden xl:after:hidden ${isActive ? "bg-neutral text-neutral-content" : "hover:bg-base-300"
+              }`
+            }
+            data-tip="User Profile"
+          >
+            <UserRound className="w-5 h-5" aria-hidden="true" />
+            <span className="hidden xl:inline text-sm font-medium">User Profile</span>
+          </NavLink>
           <NavLink
             to="/settings"
             className={({ isActive }) =>

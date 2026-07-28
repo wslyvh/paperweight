@@ -7,8 +7,12 @@
 // never fire (stage-2 NER territory).
 // Wave-1 grammars follow the language matrix (one country set per lexicon language): NL, GB, DE(+AT),
 // FR(+BE, with NL), ES, IT, PT, US.
-import type { Finding } from "../types";
-import type { PostalCandidate } from "./postal-code";
+import type { Finding, KnownAddressComponents } from "../types";
+import {
+  canonicalizePostalCodesInAddress,
+  findPostalCodesInAddress,
+  type PostalCandidate,
+} from "./postal-code";
 
 interface StreetSpec {
   country: string;
@@ -19,9 +23,16 @@ interface StreetSpec {
 // when a line/segment break follows, so prose like "nummer 12 is" stays out.
 const HOUSE_NUMBER = String.raw`\d+[a-zA-Z]?(?:[-/]\d*\w?)?(?:\s[a-zA-Z]{1,2}(?=\s*[\n,]))?`;
 
+// Street names take leading words ("Jan van Galenstraat"), but only on their own
+// line: `\s+` here let the pattern reach back over a newline and swallow the
+// sender's name from the line above ("ShopExample B.V.\nHerengracht 45"). A line
+// break is structural proof of a separate block, the same reasoning the address
+// block applies to a copyright marker.
+const SAME_LINE = String.raw`[^\S\n]+`;
+
 // shared /g patterns are safe: String.matchAll clones the regex
 const NL_STREET = new RegExp(
-  String.raw`\b(?:(?:[A-Z][\w'.-]*|van|de|der|den|het|ten|ter)\s+){0,3}[A-Z][a-zë]*` +
+  String.raw`\b(?:(?:[A-Z][\w'.-]*|van|de|der|den|het|ten|ter)${SAME_LINE}){0,3}[A-Z][a-zë]*` +
     `(?:straat|weg|laan|plein|gracht|kade|dijk|singel|hof|pad|markt|steeg|dreef|erf|kamp|spoor|veld|akker|gaarde|horst|donk|hoek|werf|zoom|oord|baan|wal|dam)` +
     String.raw`\s+${HOUSE_NUMBER}`,
   "g",
@@ -30,7 +41,7 @@ const NL_STREET = new RegExp(
 // suffix streets (Musterstrasse 9) or preposition streets
 // (Am Beispielufer 7, Unter den Musterlinden 5)
 const DE_STREET = new RegExp(
-  String.raw`\b(?:(?:Am|An der|Auf dem|Auf der|Im|In der|Unter den|Zum|Zur)\s+(?:[A-Z][\wäöüß-]*\s+)?[A-Z][\wäöüß-]*|(?:[A-Z][\wäöüß'.-]*\s+){0,2}[A-Z][a-zäöüß]*(?:straße|strasse|str\.|weg|platz|allee|gasse|ring|damm|ufer|hof|markt|berg|tor))` +
+  String.raw`\b(?:(?:Am|An der|Auf dem|Auf der|Im|In der|Unter den|Zum|Zur)${SAME_LINE}(?:[A-Z][\wäöüß-]*${SAME_LINE})?[A-Z][\wäöüß-]*|(?:[A-Z][\wäöüß'.-]*${SAME_LINE}){0,2}[A-Z][a-zäöüß]*(?:straße|strasse|str\.|weg|platz|allee|gasse|ring|damm|ufer|hof|markt|berg|tor))` +
     String.raw`\s+${HOUSE_NUMBER}`,
   "g",
 );
@@ -146,9 +157,72 @@ export function detectAddressBlocks(text: string, candidates: PostalCandidate[])
 
 // One address written twice differs by punctuation, case and line breaks far
 // more often than by content, and each variant would otherwise be its own row.
-// Strip to letters, digits and single spaces; valueRaw keeps the original.
+// Canonicalize supported postcode fragments first, then strip to letters,
+// digits and single spaces; valueRaw keeps the original.
 // Exported so anything comparing an address against a finding reduces both
 // sides with this exact function rather than a copy that can drift from it.
 export function normalizeAddress(raw: string): string {
-  return raw.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
+  return canonicalizePostalCodesInAddress(raw)
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .trim();
+}
+
+const PROFILE_HOUSE_NUMBER = String.raw`\d+\p{L}?(?:[-/]\d*\p{L}?)?`;
+const PROFILE_STREET_FIRST = new RegExp(
+  `^(.*\\p{L}.*?)[\\s,]+(${PROFILE_HOUSE_NUMBER})$`,
+  "iu",
+);
+const PROFILE_HOUSE_FIRST = new RegExp(
+  `^(${PROFILE_HOUSE_NUMBER})[\\s,]+(.*\\p{L}.*?)$`,
+  "iu",
+);
+
+// Extract only anchors that are explicitly present in one asserted raw line.
+// A longer registered postcode wins over an overlapping bare-code candidate
+// (NL "1234 AB" must not also look like an ambiguous bare "1234"). Multiple
+// separate postcodes or a missing street/house pair remain opaque.
+export function extractKnownAddressComponents(
+  raw: string,
+): KnownAddressComponents | undefined {
+  const candidates = findPostalCodesInAddress(raw);
+  const maximal = candidates.filter((candidate) => (
+    !candidates.some((other) => (
+      other.start <= candidate.start
+      && other.end >= candidate.end
+      && (other.start < candidate.start || other.end > candidate.end)
+    ))
+  ));
+  const groups = new Map<string, PostalCandidate[]>();
+  for (const candidate of maximal) {
+    const key = `${candidate.start}:${candidate.end}:${candidate.value}`;
+    groups.set(key, [...(groups.get(key) ?? []), candidate]);
+  }
+  if (groups.size !== 1) return undefined;
+
+  const candidatesAtPostcode = groups.values().next().value;
+  if (!candidatesAtPostcode?.length) return undefined;
+  const postcode = candidatesAtPostcode[0];
+  const prefix = raw
+    .slice(0, postcode.start)
+    .replace(/[\s,;:–—-]+$/u, "")
+    .trim();
+  const streetFirst = PROFILE_STREET_FIRST.exec(prefix);
+  const houseFirst = streetFirst ? undefined : PROFILE_HOUSE_FIRST.exec(prefix);
+  const streetRaw = streetFirst?.[1] ?? houseFirst?.[2];
+  const houseRaw = streetFirst?.[2] ?? houseFirst?.[1];
+  if (!streetRaw || !houseRaw) return undefined;
+
+  const street = normalizeAddress(streetRaw);
+  const houseNumber = normalizeAddress(houseRaw);
+  const postalCode = normalizeAddress(
+    raw.slice(postcode.start, postcode.end),
+  );
+  if (!street || !houseNumber || !postalCode) return undefined;
+
+  return {
+    street,
+    houseNumber,
+    postalCode,
+  };
 }

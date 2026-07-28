@@ -4,7 +4,7 @@ import nodemailer from "nodemailer";
 import type { EmailProvider, EmailMessage, EmailConnection } from "./types";
 import { loadCredentials } from "../credentials";
 import { analyzeMessage } from "@paperweight/analysis";
-import type { RawMessage } from "@paperweight/analysis";
+import type { AnalyzeOptions, RawMessage } from "@paperweight/analysis";
 import { BODY_TEXT_MAX_LENGTH } from "@shared/config";
 import { headerRecord } from "@shared/utils";
 import { friendlyConnectionError } from "./utils";
@@ -120,7 +120,8 @@ export function buildHeaderPairs(
 
 export async function parseImapMessage(
   msg: { uid: number; source?: Buffer; size?: number },
-  idPrefix: string
+  idPrefix: string,
+  analysisOptions?: AnalyzeOptions,
 ): Promise<EmailMessage | undefined> {
   if (!msg.source) return undefined;
 
@@ -138,6 +139,7 @@ export async function parseImapMessage(
   if (parsed.text) raw.text = parsed.text;
   if (parsed.html) raw.html = parsed.html;
   const analysis = await analyzeMessage(raw, {
+    ...analysisOptions,
     maxTextLength: BODY_TEXT_MAX_LENGTH,
   });
 
@@ -191,7 +193,9 @@ async function resolveScanMailbox(client: ImapFlow): Promise<string> {
   );
 }
 
-export function createImapProvider(): EmailProvider {
+export function createImapProvider(
+  analysisOptions?: AnalyzeOptions,
+): EmailProvider {
   let client: ImapFlow | undefined;
   let scanMailbox: string | undefined;
 
@@ -268,6 +272,7 @@ export function createImapProvider(): EmailProvider {
             const parsed = await parseImapMessage(
               msg as { uid: number; source?: Buffer; size?: number },
               "imap-",
+              analysisOptions,
             );
             if (parsed) messages.push(parsed);
             onProgress?.(messages.length, estimate);
@@ -296,7 +301,7 @@ export function createImapProvider(): EmailProvider {
         );
         if (!msg) throw new Error(`Message ${messageId} not found`);
 
-        const parsed = await parseImapMessage(msg, "imap-");
+        const parsed = await parseImapMessage(msg, "imap-", analysisOptions);
         if (!parsed) throw new Error(`Message ${messageId} could not be parsed`);
         return parsed;
       } finally {

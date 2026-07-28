@@ -11,6 +11,10 @@ export default defineConfig({
       alias: {
         "@shared": resolve("src/shared"),
         "@paperweight/analysis/contracts": resolve("analysis/src/contracts.ts"),
+        "@paperweight/analysis/country": resolve("analysis/src/country.ts"),
+        "@paperweight/analysis/profile-values": resolve(
+          "analysis/src/profile-values.ts",
+        ),
         // The app (CJS) consumes the engine's public index. Its ESM-only deps
         // (franc, postal-mime) can't be `require`d in a CJS worker, but Rollup
         // bundles the whole graph inline and converts it to CJS at build time
@@ -56,6 +60,10 @@ export default defineConfig({
         "@": resolve("src/renderer"),
         "@shared": resolve("src/shared"),
         "@paperweight/analysis/contracts": resolve("analysis/src/contracts.ts"),
+        "@paperweight/analysis/country": resolve("analysis/src/country.ts"),
+        "@paperweight/analysis/profile-values": resolve(
+          "analysis/src/profile-values.ts",
+        ),
       },
     },
     plugins: [react()],

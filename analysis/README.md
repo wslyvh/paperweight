@@ -75,6 +75,21 @@ The engine returns evidence with offsets, confidence, and signals. Consumers
 own storage, aggregation across documents, suppression policy, masking,
 scheduling, and any product claim about ownership or retention.
 
+Consumers may supply already-normalized `knownValues` for the existing finding
+types. The engine finds exact occurrences under that type's normal formatting
+rules and emits `known-value.exact` evidence when a generic detector did not
+already produce the same value. This is detector input, not an ownership claim:
+it does not infer a country, add names or dates of birth, or promote confidence
+to `verified`. Ownership remains consumer policy.
+
+A structured address may additionally carry normalized street, house-number,
+and postcode components. The engine requires the exact street phrase adjacent
+to the exact house number plus the exact canonical postcode within one short
+address block. Their overall order may vary; city, region, and country labels
+may move or be absent. A component hit emits the profile row's one canonical
+value with `known-value.address-components`. Postcode-only and raw-address
+values keep whole-value matching, and no spelling or token fuzziness is added.
+
 ## Detection: rules + model
 
 **Layer 1 — deterministic rules** for structured values. Validation is real

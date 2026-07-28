@@ -12,6 +12,11 @@ import { appLog } from "./utils/log";
 import { initFileLog } from "./utils/file-log";
 import { emailToFileKey, getActiveEmail } from "./credentials";
 import { ensureAccountSettingsInDb } from "./services/account";
+import {
+  seedProfileCountryIfEmpty,
+  seedProfileEmailsFromAccounts,
+} from "./services/profileSeed";
+import { inferHomeCountry } from "./services/pii";
 import { runMigrations } from "./migrations";
 import { IPC } from "@shared/ipc";
 import type { UpdateInfo } from "@shared/ipc";
@@ -80,6 +85,7 @@ app.whenReady().then(async () => {
   appLog.info(`Starting ${APP_CONFIG.NAME} v${app.getVersion()} (Electron ${process.versions.electron})`);
 
   await runMigrations();
+  seedProfileEmailsFromAccounts();
 
   const companiesDbPath = is.dev
     ? join(app.getAppPath(), "resources", "companies.db")
@@ -97,6 +103,7 @@ app.whenReady().then(async () => {
     const dbPath = join(app.getPath("userData"), `${emailToFileKey(activeEmail)}.db`);
     initDb(dbPath, companiesDbPath, breachesDbPath, enforcementDbPath);
     ensureAccountSettingsInDb();
+    seedProfileCountryIfEmpty(inferHomeCountry);
   }
 
   electronApp.setAppUserModelId(APP_CONFIG.DOMAIN);

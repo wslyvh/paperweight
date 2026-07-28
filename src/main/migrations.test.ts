@@ -30,7 +30,6 @@ const counts = () => {
     gdpr_cases: of("gdpr_cases"),
     whitelist: of("whitelist"),
     pii_findings: of("pii_findings"),
-    pii_suppressions: of("pii_suppressions"),
   };
 };
 
@@ -39,7 +38,7 @@ const counts = () => {
 function seedPreUpgradeDb(): void {
   const d = getDb();
   d.exec(`
-    DELETE FROM pii_suppressions; DELETE FROM pii_findings; DELETE FROM action_log;
+    DELETE FROM pii_findings; DELETE FROM action_log;
     DELETE FROM gdpr_cases; DELETE FROM messages; DELETE FROM vendors;
     DELETE FROM whitelist; DELETE FROM settings;
     UPDATE sync_state SET
@@ -58,7 +57,6 @@ function seedPreUpgradeDb(): void {
     INSERT INTO whitelist (value) VALUES ('keep@acme.com');
     INSERT INTO pii_findings (message_id, type, value_normalized, in_quoted_text)
       VALUES ('m2', 'email', 'a@b.com', 0);
-    INSERT INTO pii_suppressions (type, value_normalized, created_at) VALUES ('email', 'x@y.com', 1);
   `);
 }
 

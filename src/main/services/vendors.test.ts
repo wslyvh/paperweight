@@ -70,7 +70,17 @@ beforeAll(() => {
 });
 beforeEach(() => {
   getDb().exec(
-    "DELETE FROM pii_findings; DELETE FROM pii_suppressions; DELETE FROM messages; DELETE FROM vendors; DELETE FROM companies.companies;",
+    `DELETE FROM pii_findings;
+     DELETE FROM global.pii_suppressions;
+     DELETE FROM global.profile_emails;
+     DELETE FROM global.profile_phones;
+     DELETE FROM global.profile_addresses;
+     DELETE FROM global.profile_national_ids;
+     DELETE FROM global.profile_payments;
+     UPDATE global.profile SET country = NULL WHERE id = 1;
+     DELETE FROM messages;
+     DELETE FROM vendors;
+     DELETE FROM companies.companies;`,
   );
 });
 
@@ -99,7 +109,7 @@ describe("queryVendors piiType filter", () => {
     insertFinding("m1", "iban", "NL91ABNA0417164300");
     getDb()
       .prepare(
-        "INSERT INTO pii_suppressions (type, value_normalized, created_at) VALUES ('iban', 'NL91ABNA0417164300', 1)",
+        "INSERT INTO global.pii_suppressions (type, value_normalized) VALUES ('iban', 'NL91ABNA0417164300')",
       )
       .run();
 
@@ -154,6 +164,20 @@ describe("piiType filter mirrors the summary's exclusions", () => {
 
     expect(listedDomains("address")).not.toContain("templates.example");
   });
+
+  it("lists an otherwise excluded value when it is in the profile", () => {
+    getDb().prepare(
+      `INSERT INTO global.profile_addresses (raw, value_normalized)
+       VALUES ('4 sample street exampleton', '4 sample street exampleton')`,
+    ).run();
+    const vid = insertVendor("profile.example");
+    insertMsg("profile", vid, "profile.example");
+    insertFinding("profile", "address", "4 sample street exampleton", 0, {
+      footer: 1,
+    });
+
+    expect(listedDomains("address")).toContain("profile.example");
+  });
 });
 
 describe("piiType filter mirrors the spread rule", () => {
@@ -173,6 +197,24 @@ describe("piiType filter mirrors the spread rule", () => {
     insertFinding("oc-m0", "address", "9 other road exampleton");
 
     expect(listedDomains("address")).toContain("occasional.com");
+  });
+
+  it("lists a spread-hidden value when it is in the profile", () => {
+    getDb().prepare(
+      `INSERT INTO global.profile_addresses (raw, value_normalized)
+       VALUES ('4 sample street exampleton', '4 sample street exampleton')`,
+    ).run();
+    const vid = insertVendor("profile-spread.com");
+    for (let i = 0; i < 30; i++) {
+      insertMsg(`profile-spread-${i}`, vid, "profile-spread.com");
+      insertFinding(
+        `profile-spread-${i}`,
+        "address",
+        "4 sample street exampleton",
+      );
+    }
+
+    expect(listedDomains("address")).toContain("profile-spread.com");
   });
 });
 
@@ -212,7 +254,7 @@ describe("Accounts observed-data inclusion", () => {
     insertFinding("suppressed", "phone", "+31610000003");
     getDb()
       .prepare(
-        "INSERT INTO pii_suppressions (type, value_normalized, created_at) VALUES ('phone', '+31610000003', 1)",
+        "INSERT INTO global.pii_suppressions (type, value_normalized) VALUES ('phone', '+31610000003')",
       )
       .run();
 
@@ -239,9 +281,35 @@ describe("Accounts observed-data inclusion", () => {
     insertFinding("home-1", "phone", "+31610000004", 0, { country: "NL" });
     insertFinding("home-2", "phone", "+31610000004", 0, { country: "NL" });
     insertFinding("foreign", "phone", "+919100000004", 0, { country: "IN" });
+    getDb()
+      .prepare("UPDATE global.profile SET country = 'NL' WHERE id = 1")
+      .run();
 
     expect(accountDomains()).not.toContain("foreign.example");
     expect(listedDomains("phone")).toContain("foreign.example");
+  });
+
+  it("promotes a foreign-format value when it is in the profile", () => {
+    getDb().exec(
+      `INSERT INTO global.profile_phones (number_raw, value_normalized)
+       VALUES ('+919100000004', '+919100000004');
+       UPDATE global.profile SET country = 'NL' WHERE id = 1;`,
+    );
+    const vendor = insertVendor("profile-foreign.example");
+    insertMsg("profile-foreign", vendor, "profile-foreign.example", "unknown");
+    insertFinding("profile-foreign", "phone", "+919100000004", 0, {
+      country: "IN",
+    });
+
+    const result = queryVendors({ page: 1, limit: 50, filter: "accounts" });
+    expect(result.vendors).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          root_domain: "profile-foreign.example",
+          hasNotablePii: true,
+        }),
+      ]),
+    );
   });
 
   it("does not promote a frequent identifier confined to one company", () => {

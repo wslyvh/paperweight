@@ -162,19 +162,83 @@ export function isPiiType(value: unknown): value is PiiType {
   );
 }
 
-// One masked, de-duplicated value found for a vendor. Raw values never leave the
-// main process — maskedValue is display-safe. lastSeen is used only as the
+// --- User profile ---
+
+export const PROFILE_BIRTH_YEAR_MIN = 1900;
+
+export interface ProfileBirthDate {
+  day: number;
+  month: number;
+  year: number;
+}
+
+export interface ProfileName {
+  id: number;
+  firstName: string;
+  middleName?: string;
+  lastName: string;
+}
+
+export interface ProfileEmail {
+  id: number;
+  address: string;
+}
+
+export interface ProfilePhone {
+  id: number;
+  number: string;
+}
+
+type ProfileAddressMode = "structured" | "raw";
+
+export interface ProfileAddress {
+  id: number;
+  mode: ProfileAddressMode;
+  street?: string;
+  houseNumber?: string;
+  postalCode?: string;
+  city?: string;
+  country?: string;
+  raw?: string;
+}
+
+export interface ProfileNationalId {
+  id: number;
+  value: string;
+}
+
+type ProfilePaymentType = "iban" | "credit_card";
+
+export interface ProfilePayment {
+  id: number;
+  type: ProfilePaymentType;
+  value: string;
+}
+
+export interface UserProfile {
+  country?: string;
+  birthDate?: ProfileBirthDate;
+  names: ProfileName[];
+  emails: ProfileEmail[];
+  phones: ProfilePhone[];
+  addresses: ProfileAddress[];
+  nationalIds: ProfileNationalId[];
+  payments: ProfilePayment[];
+}
+
+// One masked, de-duplicated value — for a single company in the Account Detail
+// panel, or across every company in the Data overview. Raw values never leave
+// the main process; maskedValue is display-safe. lastSeen is used only as the
 // stable tie-breaker after the UI's factual confidence ordering.
-export interface VendorPiiValue {
-  /** Opaque handle for `Not mine`: a representative pii_findings.id, resolved to
-   *  (type, value) in the main process. Carries no meaning in the renderer. */
+export interface PiiValue {
+  /** Opaque handle for profile confirmation and `Not mine`: a representative
+   *  pii_findings.id, resolved in the main process. Carries no meaning here. */
   ref: number;
   type: PiiType;
   maskedValue: string;
   lastSeen: number;
-  /** The user's own address (a connected account, or the alias this company
-   *  mails them at) — labelled, never hidden. */
-  isOwnAddress?: boolean;
+  /** Exact normalized match against a value in the global user profile. */
+  isMatch?: boolean;
   /** Finding country differs from the locally inferred home country. Display
    *  ordering only: the finding remains visible and revealable. */
   isForeignFormat?: boolean;
@@ -188,22 +252,39 @@ export interface VendorPiiValue {
 // A full value, handed over only when the user reveals the list to review it.
 // Keyed by the same opaque ref the masked row carries. Renderer-side this lives
 // in component state for as long as the toggle is on — never stored, never logged.
-export interface VendorPiiRevealedValue {
+export interface PiiRevealedValue {
   ref: number;
   value: string;
 }
 
-// What the numbers below the findings are counted from: every message stored for
-// this company, and how many of those have been through the analysis engine.
-export interface VendorPiiCoverage {
-  totalMessages: number;
+/** One company's findings — the Account Detail "Personal data" panel. */
+export interface VendorPiiSummary {
+  values: PiiValue[];
+  suppressedValues: PiiValue[];
+  /** Stored messages from this company that have been through the engine. */
   scannedMessages: number;
 }
 
-export interface VendorPiiSummary {
-  values: VendorPiiValue[];
-  coverage: VendorPiiCoverage;
+/** The same values aggregated across every company — the Personal Data page. A
+ *  value held by several companies is one row here, not one per company. Both
+ *  sides of the user's `Not mine` correction come from one mailbox-wide scan. */
+export interface PiiOverview {
+  values: PiiValue[];
+  suppressedValues: PiiValue[];
 }
+
+/** One company holding a value, which is what a Personal Data row expands to
+ *  show. `groupKey` opens the company's detail page; no value is carried back.
+ *  `lastSeen` is the company's last contact, so the list answers "are they still
+ *  active?" as well as "who has held this?". */
+export interface PiiValueCompany {
+  groupKey: string;
+  name: string;
+  lastSeen: number;
+}
+
+/** Which end of the contact history the expanded company list starts from. */
+export type PiiCompanyOrder = "recent" | "oldest";
 
 // Query / filter
 
@@ -483,6 +564,7 @@ export interface SyncStatus {
   progress: number;
   total: number;
   message: string;
+  analysisPending?: boolean;
   error?: string;
   lastSyncAt?: number;
   phase?: "incremental" | "historical";

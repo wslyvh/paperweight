@@ -2,7 +2,7 @@
 // then dedupe by (type, valueNormalized), then overlap resolution (longer
 // span wins, then higher confidence, then detector order), then the
 // inQuotedText / inFooter / isOwnIdentifier / selfReference tags.
-import type { Finding } from "../types";
+import type { Finding, KnownPiiValue } from "../types";
 import { detectAddressBlocks } from "./address";
 import { detectCreditCards } from "./credit-card";
 import { isOrganizationalAddress } from "../data/role-mailboxes";
@@ -11,6 +11,10 @@ import { detectIbans } from "./iban";
 import { detectNationalIds } from "./national-id";
 import { detectPhones } from "./phone";
 import { detectPostalCodes } from "./postal-code";
+import {
+  detectKnownValues,
+  reconcileKnownAddressFindings,
+} from "./known-values";
 import { inSpan, type Span } from "./quotes";
 
 export interface DetectContext {
@@ -18,6 +22,7 @@ export interface DetectContext {
   footer: Span[];
   region?: string; // ISO 3166-1 alpha-2 phone region hint
   ownEmails?: string[];
+  knownValues?: readonly KnownPiiValue[];
   senderDomain?: string;
 }
 
@@ -27,7 +32,7 @@ export function detectPii(text: string, ctx: DetectContext): Finding[] {
   if (!text) return [];
 
   const postal = detectPostalCodes(text);
-  const raw = [
+  const raw = reconcileKnownAddressFindings([
     ...detectEmails(text),
     ...detectIbans(text),
     ...detectCreditCards(text),
@@ -35,7 +40,8 @@ export function detectPii(text: string, ctx: DetectContext): Finding[] {
     ...detectPhones(text, ctx.region),
     ...corroboratedPostalCodes(postal.findings, ctx.region),
     ...detectAddressBlocks(text, postal.candidates),
-  ];
+    ...detectKnownValues(text, ctx.knownValues ?? []),
+  ], ctx.knownValues ?? []);
 
   const findings = resolveOverlaps(dedupe(raw)).sort((a, b) => a.start - b.start);
 
@@ -97,6 +103,16 @@ function resolveOverlaps(findings: Finding[]): Finding[] {
 }
 
 function beats(a: Finding, b: Finding): boolean {
+  if (a.type === "address" && b.type === "address") {
+    const componentA = a.signals.some(
+      (signal) => signal.id === "known-value.address-components",
+    );
+    const componentB = b.signals.some(
+      (signal) => signal.id === "known-value.address-components",
+    );
+    if (componentA !== componentB) return componentA;
+  }
+
   const lengthA = a.end - a.start;
   const lengthB = b.end - b.start;
   if (lengthA !== lengthB) return lengthA > lengthB;

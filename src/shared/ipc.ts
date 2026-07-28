@@ -18,6 +18,10 @@ import type {
   LicenseStatus,
   Message,
   MessageType,
+  PiiCompanyOrder,
+  PiiOverview,
+  PiiRevealedValue,
+  PiiValueCompany,
   RiskCounts,
   ServerConfig,
   Settings,
@@ -25,9 +29,9 @@ import type {
   SupportInfo,
   SyncStatus,
   UnsubscribeEntry,
+  UserProfile,
   Vendor,
   VendorDetail,
-  VendorPiiRevealedValue,
   VendorPiiSummary,
   VendorQuery,
   WhitelistEntry,
@@ -104,9 +108,14 @@ export const IPC = {
   markGdprCaseViewed: "mark-gdpr-case-viewed",
   getUnseenCaseReplyCount: "get-unseen-case-reply-count",
   getVendorPiiSummary: "get-vendor-pii-summary",
+  getPiiOverview: "get-pii-overview",
+  getPiiValueCompanies: "get-pii-value-companies",
   revealVendorPiiValues: "reveal-vendor-pii-values",
+  revealPiiValues: "reveal-pii-values",
+  confirmPiiFinding: "confirm-pii-finding",
   suppressPiiFinding: "suppress-pii-finding",
-  unsuppressPiiFinding: "unsuppress-pii-finding",
+  getUserProfile: "get-user-profile",
+  saveUserProfile: "save-user-profile",
 } as const;
 
 export interface UpdateInfo {
@@ -195,14 +204,29 @@ export interface ElectronAPI {
   markGdprCaseViewed: (caseId: number) => Promise<void>;
   getUnseenCaseReplyCount: () => Promise<number>;
   getVendorPiiSummary: (vendorId: number) => Promise<VendorPiiSummary>;
-  /** The one channel that carries full values, and only on an explicit reveal:
+  /** Every active and `Not mine` value found across all companies, partitioned
+   *  after one mailbox-wide scan. */
+  getPiiOverview: () => Promise<PiiOverview>;
+  /** The companies holding one value (top 5), ordered by their last contact.
+   *  Takes the row's opaque ref and returns company names and dates only. */
+  getPiiValueCompanies: (
+    ref: number,
+    order?: PiiCompanyOrder,
+  ) => Promise<PiiValueCompany[]>;
+  /** The two channels that carry full values, and only on an explicit reveal:
    *  a masked row can't be judged "mine or not". Keyed by the same opaque refs
-   *  the summary handed out. The renderer keeps the result in memory only. */
-  revealVendorPiiValues: (vendorId: number) => Promise<VendorPiiRevealedValue[]>;
-  /** `Not mine`. `ref` is the opaque handle from a VendorPiiValue — the main
+   *  the list handed out. The renderer keeps the result in memory only. */
+  revealVendorPiiValues: (vendorId: number) => Promise<PiiRevealedValue[]>;
+  revealPiiValues: () => Promise<PiiRevealedValue[]>;
+  /** `It's mine`. Resolves the opaque ref, adds the normalized value to the
+   *  global profile, clears a conflicting suppression, and returns nothing. */
+  confirmPiiFinding: (ref: number) => Promise<void>;
+  /** `Not mine`. `ref` is the opaque handle from a PiiValue — the main
    *  process resolves it to the value it hides and returns nothing. */
   suppressPiiFinding: (ref: number) => Promise<void>;
-  unsuppressPiiFinding: (ref: number) => Promise<void>;
+  getUserProfile: () => Promise<UserProfile>;
+  /** Persists a whole profile snapshot. The mutation returns no personal data. */
+  saveUserProfile: (profile: UserProfile) => Promise<void>;
 }
 
 export type { SyncStatus };

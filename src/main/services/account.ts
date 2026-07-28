@@ -25,12 +25,13 @@ import {
   deleteVendorMessages,
   insertActionLog,
 } from "./messages";
-import { createAccountDb, reconnectDb } from "../db";
+import { createAccountDb, getDb, reconnectDb } from "../db";
 import { IPC } from "@shared/ipc";
 import { PERSONAL_DOMAINS } from "@paperweight/analysis/contracts";
 import type { ImapConfig, AccountInfo, EmailConnection, MessageType, ServerConfig } from "@shared/types";
 import { MARKETING_ACTION_TYPES } from "@shared/types";
 import { authLog, actionLog } from "../utils/log";
+import { seedProfileEmailsFromCurrentAccount } from "./profileSeed";
 
 // Populate per-account settings in the DB if they are missing.
 // Called after every DB reconnect (account switch or new account setup).
@@ -63,6 +64,7 @@ function switchToNewAccount(email: string): void {
   createAccountDb(newDbPath);
   reconnectDb(newDbPath);
   ensureAccountSettingsInDb();
+  seedProfileEmailsFromCurrentAccount(getDb(), email);
   for (const win of BrowserWindow.getAllWindows()) {
     win.webContents.send(IPC.accountSwitched, email);
   }

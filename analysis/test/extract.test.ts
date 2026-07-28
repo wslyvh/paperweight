@@ -118,6 +118,27 @@ describe("selectBody", () => {
     expect(body.links).toEqual([{ href: "https://x.example/u", text: "afmelden" }]);
   });
 
+  it("drops a stub text part for the html body it stands in for", () => {
+    // What MailChimp and SendGrid send: a one-liner beside the real newsletter.
+    const body = selectBody({
+      headers: {},
+      text: "Your email client doesn't support HTML. View this email online: https://x.example/v",
+      html: `<p>${"Real newsletter copy about our summer sale. ".repeat(60)}</p>`,
+    });
+    expect(body.source).toBe("html");
+    expect(body.text).toContain("summer sale");
+  });
+
+  it("keeps a short text part when the html part is short too", () => {
+    // A terse transactional mail is not a stub, so the cleaner text part wins.
+    const body = selectBody({
+      headers: {},
+      text: "Your verification code is 123456",
+      html: "<p>Your verification code is <b>123456</b></p>",
+    });
+    expect(body.source).toBe("text");
+  });
+
   it("falls back to html converted to text", () => {
     const body = selectBody({
       headers: {},

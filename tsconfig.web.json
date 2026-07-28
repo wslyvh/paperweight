@@ -3,7 +3,19 @@
   "include": [
     "src/renderer/**/*",
     "src/shared/**/*",
-    "analysis/src/contracts.ts"
+    "analysis/src/contracts.ts",
+    "analysis/src/country.ts",
+    "analysis/src/profile-values.ts",
+    "analysis/src/types.ts",
+    "analysis/src/detect/address.ts",
+    "analysis/src/detect/credit-card.ts",
+    "analysis/src/detect/email.ts",
+    "analysis/src/detect/iban.ts",
+    "analysis/src/detect/postal-code.ts",
+    "analysis/src/data/card-schemes.ts",
+    "analysis/src/data/iban-lengths.ts",
+    "analysis/src/data/postal-codes.ts",
+    "analysis/src/data/uk-postcode-areas.ts"
   ],
   "compilerOptions": {
     "composite": true,
@@ -12,7 +24,9 @@
     "paths": {
       "@/*": ["src/renderer/*"],
       "@shared/*": ["src/shared/*"],
-      "@paperweight/analysis/contracts": ["analysis/src/contracts"]
+      "@paperweight/analysis/contracts": ["analysis/src/contracts"],
+      "@paperweight/analysis/country": ["analysis/src/country"],
+      "@paperweight/analysis/profile-values": ["analysis/src/profile-values"]
     },
     "jsx": "react-jsx",
     "strict": true,
