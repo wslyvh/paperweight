@@ -1,5 +1,5 @@
 // Fixture harness: loads fixtures/<case>/ dirs and matches partial expectations.
-// Semantics (ENGINE_DESIGN.md §8): objects are subset-matched, scalars exact,
+// Semantics: objects are subset-matched, scalars exact,
 // arrays by containment (every expected element must match at least one actual
 // element, order-insensitive, extras allowed). Reserved top-level keys in
 // expected.json: "absent" (finding shapes that must match nothing) and

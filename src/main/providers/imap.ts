@@ -3,8 +3,11 @@ import { simpleParser } from "mailparser";
 import nodemailer from "nodemailer";
 import type { EmailProvider, EmailMessage, EmailConnection } from "./types";
 import { loadCredentials } from "../credentials";
-import { cleanHtml, resolveUnsubscribe } from "./utils";
-import { friendlyConnectionError } from "../services/sync";
+import { analyzeMessage } from "@paperweight/analysis";
+import type { AnalyzeOptions, RawMessage } from "@paperweight/analysis";
+import { BODY_TEXT_MAX_LENGTH } from "@shared/config";
+import { headerRecord } from "@shared/utils";
+import { friendlyConnectionError } from "./utils";
 import { getSetting } from "../services/settings";
 import { syncLog } from "../utils/log";
 
@@ -60,159 +63,91 @@ function parseImapUid(messageId: string): number {
   return parseInt(match[1], 10);
 }
 
-// --- Header extraction helpers ---
-//
 // mailparser 3.x groups ALL List-* headers (List-Unsubscribe, List-Id, etc.)
 // under a single "list" object key in parsed.headers — the individual
 // "list-unsubscribe" / "list-id" keys don't exist in that Map.
-//
-// We use a two-layer approach for maximum reliability across mailparser versions,
-// IMAP server implementations (Proton Bridge, Dovecot, Exchange, etc.), and edge cases:
-//
-//   Layer 1 — structured "list" object (mailparser 3.x primary path)
-//   Layer 2 — raw headerLines fallback (works regardless of mailparser grouping)
-
 interface MailparserListHeader {
   unsubscribe?: { url?: string; mail?: string };
   "unsubscribe-post"?: { name?: string };
   id?: { name?: string };
 }
 
-// Extract the raw value of a specific header from mailparser's headerLines array.
-// Returns the value part (after "Header-Name: ") or undefined if not present.
-function getRawHeaderLine(
-  headerLines: ReadonlyArray<{ key: string; line: string }>,
-  headerName: string
-): string | undefined {
-  const lower = headerName.toLowerCase();
-  const found = headerLines.find((h) => h.key === lower);
-  if (!found) return undefined;
-  const colon = found.line.indexOf(":");
-  return colon !== -1 ? found.line.substring(colon + 1).trim() : undefined;
-}
-
-// Build the List-Unsubscribe and List-Unsubscribe-Post strings for resolveUnsubscribe().
-// Tries the structured "list" object first, falls back to raw headerLines.
-function extractListHeaders(parsed: import("mailparser").ParsedMail): {
-  listUnsubStr: string | undefined;
-  listUnsubPostStr: string | undefined;
-  } {
-  // Layer 1: mailparser's structured "list" object
-  const listObj = parsed.headers.get("list") as MailparserListHeader | undefined;
-  if (listObj?.unsubscribe) {
-    const { url, mail } = listObj.unsubscribe;
-    if (url || mail) {
-      const listUnsubStr = [url && `<${url}>`, mail && `<mailto:${mail}>`]
-        .filter(Boolean)
-        .join(", ");
-      const listUnsubPostStr = listObj["unsubscribe-post"]?.name;
-      return { listUnsubStr, listUnsubPostStr };
-    }
-  }
-
-  // Layer 2: raw headerLines (reliable across mailparser versions / unusual servers)
-  const listUnsubStr = getRawHeaderLine(parsed.headerLines, "list-unsubscribe");
-  const listUnsubPostStr = getRawHeaderLine(parsed.headerLines, "list-unsubscribe-post");
-  return { listUnsubStr, listUnsubPostStr };
-}
-
-// Build a flat string-keyed headers map for hasBulkHeaders() classification.
+// Build the lossless header list — stored as raw_headers and handed to the
+// engine, which reads unsubscribe and bulk evidence off it.
 //
-// Strategy: use headerLines (raw text) as the canonical source — this gives correct
-// string values for every header without mailparser object-wrapping issues.
-// Expands the mailparser "list" object back into individual "list-unsubscribe" /
-// "list-unsubscribe-post" / "list-id" keys so hasBulkHeaders() can find them.
-function buildHeadersJson(parsed: import("mailparser").ParsedMail): string {
-  const flat: Record<string, string> = {};
+// Strategy: use headerLines (raw text) as the canonical source, emitting an
+// ordered [name, value] pair per line — ALL occurrences kept (duplicate
+// Received:, To:, etc.), so alias/catch-all derivation stays a local parse job
+// later. Then supplement List-* from the structured "list" object in case
+// headerLines missed them (some bridge normalizations), so the engine can still
+// find them.
+export function buildHeaderPairs(
+  parsed: import("mailparser").ParsedMail,
+): Array<[string, string]> {
+  const pairs: Array<[string, string]> = [];
+  const seenKeys = new Set<string>();
 
-  // Populate from headerLines (raw text, no [object Object] risk)
   for (const { key, line } of parsed.headerLines) {
     const colon = line.indexOf(":");
-    if (colon !== -1 && !flat[key]) {
-      // Keep first occurrence of duplicate headers (e.g. multiple Received:)
-      const value = line.substring(colon + 1).trim();
-      if (value) flat[key] = value;
-    }
+    if (colon === -1) continue;
+    const name = line.substring(0, colon).trim();
+    const value = line.substring(colon + 1).trim();
+    if (!name) continue;
+    pairs.push([name, value]);
+    seenKeys.add(key);
   }
 
-  // Ensure List-* headers are present using the structured object as a supplement,
-  // in case headerLines missed them (e.g. some bridge normalizations).
+  // Supplement List-* only when absent from the raw lines.
   const listObj = parsed.headers.get("list") as MailparserListHeader | undefined;
   if (listObj) {
-    if (!flat["list-unsubscribe"] && (listObj.unsubscribe?.url || listObj.unsubscribe?.mail)) {
+    if (!seenKeys.has("list-unsubscribe") && (listObj.unsubscribe?.url || listObj.unsubscribe?.mail)) {
       const { url, mail } = listObj.unsubscribe!;
-      flat["list-unsubscribe"] = [url && `<${url}>`, mail && `<mailto:${mail}>`]
-        .filter(Boolean)
-        .join(", ");
+      pairs.push([
+        "List-Unsubscribe",
+        [url && `<${url}>`, mail && `<mailto:${mail}>`].filter(Boolean).join(", "),
+      ]);
     }
-    if (!flat["list-unsubscribe-post"] && listObj["unsubscribe-post"]?.name) {
-      flat["list-unsubscribe-post"] = listObj["unsubscribe-post"]!.name;
+    if (!seenKeys.has("list-unsubscribe-post") && listObj["unsubscribe-post"]?.name) {
+      pairs.push(["List-Unsubscribe-Post", listObj["unsubscribe-post"]!.name]);
     }
-    if (!flat["list-id"] && listObj.id?.name) {
-      flat["list-id"] = `<${listObj.id.name}>`;
+    if (!seenKeys.has("list-id") && listObj.id?.name) {
+      pairs.push(["List-Id", `<${listObj.id.name}>`]);
     }
   }
 
-  return JSON.stringify(flat);
+  return pairs;
 }
 
-async function parseImapMessage(
+export async function parseImapMessage(
   msg: { uid: number; source?: Buffer; size?: number },
-  idPrefix: string
+  idPrefix: string,
+  analysisOptions?: AnalyzeOptions,
 ): Promise<EmailMessage | undefined> {
   if (!msg.source) return undefined;
-  // Note: body is fetched (up to 100KB cap). Footer link extraction applies.
 
-  const parsed = (await simpleParser(
-    msg.source
-  )) as import("mailparser").ParsedMail;
+  // skipHtmlToText: mailparser must not fabricate parsed.text from the html part
+  // (its html-to-text inlines raw urls). parsed.text is then only ever a genuine
+  // text/plain part, so the engine's body-source rule sees the same inputs it
+  // would from Gmail/Microsoft.
+  const parsed = (await simpleParser(msg.source, {
+    skipHtmlToText: true,
+  })) as import("mailparser").ParsedMail;
   const from = parsed.from?.value?.[0];
-  const { listUnsubStr, listUnsubPostStr } = extractListHeaders(parsed);
 
-  const unsub = resolveUnsubscribe(
-    listUnsubStr,
-    listUnsubPostStr,
-    parsed.html || undefined,
-    parsed.subject
-  );
+  const pairs = buildHeaderPairs(parsed);
+  const raw: RawMessage = { headers: headerRecord(pairs) };
+  if (parsed.text) raw.text = parsed.text;
+  if (parsed.html) raw.html = parsed.html;
+  const analysis = await analyzeMessage(raw, {
+    ...analysisOptions,
+    maxTextLength: BODY_TEXT_MAX_LENGTH,
+  });
 
-  const bodyText = parsed.text || "";
-  const bodyHtml = parsed.html || "";
-  const bodyPreview = (bodyText || cleanHtml(bodyHtml))
-    .replace(/\s+/g, " ")
-    .trim()
-    .substring(0, 150);
-
-  const parsedTime = parsed.date?.getTime();
-  return {
-    id: `${idPrefix}${msg.uid}`,
-    date: parsedTime && parsedTime > 946684800000 ? parsedTime : Date.now(),
-    subject: parsed.subject || "",
-    snippet: (parsed.text || "").substring(0, 200),
-    bodyPreview: bodyPreview || (parsed.text || "").substring(0, 150) || "",
-    senderEmail: (from?.address || "").toLowerCase(),
-    senderName: from?.name || "",
-    unsubscribeUrl: unsub?.url,
-    unsubscribeMethod: unsub?.method ?? "none",
-    headersJson: buildHeadersJson(parsed),
-    // Prefer RFC822.SIZE (real full size) over source buffer length (may be capped at 100KB)
-    sizeBytes: msg.size ?? msg.source?.length ?? 0,
-  };
-}
-
-async function parseImapHeadersOnly(
-  msg: { uid: number; headers?: Buffer; size?: number },
-  idPrefix: string
-): Promise<EmailMessage | undefined> {
-  if (!msg.headers) return undefined;
-
-  // simpleParser handles a headers-only buffer (no body section required)
-  const parsed = (await simpleParser(msg.headers)) as import("mailparser").ParsedMail;
-  const from = parsed.from?.value?.[0];
-  const { listUnsubStr, listUnsubPostStr } = extractListHeaders(parsed);
-
-  // No body available — only header-based unsubscribe methods (rfc8058, list-unsubscribe)
-  const unsub = resolveUnsubscribe(listUnsubStr, listUnsubPostStr, undefined, parsed.subject);
+  // Source is capped at 100KB (see fetchOptions); RFC822.SIZE is the real full
+  // size. If it exceeds what we fetched, conservatively record that the body
+  // may be incomplete. A complete small text part plus a large attachment can
+  // also trigger this; accurate MIME-part completeness needs part-aware fetches.
+  const bodyTruncated = analysis.text.length > 0 && (msg.size ?? 0) > msg.source.length;
 
   const parsedTime = parsed.date?.getTime();
   return {
@@ -220,13 +155,13 @@ async function parseImapHeadersOnly(
     date: parsedTime && parsedTime > 946684800000 ? parsedTime : Date.now(),
     subject: parsed.subject || "",
     snippet: "",
-    bodyPreview: "",
     senderEmail: (from?.address || "").toLowerCase(),
     senderName: from?.name || "",
-    unsubscribeUrl: unsub?.url,
-    unsubscribeMethod: unsub?.method ?? "none",
-    headersJson: buildHeadersJson(parsed),
-    sizeBytes: msg.size ?? 0,
+    headersJson: JSON.stringify(pairs),
+    // Prefer RFC822.SIZE (real full size) over source buffer length (may be capped at 100KB)
+    sizeBytes: msg.size ?? msg.source.length,
+    analysis,
+    bodyTruncated: bodyTruncated || analysis.textTruncated || undefined,
   };
 }
 
@@ -258,7 +193,9 @@ async function resolveScanMailbox(client: ImapFlow): Promise<string> {
   );
 }
 
-export function createImapProvider(): EmailProvider {
+export function createImapProvider(
+  analysisOptions?: AnalyzeOptions,
+): EmailProvider {
   let client: ImapFlow | undefined;
   let scanMailbox: string | undefined;
 
@@ -307,8 +244,7 @@ export function createImapProvider(): EmailProvider {
       since: Date,
       until?: Date,
       _pageToken?: string,
-      onProgress?: (fetched: number, estimatedTotal?: number) => void,
-      headersOnly?: boolean
+      onProgress?: (fetched: number, estimatedTotal?: number) => void
     ): Promise<{ messages: EmailMessage[]; nextPageToken?: string }> {
       if (!client) throw new Error("Not connected to IMAP");
 
@@ -316,12 +252,14 @@ export function createImapProvider(): EmailProvider {
       const criteria: { since: Date; before?: Date } = { since };
       if (until) criteria.before = until;
 
-      // headersOnly: fetch just the header block (no body bytes).
-      // Full mode: partial source (100KB cap) captures headers + body text for scanning.
+      // Partial source (100KB cap) captures headers + body text for scanning.
       // msg.size (RFC822.SIZE) gives the real full message size for storage metrics.
-      const fetchOptions = headersOnly
-        ? { headers: true as const, uid: true, size: true }
-        : { source: { start: 0, maxLength: 100_000 }, envelope: true, uid: true, size: true };
+      const fetchOptions = {
+        source: { start: 0, maxLength: 100_000 },
+        envelope: true,
+        uid: true,
+        size: true,
+      };
 
       const lock = await client.getMailboxLock(await getScanMailbox());
       const messages: EmailMessage[] = [];
@@ -331,9 +269,11 @@ export function createImapProvider(): EmailProvider {
       try {
         for await (const msg of client.fetch(criteria, fetchOptions)) {
           try {
-            const parsed = headersOnly
-              ? await parseImapHeadersOnly(msg as { uid: number; headers?: Buffer; size?: number }, "imap-")
-              : await parseImapMessage(msg as { uid: number; source?: Buffer; size?: number }, "imap-");
+            const parsed = await parseImapMessage(
+              msg as { uid: number; source?: Buffer; size?: number },
+              "imap-",
+              analysisOptions,
+            );
             if (parsed) messages.push(parsed);
             onProgress?.(messages.length, estimate);
           } catch (err) {
@@ -361,7 +301,7 @@ export function createImapProvider(): EmailProvider {
         );
         if (!msg) throw new Error(`Message ${messageId} not found`);
 
-        const parsed = await parseImapMessage(msg, "imap-");
+        const parsed = await parseImapMessage(msg, "imap-", analysisOptions);
         if (!parsed) throw new Error(`Message ${messageId} could not be parsed`);
         return parsed;
       } finally {

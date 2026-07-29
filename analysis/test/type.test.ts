@@ -106,6 +106,10 @@ describe("classifyType", () => {
         },
       }),
       [transactionalVocab("account")],
+      {
+        method: "rfc8058",
+        target: "https://x/u",
+      },
     );
     expect(result.type).toBe("promotion");
   });
@@ -135,11 +139,26 @@ describe("classifyType", () => {
         },
       }),
       [],
+      {
+        method: "rfc8058",
+        target: "https://x/u",
+      },
     );
     expect(result.type).toBe("promotion");
     expect(result.confidence).toBeGreaterThanOrEqual(0.8);
     expect(result.signals).toContainEqual({ id: "header.one-click" });
     expect(result.signals).toContainEqual({ id: "header.list-id", detail: "<news.shop.example>" });
+  });
+
+  it("does not classify list-like headers without an unsubscribe action as promotion", () => {
+    for (const header of [
+      { listId: "<news.shop.example>" },
+      { precedence: "bulk" },
+      { listUnsubscribePost: true },
+    ]) {
+      const result = classifyType(extracted({ header }), []);
+      expect(result.type).not.toBe("promotion");
+    }
   });
 
   it("classifies mail from a social network domain as social", () => {
@@ -195,6 +214,10 @@ describe("classifyType", () => {
         },
       }),
       [],
+      {
+        method: "list-unsubscribe",
+        target: "https://x/u",
+      },
     );
     expect(result.type).toBe("promotion");
   });

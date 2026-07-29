@@ -47,65 +47,7 @@ export const SOCIAL_DOMAINS: string[] = [
 // an organization (organizations send from their own domain). Matched
 // EXACTLY against the from domain — lookalikes (9gagmail.com) and provider
 // infrastructure mail (accounts.google.com) must not hit.
-export const PERSONAL_DOMAINS: string[] = [
-  // Google
-  "gmail.com",
-  "googlemail.com",
-  // Microsoft
-  "outlook.com",
-  "hotmail.com",
-  "hotmail.co.uk",
-  "hotmail.de",
-  "hotmail.fr",
-  "hotmail.nl",
-  "live.com",
-  "live.co.uk",
-  "live.be",
-  "live.de",
-  "live.fr",
-  "live.nl",
-  "msn.com",
-  // Yahoo
-  "yahoo.com",
-  "yahoo.co.uk",
-  "yahoo.de",
-  "yahoo.fr",
-  "ymail.com",
-  // Apple
-  "icloud.com",
-  "me.com",
-  "mac.com",
-  // Proton
-  "protonmail.com",
-  "proton.me",
-  "pm.me",
-  // Privacy / independent
-  "fastmail.com",
-  "tutanota.com",
-  "tuta.com",
-  // AOL
-  "aol.com",
-  // German providers
-  "gmx.de",
-  "gmx.net",
-  "gmx.com",
-  "web.de",
-  "t-online.de",
-  // French providers
-  "laposte.net",
-  "orange.fr",
-  "wanadoo.fr",
-  // UK providers
-  "btinternet.com",
-  // Italian providers
-  "libero.it",
-  // Dutch ISPs
-  "hetnet.nl",
-  "planet.nl",
-  "kpnmail.nl",
-  "xs4all.nl",
-  "ziggo.nl",
-  "upcmail.nl",
-  "casema.nl",
-  "home.nl",
-];
+//
+// Defined in contracts.ts because consumers need the same list, and re-exported
+// here so the classifier reads both sender registries from one place.
+export { PERSONAL_DOMAINS } from "../contracts";

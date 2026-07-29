@@ -25,11 +25,13 @@ import {
   deleteVendorMessages,
   insertActionLog,
 } from "./messages";
-import { createAccountDb, reconnectDb } from "../db";
+import { createAccountDb, getDb, reconnectDb } from "../db";
 import { IPC } from "@shared/ipc";
-import { APP_CONFIG } from "@shared/config";
+import { PERSONAL_DOMAINS } from "@paperweight/analysis/contracts";
 import type { ImapConfig, AccountInfo, EmailConnection, MessageType, ServerConfig } from "@shared/types";
+import { MARKETING_ACTION_TYPES } from "@shared/types";
 import { authLog, actionLog } from "../utils/log";
+import { seedProfileEmailsFromCurrentAccount } from "./profileSeed";
 
 // Populate per-account settings in the DB if they are missing.
 // Called after every DB reconnect (account switch or new account setup).
@@ -41,7 +43,7 @@ export function ensureAccountSettingsInDb(): void {
     saveSetting("accountEmail", activeEmail);
     addWhitelistEntry(activeEmail.toLowerCase());
     const domain = activeEmail.split("@")[1];
-    if (domain && !APP_CONFIG.PERSONAL_DOMAINS.includes(domain.toLowerCase())) {
+    if (domain && !PERSONAL_DOMAINS.includes(domain.toLowerCase())) {
       addWhitelistEntry(domain);
     }
   }
@@ -62,6 +64,7 @@ function switchToNewAccount(email: string): void {
   createAccountDb(newDbPath);
   reconnectDb(newDbPath);
   ensureAccountSettingsInDb();
+  seedProfileEmailsFromCurrentAccount(getDb(), email);
   for (const win of BrowserWindow.getAllWindows()) {
     win.webContents.send(IPC.accountSwitched, email);
   }
@@ -427,5 +430,5 @@ export async function trashVendorMessages(vendorId: number, types?: MessageType[
 }
 
 export async function spamVendorMessages(vendorId: number): Promise<{ success: boolean; error?: string }> {
-  return bulkActionVendorMessages(vendorId, "spam_reported", ["bulk"]);
+  return bulkActionVendorMessages(vendorId, "spam_reported", [...MARKETING_ACTION_TYPES]);
 }

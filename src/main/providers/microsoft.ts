@@ -1,7 +1,11 @@
 import { createHash, randomBytes } from "node:crypto";
 import type { EmailProvider, EmailMessage, EmailConnection } from "./types";
 import { loadCredentials, saveCredentials } from "../credentials";
-import { resolveUnsubscribe, runLoopbackAuth, cleanHtml } from "./utils";
+import { runLoopbackAuth } from "./utils";
+import { analyzeMessage } from "@paperweight/analysis";
+import type { AnalyzeOptions, RawMessage } from "@paperweight/analysis";
+import { BODY_TEXT_MAX_LENGTH } from "@shared/config";
+import { headerRecord } from "@shared/utils";
 import { syncLog, authLog } from "../utils/log";
 
 // Injected at build time via electron-vite define.
@@ -145,7 +149,7 @@ async function getValidAccessToken(): Promise<string> {
 
   if (data.error) {
     // invalid_grant = refresh token expired (90 days inactivity).
-    // friendlyConnectionError in sync.ts matches this string.
+    // friendlyConnectionError matches this string.
     throw new Error(
       `Failed to refresh access token: ${data.error} ${data.error_description || ""}`.trim()
     );
@@ -344,45 +348,39 @@ async function graphBatchGetMessages(
   }
 }
 
-function parseGraphMessage(msg: GraphMessage): EmailMessage {
-  const getHeader = (name: string): string | undefined =>
-    msg.internetMessageHeaders?.find(
-      (h) => h.name.toLowerCase() === name.toLowerCase()
-    )?.value;
-
-  const senderEmail = msg.from?.emailAddress?.address?.toLowerCase() || "";
-  const senderName = msg.from?.emailAddress?.name || "";
-  const subject = msg.subject || "";
-  const listUnsub = getHeader("List-Unsubscribe");
-  const listUnsubPost = getHeader("List-Unsubscribe-Post");
-
+async function parseGraphMessage(
+  msg: GraphMessage,
+  analysisOptions?: AnalyzeOptions,
+): Promise<EmailMessage> {
   const bodyHtml =
     msg.body?.contentType === "html" ? msg.body.content : undefined;
   const bodyText =
     msg.body?.contentType === "text" ? msg.body.content : undefined;
 
-  const bodyPreview = (bodyText || cleanHtml(bodyHtml))
-    .replace(/\s+/g, " ")
-    .trim()
-    .substring(0, 150) || msg.bodyPreview?.substring(0, 150) || "";
-  const rawHeaders = Object.fromEntries(
-    (msg.internetMessageHeaders || []).map((h) => [h.name, h.value])
+  // Lossless: ordered [name, value] pairs, duplicates preserved. The same pairs
+  // feed the engine, so stored headers and analyzed headers can't diverge.
+  const pairs = (msg.internetMessageHeaders || []).map(
+    (h): [string, string] => [h.name, h.value],
   );
-
-  const unsub = resolveUnsubscribe(listUnsub, listUnsubPost, bodyHtml, subject);
+  const raw: RawMessage = { headers: headerRecord(pairs) };
+  if (bodyText) raw.text = bodyText;
+  if (bodyHtml) raw.html = bodyHtml;
+  const analysis = await analyzeMessage(raw, {
+    ...analysisOptions,
+    maxTextLength: BODY_TEXT_MAX_LENGTH,
+  });
 
   return {
     id: msg.id,
     date: new Date(msg.receivedDateTime).getTime(),
-    subject,
+    subject: msg.subject || "",
     snippet: msg.bodyPreview?.substring(0, 150) || "",
-    bodyPreview,
-    senderEmail,
-    senderName,
-    unsubscribeUrl: unsub?.url,
-    unsubscribeMethod: unsub?.method ?? "none",
-    headersJson: JSON.stringify(rawHeaders),
+    senderEmail: msg.from?.emailAddress?.address?.toLowerCase() || "",
+    senderName: msg.from?.emailAddress?.name || "",
+    headersJson: JSON.stringify(pairs),
     sizeBytes: msg.body?.content?.length ?? 0,
+    analysis,
+    bodyTruncated: analysis.textTruncated || undefined,
   };
 }
 
@@ -411,7 +409,9 @@ export async function fetchMicrosoftProfileEmail(accessToken: string): Promise<s
 
 // --- Provider ---
 
-export function createMicrosoftProvider(): EmailProvider {
+export function createMicrosoftProvider(
+  analysisOptions?: AnalyzeOptions,
+): EmailProvider {
   // Folders excluded from the all-mail scan (Junk/Deleted/Sent/Drafts). Resolved once per
   // sync session and cached. /me/messages spans every folder, so we filter by parentFolderId.
   let excludedFolderIds: Set<string> | undefined;
@@ -484,8 +484,7 @@ export function createMicrosoftProvider(): EmailProvider {
       since: Date,
       until?: Date,
       pageToken?: string,
-      onProgress?: (fetched: number, estimatedTotal?: number) => void,
-      headersOnly?: boolean
+      onProgress?: (fetched: number, estimatedTotal?: number) => void
     ): Promise<{ messages: EmailMessage[]; nextPageToken?: string }> {
       // pageToken is the full @odata.nextLink URL from the previous page.
       let listUrl: string;
@@ -525,13 +524,8 @@ export function createMicrosoftProvider(): EmailProvider {
       }
 
       const emailMessages: EmailMessage[] = [];
-      // headersOnly: fetch internetMessageHeaders + metadata but skip body.
-      // Equivalent to Gmail's format=metadata — List-Unsubscribe is available,
-      // footer link extraction is not (no body). Body is the largest part of the
-      // response, so omitting it keeps historical sync fast.
-      const select = headersOnly
-        ? "id,receivedDateTime,from,subject,bodyPreview,internetMessageHeaders"
-        : "id,receivedDateTime,from,subject,bodyPreview,body,internetMessageHeaders";
+      const select =
+        "id,receivedDateTime,from,subject,bodyPreview,body,internetMessageHeaders";
 
       const BATCH_SIZE = 20;
       // Small pause between batch calls to avoid hitting the per-app request limit.
@@ -546,7 +540,7 @@ export function createMicrosoftProvider(): EmailProvider {
         try {
           const batchMessages = await graphBatchGetMessages(chunkIds, select);
           for (const msg of batchMessages) {
-            emailMessages.push(parseGraphMessage(msg));
+            emailMessages.push(await parseGraphMessage(msg, analysisOptions));
             onProgress?.(emailMessages.length);
           }
         } catch (err) {
@@ -565,7 +559,7 @@ export function createMicrosoftProvider(): EmailProvider {
         `${GRAPH_ME_BASE}/messages/${messageId}?$select=id,receivedDateTime,from,subject,bodyPreview,body,internetMessageHeaders`
       )) as GraphMessage;
 
-      return parseGraphMessage(msg);
+      return parseGraphMessage(msg, analysisOptions);
     },
 
     async trashMessage(messageId: string): Promise<void> {

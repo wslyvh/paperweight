@@ -1,5 +1,5 @@
 import SMTPConnection from "nodemailer/lib/smtp-connection";
-import { friendlyConnectionError } from "../services/sync";
+import { friendlyConnectionError } from "./utils";
 import { syncLog } from "../utils/log";
 
 export async function testSmtpConnection(config: {

@@ -1,6 +1,6 @@
 import type { Dpa } from "@shared/gdpr/types";
 import { findDpaByAddress, findDpaByDomain } from "@shared/gdpr/resolution";
-import { RISK_CATEGORIES, RISK_LEVELS } from "@shared/languages";
+import { RISK_CATEGORIES, RISK_LEVELS } from "@shared/vendor-risk";
 import {
   getBreachBySlug,
   getBreachedCompanies,

@@ -24,7 +24,12 @@ import {
 import { clearSyncData, getSyncState } from "../services/sync";
 import { getStorageBreakdown, accountDbBytes } from "../services/storage";
 import { getProvider } from "../providers/ProviderFactory";
-import { startSync, getSyncStatus, stopSync, stopAllSyncs } from "../sync-manager";
+import {
+  getSyncStatus,
+  startAllSyncs,
+  stopAllSyncs,
+  stopSync,
+} from "../sync-manager";
 import { getLicenseStatus, deleteLicense } from "../services/settings";
 import { getDashboardStats } from "../services/stats";
 import {
@@ -37,6 +42,7 @@ import {
   emailToFileKey,
 } from "../credentials";
 import { wipeDatabase, deleteDbFiles, reconnectDb } from "../db";
+import { wipeGlobalDatabase } from "../globalDb";
 import { dataLog, actionLog } from "../utils/log";
 import { getFileLogPath } from "../utils/file-log";
 import os from "os";
@@ -166,36 +172,55 @@ export function registerAccountHandlers(): void {
     reconnectDb(newDbPath);
     ensureAccountSettingsInDb();
 
-    // Ensure the newly active account is syncing (no-op if already running)
-    startSync(email as string);
+    // Refresh all accounts with the newly active one first.
+    startAllSyncs();
 
     for (const win of BrowserWindow.getAllWindows()) {
       win.webContents.send(IPC.accountSwitched, email);
     }
   });
 
-  ipcMain.handle(IPC.removeAccount, (_event, email: unknown) => {
+  ipcMain.handle(IPC.removeAccount, async (_event, email: unknown) => {
     if (!isString(email) || !email.trim()) throw new Error("Invalid email");
     if (!listAccounts().some((a) => a.email === email)) throw new Error("Account not found");
     const activeEmail = getActiveEmail();
     const isActive = email === activeEmail;
+    const accountDbPath = join(
+      app.getPath("userData"),
+      `${emailToFileKey(email)}.db`,
+    );
 
     // Stop this account's sync worker regardless of whether it's active
-    stopSync(email);
+    await stopSync(email);
 
-    // Delete the account's credential file
-    deleteCredentials(email);
-
-    // Delete the account's database
-    if (isActive) {
-      // The active account's DB connection is open — must close it before deleting
-      // (on Windows, unlinkSync on an open file fails silently)
-      wipeDatabase();
-    } else {
-      deleteDbFiles(email);
+    try {
+      // Delete the database first. If a file lock prevents deletion, retain the
+      // credential and registry entry so the user can retry.
+      if (isActive) {
+        wipeDatabase();
+      } else {
+        deleteDbFiles(email);
+      }
+      deleteCredentials(email);
+    } catch {
+      // wipeDatabase closes the active connection before unlinking. Reconnect
+      // when the database itself survived so the failed operation is retryable.
+      if (isActive && existsSync(accountDbPath)) {
+        try {
+          reconnectDb(accountDbPath);
+          ensureAccountSettingsInDb();
+        } catch {
+          // The fixed error below is authoritative and carries no personal path.
+        }
+      }
+      throw new Error("Could not delete this account's local data. Try again.");
     }
 
-    removeAccountEntry(email); // also updates activeAccount in settings.json to next account
+    try {
+      removeAccountEntry(email); // also updates activeAccount in global.db
+    } catch {
+      throw new Error("Could not update the account registry. Try again.");
+    }
 
     if (isActive) {
       const remaining = listAccounts();
@@ -254,49 +279,46 @@ export function registerAccountHandlers(): void {
   // --- Sync ---
 
   ipcMain.handle(IPC.startSync, () => {
-    startSync();
+    startAllSyncs();
   });
 
   ipcMain.handle(IPC.getSyncStatus, () => getSyncStatus());
 
-  ipcMain.handle(IPC.resyncData, () => {
+  ipcMain.handle(IPC.resyncData, async () => {
     dataLog.warn("Re-sync data requested");
-    stopSync(); // stops active account's worker
+    await stopSync(); // stops active account's worker
     clearSyncData();
   });
 
-  ipcMain.handle(IPC.wipeData, () => {
+  ipcMain.handle(IPC.wipeData, async () => {
     dataLog.warn("Wipe ALL data requested");
     const accounts = listAccounts();
     const userData = app.getPath("userData");
-
-    stopAllSyncs();
-
-    // Close the active DB connection before deleting (Windows file lock)
-    wipeDatabase();
-
-    // Delete every account's database and credentials.
-    // The active account's DB files are already gone via wipeDatabase() above.
     const activeEmail = getActiveEmail();
-    for (const acc of accounts) {
-      deleteCredentials(acc.email);
-      if (acc.email !== activeEmail) deleteDbFiles(acc.email);
-    }
 
-    // Delete staging credentials (written during OAuth before email is known)
-    deleteCredentials("__staging__");
+    await stopAllSyncs();
 
-    // Delete the accounts registry and global settings
-    for (const file of ["accounts.json", "settings.json"]) {
-      const filePath = join(userData, file);
-      try {
-        if (existsSync(filePath)) unlinkSync(filePath);
-      } catch {
-        // Non-fatal
+    try {
+      // Delete databases before credentials and registry state. A locked
+      // database therefore leaves enough account state for a visible retry.
+      wipeDatabase();
+      for (const acc of accounts) {
+        if (acc.email !== activeEmail) deleteDbFiles(acc.email);
       }
-    }
 
-    deleteLicense();
+      for (const acc of accounts) deleteCredentials(acc.email);
+      deleteCredentials("__staging__");
+
+      for (const file of ["accounts.json", "settings.json"]) {
+        const filePath = join(userData, file);
+        if (existsSync(filePath)) unlinkSync(filePath);
+      }
+
+      deleteLicense();
+      wipeGlobalDatabase();
+    } catch {
+      throw new Error("Could not wipe all local data. Try again.");
+    }
 
     for (const win of BrowserWindow.getAllWindows()) {
       win.webContents.send(IPC.noAccountsRemaining);

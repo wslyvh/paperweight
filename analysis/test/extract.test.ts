@@ -41,12 +41,30 @@ describe("extractHeaderFacts", () => {
     });
   });
 
+  it("accepts a single unbracketed list-unsubscribe target", () => {
+    expect(
+      extractHeaderFacts({
+        "list-unsubscribe": "https://shop.example/u?id=1",
+      }).listUnsubscribe,
+    ).toEqual({
+      urls: ["https://shop.example/u?id=1"],
+      mailtos: [],
+    });
+  });
+
   it("detects RFC 8058 one-click", () => {
     const facts = extractHeaderFacts({
       "list-unsubscribe": "<https://shop.example/u>",
       "list-unsubscribe-post": "List-Unsubscribe=One-Click",
     });
     expect(facts.listUnsubscribePost).toBe(true);
+  });
+
+  it("does not treat an incidental one-click phrase as RFC 8058", () => {
+    const facts = extractHeaderFacts({
+      "list-unsubscribe-post": "Visit one-click preferences",
+    });
+    expect(facts.listUnsubscribePost).toBe(false);
   });
 
   it("keeps precedence and auto-submitted raw values", () => {
@@ -98,6 +116,27 @@ describe("selectBody", () => {
     expect(body.source).toBe("text");
     expect(body.text).toBe("plain");
     expect(body.links).toEqual([{ href: "https://x.example/u", text: "afmelden" }]);
+  });
+
+  it("drops a stub text part for the html body it stands in for", () => {
+    // What MailChimp and SendGrid send: a one-liner beside the real newsletter.
+    const body = selectBody({
+      headers: {},
+      text: "Your email client doesn't support HTML. View this email online: https://x.example/v",
+      html: `<p>${"Real newsletter copy about our summer sale. ".repeat(60)}</p>`,
+    });
+    expect(body.source).toBe("html");
+    expect(body.text).toContain("summer sale");
+  });
+
+  it("keeps a short text part when the html part is short too", () => {
+    // A terse transactional mail is not a stub, so the cleaner text part wins.
+    const body = selectBody({
+      headers: {},
+      text: "Your verification code is 123456",
+      html: "<p>Your verification code is <b>123456</b></p>",
+    });
+    expect(body.source).toBe("text");
   });
 
   it("falls back to html converted to text", () => {

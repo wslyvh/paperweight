@@ -1,9 +1,8 @@
 import { getDb } from "../db";
-import type { Message, MessageType, MessageStatus, UnsubscribeEntry } from "@shared/types";
+import type { Message, MessageType, UnsubscribeEntry } from "@shared/types";
 import { BODY_PREVIEW_LENGTH } from "@shared/types";
-import { TRANSACTIONAL_PATTERNS, ORDER_PATTERNS } from "@shared/languages";
 import type { EmailMessage } from "../providers/types";
-import { hasBulkHeaders, matchesAny } from "@shared/utils";
+import { actionableListMailSql } from "./messageVocabulary";
 
 function stripQueryParams(url: string): string {
   try {
@@ -37,99 +36,121 @@ export function insertActionLog(
   );
 }
 
-export function classifyMessageType(msg: EmailMessage): MessageType {
-  const subject = msg.subject || "";
-  const body = msg.bodyPreview || msg.snippet || "";
-  const text = `${subject} ${body}`;
-
-  // Check order/transactional first — more specific than bulk headers.
-  // Many ESPs attach List-Unsubscribe to all outbound mail (required for Gmail
-  // deliverability), including order confirmations. Checking bulk headers first
-  // would misclassify an "Invoice" email as "bulk", hiding the order signal.
-  if (matchesAny(text, ORDER_PATTERNS)) {
-    return "order";
-  }
-
-  if (matchesAny(text, TRANSACTIONAL_PATTERNS)) {
-    return "transactional";
-  }
-
-  const hasUnsubscribe =
-    msg.unsubscribeUrl &&
-    msg.unsubscribeMethod &&
-    msg.unsubscribeMethod !== "none";
-
-  if (hasUnsubscribe || hasBulkHeaders(msg.headersJson)) {
-    return "bulk";
-  }
-
-  return "personal";
-}
+// Renderer-facing columns. `raw_headers` is deliberately absent: no renderer
+// consumer, and lossless header capture made it the biggest field on the row.
+// body_text, body_state and analysis_version also stay in the main process.
+// Main-side readers that need hidden columns select them themselves.
+export const MESSAGE_COLUMNS =
+  "id, vendor_id, sender_email, sender_name, subject, date, body_preview, " +
+  "type, unsubscribe_url, unsubscribe_method, status, size_bytes";
 
 export function insertMessageVendor(
   msg: EmailMessage,
   vendorId: number,
-  type: MessageType
-) {
+): boolean {
   const d = getDb();
-  d.prepare(
-    `INSERT OR IGNORE INTO messages (
-      id, vendor_id, sender_email, sender_name, subject, date, body_preview,
-      raw_headers, type, unsubscribe_url, unsubscribe_method, status, size_bytes
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
-  ).run(
-    msg.id,
-    vendorId,
-    msg.senderEmail,
-    msg.senderName ?? null,
-    msg.subject ?? null,
-    msg.date,
-    (msg.bodyPreview || msg.snippet || "").substring(0, BODY_PREVIEW_LENGTH),
-    msg.headersJson,
-    type,
-    msg.unsubscribeUrl ?? null,
-    msg.unsubscribeMethod ?? "none",
-    null,
-    msg.sizeBytes ?? 0
-  );
+  // body_text is the engine's analyzed text verbatim — finding offsets index
+  // into it, so the two must never be computed separately. Empty body →
+  // 'missing'. A body cut off by the app's analyzed-text cap or the provider
+  // fetch cap (IMAP's 100KB source limit) → 'truncated'.
+  const bodyText = msg.analysis.text.length > 0 ? msg.analysis.text : null;
+  const bodyState = bodyText ? (msg.bodyTruncated ? "truncated" : "available") : "missing";
+
+  const result = d.prepare(
+    `INSERT INTO messages (
+       id, vendor_id, sender_email, sender_name, subject, date, body_preview,
+       raw_headers, type, unsubscribe_url, unsubscribe_method, status, size_bytes,
+       body_text, body_state, analysis_version, received_address
+     ) VALUES (
+       @id, @vendor_id, @sender_email, @sender_name, @subject, @date, @body_preview,
+       @raw_headers, @type, @unsubscribe_url, @unsubscribe_method, @status, @size_bytes,
+       @body_text, @body_state, NULL, @received_address
+     )
+     ON CONFLICT(id) DO UPDATE SET
+       -- One rule for everything the fetch captured: a body-bearing fetch is
+       -- strictly fuller than one without, so it wins; anything else leaves the
+       -- stored row alone. Keeping body_text and the analysis that produced it
+       -- in step is why the body follows the same rule as the rest.
+       body_text = CASE WHEN excluded.body_state IN ('available', 'truncated')
+         THEN excluded.body_text ELSE messages.body_text END,
+       body_state = CASE WHEN excluded.body_state IN ('available', 'truncated')
+         THEN excluded.body_state ELSE messages.body_state END,
+       raw_headers = CASE
+         WHEN excluded.body_state IN ('available', 'truncated') THEN excluded.raw_headers
+         WHEN messages.raw_headers IS NULL THEN excluded.raw_headers
+         ELSE messages.raw_headers END,
+       -- Derived from raw_headers, so it moves with them or not at all.
+       received_address = CASE
+         WHEN excluded.body_state IN ('available', 'truncated') THEN excluded.received_address
+         WHEN messages.raw_headers IS NULL THEN excluded.received_address
+         ELSE messages.received_address END,
+       type = CASE WHEN excluded.body_state IN ('available', 'truncated')
+         THEN excluded.type ELSE messages.type END,
+       unsubscribe_url = CASE WHEN excluded.body_state IN ('available', 'truncated')
+         THEN excluded.unsubscribe_url ELSE messages.unsubscribe_url END,
+       unsubscribe_method = CASE WHEN excluded.body_state IN ('available', 'truncated')
+         THEN excluded.unsubscribe_method ELSE messages.unsubscribe_method END,
+       body_preview = CASE WHEN excluded.body_state IN ('available', 'truncated')
+         THEN excluded.body_preview ELSE messages.body_preview END,
+       size_bytes = CASE WHEN excluded.body_state IN ('available', 'truncated')
+         THEN excluded.size_bytes ELSE messages.size_bytes END
+     WHERE (
+       excluded.body_state IN ('available', 'truncated')
+       AND (
+         messages.body_text IS NOT excluded.body_text
+         OR messages.body_state IS NOT excluded.body_state
+         OR messages.raw_headers IS NOT excluded.raw_headers
+         OR messages.received_address IS NOT excluded.received_address
+         OR messages.type IS NOT excluded.type
+         OR messages.unsubscribe_url IS NOT excluded.unsubscribe_url
+         OR messages.unsubscribe_method IS NOT excluded.unsubscribe_method
+         OR messages.body_preview IS NOT excluded.body_preview
+         OR messages.size_bytes IS NOT excluded.size_bytes
+       )
+     ) OR (
+       excluded.body_state = 'missing'
+       AND messages.raw_headers IS NULL
+       AND excluded.raw_headers IS NOT NULL
+     )`
+    // Deliberately not updated on conflict: vendor_id, status, analysis_version,
+    // sender_*, subject, date. The first three are user/analysis state a re-walk
+    // must not touch; the rest are already correct on any stored row.
+  ).run({
+    id: msg.id,
+    vendor_id: vendorId,
+    sender_email: msg.senderEmail,
+    sender_name: msg.senderName ?? null,
+    subject: msg.subject ?? null,
+    date: msg.date,
+    body_preview: (msg.analysis.text || msg.snippet)
+      .replace(/\s+/g, " ")
+      .trim()
+      .substring(0, BODY_PREVIEW_LENGTH),
+    raw_headers: msg.headersJson,
+    type: msg.analysis.type,
+    unsubscribe_url: msg.analysis.unsubscribe?.target ?? null,
+    unsubscribe_method: msg.analysis.unsubscribe?.method ?? "none",
+    status: null,
+    size_bytes: msg.sizeBytes ?? 0,
+    body_text: bodyText,
+    body_state: bodyState,
+    received_address: msg.analysis.receivedAddress ?? null,
+  });
+  return result.changes > 0;
 }
 
 export function getMessagesByEmail(email: string, limit: number): Message[] {
   const d = getDb();
   return d
-    .prepare(`SELECT * FROM messages WHERE sender_email = ? ORDER BY date DESC LIMIT ?`)
+    .prepare(`SELECT ${MESSAGE_COLUMNS} FROM messages WHERE sender_email = ? ORDER BY date DESC LIMIT ?`)
     .all(email, limit) as Message[];
 }
 
 export function getMessagesByVendor(vendorId: number, limit: number): Message[] {
   const d = getDb();
   return d
-    .prepare(`SELECT * FROM messages WHERE vendor_id = ? ORDER BY date DESC LIMIT ?`)
+    .prepare(`SELECT ${MESSAGE_COLUMNS} FROM messages WHERE vendor_id = ? ORDER BY date DESC LIMIT ?`)
     .all(vendorId, limit) as Message[];
-}
-
-export function getUnsubscribeUrlByEmail(senderEmail: string): string | undefined {
-  const d = getDb();
-  const row = d
-    .prepare(
-      `SELECT m.unsubscribe_url FROM messages m
-       WHERE m.sender_email = ? AND m.unsubscribe_url IS NOT NULL AND m.unsubscribe_url != ''
-       ORDER BY m.date DESC LIMIT 1`
-    )
-    .get(senderEmail) as { unsubscribe_url: string } | undefined;
-  return row?.unsubscribe_url;
-}
-
-export function getUnsubscribeUrlForVendor(vendorId: number): string | undefined {
-  const d = getDb();
-  const row = d
-    .prepare(
-      `SELECT unsubscribe_url FROM messages
-       WHERE vendor_id = ? AND type = 'bulk' AND unsubscribe_url IS NOT NULL AND unsubscribe_url != ''
-       ORDER BY date DESC LIMIT 1`
-    )
-    .get(vendorId) as { unsubscribe_url: string } | undefined;
-  return row?.unsubscribe_url;
 }
 
 export function markUnsubscribed(email: string): void {
@@ -158,22 +179,9 @@ export function reapplyUnsubscribedFromActionLog(): void {
 
 export function getMessageById(id: string): Message | undefined {
   const d = getDb();
-  return d.prepare("SELECT * FROM messages WHERE id = ?").get(id) as
+  return d.prepare(`SELECT ${MESSAGE_COLUMNS} FROM messages WHERE id = ?`).get(id) as
     | Message
     | undefined;
-}
-
-export function updateMessage(id: string, updates: { status?: MessageStatus }): void {
-  const d = getDb();
-  d.prepare("UPDATE messages SET status = ? WHERE id = ?").run(
-    updates.status ?? null,
-    id
-  );
-}
-
-export function deleteMessage(id: string): void {
-  const d = getDb();
-  d.prepare("DELETE FROM messages WHERE id = ?").run(id);
 }
 
 export function deleteMessagesByIds(ids: string[]): void {
@@ -245,9 +253,7 @@ export function getAllUnsubscribeMethodsForVendor(vendorId: number): Unsubscribe
       `SELECT unsubscribe_method AS method, unsubscribe_url AS url, sender_email AS senderEmail
        FROM messages
        WHERE vendor_id = ?
-         AND type = 'bulk'
-         AND unsubscribe_url IS NOT NULL
-         AND unsubscribe_url != ''
+         AND ${actionableListMailSql()}
          AND (status IS NULL OR status NOT IN ('unsubscribed'))
        GROUP BY unsubscribe_method
        ORDER BY date DESC`

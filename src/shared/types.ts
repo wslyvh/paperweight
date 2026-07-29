@@ -1,16 +1,32 @@
 // --- Domain types ---
 
-export type MessageType =
-  | "bulk"           // Has List-Unsubscribe or bulk headers
-  | "transactional"  // Account activity (password, security, verify, login)
-  | "order"          // Purchase activity (orders, invoices, shipping, receipts)
-  | "personal"       // 1:1 conversation
-  | "unknown";       // Classification failed — needs improvement
+import {
+  ACCOUNT_MESSAGE_TYPES,
+  FINDING_SENSITIVITY_ORDER,
+  FINDING_TYPES,
+  LIST_MESSAGE_TYPES,
+  MESSAGE_TYPES as ANALYSIS_MESSAGE_TYPES,
+} from "@paperweight/analysis/contracts";
+import type {
+  FindingType,
+  MessageType as AnalysisMessageType,
+} from "@paperweight/analysis/contracts";
 
-export const MESSAGE_TYPES: readonly MessageType[] = ["bulk", "transactional", "order", "personal", "unknown"];
+export type MessageType = AnalysisMessageType;
+const MESSAGE_TYPES: readonly MessageType[] = ANALYSIS_MESSAGE_TYPES;
 export function isMessageType(value: unknown): value is MessageType {
   return typeof value === "string" && (MESSAGE_TYPES as readonly string[]).includes(value);
 }
+
+// Product aliases kept for existing callers; the engine owns their membership.
+export const LIST_MAIL_TYPES: readonly MessageType[] = LIST_MESSAGE_TYPES;
+
+export const ACCOUNT_TYPES: readonly MessageType[] = ACCOUNT_MESSAGE_TYPES;
+
+// Destructive mailbox actions are deliberately narrower than the Mailing Lists
+// view. Social notifications can be unsubscribable, but must not be trained as
+// spam or trashed alongside marketing mail.
+export const MARKETING_ACTION_TYPES: readonly MessageType[] = ["promotion"];
 
 export type UnsubscribeMethod =
   | "rfc8058"           // POST with List-Unsubscribe=One-Click
@@ -18,7 +34,7 @@ export type UnsubscribeMethod =
   | "footer"            // Link found in body
   | "none";             // No unsubscribe method found
 
-export type MessageStatus =
+type MessageStatus =
   | "unsubscribed"
   | "reported_spam"
   | "trashed";
@@ -48,7 +64,6 @@ export type CategoryId =
 // Fallbacks — should be rare, indicate classification needs improvement
 export const DEFAULT_CATEGORY: CategoryId = "unknown";
 export const DEFAULT_RISK: RiskLevel = "unknown";
-export const DEFAULT_MESSAGE_TYPE: MessageType = "unknown";
 
 // Incremental sync windows
 export const FREE_TIER_SYNC_DAYS = 90;    // Free tier: 90-day window
@@ -112,6 +127,8 @@ export interface Vendor {
   /** Email this company knows the user by (e.g. hide-my-email alias). */
   account_email?: string;
   breachInfo?: BreachInfo[];
+  /** True when the company holds PII the detail panel classifies High or Possible. */
+  hasNotablePii?: boolean;
 }
 
 export interface Message {
@@ -122,7 +139,6 @@ export interface Message {
   subject?: string;
   date: number;
   body_preview?: string;
-  raw_headers?: string;
   type?: MessageType;
   unsubscribe_url?: string;
   unsubscribe_method?: UnsubscribeMethod;
@@ -135,9 +151,144 @@ export interface WhitelistEntry {
   created_at: string;
 }
 
+// --- PII findings ---
+
+export type PiiType = FindingType;
+export { FINDING_SENSITIVITY_ORDER };
+export function isPiiType(value: unknown): value is PiiType {
+  return (
+    typeof value === "string" &&
+    (FINDING_TYPES as readonly string[]).includes(value)
+  );
+}
+
+// --- User profile ---
+
+export const PROFILE_BIRTH_YEAR_MIN = 1900;
+
+export interface ProfileBirthDate {
+  day: number;
+  month: number;
+  year: number;
+}
+
+export interface ProfileName {
+  id: number;
+  firstName: string;
+  middleName?: string;
+  lastName: string;
+}
+
+export interface ProfileEmail {
+  id: number;
+  address: string;
+}
+
+export interface ProfilePhone {
+  id: number;
+  number: string;
+}
+
+type ProfileAddressMode = "structured" | "raw";
+
+export interface ProfileAddress {
+  id: number;
+  mode: ProfileAddressMode;
+  street?: string;
+  houseNumber?: string;
+  postalCode?: string;
+  city?: string;
+  country?: string;
+  raw?: string;
+}
+
+export interface ProfileNationalId {
+  id: number;
+  value: string;
+}
+
+type ProfilePaymentType = "iban" | "credit_card";
+
+export interface ProfilePayment {
+  id: number;
+  type: ProfilePaymentType;
+  value: string;
+}
+
+export interface UserProfile {
+  country?: string;
+  birthDate?: ProfileBirthDate;
+  names: ProfileName[];
+  emails: ProfileEmail[];
+  phones: ProfilePhone[];
+  addresses: ProfileAddress[];
+  nationalIds: ProfileNationalId[];
+  payments: ProfilePayment[];
+}
+
+// One masked, de-duplicated value — for a single company in the Account Detail
+// panel, or across every company in the Data overview. Raw values never leave
+// the main process; maskedValue is display-safe. lastSeen is used only as the
+// stable tie-breaker after the UI's factual confidence ordering.
+export interface PiiValue {
+  /** Opaque handle for profile confirmation and `Not mine`: a representative
+   *  pii_findings.id, resolved in the main process. Carries no meaning here. */
+  ref: number;
+  type: PiiType;
+  maskedValue: string;
+  lastSeen: number;
+  /** Exact normalized match against a value in the global user profile. */
+  isMatch?: boolean;
+  /** Finding country differs from the locally inferred home country. Display
+   *  ordering only: the finding remains visible and revealable. */
+  isForeignFormat?: boolean;
+  /** Distinct company identities where this exact normalized value occurs. */
+  companyCount: number;
+  /** Existing within-company spread rule matched. Identifiers remain visible;
+   *  this only lowers their display order when confined to one company. */
+  isFrequentAtCompany?: boolean;
+}
+
+// A full value, handed over only when the user reveals the list to review it.
+// Keyed by the same opaque ref the masked row carries. Renderer-side this lives
+// in component state for as long as the toggle is on — never stored, never logged.
+export interface PiiRevealedValue {
+  ref: number;
+  value: string;
+}
+
+/** One company's findings — the Account Detail "Personal data" panel. */
+export interface VendorPiiSummary {
+  values: PiiValue[];
+  suppressedValues: PiiValue[];
+  /** Stored messages from this company that have been through the engine. */
+  scannedMessages: number;
+}
+
+/** The same values aggregated across every company — the Personal Data page. A
+ *  value held by several companies is one row here, not one per company. Both
+ *  sides of the user's `Not mine` correction come from one mailbox-wide scan. */
+export interface PiiOverview {
+  values: PiiValue[];
+  suppressedValues: PiiValue[];
+}
+
+/** One company holding a value, which is what a Personal Data row expands to
+ *  show. `groupKey` opens the company's detail page; no value is carried back.
+ *  `lastSeen` is the company's last contact, so the list answers "are they still
+ *  active?" as well as "who has held this?". */
+export interface PiiValueCompany {
+  groupKey: string;
+  name: string;
+  lastSeen: number;
+}
+
+/** Which end of the contact history the expanded company list starts from. */
+export type PiiCompanyOrder = "recent" | "oldest";
+
 // Query / filter
 
-export interface SearchFilterQuery {
+interface SearchFilterQuery {
   page: number;
   limit: number;
   sortBy?: string;
@@ -158,12 +309,7 @@ export interface VendorQuery extends SearchFilterQuery {
   onBreachList?: boolean;     // vendor whose domain appears in the breach database
   activeSubscriptions?: boolean; // vendors with actionable recent bulk mail (< 2yr, has unsub method, not yet actioned)
   showWhitelisted?: boolean;     // invert whitelist exclusion — show vendors whose senders are all whitelisted
-}
-
-export interface MessageQuery extends SearchFilterQuery {
-  vendorId?: number;
-  type?: MessageType;
-  hasUnsubscribe?: boolean;
+  piiType?: PiiType;             // vendors with at least one visible finding of this type
 }
 
 // Stats / UI
@@ -303,6 +449,10 @@ export interface VendorDetail {
   first_activity?: number;
   user_email?: string;
   activityLog: ActivityEntry[];
+  /** Addresses of the user's this vendor has actually written to, read off the
+   *  message headers. Most recently used first. Usually one; more when the user
+   *  changed address or dealt with several departments. */
+  receivedAddresses: Array<{ address: string; message_count: number; last_seen: number }>;
 }
 
 // Account / settings
@@ -418,6 +568,7 @@ export interface SyncStatus {
   progress: number;
   total: number;
   message: string;
+  analysisPending?: boolean;
   error?: string;
   lastSyncAt?: number;
   phase?: "incremental" | "historical";

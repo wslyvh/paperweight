@@ -31,4 +31,16 @@ export const eng: Lexicon = {
     /\bleave (?:this )?mailing list\b/i,
   ],
   unsubscribeUrl: [/unsubscribe/i, /opt-?out/i],
+  footerCue: [
+    /\byou(?:'re| are)? receiving this\b/i,
+    /\bthis (?:e-?mail|message) was sent to\b/i,
+    /\ball rights reserved\b/i,
+    /\bregistered (?:office|in england)\b/i,
+    /\bcompany (?:number|registration)\b/i,
+    /\bprivacy policy\b/i,
+    /\bterms (?:of use|of service|and conditions)\b/i,
+    /\bvat (?:no|number|registration)\b/i,
+  ],
+  referenceCodeStem: [/order/, /booking/, /invoice/, /reservation/, /transaction/],
+  referenceCodeLabel: [/number/, /code/, /reference/, /no\.?/, /id/],
 };

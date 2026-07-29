@@ -10,6 +10,20 @@ export default defineConfig({
     resolve: {
       alias: {
         "@shared": resolve("src/shared"),
+        "@paperweight/analysis/contracts": resolve("analysis/src/contracts.ts"),
+        "@paperweight/analysis/country": resolve("analysis/src/country.ts"),
+        "@paperweight/analysis/received-address": resolve(
+          "analysis/src/received-address.ts",
+        ),
+        "@paperweight/analysis/profile-values": resolve(
+          "analysis/src/profile-values.ts",
+        ),
+        // The app (CJS) consumes the engine's public index. Its ESM-only deps
+        // (franc, postal-mime) can't be `require`d in a CJS worker, but Rollup
+        // bundles the whole graph inline and converts it to CJS at build time
+        // (verified: no runtime require of franc/postal-mime/libphonenumber/
+        // htmlparser2). So we alias to source and let the bundler flatten it.
+        "@paperweight/analysis": resolve("analysis/src/index.ts"),
       },
     },
     define: {
@@ -36,6 +50,7 @@ export default defineConfig({
     resolve: {
       alias: {
         "@shared": resolve("src/shared"),
+        "@paperweight/analysis/contracts": resolve("analysis/src/contracts.ts"),
       },
     },
     build: {
@@ -47,6 +62,14 @@ export default defineConfig({
       alias: {
         "@": resolve("src/renderer"),
         "@shared": resolve("src/shared"),
+        "@paperweight/analysis/contracts": resolve("analysis/src/contracts.ts"),
+        "@paperweight/analysis/country": resolve("analysis/src/country.ts"),
+        "@paperweight/analysis/received-address": resolve(
+          "analysis/src/received-address.ts",
+        ),
+        "@paperweight/analysis/profile-values": resolve(
+          "analysis/src/profile-values.ts",
+        ),
       },
     },
     plugins: [react()],

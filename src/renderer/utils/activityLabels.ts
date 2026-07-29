@@ -60,11 +60,11 @@ export function gdprRequestLabel(requestType: GdprRequestType): string {
   return requestType === "access" ? "Data access request" : "Data deletion request";
 }
 
-export function gdprRequestSentLabel(requestType: GdprRequestType): string {
+function gdprRequestSentLabel(requestType: GdprRequestType): string {
   return requestType === "access" ? "Data access request sent" : "Data deletion request sent";
 }
 
-export function caseClosedLabel(outcome?: GdprCaseOutcome): string {
+function caseClosedLabel(outcome?: GdprCaseOutcome): string {
   if (!outcome) return "Case closed";
   return `Case closed — ${CASE_OUTCOME_LABELS[outcome]}`;
 }

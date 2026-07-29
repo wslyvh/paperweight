@@ -194,7 +194,7 @@ function insertMessage(
 }
 
 describe("getGdprCaseReplies", () => {
-  it("splits thread matches from other vendor mail and excludes bulk and old messages", () => {
+  it("splits thread matches from other vendor mail and excludes list mail and old messages", () => {
     const vendorId = insertVendor("candidates.com");
     const created = createGdprCase({
       vendorId,
@@ -207,7 +207,8 @@ describe("getGdprCaseReplies", () => {
       headers: { "In-Reply-To": "<req-123@paperweight>", References: "<req-123@paperweight>" },
     });
     insertMessage("m-unrelated", vendorId, daysAgo(7));
-    insertMessage("m-bulk", vendorId, daysAgo(6), { type: "bulk" });
+    insertMessage("m-promo", vendorId, daysAgo(6), { type: "promotion" });
+    insertMessage("m-social", vendorId, daysAgo(6), { type: "social" });
     insertMessage("m-before", vendorId, daysAgo(20));
 
     const { threadMatches, otherReplies } = getGdprCaseReplies(created.id);

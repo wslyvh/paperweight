@@ -15,8 +15,8 @@ if (!file) {
 
 if (file.endsWith(".eml")) {
   const message = await parseEml(new Uint8Array(readFileSync(file)));
-  const output = printRaw ? message : analyzeMessage(message);
+  const output = printRaw ? message : await analyzeMessage(message);
   console.info(JSON.stringify(output, null, 2));
 } else {
-  console.info(JSON.stringify(analyzeText(readFileSync(file, "utf8")), null, 2));
+  console.info(JSON.stringify(await analyzeText(readFileSync(file, "utf8")), null, 2));
 }

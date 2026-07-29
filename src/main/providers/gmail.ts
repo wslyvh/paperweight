@@ -1,6 +1,10 @@
 import type { EmailProvider, EmailMessage, EmailConnection } from "./types";
 import { loadCredentials, saveCredentials } from "../credentials";
-import { buildRfc822Message, cleanHtml, resolveUnsubscribe, runLoopbackAuth } from "./utils";
+import { buildRfc822Message, runLoopbackAuth } from "./utils";
+import { analyzeMessage } from "@paperweight/analysis";
+import type { AnalyzeOptions, RawMessage } from "@paperweight/analysis";
+import { BODY_TEXT_MAX_LENGTH } from "@shared/config";
+import { headerRecord } from "@shared/utils";
 import { syncLog, authLog } from "../utils/log";
 
 // Injected at build time via electron-vite define.
@@ -284,7 +288,10 @@ interface GmailRawMessage {
   };
 }
 
-function parseGmailMessage(msg: GmailRawMessage): EmailMessage {
+async function parseGmailMessage(
+  msg: GmailRawMessage,
+  analysisOptions?: AnalyzeOptions,
+): Promise<EmailMessage> {
   const headers = msg.payload.headers;
   const getHeader = (name: string): string =>
     headers.find((h) => h.name.toLowerCase() === name.toLowerCase())?.value ||
@@ -292,8 +299,6 @@ function parseGmailMessage(msg: GmailRawMessage): EmailMessage {
 
   const fromRaw = getHeader("From");
   const { name: senderName, email: senderEmail } = parseEmailAddress(fromRaw);
-  const listUnsub = getHeader("List-Unsubscribe") || undefined;
-  const listUnsubPost = getHeader("List-Unsubscribe-Post") || undefined;
 
   let bodyText = "";
   let bodyHtml = "";
@@ -309,15 +314,16 @@ function parseGmailMessage(msg: GmailRawMessage): EmailMessage {
     }
   }
 
-  const subject = getHeader("Subject");
-  const rawHeaders = Object.fromEntries(headers.map((h) => [h.name, h.value]));
-  const headersJson = JSON.stringify(rawHeaders);
-
-  const unsub = resolveUnsubscribe(listUnsub, listUnsubPost, bodyHtml, subject);
-  const bodyPreview = (bodyText || cleanHtml(bodyHtml))
-    .replace(/\s+/g, " ")
-    .trim()
-    .substring(0, 150);
+  // Lossless: ordered [name, value] pairs, duplicates preserved. The same pairs
+  // feed the engine, so stored headers and analyzed headers can't diverge.
+  const pairs = headers.map((h): [string, string] => [h.name, h.value]);
+  const raw: RawMessage = { headers: headerRecord(pairs) };
+  if (bodyText) raw.text = bodyText;
+  if (bodyHtml) raw.html = bodyHtml;
+  const analysis = await analyzeMessage(raw, {
+    ...analysisOptions,
+    maxTextLength: BODY_TEXT_MAX_LENGTH,
+  });
 
   const internalDate = parseInt(msg.internalDate, 10);
   const date = !isNaN(internalDate)
@@ -330,21 +336,22 @@ function parseGmailMessage(msg: GmailRawMessage): EmailMessage {
   return {
     id: msg.id,
     date,
-    subject,
+    subject: getHeader("Subject"),
     snippet: msg.snippet,
-    bodyPreview: bodyPreview || msg.snippet?.substring(0, 150) || "",
     senderEmail,
     senderName,
-    unsubscribeUrl: unsub?.url,
-    unsubscribeMethod: unsub?.method ?? "none",
-    headersJson,
+    headersJson: JSON.stringify(pairs),
     sizeBytes: msg.sizeEstimate ?? 0,
+    analysis,
+    bodyTruncated: analysis.textTruncated || undefined,
   };
 }
 
 // --- Provider ---
 
-export function createGmailProvider(): EmailProvider {
+export function createGmailProvider(
+  analysisOptions?: AnalyzeOptions,
+): EmailProvider {
   return {
     type: "gmail",
 
@@ -387,8 +394,7 @@ export function createGmailProvider(): EmailProvider {
       since: Date,
       until?: Date,
       pageToken?: string,
-      onProgress?: (fetched: number, estimatedTotal?: number) => void,
-      headersOnly?: boolean
+      onProgress?: (fetched: number, estimatedTotal?: number) => void
     ): Promise<{ messages: EmailMessage[]; nextPageToken?: string }> {
       const afterEpoch = Math.floor(since.getTime() / 1000);
 
@@ -419,24 +425,11 @@ export function createGmailProvider(): EmailProvider {
 
       for (const msgRef of listResult.messages) {
         try {
-          // headersOnly: metadata format with explicit metadataHeaders — avoids relying
-          // on undocumented default header set. parseGmailMessage handles missing body
-          // by returning empty bodyPreview and falling back to snippet.
-          const params: Record<string, string | string[]> = {
-            format: headersOnly ? "metadata" : "full",
-          };
-          if (headersOnly) {
-            params.metadataHeaders = [
-              "From",
-              "Subject",
-              "Date",
-              "List-Unsubscribe",
-              "List-Unsubscribe-Post",
-            ];
-          }
-          const msg = (await gmailApiFetch(`/messages/${msgRef.id}`, params)) as GmailRawMessage;
+          const msg = (await gmailApiFetch(`/messages/${msgRef.id}`, {
+            format: "full",
+          })) as GmailRawMessage;
 
-          emailMessages.push(parseGmailMessage(msg));
+          emailMessages.push(await parseGmailMessage(msg, analysisOptions));
           onProgress?.(emailMessages.length, estimatedTotal);
         } catch (err) {
           syncLog.error(`Failed to fetch message ${msgRef.id}:`, err instanceof Error ? err.message : String(err));
@@ -454,7 +447,7 @@ export function createGmailProvider(): EmailProvider {
         format: "full",
       })) as GmailRawMessage;
 
-      return parseGmailMessage(msg);
+      return await parseGmailMessage(msg, analysisOptions);
     },
 
     async trashMessage(messageId: string): Promise<void> {

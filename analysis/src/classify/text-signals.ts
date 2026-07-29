@@ -2,14 +2,25 @@
 // Internal plumbing — not part of the public Analysis output; the signals
 // that drive a verdict surface via typeSignals. Lexicons live in
 // data/lexicons/ (one file per language).
-import { PURCHASE_CONFIRMATION, PURCHASE_VOCAB, UPDATE_VOCAB } from "../data/lexicons";
+import {
+  PURCHASE_CONFIRMATION,
+  PURCHASE_VOCAB,
+  REFERENCE_CODE_LABELS,
+  REFERENCE_CODE_STEMS,
+  UPDATE_VOCAB,
+} from "../data/lexicons";
 import type { Signal } from "../types";
 
 // "order/booking/invoice + number/code/reference"-style prefix; the code
 // itself is matched case-sensitively afterwards (uppercase or containing a
-// digit), so prose like "order number is wrong" never yields a code.
-const REFERENCE_PREFIX =
-  /\b(?:order|bestell?|boekings?|booking|buchungs?|reserverings?|reservation|transactie|transaction|factuur|invoice|rechnungs?)[-\s]?(?:number|nummer|code|reference|referentie|no\.?|n[°º]|id)\s*[:#]?\s+/gi;
+// digit), so prose like "order number is wrong" never yields a code. The
+// per-language stems and labels live in the lexicons; this only supplies the
+// separator/structure and the language-agnostic assembly.
+const alt = (fragments: RegExp[]): string => fragments.map((f) => f.source).join("|");
+const REFERENCE_PREFIX = new RegExp(
+  `\\b(?:${alt(REFERENCE_CODE_STEMS)})[-\\s]?(?:${alt(REFERENCE_CODE_LABELS)})\\s*[:#]?\\s+`,
+  "gi",
+);
 
 const AMOUNT = /(?:€|\$|£)\s?\d[\d.,]*|\b\d+[.,]\d{2}\s?euros?\b/i;
 
@@ -26,7 +37,6 @@ export function textTypeSignals(text: string): Signal[] {
     const code = /^([A-Za-z0-9][A-Za-z0-9-]{4,})/.exec(text.slice(prefix.index + prefix[0].length))?.[1];
     if (code && (/\d/.test(code) || code === code.toUpperCase())) {
       signals.push({ id: "text.reference-code", detail: code });
-      break;
     }
   }
 

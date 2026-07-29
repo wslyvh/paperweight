@@ -1,7 +1,18 @@
 import { getDb } from "../db";
 import { caseActivityFilter, mapCaseActivityFields } from "./cases";
-import { RISK_CATEGORIES } from "@shared/languages";
-import { APP_CONFIG } from "@shared/config";
+import { MESSAGE_COLUMNS } from "./messages";
+import {
+  ACCOUNT_TYPES_SQL,
+  actionableListMailSql,
+  LIST_MAIL_TYPES_SQL,
+} from "./messageVocabulary";
+import {
+  getProfileCountry,
+  vendorHasObservedPiiSql,
+  vendorHasNotablePiiSql,
+} from "./pii";
+import { RISK_CATEGORIES } from "@shared/vendor-risk";
+import { PERSONAL_DOMAINS } from "@paperweight/analysis/contracts";
 import { getRootDomain } from "@shared/utils";
 import type {
   Breach,
@@ -31,6 +42,7 @@ function toVendor(raw: Record<string, unknown>): Vendor {
       | "has_rfc8058"
       | "has_mailto_unsub"
       | "has_orders"
+      | "hasNotablePii"
       | "risk_level"
       | "account_email"
     >),
@@ -39,6 +51,7 @@ function toVendor(raw: Record<string, unknown>): Vendor {
     has_rfc8058: !!raw.has_rfc8058,
     has_mailto_unsub: !!raw.has_mailto_unsub,
     has_orders: !!raw.has_orders,
+    hasNotablePii: !!raw.has_notable_pii,
     risk_level: ((raw.computed_risk ?? raw.risk_level) as RiskLevel | undefined),
     account_email: accountEmail,
   };
@@ -58,9 +71,15 @@ interface BreachRow {
 
 function isBreachesAttached(): boolean {
   const d = getDb();
-  return !!(
-    d.prepare("SELECT name FROM pragma_database_list WHERE name = 'breaches'").get()
-  );
+  const attached = d
+    .prepare("SELECT name FROM pragma_database_list WHERE name = 'breaches'")
+    .get();
+  if (!attached) return false;
+  return !!d
+    .prepare(
+      "SELECT 1 FROM breaches.sqlite_master WHERE type = 'table' AND name = 'breaches'",
+    )
+    .get();
 }
 
 function parseBreachInfo(vendor: Vendor, row: BreachRow): BreachInfo {
@@ -102,7 +121,7 @@ const ON_BREACH_LIST_SQL = `EXISTS (
 export const COMPUTED_RISK_CASE = `
   CASE
     WHEN EXISTS (
-      SELECT 1 FROM messages m WHERE m.vendor_id = vendors.id AND m.type = 'order' LIMIT 1
+      SELECT 1 FROM messages m WHERE m.vendor_id = vendors.id AND m.type = 'purchase' LIMIT 1
     ) THEN 'high'
     WHEN category_id IN ('financial','healthcare','government') AND has_account = 1 THEN 'high'
     WHEN category_id IN ('financial','healthcare','government') AND has_account = 0 THEN 'medium'
@@ -115,35 +134,6 @@ export const COMPUTED_RISK_CASE = `
     ELSE 'medium'
   END
 `;
-
-function riskWhereClause(risk: string): string {
-  if (risk === "high") return `(
-    EXISTS (
-      SELECT 1 FROM messages m WHERE m.vendor_id = vendors.id AND m.type = 'order' LIMIT 1
-    )
-    OR (category_id IN ('financial','healthcare','government') AND has_account = 1)
-  )`;
-  if (risk === "medium") return `(
-    NOT EXISTS (SELECT 1 FROM messages m WHERE m.vendor_id = vendors.id AND m.type = 'order' LIMIT 1)
-    AND NOT (category_id IN ('financial','healthcare','government') AND has_account = 1)
-    AND (
-      (category_id IN ('financial','healthcare','government') AND has_account = 0)
-      OR category_id IN ('shopping','communication','services')
-      OR (category_id = 'social' AND has_account = 1)
-      OR (category_id = 'marketing' AND has_account = 1)
-    )
-  )`;
-  if (risk === "low") return `(
-    NOT EXISTS (SELECT 1 FROM messages m WHERE m.vendor_id = vendors.id AND m.type = 'order' LIMIT 1)
-    AND NOT (category_id IN ('financial','healthcare','government') AND has_account = 1)
-    AND (
-      category_id = 'entertainment'
-      OR (category_id = 'social' AND has_account = 0)
-      OR (category_id = 'marketing' AND has_account = 0)
-    )
-  )`;
-  return "1=1";
-}
 
 const ACTIVITY_RANGES: Record<string, [number, number | null]> = {
   recent:    [0, 90],
@@ -163,7 +153,6 @@ const VOLUME_RANGES: Record<string, [number, number | null]> = {
 function findCompanyByDomain(rootDomain: string): {
   slug: string;
   name: string;
-  categories: string | null;
 } | undefined {
   const d = getDb();
   const attached = d
@@ -173,12 +162,12 @@ function findCompanyByDomain(rootDomain: string): {
 
   const row = d
     .prepare(
-      `SELECT slug, name, categories FROM companies.companies
+      `SELECT slug, name FROM companies.companies
        WHERE ',' || COALESCE(domains,'') || ',' LIKE '%,' || ? || ',%'
        LIMIT 1`
     )
     .get(rootDomain) as
-    | { slug: string; name: string; categories: string | null }
+    | { slug: string; name: string }
     | undefined;
 
   return row;
@@ -188,18 +177,6 @@ function inferVendorName(rootDomain: string): string {
   const part = rootDomain.split(".")[0];
   if (!part) return rootDomain;
   return part.charAt(0).toUpperCase() + part.slice(1);
-}
-
-function mapCompanyCategoryToApp(categoriesJson: string | null): string {
-  if (!categoriesJson) return DEFAULT_CATEGORY;
-  try {
-    const cats = JSON.parse(categoriesJson) as string[];
-    const first = cats[0];
-    if (first && typeof first === "string") return first;
-  } catch {
-    /* ignore */
-  }
-  return DEFAULT_CATEGORY;
 }
 
 // Multi-tenant platforms where each subdomain is a distinct publisher or company.
@@ -283,7 +260,7 @@ export function findOrCreateVendor(rootDomain: string): number {
       rootDomain,
       company?.slug ?? null,
       company?.name ?? inferVendorName(rootDomain),
-      company ? mapCompanyCategoryToApp(company.categories) : DEFAULT_CATEGORY,
+      DEFAULT_CATEGORY,
       DEFAULT_RISK,
       now,
       now
@@ -332,7 +309,7 @@ export function updateVendorStats(vendorId: number) {
     .prepare(
       `SELECT sender_name FROM messages
        WHERE vendor_id = ? AND sender_name IS NOT NULL AND sender_name != ''
-       ORDER BY CASE WHEN type = 'bulk' THEN 0 ELSE 1 END, date DESC
+       ORDER BY CASE WHEN type IN (${LIST_MAIL_TYPES_SQL}) THEN 0 ELSE 1 END, date DESC
        LIMIT 1`
     )
     .get(vendorId) as { sender_name: string } | undefined;
@@ -346,11 +323,12 @@ export function updateVendorStats(vendorId: number) {
 
 export function updateVendorFlags(vendorId: number) {
   const d = getDb();
+  const actionableListMail = actionableListMailSql();
   const row = d
     .prepare(
       `SELECT
-        MAX(CASE WHEN type = 'bulk' THEN 1 ELSE 0 END) as has_marketing,
-        MAX(CASE WHEN type IN ('transactional', 'order') THEN 1 ELSE 0 END) as has_account
+        MAX(CASE WHEN ${actionableListMail} THEN 1 ELSE 0 END) as has_marketing,
+        MAX(CASE WHEN type IN (${ACCOUNT_TYPES_SQL}) THEN 1 ELSE 0 END) as has_account
        FROM messages WHERE vendor_id = ?`
     )
     .get(vendorId) as { has_marketing: number; has_account: number };
@@ -362,10 +340,11 @@ export function updateVendorFlags(vendorId: number) {
 
 export function recomputeAllVendorFlags() {
   const d = getDb();
+  const actionableListMail = actionableListMailSql();
   d.prepare(
     `UPDATE vendors SET
-      has_marketing = COALESCE((SELECT MAX(CASE WHEN type = 'bulk' THEN 1 ELSE 0 END) FROM messages WHERE vendor_id = vendors.id), 0),
-      has_account = COALESCE((SELECT MAX(CASE WHEN type IN ('transactional', 'order') THEN 1 ELSE 0 END) FROM messages WHERE vendor_id = vendors.id), 0)
+      has_marketing = COALESCE((SELECT MAX(CASE WHEN ${actionableListMail} THEN 1 ELSE 0 END) FROM messages WHERE vendor_id = vendors.id), 0),
+      has_account = COALESCE((SELECT MAX(CASE WHEN type IN (${ACCOUNT_TYPES_SQL}) THEN 1 ELSE 0 END) FROM messages WHERE vendor_id = vendors.id), 0)
      WHERE id IN (SELECT DISTINCT vendor_id FROM messages)`
   ).run();
 }
@@ -401,7 +380,7 @@ export function matchVendorCompanies() {
 
   let matched = 0;
   for (const v of vendors) {
-    if (APP_CONFIG.PERSONAL_DOMAINS.includes(v.root_domain)) continue;
+    if (PERSONAL_DOMAINS.includes(v.root_domain)) continue;
 
     const domainRow = domainMatchStmt.get(v.root_domain) as { slug: string } | undefined;
     if (domainRow) {
@@ -422,9 +401,8 @@ export function matchVendorCompanies() {
 
 const RISK_PRIORITY: Record<string, number> = { high: 3, medium: 2, low: 1 };
 
-export function categorizeVendors() {
+export function enrichVendorCategories() {
   const d = getDb();
-
   const sourceCatMap = new Map<string, { category: string; risk: string }>();
   for (const [category, info] of Object.entries(RISK_CATEGORIES)) {
     for (const sc of info.sourceCategories) {
@@ -436,103 +414,61 @@ export function categorizeVendors() {
     .prepare("SELECT name FROM pragma_database_list WHERE name = 'companies'")
     .get();
 
-  if (attached) {
-    const companyMatched = d
-      .prepare(
-        `SELECT v.id, c.categories
-         FROM vendors v
-         JOIN companies.companies c ON v.company_slug = c.slug
-         WHERE v.company_slug IS NOT NULL`
-      )
-      .all() as Array<{ id: number; categories: string | null }>;
+  const enrich = d.transaction(() => {
+    // No app-side subject/name keyword classifier. Company catalogue categories
+    // are enrichment; everything else stays honestly unknown until the engine
+    // owns a reusable category signal.
+    const rows = attached
+      ? (d
+          .prepare(
+            `SELECT v.id, c.categories
+             FROM vendors v
+             LEFT JOIN companies.companies c ON v.company_slug = c.slug`,
+          )
+          .all() as Array<{ id: number; categories: string | null }>)
+      : (d
+          .prepare("SELECT id, NULL AS categories FROM vendors")
+          .all() as Array<{ id: number; categories: null }>);
 
     const updateStmt = d.prepare(
-      "UPDATE vendors SET category_id = ?, risk_level = ? WHERE id = ?"
+      `UPDATE vendors
+       SET category_id = @category, risk_level = @risk
+       WHERE id = @id
+         AND (category_id IS NOT @category OR risk_level IS NOT @risk)`,
     );
 
-    for (const { id, categories } of companyMatched) {
-      if (!categories) continue;
-
-      let parsed: string[];
-      try {
-        parsed = JSON.parse(categories);
-      } catch {
-        continue;
-      }
-
-      let bestCategory: string | undefined;
-      let bestRisk = 0;
-
-      for (const compCat of parsed) {
-        const match = sourceCatMap.get(compCat.toLowerCase());
-        if (match && (RISK_PRIORITY[match.risk] ?? 0) > bestRisk) {
-          bestCategory = match.category;
-          bestRisk = RISK_PRIORITY[match.risk] ?? 0;
+    for (const { id, categories } of rows) {
+      let best: { category: string; risk: string } | undefined;
+      if (categories) {
+        try {
+          const parsed = JSON.parse(categories) as unknown;
+          if (Array.isArray(parsed)) {
+            for (const compCat of parsed) {
+              if (typeof compCat !== "string") continue;
+              const match = sourceCatMap.get(compCat.toLowerCase());
+              if (
+                match &&
+                (RISK_PRIORITY[match.risk] ?? 0) >
+                  (best ? RISK_PRIORITY[best.risk] ?? 0 : 0)
+              ) {
+                best = match;
+              }
+            }
+          }
+        } catch {
+          // Malformed catalogue metadata is treated as unknown.
         }
       }
 
-      if (bestCategory) {
-        const riskLabel =
-          Object.entries(RISK_PRIORITY).find(([, v]) => v === bestRisk)?.[0] ??
-          "unknown";
-        updateStmt.run(bestCategory, riskLabel, id);
-      }
+      updateStmt.run({
+        id,
+        category: best?.category ?? DEFAULT_CATEGORY,
+        risk: best?.risk ?? DEFAULT_RISK,
+      });
     }
-  }
+  });
 
-  const keywordEntries: Array<{
-    category: string;
-    risk: string;
-    keywords: string[];
-  }> = [];
-  for (const [category, info] of Object.entries(RISK_CATEGORIES)) {
-    const allKeywords: string[] = [];
-    for (const langKeywords of Object.values(info.keywords)) {
-      allKeywords.push(...langKeywords);
-    }
-    keywordEntries.push({ category, risk: info.risk, keywords: allKeywords });
-  }
-  keywordEntries.sort(
-    (a, b) => (RISK_PRIORITY[b.risk] ?? 0) - (RISK_PRIORITY[a.risk] ?? 0)
-  );
-
-  const unmatched = d
-    .prepare(
-      "SELECT id, name, root_domain FROM vendors WHERE company_slug IS NULL"
-    )
-    .all() as Array<{ id: number; name: string | null; root_domain: string | null }>;
-
-  const subjectsStmt = d.prepare(
-    `SELECT subject FROM messages WHERE vendor_id = ? AND subject IS NOT NULL LIMIT 10`
-  );
-  const updateStmt2 = d.prepare(
-    "UPDATE vendors SET category_id = ?, risk_level = ? WHERE id = ?"
-  );
-
-  for (const v of unmatched) {
-    const subjects = (
-      subjectsStmt.all(v.id) as Array<{ subject: string }>
-    )
-      .map((r) => r.subject)
-      .join(" ");
-    const haystack = `${v.name ?? ""} ${v.root_domain ?? ""} ${subjects}`.toLowerCase();
-
-    let found = false;
-    for (const entry of keywordEntries) {
-      for (const kw of entry.keywords) {
-        if (haystack.includes(kw.toLowerCase())) {
-          updateStmt2.run(entry.category, entry.risk, v.id);
-          found = true;
-          break;
-        }
-      }
-      if (found) break;
-    }
-
-    if (!found) {
-      updateStmt2.run(DEFAULT_CATEGORY, DEFAULT_RISK, v.id);
-    }
-  }
+  enrich();
 }
 
 const VENDOR_SORT_COLUMNS = [
@@ -543,28 +479,35 @@ const VENDOR_SORT_COLUMNS = [
   "risk",
 ];
 
-// For risk sort: a single searched CASE returning a priority integer (1=high, 2=medium, 3=low).
-// Mirrors COMPUTED_RISK_CASE logic directly — avoids nesting one CASE inside another.
+// Filtering, display and sorting all derive from COMPUTED_RISK_CASE.
 const RISK_SORT_EXPR = `
-  CASE
-    WHEN EXISTS (
-      SELECT 1 FROM messages m WHERE m.vendor_id = vendors.id AND m.type = 'order' LIMIT 1
-    ) THEN 1
-    WHEN category_id IN ('financial','healthcare','government') AND has_account = 1 THEN 1
-    WHEN category_id IN ('financial','healthcare','government') THEN 2
-    WHEN category_id IN ('shopping','communication','services') THEN 2
-    WHEN category_id = 'social' AND has_account = 1 THEN 2
-    WHEN category_id = 'marketing' AND has_account = 1 THEN 2
-    WHEN category_id = 'social' THEN 3
-    WHEN category_id = 'marketing' THEN 3
-    WHEN category_id = 'entertainment' THEN 3
-    ELSE 2
+  CASE (${COMPUTED_RISK_CASE})
+    WHEN 'high' THEN 1
+    WHEN 'medium' THEN 2
+    WHEN 'low' THEN 3
   END`;
 
 export function queryVendors(
   query: VendorQuery
 ): { vendors: Vendor[]; total: number } {
   const d = getDb();
+  const breachDataReady = isBreachesAttached();
+  // Only Accounts admits companies on observed findings. The predicate is a
+  // per-vendor grouped scan with a cross-company subquery inside it, expensive
+  // enough that no other view should pay for it.
+  const isAccountsView = query.filter === "accounts";
+  // Read once and shared: both the Accounts admission gate and the notable
+  // findings column below use the profile's stored current location.
+  const homeCountry = isAccountsView ? getProfileCountry() : undefined;
+  const observedFindings = isAccountsView
+    ? vendorHasObservedPiiSql({
+        nonEmailOnly: true,
+        primaryOnly: true,
+        homeCountry,
+      })
+    : undefined;
+  // The Accounts list shows a tags icon when a company holds High/Possible data.
+  const notablePii = isAccountsView ? vendorHasNotablePiiSql(homeCountry) : undefined;
 
   const {
     page,
@@ -584,8 +527,9 @@ export function queryVendors(
     conditions.push("category_id = ?");
     params.push(category);
   }
-  if (risk) {
-    conditions.push(riskWhereClause(risk));
+  if (risk && ["high", "medium", "low"].includes(risk)) {
+    conditions.push(`(${COMPUTED_RISK_CASE}) = ?`);
+    params.push(risk);
   }
   if (showReviewed) {
     conditions.push("status = 'reviewed'");
@@ -597,15 +541,22 @@ export function queryVendors(
     conditions.push("(name LIKE ? OR root_domain LIKE ?)");
     params.push(term, term);
   }
-  if (query.hasAccount || query.filter === "accounts") {
-    conditions.push(`(has_account = 1 OR ${ON_BREACH_LIST_SQL})`);
+  if (query.hasAccount) {
+    conditions.push("has_account = 1");
+  }
+  if (observedFindings) {
+    const breachCondition = breachDataReady ? ON_BREACH_LIST_SQL : "0";
+    conditions.push(
+      `(has_account = 1 OR ${breachCondition} OR ${observedFindings.sql})`,
+    );
+    params.push(...observedFindings.params);
   }
   if (query.filter === "lists") {
     conditions.push("has_marketing = 1");
     conditions.push(`EXISTS (
       SELECT 1 FROM messages m_active
       WHERE m_active.vendor_id = vendors.id
-        AND m_active.type = 'bulk'
+        AND ${actionableListMailSql("m_active")}
         AND (m_active.status IS NULL OR m_active.status != 'unsubscribed')
     )`);
   }
@@ -624,7 +575,7 @@ export function queryVendors(
   }
   if (query.dataType) {
     if (query.dataType === "has_orders") {
-      conditions.push(`EXISTS (SELECT 1 FROM messages m WHERE m.vendor_id = vendors.id AND m.type = 'order' LIMIT 1)`);
+      conditions.push(`EXISTS (SELECT 1 FROM messages m WHERE m.vendor_id = vendors.id AND m.type = 'purchase' LIMIT 1)`);
     } else if (query.dataType === "has_account") {
       conditions.push(`has_account = 1`);
     } else if (query.dataType === "marketing_only") {
@@ -648,18 +599,24 @@ export function queryVendors(
     conditions.push(`message_count <= ?`);
     params.push(query.maxMessages);
   }
-  if (query.onBreachList && isBreachesAttached()) {
+  if (query.onBreachList && breachDataReady) {
     conditions.push(ON_BREACH_LIST_SQL);
+  }
+  // Uses the same hard visibility and spread predicates as the detail summary.
+  // Demoted locale values remain filterable: filtering asks what was observed,
+  // not whether that observation promoted a company into Accounts.
+  if (query.piiType) {
+    const observedType = vendorHasObservedPiiSql({ type: query.piiType });
+    conditions.push(observedType.sql);
+    params.push(...observedType.params);
   }
   if (query.activeSubscriptions) {
     conditions.push(`EXISTS (
       SELECT 1 FROM messages m
       WHERE m.vendor_id = vendors.id
-        AND m.type = 'bulk'
+        AND ${actionableListMailSql("m")}
         AND m.date > (CAST(strftime('%s','now') AS INTEGER) * 1000 - 63115200000)
         AND (m.status IS NULL OR m.status != 'unsubscribed')
-        AND m.unsubscribe_method IS NOT NULL
-        AND m.unsubscribe_method != 'none'
         AND NOT EXISTS (
           SELECT 1 FROM action_log al
           WHERE al.vendor_id = m.vendor_id AND al.action_type = 'unsubscribed'
@@ -676,26 +633,29 @@ export function queryVendors(
   }
 
   // Exclude vendors on personal/webmail domains (always 1:1 contacts, never vendors)
-  if (APP_CONFIG.PERSONAL_DOMAINS.length > 0) {
-    const placeholders = APP_CONFIG.PERSONAL_DOMAINS.map(() => "?").join(",");
+  if (PERSONAL_DOMAINS.length > 0) {
+    const placeholders = PERSONAL_DOMAINS.map(() => "?").join(",");
     conditions.push(`(root_domain IS NULL OR root_domain NOT IN (${placeholders}))`);
-    params.push(...APP_CONFIG.PERSONAL_DOMAINS);
+    params.push(...PERSONAL_DOMAINS);
   }
 
   // Vendors the user has explicitly acted on (reviewed or unsubscribed/trashed) are always
   // retained regardless of message state, since deleting emails shouldn't erase the record.
   // Breached vendors are also always retained — domain-level breach risk is independent of
   // how the emails were classified (e.g. a personal-looking welcome email from a breached service).
-  const breachBypass = query.onBreachList && isBreachesAttached() ? ` OR ${ON_BREACH_LIST_SQL}` : "";
+  const breachBypass = query.onBreachList && breachDataReady ? ` OR ${ON_BREACH_LIST_SQL}` : "";
   const actioned = `(status = 'reviewed' OR EXISTS (SELECT 1 FROM action_log al WHERE al.vendor_id = vendors.id LIMIT 1)${breachBypass})`;
 
-  // Exclude vendors where every message is personal (1:1 contacts with custom domains)
-  conditions.push(`(EXISTS (
-    SELECT 1 FROM messages m
-    WHERE m.vendor_id = vendors.id
-    AND (m.type IS NULL OR m.type != 'personal')
-    LIMIT 1
-  ) OR ${actioned})`);
+  // Accounts already has an explicit evidence gate. In every other view,
+  // continue excluding 1:1 contacts on custom domains.
+  if (query.filter !== "accounts") {
+    conditions.push(`(EXISTS (
+      SELECT 1 FROM messages m
+      WHERE m.vendor_id = vendors.id
+      AND (m.type IS NULL OR m.type != 'personal')
+      LIMIT 1
+    ) OR ${actioned})`);
+  }
 
   if (query.showWhitelisted) {
     conditions.push(`(NOT EXISTS (
@@ -755,18 +715,18 @@ export function queryVendors(
           LIMIT 1
         ), 0) AS has_mailto_unsub,
         COALESCE((
-          SELECT 1 FROM messages m WHERE m.vendor_id = vendors.id AND m.type = 'order' LIMIT 1
+          SELECT 1 FROM messages m WHERE m.vendor_id = vendors.id AND m.type = 'purchase' LIMIT 1
         ), 0) AS has_orders,
+        ${notablePii ? `(${notablePii.sql})` : "0"} AS has_notable_pii,
         ${COMPUTED_RISK_CASE} AS computed_risk
        FROM vendors WHERE ${whereClause} ORDER BY ${orderExpr} ${dir}${col === "risk" ? ", message_count DESC" : ""} LIMIT ? OFFSET ?`
     )
-    .all(...params, limit, offset) as Record<string, unknown>[])
+    .all(...(notablePii?.params ?? []), ...params, limit, offset) as Record<string, unknown>[])
     .map(toVendor);
 
   // Enrich with breach data if breaches.db is attached.
   // Match exact domain OR subdomain of a breached root (e.g. kvibes.substack.com → substack.com).
-  const breachesReady = isBreachesAttached();
-  const breachStmt = breachesReady
+  const breachStmt = breachDataReady
     ? d.prepare(
         `SELECT name, title, domain, breach_date, pwn_count, description, data_classes, is_verified, is_sensitive
          FROM breaches.breaches
@@ -807,35 +767,6 @@ export function updateVendor(
   d.prepare(`UPDATE vendors SET ${sets.join(", ")} WHERE id = ?`).run(...params);
 }
 
-export function getVendorById(id: number): Vendor | undefined {
-  const d = getDb();
-  const raw = d.prepare("SELECT * FROM vendors WHERE id = ?").get(id) as
-    | Record<string, unknown>
-    | undefined;
-  return raw ? toVendor(raw) : undefined;
-}
-
-export function getVendorByDomain(domain: string): Vendor | undefined {
-  const d = getDb();
-  const raw = d
-    .prepare("SELECT * FROM vendors WHERE root_domain = ?")
-    .get(domain) as Record<string, unknown> | undefined;
-  return raw ? toVendor(raw) : undefined;
-}
-
-export function getVendorByEmail(email: string): Vendor | undefined {
-  const d = getDb();
-  const raw = d
-    .prepare(
-      `SELECT v.* FROM vendors v
-       JOIN messages m ON m.vendor_id = v.id
-       WHERE m.sender_email = ?
-       LIMIT 1`
-    )
-    .get(email) as Record<string, unknown> | undefined;
-  return raw ? toVendor(raw) : undefined;
-}
-
 export function deleteVendor(id: number): void {
   const d = getDb();
   d.prepare("DELETE FROM vendors WHERE id = ?").run(id);
@@ -848,7 +779,7 @@ export function getVendorDetail(groupKey: string): VendorDetail {
     .prepare(
       `SELECT *,
         COALESCE((
-          SELECT 1 FROM messages m WHERE m.vendor_id = vendors.id AND m.type = 'order' LIMIT 1
+          SELECT 1 FROM messages m WHERE m.vendor_id = vendors.id AND m.type = 'purchase' LIMIT 1
         ), 0) AS has_orders,
         ${COMPUTED_RISK_CASE} AS computed_risk
        FROM vendors WHERE company_slug = ? OR root_domain = ?`
@@ -867,23 +798,35 @@ export function getVendorDetail(groupKey: string): VendorDetail {
 
   const bulkMessages = d
     .prepare(
-      `SELECT * FROM messages WHERE vendor_id = ? AND type = 'bulk' ORDER BY date DESC LIMIT 50`
+      `SELECT ${MESSAGE_COLUMNS} FROM messages WHERE vendor_id = ? AND type IN (${LIST_MAIL_TYPES_SQL}) ORDER BY date DESC LIMIT 50`
     )
     .all(vendor.id) as Message[];
 
   const { bulkMessageCount } = d
-    .prepare(`SELECT COUNT(*) as bulkMessageCount FROM messages WHERE vendor_id = ? AND type = 'bulk'`)
+    .prepare(`SELECT COUNT(*) as bulkMessageCount FROM messages WHERE vendor_id = ? AND type IN (${LIST_MAIL_TYPES_SQL})`)
     .get(vendor.id) as { bulkMessageCount: number };
 
   const accountMessages = d
     .prepare(
-      `SELECT * FROM messages WHERE vendor_id = ? AND type IN ('transactional', 'order') ORDER BY date DESC LIMIT 50`
+      `SELECT ${MESSAGE_COLUMNS} FROM messages WHERE vendor_id = ? AND type IN (${ACCOUNT_TYPES_SQL}) ORDER BY date DESC LIMIT 50`
     )
     .all(vendor.id) as Message[];
 
   const allMessages = d
-    .prepare(`SELECT * FROM messages WHERE vendor_id = ? ORDER BY date DESC LIMIT 20`)
+    .prepare(`SELECT ${MESSAGE_COLUMNS} FROM messages WHERE vendor_id = ? ORDER BY date DESC LIMIT 20`)
     .all(vendor.id) as Message[];
+
+  // Which of the user's addresses this vendor writes to. Most recent first:
+  // when a vendor has more than one, the latest is the one they hold now.
+  const receivedAddresses = d
+    .prepare(
+      `SELECT received_address AS address, COUNT(*) AS message_count, MAX(date) AS last_seen
+       FROM messages
+       WHERE vendor_id = ? AND received_address IS NOT NULL
+       GROUP BY received_address
+       ORDER BY last_seen DESC`,
+    )
+    .all(vendor.id) as VendorDetail["receivedAddresses"];
 
   let company: Company | undefined;
   if (vendor.company_slug) {
@@ -962,5 +905,5 @@ export function getVendorDetail(groupKey: string): VendorDetail {
     ...mapCaseActivityFields(r),
   }));
 
-  return { vendor: enrichedVendor, company, senders, bulkMessages, bulkMessageCount, accountMessages, allMessages, activityLog };
+  return { vendor: enrichedVendor, company, senders, bulkMessages, bulkMessageCount, accountMessages, allMessages, activityLog, receivedAddresses };
 }

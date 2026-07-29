@@ -6,11 +6,17 @@
 // here (e.g. ./migrations for migrateActionLog) must itself keep its top-level
 // graph light for the same reason.
 import Database from "better-sqlite3";
-import { join, basename } from "path";
+import { join, basename, dirname } from "path";
 import { existsSync, unlinkSync } from "fs";
 import { dbLog } from "./utils/log";
 import { emailToFileKey } from "./credentials";
-import { migrateActionLog, migrateGdprCases, migrateVendors } from "./migrations";
+import { attachGlobalDb, configureGlobalDbPath } from "./globalDb";
+import {
+  migrateActionLog,
+  migrateGdprCases,
+  migrateMessages,
+  migrateVendors,
+} from "./migrations";
 
 let db: Database.Database | undefined;
 
@@ -25,8 +31,16 @@ export function initDb(dbPath: string, companiesDbPath: string, breachesDbPath: 
   _companiesDbPath = companiesDbPath;
   _breachesDbPath = breachesDbPath;
   _enforcementDbPath = enforcementDbPath;
+  configureGlobalForAccountDb(dbPath);
 }
 
+function configureGlobalForAccountDb(accountDbPath: string): void {
+  configureGlobalDbPath(
+    accountDbPath === ":memory:"
+      ? ":memory:"
+      : join(dirname(accountDbPath), "global.db"),
+  );
+}
 function getDbPath(): string {
   if (_dbPath) return _dbPath;
   throw new Error("Database not initialized: initDb() must be called before accessing the database");
@@ -66,18 +80,25 @@ function getEnforcementDbPath(): string {
 }
 
 export function getDb(): Database.Database {
-  if (!db) {
-    const dbPath = getDbPath();
-    db = new Database(dbPath);
-    db.pragma("journal_mode = WAL");
-    db.pragma("foreign_keys = ON");
-    initSchema(db);
-    attachCompaniesDb(db);
-    attachBreachesDb(db);
-    attachEnforcementDb(db);
+  if (db) return db;
+  const dbPath = getDbPath();
+  const next = new Database(dbPath);
+  try {
+    next.pragma("journal_mode = WAL");
+    next.pragma("foreign_keys = ON");
+    next.pragma("busy_timeout = 5000");
+    initSchema(next);
+    attachCompaniesDb(next);
+    attachBreachesDb(next);
+    attachEnforcementDb(next);
+    attachGlobalDb(next);
     const tag = basename(dbPath, ".db").split("_").pop() ?? "?";
     dbLog.info(`Database initialized [${tag}]`);
+  } catch (error) {
+    next.close();
+    throw error;
   }
+  db = next;
   return db;
 }
 
@@ -87,6 +108,7 @@ export function reconnectDb(newDbPath: string): void {
     db = undefined;
   }
   _dbPath = newDbPath;
+  configureGlobalForAccountDb(newDbPath);
   getDb();
 }
 
@@ -145,6 +167,10 @@ function initSchema(d: Database.Database) {
       unsubscribe_method TEXT,
       status TEXT,
       size_bytes INTEGER NOT NULL DEFAULT 0,
+      body_text TEXT,
+      body_state TEXT NOT NULL DEFAULT 'missing',
+      analysis_version TEXT,
+      received_address TEXT,
       FOREIGN KEY (vendor_id) REFERENCES vendors(id) ON DELETE CASCADE
     );
 
@@ -211,11 +237,32 @@ function initSchema(d: Database.Database) {
       value TEXT NOT NULL UNIQUE,
       created_at TEXT NOT NULL DEFAULT (datetime('now'))
     );
+
+    -- Only what a query reads. The raw value, its offsets and the detector's
+    -- confidence stay in the engine's in-memory Finding; the analyzing engine
+    -- version is stamped once per message on messages.analysis_version, which
+    -- is what the catch-up pass compares against.
+    CREATE TABLE IF NOT EXISTS pii_findings (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      message_id TEXT NOT NULL,
+      type TEXT NOT NULL,
+      value_normalized TEXT NOT NULL,
+      country TEXT,
+      in_quoted_text INTEGER NOT NULL DEFAULT 0,
+      in_footer INTEGER NOT NULL DEFAULT 0,
+      self_reference INTEGER NOT NULL DEFAULT 0,
+      FOREIGN KEY (message_id) REFERENCES messages(id) ON DELETE CASCADE
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_pii_findings_message ON pii_findings(message_id);
+    CREATE INDEX IF NOT EXISTS idx_pii_findings_type_value ON pii_findings(type, value_normalized);
+
   `);
 
   migrateActionLog(d);
   migrateVendors(d);
   migrateGdprCases(d);
+  migrateMessages(d);
 
   d.prepare("INSERT OR IGNORE INTO sync_state (id) VALUES (1)").run();
 }
@@ -247,19 +294,23 @@ function attachEnforcementDb(d: Database.Database) {
   d.exec(`ATTACH DATABASE '${enforcementPath}' AS enforcement`);
 }
 
+function deleteSqliteFiles(dbPath: string): void {
+  let failed = false;
+  for (const path of [dbPath, `${dbPath}-wal`, `${dbPath}-shm`]) {
+    try {
+      if (existsSync(path)) unlinkSync(path);
+    } catch {
+      failed = true;
+    }
+  }
+  if (failed) throw new Error("Could not delete local database files");
+}
+
 export function deleteDbFiles(email: string): void {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { app } = require("electron") as typeof import("electron");
   const dbPath = join(app.getPath("userData"), `${emailToFileKey(email)}.db`);
-  try {
-    if (existsSync(dbPath)) unlinkSync(dbPath);
-    for (const suffix of ["-wal", "-shm"]) {
-      const p = dbPath + suffix;
-      if (existsSync(p)) unlinkSync(p);
-    }
-  } catch {
-    // Non-fatal
-  }
+  deleteSqliteFiles(dbPath);
 }
 
 export function wipeDatabase(): void {
@@ -267,14 +318,5 @@ export function wipeDatabase(): void {
     db.close();
     db = undefined;
   }
-  const dbPath = getDbPath();
-  if (existsSync(dbPath)) {
-    unlinkSync(dbPath);
-  }
-  for (const suffix of ["-wal", "-shm"]) {
-    const p = dbPath + suffix;
-    if (existsSync(p)) {
-      unlinkSync(p);
-    }
-  }
+  deleteSqliteFiles(getDbPath());
 }

@@ -3,6 +3,7 @@ import { IPC } from "@shared/ipc";
 import { isString, isIntInRange } from "@shared/validation";
 import { getAccountInfo } from "../services/account";
 import { queryVendors, updateVendor, getVendorDetail, deleteVendor } from "../services/vendors";
+import { isPiiType } from "@shared/types";
 import type { VendorQuery } from "@shared/types";
 
 export function registerVendorHandlers(): void {
@@ -45,6 +46,7 @@ export function registerVendorHandlers(): void {
       onBreachList: typeof q.onBreachList === "boolean" ? q.onBreachList : undefined,
       activeSubscriptions: typeof q.activeSubscriptions === "boolean" ? q.activeSubscriptions : undefined,
       showWhitelisted: typeof q.showWhitelisted === "boolean" ? q.showWhitelisted : undefined,
+      piiType: isPiiType(q.piiType) ? q.piiType : undefined,
     });
     return { vendors: result.vendors, total: result.total };
   });

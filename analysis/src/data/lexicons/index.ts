@@ -24,3 +24,6 @@ export const PURCHASE_VOCAB = merge("purchaseVocab");
 export const UPDATE_VOCAB = merge("updateVocab");
 export const UNSUBSCRIBE_LINK_TEXT = merge("unsubscribeLinkText");
 export const UNSUBSCRIBE_URL = merge("unsubscribeUrl");
+export const FOOTER_CUE = merge("footerCue");
+export const REFERENCE_CODE_STEMS = merge("referenceCodeStem");
+export const REFERENCE_CODE_LABELS = merge("referenceCodeLabel");

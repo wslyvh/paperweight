@@ -4,7 +4,8 @@
     "electron.vite.config.ts",
     "src/main/**/*",
     "src/shared/**/*",
-    "src/preload/**/*"
+    "src/preload/**/*",
+    "analysis/src/**/*"
   ],
   "exclude": [
     "src/**/*.test.ts"
@@ -14,7 +15,12 @@
     "outDir": "./out",
     "baseUrl": ".",
     "paths": {
-      "@shared/*": ["src/shared/*"]
+      "@shared/*": ["src/shared/*"],
+      "@paperweight/analysis": ["analysis/src/index"],
+      "@paperweight/analysis/contracts": ["analysis/src/contracts"],
+      "@paperweight/analysis/country": ["analysis/src/country"],
+      "@paperweight/analysis/received-address": ["analysis/src/received-address"],
+      "@paperweight/analysis/profile-values": ["analysis/src/profile-values"]
     },
     "types": ["node"],
     "strict": true,

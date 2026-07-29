@@ -9,7 +9,7 @@ describe.skipIf(cases.length === 0)("fixtures", () => {
     it(fixture.name, async () => {
       const message =
         fixture.input.kind === "eml" ? await parseEml(fixture.input.raw) : fixture.input.message;
-      const analysis = analyzeMessage(message, fixture.options);
+      const analysis = await analyzeMessage(message, fixture.options);
       expect(analysisMismatches(analysis, fixture.expected)).toEqual([]);
     });
   }

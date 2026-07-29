@@ -1,67 +1,55 @@
-export function hasBulkHeaders(headersJson: string): boolean {
+// Parse the stored header JSON, tolerating both shapes we've written over time:
+// the current lossless ordered [name, value][] array (duplicates preserved) and
+// the legacy { name: value } object (rows synced before losslessization). A row
+// only converts to the array shape when a body-bearing fetch re-visits it, and
+// free-tier accounts never re-fetch their older mail — so the legacy shape is
+// permanent and every reader must accept both.
+export function parseHeaderPairs(
+  headersJson: string | null | undefined,
+): Array<[string, string]> {
+  if (!headersJson) return [];
   try {
-    const headers = JSON.parse(headersJson) as Record<string, string>;
-    const lower: Record<string, string> = {};
-    for (const [k, v] of Object.entries(headers)) {
-      if (typeof v === "string") lower[k.toLowerCase()] = v;
+    const parsed = JSON.parse(headersJson) as unknown;
+    if (Array.isArray(parsed)) {
+      const pairs: Array<[string, string]> = [];
+      for (const entry of parsed) {
+        if (
+          Array.isArray(entry) &&
+          typeof entry[0] === "string" &&
+          typeof entry[1] === "string"
+        ) {
+          pairs.push([entry[0], entry[1]]);
+        }
+      }
+      return pairs;
     }
-
-    // RFC 3834: auto-submitted auto-replies (out-of-office, vacation responders)
-    // are never bulk marketing — bail immediately before any other check.
-    const autoSubmitted = (lower["auto-submitted"] || lower["x-auto-submitted"] || "").toLowerCase();
-    if (autoSubmitted.startsWith("auto-")) return false;
-
-    if (lower["list-unsubscribe"]) return true;
-    if (lower["list-unsubscribe-post"]) return true;
-    if (lower["list-id"]) return true;
-
-    const precedence = (lower["precedence"] || "").toLowerCase();
-    if (
-      precedence === "bulk" ||
-      precedence === "list" ||
-      precedence === "auto" ||
-      precedence === "junk"
-    )
-      return true;
-
-    // ESP-specific headers — present on bulk sends even without List-Unsubscribe.
-    // Klaviyo, SendGrid, Mailchimp etc. inject these on every campaign message.
-    const espHeaders = [
-      "x-mailer-recptid",       // Klaviyo
-      "x-klavio-id",            // Klaviyo (typo variant seen in the wild)
-      "x-klaviyo",              // Klaviyo
-      "x-sg-id",                // SendGrid
-      "x-sg-eid",               // SendGrid
-      "x-smtpapi",              // SendGrid legacy
-      "x-mailchimp-id",         // Mailchimp
-      "x-mc-user",              // Mailchimp
-      "x-campaign-id",          // Generic ESP campaign header
-      "x-mailgun-tag",          // Mailgun
-      "x-brevo-id",             // Brevo (formerly Sendinblue)
-      "x-sib-id",               // Brevo
-      "x-amazon-ses",           // Amazon SES
-      "x-ses-message-id",       // Amazon SES
-      "x-iterable-id",          // Iterable
-      "x-iterable",             // Iterable
-      "x-hubspot-msgid",        // HubSpot
-      "x-pardot-id",            // Pardot/Salesforce
-      "x-marketo-id",           // Marketo
-      "x-eloqua-id",            // Eloqua
-      "x-cm-mmlid",             // Campaign Monitor
-      "x-drip",                 // Drip
-      "x-customer-io-id",       // Customer.io
-      "x-postmark-msgid",       // Postmark (transactional, but indicates automated send)
-    ];
-    if (espHeaders.some((h) => lower[h] !== undefined)) return true;
-
-    return false;
+    if (parsed && typeof parsed === "object") {
+      return Object.entries(parsed as Record<string, unknown>).filter(
+        (e): e is [string, string] => typeof e[1] === "string",
+      );
+    }
+    return [];
   } catch {
-    return false;
+    return [];
   }
 }
 
-export function matchesAny(text: string, patterns: RegExp[]): boolean {
-  return patterns.some((p) => p.test(text));
+// Ordered [name, value] pairs -> the engine's RawMessage.headers shape. Repeats
+// of one header collapse into an array so nothing is lost (the engine reads all
+// List-Unsubscribe and DKIM-Signature values, not just the first). Both callers
+// start from pairs: providers hold them at parse time, and stored rows get them
+// back from parseHeaderPairs.
+export function headerRecord(
+  pairs: Array<[string, string]>,
+): Record<string, string | string[]> {
+  const headers: Record<string, string | string[]> = {};
+  for (const [name, value] of pairs) {
+    const existing = headers[name];
+    if (existing === undefined) headers[name] = value;
+    else if (Array.isArray(existing)) existing.push(value);
+    else headers[name] = [existing, value];
+  }
+  return headers;
 }
 
 const COMPOUND_TLDS = new Set([

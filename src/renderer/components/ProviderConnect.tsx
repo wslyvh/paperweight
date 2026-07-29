@@ -9,8 +9,6 @@ import {
   ProtonLogo,
 } from "@shared/provider-logos";
 
-export { AppleLogo, GoogleLogo, MicrosoftLogo, ProtonLogo } from "@shared/provider-logos";
-
 // ── Provider Select ──────────────────────────────────────────────────────────
 
 // Provider button paired with a copy-link icon. The main button starts auth and

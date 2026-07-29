@@ -17,9 +17,9 @@ unverified starter sets.
 each other language — not word-for-word, but the equivalent native phrasing a
 real sender would use — and hold them to the same precision rules below.
 Until then, expect weaker recall (and review single-word entries critically)
-in those languages. The reference-code prefixes in
-`src/classify/text-signals.ts` (`order|bestel|buchungs|…`) should be extended
-in the same pass.
+in those languages. Reference-code stems/labels (`referenceCodeStem`,
+`referenceCodeLabel`) are part of the same pass — extend them per language
+here; `classify/text-signals.ts` only assembles the merged fragments.
 
 ## Adding a language
 
@@ -51,4 +51,4 @@ in the same pass.
   no `/i` flag needed (except `unsubscribeLinkText`/`unsubscribeUrl`, which
   run against original link text and hrefs).
 - Every new pattern needs a test or fixture that exercises it. False
-  positives found later become regression fixtures — see ENGINE_DESIGN.md §8.
+  positives found later become regression fixtures.

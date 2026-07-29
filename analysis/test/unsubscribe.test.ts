@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { resolveUnsubscribe } from "../src/classify/unsubscribe";
+import {
+  resolveFooterLink,
+  resolveUnsubscribe,
+} from "../src/classify/unsubscribe";
 import type { ExtractedBody } from "../src/extract/body";
 import type { HeaderFacts } from "../src/extract/headers";
 
@@ -33,6 +36,65 @@ describe("resolveUnsubscribe", () => {
       body(),
     );
     expect(result).toEqual({ method: "list-unsubscribe", target: "https://x.example/u" });
+  });
+
+  it("does not POST an insecure one-click target", () => {
+    const result = resolveUnsubscribe(
+      header({
+        listUnsubscribe: { urls: ["http://x.example/u"], mailtos: [] },
+        listUnsubscribePost: true,
+      }),
+      body(),
+    );
+    expect(result).toEqual({
+      method: "list-unsubscribe",
+      target: "http://x.example/u",
+    });
+  });
+
+  it("prefers https even when an http target appears first", () => {
+    const result = resolveUnsubscribe(
+      header({
+        listUnsubscribe: {
+          urls: ["http://x.example/u", "https://x.example/u"],
+          mailtos: [],
+        },
+      }),
+      body(),
+    );
+    expect(result).toEqual({
+      method: "list-unsubscribe",
+      target: "https://x.example/u",
+    });
+  });
+
+  it("retains the body footer link when a header action wins", () => {
+    const extracted = body({
+      links: [
+        {
+          href: "https://x.example/body-unsubscribe",
+          text: "Unsubscribe",
+          start: 42,
+          end: 53,
+        },
+      ],
+    });
+    const headers = header({
+      listUnsubscribe: {
+        urls: ["https://x.example/header-unsubscribe"],
+        mailtos: [],
+      },
+    });
+
+    expect(resolveUnsubscribe(headers, extracted)).toEqual({
+      method: "list-unsubscribe",
+      target: "https://x.example/header-unsubscribe",
+    });
+    expect(resolveFooterLink(extracted)).toEqual({
+      method: "footer",
+      target: "https://x.example/body-unsubscribe",
+      anchorStart: 42,
+    });
   });
 
   it("uses the mailto when the header has no url", () => {

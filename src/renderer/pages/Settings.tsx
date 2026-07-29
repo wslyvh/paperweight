@@ -45,6 +45,8 @@ export default function Settings(): JSX.Element {
   const [licenseLoading, setLicenseLoading] = useState(false);
   const [licenseError, setLicenseError] = useState("");
   const [showWipeModal, setShowWipeModal] = useState(false);
+  const [wipeInProgress, setWipeInProgress] = useState(false);
+  const [deletionError, setDeletionError] = useState("");
   const [whitelistEntries, setWhitelistEntries] = useState<WhitelistEntry[]>(
     [],
   );
@@ -133,8 +135,18 @@ export default function Settings(): JSX.Element {
   };
 
   const handleWipe = async (): Promise<void> => {
-    await window.api.wipeData();
-    setShowWipeModal(false);
+    setWipeInProgress(true);
+    setDeletionError("");
+    try {
+      await window.api.wipeData();
+      setShowWipeModal(false);
+    } catch {
+      setDeletionError(
+        "Paperweight could not delete all local data. Close other programs using these files and try again.",
+      );
+    } finally {
+      setWipeInProgress(false);
+    }
   };
 
   const handleSwitchAccount = async (email: string): Promise<void> => {
@@ -317,7 +329,10 @@ export default function Settings(): JSX.Element {
                   <button
                     className="btn btn-ghost btn-xs text-error"
                     disabled={actionBusy}
-                    onClick={() => setRemoveAccountEmail(acc.email)}
+                    onClick={() => {
+                      setDeletionError("");
+                      setRemoveAccountEmail(acc.email);
+                    }}
                   >
                     Remove
                   </button>
@@ -339,6 +354,13 @@ export default function Settings(): JSX.Element {
                 *requires a license
               </span>
             )}
+            <button
+              type="button"
+              className="btn btn-link btn-sm px-0"
+              onClick={() => navigate("/profile")}
+            >
+              Manage your profile
+            </button>
           </div>
         </div>
       </div>
@@ -594,7 +616,10 @@ export default function Settings(): JSX.Element {
             </p>
             <button
               className="btn btn-error btn-sm w-fit mt-2"
-              onClick={() => setShowWipeModal(true)}
+              onClick={() => {
+                setDeletionError("");
+                setShowWipeModal(true);
+              }}
             >
               Wipe All Data
             </button>
@@ -734,11 +759,17 @@ export default function Settings(): JSX.Element {
               synced emails and settings.
             </p>
             <p className="py-4">Your license is not affected.</p>
+            {deletionError && (
+              <p className="text-sm text-error">{deletionError}</p>
+            )}
             <div className="modal-action">
               <button
                 className="btn btn-ghost"
                 disabled={removeInProgress}
-                onClick={() => setRemoveAccountEmail(null)}
+                onClick={() => {
+                  setDeletionError("");
+                  setRemoveAccountEmail(null);
+                }}
               >
                 Cancel
               </button>
@@ -748,11 +779,16 @@ export default function Settings(): JSX.Element {
                 onClick={async () => {
                   const email = removeAccountEmail;
                   setRemoveInProgress(true);
+                  setDeletionError("");
                   try {
                     await window.api.removeAccount(email);
                     refreshAccounts();
-                  } finally {
                     setRemoveAccountEmail(null);
+                  } catch {
+                    setDeletionError(
+                      "Paperweight could not delete this account's local data. Close other programs using these files and try again.",
+                    );
+                  } finally {
                     setRemoveInProgress(false);
                   }
                 }}
@@ -766,7 +802,15 @@ export default function Settings(): JSX.Element {
             </div>
           </div>
           <form method="dialog" className="modal-backdrop">
-            <button onClick={() => setRemoveAccountEmail(null)}>close</button>
+            <button
+              disabled={removeInProgress}
+              onClick={() => {
+                setDeletionError("");
+                setRemoveAccountEmail(null);
+              }}
+            >
+              close
+            </button>
           </form>
         </dialog>
       )}
@@ -781,20 +825,43 @@ export default function Settings(): JSX.Element {
               synced emails, credentials, settings, and your license. This
               action cannot be undone.
             </p>
+            {deletionError && (
+              <p className="text-sm text-error">{deletionError}</p>
+            )}
             <div className="modal-action">
               <button
                 className="btn btn-ghost"
-                onClick={() => setShowWipeModal(false)}
+                disabled={wipeInProgress}
+                onClick={() => {
+                  setDeletionError("");
+                  setShowWipeModal(false);
+                }}
               >
                 Cancel
               </button>
-              <button className="btn btn-error" onClick={handleWipe}>
-                Wipe everything
+              <button
+                className="btn btn-error"
+                disabled={wipeInProgress}
+                onClick={handleWipe}
+              >
+                {wipeInProgress ? (
+                  <span className="loading loading-spinner loading-xs" />
+                ) : (
+                  "Wipe everything"
+                )}
               </button>
             </div>
           </div>
           <form method="dialog" className="modal-backdrop">
-            <button onClick={() => setShowWipeModal(false)}>close</button>
+            <button
+              disabled={wipeInProgress}
+              onClick={() => {
+                setDeletionError("");
+                setShowWipeModal(false);
+              }}
+            >
+              close
+            </button>
           </form>
         </dialog>
       )}

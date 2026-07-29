@@ -23,8 +23,13 @@ coverage/
 # analysis package: real mail samples never enter git; public docs do,
 # the working design doc does not
 /analysis/samples/
+/analysis/fixtures/
 !analysis/**/*.md
 /analysis/ENGINE_DESIGN.md
 
-# TEMP: fixtures land with the finished pipeline; remove this line to commit them
-/analysis/fixtures/
+# real mail samples anywhere else: same rule, they carry personal data
+*.eml
+*.msg
+
+# scrape/search cache written by tooling, not source
+.firecrawl/

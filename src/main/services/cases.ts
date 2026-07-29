@@ -5,6 +5,8 @@ import {
   ESCALATE_AFTER_DAYS,
   CASE_ACTIVITY_LOG_TYPES,
 } from "@shared/cases";
+import { LIST_MAIL_TYPES } from "@shared/types";
+import { LIST_MAIL_TYPES_SQL } from "./messageVocabulary";
 import type {
   ActionType,
   ActivityEntry,
@@ -20,6 +22,7 @@ import type {
   GdprRequestType,
   Message,
 } from "@shared/types";
+import { parseHeaderPairs } from "@shared/utils";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -189,14 +192,12 @@ export function createGdprCase(input: CreateGdprCaseInput): GdprCase {
 }
 
 function headerValue(rawHeaders: string | null, name: string): string | undefined {
-  if (!rawHeaders) return undefined;
-  try {
-    const headers = JSON.parse(rawHeaders) as Record<string, string>;
-    const key = Object.keys(headers).find((k) => k.toLowerCase() === name);
-    return key ? headers[key] : undefined;
-  } catch {
-    return undefined;
-  }
+  // First matching header wins. Accepts both the lossless [name, value][] and
+  // legacy { name: value } shapes via the shared parser.
+  const match = parseHeaderPairs(rawHeaders).find(
+    ([k]) => k.toLowerCase() === name,
+  );
+  return match?.[1];
 }
 
 interface ReplyRow {
@@ -252,7 +253,7 @@ export function getGdprCaseReplies(caseId: number): GdprCaseReplies {
     .prepare(
       `SELECT id, vendor_id, sender_email, sender_name, subject, date, body_preview, raw_headers, type
        FROM messages
-       WHERE vendor_id = ? AND date > ? AND (type IS NULL OR type != 'bulk')
+       WHERE vendor_id = ? AND date > ? AND (type IS NULL OR type NOT IN (${LIST_MAIL_TYPES_SQL}))
        ORDER BY date DESC`,
     )
     .all(kase.vendor_id, kase.opened_at) as ReplyRow[];
@@ -518,7 +519,10 @@ export function linkGdprCaseMessage(caseId: number, messageId: string): void {
   if (message.date <= kase.opened_at) {
     throw new Error("Message predates this case");
   }
-  if (message.type === "bulk") throw new Error("Bulk mail cannot be linked to a case");
+  // type comes off the raw row as free text, so widen rather than cast.
+  if (message.type && (LIST_MAIL_TYPES as readonly string[]).includes(message.type)) {
+    throw new Error("Marketing mail cannot be linked to a case");
+  }
 
   const alreadyLinked = d
     .prepare(

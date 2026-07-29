@@ -1,4 +1,4 @@
-import { mkdtempSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdtempSync, rmSync, writeFileSync } from "fs";
 import { tmpdir } from "os";
 import { join } from "path";
 
@@ -42,9 +42,10 @@ describe("boot contract (#38)", () => {
   it("fresh install does not touch per-account DB when initDb was skipped", () => {
     expect(() => buildAppSettings()).not.toThrow();
     expect(mockedGetSetting).not.toHaveBeenCalled();
+    expect(existsSync(join(userDataDir, "global.db"))).toBe(false);
   });
 
-  it("reads global settings from settings.json on disk without per-account DB", () => {
+  it("migrates settings.json without touching a per-account DB", () => {
     writeFileSync(join(userDataDir, "settings.json"), JSON.stringify({ colorTheme: "silk" }));
     resetGlobalSettingsCache();
 
@@ -53,5 +54,7 @@ describe("boot contract (#38)", () => {
     expect(settings.colorTheme).toBe("silk");
     expect(settings.providerType).toBe("none");
     expect(mockedGetSetting).not.toHaveBeenCalled();
+    expect(existsSync(join(userDataDir, "global.db"))).toBe(true);
+    expect(existsSync(join(userDataDir, "settings.json"))).toBe(false);
   });
 });
