@@ -19,6 +19,7 @@
       "@paperweight/analysis": ["analysis/src/index"],
       "@paperweight/analysis/contracts": ["analysis/src/contracts"],
       "@paperweight/analysis/country": ["analysis/src/country"],
+      "@paperweight/analysis/received-address": ["analysis/src/received-address"],
       "@paperweight/analysis/profile-values": ["analysis/src/profile-values"]
     },
     "types": ["node"],

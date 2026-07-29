@@ -21,6 +21,10 @@
       "types": "./dist/country.d.ts",
       "default": "./dist/country.js"
     },
+    "./received-address": {
+      "types": "./dist/received-address.d.ts",
+      "default": "./dist/received-address.js"
+    },
     "./profile-values": {
       "types": "./dist/profile-values.d.ts",
       "default": "./dist/profile-values.js"

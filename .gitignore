@@ -26,3 +26,10 @@ coverage/
 /analysis/fixtures/
 !analysis/**/*.md
 /analysis/ENGINE_DESIGN.md
+
+# real mail samples anywhere else: same rule, they carry personal data
+*.eml
+*.msg
+
+# scrape/search cache written by tooling, not source
+.firecrawl/

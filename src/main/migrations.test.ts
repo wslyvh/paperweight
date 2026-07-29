@@ -5,7 +5,11 @@ jest.mock("./utils/log", () => {
 });
 
 import { getDb, initDb } from "./db";
-import { applyEngineSwitch } from "./migrations";
+import {
+  applyEngineSwitch,
+  applyReceivedAddresses,
+  markReceivedAddressesDone,
+} from "./migrations";
 
 // The switch release resets each account's sync cursors so the next sync behaves
 // like a fresh install. Nothing else may move: message ids are stable, so every
@@ -120,5 +124,137 @@ describe("applyEngineSwitch", () => {
     expect(state.last_sync_at).toBe(1800000000000);
     expect(state.quick_sync_done_at).toBe(1800000000000);
     expect(state.historical_cursor).toBe(1750000000000);
+  });
+});
+
+describe("receiver address migration", () => {
+  const headers = (pairs: Array<[string, string]>): string => JSON.stringify(pairs);
+
+  function seedMessage(id: string, rawHeaders: string): void {
+    getDb()
+      .prepare(
+        `INSERT INTO messages (id, vendor_id, sender_email, date, raw_headers, body_state)
+         VALUES (?, 1, 'hello@acme.example', 1700000000000, ?, 'available')`,
+      )
+      .run(id, rawHeaders);
+  }
+
+  const addressOf = (id: string): string | null =>
+    getDb()
+      .prepare("SELECT received_address FROM messages WHERE id = ?")
+      .pluck()
+      .get(id) as string | null;
+
+  beforeEach(() => {
+    const d = getDb();
+    d.exec("DELETE FROM messages; DELETE FROM vendors; DELETE FROM settings;");
+    d.prepare(
+      "INSERT INTO vendors (id, root_domain, name) VALUES (1, 'acme.example', 'Acme')",
+    ).run();
+  });
+
+  it("fills rows whose chain and To agree, and reports the addresses", () => {
+    seedMessage(
+      "m1",
+      headers([
+        ["Delivered-To", "me@provider.example"],
+        ["Delivered-To", "shop@mydomain.example"],
+        ["To", "shop@mydomain.example"],
+      ]),
+    );
+
+    const result = applyReceivedAddresses(getDb());
+
+    expect(result).toMatchObject({ resolved: 1, scanned: 1, skippedLegacy: 0 });
+    expect([...result!.addresses]).toEqual(["shop@mydomain.example"]);
+    expect(addressOf("m1")).toBe("shop@mydomain.example");
+    expect(addressOf("m1")).toBe("shop@mydomain.example");
+  });
+
+  it("leaves a row alone when nothing corroborates the chain", () => {
+    seedMessage(
+      "m1",
+      headers([
+        ["Delivered-To", "me@provider.example"],
+        ["Delivered-To", "junk@spammer.example"],
+        ["To", "me@provider.example"],
+      ]),
+    );
+
+    expect(applyReceivedAddresses(getDb())).toMatchObject({ resolved: 0 });
+    expect(addressOf("m1")).toBeNull();
+  });
+
+  // The legacy object shape dropped duplicate Delivered-To and Received lines
+  // when it was written, so the chain cannot be rebuilt. Counted, not guessed.
+  it("skips and counts rows stored in the legacy header shape", () => {
+    seedMessage(
+      "m1",
+      JSON.stringify({ "Delivered-To": "shop@mydomain.example", To: "shop@mydomain.example" }),
+    );
+
+    expect(applyReceivedAddresses(getDb())).toMatchObject({
+      resolved: 0,
+      skippedLegacy: 1,
+    });
+    expect(addressOf("m1")).toBeNull();
+  });
+
+  // The marker is what makes this run once, not the absence of NULL rows.
+  // Microsoft records no chain at all, so its rows stay NULL forever; without a
+  // marker they would be re-parsed on every single launch.
+  it("fires exactly once, even when every row stayed unresolved", () => {
+    seedMessage(
+      "microsoft",
+      headers([
+        ["Received", "from a.example by b.example; Wed, 1 Jan 2025 00:00:00 +0000"],
+        ["To", "me@provider.example"],
+      ]),
+    );
+
+    expect(applyReceivedAddresses(getDb())).toMatchObject({ resolved: 0, scanned: 1 });
+    expect(addressOf("microsoft")).toBeNull();
+    markReceivedAddressesDone(getDb());
+
+    // Second launch: no rescan at all, not even of the row that stayed NULL.
+    expect(applyReceivedAddresses(getDb())).toBeNull();
+  });
+
+  it("does not rescan resolvable rows on a later launch", () => {
+    seedMessage(
+      "m1",
+      headers([
+        ["Delivered-To", "shop@mydomain.example"],
+        ["To", "shop@mydomain.example"],
+      ]),
+    );
+
+    expect(applyReceivedAddresses(getDb())).toMatchObject({ resolved: 1 });
+    markReceivedAddressesDone(getDb());
+
+    expect(applyReceivedAddresses(getDb())).toBeNull();
+    expect(addressOf("m1")).toBe("shop@mydomain.example");
+  });
+
+  // The row fill and the profile insert live in different database files, so
+  // they cannot be one transaction. The marker is written last, and a retry
+  // reads the addresses back off the column rather than from the pass that
+  // filled it, so a failed profile write loses nothing.
+  it("still reports every address when a retry finds the rows already filled", () => {
+    seedMessage(
+      "m1",
+      headers([
+        ["Delivered-To", "shop@mydomain.example"],
+        ["To", "shop@mydomain.example"],
+      ]),
+    );
+
+    // First launch fills the rows, then the profile write fails: no marker.
+    expect(applyReceivedAddresses(getDb())).toMatchObject({ resolved: 1 });
+
+    // Second launch finds nothing left to resolve, and still knows the address.
+    const retry = applyReceivedAddresses(getDb());
+    expect(retry).toMatchObject({ resolved: 0, scanned: 0 });
+    expect([...retry!.addresses]).toEqual(["shop@mydomain.example"]);
   });
 });

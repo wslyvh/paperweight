@@ -449,6 +449,10 @@ export interface VendorDetail {
   first_activity?: number;
   user_email?: string;
   activityLog: ActivityEntry[];
+  /** Addresses of the user's this vendor has actually written to, read off the
+   *  message headers. Most recently used first. Usually one; more when the user
+   *  changed address or dealt with several departments. */
+  receivedAddresses: Array<{ address: string; message_count: number; last_seen: number }>;
 }
 
 // Account / settings

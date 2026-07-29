@@ -115,4 +115,11 @@ export interface Analysis extends TextAnalysis {
   typeConfidence: number;
   typeSignals: Signal[];
   unsubscribe?: { method: UnsubscribeMethod; target: string };
+  /**
+   * Which of the reader's own addresses this copy was delivered to. Read from
+   * the delivery chain and kept only when the sender's To/Cc names the same
+   * address. Absent when the two do not agree, or when the provider records no
+   * chain at all, which is the normal case on Microsoft.
+   */
+  receivedAddress?: string;
 }

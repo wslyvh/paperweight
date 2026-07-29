@@ -12,6 +12,9 @@ export default defineConfig({
         "@shared": resolve("src/shared"),
         "@paperweight/analysis/contracts": resolve("analysis/src/contracts.ts"),
         "@paperweight/analysis/country": resolve("analysis/src/country.ts"),
+        "@paperweight/analysis/received-address": resolve(
+          "analysis/src/received-address.ts",
+        ),
         "@paperweight/analysis/profile-values": resolve(
           "analysis/src/profile-values.ts",
         ),
@@ -61,6 +64,9 @@ export default defineConfig({
         "@shared": resolve("src/shared"),
         "@paperweight/analysis/contracts": resolve("analysis/src/contracts.ts"),
         "@paperweight/analysis/country": resolve("analysis/src/country.ts"),
+        "@paperweight/analysis/received-address": resolve(
+          "analysis/src/received-address.ts",
+        ),
         "@paperweight/analysis/profile-values": resolve(
           "analysis/src/profile-values.ts",
         ),

@@ -35,7 +35,10 @@ import type { SyncStatus } from "@shared/types";
 import { FREE_TIER_SYNC_DAYS, LICENSED_SYNC_DAYS } from "@shared/types";
 import { syncLog } from "../utils/log";
 import type { EmailMessage, EmailProvider } from "../providers/types";
-import { seedProfileEmailsFromCurrentAccount } from "./profileSeed";
+import {
+  addReceivedProfileEmails,
+  seedProfileEmailsFromCurrentAccount,
+} from "./profileSeed";
 
 // --- Config ---
 
@@ -131,6 +134,7 @@ function processMessagesBatch(messages: EmailMessage[]): void {
 
   const accountEmail = getSetting("accountEmail")?.toLowerCase();
   const vendorIds = new Set<number>();
+  const receivedAddresses = new Set<string>();
   const storeAnalyzedMessage = getDb().transaction(
     (msg: EmailMessage, vendorId: number) => {
       const changed = insertMessageVendor(msg, vendorId);
@@ -163,6 +167,17 @@ function processMessagesBatch(messages: EmailMessage[]): void {
     // message that actually carried a body gets its analysis_version stamped —
     // leaving it NULL on a body-less row lets a later full fetch be analyzed.
     storeAnalyzedMessage(msg, vendorId);
+    if (msg.analysis.receivedAddress) {
+      receivedAddresses.add(msg.analysis.receivedAddress);
+    }
+  }
+
+  // Addresses this batch proved the user receives on. Collected per batch rather
+  // than per message so one alias seen fifty times is one insert attempt.
+  // getKnownPiiValues() is read once before the sync starts, so anything learned
+  // here reaches detection on the next run, not this one.
+  if (receivedAddresses.size > 0) {
+    addReceivedProfileEmails(getDb(), "global.profile_emails", receivedAddresses);
   }
 
   for (const vid of vendorIds) {

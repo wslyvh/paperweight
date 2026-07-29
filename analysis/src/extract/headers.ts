@@ -1,6 +1,7 @@
 // Header facts from a RawMessage. Extractors return structured facts; Signal
 // objects are minted by the deciders that cite them.
 import type { RawMessage } from "../types";
+import { resolveReceivedAddress } from "../received-address";
 
 export interface HeaderFacts {
   from?: Mailbox;
@@ -14,6 +15,9 @@ export interface HeaderFacts {
   isNoreplyFrom: boolean;
   isReply: boolean;
   dkimDomains: string[];
+  /** Which of the reader's own addresses this copy was delivered to, when the
+   *  headers agree on one. Absent whenever they do not; see ../received-address. */
+  receivedAddress?: string;
 }
 
 interface Mailbox {
@@ -89,6 +93,9 @@ export function extractHeaderFacts(headers: RawMessage["headers"]): HeaderFacts 
     const domain = /(?:^|;)\s*d\s*=\s*([^;\s]+)/.exec(signature)?.[1]?.toLowerCase();
     if (domain && !facts.dkimDomains.includes(domain)) facts.dkimDomains.push(domain);
   }
+
+  const receivedAddress = resolveReceivedAddress(headers);
+  if (receivedAddress !== undefined) facts.receivedAddress = receivedAddress;
 
   return facts;
 }

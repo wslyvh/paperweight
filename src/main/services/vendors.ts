@@ -816,6 +816,18 @@ export function getVendorDetail(groupKey: string): VendorDetail {
     .prepare(`SELECT ${MESSAGE_COLUMNS} FROM messages WHERE vendor_id = ? ORDER BY date DESC LIMIT 20`)
     .all(vendor.id) as Message[];
 
+  // Which of the user's addresses this vendor writes to. Most recent first:
+  // when a vendor has more than one, the latest is the one they hold now.
+  const receivedAddresses = d
+    .prepare(
+      `SELECT received_address AS address, COUNT(*) AS message_count, MAX(date) AS last_seen
+       FROM messages
+       WHERE vendor_id = ? AND received_address IS NOT NULL
+       GROUP BY received_address
+       ORDER BY last_seen DESC`,
+    )
+    .all(vendor.id) as VendorDetail["receivedAddresses"];
+
   let company: Company | undefined;
   if (vendor.company_slug) {
     const attached = d
@@ -893,5 +905,5 @@ export function getVendorDetail(groupKey: string): VendorDetail {
     ...mapCaseActivityFields(r),
   }));
 
-  return { vendor: enrichedVendor, company, senders, bulkMessages, bulkMessageCount, accountMessages, allMessages, activityLog };
+  return { vendor: enrichedVendor, company, senders, bulkMessages, bulkMessageCount, accountMessages, allMessages, activityLog, receivedAddresses };
 }

@@ -38,6 +38,10 @@ export { regionFromDomain } from "./detect/phone";
 // normalization both sides are reduced with — stays here.
 export { isSenderContact } from "./detect/sender-contact";
 export type { SenderContacts } from "./detect/sender-contact";
+// Which of the reader's own addresses a message was delivered to. analyzeMessage
+// already puts this on Analysis; exposed separately so a consumer backfilling
+// stored headers can resolve one without re-running the engine.
+export { resolveReceivedAddress } from "./received-address";
 // Public webmail/ISP domains. Also on ./contracts, which is where a consumer
 // that only wants the vocabulary should import it from — that entry point is
 // dependency-free and safe to bundle into a renderer.
@@ -137,6 +141,9 @@ export async function analyzeMessage(
     typeSignals: type.signals,
   };
   if (textTruncated) analysis.textTruncated = true;
+  if (extracted.header.receivedAddress !== undefined) {
+    analysis.receivedAddress = extracted.header.receivedAddress;
+  }
   if (unsubscribe) {
     analysis.unsubscribe = {
       method: unsubscribe.method,

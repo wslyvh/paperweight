@@ -12,6 +12,7 @@ module.exports = {
     "^@shared/(.*)$": "<rootDir>/src/shared/$1",
     "^@paperweight/analysis/contracts$": "<rootDir>/analysis/src/contracts.ts",
     "^@paperweight/analysis/country$": "<rootDir>/analysis/src/country.ts",
+    "^@paperweight/analysis/received-address$": "<rootDir>/analysis/src/received-address.ts",
     "^@paperweight/analysis/profile-values$": "<rootDir>/analysis/src/profile-values.ts",
     // DELIBERATE asymmetry: the bundler and tsc resolve @paperweight/analysis to
     // the engine's index.ts, but the real module imports ESM (htmlparser2, franc)

@@ -32,6 +32,7 @@ import {
   resetGlobalDb,
 } from "../globalDb";
 import {
+  addReceivedProfileEmails,
   seedProfileCountryIfEmpty,
   seedProfileEmailsFromAccounts,
   seedProfileEmailsFromCurrentAccount,
@@ -261,5 +262,76 @@ describe("profile seed", () => {
         .pluck()
         .get(),
     ).toBeNull();
+  });
+
+  describe("addresses read off message headers", () => {
+    function suppressions(target = getGlobalDb()): string[] {
+      return target
+        .prepare(
+          "SELECT value_normalized FROM pii_suppressions ORDER BY value_normalized",
+        )
+        .pluck()
+        .all() as string[];
+    }
+
+    it("adds resolved addresses to the profile", () => {
+      const target = getGlobalDb();
+      expect(
+        addReceivedProfileEmails(target, "profile_emails", [
+          "  Shop@Example.com ",
+          "news@example.com",
+          "shop@example.com",
+        ]),
+      ).toBe(2);
+      expect(profileEmails(target)).toEqual([
+        "news@example.com",
+        "shop@example.com",
+      ]);
+    });
+
+    // The whole reason this does not reuse insertProfileEmails: a header is
+    // inference, and a suppression is the user saying no. Inference must never
+    // win, on this sync or any later one.
+    it("skips an address the user marked as not theirs", () => {
+      const target = getGlobalDb();
+      target
+        .prepare(
+          "INSERT INTO pii_suppressions (type, value_normalized) VALUES ('email', 'shop@example.com')",
+        )
+        .run();
+
+      expect(
+        addReceivedProfileEmails(target, "profile_emails", ["shop@example.com", "news@example.com"]),
+      ).toBe(1);
+      expect(profileEmails(target)).toEqual(["news@example.com"]);
+    });
+
+    it("leaves suppressions in place", () => {
+      const target = getGlobalDb();
+      target
+        .prepare(
+          "INSERT INTO pii_suppressions (type, value_normalized) VALUES ('email', 'shop@example.com')",
+        )
+        .run();
+
+      addReceivedProfileEmails(target, "profile_emails", ["shop@example.com"]);
+
+      expect(suppressions(target)).toEqual(["shop@example.com"]);
+    });
+
+    it("stays skipped when the same address arrives again on a later sync", () => {
+      const target = getGlobalDb();
+      target
+        .prepare(
+          "INSERT INTO pii_suppressions (type, value_normalized) VALUES ('email', 'shop@example.com')",
+        )
+        .run();
+
+      addReceivedProfileEmails(target, "profile_emails", ["shop@example.com"]);
+      addReceivedProfileEmails(target, "profile_emails", ["shop@example.com"]);
+
+      expect(profileEmails(target)).toEqual([]);
+      expect(suppressions(target)).toEqual(["shop@example.com"]);
+    });
   });
 });

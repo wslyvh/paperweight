@@ -60,11 +60,11 @@ export function insertMessageVendor(
     `INSERT INTO messages (
        id, vendor_id, sender_email, sender_name, subject, date, body_preview,
        raw_headers, type, unsubscribe_url, unsubscribe_method, status, size_bytes,
-       body_text, body_state, analysis_version
+       body_text, body_state, analysis_version, received_address
      ) VALUES (
        @id, @vendor_id, @sender_email, @sender_name, @subject, @date, @body_preview,
        @raw_headers, @type, @unsubscribe_url, @unsubscribe_method, @status, @size_bytes,
-       @body_text, @body_state, NULL
+       @body_text, @body_state, NULL, @received_address
      )
      ON CONFLICT(id) DO UPDATE SET
        -- One rule for everything the fetch captured: a body-bearing fetch is
@@ -79,6 +79,11 @@ export function insertMessageVendor(
          WHEN excluded.body_state IN ('available', 'truncated') THEN excluded.raw_headers
          WHEN messages.raw_headers IS NULL THEN excluded.raw_headers
          ELSE messages.raw_headers END,
+       -- Derived from raw_headers, so it moves with them or not at all.
+       received_address = CASE
+         WHEN excluded.body_state IN ('available', 'truncated') THEN excluded.received_address
+         WHEN messages.raw_headers IS NULL THEN excluded.received_address
+         ELSE messages.received_address END,
        type = CASE WHEN excluded.body_state IN ('available', 'truncated')
          THEN excluded.type ELSE messages.type END,
        unsubscribe_url = CASE WHEN excluded.body_state IN ('available', 'truncated')
@@ -95,6 +100,7 @@ export function insertMessageVendor(
          messages.body_text IS NOT excluded.body_text
          OR messages.body_state IS NOT excluded.body_state
          OR messages.raw_headers IS NOT excluded.raw_headers
+         OR messages.received_address IS NOT excluded.received_address
          OR messages.type IS NOT excluded.type
          OR messages.unsubscribe_url IS NOT excluded.unsubscribe_url
          OR messages.unsubscribe_method IS NOT excluded.unsubscribe_method
@@ -128,6 +134,7 @@ export function insertMessageVendor(
     size_bytes: msg.sizeBytes ?? 0,
     body_text: bodyText,
     body_state: bodyState,
+    received_address: msg.analysis.receivedAddress ?? null,
   });
   return result.changes > 0;
 }

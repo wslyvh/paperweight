@@ -11,6 +11,10 @@ import {
   saveCredentials,
 } from "./credentials";
 import { appLog } from "./utils/log";
+import { resolveReceivedAddress } from "@paperweight/analysis/received-address";
+import { headerRecord, parseHeaderPairs } from "@shared/utils";
+import { getGlobalDb } from "./globalDb";
+import { addReceivedProfileEmails } from "./services/profileSeed";
 
 // db.ts imports migrateActionLog from this module and is deliberately kept free
 // of heavy top-level imports (it lazy-requires electron itself). So we access
@@ -273,6 +277,7 @@ export function migrateMessages(d: Database.Database): void {
     ["body_text", "body_text TEXT"],
     ["body_state", "body_state TEXT NOT NULL DEFAULT 'missing'"],
     ["analysis_version", "analysis_version TEXT"],
+    ["received_address", "received_address TEXT"],
   ];
   for (const [name, ddl] of additions) {
     if (!cols.has(name)) d.exec(`ALTER TABLE messages ADD COLUMN ${ddl}`);
@@ -290,6 +295,135 @@ export function migrateGdprCases(d: Database.Database): void {
 }
 
 /**
+ * v0.6 — receiver address. Fill `received_address` on rows stored before the
+ * resolver existed. Header-only, so no re-sync and no refetch: every provider
+ * already stores the headers this reads. Idempotent per account via the
+ * `migration:received-address` settings marker.
+ *
+ * The marker, not the NULL rows, is what makes this run once. Plenty of rows
+ * stay NULL on purpose — Microsoft records no delivery chain, and any message
+ * whose chain and To disagree resolves to nothing — so "scan every NULL row"
+ * would re-parse the same unresolvable rows on every launch forever.
+ *
+ * Rows written before headers became lossless hold a `{ name: value }` object,
+ * which dropped duplicate Delivered-To and Received lines permanently. The chain
+ * cannot be rebuilt from them, so they are skipped and counted, not guessed at.
+ *
+ * Does NOT set the marker. The caller seeds the profile first and marks the
+ * account done only once that succeeded, so a failed profile write is retried
+ * on the next launch instead of being lost behind a marker.
+ *
+ * Returns every address now on the column, not only the ones this pass filled,
+ * so a retry after a partial run still sees the whole set. The account DBs are
+ * opened directly here, with no global attached.
+ */
+export function applyReceivedAddresses(d: Database.Database): {
+  resolved: number;
+  scanned: number;
+  skippedLegacy: number;
+  addresses: Set<string>;
+} | null {
+  const done = d
+    .prepare("SELECT 1 FROM settings WHERE key = 'migration:received-address'")
+    .get();
+  if (done) return null;
+
+  const rows = d
+    .prepare(
+      `SELECT id, raw_headers FROM messages
+       WHERE received_address IS NULL AND raw_headers IS NOT NULL`,
+    )
+    .all() as Array<{ id: string; raw_headers: string }>;
+
+  const setAddress = d.prepare(
+    "UPDATE messages SET received_address = ? WHERE id = ?",
+  );
+  const addresses = new Set<string>();
+  let resolved = 0;
+  let skippedLegacy = 0;
+
+  d.transaction(() => {
+    for (const row of rows) {
+      let parsed: unknown;
+      try {
+        parsed = JSON.parse(row.raw_headers);
+      } catch {
+        continue;
+      }
+      if (!Array.isArray(parsed)) {
+        skippedLegacy++;
+        continue;
+      }
+      const address = resolveReceivedAddress(
+        headerRecord(parseHeaderPairs(row.raw_headers)),
+      );
+      if (!address) continue;
+      setAddress.run(address, row.id);
+      resolved++;
+    }
+  })();
+
+  for (const address of d
+    .prepare(
+      `SELECT DISTINCT received_address FROM messages
+       WHERE received_address IS NOT NULL`,
+    )
+    .pluck()
+    .all() as string[]) {
+    addresses.add(address);
+  }
+
+  return { resolved, scanned: rows.length, skippedLegacy, addresses };
+}
+
+export function markReceivedAddressesDone(d: Database.Database): void {
+  d.prepare(
+    "INSERT OR REPLACE INTO settings (key, value) VALUES ('migration:received-address', '1')",
+  ).run();
+}
+
+function migrateReceivedAddresses(): void {
+  const userData = userDataDir();
+
+  for (const acc of listAccounts()) {
+    const dbPath = join(userData, `${emailToFileKey(acc.email)}.db`);
+    if (!existsSync(dbPath)) continue;
+
+    let db: Database.Database | undefined;
+    try {
+      db = new Database(dbPath);
+      migrateMessages(db); // the column may not exist yet on this account
+      const result = applyReceivedAddresses(db);
+      if (!result) continue;
+
+      // Seed the profile before marking the account done. The two writes are in
+      // different database files, so they cannot be one transaction; ordering
+      // them this way means a failed profile write is retried next launch
+      // rather than lost behind a marker. Re-running is harmless: the rows are
+      // already filled, and the insert ignores conflicts.
+      if (result.addresses.size > 0) {
+        addReceivedProfileEmails(getGlobalDb(), "profile_emails", result.addresses);
+      }
+      markReceivedAddressesDone(db);
+
+      appLog.info(
+        `migrations: receiver addresses for [${accountTag(acc.email)}] — ` +
+          `${result.resolved} of ${result.scanned} rows resolved` +
+          (result.skippedLegacy > 0
+            ? `, ${result.skippedLegacy} skipped (legacy headers)`
+            : ""),
+      );
+    } catch (err) {
+      appLog.warn(
+        `migrations: receiver addresses failed for [${accountTag(acc.email)}]: ${err instanceof Error ? err.message : String(err)}`
+      );
+    } finally {
+      db?.close();
+    }
+  }
+}
+
+/**
  * Run all migrations in order. Safe to call on every launch — each migration
  * is a no-op if there is nothing to do.
  */
@@ -298,4 +432,5 @@ export async function runMigrations(): Promise<void> {
   await backfillSmtpFromPreset();
   migrateScanScopeAllMail();
   migrateEngineSwitch();
+  migrateReceivedAddresses();
 }

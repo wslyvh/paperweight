@@ -335,7 +335,14 @@ export default function AccountDetail(): JSX.Element {
           d.vendor.breachInfo?.some((b) => b.likelyAffected) ?? false,
         );
         if (settings.userName) setUserName(settings.userName);
-        setRequestEmail(d.vendor.account_email ?? d.user_email ?? "");
+        // Prefer what the headers show this vendor actually writes to, most
+        // recent first. An address the user set by hand still wins.
+        setRequestEmail(
+          d.vendor.account_email
+            ?? d.receivedAddresses[0]?.address
+            ?? d.user_email
+            ?? "",
+        );
         const candidate = pickContactEmail(d.company, d.senders);
         setRecipientEmail(
           candidate && !isNoReplyEmail(candidate) ? candidate : "",
@@ -886,13 +893,20 @@ export default function AccountDetail(): JSX.Element {
     }
   };
 
-  const persistAccountEmail = async (): Promise<void> => {
-    if (!detail || !canBuildRequest) return;
-    if ((detail.vendor.account_email ?? "") === requesterEmail) return;
-    await window.api.setVendorAccountEmail(detail.vendor.id, requesterEmail);
+  // Takes the address explicitly so a caller that has just set state can pass
+  // the new value: React has not re-rendered yet, so requesterEmail still holds
+  // the old one at that point.
+  const persistAccountEmail = async (address?: string): Promise<void> => {
+    if (!detail) return;
+    const next = (address ?? requesterEmail).trim();
+    // Validate what is about to be saved, not what the field held before it.
+    // Clearing the field and then picking a chip has to save the chip.
+    if (!next.includes("@")) return;
+    if ((detail.vendor.account_email ?? "") === next) return;
+    await window.api.setVendorAccountEmail(detail.vendor.id, next);
     setDetail({
       ...detail,
-      vendor: { ...detail.vendor, account_email: requesterEmail },
+      vendor: { ...detail.vendor, account_email: next },
     });
   };
 
@@ -1441,11 +1455,42 @@ export default function AccountDetail(): JSX.Element {
                   />
                   <span
                     className="tooltip tooltip-top tooltip-left shrink-0 text-base-content/40"
-                    data-tip="The address this company knows you by — e.g. a hide-my-email alias. Note that you will still send from your connected account."
+                    data-tip="The address this company knows you by, for example a hide-my-email alias. Note that you will still send from your connected account."
                   >
                     <Info className="w-3.5 h-3.5" aria-label="About account email" />
                   </span>
                 </div>
+                {detail.receivedAddresses.length > 0 && (
+                  <div className="flex items-start gap-3">
+                    <span className="text-xs text-base-content/50 uppercase shrink-0 w-28 pt-1">
+                      Received on
+                    </span>
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      {detail.receivedAddresses.map((entry) => (
+                        <button
+                          key={entry.address}
+                          type="button"
+                          className={`btn btn-xs ${
+                            entry.address === requestEmail.trim().toLowerCase()
+                              ? "btn-primary"
+                              : "btn-ghost border border-base-300"
+                          }`}
+                          title={`${entry.message_count} message${entry.message_count === 1 ? "" : "s"}, last on ${new Date(entry.last_seen).toLocaleDateString()}`}
+                          onClick={() => {
+                            setRequestEmail(entry.address);
+                            setCopiedField(null);
+                            void persistAccountEmail(entry.address).catch(
+                              () => undefined,
+                            );
+                          }}
+                        >
+                          {entry.address}
+                          <span className="opacity-50 ml-1">{entry.message_count}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 <div className="flex items-center gap-3">
                   <label className="text-xs text-base-content/50 uppercase shrink-0 w-28">Name</label>
                   <input

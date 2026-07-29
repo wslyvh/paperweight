@@ -170,6 +170,7 @@ function initSchema(d: Database.Database) {
       body_text TEXT,
       body_state TEXT NOT NULL DEFAULT 'missing',
       analysis_version TEXT,
+      received_address TEXT,
       FOREIGN KEY (vendor_id) REFERENCES vendors(id) ON DELETE CASCADE
     );
 

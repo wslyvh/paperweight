@@ -144,6 +144,10 @@ const PAYMENT_LABELS: Record<PaymentKind, string> = {
   credit_card: "Card",
 };
 
+// Above this many addresses the list gets a search box and its own scroll area.
+// Below it, both would be clutter on a short list.
+const EMAIL_LIST_SCROLL_AFTER = 12;
+
 let entrySequence = 0;
 
 function createId(): number {
@@ -270,6 +274,7 @@ export default function Profile(): JSX.Element {
   });
   const [names, setNames] = useState<NameEntry[]>([]);
   const [emails, setEmails] = useState<EmailEntry[]>([]);
+  const [emailFilter, setEmailFilter] = useState("");
   const [phones, setPhones] = useState<PhoneEntry[]>([]);
   const [addresses, setAddresses] = useState<AddressEntry[]>([]);
   const [nationalIds, setNationalIds] = useState<NationalIdEntry[]>([]);
@@ -328,6 +333,21 @@ export default function Profile(): JSX.Element {
     ),
     [connectedEmailSet, emails],
   );
+
+  // A catch-all domain turns every vendor into its own alias, so this list runs
+  // to hundreds of rows. Box it and let the user search rather than scrolling
+  // the whole page past it. Both only appear once the list is long enough to be
+  // in the way.
+  const totalEmails = connectedEmails.length + editableEmails.length;
+  const emailListIsLong = totalEmails > EMAIL_LIST_SCROLL_AFTER;
+  const emailQuery = emailFilter.trim().toLowerCase();
+  const matchesEmailQuery = (address: string): boolean =>
+    emailQuery === "" || address.toLowerCase().includes(emailQuery);
+  const shownConnected = connectedEmails.filter(matchesEmailQuery);
+  const shownEditable = editableEmails.filter((entry) =>
+    matchesEmailQuery(entry.address),
+  );
+  const shownEmails = shownConnected.length + shownEditable.length;
 
   function hydrateProfile(profile: UserProfile): void {
     const country = profile.country ?? deviceCountry();
@@ -1072,9 +1092,31 @@ export default function Profile(): JSX.Element {
             Every address and alias is a separate entry. Connected accounts are
             included automatically.
           </p>
-          {(connectedEmails.length + editableEmails.length) > 0 && (
-            <div className="space-y-1">
-              {connectedEmails.map((address) => (
+          {emailListIsLong && (
+            <div className="flex items-center gap-3">
+              <input
+                type="text"
+                placeholder="Search..."
+                className="input input-sm input-bordered w-48"
+                value={emailFilter}
+                onChange={(e) => setEmailFilter(e.target.value)}
+              />
+              <span className="text-sm text-base-content/60 shrink-0">
+                {emailQuery
+                  ? `${shownEmails} of ${totalEmails}`
+                  : `${totalEmails} ${totalEmails !== 1 ? "addresses" : "address"}`}
+              </span>
+            </div>
+          )}
+          {totalEmails > 0 && (
+            <div
+              className={
+                emailListIsLong
+                  ? "space-y-1 max-h-96 overflow-y-auto pr-1"
+                  : "space-y-1"
+              }
+            >
+              {shownConnected.map((address) => (
                 <ProfileRow
                   key={`connected-${address}`}
                   value={address}
@@ -1082,7 +1124,7 @@ export default function Profile(): JSX.Element {
                   badge="Connected"
                 />
               ))}
-              {editableEmails.map((entry) => (
+              {shownEditable.map((entry) => (
                 <ProfileRow
                   key={entry.id}
                   value={entry.address}
@@ -1096,6 +1138,11 @@ export default function Profile(): JSX.Element {
                   }}
                 />
               ))}
+              {shownEmails === 0 && (
+                <p className="text-sm text-base-content/50 py-2">
+                  No address matches that search.
+                </p>
+              )}
             </div>
           )}
           <form

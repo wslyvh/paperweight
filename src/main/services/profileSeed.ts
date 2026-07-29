@@ -117,6 +117,43 @@ function insertProfileEmails(
   return save();
 }
 
+/**
+ * Add addresses the resolver read off message headers to the profile.
+ *
+ * Deliberately not insertProfileEmails: that helper clears a matching
+ * suppression, which is right for an address the user typed or connected, and
+ * wrong here. These addresses are inferred, so a "not mine" the user already
+ * recorded has to outrank them, and stay outranking them on every later sync.
+ */
+export function addReceivedProfileEmails(
+  target: Database.Database,
+  table: "profile_emails" | "global.profile_emails",
+  addresses: Iterable<string>,
+): number {
+  const suppressionTable = table.startsWith("global.")
+    ? "global.pii_suppressions"
+    : "pii_suppressions";
+  const insert = target.prepare(
+    `INSERT INTO ${table} (address, value_normalized)
+     SELECT @address, @value
+     WHERE NOT EXISTS (
+       SELECT 1 FROM ${suppressionTable}
+       WHERE type = 'email' AND value_normalized = @value
+     )
+     ON CONFLICT(value_normalized) DO NOTHING`,
+  );
+  const save = target.transaction(() => {
+    let inserted = 0;
+    for (const raw of addresses) {
+      const address = normalizeEmail(raw);
+      if (!address) continue;
+      inserted += insert.run({ address, value: address }).changes;
+    }
+    return inserted;
+  });
+  return save();
+}
+
 export function seedProfileEmailsFromAccounts(): number {
   const accounts = listAccounts();
   if (accounts.length === 0) return 0;
