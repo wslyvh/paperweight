@@ -1,16 +1,12 @@
 {
   "slug": "department-for-education",
-  "generated_at": "2026-07-29T20:03:15.847Z",
+  "generated_at": "2026-07-30T07:34:28.773Z",
   "logoUrl": "/logos/Department-for-Education.png",
   "breach": {
     "slug": "department-for-education",
     "company_name": "Department for Education",
-    "runs": [
-      "DfE"
-    ],
-    "categories": [
-      "government"
-    ],
+    "runs": ["DfE"],
+    "categories": ["government"],
     "address": "Department for Education, Sanctuary Buildings, Great Smith Street, London SW1P 3BT, United Kingdom",
     "web": "https://www.gov.uk/government/organisations/department-for-education",
     "webform": "https://www.gov.uk/government/organisations/department-for-education/about/personal-information-charter",
@@ -34,8 +30,8 @@
     "is_verified": false,
     "is_sensitive": false,
     "source": {
-      "name": "The Times",
-      "url": "https://www.thetimes.com/uk/technology-uk/article/headteachers-in-major-dfe-hacking-breach-mrphvtl9s"
+      "name": "The Independent",
+      "url": "https://www.the-independent.com/news/uk/politics/data-leak-education-department-hack-teachers-b3023943.html"
     }
   },
   "enforcement": {
@@ -43,14 +39,14 @@
     "total_fines": 0
   },
   "content": {
-    "aboutCompany": "The Department for Education (DfE) is a department of the UK government responsible for children's services and education. It operates within the United Kingdom.",
+    "aboutCompany": "The Department for Education (DfE) is a department of the UK government responsible for children\u2019s services and education. It operates across the United Kingdom.",
     "keyTakeaways": [
-      "In July 2026, the Department for Education experienced a data breach that exposed the email addresses, job titles, names, and phone numbers of approximately 607,000 individuals.",
-      "This incident is part of a pattern of data breaches affecting UK government entities.",
-      "Individuals affected by this breach should be vigilant about targeted phishing attempts and unsolicited communications, as their contact information has been exposed."
+      "In July 2026, a cyberattack on the Department for Education exposed 607,000 records, including names, job titles, email addresses, and phone numbers.",
+      "This incident is part of a broader pattern of cyberattacks targeting government entities in the UK, with another police database also affected by the same group.",
+      "Individuals whose data was exposed should be vigilant about phishing attempts and unsolicited communications that leverage their professional information."
     ],
-    "incidentAndExposure": "In July 2026, the Department for Education (DfE) in the UK suffered a data breach that exposed approximately 607,000 records. The exposed data included full names, job titles, telephone numbers, and email addresses. The affected individuals were primarily head teachers, senior school leaders, university staff, and government officials. The DfE has publicly acknowledged the incident and stated that the breach was limited to customer service contact details, with no other data accessed.",
-    "timelineAndCause": "The data breach occurred on July 26, 2026, and was disclosed on July 29, 2026. The incident was caused by the group ExfilSquad, who breached the DfE's help desk portal and the Turing Scheme portal through a social engineering attack.",
-    "nextSteps": "Since names, job titles, email addresses, and phone numbers were exposed, affected individuals should be highly cautious of targeted phishing emails, phone calls, and messages. Attackers may use this information to impersonate the DfE or other trusted entities to try and trick you into revealing more personal data or clicking on malicious links. Be suspicious of any unsolicited communications that seem too urgent, ask for personal details, or request you to download attachments or click on links. The DfE has self-referred to the Information Commissioner's Office and is working with the National Crime Agency (NCA) and the National Cyber Security Centre (NCSC)."
+    "incidentAndExposure": "In July 2026, the Department for Education (DfE) experienced a data breach that exposed approximately 607,000 records. The exposed data includes full names, job titles, telephone numbers, and email addresses. The affected individuals are primarily head teachers, senior school leaders, university staff, and government officials who interacted with the DfE's help desk portal and the Turing Scheme portal. The DfE has publicly acknowledged the incident and stated that the breach was limited to customer service contact details, with no other data accessed. The company has self-referred to the Information Commissioner's Office and is working with the National Crime Agency (NCA) and the National Cyber Security Centre (NCSC).",
+    "timelineAndCause": "The breach occurred on July 26, 2026, and was disclosed on July 29, 2026. The attacker, known as ExfilSquad, breached the DfE's help desk portal and the Turing Scheme portal through a social engineering attack. Following the incident, affected systems were taken offline, and the department switched telephone communications as a precaution.",
+    "nextSteps": "The exposed names, job titles, email addresses, and phone numbers could be used by attackers for highly targeted phishing emails or phone calls. These communications might impersonate the DfE or other trusted entities to trick individuals into revealing more sensitive information, clicking on malicious links, or downloading harmful software. Be extremely cautious of any unsolicited emails or calls, especially those asking for personal details or directing you to unfamiliar websites. The DfE has not provided specific remediation guidance, but it is advisable to verify the legitimacy of any unexpected communications by contacting the sender through official channels, not using contact information provided in the suspicious message itself."
   }
 }
