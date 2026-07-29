@@ -1,0 +1,56 @@
+{
+  "slug": "department-for-education",
+  "generated_at": "2026-07-29T20:03:15.847Z",
+  "logoUrl": "/logos/Department-for-Education.png",
+  "breach": {
+    "slug": "department-for-education",
+    "company_name": "Department for Education",
+    "runs": [
+      "DfE"
+    ],
+    "categories": [
+      "government"
+    ],
+    "address": "Department for Education, Sanctuary Buildings, Great Smith Street, London SW1P 3BT, United Kingdom",
+    "web": "https://www.gov.uk/government/organisations/department-for-education",
+    "webform": "https://www.gov.uk/government/organisations/department-for-education/about/personal-information-charter",
+    "email": "data.protection@education.gov.uk",
+    "suggested_transport_medium": "email",
+    "name": "DepartmentforEducation",
+    "title": "Department for Education",
+    "domain": "education.gov.uk",
+    "breach_date": "2026-07-26",
+    "added_date": "2026-07-29T13:15:00Z",
+    "modified_date": "2026-07-29T13:15:00Z",
+    "pwn_count": 607000,
+    "description": "In July 2026, the UK <a href=\"https://www.gov.uk/government/organisations/department-for-education\" target=\"_blank\" rel=\"noopener\">Department for Education (DfE)</a> was hacked by the ransomware group ExfilSquad. The attackers breached the DfE's help desk portal and the Turing Scheme portal, exfiltrating approximately 607,000 records including full names, job titles, telephone numbers, and email addresses of head teachers, senior school leaders, university staff, and government officials. The DfE self-referred to the Information Commissioner's Office and is working with the National Crime Agency (NCA) and the National Cyber Security Centre (NCSC). Affected systems were taken offline and the department switched telephone communications as a precaution. The DfE stated that the breach was limited to customer service contact details and that no other data had been accessed.",
+    "attribution": "ExfilSquad",
+    "data_classes": [
+      "Email addresses",
+      "Job titles",
+      "Names",
+      "Phone numbers"
+    ],
+    "is_verified": false,
+    "is_sensitive": false,
+    "source": {
+      "name": "The Times",
+      "url": "https://www.thetimes.com/uk/technology-uk/article/headteachers-in-major-dfe-hacking-breach-mrphvtl9s"
+    }
+  },
+  "enforcement": {
+    "records": [],
+    "total_fines": 0
+  },
+  "content": {
+    "aboutCompany": "The Department for Education (DfE) is a department of the UK government responsible for children's services and education. It operates within the United Kingdom.",
+    "keyTakeaways": [
+      "In July 2026, the Department for Education experienced a data breach that exposed the email addresses, job titles, names, and phone numbers of approximately 607,000 individuals.",
+      "This incident is part of a pattern of data breaches affecting UK government entities.",
+      "Individuals affected by this breach should be vigilant about targeted phishing attempts and unsolicited communications, as their contact information has been exposed."
+    ],
+    "incidentAndExposure": "In July 2026, the Department for Education (DfE) in the UK suffered a data breach that exposed approximately 607,000 records. The exposed data included full names, job titles, telephone numbers, and email addresses. The affected individuals were primarily head teachers, senior school leaders, university staff, and government officials. The DfE has publicly acknowledged the incident and stated that the breach was limited to customer service contact details, with no other data accessed.",
+    "timelineAndCause": "The data breach occurred on July 26, 2026, and was disclosed on July 29, 2026. The incident was caused by the group ExfilSquad, who breached the DfE's help desk portal and the Turing Scheme portal through a social engineering attack.",
+    "nextSteps": "Since names, job titles, email addresses, and phone numbers were exposed, affected individuals should be highly cautious of targeted phishing emails, phone calls, and messages. Attackers may use this information to impersonate the DfE or other trusted entities to try and trick you into revealing more personal data or clicking on malicious links. Be suspicious of any unsolicited communications that seem too urgent, ask for personal details, or request you to download attachments or click on links. The DfE has self-referred to the Information Commissioner's Office and is working with the National Crime Agency (NCA) and the National Cyber Security Centre (NCSC)."
+  }
+}

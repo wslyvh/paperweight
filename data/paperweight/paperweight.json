@@ -961,5 +961,38 @@
       "US-based global foodservice distributor; the largest in North America. Exposed contacts are largely business customers (restaurants, healthcare and education foodservice operators) and employees rather than retail consumers.",
       "Data subject rights requests go through Sysco's Global Data Privacy Portal (OneTrust webform); dataprivacy@sysco.com published on sysco.com privacy policy."
     ]
+  },
+  {
+    "slug": "paidwork",
+    "relevant-countries": ["us"],
+    "name": "Paidwork LLC",
+    "categories": ["services"],
+    "address": "Paidwork LLC, 3400 Cottage Way Ste G2 #27204, Sacramento, CA 95825, USA",
+    "web": "https://www.paidwork.com",
+    "webform": "https://support.paidwork.com",
+    "email": "support@paidwork.com",
+    "suggested-transport-medium": "email",
+    "quality": "tested",
+    "comments": [
+      "Gig economy/microtask platform. US-based LLC serving global users. No dedicated DPO email published; support@paidwork.com listed as customer service contact in privacy policy and terms.",
+      "Address confirmed from Terms of Service (paidwork.com/terms-of-service). Privacy policy effective date: March 29, 2026."
+    ]
+  },
+  {
+    "slug": "department-for-education",
+    "relevant-countries": ["gb"],
+    "name": "Department for Education",
+    "runs": ["DfE"],
+    "categories": ["government"],
+    "address": "Department for Education, Sanctuary Buildings, Great Smith Street, London SW1P 3BT, United Kingdom",
+    "web": "https://www.gov.uk/government/organisations/department-for-education",
+    "webform": "https://www.gov.uk/government/organisations/department-for-education/about/personal-information-charter",
+    "email": "data.protection@education.gov.uk",
+    "suggested-transport-medium": "email",
+    "quality": "tested",
+    "comments": [
+      "UK government department responsible for education, children's services, and higher education. Address confirmed from gov.uk contact page.",
+      "DSAR email published on gov.uk personal information charter page. Self-referred to ICO after July 2026 breach."
+    ]
   }
 ]
