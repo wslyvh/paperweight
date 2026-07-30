@@ -102,7 +102,9 @@ export function detectAddressBlocks(text: string, candidates: PostalCandidate[])
     if (pc.tier === "anchor-only" && !CITY.test(text.slice(pc.end))) continue;
     const specs = STREETS.filter((s) => s.country === pc.country);
     const sameCountry = candidates.filter((c) => c.country === pc.country);
-    let best: { start: number; end: number; street: string; gap: number } | undefined;
+    let best:
+      | { start: number; end: number; streetStart: number; streetEnd: number; street: string; gap: number }
+      | undefined;
     for (const spec of specs) {
       for (const m of text.matchAll(spec.pattern)) {
         const mEnd = m.index + m[0].length;
@@ -128,7 +130,14 @@ export function detectAddressBlocks(text: string, candidates: PostalCandidate[])
           // above the street — is context that anchors the block, not part of
           // the address, and letting it in is what splits one company HQ into
           // several differently-formatted rows.
-          best = { start: m.index, end: Math.max(mEnd, pc.end), street: m[0], gap };
+          best = {
+            start: m.index,
+            end: Math.max(mEnd, pc.end),
+            streetStart: m.index,
+            streetEnd: mEnd,
+            street: m[0],
+            gap,
+          };
         }
       }
     }
@@ -141,7 +150,7 @@ export function detectAddressBlocks(text: string, candidates: PostalCandidate[])
     findings.push({
       type: "address",
       valueRaw: text.slice(best.start, best.end),
-      valueNormalized: normalizeAddress(text.slice(best.start, best.end)),
+      valueNormalized: normalizeAddressSpan(text, best, pc),
       start: best.start,
       end: best.end,
       confidence: "contextual",
@@ -155,12 +164,39 @@ export function detectAddressBlocks(text: string, candidates: PostalCandidate[])
   return findings;
 }
 
+// The street can precede or follow the postcode+city pair depending on
+// convention ("Street 12, City, 1234 AB" vs "Street 12, 1234 AB City"), and
+// the city can sit on either side of the postcode within that. Compare the
+// same physical address, and only the order changed — so build the
+// normalized value from street, postcode and city separately and always
+// join them in that fixed order, instead of normalizing the span's raw word
+// order. Only reachable when the postcode falls inside the span (the street
+// precedes it); a postcode preceding the street is excluded from the span
+// entirely (see the comment above `best`), so there is nothing to reorder.
+function normalizeAddressSpan(
+  text: string,
+  best: { start: number; end: number; streetStart: number; streetEnd: number; street: string },
+  pc: PostalCandidate,
+): string {
+  if (pc.start < best.streetStart || pc.end > best.end) {
+    return normalizeAddress(text.slice(best.start, best.end));
+  }
+  const cityRaw =
+    text.slice(best.streetEnd, pc.start) + " " + text.slice(pc.end, best.end);
+  return [normalizeAddress(best.street), normalizeAddress(pc.value), normalizeAddress(cityRaw)]
+    .filter(Boolean)
+    .join(" ");
+}
+
 // One address written twice differs by punctuation, case and line breaks far
 // more often than by content, and each variant would otherwise be its own row.
 // Canonicalize supported postcode fragments first, then strip to letters,
 // digits and single spaces; valueRaw keeps the original.
 // Exported so anything comparing an address against a finding reduces both
 // sides with this exact function rather than a copy that can drift from it.
+// Word order is preserved (not sorted): known-values.ts builds its freeform
+// match regex directly from this output, expecting the words in the order
+// they'd appear in real prose.
 export function normalizeAddress(raw: string): string {
   return canonicalizePostalCodesInAddress(raw)
     .toLowerCase()

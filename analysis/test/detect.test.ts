@@ -310,6 +310,20 @@ describe("detectAddressBlocks", () => {
     expect([...normalized]).toEqual(["voorbeeldstraat 12 1234 xb voorbeeldstad"]);
   });
 
+  it("collapses one address to one value regardless of city/postcode order", () => {
+    const variants = [
+      "Voorbeeldstraat 12, 1234 XB Voorbeeldstad",
+      "Voorbeeldstraat 12, Voorbeeldstad, 1234 XB",
+    ];
+    const normalized = new Set(
+      variants.map((text) => {
+        const postal = detectPostalCodes(text);
+        return detectAddressBlocks(text, postal.candidates)[0]!.valueNormalized;
+      }),
+    );
+    expect(normalized.size).toBe(1);
+  });
+
   it("drops a block whose span runs longer than an address ever is", () => {
     // Street and postcode within the gap, but with a sentence between them:
     // the emitted span would be prose, not an address.
