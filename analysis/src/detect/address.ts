@@ -113,15 +113,22 @@ export function detectAddressBlocks(text: string, candidates: PostalCandidate[])
         if (sameCountry.some((c) => m.index < c.end && c.start < mEnd)) continue;
         const gap = m.index >= pc.end ? m.index - pc.end : pc.start - mEnd;
         if (gap > MAX_GAP) continue;
-        const between =
-          m.index >= pc.end
-            ? text.slice(pc.end, m.index)
-            : text.slice(mEnd, pc.start);
+        const betweenStart = m.index >= pc.end ? pc.end : mEnd;
+        const betweenEnd = m.index >= pc.end ? m.index : pc.start;
+        const between = text.slice(betweenStart, betweenEnd);
         // A copyright year can satisfy a country's bare numeric postcode
         // pattern, with the company name after it mistaken for a city. A
         // copyright marker between the street and candidate proves they are
         // separate blocks, regardless of the number itself.
         if (COPYRIGHT_BOUNDARY.test(between)) continue;
+        // A whole other postcode of this country sitting between the street
+        // and pc means the street already belongs to that nearer one — pc is
+        // a second, separate address (e.g. a PO box) further down the text.
+        if (
+          sameCountry.some((c) => (
+            c !== pc && c.start >= betweenStart && c.end <= betweenEnd
+          ))
+        ) continue;
         if (!best || gap < best.gap) {
           // The span starts at the street, never before it. Whatever precedes —
           // a year, a label ("adres:"), a person's name, or a postcode written

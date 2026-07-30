@@ -24,7 +24,9 @@ const US_STATE =
 
 // shared /g patterns are safe: String.matchAll clones the regex
 const BARE_5 = /(?<![\d-])\d{5}(?![\dA-Za-z-])/g; // DE PLZ, FR/ES/IT CP
-const BARE_4 = /(?<![\d-])[1-9]\d{3}(?![\dA-Za-z-])/g; // BE, AT
+// excludes a trailing " XX" (space + 2 uppercase letters): that shape is an
+// NL postcode's own letter pair, not a real BE/AT city name
+const BARE_4 = /(?<![\d-])[1-9]\d{3}(?![\dA-Za-z-])(?! ?[A-Z]{2}(?![A-Za-z]))/g; // BE, AT
 
 export const POSTAL_CODES: PostalSpec[] = [
   // SA/SD/SS are never issued (official rule)
