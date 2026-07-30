@@ -6,7 +6,7 @@
   "author": "wslyvh",
   "main": "./out/main/index.js",
   "scripts": {
-    "postinstall": "electron-rebuild -f -w better-sqlite3",
+    "postinstall": "yarn --cwd analysis install && electron-rebuild -f -w better-sqlite3",
     "dev": "electron-vite dev",
     "prebuild": "yarn build:companies && yarn build:breaches && yarn build:enforcement",
     "build": "electron-vite build",

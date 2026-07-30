@@ -75,6 +75,10 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
+      - name: Install analysis dependencies
+        run: yarn install --immutable
+        working-directory: analysis
+
       - name: Build macOS installer
         run: yarn dist:mac
 
@@ -121,6 +125,10 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --immutable
+
+      - name: Install analysis dependencies
+        run: yarn install --immutable
+        working-directory: analysis
 
       - name: Build Linux installer
         run: yarn dist:linux
@@ -179,6 +187,10 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --immutable
+
+      - name: Install analysis dependencies
+        run: yarn install --immutable
+        working-directory: analysis
 
       - name: Build Windows installer
         run: yarn dist:win
