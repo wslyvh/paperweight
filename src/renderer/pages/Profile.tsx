@@ -222,7 +222,7 @@ function ProfileRow({
   onRemove,
 }: ProfileRowProps): JSX.Element {
   return (
-    <div className="flex items-center justify-between gap-3 text-sm py-1">
+    <div className="flex items-center justify-between gap-3 text-sm py-1.5 px-3 -mx-3 rounded-xl hover:bg-base-300 transition-colors">
       <div className="min-w-0 flex-1">
         <span className={`break-all ${monospace ? "font-mono" : ""}`}>
           {value}
@@ -1112,8 +1112,8 @@ export default function Profile(): JSX.Element {
             <div
               className={
                 emailListIsLong
-                  ? "space-y-1 max-h-96 overflow-y-auto pr-1"
-                  : "space-y-1"
+                  ? "space-y-1 max-h-96 overflow-y-auto -mx-3 px-3"
+                  : "space-y-1 -mx-3 px-3"
               }
             >
               {shownConnected.map((address) => (
