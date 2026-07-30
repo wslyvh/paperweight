@@ -173,6 +173,23 @@ describe("receivedAddress", () => {
     expect(received({})).toBeUndefined();
   });
 
+  // Known limitation: sender-side infrastructure can put an internal tracking
+  // recipient in both the earliest Received hop and To. It is indistinguishable
+  // from a real forwarding alias using these headers alone.
+  it("resolves a sender-controlled tracking recipient", () => {
+    expect(
+      received({
+        "delivered-to": "me@provider.example",
+        received: [
+          "from relay.sender-platform.example by mx.provider.example for <me@provider.example>; Wed, 1 Jan 2025 00:00:02 +0000",
+          "from internal.sender-platform.example by relay.sender-platform.example for <jane.doe@example.com>; Wed, 1 Jan 2025 00:00:01 +0000",
+          "from source.example by internal.sender-platform.example for <9zzzzzzzzzzzzzz@sender-platform.example>; Wed, 1 Jan 2025 00:00:00 +0000",
+        ],
+        to: "Jane Doe <9zzzzzzzzzzzzzz@sender-platform.example>",
+      }),
+    ).toBe("9zzzzzzzzzzzzzz@sender-platform.example");
+  });
+
   // Known limitation, asserted so a change in behaviour is visible. A mailing
   // list expands to the reader, and the list address is both the earliest link
   // and the To, so it resolves. The reader removes it from the profile if they

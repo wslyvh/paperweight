@@ -7,10 +7,12 @@
 //
 // Two things have to line up before we believe it. The delivery chain has to
 // name an address, and the sender's own To/Cc has to name the same one. A trace
-// header alone is forgeable — spam injects a Delivered-To below the real one —
-// and a To/Cc alone says nothing about where the message was delivered. Requiring
-// both means two parties with no shared interest agree. When they do not there is
-// no answer, and that is a normal outcome rather than a failure.
+// header alone is forgeable, and a To/Cc alone says nothing about where the
+// message was delivered. This is a useful heuristic, not independent
+// corroboration: sender-side infrastructure can write both the earliest
+// Received `for` address and To/Cc. Those measured false positives are accepted;
+// the user can remove one and its suppression prevents it being added again.
+// When the two values do not line up there is no answer, which is normal.
 //
 // Dependency-free on purpose, like ./contracts: a consumer that only wants this
 // answer can import it without pulling in the rest of the engine.
