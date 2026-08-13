@@ -29,7 +29,7 @@
       "Physical addresses"
     ],
     "is_verified": true,
-    "is_sensitive": true,
+    "is_sensitive": false,
     "source": {
       "name": "Trezor",
       "url": "https://trezor.io/blog/news/recent-customer-data-exposed-in-shipping-provider-incident"
