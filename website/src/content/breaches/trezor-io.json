@@ -1,0 +1,53 @@
+{
+  "slug": "trezor-io",
+  "generated_at": "2026-08-13T15:05:07.939Z",
+  "logoUrl": "/logos/Trezor.png",
+  "breach": {
+    "slug": "trezor-io",
+    "company_name": "Trezor Company s.r.o.",
+    "runs": [],
+    "categories": [
+      "services"
+    ],
+    "address": "Kundratka 2359/17a, 180 00 Prague 8 - Libeň, Czech Republic",
+    "web": "https://trezor.io",
+    "webform": "https://data.trezor.io/legal/privacy-policy.html",
+    "email": "info@trezor.io",
+    "suggested_transport_medium": "email",
+    "name": "Trezor",
+    "title": "Trezor customer data exposed in ShipMonk shipping-provider incident",
+    "domain": "trezor.io",
+    "breach_date": "2026-08-10",
+    "added_date": "2026-08-12T00:00:00Z",
+    "modified_date": "2026-08-12T00:00:00Z",
+    "pwn_count": 13689,
+    "description": "In August 2026, <a href=\"https://trezor.io/blog/news/recent-customer-data-exposed-in-shipping-provider-incident\" target=\"_blank\" rel=\"noopener\">Trezor disclosed</a> that unauthorized access at ShipMonk, one of its shipping providers, exposed customer order data. The incident affected 11,742 customers with full exposure of names, email addresses, phone numbers and shipping addresses, plus 1,947 customers with partial exposure of names, cities and email addresses. The affected orders were received between May 10 and August 8, 2026, in the United States, United Kingdom, Sweden, Colombia, Brazil, Italy and Portugal. Trezor said its own systems, devices and wallet backups were not compromised. The company attributed the limited scope to a 90-day data-retention policy and said affected customers were contacted directly. No attacker was publicly named.",
+    "data_classes": [
+      "Email addresses",
+      "Names",
+      "Phone numbers",
+      "Physical addresses"
+    ],
+    "is_verified": true,
+    "is_sensitive": false,
+    "source": {
+      "name": "Trezor",
+      "url": "https://trezor.io/blog/news/recent-customer-data-exposed-in-shipping-provider-incident"
+    }
+  },
+  "enforcement": {
+    "records": [],
+    "total_fines": 0
+  },
+  "content": {
+    "aboutCompany": "Trezor Company s.r.o. is a hardware wallet manufacturer based in the Czech Republic. It specializes in devices for storing cryptocurrency.",
+    "keyTakeaways": [
+      "In August 2026, a data exposure at Trezor's shipping provider, ShipMonk, affected 14,000 customers, revealing email addresses, names, phone numbers, and physical addresses.",
+      "This incident is part of a broader pattern of data exposures impacting companies in the financial technology sector.",
+      "Affected individuals should be vigilant about targeted phishing attempts and scam calls, as their personal contact and address information is now known to attackers."
+    ],
+    "incidentAndExposure": "In August 2026, Trezor confirmed a data exposure affecting 14,000 customers. This incident occurred at ShipMonk, a third-party shipping provider used by Trezor. The exposed data included email addresses, names, phone numbers, and physical addresses for 11,742 customers. An additional 1,947 customers had their names, cities, and email addresses exposed. The affected orders were placed between May 10 and August 8, 2026, and involved customers in the United States, United Kingdom, Sweden, Colombia, Brazil, Italy, and Portugal. Trezor stated that its own systems, devices, and wallet backups were not affected.",
+    "timelineAndCause": "The data exposure occurred between May 10 and August 8, 2026, at ShipMonk, Trezor's shipping provider. Trezor disclosed the incident on August 12, 2026. The exposure was due to unauthorized access at ShipMonk. Trezor attributed the limited scope of the incident to a 90-day data retention policy at ShipMonk.",
+    "nextSteps": "The exposed data, including names, email addresses, phone numbers, and physical addresses, could be used by attackers for highly targeted phishing emails, scam calls, and even physical mail scams. Attackers might pretend to be from Trezor or other legitimate services to try and trick you into revealing sensitive information or sending cryptocurrency. Be extremely cautious of any unsolicited communications that mention your Trezor device or past orders. Do not click on suspicious links, download attachments from unknown senders, or provide personal information over the phone or in response to emails you did not initiate. Trezor has stated that affected customers were contacted directly about the incident."
+  }
+}
