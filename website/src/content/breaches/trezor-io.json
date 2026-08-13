@@ -42,7 +42,7 @@
   "content": {
     "aboutCompany": "Trezor Company s.r.o. is a hardware wallet manufacturer based in the Czech Republic. It specializes in devices for storing cryptocurrency.",
     "keyTakeaways": [
-      "In August 2026, a data exposure at Trezor's shipping provider, ShipMonk, affected 13,689 customers: 11,742 had names, email addresses, phone numbers and shipping addresses exposed, while 1,947 had names, cities and email addresses exposed.",
+      "In August 2026, a data exposure at Trezor's shipping provider, ShipMonk, affected approximately 14,000 customers, revealing names, email addresses, phone numbers and, for many customers, shipping addresses.",
       "The leak links confirmed Trezor hardware-wallet purchases to real-world identities and shipping addresses. That creates a physical-security risk beyond phishing, including possible targeting for burglary, coercion or so-called wrench attacks.",
       "Trezor said its own systems, devices and wallet backups were not compromised, but the exposed customer data still deserves urgent attention because crypto-related physical attacks have been growing."
     ],
