@@ -100,8 +100,8 @@ export function formatFine(eur: number): string {
 }
 
 function getSeverityFromDataClasses(classes: string[]): RiskSeverity {
-  const high = ["passport", "government issued", "driver", "bank account", "credit card", "social security", "health", "medical"];
-  const medium = ["password", "date of birth", "phone", "physical address", "financial"];
+  const high = ["passport", "government issued", "driver", "bank account", "credit card", "social security", "health", "medical", "physical address"];
+  const medium = ["password", "date of birth", "phone", "financial"];
   const lc = classes.map((c) => c.toLowerCase());
   if (high.some((h) => lc.some((c) => c.includes(h)))) {
     return { level: "high", badgeClass: "badge-error" };

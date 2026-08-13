@@ -4,7 +4,7 @@
   "logoUrl": "/logos/Trezor.png",
   "breach": {
     "slug": "trezor-io",
-    "company_name": "Trezor Company s.r.o.",
+    "company_name": "Trezor",
     "runs": [],
     "categories": [
       "services"
@@ -15,7 +15,7 @@
     "email": "info@trezor.io",
     "suggested_transport_medium": "email",
     "name": "Trezor",
-    "title": "Trezor customer data exposed in ShipMonk shipping-provider incident",
+    "title": "Trezor",
     "domain": "trezor.io",
     "breach_date": "2026-08-10",
     "added_date": "2026-08-12T00:00:00Z",
@@ -29,7 +29,7 @@
       "Physical addresses"
     ],
     "is_verified": true,
-    "is_sensitive": false,
+    "is_sensitive": true,
     "source": {
       "name": "Trezor",
       "url": "https://trezor.io/blog/news/recent-customer-data-exposed-in-shipping-provider-incident"
@@ -40,7 +40,7 @@
     "total_fines": 0
   },
   "content": {
-    "aboutCompany": "Trezor Company s.r.o. is a hardware wallet manufacturer based in the Czech Republic. It specializes in devices for storing cryptocurrency.",
+    "aboutCompany": "Trezor is a hardware wallet manufacturer based in the Czech Republic. It specializes in devices for storing cryptocurrency.",
     "keyTakeaways": [
       "In August 2026, a data exposure at Trezor's shipping provider, ShipMonk, affected approximately 14,000 customers, revealing names, email addresses, phone numbers and, for many customers, shipping addresses.",
       "The leak links confirmed Trezor hardware-wallet purchases to real-world identities and shipping addresses. That creates a physical-security risk beyond phishing, including possible targeting for burglary, coercion or so-called wrench attacks.",

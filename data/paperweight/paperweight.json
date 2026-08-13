@@ -1007,7 +1007,7 @@
     "it",
     "pt"
   ],
-  "name": "Trezor Company s.r.o.",
+  "name": "Trezor",
   "categories": [
     "services"
   ],
@@ -1018,7 +1018,7 @@
   "suggested-transport-medium": "email",
   "quality": "tested",
   "comments": [
-    "Official company contact and registered office from Trezor Terms of Use; no dedicated privacy/DPO email confirmed."
+    "Legal entity: Trezor Company s.r.o. Official company contact and registered office from Trezor Terms of Use; no dedicated privacy/DPO email confirmed."
   ]
 }
 ]
