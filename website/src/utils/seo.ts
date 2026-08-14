@@ -49,20 +49,23 @@ export function buildMetadata({
   hasOwnImage = false,
 }: PageMetadataOptions): Metadata {
   const url = `${SITE_CONFIG.URL}${path}`;
+  const pageTitle = title.includes(SITE_CONFIG.NAME)
+    ? title
+    : `${title} | ${SITE_CONFIG.NAME}`;
   const ogImage = resolveOgImage({ image, hasOwnImage });
   const ogImages = ogImage
     ? [{ url: ogImage, alt: imageAlt ?? title, width: 1200, height: 630 }]
     : undefined;
 
   return {
-    title,
+    title: pageTitle,
     description,
     alternates: {
       canonical: url,
     },
     openGraph: {
       type,
-      title,
+      title: pageTitle,
       description,
       url,
       siteName: SITE_CONFIG.NAME,
@@ -71,7 +74,7 @@ export function buildMetadata({
     twitter: {
       card: "summary_large_image",
       site: SITE_CONFIG.SOCIAL_TWITTER,
-      title,
+      title: pageTitle,
       description,
       ...(ogImage ? { images: ogImage } : {}),
     },

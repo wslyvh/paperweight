@@ -1,14 +1,12 @@
-import { SubpageHeader } from "@/components/SubpageHeader";
-import { Generator } from "@/components/Generator";
-import type { GdprRequestAction } from "@shared/gdpr/types";
 import { buildGdprGeneratorInitialState } from "@shared/gdpr/resolution";
-import Link from "next/link";
+import type { GdprRequestAction } from "@shared/gdpr/types";
 import { Sparkles } from "lucide-react";
+import Link from "next/link";
+import { Generator } from "@/components/Generator";
 import { PromoBanner } from "@/components/PromoBanner";
+import { SubpageHeader } from "@/components/SubpageHeader";
 import companies from "@/data/companies.generated.json";
 import { buildMetadata } from "@/utils/seo";
-
-export const GDPR_GENERATOR_LAST_UPDATED = "2026-04-02";
 
 export const metadata = buildMetadata({
   title: "Free GDPR Request Generator",
@@ -28,10 +26,7 @@ export default async function GdprGeneratorPage({
   searchParams,
 }: GdprGeneratorPageProps) {
   const query = await searchParams;
-  const initialState = buildGdprGeneratorInitialState(
-    companies,
-    query.company,
-  );
+  const initialState = buildGdprGeneratorInitialState(companies, query.company);
   const initialAction: GdprRequestAction =
     query.action === "delete" ? "delete" : "access";
 
@@ -42,9 +37,9 @@ export default async function GdprGeneratorPage({
         <div className="max-w-4xl space-y-4 opacity-80">
           <p>
             Use this form to generate a GDPR request. Choose which action you
-            want to take (access or delete) and select or enter an
-            organization. Add your details on the right. The template is
-            updated directly to copy or open in your own email client.
+            want to take (access or delete) and select or enter an organization.
+            Add your details on the right. The template is updated directly to
+            copy or open in your own email client.
           </p>
           <p>
             More information about your local data protection authority is

@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import type { PropsWithChildren } from "react";
+import { Github, Menu, TwitterIcon, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Github, TwitterIcon, Menu, X } from "lucide-react";
+import type { PropsWithChildren } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavDropdown } from "@/components/NavDropdown";
 import { Newsletter } from "@/components/Newsletter";
 import { SITE_CONFIG } from "@/utils/config";
@@ -18,6 +18,7 @@ interface NavLink {
 }
 
 interface LayoutSelectorProps extends PropsWithChildren {
+  featureNavLinks: NavLink[];
   guideNavLinks: NavLink[];
   resourceNavLinks: NavLink[];
 }
@@ -25,9 +26,63 @@ interface LayoutSelectorProps extends PropsWithChildren {
 export function LayoutSelector(props: LayoutSelectorProps) {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const mainRef = useRef<HTMLElement>(null);
+  const footerRef = useRef<HTMLElement>(null);
   const standalone = STANDALONE_ROUTES.some(
     (route) => pathname === route || pathname.startsWith(`${route}/`),
   );
+
+  useEffect(() => {
+    const backgroundElements = [
+      headerRef.current,
+      mainRef.current,
+      footerRef.current,
+    ];
+
+    if (!mobileMenuOpen) return;
+
+    backgroundElements.forEach((element) => {
+      element?.setAttribute("inert", "");
+    });
+    closeButtonRef.current?.focus();
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setMobileMenuOpen(false);
+        return;
+      }
+
+      if (event.key === "Tab") {
+        const focusable = dialogRef.current?.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        );
+        if (!focusable?.length) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      backgroundElements.forEach((element) => {
+        element?.removeAttribute("inert");
+      });
+      menuButtonRef.current?.focus();
+    };
+  }, [mobileMenuOpen]);
 
   if (standalone) {
     return props.children;
@@ -35,7 +90,7 @@ export function LayoutSelector(props: LayoutSelectorProps) {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header>
+      <header ref={headerRef}>
         <div className="container mx-auto px-4 py-6">
           <nav className="flex items-center justify-between">
             <Link
@@ -49,11 +104,23 @@ export function LayoutSelector(props: LayoutSelectorProps) {
             {/* Desktop nav */}
             <div className="hidden lg:flex items-center gap-3">
               <NavDropdown
+                label="Features"
+                href="/account-discovery"
+                links={props.featureNavLinks}
+              />
+              <NavDropdown
                 label="Resources"
                 href="/resources"
                 links={props.resourceNavLinks}
               />
-              <NavDropdown label="Guides" href="/guides" links={props.guideNavLinks} />
+              <NavDropdown
+                label="Guides"
+                href="/guides"
+                links={props.guideNavLinks}
+              />
+              <Link href="/pricing" className="btn btn-ghost btn-sm">
+                Pricing
+              </Link>
               <a href="/#download" className="btn btn-primary btn-sm">
                 Download
               </a>
@@ -74,6 +141,8 @@ export function LayoutSelector(props: LayoutSelectorProps) {
                 Download
               </a>
               <button
+                ref={menuButtonRef}
+                type="button"
                 onClick={() => setMobileMenuOpen(true)}
                 className="btn btn-ghost btn-sm btn-square"
                 aria-label="Open menu"
@@ -89,15 +158,28 @@ export function LayoutSelector(props: LayoutSelectorProps) {
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           {/* Backdrop */}
-          <div
+          <button
+            type="button"
             className="fixed inset-0 bg-black/50"
             onClick={() => setMobileMenuOpen(false)}
+            aria-label="Close menu"
+            tabIndex={-1}
           />
           {/* Sidebar panel */}
-          <div className="fixed right-0 top-0 h-full w-72 bg-base-200 shadow-xl p-6 flex flex-col overflow-y-auto">
+          <div
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="mobile-menu-title"
+            className="fixed right-0 top-0 h-full w-72 bg-base-200 shadow-xl p-6 flex flex-col overflow-y-auto"
+          >
             <div className="flex items-center justify-between mb-6">
-              <span className="text-lg font-bold">Menu</span>
+              <span id="mobile-menu-title" className="text-lg font-bold">
+                Menu
+              </span>
               <button
+                ref={closeButtonRef}
+                type="button"
                 onClick={() => setMobileMenuOpen(false)}
                 className="btn btn-ghost btn-sm btn-square"
                 aria-label="Close menu"
@@ -107,11 +189,34 @@ export function LayoutSelector(props: LayoutSelectorProps) {
             </div>
 
             <div className="flex-1 space-y-6">
+              <div>
+                <Link
+                  href="/account-discovery"
+                  className="font-semibold opacity-70 mb-2 block"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Features
+                </Link>
+                <ul className="space-y-1 ml-2">
+                  {props.featureNavLinks.map((item) => (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        className="block py-1.5 hover:opacity-80"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
               {/* Resources section */}
               <div>
                 <Link
                   href="/resources"
-                  className="font-semibold opacity-60 mb-2 block"
+                  className="font-semibold opacity-70 mb-2 block"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Resources
@@ -135,7 +240,7 @@ export function LayoutSelector(props: LayoutSelectorProps) {
               <div>
                 <Link
                   href="/guides"
-                  className="font-semibold opacity-60 mb-2 block"
+                  className="font-semibold opacity-70 mb-2 block"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Guides
@@ -154,6 +259,14 @@ export function LayoutSelector(props: LayoutSelectorProps) {
                   ))}
                 </ul>
               </div>
+
+              <Link
+                href="/pricing"
+                className="font-semibold block"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Pricing
+              </Link>
             </div>
 
             {/* Nav footer with socials */}
@@ -183,9 +296,11 @@ export function LayoutSelector(props: LayoutSelectorProps) {
         </div>
       )}
 
-      <main className="flex-1">{props.children}</main>
+      <main ref={mainRef} className="flex-1">
+        {props.children}
+      </main>
 
-      <footer className="bg-base-100">
+      <footer ref={footerRef} className="bg-base-100">
         <div className="container mx-auto px-4">
           <div className="max-w-md mx-auto text-center py-16">
             <h2 className="text-2xl font-bold mb-4">Get updates</h2>
@@ -203,7 +318,9 @@ export function LayoutSelector(props: LayoutSelectorProps) {
                 <span className="text-2xl leading-none mb-4" aria-hidden>
                   {SITE_CONFIG.ICON}
                 </span>
-                <span className="font-medium opacity-80 mb-2">{SITE_CONFIG.TAGLINE}</span>
+                <span className="font-medium opacity-80 mb-2">
+                  {SITE_CONFIG.TAGLINE}
+                </span>
                 <div className="flex items-center gap-4">
                   <Link
                     href={SITE_CONFIG.GITHUB_URL}
@@ -226,11 +343,35 @@ export function LayoutSelector(props: LayoutSelectorProps) {
                 </div>
               </nav>
               <nav>
-                <Link href="/resources" className="footer-title link link-hover">
+                <Link
+                  href="/account-discovery"
+                  className="footer-title link link-hover"
+                >
+                  Features
+                </Link>
+                {props.featureNavLinks.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="link link-hover"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
+              <nav>
+                <Link
+                  href="/resources"
+                  className="footer-title link link-hover"
+                >
                   Resources
                 </Link>
                 {props.resourceNavLinks.map((item) => (
-                  <Link key={item.href} href={item.href} className="link link-hover">
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="link link-hover"
+                  >
                     {item.label}
                   </Link>
                 ))}
@@ -240,13 +381,20 @@ export function LayoutSelector(props: LayoutSelectorProps) {
                   Guides
                 </Link>
                 {props.guideNavLinks.map((item) => (
-                  <Link key={item.href} href={item.href} className="link link-hover">
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="link link-hover"
+                  >
                     {item.label}
                   </Link>
                 ))}
               </nav>
               <nav>
                 <h6 className="footer-title">Legal</h6>
+                <Link href="/pricing" className="link link-hover">
+                  Pricing
+                </Link>
                 <Link href="/terms" className="link link-hover">
                   Terms
                 </Link>

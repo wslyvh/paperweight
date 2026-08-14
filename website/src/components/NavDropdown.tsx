@@ -9,12 +9,13 @@ interface NavDropdownProps {
 
 export function NavDropdown({ label, href, links }: NavDropdownProps) {
   return (
-    <div className="dropdown dropdown-end dropdown-hover">
-      <Link href={href} className="btn btn-ghost btn-sm">
-        {label}
-      </Link>
-      <div tabIndex={0} className="dropdown-content z-10 w-52 pt-2">
+    <details className="dropdown dropdown-end">
+      <summary className="btn btn-ghost btn-sm list-none">{label}</summary>
+      <div className="dropdown-content z-10 w-52 pt-2">
         <ul className="menu rounded-box max-h-80 w-full overflow-y-auto bg-base-200 p-2 shadow-lg backdrop-blur">
+          <li>
+            <Link href={href}>{label} overview</Link>
+          </li>
           {links.map((item) => (
             <li key={item.href}>
               <Link href={item.href}>{item.label}</Link>
@@ -22,6 +23,6 @@ export function NavDropdown({ label, href, links }: NavDropdownProps) {
           ))}
         </ul>
       </div>
-    </div>
+    </details>
   );
 }

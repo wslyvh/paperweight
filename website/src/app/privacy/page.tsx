@@ -1,9 +1,8 @@
 import dayjs from "dayjs";
 import { SubpageHeader } from "@/components/SubpageHeader";
 import { SITE_CONFIG } from "@/utils/config";
+import { PRIVACY_LAST_UPDATED } from "@/utils/page-dates";
 import { buildMetadata } from "@/utils/seo";
-
-export const PRIVACY_LAST_UPDATED = "2026-03-12";
 
 export const metadata = buildMetadata({
   title: "Privacy Policy",
@@ -17,10 +16,7 @@ export default async function PrivacyPage() {
 
   return (
     <div className="container mx-auto w-full px-4 pt-24 pb-12">
-      <SubpageHeader
-        label="Resources"
-        title="Privacy Policy"
-      />
+      <SubpageHeader label="Resources" title="Privacy Policy" />
       <p className="text-sm mt-2">Last updated: {lastUpdated}</p>
       <div className="divider"></div>
       <div className="prose max-w-none">

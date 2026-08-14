@@ -1,22 +1,3 @@
-import Link from "next/link";
-import Image from "next/image";
-import dayjs from "dayjs";
-import { SITE_CONFIG } from "@/utils/config";
-import { getLatestVersion } from "@/lib/github";
-import { getBreachIndexItems } from "@/utils/breach";
-import {
-  Mail,
-  ShieldAlert,
-  Map,
-  FileText,
-  Lock,
-  Github,
-  Info,
-  ChevronRight,
-  Coins,
-} from "lucide-react";
-import { PayWithCryptoButton } from "@/components/PayWithCrypto";
-import { getCryptoPayPricing, getCryptoPrice, LICENSE_PRICING } from "@/utils/pricing";
 import { PROVIDER_PRESETS } from "@shared/email-providers";
 import {
   AppleLogo,
@@ -24,8 +5,107 @@ import {
   MicrosoftLogo,
   ProtonLogo,
 } from "@shared/provider-logos";
+import dayjs from "dayjs";
+import {
+  CheckCircle2,
+  ChevronRight,
+  FileText,
+  Github,
+  Info,
+  Lock,
+  Mail,
+  MapIcon,
+  ShieldCheck,
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { getLatestVersion } from "@/lib/github";
+import { getBreachIndexItems } from "@/utils/breach";
+import { SITE_CONFIG } from "@/utils/config";
+import { getCryptoPrice, LICENSE_PRICING } from "@/utils/pricing";
+import { buildMetadata } from "@/utils/seo";
 
-export const HOME_LAST_UPDATED = "2026-04-02";
+const title = "Find Old Accounts and Clean Up Email";
+const description =
+  "Find old accounts and mailing lists from your email history, then prepare data deletion requests. Paperweight processes email locally on your computer.";
+
+export const metadata = buildMetadata({
+  title,
+  description,
+  path: "/",
+});
+
+const homepageFaqItems = [
+  {
+    question: "What can Paperweight help me do?",
+    answer:
+      "Paperweight finds company and account evidence, groups mailing lists for review, and helps you prepare personal-data deletion requests.",
+  },
+  {
+    question: "Should I unsubscribe from spam?",
+    answer:
+      "Unsubscribe only from a legitimate sender that you recognize. Report unknown or suspicious messages as spam instead of interacting with them.",
+  },
+  {
+    question: "Where does Paperweight process my email?",
+    answer:
+      "Email analysis and the Paperweight database stay on your computer. Paperweight does not send your email data to Paperweight servers.",
+  },
+  {
+    question: "Which email providers does Paperweight support?",
+    answer:
+      "Paperweight supports Gmail, Outlook, Proton Mail through Proton Bridge, and other providers that offer IMAP access.",
+  },
+  {
+    question: "What are the free version limits?",
+    answer:
+      "The free version supports one email account and the most recent 90 days of email history. A perpetual license unlocks multiple accounts and unlimited available history.",
+  },
+] as const;
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: SITE_CONFIG.NAME,
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "macOS, Windows, Linux",
+    url: SITE_CONFIG.URL,
+    description,
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Free",
+        price: 0,
+        priceCurrency: "USD",
+        url: `${SITE_CONFIG.URL}/#download`,
+      },
+      {
+        "@type": "Offer",
+        name: "Perpetual license via Polar",
+        price: LICENSE_PRICING.LICENSE_PRICE,
+        priceCurrency: "USD",
+        url: SITE_CONFIG.LICENSE_URL,
+      },
+      {
+        "@type": "Offer",
+        name: "Perpetual license paid with crypto",
+        price: getCryptoPrice(),
+        priceCurrency: "USD",
+        url: `${SITE_CONFIG.URL}/pricing`,
+      },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: homepageFaqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  },
+];
 
 const OAUTH_PROVIDER_ICONS = [
   { logo: <GoogleLogo className="w-9 h-9" />, label: "Google" },
@@ -43,10 +123,14 @@ export default async function Home() {
   const latestBreaches = getBreachIndexItems()
     .slice(0, 3)
     .map((breach) => {
-      const daysAgo = dayjs().diff(breach.addedDate?.slice(0, 10) || breach.breachDate, "day");
-      const daysAgoLabel = daysAgo === 0
-        ? "Today"
-        : `${daysAgo} day${daysAgo === 1 ? "" : "s"} ago`;
+      const daysAgo = dayjs().diff(
+        breach.addedDate?.slice(0, 10) || breach.breachDate,
+        "day",
+      );
+      const daysAgoLabel =
+        daysAgo === 0
+          ? "Today"
+          : `${daysAgo} day${daysAgo === 1 ? "" : "s"} ago`;
       return { ...breach, daysAgoLabel };
     });
   if (!latestVersion) {
@@ -54,22 +138,35 @@ export default async function Home() {
   }
   return (
     <>
+      <script
+        type="application/ld+json"
+        // JSON-LD comes from static constants in this module.
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: Next.js requires raw JSON in a script element.
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       {/* Hero */}
       <section className="container mx-auto px-4 pt-20 pb-24 text-center">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            {SITE_CONFIG.TAGLINE}
+            Find old accounts. Clean up email. Reduce stored personal data.
           </h1>
           <p className="text-xl md:text-2xl mb-8 opacity-80">
-            {SITE_CONFIG.DESCRIPTION}
+            Paperweight uses your email history to build a company inventory,
+            find mailing lists, and prepare data deletion requests. Analysis
+            runs in the desktop app on your computer.
           </p>
-          <p className="text-accent mb-8 text-lg">
-            Your inbox knows where your data lives.
-          </p>
-          <a href="#download" className="btn btn-primary btn-lg">
-            Download for free
-          </a>
-          <p className="mt-4 text-sm opacity-60">macOS · Windows · Linux</p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <a
+              href={SITE_CONFIG.LICENSE_URL}
+              className="btn btn-primary btn-lg plausible-event-name=Buy+License"
+            >
+              Buy a license
+            </a>
+            <a href="#download" className="btn btn-soft btn-lg">
+              Download Paperweight
+            </a>
+          </div>
+          <p className="mt-4 text-sm opacity-70">macOS, Windows, and Linux</p>
         </div>
       </section>
 
@@ -79,8 +176,8 @@ export default async function Home() {
           <div className="max-w-6xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-2">See it in action</h2>
             <p className="text-lg opacity-80 mb-10">
-              Messages synced, mailing lists, and daily email trends at a
-              glance.
+              Review the companies, mailing lists, and activity found in your
+              available email history.
             </p>
             <div className="relative mx-auto max-w-3xl rounded-2xl overflow-hidden border border-base-300 shadow-2xl ring-1 ring-base-content/5">
               <Image
@@ -100,91 +197,177 @@ export default async function Home() {
       <section className="bg-base-200 pt-10 pb-20">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-2 text-center">Features</h2>
+            <h2 className="text-3xl font-bold mb-2 text-center">
+              Three ways to reduce your digital footprint
+            </h2>
             <p className="text-lg opacity-80 mb-10 text-center">
-              What you can do with Paperweight.
+              Start with the part of your email history that you want to
+              understand or clean up.
             </p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="card bg-base-100 shadow-sm">
+            <div className="grid md:grid-cols-3 gap-6">
+              <Link
+                href="/account-discovery"
+                className="card bg-base-100 border border-base-300 shadow-sm hover:bg-base-300 transition-colors"
+              >
+                <div className="card-body items-center text-center">
+                  <MapIcon
+                    className="w-12 h-12 text-info mb-4"
+                    strokeWidth={1.5}
+                  />
+                  <h3 className="card-title text-lg mb-2">Account discovery</h3>
+                  <p className="text-sm opacity-80">
+                    Find evidence of companies, accounts, and old services in
+                    the email history available to Paperweight.
+                  </p>
+                  <span className="link mt-auto">Find linked accounts</span>
+                </div>
+              </Link>
+
+              <Link
+                href="/email-cleanup"
+                className="card bg-base-100 border border-base-300 shadow-sm hover:bg-base-300 transition-colors"
+              >
                 <div className="card-body items-center text-center">
                   <Mail
                     className="w-12 h-12 text-primary mb-4"
                     strokeWidth={1.5}
                   />
-                  <h3 className="card-title text-lg mb-2">Bulk Unsubscribe</h3>
+                  <h3 className="card-title text-lg mb-2">Email cleanup</h3>
                   <p className="text-sm opacity-80">
-                    Unsubscribe from dozens of mailing lists at once. Clean your
-                    inbox in minutes, not hours.
+                    Review legitimate mailing lists and use the unsubscribe
+                    method supplied by each sender.
                   </p>
+                  <span className="link mt-auto">Clean up subscriptions</span>
                 </div>
-              </div>
+              </Link>
 
-              <div className="card bg-base-100 shadow-sm">
-                <div className="card-body items-center text-center">
-                  <ShieldAlert
-                    className="w-12 h-12 text-error mb-4"
-                    strokeWidth={1.5}
-                  />
-                  <h3 className="card-title text-lg mb-2">Breach Alerts</h3>
-                  <p className="text-sm opacity-80">
-                    See which companies you use have been breached. Powered by
-                    Have I Been Pwned.
-                  </p>
-                </div>
-              </div>
-
-              <div className="card bg-base-100 shadow-sm">
-                <div className="card-body items-center text-center">
-                  <Map className="w-12 h-12 text-info mb-4" strokeWidth={1.5} />
-                  <h3 className="card-title text-lg mb-2">Account Inventory</h3>
-                  <p className="text-sm opacity-80">
-                    Find every company that has your data. Identify high-risk
-                    accounts and forgotten services.
-                  </p>
-                </div>
-              </div>
-
-              <div className="card bg-base-100 shadow-sm">
+              <Link
+                href="/remove-personal-data"
+                className="card bg-base-100 border border-base-300 shadow-sm hover:bg-base-300 transition-colors"
+              >
                 <div className="card-body items-center text-center">
                   <FileText
                     className="w-12 h-12 text-warning mb-4"
                     strokeWidth={1.5}
                   />
-                  <h3 className="card-title text-lg mb-2">GDPR Deletion</h3>
+                  <h3 className="card-title text-lg mb-2">
+                    Personal data removal
+                  </h3>
                   <p className="text-sm opacity-80">
-                    Generate data deletion requests with pre-filled templates
-                    and company contacts.
+                    Review personal-data evidence by company and prepare a
+                    deletion request when it fits.
                   </p>
+                  <span className="link mt-auto">Review personal data</span>
                 </div>
-              </div>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              <div className="card bg-base-100 shadow-sm">
-                <div className="card-body items-center text-center">
-                  <Lock
-                    className="w-12 h-12 text-success mb-4"
-                    strokeWidth={1.5}
-                  />
-                  <h3 className="card-title text-lg mb-2">Privacy-First</h3>
-                  <p className="text-sm opacity-80">
-                    Everything happens locally on your computer. Your emails
-                    never leave your machine.
+      {/* Trust */}
+      <section className="bg-base-300 py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center max-w-3xl mx-auto mb-10">
+              <ShieldCheck
+                className="w-10 h-10 text-success mx-auto mb-4"
+                strokeWidth={1.5}
+              />
+              <h2 className="text-3xl font-bold mb-3">
+                Your email analysis stays on your device
+              </h2>
+              <p className="text-lg opacity-80">
+                Paperweight connects your computer to your email provider. It
+                does not send your email data to Paperweight servers.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="rounded-lg bg-base-100 border border-base-300 p-5 flex gap-3">
+                <Lock className="w-6 h-6 shrink-0 text-success" aria-hidden />
+                <div>
+                  <h3 className="font-semibold">Local-first processing</h3>
+                  <p className="text-sm opacity-80 mt-1">
+                    Email analysis and the Paperweight database stay on your
+                    computer.
                   </p>
                 </div>
               </div>
+              <div className="rounded-lg bg-base-100 border border-base-300 p-5 flex gap-3">
+                <Github className="w-6 h-6 shrink-0" aria-hidden />
+                <div>
+                  <h3 className="font-semibold">Open-source transparency</h3>
+                  <p className="text-sm opacity-80 mt-1">
+                    The source code is public, so you can inspect how the app
+                    handles data.
+                  </p>
+                </div>
+              </div>
+              <div className="rounded-lg bg-base-100 border border-base-300 p-5 flex gap-3">
+                <CheckCircle2
+                  className="w-6 h-6 shrink-0 text-info"
+                  aria-hidden
+                />
+                <div>
+                  <h3 className="font-semibold">Review before actions</h3>
+                  <p className="text-sm opacity-80 mt-1">
+                    You review company evidence, unsubscribe choices, and
+                    deletion requests before Paperweight acts.
+                  </p>
+                </div>
+              </div>
+              <div className="rounded-lg bg-base-100 border border-base-300 p-5 flex gap-3">
+                <ShieldCheck
+                  className="w-6 h-6 shrink-0 text-accent"
+                  aria-hidden
+                />
+                <div>
+                  <h3 className="font-semibold">The walk-away test</h3>
+                  <p className="text-sm opacity-80 mt-1">
+                    A perpetual license grants permanent use. The app and its
+                    local data do not depend on an active subscription.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <Link href="/privacy" className="btn btn-soft btn-sm">
+                Read the privacy details
+              </Link>
+              <a
+                href={SITE_CONFIG.GITHUB_URL}
+                className="btn btn-ghost btn-sm"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github className="w-4 h-4" /> View source on GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              <div className="card bg-base-100 shadow-sm">
-                <div className="card-body items-center text-center">
-                  <Github
-                    className="w-12 h-12 text-base-content mb-4"
-                    strokeWidth={1.5}
-                  />
-                  <h3 className="card-title text-lg mb-2">Open Source</h3>
-                  <p className="text-sm opacity-80">
-                    Code is public and auditable. Local-first and transparent by
-                    design.
-                  </p>
-                </div>
-              </div>
+      {/* FAQs */}
+      <section className="bg-base-200 py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold mb-8 text-center">
+              Frequently asked questions
+            </h2>
+            <div className="space-y-3">
+              {homepageFaqItems.map((item) => (
+                <details
+                  key={item.question}
+                  className="collapse collapse-arrow bg-base-100 border border-base-300"
+                >
+                  <summary className="collapse-title font-semibold">
+                    {item.question}
+                  </summary>
+                  <div className="collapse-content text-sm opacity-80">
+                    <p>{item.answer}</p>
+                  </div>
+                </details>
+              ))}
             </div>
           </div>
         </div>
@@ -194,8 +377,9 @@ export default async function Home() {
       <section className="bg-base-300 py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-2">Supported email providers</h2>
-          <p className="text-sm opacity-60 mb-8">
-            Works with any IMAP provider
+          <p className="text-sm opacity-70 mb-8">
+            Works with Gmail, Outlook, Proton Mail through Proton Bridge, and
+            other providers that offer IMAP access.
           </p>
           <div className="flex flex-wrap justify-center gap-8 sm:gap-12">
             {OAUTH_PROVIDER_ICONS.map((option) => (
@@ -214,8 +398,9 @@ export default async function Home() {
           </div>
           <div className="mx-auto mt-10 max-w-2xl">
             <p className="text-sm font-medium mb-2">Other email providers</p>
-            <p className="text-sm opacity-60">
-              e.g. {OTHER_EMAIL_PRESETS.map((preset) => preset.name).join(", ")} or any other IMAP provider
+            <p className="text-sm opacity-70">
+              e.g. {OTHER_EMAIL_PRESETS.map((preset) => preset.name).join(", ")}{" "}
+              or another provider that offers IMAP access
             </p>
           </div>
         </div>
@@ -228,7 +413,7 @@ export default async function Home() {
             Download {SITE_CONFIG.NAME}
           </h2>
           <p className="text-lg opacity-80 mb-8">
-            Free to try. All features included for 90 days.
+            Download and try Paperweight free.
           </p>
 
           <div className="max-w-2xl mx-auto mb-4">
@@ -285,25 +470,25 @@ export default async function Home() {
           </p>
 
           {/* Installation notes */}
-          <div className="collapse collapse-arrow bg-base-200 rounded-lg border border-base-300 my-8 text-left max-w-2xl mx-auto">
-            <input type="checkbox" />
-            <div className="collapse-title min-h-0 py-4 pr-12">
-              <h3 className="text-lg font-bold flex items-center gap-2">
-                <Info className="w-5 h-5 shrink-0" strokeWidth={2} />
-                Installation notes
-              </h3>
-            </div>
+          <details className="collapse collapse-arrow bg-base-200 rounded-lg border border-base-300 my-8 text-left max-w-2xl mx-auto">
+            <summary className="collapse-title min-h-0 py-4 pr-12 text-lg font-bold flex items-center gap-2">
+              <Info className="w-5 h-5 shrink-0" strokeWidth={2} />
+              Installation notes
+            </summary>
             <div className="collapse-content">
               <ul className="space-y-3 text-sm opacity-80 pt-2">
                 <li>
                   <strong>Windows</strong> - Run the installer. If Windows
-                  SmartScreen shows a warning, click &quot;More info&quot; and then &quot;Run anyway&quot; to proceed.
+                  SmartScreen shows a warning, click &quot;More info&quot; and
+                  then &quot;Run anyway&quot; to proceed.
                 </li>
                 <li>
-                  <strong>macOS</strong> - Open the downloaded DMG and drag Paperweight to your Applications folder.
+                  <strong>macOS</strong> - Open the downloaded DMG and drag
+                  Paperweight to your Applications folder.
                 </li>
                 <li>
-                  <strong>Linux AppImage</strong> - Right-click → Properties → Permissions → check &quot;Allow executing file as
+                  <strong>Linux AppImage</strong> - Right-click → Properties →
+                  Permissions → check &quot;Allow executing file as
                   program&quot;, or run{" "}
                   <code className="bg-base-300 px-1 rounded">
                     chmod +x Paperweight*.AppImage
@@ -320,9 +505,9 @@ export default async function Home() {
                 </li>
               </ul>
             </div>
-          </div>
+          </details>
 
-          <p className="text-sm opacity-60">
+          <p className="text-sm opacity-70">
             Latest version: v{latestVersion} ·{" "}
             <Link href="/changelog" className="link">
               All releases
@@ -333,145 +518,30 @@ export default async function Home() {
 
       <section id="pricing" className="bg-base-200 py-16">
         <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Pricing</h2>
-              <p className="text-xl opacity-80">
-                Try it free. Upgrade for unlimited history and multi-account support.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
-              {/* Free Tier */}
-              <div className="bg-base-100 rounded-lg p-8 border-2 border-base-300 flex flex-col">
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold mb-2">Free</h3>
-                  <div className="text-4xl font-bold mb-2">$0</div>
-                  <div className="text-sm opacity-60">Always free</div>
-                </div>
-
-                <ul className="space-y-3 flex-1 mb-8">
-                  <li className="flex items-start gap-2">
-                    <span className="text-success">✓</span>
-                    <span>Core features included</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-success">✓</span>
-                    <span>90-day email scan</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-success">✓</span>
-                    <span>Bulk unsubscribe</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-success">✓</span>
-                    <span>Breach alerts</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-success">✓</span>
-                    <span>Account mapping</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-success">✓</span>
-                    <span>GDPR templates</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-success">✓</span>
-                    <span>Community support</span>
-                  </li>
-                </ul>
-
-                <div className="mt-auto">
-                  <a href="#download" className="btn btn-soft btn-block">
-                    Download free
-                  </a>
-                </div>
-              </div>
-
-              {/* Paid Tier */}
-              <div className="bg-base-100 rounded-lg p-8 border-2 border-primary relative flex flex-col">
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <span className="bg-primary text-primary-content px-4 py-1 rounded-full text-sm font-semibold">
-                    Early Supporter
-                  </span>
-                </div>
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold mb-2">Perpetual License</h3>
-                  <div className="text-4xl font-bold mb-2">${LICENSE_PRICING.LICENSE_PRICE}</div>
-                  <div className="text-sm opacity-60 mb-1">
-                    One-time payment
-                  </div>
-                </div>
-
-                <ul className="space-y-3 flex-1 mb-8">
-                  <li className="flex items-start gap-2">
-                    <span className="text-success">✓</span>
-                    <span><strong>All features included</strong></span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-success">✓</span>
-                    <span>
-                      <strong>Unlimited email history</strong>
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-success">✓</span>
-                    <span>
-                      <strong>Multi-account support</strong>
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-success">✓</span>
-                    <span>Permanent use of Paperweight</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-success">✓</span>
-                    <span>Supports open-source software</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-success">✓</span>
-                    <span>V1 updates included</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-success">✓</span>
-                    <span>1 year email support</span>
-                  </li>
-                </ul>
-
-                <div className="mt-auto">
-                  <a
-                    href={SITE_CONFIG.LICENSE_URL}
-                    className="btn btn-primary btn-block plausible-event-name=Buy+License"
-                  >
-                    Buy License
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="card bg-base-100 border border-base-300 max-w-4xl mx-auto mt-6">
-              <div className="card-body flex flex-col gap-3 py-4 px-5 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex items-center gap-4">
-                  <Coins className="size-5 shrink-0 opacity-70 mx-2" aria-hidden />
-                  <div>
-                    <p className="text-lg font-medium">Pay with crypto</p>
-                    <p className="text-sm opacity-70 mt-2">
-                      Bitcoin, Monero, Zcash, Ethereum, and stablecoins. Choose a coin, copy the address, and send your receipt when done.
-                    </p>
-                  </div>
-                </div>
-                <PayWithCryptoButton
-                  pricing={getCryptoPayPricing()}
-                  className="btn btn-outline btn-accent btn-sm shrink-0 sm:ml-4 plausible-event-name=Pay+Crypto"
-                >
-                  Pay with crypto (${getCryptoPrice()})
-                </PayWithCryptoButton>
-              </div>
-            </div>
-
-            <p className="text-center text-sm opacity-60 mt-4 max-w-2xl mx-auto">
-              *Early supporter pricing. Your license includes support and updates through the first major release (v1).
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-4">Start free or buy once</h2>
+            <p className="text-lg opacity-80 mb-3">
+              The free version supports one email account and the most recent 90
+              days of email history. A $69 perpetual license unlocks multiple
+              accounts and unlimited available history.
             </p>
+            <p className="text-sm opacity-70 mb-8">
+              Crypto checkout is also available for ${getCryptoPrice()}.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              <a
+                href={SITE_CONFIG.LICENSE_URL}
+                className="btn btn-primary plausible-event-name=Buy+License"
+              >
+                Buy License
+              </a>
+              <a href="#download" className="btn btn-soft">
+                Download free
+              </a>
+              <Link href="/pricing" className="btn btn-ghost">
+                Compare pricing
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -532,7 +602,8 @@ export default async function Home() {
                 <div className="card-body h-full flex flex-col">
                   <h3 className="card-title">Latest Data Breaches</h3>
                   <p className="opacity-80 mb-3">
-                    Recent breach guides with impact details and what to do next.
+                    Recent breach guides with impact details and what to do
+                    next.
                   </p>
 
                   <ul className="space-y-2">
@@ -542,10 +613,14 @@ export default async function Home() {
                           href={`/breaches/${breach.slug}`}
                           className="flex items-center justify-between gap-3 rounded-lg bg-base-100 px-3 py-2.5 hover:bg-base-100/80 transition-colors"
                         >
-                          <p className="font-medium truncate min-w-0">{breach.title}</p>
+                          <p className="font-medium truncate min-w-0">
+                            {breach.title}
+                          </p>
                           <div className="shrink-0 flex items-center gap-2 text-xs opacity-80">
                             <span>{breach.daysAgoLabel}</span>
-                            <span className={`badge badge-xs badge-soft ${breach.riskBadgeClass}`}>
+                            <span
+                              className={`badge badge-xs badge-soft ${breach.riskBadgeClass}`}
+                            >
                               {breach.riskLabel}
                             </span>
                             <ChevronRight className="h-4 w-4 opacity-50" />

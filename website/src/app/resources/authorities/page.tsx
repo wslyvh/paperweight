@@ -1,11 +1,9 @@
-import type { Dpa } from "@shared/gdpr/types";
 import { EU_DPAS, NON_EU_DPAS } from "@shared/gdpr/resolution";
+import type { Dpa } from "@shared/gdpr/types";
 import { AlertTriangle } from "lucide-react";
-import { SubpageHeader } from "@/components/SubpageHeader";
 import Link from "next/link";
+import { SubpageHeader } from "@/components/SubpageHeader";
 import { buildMetadata } from "@/utils/seo";
-
-export const AUTHORITIES_LAST_UPDATED = "2026-04-02";
 
 export const metadata = buildMetadata({
   title: "Data Protection Authorities by Country",
@@ -49,7 +47,9 @@ function DpaCard({ dpa }: DpaCardProps) {
           <div className="flex min-w-0 items-start gap-3">
             <span className="text-2xl leading-none shrink-0">{dpa.flag}</span>
             <div className="min-w-0">
-              <h2 className="card-title text-lg leading-tight">{dpa.country}</h2>
+              <h2 className="card-title text-lg leading-tight">
+                {dpa.country}
+              </h2>
               <p className="mt-1 text-sm opacity-70 line-clamp-2 min-h-[2.5rem] leading-snug">
                 {dpa.dpaName}
               </p>
@@ -69,7 +69,6 @@ function DpaCard({ dpa }: DpaCardProps) {
                   Local rules
                 </button>
                 <div
-                  tabIndex={0}
                   role="dialog"
                   aria-label={`Local rules for ${dpa.country}`}
                   className="dropdown-content mb-2 w-[min(20rem,calc(100vw-2rem))] max-h-[min(24rem,70vh)] overflow-y-auto rounded-box border border-warning/25 bg-base-100 p-4 shadow-xl outline-none"
@@ -142,16 +141,22 @@ export default function AuthoritiesPage() {
       <SubpageHeader label="Resources" title="Data Protection Authorities" />
       <div className="mt-4 max-w-4xl space-y-4 opacity-85">
         <p>
-          Every EU and EEA country has a national data protection authority (DPA)
-          responsible for upholding GDPR rights. Most people only think of DPAs as a last resort for formal complaints,
-          but they're also a useful first stop for questions and guidance.
-          Many publish practical guides, run advice lines, help resolve disputes, or investigate organizations that fail to comply.
+          Every EU and EEA country has a national data protection authority
+          (DPA) responsible for upholding GDPR rights. Most people only think of
+          DPAs as a last resort for formal complaints, but they're also a useful
+          first stop for questions and guidance. Many publish practical guides,
+          run advice lines, help resolve disputes, or investigate organizations
+          that fail to comply.
         </p>
         <p>
-          If you have sent a <Link href="/resources/gdpr-generator" className="link">request</Link>, waited, followed up, and still received
-          no satisfactory response, contacting your national DPA is a reasonable next step.
-          It is free, and the organization is required to cooperate with any
-          investigation. Find your national DPA in our below.
+          If you have sent a{" "}
+          <Link href="/resources/gdpr-generator" className="link">
+            request
+          </Link>
+          , waited, followed up, and still received no satisfactory response,
+          contacting your national DPA is a reasonable next step. It is free,
+          and the organization is required to cooperate with any investigation.
+          Find your national DPA in our below.
         </p>
       </div>
 
@@ -183,7 +188,6 @@ export default function AuthoritiesPage() {
 
       <div className="card bg-base-200/50">
         <div className="card-body text-sm max-w-4xl">
-
           <p>
             National DPAs are independent of the EU Commission. The{" "}
             <a
@@ -194,8 +198,8 @@ export default function AuthoritiesPage() {
             >
               European Data Protection Board
             </a>{" "}
-            coordinates between them and publishes guidelines on how GDPR applies
-            across borders.
+            coordinates between them and publishes guidelines on how GDPR
+            applies across borders.
           </p>
         </div>
       </div>
