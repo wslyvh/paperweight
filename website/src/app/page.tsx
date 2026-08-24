@@ -396,7 +396,7 @@ export default async function Home() {
                   </span>
                 </div>
                 <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold mb-2">Perpetual License</h3>
+                  <h3 className="text-2xl font-bold mb-2">Lifetime License</h3>
                   <div className="text-4xl font-bold mb-2">${LICENSE_PRICING.LICENSE_PRICE}</div>
                   <div className="text-sm opacity-60 mb-1">
                     One-time payment
@@ -430,7 +430,7 @@ export default async function Home() {
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-success">✓</span>
-                    <span>V1 updates included</span>
+                    <span>Lifetime updates included</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-success">✓</span>
@@ -470,7 +470,7 @@ export default async function Home() {
             </div>
 
             <p className="text-center text-sm opacity-60 mt-4 max-w-2xl mx-auto">
-              *Early supporter pricing. Your license includes support and updates through the first major release (v1).
+              *Early supporter pricing, limited until V1 release. Your license includes lifetime updates and 1 year of email support from V1 release (v1).
             </p>
           </div>
         </div>

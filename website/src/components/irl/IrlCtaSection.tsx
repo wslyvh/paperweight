@@ -19,7 +19,7 @@ export function IrlCtaSection() {
         description={
           <>
             Paperweight is a free, open-source desktop app (MIT). But you can support
-            open-source software by buying a perpetual license. This unlocks unlimited sync history, multi-account, and all V1 updates.
+            open-source software by buying a lifetime license. This unlocks unlimited sync history, multi-account, and all updates.
             One-time purchase, permanent use and no hidden fees. It passes the{" "}
             <Link
               href="https://x.com/VitalikButerin/status/2010621884811845708"

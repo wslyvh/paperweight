@@ -179,7 +179,7 @@ AgainstData is the closest tool to Paperweight on function rather than architect
 | Mailstrom        | ~$60/year               | Subscription             | Partial          | No               | Yes        |
 | AgainstData      | ~$40/year               | Subscription             | Deletion         | No               | Yes        |
 | GoodByEmail      | One-time license        | One-time                 | Yes              | Yes              | Yes        |
-| **Paperweight**  | **Free / $69 one-time** | **One-time, perpetual**  | **Yes + deletion** | **Yes**        | **Yes**    |
+| **Paperweight**  | **Free / $69 one-time** | **One-time, lifetime**  | **Yes + deletion** | **Yes**        | **Yes**    |
 
 Prices might differ. GoodByEmail and Leave Me Alone pricing should be confirmed against their own sites before publishing.
 
@@ -218,7 +218,7 @@ If you are weighing a local-first option and do not need deletion requests, Good
 
 **Licensing and pricing**
 
-Free to use with a 30-day scan window. The one-time perpetual license unlocks unlimited history and multi-account support. No subscriptions. The licensing model exists to support open-source development and ready-made builds without locking customers into recurring billing. Recurring fees do not fit how people actually use a tool like this, which is more like a periodic cleanup than daily use.
+Free to use with a 30-day scan window. The one-time lifetime license unlocks unlimited history and multi-account support. No subscriptions. The licensing model exists to support open-source development and ready-made builds without locking customers into recurring billing. Recurring fees do not fit how people actually use a tool like this, which is more like a periodic cleanup than daily use.
 
 ## Limitations
 
