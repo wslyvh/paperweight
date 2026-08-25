@@ -33,7 +33,7 @@ const EMPTY_VALUES: PiiValue[] = [];
 
 /** The row-2 filters, which are three separate axes: the user's own correction
  *  (Not mine), a confirmed identity match, and the confidence buckets. */
-type ValueFilter = FindingConfidence | "exact" | "suppressed" | "";
+type ValueFilter = FindingConfidence | "exact" | "unclassified" | "suppressed" | "";
 
 export default function Data(): JSX.Element {
   const [overview, setOverview] = useState<PiiOverview>();
@@ -128,6 +128,7 @@ export default function Data(): JSX.Element {
   const filtered = useMemo(() => {
     let result = showingSuppressed ? searchedSuppressed : searched;
     if (filter === "exact") result = result.filter((v) => v.isMatch);
+    else if (filter === "unclassified") result = result.filter((v) => !v.isMatch);
     else if (filter && filter !== "suppressed") {
       result = result.filter((v) => getFindingConfidence(v) === filter);
     }
@@ -307,6 +308,16 @@ export default function Data(): JSX.Element {
             >
               <BadgeCheck className="w-3 h-3" />
               Match
+            </button>
+
+            <button
+              className={`badge badge-sm cursor-pointer ${
+                filter === "unclassified" ? "badge-accent" : "badge-soft badge-accent"
+              }`}
+              title="Values not yet marked mine or not mine"
+              onClick={() => selectFilter("unclassified")}
+            >
+              Unclassified
             </button>
 
             <div className="w-px h-3 bg-base-content/20" />
