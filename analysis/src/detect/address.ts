@@ -159,7 +159,13 @@ export function detectAddressBlocks(text: string, candidates: PostalCandidate[])
         // postcode of this country — "Orchestrator 2012" reading a bare code as
         // its number, or a US street pattern taking a leading ZIP as one — the
         // block is a coincidence between two patterns, not an address.
-        if (sameCountry.some((c) => m.index < c.end && c.start < mEnd)) continue;
+        const overlapsAnchor = (candidate: PostalCandidate): boolean =>
+          m.index < candidate.end && candidate.start < mEnd;
+        if (
+          spec.kind === "box"
+            ? overlapsAnchor(pc)
+            : sameCountry.some(overlapsAnchor)
+        ) continue;
         const gap = m.index >= pc.end ? m.index - pc.end : pc.start - mEnd;
         if (gap > MAX_GAP) continue;
         const betweenStart = m.index >= pc.end ? pc.end : mEnd;
@@ -294,6 +300,7 @@ export function extractKnownAddressComponents(
   const candidatesAtPostcode = groups.values().next().value;
   if (!candidatesAtPostcode?.length) return undefined;
   const postcode = candidatesAtPostcode[0];
+  if (!postcode) return undefined;
   const prefix = raw
     .slice(0, postcode.start)
     .replace(/[\s,;:–—-]+$/u, "")

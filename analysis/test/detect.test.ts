@@ -224,11 +224,10 @@ describe("detectPostalCodes", () => {
     expect(candidates.every((c) => c.tier === "anchor-only")).toBe(true);
   });
 
-  it("never reads the digits of an NL postcode as a bare BE/AT code", () => {
-    const { candidates } = detectPostalCodes("Postbus 99, 1234 AB Voorbeeldstad");
-    expect(
-      candidates.some((c) => (c.country === "BE" || c.country === "AT") && c.value === "1234"),
-    ).toBe(false);
+  it("keeps an NL postcode as NL when its digits also fit BE/AT", () => {
+    const findings = detectPii("Postbus 99, 1234 AB Voorbeeldstad", ctx);
+    expect(findings).toHaveLength(1);
+    expect(findings[0]!.country).toBe("NL");
   });
 });
 
@@ -261,6 +260,24 @@ describe("detectAddressBlocks", () => {
     const f = found.find((x) => x.country === country);
     expect(f).toBeDefined();
     expect(f!.signals.some((s) => s.id === "pattern.box")).toBe(true);
+  });
+
+  it.each([
+    ["BE", "Postbus 2572, 2000 Antwerpen"],
+    ["AT", "Postfach 1234, 1010 Wien"],
+    ["DE", "Postfach 12345, 10115 Berlin"],
+    ["US", "PO Box 12345, Springfield, IL 62704"],
+  ])("matches a %s PO box whose box number resembles a postcode", (country, text) => {
+    const postal = detectPostalCodes(text);
+    const found = detectAddressBlocks(text, postal.candidates);
+    expect(found.some((f) => f.country === country), text).toBe(true);
+  });
+
+  it("accepts an Austrian city whose name is two uppercase letters", () => {
+    const text = "Musterstraße 1, 6883 AU";
+    const postal = detectPostalCodes(text);
+    const found = detectAddressBlocks(text, postal.candidates);
+    expect(found.some((f) => f.country === "AT"), text).toBe(true);
   });
 
   it("matches UK number-first streets", () => {
@@ -429,6 +446,31 @@ describe("detectPii orchestration", () => {
   it("dedupes repeated values", () => {
     const text = "IBAN NL91 ABNA 0417 1643 00 en nogmaals NL91 ABNA 0417 1643 00";
     expect(detectPii(text, ctx)).toHaveLength(1);
+  });
+
+  it("retains legacy address spellings when canonical variants dedupe", () => {
+    const text = [
+      "Voorbeeldstraat 12, 1234 XB Voorbeeldstad",
+      "Voorbeeldstraat 12, Voorbeeldstad, 1234 XB",
+    ].join("\n");
+    const addresses = detectPii(text, ctx).filter((finding) => finding.type === "address");
+
+    expect(addresses).toHaveLength(1);
+    expect(addresses[0]!.valueNormalizedAliases).toEqual([
+      "voorbeeldstraat 12 voorbeeldstad 1234 xb",
+    ]);
+  });
+
+  it("retains the legacy spelling of one city-first address", () => {
+    const addresses = detectPii(
+      "Voorbeeldstraat 12, Voorbeeldstad, 1234 XB",
+      ctx,
+    ).filter((finding) => finding.type === "address");
+
+    expect(addresses).toHaveLength(1);
+    expect(addresses[0]!.valueNormalizedAliases).toEqual([
+      "voorbeeldstraat 12 voorbeeldstad 1234 xb",
+    ]);
   });
 
   it("keeps the city on a repeated address even when the second occurrence's postcode also reads as a bare Belgian anchor", () => {

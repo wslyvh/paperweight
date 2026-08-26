@@ -9,7 +9,7 @@
 // would remove one occurrence's finding before it gets a chance to beat its
 // own rival, letting the weaker rival survive unchallenged.
 import type { Finding, KnownPiiValue } from "../types";
-import { detectAddressBlocks } from "./address";
+import { detectAddressBlocks, normalizeAddress } from "./address";
 import { detectCreditCards } from "./credit-card";
 import { isOrganizationalAddress } from "../data/role-mailboxes";
 import { detectEmails, domainOf, sameOrg } from "./email";
@@ -84,13 +84,28 @@ function corroboratedPostalCodes(findings: Finding[], region?: string): Finding[
 }
 
 function dedupe(findings: Finding[]): Finding[] {
-  const seen = new Set<string>();
+  const seen = new Map<string, Finding>();
   return findings.filter((f) => {
     const key = f.type + ":" + f.valueNormalized;
-    if (seen.has(key)) return false;
-    seen.add(key);
+    const existing = seen.get(key);
+    if (existing) {
+      if (f.type === "address") addAddressAliases(existing, f);
+      return false;
+    }
+    if (f.type === "address") addAddressAliases(f, f);
+    seen.set(key, f);
     return true;
   });
+}
+
+function addAddressAliases(target: Finding, source: Finding): void {
+  const aliases = new Set([
+    ...(target.valueNormalizedAliases ?? []),
+    ...(source.valueNormalizedAliases ?? []),
+    normalizeAddress(source.valueRaw),
+  ]);
+  aliases.delete(target.valueNormalized);
+  if (aliases.size > 0) target.valueNormalizedAliases = [...aliases];
 }
 
 // Overlapping spans of different types (postal code inside an address block,

@@ -54,6 +54,11 @@ interface ProfileAddressAnalysisRow {
   value_normalized: string;
 }
 
+interface ProfileAddressKeyRow {
+  id: number;
+  raw: string | null;
+}
+
 // Whether companies.db is attached and carries the table. Fixed for the life of
 // a connection, so probing per message during a full pass is pure overhead.
 const catalogueReady = new WeakMap<object, boolean>();
@@ -253,10 +258,72 @@ export function persistFindings(
   const setTruncatedBody = d.prepare(
     "UPDATE messages SET body_text = ?, body_state = 'truncated' WHERE id = ?",
   );
+  const hasAddressSuppression = d.prepare(
+    `SELECT 1
+     FROM global.pii_suppressions
+     WHERE type = 'address' AND value_normalized = ?`,
+  );
+  const copyAddressSuppression = d.prepare(
+    `INSERT INTO global.pii_suppressions (type, value_normalized)
+     VALUES ('address', ?)
+     ON CONFLICT(type, value_normalized) DO NOTHING`,
+  );
+  const hasProfileAddress = d.prepare(
+    `SELECT 1
+     FROM global.profile_match_values
+     WHERE type = 'address' AND value_normalized = ?`,
+  );
+  const getProfileAddress = d.prepare(
+    `SELECT id, raw
+     FROM global.profile_addresses
+     WHERE value_normalized = ?`,
+  );
+  const updateProfileAddress = d.prepare(
+    `UPDATE global.profile_addresses
+     SET value_normalized = ?
+     WHERE id = ?`,
+  );
+  const deleteProfileAddress = d.prepare(
+    "DELETE FROM global.profile_addresses WHERE id = ?",
+  );
 
   const replace = d.transaction((id: string, fs: Finding[], bodyText?: string) => {
     del.run(id);
     for (const f of fs) {
+      if (f.type === "address") {
+        const previousValues = new Set([
+          normalizeValue("address", f.valueRaw),
+          ...(f.valueNormalizedAliases ?? []),
+        ]);
+        previousValues.delete(f.valueNormalized);
+        const profileOwnsAddress = [f.valueNormalized, ...previousValues]
+          .some((value) => hasProfileAddress.get(value));
+        if (profileOwnsAddress) {
+          for (const previousValue of previousValues) {
+            const previousRow = getProfileAddress.get(previousValue) as
+              | ProfileAddressKeyRow
+              | undefined;
+            if (!previousRow) continue;
+            const canonicalRow = getProfileAddress.get(f.valueNormalized) as
+              | ProfileAddressKeyRow
+              | undefined;
+            if (!canonicalRow) {
+              updateProfileAddress.run(f.valueNormalized, previousRow.id);
+            } else if (previousRow.raw === null && canonicalRow.raw !== null) {
+              deleteProfileAddress.run(canonicalRow.id);
+              updateProfileAddress.run(f.valueNormalized, previousRow.id);
+            } else {
+              deleteProfileAddress.run(previousRow.id);
+            }
+          }
+        }
+        if (
+          !profileOwnsAddress
+          && [...previousValues].some((value) => hasAddressSuppression.get(value))
+        ) {
+          copyAddressSuppression.run(f.valueNormalized);
+        }
+      }
       ins.run({
         message_id: id,
         type: f.type,

@@ -18,9 +18,9 @@ jest.mock("../utils/log", () => {
   const l = { debug: jest.fn(), info: jest.fn(), warn: jest.fn(), error: jest.fn() };
   return { dbLog: l, syncLog: l, appLog: l };
 });
-// The real engine imports ESM (htmlparser2/franc) the CJS jest runner can't load;
-// detection itself is covered by the analysis vitest suite. Here we stub it and
-// verify only the persistence/version wiring.
+// The full engine imports ESM (htmlparser2/franc) the CJS jest runner can't
+// load. Stub that package boundary for analysis/version wiring; the address
+// correction tests below import detectPii directly for the real detector handoff.
 jest.mock("@paperweight/analysis", () => ({
   ENGINE_VERSION: "test-v1",
   analyzeText: jest.fn(),
@@ -44,6 +44,7 @@ import {
   ENGINE_VERSION,
 } from "@paperweight/analysis";
 import type { Analysis, Finding, RawMessage } from "@paperweight/analysis";
+import { detectPii } from "../../../analysis/src/detect";
 import { BODY_TEXT_MAX_LENGTH } from "@shared/config";
 import Database from "better-sqlite3";
 import { mkdtempSync, rmSync } from "fs";
@@ -78,6 +79,16 @@ function finding(over: Partial<Finding> = {}): Finding {
     signals: [],
     ...over,
   };
+}
+
+function cityFirstAddressFinding(): Finding {
+  const findings = detectPii(
+    "Voorbeeldstraat 12, Voorbeeldstad, 1234 AB",
+    { quoted: [], footer: [] },
+  );
+  const address = findings.find((result) => result.type === "address");
+  if (!address) throw new Error("Expected synthetic address finding");
+  return address;
 }
 
 const resolveWith = (findings: Finding[]) =>
@@ -142,7 +153,7 @@ beforeAll(() => {
 });
 beforeEach(() => {
   getDb().exec(
-    "DELETE FROM pii_findings; DELETE FROM messages; DELETE FROM vendors; DELETE FROM settings; DELETE FROM companies.companies; DELETE FROM global.profile_phones; DELETE FROM global.profile_addresses;",
+    "DELETE FROM pii_findings; DELETE FROM messages; DELETE FROM vendors; DELETE FROM settings; DELETE FROM companies.companies; DELETE FROM global.profile_phones; DELETE FROM global.profile_addresses; DELETE FROM global.pii_suppressions;",
   );
   mockAnalyze.mockReset();
   mockAnalyzeMessage.mockReset();
@@ -495,6 +506,200 @@ describe("sync-time analysis vs the catch-up pass", () => {
     expect(await runAnalysisPass()).toBe(0);
     expect(mockAnalyze).not.toHaveBeenCalled();
     expect(findingsOf("m9")).toHaveLength(1);
+  });
+
+  it("keeps an address suppressed when canonical city/postcode order changes", () => {
+    const vid = insertVendor();
+    insertMsg("canonical-address", vid);
+    const previousValue = "voorbeeldstraat 12 voorbeeldstad 1234 ab";
+    const canonicalValue = "voorbeeldstraat 12 1234 ab voorbeeldstad";
+    getDb()
+      .prepare(
+        `INSERT INTO global.pii_suppressions (type, value_normalized)
+         VALUES ('address', ?)`,
+      )
+      .run(previousValue);
+
+    persistFindings("canonical-address", [cityFirstAddressFinding()]);
+
+    const suppressions = getDb()
+      .prepare(
+        `SELECT value_normalized
+         FROM global.pii_suppressions
+         WHERE type = 'address'
+         ORDER BY value_normalized`,
+      )
+      .all() as Array<{ value_normalized: string }>;
+    expect(suppressions.map((row) => row.value_normalized)).toEqual([
+      canonicalValue,
+      previousValue,
+    ]);
+    expect(
+      getDb()
+        .prepare(
+          `SELECT 1
+           FROM pii_findings finding
+           WHERE finding.message_id = ?
+             AND NOT EXISTS (
+               SELECT 1
+               FROM global.pii_suppressions suppression
+               WHERE suppression.type = finding.type
+                 AND suppression.value_normalized = finding.value_normalized
+             )`,
+        )
+        .get("canonical-address"),
+    ).toBeUndefined();
+  });
+
+  it("moves a confirmed city-first address onto the canonical finding key", () => {
+    const vid = insertVendor();
+    insertMsg("profile-address", vid);
+    const previousValue = "voorbeeldstraat 12 voorbeeldstad 1234 ab";
+    const canonicalValue = "voorbeeldstraat 12 1234 ab voorbeeldstad";
+    getDb()
+      .prepare(
+        `INSERT INTO global.profile_addresses (raw, value_normalized)
+         VALUES (?, ?)`,
+      )
+      .run(previousValue, previousValue);
+
+    persistFindings("profile-address", [cityFirstAddressFinding()]);
+
+    expect(
+      getDb()
+        .prepare(
+          `SELECT value_normalized
+           FROM global.profile_addresses`,
+        )
+        .all(),
+    ).toEqual([{ value_normalized: canonicalValue }]);
+    expect(
+      getDb()
+        .prepare(
+          `SELECT 1
+           FROM pii_findings finding
+           JOIN global.profile_match_values profile
+             ON profile.type = finding.type
+            AND profile.value_normalized = finding.value_normalized
+           WHERE finding.message_id = ?`,
+        )
+        .get("profile-address"),
+    ).toBeDefined();
+  });
+
+  it("does not copy a legacy suppression when that alias is in the profile", () => {
+    const vid = insertVendor();
+    insertMsg("profile-authority", vid);
+    const previousValue = "voorbeeldstraat 12 voorbeeldstad 1234 ab";
+    const canonicalValue = "voorbeeldstraat 12 1234 ab voorbeeldstad";
+    getDb()
+      .prepare(
+        `INSERT INTO global.profile_addresses (raw, value_normalized)
+         VALUES (?, ?)`,
+      )
+      .run(previousValue, previousValue);
+    getDb()
+      .prepare(
+        `INSERT INTO global.pii_suppressions (type, value_normalized)
+         VALUES ('address', ?)`,
+      )
+      .run(previousValue);
+
+    persistFindings("profile-authority", [cityFirstAddressFinding()]);
+
+    expect(
+      getDb()
+        .prepare(
+          `SELECT 1
+           FROM global.pii_suppressions
+           WHERE type = 'address' AND value_normalized = ?`,
+        )
+        .get(canonicalValue),
+    ).toBeUndefined();
+  });
+
+  it("keeps a structured canonical profile row over a raw legacy duplicate", () => {
+    const vid = insertVendor();
+    insertMsg("profile-conflict", vid);
+    const previousValue = "voorbeeldstraat 12 voorbeeldstad 1234 ab";
+    const canonicalValue = "voorbeeldstraat 12 1234 ab voorbeeldstad";
+    getDb()
+      .prepare(
+        `INSERT INTO global.profile_addresses (raw, value_normalized)
+         VALUES (?, ?)`,
+      )
+      .run(previousValue, previousValue);
+    getDb()
+      .prepare(
+        `INSERT INTO global.profile_addresses (
+           street, house_number, postal_code, city, country, raw,
+           value_normalized, postal_code_normalized
+         ) VALUES (?, ?, ?, ?, ?, NULL, ?, ?)`,
+      )
+      .run(
+        "Voorbeeldstraat",
+        "12",
+        "1234 AB",
+        "Voorbeeldstad",
+        "NL",
+        canonicalValue,
+        "1234 AB",
+      );
+
+    persistFindings("profile-conflict", [cityFirstAddressFinding()]);
+
+    expect(
+      getDb()
+        .prepare(
+          `SELECT raw, value_normalized
+           FROM global.profile_addresses`,
+        )
+        .all(),
+    ).toEqual([{ raw: null, value_normalized: canonicalValue }]);
+  });
+
+  it("moves a structured legacy row over an existing raw canonical row", () => {
+    const vid = insertVendor();
+    insertMsg("profile-inverse-conflict", vid);
+    const previousValue = "voorbeeldstraat 12 voorbeeldstad 1234 ab";
+    const canonicalValue = "voorbeeldstraat 12 1234 ab voorbeeldstad";
+    getDb()
+      .prepare(
+        `INSERT INTO global.profile_addresses (
+           street, house_number, postal_code, city, country, raw,
+           value_normalized, postal_code_normalized
+         ) VALUES (?, ?, ?, ?, ?, NULL, ?, ?)`,
+      )
+      .run(
+        "Voorbeeldstraat",
+        "12",
+        "1234 AB",
+        "Voorbeeldstad",
+        "NL",
+        previousValue,
+        "1234 AB",
+      );
+    getDb()
+      .prepare(
+        `INSERT INTO global.profile_addresses (raw, value_normalized)
+         VALUES (?, ?)`,
+      )
+      .run(canonicalValue, canonicalValue);
+
+    persistFindings("profile-inverse-conflict", [cityFirstAddressFinding()]);
+
+    expect(
+      getDb()
+        .prepare(
+          `SELECT street, raw, value_normalized
+           FROM global.profile_addresses`,
+        )
+        .all(),
+    ).toEqual([{
+      street: "Voorbeeldstraat",
+      raw: null,
+      value_normalized: canonicalValue,
+    }]);
   });
 
   // The comparison itself belongs to the engine and is covered by its suite.

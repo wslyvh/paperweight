@@ -16,17 +16,20 @@ function addressPatternSource(normalized: string): string | undefined {
   const words = normalized
     .split(/\s+/)
     .filter(Boolean);
-  if (words.length === 0) return undefined;
+  const [first, ...remaining] = words;
+  if (!first) return undefined;
 
-  let source = escapeRegex(words[0]);
-  for (let index = 1; index < words.length; index++) {
+  let source = escapeRegex(first);
+  let previous = first;
+  for (const word of remaining) {
     const separator = canOmitPostalCodeSeparator(
-      words[index - 1],
-      words[index],
+      previous,
+      word,
     )
       ? `[^${ADDRESS_BOUNDARY}]*`
       : ADDRESS_SEPARATOR;
-    source += separator + escapeRegex(words[index]);
+    source += separator + escapeRegex(word);
+    previous = word;
   }
   return source;
 }
@@ -183,6 +186,7 @@ export function reconcileKnownAddressFindings(
     const cores = new Set(matches.map(structuredAddressKey));
     if (matches.length !== 1 || cores.size !== 1) return finding;
     const match = matches[0];
+    if (!match) return finding;
     if (finding.valueNormalized === match.valueNormalized) return finding;
     return {
       ...finding,

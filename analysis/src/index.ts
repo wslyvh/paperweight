@@ -55,7 +55,7 @@ export { PERSONAL_DOMAINS } from "./contracts";
 // classification is deliberately outside the contract: type is not versioned
 // per row, so a classifier change reaches stored rows through a release
 // migration instead of through this constant. (See README → Contract.)
-export const ENGINE_VERSION = "0.1.0";
+export const ENGINE_VERSION = "0.1.1";
 
 // AnalyzeOptions.locale ("NL", "nl", "nl-NL") -> ISO 3166-1 alpha-2 region
 function regionFromLocale(locale?: string): string | undefined {
