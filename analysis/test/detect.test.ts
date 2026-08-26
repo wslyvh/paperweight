@@ -223,6 +223,13 @@ describe("detectPostalCodes", () => {
     expect(candidates.map((c) => c.country).sort()).toEqual(["DE", "ES", "FR", "IT", "US"]);
     expect(candidates.every((c) => c.tier === "anchor-only")).toBe(true);
   });
+
+  it("never reads the digits of an NL postcode as a bare BE/AT code", () => {
+    const { candidates } = detectPostalCodes("Postbus 99, 1234 AB Voorbeeldstad");
+    expect(
+      candidates.some((c) => (c.country === "BE" || c.country === "AT") && c.value === "1234"),
+    ).toBe(false);
+  });
 });
 
 describe("detectAddressBlocks", () => {
@@ -367,6 +374,13 @@ describe("detectAddressBlocks", () => {
     const [f] = detectAddressBlocks(text, postal.candidates);
 
     expect(f!.valueRaw).toBe("Jan van Voorbeeldstraat 12, 1234 XB Voorbeeldstad");
+  });
+
+  it("never crosses one complete postcode+city to pair a street with a farther one", () => {
+    const text = "Voorbeeldstraat 12\n1234 AB Voorbeeldstad Volg ons\nPostbus 99, 5678 CD Anderstad";
+    const postal = detectPostalCodes(text);
+    const found = detectAddressBlocks(text, postal.candidates);
+    expect(found.some((f) => f.valueRaw.includes("Anderstad"))).toBe(false);
   });
 
   it("never joins a street to a copyright year as a Belgian postcode", () => {
