@@ -393,6 +393,29 @@ describe("detectPii orchestration", () => {
     expect(detectPii(text, ctx)).toHaveLength(1);
   });
 
+  it("keeps the city on a repeated address even when the second occurrence's postcode also reads as a bare Belgian anchor", () => {
+    // Same address printed twice (invoice + delivery), compact postcode
+    // first time and spaced the second. The spaced form's bare digits also
+    // satisfy BE's anchor-only postcode pattern, colliding with the correct
+    // NL finding at that span. Deduping the two NL findings (identical
+    // normalized value) before overlap resolution ran used to delete the
+    // second occurrence's NL finding first, leaving the weaker BE match
+    // — which has no city — unchallenged.
+    const text = [
+      "Factuuradres",
+      "Voorbeeldstraat 12",
+      "1234AB Voorbeeldstad",
+      "Afleveradres",
+      "Voorbeeldstraat 12",
+      "1234 AB Voorbeeldstad",
+    ].join("\n");
+    const findings = detectPii(text, ctx);
+    const addresses = findings.filter((f) => f.type === "address");
+    expect(addresses).toHaveLength(1);
+    expect(addresses[0]!.country).toBe("NL");
+    expect(addresses[0]!.valueRaw).toContain("Voorbeeldstad");
+  });
+
   it("flags findings in quoted text", () => {
     const text = "Bedankt!\n\nOp 3 okt 2026 schreef Alex de Vries <alex@voorbeeldmail.example>:\n> Mijn IBAN is NL91 ABNA 0417 1643 00";
     const findings = detectPii(text, { quoted: [{ start: 10, end: text.length }], footer: [] });
