@@ -243,6 +243,26 @@ describe("detectAddressBlocks", () => {
     expect(f.signals).toContainEqual({ id: "anchor.postal-code", detail: "1234 AB" });
   });
 
+  it.each([
+    ["NL", "postbus 99, 1234 AB Voorbeeldstad"],
+    ["NL", "Antwoordnummer 99, 1234 AB Voorbeeldstad"],
+    ["GB", "PO Box 99, SW1A 2AA, London"],
+    ["DE", "Postfach 99, 12345 Musterstadt"],
+    ["AT", "Postfach 99, 1010 Wien"],
+    ["FR", "BP 99, 75008 Paris"],
+    ["BE", "BP 99, 2000 Antwerpen"],
+    ["ES", "Apartado de correos 99, 28001 Madrid"],
+    ["IT", "Casella Postale 99, 20121 Milano"],
+    ["PT", "Apartado 99, 1000-100 Lisboa"],
+    ["US", "PO Box 99, Springfield, IL 62704"],
+  ])("matches a %s PO box in place of a street name", (country, text) => {
+    const postal = detectPostalCodes(text);
+    const found = detectAddressBlocks(text, postal.candidates);
+    const f = found.find((x) => x.country === country);
+    expect(f).toBeDefined();
+    expect(f!.signals.some((s) => s.id === "pattern.box")).toBe(true);
+  });
+
   it("matches UK number-first streets", () => {
     const text = "Send to 10 Downing Street, SW1A 2AA, London";
     const postal = detectPostalCodes(text);
@@ -380,7 +400,11 @@ describe("detectAddressBlocks", () => {
     const text = "Voorbeeldstraat 12\n1234 AB Voorbeeldstad Volg ons\nPostbus 99, 5678 CD Anderstad";
     const postal = detectPostalCodes(text);
     const found = detectAddressBlocks(text, postal.candidates);
-    expect(found.some((f) => f.valueRaw.includes("Anderstad"))).toBe(false);
+    expect(
+      found.some(
+        (f) => f.valueRaw.includes("Voorbeeldstraat") && f.valueRaw.includes("Anderstad"),
+      ),
+    ).toBe(false);
   });
 
   it("never joins a street to a copyright year as a Belgian postcode", () => {
