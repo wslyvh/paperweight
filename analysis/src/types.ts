@@ -83,6 +83,8 @@ export interface Finding {
   type: FindingType;
   valueRaw: string;
   valueNormalized: string;
+  /** Distinct normalized spellings collapsed into this canonical finding. */
+  valueNormalizedAliases?: string[];
   start: number;
   end: number;
   confidence: Confidence;

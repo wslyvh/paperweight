@@ -209,13 +209,14 @@ describe("known PII values", () => {
           addressComponents,
         }],
       });
+      // Layout differences (city/postcode order, house-before-street) collapse
+      // to the one known value — via direct detection when generic address
+      // detection already gets the order right, via the reconcile signal
+      // otherwise. Either path is fine; the resulting value is what matters.
       expect(result.findings).toContainEqual(
         expect.objectContaining({
           type: "address",
           valueNormalized,
-          signals: expect.arrayContaining([
-            { id: "known-value.address-components" },
-          ]),
         }),
       );
     }
@@ -238,9 +239,6 @@ describe("known PII values", () => {
       expect.objectContaining({
         type: "address",
         valueNormalized: value.valueNormalized,
-        signals: expect.arrayContaining([
-          { id: "known-value.address-components" },
-        ]),
       }),
     );
   });

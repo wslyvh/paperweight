@@ -1,9 +1,15 @@
 // detectPii orchestration: fixed detector sequence,
-// then dedupe by (type, valueNormalized), then overlap resolution (longer
-// span wins, then higher confidence, then detector order), then the
+// then overlap resolution (longer span wins, then higher confidence, then
+// detector order), then dedupe by (type, valueNormalized), then the
 // inQuotedText / inFooter / isOwnIdentifier / selfReference tags.
+// Overlap resolution must run first: the same real-world value (an address
+// printed twice, e.g. invoice + delivery) produces one finding per
+// occurrence, each with its own overlapping rivals at that span (a weaker
+// country guess anchored on the same postcode). Deduping by value first
+// would remove one occurrence's finding before it gets a chance to beat its
+// own rival, letting the weaker rival survive unchallenged.
 import type { Finding, KnownPiiValue } from "../types";
-import { detectAddressBlocks } from "./address";
+import { detectAddressBlocks, normalizeAddress } from "./address";
 import { detectCreditCards } from "./credit-card";
 import { isOrganizationalAddress } from "../data/role-mailboxes";
 import { detectEmails, domainOf, sameOrg } from "./email";
@@ -43,7 +49,7 @@ export function detectPii(text: string, ctx: DetectContext): Finding[] {
     ...detectKnownValues(text, ctx.knownValues ?? []),
   ], ctx.knownValues ?? []);
 
-  const findings = resolveOverlaps(dedupe(raw)).sort((a, b) => a.start - b.start);
+  const findings = dedupe(resolveOverlaps(raw)).sort((a, b) => a.start - b.start);
 
   const own = new Set((ctx.ownEmails ?? []).map((e) => e.toLowerCase()));
   const sender = ctx.senderDomain?.toLowerCase();
@@ -78,13 +84,28 @@ function corroboratedPostalCodes(findings: Finding[], region?: string): Finding[
 }
 
 function dedupe(findings: Finding[]): Finding[] {
-  const seen = new Set<string>();
+  const seen = new Map<string, Finding>();
   return findings.filter((f) => {
     const key = f.type + ":" + f.valueNormalized;
-    if (seen.has(key)) return false;
-    seen.add(key);
+    const existing = seen.get(key);
+    if (existing) {
+      if (f.type === "address") addAddressAliases(existing, f);
+      return false;
+    }
+    if (f.type === "address") addAddressAliases(f, f);
+    seen.set(key, f);
     return true;
   });
+}
+
+function addAddressAliases(target: Finding, source: Finding): void {
+  const aliases = new Set([
+    ...(target.valueNormalizedAliases ?? []),
+    ...(source.valueNormalizedAliases ?? []),
+    normalizeAddress(source.valueRaw),
+  ]);
+  aliases.delete(target.valueNormalized);
+  if (aliases.size > 0) target.valueNormalizedAliases = [...aliases];
 }
 
 // Overlapping spans of different types (postal code inside an address block,

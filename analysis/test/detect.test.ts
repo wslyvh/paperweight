@@ -223,6 +223,12 @@ describe("detectPostalCodes", () => {
     expect(candidates.map((c) => c.country).sort()).toEqual(["DE", "ES", "FR", "IT", "US"]);
     expect(candidates.every((c) => c.tier === "anchor-only")).toBe(true);
   });
+
+  it("keeps an NL postcode as NL when its digits also fit BE/AT", () => {
+    const findings = detectPii("Postbus 99, 1234 AB Voorbeeldstad", ctx);
+    expect(findings).toHaveLength(1);
+    expect(findings[0]!.country).toBe("NL");
+  });
 });
 
 describe("detectAddressBlocks", () => {
@@ -234,6 +240,44 @@ describe("detectAddressBlocks", () => {
     expect(f.country).toBe("NL");
     expect(f.confidence).toBe("contextual");
     expect(f.signals).toContainEqual({ id: "anchor.postal-code", detail: "1234 AB" });
+  });
+
+  it.each([
+    ["NL", "postbus 99, 1234 AB Voorbeeldstad"],
+    ["NL", "Antwoordnummer 99, 1234 AB Voorbeeldstad"],
+    ["GB", "PO Box 99, SW1A 2AA, London"],
+    ["DE", "Postfach 99, 12345 Musterstadt"],
+    ["AT", "Postfach 99, 1010 Wien"],
+    ["FR", "BP 99, 75008 Paris"],
+    ["BE", "BP 99, 2000 Antwerpen"],
+    ["ES", "Apartado de correos 99, 28001 Madrid"],
+    ["IT", "Casella Postale 99, 20121 Milano"],
+    ["PT", "Apartado 99, 1000-100 Lisboa"],
+    ["US", "PO Box 99, Springfield, IL 62704"],
+  ])("matches a %s PO box in place of a street name", (country, text) => {
+    const postal = detectPostalCodes(text);
+    const found = detectAddressBlocks(text, postal.candidates);
+    const f = found.find((x) => x.country === country);
+    expect(f).toBeDefined();
+    expect(f!.signals.some((s) => s.id === "pattern.box")).toBe(true);
+  });
+
+  it.each([
+    ["BE", "Postbus 2572, 2000 Antwerpen"],
+    ["AT", "Postfach 1234, 1010 Wien"],
+    ["DE", "Postfach 12345, 10115 Berlin"],
+    ["US", "PO Box 12345, Springfield, IL 62704"],
+  ])("matches a %s PO box whose box number resembles a postcode", (country, text) => {
+    const postal = detectPostalCodes(text);
+    const found = detectAddressBlocks(text, postal.candidates);
+    expect(found.some((f) => f.country === country), text).toBe(true);
+  });
+
+  it("accepts an Austrian city whose name is two uppercase letters", () => {
+    const text = "Musterstraße 1, 6883 AU";
+    const postal = detectPostalCodes(text);
+    const found = detectAddressBlocks(text, postal.candidates);
+    expect(found.some((f) => f.country === "AT"), text).toBe(true);
   });
 
   it("matches UK number-first streets", () => {
@@ -310,6 +354,20 @@ describe("detectAddressBlocks", () => {
     expect([...normalized]).toEqual(["voorbeeldstraat 12 1234 xb voorbeeldstad"]);
   });
 
+  it("collapses one address to one value regardless of city/postcode order", () => {
+    const variants = [
+      "Voorbeeldstraat 12, 1234 XB Voorbeeldstad",
+      "Voorbeeldstraat 12, Voorbeeldstad, 1234 XB",
+    ];
+    const normalized = new Set(
+      variants.map((text) => {
+        const postal = detectPostalCodes(text);
+        return detectAddressBlocks(text, postal.candidates)[0]!.valueNormalized;
+      }),
+    );
+    expect(normalized.size).toBe(1);
+  });
+
   it("drops a block whose span runs longer than an address ever is", () => {
     // Street and postcode within the gap, but with a sentence between them:
     // the emitted span would be prose, not an address.
@@ -355,6 +413,17 @@ describe("detectAddressBlocks", () => {
     expect(f!.valueRaw).toBe("Jan van Voorbeeldstraat 12, 1234 XB Voorbeeldstad");
   });
 
+  it("never crosses one complete postcode+city to pair a street with a farther one", () => {
+    const text = "Voorbeeldstraat 12\n1234 AB Voorbeeldstad Volg ons\nPostbus 99, 5678 CD Anderstad";
+    const postal = detectPostalCodes(text);
+    const found = detectAddressBlocks(text, postal.candidates);
+    expect(
+      found.some(
+        (f) => f.valueRaw.includes("Voorbeeldstraat") && f.valueRaw.includes("Anderstad"),
+      ),
+    ).toBe(false);
+  });
+
   it("never joins a street to a copyright year as a Belgian postcode", () => {
     const text = [
       "Voorbeeldstraat 354",
@@ -377,6 +446,54 @@ describe("detectPii orchestration", () => {
   it("dedupes repeated values", () => {
     const text = "IBAN NL91 ABNA 0417 1643 00 en nogmaals NL91 ABNA 0417 1643 00";
     expect(detectPii(text, ctx)).toHaveLength(1);
+  });
+
+  it("retains legacy address spellings when canonical variants dedupe", () => {
+    const text = [
+      "Voorbeeldstraat 12, 1234 XB Voorbeeldstad",
+      "Voorbeeldstraat 12, Voorbeeldstad, 1234 XB",
+    ].join("\n");
+    const addresses = detectPii(text, ctx).filter((finding) => finding.type === "address");
+
+    expect(addresses).toHaveLength(1);
+    expect(addresses[0]!.valueNormalizedAliases).toEqual([
+      "voorbeeldstraat 12 voorbeeldstad 1234 xb",
+    ]);
+  });
+
+  it("retains the legacy spelling of one city-first address", () => {
+    const addresses = detectPii(
+      "Voorbeeldstraat 12, Voorbeeldstad, 1234 XB",
+      ctx,
+    ).filter((finding) => finding.type === "address");
+
+    expect(addresses).toHaveLength(1);
+    expect(addresses[0]!.valueNormalizedAliases).toEqual([
+      "voorbeeldstraat 12 voorbeeldstad 1234 xb",
+    ]);
+  });
+
+  it("keeps the city on a repeated address even when the second occurrence's postcode also reads as a bare Belgian anchor", () => {
+    // Same address printed twice (invoice + delivery), compact postcode
+    // first time and spaced the second. The spaced form's bare digits also
+    // satisfy BE's anchor-only postcode pattern, colliding with the correct
+    // NL finding at that span. Deduping the two NL findings (identical
+    // normalized value) before overlap resolution ran used to delete the
+    // second occurrence's NL finding first, leaving the weaker BE match
+    // — which has no city — unchallenged.
+    const text = [
+      "Factuuradres",
+      "Voorbeeldstraat 12",
+      "1234AB Voorbeeldstad",
+      "Afleveradres",
+      "Voorbeeldstraat 12",
+      "1234 AB Voorbeeldstad",
+    ].join("\n");
+    const findings = detectPii(text, ctx);
+    const addresses = findings.filter((f) => f.type === "address");
+    expect(addresses).toHaveLength(1);
+    expect(addresses[0]!.country).toBe("NL");
+    expect(addresses[0]!.valueRaw).toContain("Voorbeeldstad");
   });
 
   it("flags findings in quoted text", () => {

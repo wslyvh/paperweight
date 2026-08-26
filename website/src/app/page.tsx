@@ -25,9 +25,9 @@ import { SITE_CONFIG } from "@/utils/config";
 import { getCryptoPrice, LICENSE_PRICING } from "@/utils/pricing";
 import { buildMetadata } from "@/utils/seo";
 
-const title = "Find Old Accounts and Clean Up Email";
+const title = "Manage Your Digital Footprint";
 const description =
-  "Find old accounts and mailing lists from your email history, then prepare data deletion requests. Paperweight processes email locally on your computer.";
+  "Paperweight uncovers old accounts, cleans up unwanted mailing lists, and finds exposed personal data. Everything is processed locally on your computer.";
 
 export const metadata = buildMetadata({
   title,
@@ -148,12 +148,12 @@ export default async function Home() {
       <section className="container mx-auto px-4 pt-20 pb-24 text-center">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Find old accounts. Clean up email. Reduce stored personal data.
+            Manage your digital footprint
           </h1>
           <p className="text-xl md:text-2xl mb-8 opacity-80">
-            Paperweight uses your email history to build a company inventory,
-            find mailing lists, and prepare data deletion requests. Analysis
-            runs in the desktop app on your computer.
+            Paperweight uncovers old accounts, cleans up unwanted mailing lists,
+            and finds exposed personal data. Everything is processed locally on
+            your computer.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <a
@@ -176,15 +176,15 @@ export default async function Home() {
           <div className="max-w-6xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-2">See it in action</h2>
             <p className="text-lg opacity-80 mb-10">
-              Review the companies, mailing lists, and activity found in your
-              available email history.
+              Review companies, mailing lists, and personal data found in your
+              email history.
             </p>
             <div className="relative mx-auto max-w-3xl rounded-2xl overflow-hidden border border-base-300 shadow-2xl ring-1 ring-base-content/5">
               <Image
-                src="/dashboard.png"
+                src="/features/dashboard.png"
                 alt="Paperweight dashboard showing messages synced, mailing lists, accounts, and daily email chart"
-                width={1057}
-                height={880}
+                width={1052}
+                height={1068}
                 className="w-full h-auto"
                 priority
               />
@@ -201,8 +201,8 @@ export default async function Home() {
               Three ways to reduce your digital footprint
             </h2>
             <p className="text-lg opacity-80 mb-10 text-center">
-              Start with the part of your email history that you want to
-              understand or clean up.
+              Choose the part of your email history that you want to explore or
+              clean up.
             </p>
             <div className="grid md:grid-cols-3 gap-6">
               <Link
@@ -216,10 +216,9 @@ export default async function Home() {
                   />
                   <h3 className="card-title text-lg mb-2">Account discovery</h3>
                   <p className="text-sm opacity-80">
-                    Find evidence of companies, accounts, and old services in
-                    the email history available to Paperweight.
+                    Find evidence of companies, online accounts, and forgotten
+                    services from your past emails.
                   </p>
-                  <span className="link mt-auto">Find linked accounts</span>
                 </div>
               </Link>
 
@@ -234,10 +233,9 @@ export default async function Home() {
                   />
                   <h3 className="card-title text-lg mb-2">Email cleanup</h3>
                   <p className="text-sm opacity-80">
-                    Review legitimate mailing lists and use the unsubscribe
-                    method supplied by each sender.
+                    Review active mailing lists and unsubscribe from senders
+                    using their native methods.
                   </p>
-                  <span className="link mt-auto">Clean up subscriptions</span>
                 </div>
               </Link>
 
@@ -254,10 +252,9 @@ export default async function Home() {
                     Personal data removal
                   </h3>
                   <p className="text-sm opacity-80">
-                    Review personal-data evidence by company and prepare a
-                    deletion request when it fits.
+                    Detect structured personal data by company and prepare
+                    targeted deletion requests.
                   </p>
-                  <span className="link mt-auto">Review personal data</span>
                 </div>
               </Link>
             </div>
@@ -522,8 +519,9 @@ export default async function Home() {
             <h2 className="text-3xl font-bold mb-4">Start free or buy once</h2>
             <p className="text-lg opacity-80 mb-3">
               The free version supports one email account and the most recent 90
-              days of email history. A $69 perpetual license unlocks multiple
-              accounts and unlimited available history.
+              days of email history. A ${LICENSE_PRICING.LICENSE_PRICE}{" "}
+              perpetual license unlocks multiple accounts and unlimited
+              available history.
             </p>
             <p className="text-sm opacity-70 mb-8">
               Crypto checkout is also available for ${getCryptoPrice()}.

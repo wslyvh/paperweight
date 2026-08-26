@@ -1,11 +1,4 @@
-import {
-  Fingerprint,
-  ListFilter,
-  SearchCheck,
-  ShieldAlert,
-} from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { ListFilter, SearchCheck } from "lucide-react";
 import {
   type FaqItem,
   FeatureFaq,
@@ -19,60 +12,60 @@ import {
 import { SITE_CONFIG } from "@/utils/config";
 import { buildMetadata } from "@/utils/seo";
 
-const title = "Remove Personal Data From Companies";
+const title = "Remove Personal Data from Companies";
 const description =
-  "Detect personal data in your email, see which companies it appears with, and prepare deletion requests on your device with Paperweight.";
+  "Detect exposed personal data in past emails, review findings by company, and prepare verified deletion requests directly on your computer.";
 
 export const metadata = buildMetadata({
   title,
   description,
   path: "/remove-personal-data",
-  imageAlt: "Paperweight desktop app dashboard",
+  imageAlt: "Paperweight personal data detection and review dashboard",
 });
 
 const workflowSteps: WorkflowStep[] = [
   {
-    title: "Detect and classify evidence",
+    title: "Detect exposed PII",
     description:
-      "Paperweight looks for structured personal data in available email and classifies each message on your computer.",
+      "Paperweight scans available emails on your device for addresses, phone numbers, cards, and identifiers.",
   },
   {
     title: "Review findings by company",
     description:
-      "Check the detected value, confidence, message evidence, and company. Mark each finding as It’s mine or Not mine.",
+      "Inspect detected values, confidence scores, and source messages. Confirm what is yours with a single click.",
   },
   {
-    title: "Prepare a deletion request",
+    title: "Prepare deletion requests",
     description:
-      "Choose a company, prepare a request, and review the recipient and message before you send it.",
+      "Generate pre-filled GDPR or CCPA deletion emails with your specific account evidence attached.",
   },
 ];
 
 const faqItems: FaqItem[] = [
   {
-    question: "How does Paperweight find companies that may have my data?",
+    question: "How does Paperweight find exposed personal data?",
     answer:
-      "Paperweight analyzes available email on your computer. It detects structured personal data, classifies messages, and groups findings and source evidence by company.",
+      "Paperweight scans your message history locally using pattern recognition to detect phone numbers, postal addresses, payment cards, and identifiers, grouping every finding under the company that received it.",
   },
   {
     question: "Does unsubscribing delete my personal data?",
     answer:
-      "No. Unsubscribe stops a legitimate mailing-list relationship. It does not delete an account, old messages, or personal data that a company stores.",
+      "No. Unsubscribing only stops marketing emails. To remove account records, stored personal data, and transaction histories, you must submit a formal data deletion request.",
   },
   {
-    question: "Can Paperweight delete all my old accounts at once?",
+    question: "Does Paperweight remove records from data brokers?",
     answer:
-      "No. You review each company and prepare a deletion request when it fits. The company decides how it handles the request under the rules that apply to you.",
+      "No. Paperweight focuses on first-party relationships found in your actual inbox. For public broker listings, manual removal or dedicated broker scrubbers are the appropriate tool.",
   },
   {
-    question: "Does Paperweight remove data from data brokers?",
+    question: "Can a company refuse a deletion request?",
     answer:
-      "No. Paperweight works with companies and personal-data evidence found in your email. It does not remove broker records or public search results.",
+      "Under regulations like GDPR and CCPA, companies must delete personal data unless they have a legal requirement to retain it (such as tax records or active dispute resolution).",
   },
   {
-    question: "Can a company refuse to delete my data?",
+    question: "Does Paperweight send emails automatically?",
     answer:
-      "A company can keep some data when it has a valid legal reason. Your rights and the response rules depend on your location. Paperweight helps you prepare a request, but it does not give legal advice or guarantee deletion.",
+      "No. Every deletion request is drafted for your review first. You inspect the recipient, template, and included evidence before sending it from your own email client.",
   },
 ];
 
@@ -104,10 +97,10 @@ const structuredData = [
 const dataTypes = [
   "Email addresses",
   "Phone numbers",
-  "Postal addresses and postcodes",
-  "Payment card numbers",
+  "Postal addresses",
+  "Payment cards",
   "IBANs",
-  "National identifiers",
+  "National IDs",
 ];
 
 const messageTypes = ["Personal", "Purchase", "Update", "Promotion", "Social"];
@@ -123,243 +116,101 @@ export default function RemovePersonalDataPage() {
       />
       <FeatureHero
         eyebrow="Personal data removal"
-        title="Find companies that may have your data. Ask them to delete it."
-        description="Paperweight detects structured personal data in available email, groups the evidence by company, and helps you prepare a deletion request. Analysis runs locally in the desktop app."
-        imageSrc="/dashboard.png"
-        imageAlt="Paperweight desktop dashboard showing companies found in available email history"
-        imageWidth={1057}
-        imageHeight={880}
+        title="Find personal data in your email and request deletion"
+        description="Detect exposed phone numbers, addresses, and payment details across past emails, then prepare verified deletion requests on your machine."
+        imageSrc="/features/personal-data.png"
+        imageAlt="Paperweight personal data detection view showing detected PII and confidence levels"
+        imageWidth={1052}
+        imageHeight={1068}
       />
-
-      <section className="bg-base-200 py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto grid gap-10 md:grid-cols-2 md:items-center">
-            <div>
-              <Fingerprint
-                className="w-10 h-10 text-primary mb-4"
-                strokeWidth={1.5}
-              />
-              <h2 className="text-3xl font-bold mb-4">
-                Find personal-data evidence before you send requests
-              </h2>
-              <p className="text-lg opacity-80">
-                Old receipts, account updates, and service messages can contain
-                details that identify you. Paperweight finds structured values
-                and connects each finding to its company and source message.
-              </p>
-            </div>
-            <div className="card bg-base-100 border border-base-300">
-              <div className="card-body">
-                <h3 className="card-title">Know what this feature covers</h3>
-                <p className="text-sm opacity-80">
-                  Paperweight helps with personal data and companies found in
-                  your email. It does not scrub data brokers or remove public
-                  search results.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <FeatureWorkflow
         heading="How personal data review works"
         steps={workflowSteps}
       />
 
-      <section className="bg-base-200 py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center max-w-3xl mx-auto mb-10">
-              <h2 className="text-3xl font-bold mb-3">
-                Detect structured personal data locally
-              </h2>
-              <p className="text-lg opacity-80">
-                Detection runs on your computer before you decide which findings
-                belong to you and which companies need review.
-              </p>
-            </div>
-            <div className="grid gap-6 md:grid-cols-2">
-              <div className="card bg-base-100 border border-base-300">
-                <div className="card-body">
-                  <SearchCheck
-                    className="w-9 h-9 text-info"
-                    strokeWidth={1.5}
-                  />
-                  <h3 className="card-title mt-2">Structured data types</h3>
-                  <ul className="grid gap-2 text-sm opacity-80 sm:grid-cols-2">
-                    {dataTypes.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div className="card bg-base-100 border border-base-300">
-                <div className="card-body">
-                  <ListFilter
-                    className="w-9 h-9 text-secondary"
-                    strokeWidth={1.5}
-                  />
-                  <h3 className="card-title mt-2">Message classification</h3>
-                  <p className="text-sm opacity-80">
-                    Paperweight classifies messages so that you can understand
-                    the context around a detected value.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {messageTypes.map((item) => (
-                      <span key={item} className="badge badge-soft">
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
+      <section className="container mx-auto px-4 py-20">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-3xl font-bold mb-3">
+              Detect and review structured data locally
+            </h2>
+            <p className="text-lg opacity-80">
+              Identify what sensitive information companies have collected from
+              you over years of orders, updates, and account activity.
+            </p>
           </div>
-        </div>
-      </section>
-
-      <section className="bg-base-100 py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center max-w-3xl mx-auto mb-10">
-              <h2 className="text-3xl font-bold mb-3">
-                Review evidence before you act
-              </h2>
-              <p className="text-lg opacity-80">
-                Findings include a company, source-message evidence, and a
-                confidence level. You stay in control of every decision.
-              </p>
-            </div>
-            <figure className="max-w-4xl mx-auto overflow-hidden rounded-2xl border border-base-300 bg-base-100 shadow-xl">
-              <a
-                href="/account-company-detail.png"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Open full-size company-detail screenshot"
-              >
-                <Image
-                  src="/account-company-detail.png"
-                  alt="Paperweight company detail with activity, risk information, email evidence, and available actions"
-                  width={2048}
-                  height={1856}
-                  className="w-full h-auto"
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="card bg-base-100 border border-base-300">
+              <div className="card-body">
+                <SearchCheck
+                  className="w-9 h-9 text-info mb-2"
+                  strokeWidth={1.5}
                 />
-              </a>
-              <figcaption className="p-4 text-sm opacity-70">
-                Company detail connects activity and source-email evidence to
-                the actions available in Paperweight.
-              </figcaption>
-            </figure>
+                <h3 className="card-title text-lg">Supported data types</h3>
+                <p className="text-sm opacity-80 mb-3">
+                  Pattern matching identifies structured personal data stored
+                  across receipts and messages:
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {dataTypes.map((item) => (
+                    <span key={item} className="badge badge-soft">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="card bg-base-100 border border-base-300">
+              <div className="card-body">
+                <ListFilter
+                  className="w-9 h-9 text-secondary mb-2"
+                  strokeWidth={1.5}
+                />
+                <h3 className="card-title text-lg">Context classification</h3>
+                <p className="text-sm opacity-80 mb-3">
+                  Messages are categorized so you understand the context
+                  surrounding each detected value:
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {messageTypes.map((item) => (
+                    <span key={item} className="badge badge-soft">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <FeatureTrustSummary />
 
-      <section className="bg-base-200 py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex gap-4 items-start mb-8">
-              <ShieldAlert
-                className="w-8 h-8 shrink-0 text-warning"
-                strokeWidth={1.5}
-              />
-              <div>
-                <h2 className="text-3xl font-bold mb-3">
-                  What findings and requests mean
-                </h2>
-                <p className="text-lg opacity-80">
-                  Use each finding as evidence to review, not proof that a
-                  company still stores the same value.
-                </p>
-              </div>
-            </div>
-            <div className="grid gap-4 md:grid-cols-2">
-              {[
-                "Detection covers supported structured patterns in available email. Review each result and use It’s mine or Not mine to correct it.",
-                "A deletion request does not guarantee deletion. A company can keep data when it has a valid legal reason.",
-                "Rights and response rules depend on your location. Paperweight helps prepare a request and does not give legal advice.",
-                "Paperweight does not delete accounts automatically, remove broker records, or remove public search results.",
-              ].map((item) => (
-                <p
-                  key={item}
-                  className="rounded-lg bg-base-100 border border-base-300 p-4 text-sm opacity-80"
-                >
-                  {item}
-                </p>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <FeatureFaq items={faqItems} />
 
       <RelatedFeatures
-        heading="Continue your privacy cleanup"
+        heading="Explore other privacy tools"
         items={[
           {
             title: "Account discovery",
             description:
-              "Find companies and old services in your email history.",
+              "Find online accounts and forgotten services linked to your email.",
             href: "/account-discovery",
           },
           {
             title: "Email cleanup",
-            description: "Find mailing lists and stop unwanted subscriptions.",
+            description:
+              "Clean up active mailing lists and bulk unsubscribe with real native methods.",
             href: "/email-cleanup",
-          },
-          {
-            title: "Personal data removal",
-            description: "Find personal data and prepare deletion requests.",
           },
         ]}
       />
 
-      <FeatureFaq items={faqItems} />
-
-      <section className="bg-base-300 py-12">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto grid gap-6 md:grid-cols-3">
-            <Link
-              href="/resources/gdpr-generator"
-              className="card bg-base-100 border border-base-300 hover:bg-base-200 transition-colors"
-            >
-              <div className="card-body">
-                <h2 className="card-title text-lg">One known company</h2>
-                <p className="text-sm opacity-80">
-                  Prepare a request with the free GDPR generator.
-                </p>
-              </div>
-            </Link>
-            <Link
-              href="/guides/how-to-exercise-your-gdpr-rights"
-              className="card bg-base-100 border border-base-300 hover:bg-base-200 transition-colors"
-            >
-              <div className="card-body">
-                <h2 className="card-title text-lg">Understand your rights</h2>
-                <p className="text-sm opacity-80">
-                  Read how GDPR requests, identity checks, and replies work.
-                </p>
-              </div>
-            </Link>
-            <Link
-              href="/guides/data-removal-services-compared"
-              className="card bg-base-100 border border-base-300 hover:bg-base-200 transition-colors"
-            >
-              <div className="card-body">
-                <h2 className="card-title text-lg">Compare removal services</h2>
-                <p className="text-sm opacity-80">
-                  Compare services made for broker-removal work.
-                </p>
-              </div>
-            </Link>
-          </div>
-        </div>
-      </section>
-
       <FeatureFinalCta
-        heading="Review the companies that may have your data"
-        body="Try Paperweight free with one email account and 90 days of history. Buy a perpetual license for unlimited available history and multiple accounts."
+        heading="Review your personal data footprint"
+        body="Try Paperweight free with one email account and 90 days of history. Upgrade anytime for unlimited history and multi-account support."
         primaryAction={{
           href: SITE_CONFIG.LICENSE_URL,
           label: "Buy a license",

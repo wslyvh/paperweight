@@ -193,7 +193,7 @@ What remains is free Mozilla Monitor, which checks your email against Have I Bee
 | Kanary           | ~$120–$200              | Monthly app subscription| Add-on      | No         |
 | Privacy Bee      | $197                    | Annual                  | Yes         | Limited    |
 | Mozilla Monitor  | Free (breach alerts)    | N/A                     | N/A         | Yes        |
-| **Paperweight**  | **$69**                 | **One-time, perpetual** | **N/A**     | **Yes**    |
+| **Paperweight**  | **$69**                 | **One-time, lifetime** | **N/A**     | **Yes**    |
 
 *Prices might differ. We'll try to update, but services often run aggressive first-year discounts; second-year renewal prices are typically the figures above.
 

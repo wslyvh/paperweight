@@ -1,4 +1,5 @@
-// Address blocks: postcode-anchored only. A street
+// Address blocks: postcode-anchored only. A street (or PO box / freepost
+// reply keyword, which anchors a block the same way without a street name)
 // pattern within ~120 chars of a postcode candidate of the same country
 // emits the whole span as one address finding, extended over a trailing
 // city token when the postcode ends the block. Anchor-only postcodes (bare
@@ -14,9 +15,10 @@ import {
   type PostalCandidate,
 } from "./postal-code";
 
-interface StreetSpec {
+interface AnchorSpec {
   country: string;
   pattern: RegExp;
+  kind: "street" | "box";
 }
 
 // NL/DE house numbers may carry a 1-2 letter suffix ("12 zw", "7 a") — only
@@ -51,38 +53,75 @@ const DE_STREET = new RegExp(
 const FR_STREET =
   /\b\d+(?:\s(?:bis|ter))?,?\s+(?:[Rr]ue|[Aa]venue|[Bb]oulevard|[Pp]lace|[Cc]hemin|[Aa]ll[ée]e|[Ii]mpasse|[Qq]uai|[Cc]ours)\s+(?:(?:de|du|des|la|le)\s+|l'){0,2}[A-ZÀ-Ü][\w'à-ü-]*/g;
 
-const STREETS: StreetSpec[] = [
-  { country: "NL", pattern: NL_STREET },
+// PO box and freepost-reply addresses ("Postbus 2572", "Antwoordnummer 12345")
+// carry no street name — the keyword itself anchors the block, matched
+// case-insensitively since running Dutch prose lowercases it
+// ("postbus 2572, 3500 GN Utrecht").
+const NL_BOX = /\b(?:postbus|antwoordnummer)\s+\d+\b/gi;
+
+// "PO Box 1234" / "P.O. Box 1234" — shared GB/US convention.
+const EN_BOX = /\bP\.?\s?O\.?\s?Box\s+\d+\b/gi;
+
+// "Postfach 1234"
+const DE_BOX = /\bPostfach\s+\d+\b/gi;
+
+// "BP 1234", "B.P. 1234", "Boîte postale 1234"
+const FR_BOX = /\b(?:BP|B\.P\.|Bo[iî]te postale)\s*\d+\b/gi;
+
+// "Apartado 1234", "Apartado de correos 1234", "Apdo. 1234" (ES/PT)
+const IBERIAN_BOX = /\b(?:Apartado(?:\s+de\s+correos)?|Apdo\.?)\s+(?:n[º°]\.?\s*)?\d+\b/gi;
+
+// "Casella Postale 1234", "C.P. 1234"
+const IT_BOX = /\bCasella Postale\s+\d+\b/gi;
+
+const ANCHORS: AnchorSpec[] = [
+  { country: "NL", pattern: NL_STREET, kind: "street" },
+  { country: "NL", pattern: NL_BOX, kind: "box" },
   {
     country: "GB",
+    kind: "street",
     pattern:
       /\b\d+[a-zA-Z]?\s+(?:[A-Z][a-z']+\s+){1,3}(?:Street|Road|Lane|Avenue|Close|Drive|Court|Place|Way|Terrace|Gardens|Crescent|Square|Hill|Row|Walk|Mews)\b/g,
   },
-  { country: "DE", pattern: DE_STREET },
-  { country: "AT", pattern: DE_STREET },
-  { country: "FR", pattern: FR_STREET },
-  { country: "BE", pattern: NL_STREET },
-  { country: "BE", pattern: FR_STREET },
+  { country: "GB", pattern: EN_BOX, kind: "box" },
+  { country: "DE", pattern: DE_STREET, kind: "street" },
+  { country: "DE", pattern: DE_BOX, kind: "box" },
+  { country: "AT", pattern: DE_STREET, kind: "street" },
+  { country: "AT", pattern: DE_BOX, kind: "box" },
+  { country: "FR", pattern: FR_STREET, kind: "street" },
+  { country: "FR", pattern: FR_BOX, kind: "box" },
+  { country: "BE", pattern: NL_STREET, kind: "street" },
+  { country: "BE", pattern: NL_BOX, kind: "box" },
+  { country: "BE", pattern: FR_STREET, kind: "street" },
+  { country: "BE", pattern: FR_BOX, kind: "box" },
   {
     country: "ES",
+    kind: "street",
     pattern:
       /\b(?:Calle|Avenida|Avda\.?|Av\.?|Plaza|Paseo|Camino|C\/)\s*(?:(?:de la|del|de|los|las|la)\s+){0,2}[A-ZÁ-Ú][\w'á-ú-]*(?:\s+[A-ZÁ-Ú][\w'á-ú-]*)?,?\s+(?:n[º°]\s*)?\d+/g,
   },
+  { country: "ES", pattern: IBERIAN_BOX, kind: "box" },
   {
     country: "IT",
+    kind: "street",
     pattern:
       /\b(?:Via|Viale|Piazza|Corso|Vicolo|Largo)\s+(?:(?:della|delle|degli|del|dei|di|San|Santa)\s+){0,2}[A-ZÀ-Ù][\w'à-ù-]*(?:\s+[A-ZÀ-Ù][\w'à-ù-]*)?,?\s+\d+/g,
   },
+  { country: "IT", pattern: IT_BOX, kind: "box" },
   {
     country: "PT",
+    kind: "street",
     pattern:
       /\b(?:Rua|Avenida|Av\.|Pra[çc]a|Travessa|Largo|Estrada)\s+(?:(?:de|do|da|dos|das)\s+){0,2}[A-ZÁ-Ú][\w'á-ú-]*(?:\s+[A-ZÁ-Ú][\w'á-ú-]*)?,?\s+(?:n\.?[º°]?\s*)?\d+/g,
   },
+  { country: "PT", pattern: IBERIAN_BOX, kind: "box" },
   {
     country: "US",
+    kind: "street",
     pattern:
       /\b\d+[A-Za-z]?\s+(?:[A-Z][\w'.-]*\s+){1,3}(?:Street|St|Avenue|Ave|Boulevard|Blvd|Road|Rd|Drive|Dr|Lane|Ln|Court|Ct|Place|Pl|Way|Terrace|Circle|Cir|Parkway|Pkwy|Highway|Hwy)\b\.?/g,
   },
+  { country: "US", pattern: EN_BOX, kind: "box" },
 ];
 
 const MAX_GAP = 60; // chars between street and postcode (~one line)
@@ -100,9 +139,19 @@ export function detectAddressBlocks(text: string, candidates: PostalCandidate[])
   const findings: Finding[] = [];
   for (const pc of candidates) {
     if (pc.tier === "anchor-only" && !CITY.test(text.slice(pc.end))) continue;
-    const specs = STREETS.filter((s) => s.country === pc.country);
+    const specs = ANCHORS.filter((s) => s.country === pc.country);
     const sameCountry = candidates.filter((c) => c.country === pc.country);
-    let best: { start: number; end: number; street: string; gap: number } | undefined;
+    let best:
+      | {
+          start: number;
+          end: number;
+          anchorStart: number;
+          anchorEnd: number;
+          anchor: string;
+          gap: number;
+          kind: "street" | "box";
+        }
+      | undefined;
     for (const spec of specs) {
       for (const m of text.matchAll(spec.pattern)) {
         const mEnd = m.index + m[0].length;
@@ -110,25 +159,46 @@ export function detectAddressBlocks(text: string, candidates: PostalCandidate[])
         // postcode of this country — "Orchestrator 2012" reading a bare code as
         // its number, or a US street pattern taking a leading ZIP as one — the
         // block is a coincidence between two patterns, not an address.
-        if (sameCountry.some((c) => m.index < c.end && c.start < mEnd)) continue;
+        const overlapsAnchor = (candidate: PostalCandidate): boolean =>
+          m.index < candidate.end && candidate.start < mEnd;
+        if (
+          spec.kind === "box"
+            ? overlapsAnchor(pc)
+            : sameCountry.some(overlapsAnchor)
+        ) continue;
         const gap = m.index >= pc.end ? m.index - pc.end : pc.start - mEnd;
         if (gap > MAX_GAP) continue;
-        const between =
-          m.index >= pc.end
-            ? text.slice(pc.end, m.index)
-            : text.slice(mEnd, pc.start);
+        const betweenStart = m.index >= pc.end ? pc.end : mEnd;
+        const betweenEnd = m.index >= pc.end ? m.index : pc.start;
+        const between = text.slice(betweenStart, betweenEnd);
         // A copyright year can satisfy a country's bare numeric postcode
         // pattern, with the company name after it mistaken for a city. A
         // copyright marker between the street and candidate proves they are
         // separate blocks, regardless of the number itself.
         if (COPYRIGHT_BOUNDARY.test(between)) continue;
+        // A whole other postcode of this country sitting between the street
+        // and pc means the street already belongs to that nearer one — pc is
+        // a second, separate address (e.g. a PO box) further down the text.
+        if (
+          sameCountry.some((c) => (
+            c !== pc && c.start >= betweenStart && c.end <= betweenEnd
+          ))
+        ) continue;
         if (!best || gap < best.gap) {
           // The span starts at the street, never before it. Whatever precedes —
           // a year, a label ("adres:"), a person's name, or a postcode written
           // above the street — is context that anchors the block, not part of
           // the address, and letting it in is what splits one company HQ into
           // several differently-formatted rows.
-          best = { start: m.index, end: Math.max(mEnd, pc.end), street: m[0], gap };
+          best = {
+            start: m.index,
+            end: Math.max(mEnd, pc.end),
+            anchorStart: m.index,
+            anchorEnd: mEnd,
+            anchor: m[0],
+            gap,
+            kind: spec.kind,
+          };
         }
       }
     }
@@ -141,18 +211,42 @@ export function detectAddressBlocks(text: string, candidates: PostalCandidate[])
     findings.push({
       type: "address",
       valueRaw: text.slice(best.start, best.end),
-      valueNormalized: normalizeAddress(text.slice(best.start, best.end)),
+      valueNormalized: normalizeAddressSpan(text, best, pc),
       start: best.start,
       end: best.end,
       confidence: "contextual",
       country: pc.country,
       signals: [
         { id: "anchor.postal-code", detail: pc.value },
-        { id: "pattern.street", detail: best.street },
+        { id: best.kind === "box" ? "pattern.box" : "pattern.street", detail: best.anchor },
       ],
     });
   }
   return findings;
+}
+
+// The street can precede or follow the postcode+city pair depending on
+// convention ("Street 12, City, 1234 AB" vs "Street 12, 1234 AB City"), and
+// the city can sit on either side of the postcode within that. Compare the
+// same physical address, and only the order changed — so build the
+// normalized value from street, postcode and city separately and always
+// join them in that fixed order, instead of normalizing the span's raw word
+// order. Only reachable when the postcode falls inside the span (the street
+// precedes it); a postcode preceding the street is excluded from the span
+// entirely (see the comment above `best`), so there is nothing to reorder.
+function normalizeAddressSpan(
+  text: string,
+  best: { start: number; end: number; anchorStart: number; anchorEnd: number; anchor: string },
+  pc: PostalCandidate,
+): string {
+  if (pc.start < best.anchorStart || pc.end > best.end) {
+    return normalizeAddress(text.slice(best.start, best.end));
+  }
+  const cityRaw =
+    text.slice(best.anchorEnd, pc.start) + " " + text.slice(pc.end, best.end);
+  return [normalizeAddress(best.anchor), normalizeAddress(pc.value), normalizeAddress(cityRaw)]
+    .filter(Boolean)
+    .join(" ");
 }
 
 // One address written twice differs by punctuation, case and line breaks far
@@ -161,6 +255,9 @@ export function detectAddressBlocks(text: string, candidates: PostalCandidate[])
 // digits and single spaces; valueRaw keeps the original.
 // Exported so anything comparing an address against a finding reduces both
 // sides with this exact function rather than a copy that can drift from it.
+// Word order is preserved (not sorted): known-values.ts builds its freeform
+// match regex directly from this output, expecting the words in the order
+// they'd appear in real prose.
 export function normalizeAddress(raw: string): string {
   return canonicalizePostalCodesInAddress(raw)
     .toLowerCase()
@@ -203,6 +300,7 @@ export function extractKnownAddressComponents(
   const candidatesAtPostcode = groups.values().next().value;
   if (!candidatesAtPostcode?.length) return undefined;
   const postcode = candidatesAtPostcode[0];
+  if (!postcode) return undefined;
   const prefix = raw
     .slice(0, postcode.start)
     .replace(/[\s,;:–—-]+$/u, "")

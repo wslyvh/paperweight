@@ -179,7 +179,7 @@ AgainstData is the closest tool to Paperweight on function rather than architect
 | Mailstrom        | ~$60/year               | Subscription             | Partial          | No               | Yes        |
 | AgainstData      | ~$40/year               | Subscription             | Deletion         | No               | Yes        |
 | GoodByEmail      | One-time license        | One-time                 | Yes              | Yes              | Yes        |
-| **Paperweight**  | **Free / $69 one-time** | **One-time, perpetual**  | **Yes + deletion** | **Yes**        | **Yes**    |
+| **Paperweight**  | **Free / $69 one-time** | **One-time, lifetime**  | **Yes + deletion** | **Yes**        | **Yes**    |
 
 Prices might differ. GoodByEmail and Leave Me Alone pricing should be confirmed against their own sites before publishing.
 

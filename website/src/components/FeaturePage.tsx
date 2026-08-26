@@ -16,8 +16,7 @@ export interface FaqItem {
 export interface RelatedFeatureItem {
   title: string;
   description: string;
-  href?: string;
-  linkLabel?: string;
+  href: string;
 }
 
 interface FeatureHeroProps {
@@ -73,7 +72,7 @@ interface FeatureWorkflowProps {
 
 export function FeatureWorkflow({ heading, steps }: FeatureWorkflowProps) {
   return (
-    <section className="bg-base-300 py-20">
+    <section className="bg-base-200 py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold mb-10 text-center">{heading}</h2>
@@ -106,49 +105,24 @@ interface RelatedFeaturesProps {
 
 export function RelatedFeatures({ heading, items }: RelatedFeaturesProps) {
   return (
-    <section className="container mx-auto px-4 py-20">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl font-bold mb-8 text-center">{heading}</h2>
-        <div className="grid gap-6 md:grid-cols-3">
-          {items.map((item) => {
-            const content = (
-              <div className="card-body">
-                <h3 className="card-title">{item.title}</h3>
-                <p className="text-sm opacity-80">{item.description}</p>
-                <span
-                  className={
-                    item.href
-                      ? "link mt-auto"
-                      : "badge badge-primary badge-soft mt-auto"
-                  }
-                >
-                  {item.linkLabel ??
-                    (item.href ? "Learn more" : "You are here")}
-                </span>
-              </div>
-            );
-
-            if (!item.href) {
-              return (
-                <div
-                  key={item.title}
-                  className="card bg-base-200 border border-base-300"
-                >
-                  {content}
-                </div>
-              );
-            }
-
-            return (
+    <section className="bg-base-200 py-20">
+      <div className="container mx-auto px-4">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl font-bold mb-8 text-center">{heading}</h2>
+          <div className="grid gap-6 md:grid-cols-2 max-w-3xl mx-auto">
+            {items.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="card bg-base-200 border border-base-300 hover:bg-base-300 transition-colors"
+                className="card bg-base-100 border border-base-300 hover:bg-base-300 transition-colors"
               >
-                {content}
+                <div className="card-body">
+                  <h3 className="card-title text-lg">{item.title}</h3>
+                  <p className="text-sm opacity-80">{item.description}</p>
+                </div>
               </Link>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -157,40 +131,57 @@ export function RelatedFeatures({ heading, items }: RelatedFeaturesProps) {
 
 export function FeatureTrustSummary() {
   const items = [
-    "Email analysis and the local database stay on your computer.",
-    "You review company evidence before you take action.",
-    "The source code is public and available for review.",
+    {
+      title: "Local-first processing",
+      description:
+        "Email analysis and your local database stay on your computer. Your emails are never uploaded.",
+    },
+    {
+      title: "Review before actions",
+      description:
+        "You review company evidence, unsubscribe choices, and deletion requests before anything is sent.",
+    },
+    {
+      title: "Open-source transparency",
+      description:
+        "The entire codebase is public on GitHub, so you can inspect how your data is handled.",
+    },
   ];
 
   return (
     <section className="bg-base-300 py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="flex items-center gap-3 mb-4">
-            <ShieldCheck className="w-9 h-9 text-success" strokeWidth={1.5} />
-            <h2 className="text-3xl font-bold">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <ShieldCheck
+              className="w-10 h-10 text-success mx-auto mb-4"
+              strokeWidth={1.5}
+            />
+            <h2 className="text-3xl font-bold mb-3">
               Your email analysis stays on your device
             </h2>
+            <p className="text-lg opacity-80">
+              Paperweight connects directly to your email provider from your
+              computer. No cloud analysis, no telemetry, no data harvesting.
+            </p>
           </div>
-          <p className="text-lg opacity-80 mb-8">
-            Paperweight connects your computer to your email provider. Email
-            analysis and the Paperweight database stay on your computer. It does
-            not send your email data to Paperweight servers.
-          </p>
-          <ul className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-3">
             {items.map((item) => (
-              <li
-                key={item}
-                className="flex gap-3 rounded-lg bg-base-100 p-4 border border-base-300"
+              <div
+                key={item.title}
+                className="rounded-lg bg-base-100 p-5 border border-base-300 flex flex-col"
               >
-                <Check className="w-5 h-5 shrink-0 text-success" aria-hidden />
-                <span className="text-sm opacity-80">{item}</span>
-              </li>
+                <div className="flex items-center gap-2 mb-2 font-semibold">
+                  <Check className="w-5 h-5 text-success shrink-0" />
+                  <span>{item.title}</span>
+                </div>
+                <p className="text-sm opacity-80 mt-1">{item.description}</p>
+              </div>
             ))}
-          </ul>
-          <div className="mt-8 flex flex-wrap gap-3">
+          </div>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link href="/privacy" className="btn btn-soft btn-sm">
-              Read the privacy details
+              Read privacy details
             </Link>
             <a
               href={SITE_CONFIG.GITHUB_URL}
@@ -213,27 +204,25 @@ interface FeatureFaqProps {
 
 export function FeatureFaq({ items }: FeatureFaqProps) {
   return (
-    <section className="bg-base-200 py-20">
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center">
-            Frequently asked questions
-          </h2>
-          <div className="space-y-3">
-            {items.map((item) => (
-              <details
-                key={item.question}
-                className="collapse collapse-arrow bg-base-100 border border-base-300"
-              >
-                <summary className="collapse-title font-semibold">
-                  {item.question}
-                </summary>
-                <div className="collapse-content text-sm opacity-80">
-                  <p>{item.answer}</p>
-                </div>
-              </details>
-            ))}
-          </div>
+    <section className="container mx-auto px-4 py-20">
+      <div className="max-w-3xl mx-auto">
+        <h2 className="text-3xl font-bold mb-8 text-center">
+          Frequently asked questions
+        </h2>
+        <div className="space-y-3">
+          {items.map((item) => (
+            <details
+              key={item.question}
+              className="collapse collapse-arrow bg-base-100 border border-base-300"
+            >
+              <summary className="collapse-title font-semibold">
+                {item.question}
+              </summary>
+              <div className="collapse-content text-sm opacity-80">
+                <p>{item.answer}</p>
+              </div>
+            </details>
+          ))}
         </div>
       </div>
     </section>
@@ -255,25 +244,27 @@ interface FeatureFinalCtaProps {
 
 export function FeatureFinalCta(props: FeatureFinalCtaProps) {
   return (
-    <section className="container mx-auto px-4 py-20">
-      <div className="max-w-4xl mx-auto card bg-base-200 border border-base-300 text-center">
-        <div className="card-body items-center py-12">
-          <MonitorDown className="w-10 h-10 text-primary" strokeWidth={1.5} />
-          <h2 className="text-3xl font-bold mt-2">{props.heading}</h2>
-          <p className="text-lg opacity-80 max-w-2xl">{props.body}</p>
-          <div className="card-actions mt-4 justify-center">
-            <a
-              href={props.primaryAction.href}
-              className={props.primaryAction.className}
-            >
-              {props.primaryAction.label}
-            </a>
-            <a
-              href={props.secondaryAction.href}
-              className={props.secondaryAction.className}
-            >
-              {props.secondaryAction.label}
-            </a>
+    <section className="bg-base-200 py-20">
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto card bg-base-100 border border-base-300 text-center">
+          <div className="card-body items-center py-12">
+            <MonitorDown className="w-10 h-10 text-primary" strokeWidth={1.5} />
+            <h2 className="text-3xl font-bold mt-2">{props.heading}</h2>
+            <p className="text-lg opacity-80 max-w-2xl">{props.body}</p>
+            <div className="card-actions mt-4 justify-center">
+              <a
+                href={props.primaryAction.href}
+                className={props.primaryAction.className}
+              >
+                {props.primaryAction.label}
+              </a>
+              <a
+                href={props.secondaryAction.href}
+                className={props.secondaryAction.className}
+              >
+                {props.secondaryAction.label}
+              </a>
+            </div>
           </div>
         </div>
       </div>
