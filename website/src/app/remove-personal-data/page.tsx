@@ -210,7 +210,7 @@ export default function RemovePersonalDataPage() {
           {
             title: "Bulk unsubscribe",
             description:
-              "Clean up noisy newsletters and marketing lists with real one-click unsubscriptions straight from your device.",
+              "Compare active mailing lists, identify the senders creating the most noise, and unsubscribe at the source.",
             href: "/email-cleanup",
             icon: <Mail className="w-12 h-12 text-primary" strokeWidth={1.5} />,
           },

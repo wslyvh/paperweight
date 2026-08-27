@@ -58,7 +58,7 @@ export function buildMetadata({
     : undefined;
 
   return {
-    title: pageTitle,
+    title,
     description,
     alternates: {
       canonical: url,

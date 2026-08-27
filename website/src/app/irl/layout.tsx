@@ -7,7 +7,7 @@ import { IRL_CONFIG } from "@/utils/irl";
 import { buildMetadata } from "@/utils/seo";
 import { jetbrainsMono } from "./fonts";
 
-const IRL_TITLE = `Live at ${IRL_CONFIG.EVENT_LABEL} · Paperweight`;
+const IRL_TITLE = `Live at ${IRL_CONFIG.EVENT_LABEL}`;
 const IRL_DESCRIPTION =
   `Who knows you're here? See what your RSVP shared, with whom, and what to do about it. Live at ${IRL_CONFIG.EVENT_LABEL}.`;
 
