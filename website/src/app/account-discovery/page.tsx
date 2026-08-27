@@ -30,14 +30,14 @@ const workflowSteps: WorkflowStep[] = [
       "Connect Gmail, Outlook, Proton Mail via Bridge, or any standard IMAP mailbox directly in the app.",
   },
   {
-    title: "Map account signals",
+    title: "Find evidence of past accounts",
     description:
-      "Paperweight scans welcome emails, password resets, and service receipts locally to map your accounts.",
+      "Welcome messages, receipts, password resets, and security alerts reveal services you have used, even when you no longer remember them.",
   },
   {
-    title: "Review company footprints",
+    title: "Review each company",
     description:
-      "Inspect activity dates, message counts, breach alerts, and company risk profiles in one unified view.",
+      "See first and last contact, message counts, account evidence, detected personal data, and known breach history in one place.",
   },
 ];
 
@@ -119,8 +119,8 @@ export default function AccountDiscoveryPage() {
       />
 
       <FeatureWorkflow
-        heading="How account discovery works"
-        description="Paperweight connects directly to your inbox and reconstructs your accounts locally without uploading your emails."
+        heading="How Paperweight finds old accounts"
+        description="Your inbox already contains evidence of the shops, apps, and services you have used. Paperweight turns that history into a company-by-company inventory."
         steps={workflowSteps}
       />
 
@@ -128,39 +128,42 @@ export default function AccountDiscoveryPage() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl font-bold mb-3">
-              Clear signals for every online account
+              Why forgotten accounts matter
             </h2>
             <p className="text-lg opacity-80">
-              See which companies still hold your information, where you might
-              be exposed, and take action.
+              An account can outlive the reason you created it. Old services may
+              still retain your contact details, purchase history, or other
+              personal information.
             </p>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
             <div className="card bg-base-100 border border-base-300">
               <div className="card-body">
-                <h3 className="card-title text-lg">Forgotten accounts</h3>
+                <h3 className="card-title text-lg">Find what memory misses</h3>
                 <p className="text-sm opacity-80">
-                  Spot old accounts and services you have not used in years,
-                  like a one-off purchase from years ago that still stores your
-                  details.
+                  Recover one-off purchases, old subscriptions, and services
+                  that would be difficult to inventory manually.
                 </p>
               </div>
             </div>
             <div className="card bg-base-100 border border-base-300">
               <div className="card-body">
-                <h3 className="card-title text-lg">Breach exposure</h3>
+                <h3 className="card-title text-lg">
+                  Prioritize potential risk
+                </h3>
                 <p className="text-sm opacity-80">
-                  Cross-reference detected companies against known data breaches
-                  so you know which old accounts pose immediate security risks.
+                  See which relationships are inactive, which companies appear
+                  in known breach records, and where personal details appear in
+                  messages.
                 </p>
               </div>
             </div>
             <div className="card bg-base-100 border border-base-300">
               <div className="card-body">
-                <h3 className="card-title text-lg">Exposed personal data</h3>
+                <h3 className="card-title text-lg">Take informed action</h3>
                 <p className="text-sm opacity-80">
-                  See the exact personal details each company has received, with
-                  direct paths to unsubscribe or request data deletion.
+                  Use the evidence to decide what to keep, unsubscribe from, or
+                  follow up with an access or deletion request.
                 </p>
               </div>
             </div>

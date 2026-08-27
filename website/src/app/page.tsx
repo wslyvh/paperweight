@@ -81,14 +81,14 @@ const structuredData = [
       },
       {
         "@type": "Offer",
-        name: "Perpetual license via Polar",
+        name: "Lifetime license via Polar",
         price: LICENSE_PRICING.LICENSE_PRICE,
         priceCurrency: "USD",
         url: SITE_CONFIG.LICENSE_URL,
       },
       {
         "@type": "Offer",
-        name: "Perpetual license paid with crypto",
+        name: "Lifetime license paid with crypto",
         price: getCryptoPrice(),
         priceCurrency: "USD",
         url: `${SITE_CONFIG.URL}/pricing`,
@@ -193,8 +193,8 @@ export default async function Home() {
               Three ways to reduce your digital footprint
             </h2>
             <p className="text-lg opacity-80 mb-10 text-center">
-              Choose the part of your email history that you want to explore or
-              clean up.
+              Turn your email history into a practical view of old accounts,
+              unwanted mailing lists, and exposed personal data.
             </p>
             <div className="grid md:grid-cols-3 gap-6">
               <Link
@@ -208,8 +208,9 @@ export default async function Home() {
                   />
                   <h3 className="card-title text-lg mb-2">Find old accounts</h3>
                   <p className="text-sm opacity-80">
-                    Discover forgotten logins, services, and companies holding
-                    your email address from years of past messages.
+                    Reconstruct forgotten services and company relationships
+                    from sign-up messages, receipts, password resets, and
+                    security alerts.
                   </p>
                 </div>
               </Link>
@@ -225,8 +226,8 @@ export default async function Home() {
                   />
                   <h3 className="card-title text-lg mb-2">Bulk unsubscribe</h3>
                   <p className="text-sm opacity-80">
-                    Clean up noisy newsletters and marketing lists with real
-                    one-click unsubscriptions straight from your device.
+                    Compare active mailing lists, identify the senders creating
+                    the most noise, and unsubscribe at the source.
                   </p>
                 </div>
               </Link>
@@ -244,8 +245,9 @@ export default async function Home() {
                     Remove personal data
                   </h3>
                   <p className="text-sm opacity-80">
-                    Detect exposed personal data, phone numbers, addresses,
-                    payment info, and send targeted deletion requests.
+                    Find phone numbers, addresses, payment details, and
+                    identifiers in past messages, then prepare deletion
+                    requests.
                   </p>
                 </div>
               </Link>

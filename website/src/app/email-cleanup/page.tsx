@@ -25,19 +25,19 @@ export const metadata = buildMetadata({
 
 const workflowSteps: WorkflowStep[] = [
   {
-    title: "Detect mailing lists",
+    title: "Find mailing lists",
     description:
-      "Paperweight scans your inbox and categorizes newsletters, notifications, and promotional senders.",
+      "Identify newsletters and promotional senders that include a usable unsubscribe method.",
   },
   {
-    title: "Inspect sender volume",
+    title: "Compare sender activity",
     description:
-      "Review message frequency, latest activity dates, and supported unsubscribe methods for each sender.",
+      "Compare message counts and latest activity so recurring sources of inbox noise are easy to spot.",
   },
   {
-    title: "Confirm real unsubscriptions",
+    title: "Confirm unsubscriptions",
     description:
-      "Select legitimate lists and trigger genuine one-click or email unsubscribe requests directly from your machine.",
+      "Choose legitimate senders you recognize and send supported one-click or email unsubscribe requests.",
   },
 ];
 
@@ -60,7 +60,7 @@ const faqItems: FaqItem[] = [
   {
     question: "Can I manage subscriptions across multiple accounts?",
     answer:
-      "Yes. With a perpetual license, you can connect multiple Gmail, Outlook, Proton Bridge, or IMAP inboxes and triage mailing lists across all of them.",
+      "Yes. With a lifetime license, you can connect multiple Gmail, Outlook, Proton Bridge, or IMAP inboxes and triage mailing lists across all of them.",
   },
   {
     question: "Does Paperweight upload or share my email data?",
@@ -105,8 +105,8 @@ export default function EmailCleanupPage() {
       />
       <FeatureHero
         eyebrow="Email cleanup"
-        title="Unsubscribe from unwanted email directly on your device"
-        description="Identify noisy mailing lists and trigger real one-click unsubscriptions without routing your inbox through third-party cloud servers."
+        title="Unsubscribe from unwanted emails in bulk"
+        description="Find active mailing lists, compare which senders create the most noise, and stop recurring email at the source."
         imageSrc="/features/mailing.png"
         imageAlt="Paperweight mailing lists dashboard showing senders and unsubscribe options"
         imageWidth={1024}
@@ -115,6 +115,7 @@ export default function EmailCleanupPage() {
 
       <FeatureWorkflow
         heading="How email cleanup works"
+        description="Paperweight separates actionable mailing lists from the rest of your mail, then lets you review and unsubscribe in one place."
         steps={workflowSteps}
       />
 
@@ -122,42 +123,42 @@ export default function EmailCleanupPage() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl font-bold mb-3">
-              Real unsubscriptions, not hidden inbox filters
+              Stop unwanted email at the source
             </h2>
             <p className="text-lg opacity-80">
-              Stop unwanted newsletters at the source while maintaining complete
-              control over how each sender is handled.
+              Inbox rules only hide recurring mail. Paperweight helps you leave
+              legitimate mailing lists so new messages stop being sent.
             </p>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
             <div className="card bg-base-100 border border-base-300">
               <div className="card-body">
-                <h3 className="card-title text-lg">RFC 8058 one-click</h3>
+                <h3 className="card-title text-lg">
+                  Prioritize the biggest senders
+                </h3>
                 <p className="text-sm opacity-80">
-                  Sends native one-click POST requests directly to supporting
-                  senders for clean, instant unsubscriptions.
+                  Use message volume and recent activity to start with the
+                  mailing lists having the greatest impact on your inbox.
                 </p>
               </div>
             </div>
             <div className="card bg-base-100 border border-base-300">
               <div className="card-body">
                 <h3 className="card-title text-lg">
-                  Automated mailto triggers
+                  Keep what you still value
                 </h3>
                 <p className="text-sm opacity-80">
-                  Generates and sends standards-compliant unsubscribe emails
-                  from your own account with zero intermediary servers.
+                  Review each sender before acting so useful newsletters,
+                  receipts, and account updates remain untouched.
                 </p>
               </div>
             </div>
             <div className="card bg-base-100 border border-base-300">
               <div className="card-body">
-                <h3 className="card-title text-lg">
-                  Volume & frequency metrics
-                </h3>
+                <h3 className="card-title text-lg">Unsubscribe for real</h3>
                 <p className="text-sm opacity-80">
-                  See exact message counts and last-sent timestamps to instantly
-                  spot which senders clutter your inbox most.
+                  Use standards-based one-click or email unsubscribe methods
+                  instead of creating filters that only hide future messages.
                 </p>
               </div>
             </div>

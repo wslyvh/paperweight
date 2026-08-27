@@ -1,4 +1,12 @@
-import { Check, Coins, Download, Mail, RefreshCw } from "lucide-react";
+import {
+  Check,
+  Coins,
+  Download,
+  KeyRound,
+  Laptop,
+  Mail,
+  RefreshCw,
+} from "lucide-react";
 import Link from "next/link";
 import { PayWithCryptoButton } from "@/components/PayWithCrypto";
 import { SITE_CONFIG } from "@/utils/config";
@@ -11,7 +19,7 @@ import { buildMetadata } from "@/utils/seo";
 
 const title = "Pricing";
 const description =
-  "Use Paperweight free with one email account and 90 days of history, or buy a perpetual license for unlimited available history and multiple accounts.";
+  "Use Paperweight free with one email account and 90 days of history, or buy a lifetime license for unlimited available history and multiple accounts.";
 
 export const metadata = buildMetadata({
   title,
@@ -27,9 +35,9 @@ const faqItems = [
       "No. The free version does not expire. It works with one email account and scans the most recent 90 days of email history.",
   },
   {
-    question: "What does a perpetual license mean?",
+    question: "What does a lifetime license mean?",
     answer:
-      "You can use the licensed version you bought permanently. The license includes updates through the first major release, v1. A future major version can require a new license.",
+      "Your license does not expire. The version you bought remains available without a subscription or Paperweight-hosted service. The license includes updates through the first major release, v1. A future major version can require a new license.",
   },
   {
     question: "Which features are available for free?",
@@ -80,14 +88,14 @@ const structuredData = [
       },
       {
         "@type": "Offer",
-        name: "Perpetual license via Polar",
+        name: "Lifetime license via Polar",
         price: LICENSE_PRICING.LICENSE_PRICE,
         priceCurrency: "USD",
         url: SITE_CONFIG.LICENSE_URL,
       },
       {
         "@type": "Offer",
-        name: "Perpetual license paid with crypto",
+        name: "Lifetime license paid with crypto",
         price: getCryptoPrice(),
         priceCurrency: "USD",
         url: `${SITE_CONFIG.URL}/pricing`,
@@ -130,7 +138,7 @@ export default function PricingPage() {
             Start free or buy once
           </h1>
           <p className="text-xl opacity-80">
-            The free version does not expire. Buy a perpetual license when you
+            The free version does not expire. Buy a lifetime license when you
             need more than one email account or more than 90 days of email
             history.
           </p>
@@ -188,11 +196,13 @@ export default function PricingPage() {
             <div className="card bg-base-100 border-2 border-primary">
               <div className="card-body p-8">
                 <div className="text-center mb-4">
-                  <h2 className="text-2xl font-bold mb-2">Perpetual license</h2>
+                  <h2 className="text-2xl font-bold mb-2">Lifetime license</h2>
                   <div className="text-4xl font-bold mb-2">
                     ${LICENSE_PRICING.LICENSE_PRICE}
                   </div>
-                  <p className="text-sm opacity-70">One-time payment</p>
+                  <p className="text-sm opacity-70">
+                    One-time early supporter price
+                  </p>
                 </div>
                 <ul className="space-y-3 flex-1 mb-6">
                   {sharedFeatures.map((feature) => (
@@ -255,8 +265,9 @@ export default function PricingPage() {
                 <div>
                   <h2 className="text-lg font-medium">Pay with crypto</h2>
                   <p className="text-sm opacity-70 mt-2">
-                    Ethereum and stablecoins, Bitcoin, Zcash, Monero, and more
-                    cross-chain options through Fluidkey.
+                    Save ${LICENSE_PRICING.LICENSE_PRICE - getCryptoPrice()}{" "}
+                    when you pay with crypto. Choose Bitcoin, Ethereum,
+                    stablecoins, Zcash, Monero, and more.
                   </p>
                 </div>
               </div>
@@ -294,7 +305,7 @@ export default function PricingPage() {
               </div>
               <div className="card bg-base-200 border border-base-300">
                 <div className="card-body">
-                  <RefreshCw className="size-8 text-primary" aria-hidden />
+                  <KeyRound className="size-8 text-primary" aria-hidden />
                   <h3 className="card-title">Buy a license</h3>
                   <p className="opacity-80">
                     Pay once when you need older available history or more than
@@ -309,33 +320,44 @@ export default function PricingPage() {
 
       <section className="bg-base-200 py-16">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <div className="text-center mb-10">
               <h2 className="text-3xl font-bold mb-3">
-                What your payment covers
+                What comes with your license
               </h2>
               <p className="text-lg opacity-80">
-                The license supports development of the open-source app and
-                unlocks the paid limits in ready-made builds.
+                Early supporter licenses are available during development. Buy
+                once for permanent use, updates through v1, and one year of
+                email support.
               </p>
             </div>
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid md:grid-cols-3 gap-4">
+              <div className="card bg-base-100 border border-base-300">
+                <div className="card-body">
+                  <Laptop className="size-7 text-info" aria-hidden />
+                  <h3 className="font-semibold">Permanent use</h3>
+                  <p className="text-sm opacity-80">
+                    Your license does not expire. Keep using the version you
+                    bought without a subscription or Paperweight-hosted service.
+                  </p>
+                </div>
+              </div>
               <div className="card bg-base-100 border border-base-300">
                 <div className="card-body">
                   <RefreshCw className="size-7 text-info" aria-hidden />
-                  <h3 className="font-semibold">Update entitlement</h3>
+                  <h3 className="font-semibold">Updates through v1</h3>
                   <p className="text-sm opacity-80">
-                    Updates through the first major release, v1. Future major
-                    versions can require a new license.
+                    Use every update released through v1. A future major version
+                    can require a new license.
                   </p>
                 </div>
               </div>
               <div className="card bg-base-100 border border-base-300">
                 <div className="card-body">
                   <Mail className="size-7 text-info" aria-hidden />
-                  <h3 className="font-semibold">Support entitlement</h3>
+                  <h3 className="font-semibold">One year of email support</h3>
                   <p className="text-sm opacity-80">
-                    One year of email support is included with the license.
+                    Get email support for one year after purchase.
                   </p>
                 </div>
               </div>

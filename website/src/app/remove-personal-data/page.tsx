@@ -25,19 +25,19 @@ export const metadata = buildMetadata({
 
 const workflowSteps: WorkflowStep[] = [
   {
-    title: "Detect exposed PII",
+    title: "Find personal details",
     description:
-      "Paperweight scans available emails on your device for addresses, phone numbers, cards, and identifiers.",
+      "Identify email addresses, phone numbers, postal addresses, payment cards, IBANs, and national identifiers in past messages.",
   },
   {
-    title: "Review findings by company",
+    title: "Review source and context",
     description:
-      "Inspect detected values, confidence scores, and source messages. Confirm what is yours with a single click.",
+      "Inspect each finding alongside its source message and confirm which details belong to you.",
   },
   {
-    title: "Prepare deletion requests",
+    title: "Prepare a request",
     description:
-      "Generate pre-filled GDPR or CCPA deletion emails with your specific account evidence attached.",
+      "Use confirmed details and account evidence to draft an access or deletion request for review before sending.",
   },
 ];
 
@@ -116,8 +116,8 @@ export default function RemovePersonalDataPage() {
       />
       <FeatureHero
         eyebrow="Personal data removal"
-        title="Find personal data in your email and request deletion"
-        description="Detect exposed phone numbers, addresses, and payment details across past emails, then prepare verified deletion requests on your machine."
+        title="Find and remove personal data from companies"
+        description="See where phone numbers, addresses, and payment details appear across your email history, then send targeted deletion requests and track the response."
         imageSrc="/features/personal-data.png"
         imageAlt="Paperweight personal data detection view showing detected PII and confidence levels"
         imageWidth={1024}
@@ -126,6 +126,7 @@ export default function RemovePersonalDataPage() {
 
       <FeatureWorkflow
         heading="How personal data review works"
+        description="Paperweight finds structured personal details in past messages, shows their context, and helps you prepare a focused request."
         steps={workflowSteps}
       />
 
@@ -133,11 +134,12 @@ export default function RemovePersonalDataPage() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl font-bold mb-3">
-              Detect and review structured data locally
+              Understand where your personal data appears
             </h2>
             <p className="text-lg opacity-80">
-              Identify what sensitive information companies have collected from
-              you over years of orders, updates, and account activity.
+              A list of values is not enough. Paperweight groups findings by
+              company and message type so you can understand the relationship
+              before deciding what to do.
             </p>
           </div>
           <div className="grid gap-6 md:grid-cols-2">
@@ -147,10 +149,12 @@ export default function RemovePersonalDataPage() {
                   className="w-9 h-9 text-info mb-2"
                   strokeWidth={1.5}
                 />
-                <h3 className="card-title text-lg">Supported data types</h3>
+                <h3 className="card-title text-lg">
+                  Personal data it can recognize
+                </h3>
                 <p className="text-sm opacity-80 mb-3">
-                  Pattern matching identifies structured personal data stored
-                  across receipts and messages:
+                  Review the personal details found across receipts and
+                  messages:
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {dataTypes.map((item) => (
@@ -168,10 +172,12 @@ export default function RemovePersonalDataPage() {
                   className="w-9 h-9 text-secondary mb-2"
                   strokeWidth={1.5}
                 />
-                <h3 className="card-title text-lg">Context classification</h3>
+                <h3 className="card-title text-lg">
+                  Context around each finding
+                </h3>
                 <p className="text-sm opacity-80 mb-3">
-                  Messages are categorized so you understand the context
-                  surrounding each detected value:
+                  See whether each detail appears in a purchase, update,
+                  promotion, social message, or personal conversation:
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {messageTypes.map((item) => (

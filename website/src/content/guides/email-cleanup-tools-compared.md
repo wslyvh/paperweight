@@ -218,7 +218,7 @@ If you are weighing a local-first option and do not need deletion requests, Good
 
 **Licensing and pricing**
 
-Free to use with one email account and the most recent 90 days of email history. The one-time perpetual license unlocks unlimited available history and multi-account support. No subscriptions. The licensing model exists to support open-source development and ready-made builds without locking customers into recurring billing. Recurring fees do not fit how people actually use a tool like this, which is more like a periodic cleanup than daily use.
+Free to use with one email account and the most recent 90 days of email history. The lifetime license unlocks unlimited available history and multi-account support. No subscriptions. The licensing model exists to support open-source development and ready-made builds without locking customers into recurring billing. Recurring fees do not fit how people actually use a tool like this, which is more like a periodic cleanup than daily use.
 
 ## Limitations
 
