@@ -150,7 +150,7 @@ export default async function Home() {
             helps you take back control and delete your data. Local-first and
             open source.
           </p>
-          <p className="text-lg font-medium text-primary mb-8">
+          <p className="text-lg font-medium text-accent mb-8">
             Your inbox knows where your data lives.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
