@@ -23,6 +23,7 @@ export interface RelatedFeatureItem {
   title: string;
   description: string;
   href: string;
+  icon: React.ReactNode;
 }
 
 interface FeatureHeroProps {
@@ -72,15 +73,25 @@ export function FeatureHero(props: FeatureHeroProps) {
 
 interface FeatureWorkflowProps {
   heading: string;
+  description?: string;
   steps: WorkflowStep[];
 }
 
-export function FeatureWorkflow({ heading, steps }: FeatureWorkflowProps) {
+export function FeatureWorkflow({
+  heading,
+  description,
+  steps,
+}: FeatureWorkflowProps) {
   return (
     <section className="bg-base-200 py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold mb-10 text-center">{heading}</h2>
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <h2 className="text-3xl font-bold mb-3">{heading}</h2>
+            {description ? (
+              <p className="text-lg opacity-80">{description}</p>
+            ) : null}
+          </div>
           <div className="grid gap-6 md:grid-cols-3">
             {steps.map((step, index) => (
               <div
@@ -105,15 +116,25 @@ export function FeatureWorkflow({ heading, steps }: FeatureWorkflowProps) {
 
 interface RelatedFeaturesProps {
   heading: string;
+  description?: string;
   items: RelatedFeatureItem[];
 }
 
-export function RelatedFeatures({ heading, items }: RelatedFeaturesProps) {
+export function RelatedFeatures({
+  heading,
+  description,
+  items,
+}: RelatedFeaturesProps) {
   return (
     <section className="bg-base-200 py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center">{heading}</h2>
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <h2 className="text-3xl font-bold mb-3">{heading}</h2>
+            {description ? (
+              <p className="text-lg opacity-80">{description}</p>
+            ) : null}
+          </div>
           <div className="grid gap-6 md:grid-cols-2 max-w-3xl mx-auto">
             {items.map((item) => (
               <Link
@@ -121,8 +142,9 @@ export function RelatedFeatures({ heading, items }: RelatedFeaturesProps) {
                 href={item.href}
                 className="card bg-base-100 border border-base-300 hover:bg-base-300 transition-colors"
               >
-                <div className="card-body">
-                  <h3 className="card-title text-lg">{item.title}</h3>
+                <div className="card-body items-center text-center">
+                  <div className="mb-4">{item.icon}</div>
+                  <h3 className="card-title text-lg mb-2">{item.title}</h3>
                   <p className="text-sm opacity-80">{item.description}</p>
                 </div>
               </Link>

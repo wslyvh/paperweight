@@ -1,3 +1,4 @@
+import { FileText, MapIcon } from "lucide-react";
 import {
   type FaqItem,
   FeatureFaq,
@@ -169,19 +170,24 @@ export default function EmailCleanupPage() {
       <FeatureFaq items={faqItems} />
 
       <RelatedFeatures
-        heading="Explore other privacy tools"
+        heading="Explore other features"
+        description="Choose the part of your email history that you want to explore or clean up."
         items={[
           {
-            title: "Account discovery",
+            title: "Find old accounts",
             description:
-              "Find online accounts and forgotten services linked to your email.",
+              "Discover forgotten logins, services, and companies holding your email address from years of past messages.",
             href: "/account-discovery",
+            icon: <MapIcon className="w-12 h-12 text-info" strokeWidth={1.5} />,
           },
           {
-            title: "Personal data removal",
+            title: "Remove personal data",
             description:
-              "Detect exposed personal data and prepare targeted deletion requests.",
+              "Detect exposed personal data, phone numbers, addresses, payment info, and send targeted deletion requests.",
             href: "/remove-personal-data",
+            icon: (
+              <FileText className="w-12 h-12 text-warning" strokeWidth={1.5} />
+            ),
           },
         ]}
       />

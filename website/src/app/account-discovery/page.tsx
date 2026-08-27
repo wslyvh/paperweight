@@ -1,3 +1,4 @@
+import { FileText, Mail } from "lucide-react";
 import {
   type FaqItem,
   FeatureFaq,
@@ -119,6 +120,7 @@ export default function AccountDiscoveryPage() {
 
       <FeatureWorkflow
         heading="How account discovery works"
+        description="Paperweight connects directly to your inbox and reconstructs your accounts locally without uploading your emails."
         steps={workflowSteps}
       />
 
@@ -129,8 +131,8 @@ export default function AccountDiscoveryPage() {
               Clear signals for every online account
             </h2>
             <p className="text-lg opacity-80">
-              See when you first signed up, when you last heard from them, and
-              what data they hold about you.
+              See which companies still hold your information, where you might
+              be exposed, and take action.
             </p>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
@@ -172,18 +174,23 @@ export default function AccountDiscoveryPage() {
 
       <RelatedFeatures
         heading="Explore other features"
+        description="Choose the part of your email history that you want to explore or clean up."
         items={[
           {
             title: "Bulk unsubscribe",
             description:
               "Clean up noisy newsletters and marketing lists with real one-click unsubscriptions straight from your device.",
             href: "/email-cleanup",
+            icon: <Mail className="w-12 h-12 text-primary" strokeWidth={1.5} />,
           },
           {
             title: "Remove personal data",
             description:
               "Detect exposed personal data, phone numbers, addresses, payment info, and send targeted deletion requests.",
             href: "/remove-personal-data",
+            icon: (
+              <FileText className="w-12 h-12 text-warning" strokeWidth={1.5} />
+            ),
           },
         ]}
       />

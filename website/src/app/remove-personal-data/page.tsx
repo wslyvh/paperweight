@@ -1,4 +1,4 @@
-import { ListFilter, SearchCheck } from "lucide-react";
+import { ListFilter, Mail, MapIcon, SearchCheck } from "lucide-react";
 import {
   type FaqItem,
   FeatureFaq,
@@ -191,19 +191,22 @@ export default function RemovePersonalDataPage() {
       <FeatureFaq items={faqItems} />
 
       <RelatedFeatures
-        heading="Explore other privacy tools"
+        heading="Explore other features"
+        description="Choose the part of your email history that you want to explore or clean up."
         items={[
           {
-            title: "Account discovery",
+            title: "Find old accounts",
             description:
-              "Find online accounts and forgotten services linked to your email.",
+              "Discover forgotten logins, services, and companies holding your email address from years of past messages.",
             href: "/account-discovery",
+            icon: <MapIcon className="w-12 h-12 text-info" strokeWidth={1.5} />,
           },
           {
-            title: "Email cleanup",
+            title: "Bulk unsubscribe",
             description:
-              "Clean up active mailing lists and bulk unsubscribe with real native methods.",
+              "Clean up noisy newsletters and marketing lists with real one-click unsubscriptions straight from your device.",
             href: "/email-cleanup",
+            icon: <Mail className="w-12 h-12 text-primary" strokeWidth={1.5} />,
           },
         ]}
       />
