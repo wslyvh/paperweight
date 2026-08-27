@@ -1,4 +1,10 @@
-import { Check, Github, MonitorDown, ShieldCheck } from "lucide-react";
+import {
+  CheckCircle2,
+  Github,
+  Lock,
+  MonitorDown,
+  ShieldCheck,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/utils/config";
@@ -34,21 +40,20 @@ export function FeatureHero(props: FeatureHeroProps) {
     <section className="container mx-auto px-4 pt-16 pb-20">
       <div className="max-w-6xl mx-auto grid gap-12 lg:grid-cols-2 lg:items-center">
         <div>
-          <p className="badge badge-primary badge-soft mb-5">{props.eyebrow}</p>
           <h1 className="text-5xl md:text-6xl font-bold mb-6">{props.title}</h1>
           <p className="text-xl opacity-80 mb-8">{props.description}</p>
           <div className="flex flex-wrap gap-3">
+            <a href="/#download" className="btn btn-primary btn-lg">
+              Download for free
+            </a>
             <a
               href={SITE_CONFIG.LICENSE_URL}
-              className="btn btn-primary btn-lg plausible-event-name=Buy+License"
+              className="btn btn-soft btn-lg plausible-event-name=Buy+License"
             >
               Buy a license
             </a>
-            <a href="/#download" className="btn btn-soft btn-lg">
-              Download Paperweight
-            </a>
           </div>
-          <p className="mt-4 text-sm opacity-70">macOS, Windows, and Linux</p>
+          <p className="mt-4 text-sm opacity-70">macOS · Windows · Linux</p>
         </div>
         <div className="overflow-hidden rounded-2xl border border-base-300 shadow-2xl ring-1 ring-base-content/5">
           <Image
@@ -130,67 +135,84 @@ export function RelatedFeatures({ heading, items }: RelatedFeaturesProps) {
 }
 
 export function FeatureTrustSummary() {
-  const items = [
-    {
-      title: "Local-first processing",
-      description:
-        "Email analysis and your local database stay on your computer. Your emails are never uploaded.",
-    },
-    {
-      title: "Review before actions",
-      description:
-        "You review company evidence, unsubscribe choices, and deletion requests before anything is sent.",
-    },
-    {
-      title: "Open-source transparency",
-      description:
-        "The entire codebase is public on GitHub, so you can inspect how your data is handled.",
-    },
-  ];
-
   return (
     <section className="bg-base-300 py-20">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-10">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-10">
             <ShieldCheck
               className="w-10 h-10 text-success mx-auto mb-4"
               strokeWidth={1.5}
             />
             <h2 className="text-3xl font-bold mb-3">
-              Your email analysis stays on your device
+              Built for privacy from the ground up
             </h2>
             <p className="text-lg opacity-80">
-              Paperweight connects directly to your email provider from your
-              computer. No cloud analysis, no telemetry, no data harvesting.
+              A privacy tool that reads your data in the cloud is not a privacy
+              tool. Paperweight connects directly to your provider and stays on
+              your computer.
             </p>
           </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            {items.map((item) => (
-              <div
-                key={item.title}
-                className="rounded-lg bg-base-100 p-5 border border-base-300 flex flex-col"
-              >
-                <div className="flex items-center gap-2 mb-2 font-semibold">
-                  <Check className="w-5 h-5 text-success shrink-0" />
-                  <span>{item.title}</span>
-                </div>
-                <p className="text-sm opacity-80 mt-1">{item.description}</p>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="rounded-lg bg-base-100 border border-base-300 p-5 flex gap-3">
+              <Lock className="w-6 h-6 shrink-0 text-success" aria-hidden />
+              <div>
+                <h3 className="font-semibold">100% local processing</h3>
+                <p className="text-sm opacity-80 mt-1">
+                  All analysis runs on your device. There are no Paperweight
+                  servers and your emails are never shared with anyone.
+                </p>
               </div>
-            ))}
+            </div>
+            <div className="rounded-lg bg-base-100 border border-base-300 p-5 flex gap-3">
+              <Github className="w-6 h-6 shrink-0" aria-hidden />
+              <div>
+                <h3 className="font-semibold">Open source and auditable</h3>
+                <p className="text-sm opacity-80 mt-1">
+                  Publicly available under the permissive MIT license. Inspect
+                  the code, verify our claims, or build it yourself.
+                </p>
+              </div>
+            </div>
+            <div className="rounded-lg bg-base-100 border border-base-300 p-5 flex gap-3">
+              <CheckCircle2
+                className="w-6 h-6 shrink-0 text-info"
+                aria-hidden
+              />
+              <div>
+                <h3 className="font-semibold">Review before action</h3>
+                <p className="text-sm opacity-80 mt-1">
+                  You stay in complete control. Review sender evidence and
+                  request templates before anything is sent.
+                </p>
+              </div>
+            </div>
+            <div className="rounded-lg bg-base-100 border border-base-300 p-5 flex gap-3">
+              <ShieldCheck
+                className="w-6 h-6 shrink-0 text-accent"
+                aria-hidden
+              />
+              <div>
+                <h3 className="font-semibold">The walk-away test</h3>
+                <p className="text-sm opacity-80 mt-1">
+                  Zero lock-ins. No servers to maintain, no subscriptions, and a
+                  lifetime license that works permanently.
+                </p>
+              </div>
+            </div>
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link href="/privacy" className="btn btn-soft btn-sm">
-              Read privacy details
-            </Link>
             <a
               href={SITE_CONFIG.GITHUB_URL}
-              className="btn btn-ghost btn-sm"
+              className="btn btn-outline btn-sm"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Github className="w-4 h-4" /> View source on GitHub
+              View on GitHub
             </a>
+            <Link href="/privacy" className="btn btn-ghost btn-sm">
+              Privacy policy
+            </Link>
           </div>
         </div>
       </div>
