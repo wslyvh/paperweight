@@ -10,6 +10,7 @@ import {
   ChevronRight,
   FileText,
   Github,
+  Info,
   Lock,
   Mail,
   MapIcon,
@@ -144,23 +145,20 @@ export default async function Home() {
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
             Manage your digital footprint
           </h1>
-          <p className="text-xl md:text-2xl mb-8 opacity-80">
-            Your inbox knows where your data lives. Paperweight uncovers old
-            accounts, cleans up unwanted mailing lists, and finds exposed
-            personal data.
+          <p className="text-xl md:text-2xl mb-6 opacity-80">
+            Paperweight scans your inbox to map your digital footprint, then
+            helps you take back control and delete your data. Local-first and
+            open source.
+          </p>
+          <p className="text-lg font-medium text-primary mb-8">
+            Your inbox knows where your data lives.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <a href="#download" className="btn btn-primary btn-lg">
-              Download Paperweight
-            </a>
-            <a
-              href={SITE_CONFIG.LICENSE_URL}
-              className="btn btn-soft btn-lg plausible-event-name=Buy+License"
-            >
-              Buy a license
+              Download for free
             </a>
           </div>
-          <p className="mt-4 text-sm opacity-70">macOS, Windows, and Linux</p>
+          <p className="mt-4 text-sm opacity-70">macOS · Windows · Linux</p>
         </div>
       </section>
 
@@ -227,7 +225,7 @@ export default async function Home() {
                   />
                   <h3 className="card-title text-lg mb-2">Bulk unsubscribe</h3>
                   <p className="text-sm opacity-80">
-                    Triage noisy newsletters and marketing lists with genuine
+                    Clean up noisy newsletters and marketing lists with real
                     one-click unsubscriptions straight from your device.
                   </p>
                 </div>
@@ -246,8 +244,8 @@ export default async function Home() {
                     Remove personal data
                   </h3>
                   <p className="text-sm opacity-80">
-                    Detect exposed phone numbers, addresses, and payment data,
-                    then send targeted deletion requests to companies.
+                    Detect exposed personal data, phone numbers, addresses,
+                    payment info, and send targeted deletion requests.
                   </p>
                 </div>
               </Link>
@@ -316,9 +314,8 @@ export default async function Home() {
                 <div>
                   <h3 className="font-semibold">The walk-away test</h3>
                   <p className="text-sm opacity-80 mt-1">
-                    Zero cloud lock-in. No servers to maintain, no
-                    subscriptions, and a lifetime license that works
-                    permanently.
+                    Zero lock-ins. No servers to maintain, no subscriptions, and
+                    a lifetime license that works permanently.
                   </p>
                 </div>
               </div>
@@ -371,8 +368,7 @@ export default async function Home() {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-2">Supported email providers</h2>
           <p className="text-sm opacity-70 mb-8">
-            Works with Gmail, Outlook, Proton Mail through Proton Bridge, and
-            other providers that offer IMAP access.
+            Works with any IMAP provider
           </p>
           <div className="flex flex-wrap justify-center gap-8 sm:gap-12">
             {OAUTH_PROVIDER_ICONS.map((option) => (
@@ -390,7 +386,6 @@ export default async function Home() {
             ))}
           </div>
           <div className="mx-auto mt-10 max-w-2xl">
-            <p className="text-sm font-medium mb-2">Other email providers</p>
             <p className="text-sm opacity-70">
               Works with any provider that offers IMAP access
             </p>
@@ -401,9 +396,17 @@ export default async function Home() {
       {/* Download */}
       <section id="download" className="container mx-auto px-4 py-16">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">
-            Download {SITE_CONFIG.NAME}
-          </h2>
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <h2 className="text-3xl font-bold">Download {SITE_CONFIG.NAME}</h2>
+            <button
+              type="button"
+              className="btn btn-ghost btn-circle btn-xs opacity-70 hover:opacity-100"
+              popoverTarget="installation-notes-popover"
+              aria-label="Installation notes"
+            >
+              <Info className="w-4 h-4" />
+            </button>
+          </div>
           <p className="text-lg opacity-80 mb-8">
             Download and try Paperweight free.
           </p>
@@ -448,6 +451,7 @@ export default async function Home() {
               </div>
             </div>
           </div>
+
           <p className="text-sm opacity-70">
             If download does not start, get the latest release from{" "}
             <a
@@ -467,6 +471,45 @@ export default async function Home() {
               All releases
             </Link>
           </p>
+
+          {/* Installation notes popover modal */}
+          <div
+            id="installation-notes-popover"
+            popover="auto"
+            className="card bg-base-100 border border-base-300 p-6 shadow-2xl max-w-lg text-left backdrop:bg-black/50"
+          >
+            <h3 className="text-lg font-bold mb-3 flex items-center gap-2">
+              <Info className="w-5 h-5 text-info" /> Installation notes
+            </h3>
+            <ul className="space-y-3 text-sm opacity-80">
+              <li>
+                <strong>Windows</strong>: Run the installer. If Windows
+                SmartScreen shows a warning, click &quot;More info&quot; and
+                then &quot;Run anyway&quot; to proceed.
+              </li>
+              <li>
+                <strong>macOS</strong>: Open the downloaded DMG and drag
+                Paperweight to your Applications folder.
+              </li>
+              <li>
+                <strong>Linux AppImage</strong>: Right-click → Properties →
+                Permissions → check &quot;Allow executing file as program&quot;,
+                or run{" "}
+                <code className="bg-base-300 px-1 rounded">
+                  chmod +x Paperweight*.AppImage
+                </code>
+                .
+              </li>
+              <li>
+                <strong>Linux deb</strong>: Double-click the file to install, or
+                run{" "}
+                <code className="bg-base-300 px-1 rounded">
+                  sudo dpkg -i Paperweight*.deb
+                </code>
+                .
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -492,6 +535,9 @@ export default async function Home() {
                 View pricing details
               </Link>
             </div>
+            <p className="text-xs opacity-60 mt-4">
+              *Early supporter pricing, limited until V1 release.
+            </p>
           </div>
         </div>
       </section>
