@@ -8,6 +8,7 @@
   "scripts": {
     "postinstall": "yarn --cwd analysis install && electron-rebuild -f -w better-sqlite3",
     "dev": "electron-vite dev",
+    "dev:local": "tsx scripts/dev-local.ts",
     "prebuild": "yarn build:companies && yarn build:breaches && yarn build:enforcement",
     "build": "electron-vite build",
     "preview": "electron-vite preview",

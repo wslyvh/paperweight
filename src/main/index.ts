@@ -24,6 +24,13 @@ import type { UpdateInfo } from "@shared/ipc";
 let startHidden = false;
 let lastUpdateInfo: UpdateInfo | null = null;
 
+// Isolated seed profile: the directory is the mode. A path here redirects
+// userData and disables automatic sync so fake IMAP credentials are not hit.
+const seedUserDataDir = process.env.PAPERWEIGHT_SEED;
+if (seedUserDataDir) {
+  app.setPath("userData", seedUserDataDir);
+}
+
 function handleFatalError(err: Error, context: string): void {
   const message = err.message || String(err);
   const stack = err.stack || "No stack trace";
@@ -158,17 +165,21 @@ app.whenReady().then(async () => {
       });
   }
 
-  // Sync all accounts on launch (delayed to let the window render)
-  setTimeout(() => {
-    appLog.info("Initial sync scheduled (all accounts)");
-    startAllSyncs();
-  }, 3000);
+  if (seedUserDataDir) {
+    appLog.info("Seed profile enabled; automatic sync disabled");
+  } else {
+    // Sync all accounts on launch (delayed to let the window render)
+    setTimeout(() => {
+      appLog.info("Initial sync scheduled (all accounts)");
+      startAllSyncs();
+    }, 3000);
 
-  // Background sync every 20 minutes — picks up any accounts whose worker has finished
-  appLog.info("Background sync interval set (20 min)");
-  setInterval(() => {
-    startAllSyncs();
-  }, 20 * 60 * 1000);
+    // Background sync every 20 minutes — picks up any accounts whose worker has finished
+    appLog.info("Background sync interval set (20 min)");
+    setInterval(() => {
+      startAllSyncs();
+    }, 20 * 60 * 1000);
+  }
 
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {

@@ -6,11 +6,12 @@
  * you walk through cases, unsubscribe, dashboard and activity flows in the
  * UI without emailing real companies or touching a real inbox.
  *
- * Fake, unreachable IMAP credentials are written (same idea as
- * scripts/generate-smoke-fixture.ts) so the app treats the account as
- * connected instead of redirecting to onboarding. Sync will try once, fail
- * to reach imap.seed.invalid, and show a harmless "sync failed" banner —
- * it fails at the connect step, before touching any seeded data.
+ * Fake, unreachable IMAP and SMTP credentials are written (same idea as
+ * scripts/generate-smoke-fixture.ts) so the app treats the account as fully
+ * configured instead of redirecting to onboarding or showing the SMTP setup
+ * banner. Sync will try once in normal mode and fail to reach imap.seed.invalid;
+ * `yarn dev:local` sets PAPERWEIGHT_SEED to an isolated directory, which both
+ * redirects userData and disables that refresh.
  *
  * Data is generated from a fixed seed, so re-running resets the account back
  * to the same set of vendors/messages/cases every time.
@@ -23,6 +24,7 @@ import { homedir } from "os";
 import { join } from "path";
 import { createAccountDb, initDb, getDb } from "../src/main/db";
 import { emailToFileKey } from "../src/main/credentials";
+import { saveGlobalSetting } from "../src/main/services/globalSettings";
 import {
   closeGdprCase,
   createGdprCase,
@@ -107,6 +109,11 @@ writeFileSync(
       tls: true,
       username: TEST_EMAIL,
       password: "seed-fixture-not-real",
+      smtp: {
+        host: "smtp.seed.invalid",
+        port: 465,
+        tls: true,
+      },
     },
   }),
   "utf-8",
@@ -131,6 +138,7 @@ initDb(
 createAccountDb(dbPath);
 
 const d = getDb();
+saveGlobalSetting("activeAccount", TEST_EMAIL);
 
 // Without this marker, migrateScanScopeAllMail() (src/main/migrations.ts) treats this
 // as a pre-v0.4 IMAP account on next app start and wipes every seeded message.
@@ -774,6 +782,7 @@ const BREACH_VENDORS: Array<{ name: string; domain: string; category: CategoryId
   { name: "Adobe", domain: "adobe.com", category: "services", profile: "account" },
   { name: "MyFitnessPal", domain: "myfitnesspal.com", category: "services", profile: "account" },
   { name: "Deezer", domain: "deezer.com", category: "entertainment", profile: "newsletter" },
+  { name: "Chegg", domain: "chegg.com", category: "services", profile: "shop" },
 ];
 const breachVendorIds: Record<string, number> = {};
 for (const v of BREACH_VENDORS) {
@@ -781,6 +790,11 @@ for (const v of BREACH_VENDORS) {
   seedInbox(vendorId, v.domain, v.profile, false);
   breachVendorIds[v.domain] = vendorId;
 }
+
+// Chegg is a real HIBP-listed technology/education brand whose breach record
+// includes names, email addresses, phone numbers and physical addresses.
+// Elevate it for the demo because the combination of breach + PII is high risk.
+d.prepare("UPDATE vendors SET risk_level = 'high' WHERE root_domain = 'chegg.com'").run();
 
 // ── Whitelist ──
 // The account's own address (the app whitelists it on first run) plus one vendor
@@ -870,7 +884,16 @@ addFinding("pulse-marketing.test", "phone", "+31207001122", "NL");
 
 // A breached vendor also carrying data, so its Accounts row shows both signals.
 addFinding("linkedin.com", "phone", "+31612345678", "NL"); // also cross-company (High)
+addFinding("linkedin.com", "address", "wibautstraat 131-d", "NL");
+addFinding("linkedin.com", "phone", "+31687654321", "NL");
 addFinding("adobe.com", "email", "wesley.tenholt@gmail.com"); // cross-company (High)
+
+// HIBP-backed high-risk technology account: exact email ownership plus
+// synthetic contact details that render in the Account Detail PII panel.
+setAccountEmail("chegg.com");
+addFinding("chegg.com", "email", TEST_EMAIL);
+addFinding("chegg.com", "address", "wibautstraat 131-d", "NL");
+addFinding("chegg.com", "phone", "+31687654321", "NL");
 
 const totalVendors = (d.prepare("SELECT COUNT(*) c FROM vendors").get() as { c: number }).c;
 const totalCases = (d.prepare("SELECT COUNT(*) c FROM gdpr_cases").get() as { c: number }).c;
