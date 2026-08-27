@@ -108,8 +108,8 @@ export default function EmailCleanupPage() {
         description="Identify noisy mailing lists and trigger real one-click unsubscriptions without routing your inbox through third-party cloud servers."
         imageSrc="/features/mailing.png"
         imageAlt="Paperweight mailing lists dashboard showing senders and unsubscribe options"
-        imageWidth={1052}
-        imageHeight={1068}
+        imageWidth={1024}
+        imageHeight={1002}
       />
 
       <FeatureWorkflow

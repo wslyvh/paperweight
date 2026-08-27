@@ -120,8 +120,8 @@ export default function RemovePersonalDataPage() {
         description="Detect exposed phone numbers, addresses, and payment details across past emails, then prepare verified deletion requests on your machine."
         imageSrc="/features/personal-data.png"
         imageAlt="Paperweight personal data detection view showing detected PII and confidence levels"
-        imageWidth={1052}
-        imageHeight={1068}
+        imageWidth={1024}
+        imageHeight={1002}
       />
 
       <FeatureWorkflow

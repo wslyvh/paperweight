@@ -183,8 +183,8 @@ export default async function Home() {
               <Image
                 src="/features/dashboard.png"
                 alt="Paperweight dashboard showing messages synced, mailing lists, accounts, and daily email chart"
-                width={1052}
-                height={1068}
+                width={1024}
+                height={1002}
                 className="w-full h-auto"
                 priority
               />

@@ -108,8 +108,8 @@ export default function AccountDiscoveryPage() {
         description="Turn your email history into a clear inventory of online accounts, active subscriptions, and forgotten services."
         imageSrc="/features/accounts-detail.png"
         imageAlt="Paperweight company detail with first and last activity, email count, senders, and evidence"
-        imageWidth={1052}
-        imageHeight={1068}
+        imageWidth={1024}
+        imageHeight={1002}
       />
 
       <FeatureWorkflow
