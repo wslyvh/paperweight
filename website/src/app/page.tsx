@@ -1,4 +1,3 @@
-import { PROVIDER_PRESETS } from "@shared/email-providers";
 import {
   AppleLogo,
   GoogleLogo,
@@ -11,7 +10,6 @@ import {
   ChevronRight,
   FileText,
   Github,
-  Info,
   Lock,
   Mail,
   MapIcon,
@@ -27,7 +25,7 @@ import { buildMetadata } from "@/utils/seo";
 
 const title = "Manage Your Digital Footprint";
 const description =
-  "Paperweight uncovers old accounts, cleans up unwanted mailing lists, and finds exposed personal data. Everything is processed locally on your computer.";
+  "Your inbox knows where your data lives. Paperweight uncovers old accounts, cleans up unwanted mailing lists, and helps you remove exposed personal data.";
 
 export const metadata = buildMetadata({
   title,
@@ -37,29 +35,29 @@ export const metadata = buildMetadata({
 
 const homepageFaqItems = [
   {
-    question: "What can Paperweight help me do?",
+    question: "What does Paperweight do?",
     answer:
-      "Paperweight finds company and account evidence, groups mailing lists for review, and helps you prepare personal-data deletion requests.",
+      "Paperweight connects directly to your inbox on your machine. It reconstructs an inventory of accounts you have created, finds active mailing lists with real unsubscribe options, and detects exposed personal data so you can request deletion.",
   },
   {
-    question: "Should I unsubscribe from spam?",
+    question: "How is Paperweight different from online cleanup services?",
     answer:
-      "Unsubscribe only from a legitimate sender that you recognize. Report unknown or suspicious messages as spam instead of interacting with them.",
+      "Most email cleanup tools scan your inbox on their cloud servers, and some monetize that data. Paperweight runs 100% locally on your computer. There are no intermediary servers, no telemetry, and no data collection.",
   },
   {
-    question: "Where does Paperweight process my email?",
+    question: "Should I unsubscribe from spam messages?",
     answer:
-      "Email analysis and the Paperweight database stay on your computer. Paperweight does not send your email data to Paperweight servers.",
+      "No. Only unsubscribe from legitimate senders and recognizable companies. For suspicious or unknown spam, use your provider's spam reporting button so you do not confirm that your address is active.",
   },
   {
-    question: "Which email providers does Paperweight support?",
+    question: "Which email providers are supported?",
     answer:
-      "Paperweight supports Gmail, Outlook, Proton Mail through Proton Bridge, and other providers that offer IMAP access.",
+      "Paperweight supports Gmail, Outlook, Proton Mail via Proton Bridge, and standard IMAP email accounts.",
   },
   {
-    question: "What are the free version limits?",
+    question: "What are the free version limits vs lifetime license?",
     answer:
-      "The free version supports one email account and the most recent 90 days of email history. A perpetual license unlocks multiple accounts and unlimited available history.",
+      "The free download allows you to scan one email account and the most recent 90 days of history with all core features included. A lifetime license unlocks unlimited history and multiple email accounts.",
   },
 ] as const;
 
@@ -114,10 +112,6 @@ const OAUTH_PROVIDER_ICONS = [
   { logo: <ProtonLogo className="w-9 h-9" />, label: "Proton" },
 ] as const;
 
-const OTHER_EMAIL_PRESETS = PROVIDER_PRESETS.filter(
-  (preset) => preset.id !== "apple" && preset.id !== "proton",
-);
-
 export default async function Home() {
   const latestVersion = await getLatestVersion();
   const latestBreaches = getBreachIndexItems()
@@ -151,19 +145,19 @@ export default async function Home() {
             Manage your digital footprint
           </h1>
           <p className="text-xl md:text-2xl mb-8 opacity-80">
-            Paperweight uncovers old accounts, cleans up unwanted mailing lists,
-            and finds exposed personal data. Everything is processed locally on
-            your computer.
+            Your inbox knows where your data lives. Paperweight uncovers old
+            accounts, cleans up unwanted mailing lists, and finds exposed
+            personal data.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
+            <a href="#download" className="btn btn-primary btn-lg">
+              Download Paperweight
+            </a>
             <a
               href={SITE_CONFIG.LICENSE_URL}
-              className="btn btn-primary btn-lg plausible-event-name=Buy+License"
+              className="btn btn-soft btn-lg plausible-event-name=Buy+License"
             >
               Buy a license
-            </a>
-            <a href="#download" className="btn btn-soft btn-lg">
-              Download Paperweight
             </a>
           </div>
           <p className="mt-4 text-sm opacity-70">macOS, Windows, and Linux</p>
@@ -214,10 +208,10 @@ export default async function Home() {
                     className="w-12 h-12 text-info mb-4"
                     strokeWidth={1.5}
                   />
-                  <h3 className="card-title text-lg mb-2">Account discovery</h3>
+                  <h3 className="card-title text-lg mb-2">Find old accounts</h3>
                   <p className="text-sm opacity-80">
-                    Find evidence of companies, online accounts, and forgotten
-                    services from your past emails.
+                    Discover forgotten logins, services, and companies holding
+                    your email address from years of past messages.
                   </p>
                 </div>
               </Link>
@@ -231,10 +225,10 @@ export default async function Home() {
                     className="w-12 h-12 text-primary mb-4"
                     strokeWidth={1.5}
                   />
-                  <h3 className="card-title text-lg mb-2">Email cleanup</h3>
+                  <h3 className="card-title text-lg mb-2">Bulk unsubscribe</h3>
                   <p className="text-sm opacity-80">
-                    Review active mailing lists and unsubscribe from senders
-                    using their native methods.
+                    Triage noisy newsletters and marketing lists with genuine
+                    one-click unsubscriptions straight from your device.
                   </p>
                 </div>
               </Link>
@@ -249,11 +243,11 @@ export default async function Home() {
                     strokeWidth={1.5}
                   />
                   <h3 className="card-title text-lg mb-2">
-                    Personal data removal
+                    Remove personal data
                   </h3>
                   <p className="text-sm opacity-80">
-                    Detect structured personal data by company and prepare
-                    targeted deletion requests.
+                    Detect exposed phone numbers, addresses, and payment data,
+                    then send targeted deletion requests to companies.
                   </p>
                 </div>
               </Link>
@@ -272,31 +266,32 @@ export default async function Home() {
                 strokeWidth={1.5}
               />
               <h2 className="text-3xl font-bold mb-3">
-                Your email analysis stays on your device
+                Built for privacy from the ground up
               </h2>
               <p className="text-lg opacity-80">
-                Paperweight connects your computer to your email provider. It
-                does not send your email data to Paperweight servers.
+                A privacy tool that reads your data in the cloud is not a
+                privacy tool. Paperweight connects directly to your provider and
+                stays on your computer.
               </p>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="rounded-lg bg-base-100 border border-base-300 p-5 flex gap-3">
                 <Lock className="w-6 h-6 shrink-0 text-success" aria-hidden />
                 <div>
-                  <h3 className="font-semibold">Local-first processing</h3>
+                  <h3 className="font-semibold">100% local processing</h3>
                   <p className="text-sm opacity-80 mt-1">
-                    Email analysis and the Paperweight database stay on your
-                    computer.
+                    All analysis runs on your device. There are no Paperweight
+                    servers and your emails are never shared with anyone.
                   </p>
                 </div>
               </div>
               <div className="rounded-lg bg-base-100 border border-base-300 p-5 flex gap-3">
                 <Github className="w-6 h-6 shrink-0" aria-hidden />
                 <div>
-                  <h3 className="font-semibold">Open-source transparency</h3>
+                  <h3 className="font-semibold">Open source and auditable</h3>
                   <p className="text-sm opacity-80 mt-1">
-                    The source code is public, so you can inspect how the app
-                    handles data.
+                    Publicly available under the permissive MIT license. Inspect
+                    the code, verify our claims, or build it yourself.
                   </p>
                 </div>
               </div>
@@ -306,10 +301,10 @@ export default async function Home() {
                   aria-hidden
                 />
                 <div>
-                  <h3 className="font-semibold">Review before actions</h3>
+                  <h3 className="font-semibold">Review before action</h3>
                   <p className="text-sm opacity-80 mt-1">
-                    You review company evidence, unsubscribe choices, and
-                    deletion requests before Paperweight acts.
+                    You stay in complete control. Review sender evidence and
+                    request templates before anything is sent.
                   </p>
                 </div>
               </div>
@@ -321,24 +316,25 @@ export default async function Home() {
                 <div>
                   <h3 className="font-semibold">The walk-away test</h3>
                   <p className="text-sm opacity-80 mt-1">
-                    A perpetual license grants permanent use. The app and its
-                    local data do not depend on an active subscription.
+                    Zero cloud lock-in. No servers to maintain, no
+                    subscriptions, and a lifetime license that works
+                    permanently.
                   </p>
                 </div>
               </div>
             </div>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Link href="/privacy" className="btn btn-soft btn-sm">
-                Read the privacy details
-              </Link>
               <a
                 href={SITE_CONFIG.GITHUB_URL}
-                className="btn btn-ghost btn-sm"
+                className="btn btn-outline btn-sm"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Github className="w-4 h-4" /> View source on GitHub
+                View on GitHub
               </a>
+              <Link href="/privacy" className="btn btn-ghost btn-sm">
+                Privacy policy
+              </Link>
             </div>
           </div>
         </div>
@@ -396,8 +392,7 @@ export default async function Home() {
           <div className="mx-auto mt-10 max-w-2xl">
             <p className="text-sm font-medium mb-2">Other email providers</p>
             <p className="text-sm opacity-70">
-              e.g. {OTHER_EMAIL_PRESETS.map((preset) => preset.name).join(", ")}{" "}
-              or another provider that offers IMAP access
+              Works with any provider that offers IMAP access
             </p>
           </div>
         </div>
@@ -466,45 +461,7 @@ export default async function Home() {
             .
           </p>
 
-          {/* Installation notes */}
-          <details className="collapse collapse-arrow bg-base-200 rounded-lg border border-base-300 my-8 text-left max-w-2xl mx-auto">
-            <summary className="collapse-title min-h-0 py-4 pr-12 text-lg font-bold flex items-center gap-2">
-              <Info className="w-5 h-5 shrink-0" strokeWidth={2} />
-              Installation notes
-            </summary>
-            <div className="collapse-content">
-              <ul className="space-y-3 text-sm opacity-80 pt-2">
-                <li>
-                  <strong>Windows</strong> - Run the installer. If Windows
-                  SmartScreen shows a warning, click &quot;More info&quot; and
-                  then &quot;Run anyway&quot; to proceed.
-                </li>
-                <li>
-                  <strong>macOS</strong> - Open the downloaded DMG and drag
-                  Paperweight to your Applications folder.
-                </li>
-                <li>
-                  <strong>Linux AppImage</strong> - Right-click → Properties →
-                  Permissions → check &quot;Allow executing file as
-                  program&quot;, or run{" "}
-                  <code className="bg-base-300 px-1 rounded">
-                    chmod +x Paperweight*.AppImage
-                  </code>
-                  .{" "}
-                </li>
-                <li>
-                  <strong>Linux deb</strong> - Double-click the file to install,
-                  or run{" "}
-                  <code className="bg-base-300 px-1 rounded">
-                    sudo dpkg -i Paperweight*.deb
-                  </code>
-                  .
-                </li>
-              </ul>
-            </div>
-          </details>
-
-          <p className="text-sm opacity-70">
+          <p className="text-sm opacity-70 mt-4">
             Latest version: v{latestVersion} ·{" "}
             <Link href="/changelog" className="link">
               All releases
@@ -516,28 +473,23 @@ export default async function Home() {
       <section id="pricing" className="bg-base-200 py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-4">Start free or buy once</h2>
-            <p className="text-lg opacity-80 mb-3">
-              The free version supports one email account and the most recent 90
-              days of email history. A ${LICENSE_PRICING.LICENSE_PRICE}{" "}
-              perpetual license unlocks multiple accounts and unlimited
-              available history.
-            </p>
-            <p className="text-sm opacity-70 mb-8">
-              Crypto checkout is also available for ${getCryptoPrice()}.
+            <h2 className="text-3xl font-bold mb-4">
+              Try free or buy a lifetime license
+            </h2>
+            <p className="text-lg opacity-80 mb-6">
+              Scan one email account and the most recent 90 days of history for
+              free. Get a ${LICENSE_PRICING.LICENSE_PRICE} lifetime license for
+              unlimited history and multi-account support.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <a
                 href={SITE_CONFIG.LICENSE_URL}
                 className="btn btn-primary plausible-event-name=Buy+License"
               >
-                Buy License
+                Buy Lifetime License
               </a>
-              <a href="#download" className="btn btn-soft">
-                Download free
-              </a>
-              <Link href="/pricing" className="btn btn-ghost">
-                Compare pricing
+              <Link href="/pricing" className="btn btn-soft">
+                View pricing details
               </Link>
             </div>
           </div>
