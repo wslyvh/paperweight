@@ -1,13 +1,19 @@
 import type { MetadataRoute } from "next";
 import { getReleases } from "@/lib/github";
-import { PRIVACY_LAST_UPDATED } from "@/app/privacy/page";
-import { TERMS_LAST_UPDATED } from "@/app/terms/page";
-import { AUTHORITIES_LAST_UPDATED } from "@/app/resources/authorities/page";
-import { GDPR_GENERATOR_LAST_UPDATED } from "@/app/resources/gdpr-generator/page";
-import { HOME_LAST_UPDATED } from "@/app/page";
-import { SITE_CONFIG } from "@/utils/config";
 import { getBreachSitemapEntries } from "@/utils/breach";
+import { SITE_CONFIG } from "@/utils/config";
 import { GetGuides } from "@/utils/guides";
+import {
+  ACCOUNT_DISCOVERY_LAST_UPDATED,
+  AUTHORITIES_LAST_UPDATED,
+  EMAIL_CLEANUP_LAST_UPDATED,
+  GDPR_GENERATOR_LAST_UPDATED,
+  HOME_LAST_UPDATED,
+  PRICING_LAST_UPDATED,
+  PRIVACY_LAST_UPDATED,
+  REMOVE_PERSONAL_DATA_LAST_UPDATED,
+  TERMS_LAST_UPDATED,
+} from "@/utils/page-dates";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const releases = await getReleases().catch(() => []);
@@ -30,7 +36,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     }))
     .sort((a, b) => b.lastModified.localeCompare(a.lastModified));
-  const latestBreachUpdate = breachEntries[0]?.lastModified ?? HOME_LAST_UPDATED;
+  const latestBreachUpdate =
+    breachEntries[0]?.lastModified ?? HOME_LAST_UPDATED;
 
   const pages = [
     {
@@ -38,6 +45,30 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: HOME_LAST_UPDATED,
       changeFrequency: "always",
       priority: 1,
+    },
+    {
+      url: `${SITE_CONFIG.URL}/account-discovery`,
+      lastModified: ACCOUNT_DISCOVERY_LAST_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_CONFIG.URL}/email-cleanup`,
+      lastModified: EMAIL_CLEANUP_LAST_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_CONFIG.URL}/remove-personal-data`,
+      lastModified: REMOVE_PERSONAL_DATA_LAST_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_CONFIG.URL}/pricing`,
+      lastModified: PRICING_LAST_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
     {
       url: `${SITE_CONFIG.URL}/changelog`,
@@ -90,7 +121,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "yearly",
       priority: 0.2,
     },
-
   ] as MetadataRoute.Sitemap;
 
   return pages;

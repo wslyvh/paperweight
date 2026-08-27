@@ -224,7 +224,7 @@ Everything runs on your machine. Email content, credentials, and connection deta
 
 **Licensing and pricing**
 
-Free to use with a 30-day scan window. The one-time lifetime license unlocks unlimited history and multi-account support. No subscriptions. The licensing model exists to support open-source development and ready-made builds without locking customers into recurring billing. Recurring fees do not fit how people actually use a tool like this, which is more like a periodic cleanup than daily or monthly use.
+Free to use with one email account and the most recent 90 days of email history. The lifetime license unlocks unlimited available history and multi-account support. No subscriptions. The licensing model exists to support open-source development and ready-made builds without locking customers into recurring billing. Recurring fees do not fit how people actually use a tool like this, which is more like a periodic cleanup than daily or monthly use.
 
 ## Limitations
 

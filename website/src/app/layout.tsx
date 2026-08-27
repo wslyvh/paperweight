@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import type { PropsWithChildren } from "react";
-import { Providers } from "@/context";
 import { LayoutSelector } from "@/components/LayoutSelector";
-import { GetGuides } from "@/utils/guides";
-import { RESOURCE_NAV_LINKS } from "@/utils/nav";
+import { Providers } from "@/context";
 import { SITE_CONFIG } from "@/utils/config";
+import { GetGuides } from "@/utils/guides";
+import { FEATURE_NAV_LINKS, RESOURCE_NAV_LINKS } from "@/utils/nav";
 import "@/assets/globals.css";
 
 export const metadata: Metadata = {
@@ -51,6 +51,7 @@ export default function RootLayout(props: PropsWithChildren) {
       <body>
         <Providers>
           <LayoutSelector
+            featureNavLinks={FEATURE_NAV_LINKS}
             guideNavLinks={guideNavLinks}
             resourceNavLinks={RESOURCE_NAV_LINKS}
           >

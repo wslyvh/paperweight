@@ -1,9 +1,8 @@
 import dayjs from "dayjs";
 import { SubpageHeader } from "@/components/SubpageHeader";
 import { SITE_CONFIG } from "@/utils/config";
+import { TERMS_LAST_UPDATED } from "@/utils/page-dates";
 import { buildMetadata } from "@/utils/seo";
-
-export const TERMS_LAST_UPDATED = "2026-02-09";
 
 export const metadata = buildMetadata({
   title: "Terms of Service",
@@ -17,10 +16,7 @@ export default async function TermsPage() {
 
   return (
     <div className="container mx-auto w-full px-4 pt-24 pb-12">
-      <SubpageHeader
-        label="Resources"
-        title="Terms of Service"
-      />
+      <SubpageHeader label="Resources" title="Terms of Service" />
       <p className="text-sm mt-2">Last updated: {lastUpdated}</p>
       <div className="divider"></div>
 
@@ -55,7 +51,10 @@ export default async function TermsPage() {
 
         <h3>4. Payment and licenses</h3>
         <ul>
-          <li>Prices are shown in EUR including applicable taxes</li>
+          <li>
+            Prices are shown in USD. Polar calculates applicable taxes at
+            checkout.
+          </li>
           <li>
             <strong>Lifetime licenses</strong> grant you permanent use of
             Paperweight and all updates within the current major version (e.g.
