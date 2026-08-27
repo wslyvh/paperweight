@@ -398,14 +398,13 @@ export default async function Home() {
         <div className="max-w-3xl mx-auto text-center">
           <div className="flex items-center justify-center gap-2 mb-4">
             <h2 className="text-3xl font-bold">Download {SITE_CONFIG.NAME}</h2>
-            <button
-              type="button"
-              className="btn btn-ghost btn-circle btn-xs opacity-70 hover:opacity-100"
-              popoverTarget="installation-notes-popover"
+            <label
+              htmlFor="installation_notes_toggle"
+              className="btn btn-ghost btn-circle btn-xs opacity-70 hover:opacity-100 cursor-pointer"
               aria-label="Installation notes"
             >
               <Info className="w-4 h-4" />
-            </button>
+            </label>
           </div>
           <p className="text-lg opacity-80 mb-8">
             Download and try Paperweight free.
@@ -472,43 +471,59 @@ export default async function Home() {
             </Link>
           </p>
 
-          {/* Installation notes popover modal */}
-          <div
-            id="installation-notes-popover"
-            popover="auto"
-            className="card bg-base-100 border border-base-300 p-6 shadow-2xl max-w-lg text-left backdrop:bg-black/50"
-          >
-            <h3 className="text-lg font-bold mb-3 flex items-center gap-2">
-              <Info className="w-5 h-5 text-info" /> Installation notes
-            </h3>
-            <ul className="space-y-3 text-sm opacity-80">
-              <li>
-                <strong>Windows</strong>: Run the installer. If Windows
-                SmartScreen shows a warning, click &quot;More info&quot; and
-                then &quot;Run anyway&quot; to proceed.
-              </li>
-              <li>
-                <strong>macOS</strong>: Open the downloaded DMG and drag
-                Paperweight to your Applications folder.
-              </li>
-              <li>
-                <strong>Linux AppImage</strong>: Right-click → Properties →
-                Permissions → check &quot;Allow executing file as program&quot;,
-                or run{" "}
-                <code className="bg-base-300 px-1 rounded">
-                  chmod +x Paperweight*.AppImage
-                </code>
-                .
-              </li>
-              <li>
-                <strong>Linux deb</strong>: Double-click the file to install, or
-                run{" "}
-                <code className="bg-base-300 px-1 rounded">
-                  sudo dpkg -i Paperweight*.deb
-                </code>
-                .
-              </li>
-            </ul>
+          {/* Installation notes DaisyUI modal (checkbox-driven, zero JS) */}
+          <input
+            type="checkbox"
+            id="installation_notes_toggle"
+            className="modal-toggle"
+          />
+          <div className="modal" role="dialog">
+            <div className="modal-box text-left">
+              <label
+                htmlFor="installation_notes_toggle"
+                className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                aria-label="Close"
+              >
+                ✕
+              </label>
+              <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
+                <Info className="w-5 h-5 text-info" /> Installation notes
+              </h3>
+              <ul className="space-y-3 text-sm opacity-80">
+                <li>
+                  <strong>Windows</strong>: Run the installer. If Windows
+                  SmartScreen shows a warning, click &quot;More info&quot; and
+                  then &quot;Run anyway&quot; to proceed.
+                </li>
+                <li>
+                  <strong>macOS</strong>: Open the downloaded DMG and drag
+                  Paperweight to your Applications folder.
+                </li>
+                <li>
+                  <strong>Linux AppImage</strong>: Right-click → Properties →
+                  Permissions → check &quot;Allow executing file as
+                  program&quot;, or run{" "}
+                  <code className="bg-base-300 px-1 rounded">
+                    chmod +x Paperweight*.AppImage
+                  </code>
+                  .
+                </li>
+                <li>
+                  <strong>Linux deb</strong>: Double-click the file to install,
+                  or run{" "}
+                  <code className="bg-base-300 px-1 rounded">
+                    sudo dpkg -i Paperweight*.deb
+                  </code>
+                  .
+                </li>
+              </ul>
+            </div>
+            <label
+              className="modal-backdrop"
+              htmlFor="installation_notes_toggle"
+            >
+              Close
+            </label>
           </div>
         </div>
       </section>

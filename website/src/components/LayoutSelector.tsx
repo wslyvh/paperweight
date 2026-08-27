@@ -103,11 +103,7 @@ export function LayoutSelector(props: LayoutSelectorProps) {
 
             {/* Desktop nav */}
             <div className="hidden lg:flex items-center gap-3">
-              <NavDropdown
-                label="Features"
-                href="/account-discovery"
-                links={props.featureNavLinks}
-              />
+              <NavDropdown label="Features" links={props.featureNavLinks} />
               <NavDropdown
                 label="Resources"
                 href="/resources"
@@ -190,13 +186,9 @@ export function LayoutSelector(props: LayoutSelectorProps) {
 
             <div className="flex-1 space-y-6">
               <div>
-                <Link
-                  href="/account-discovery"
-                  className="font-semibold opacity-70 mb-2 block"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
+                <span className="font-semibold opacity-70 mb-2 block">
                   Features
-                </Link>
+                </span>
                 <ul className="space-y-1 ml-2">
                   {props.featureNavLinks.map((item) => (
                     <li key={item.href}>
