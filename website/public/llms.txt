@@ -1,0 +1,35 @@
+# Paperweight
+
+> Open-source, local-first desktop app that scans your inbox to map your digital footprint, find old accounts, unsubscribe from mailing lists, and detect exposed personal data.
+
+## Docs
+
+- [Account Discovery](https://www.paperweight.email/account-discovery): Find forgotten accounts, services, and companies linked to your email from sign-up messages, receipts, password resets, and security alerts.
+- [Email Cleanup](https://www.paperweight.email/email-cleanup): Identify active mailing lists, compare sender activity, and unsubscribe from unwanted email at the source.
+- [Remove Personal Data](https://www.paperweight.email/remove-personal-data): Detect phone numbers, addresses, payment cards, and identifiers in past messages, then prepare GDPR/CCPA deletion requests.
+- [Pricing](https://www.paperweight.email/pricing): Free version with one account and 90-day history, or one-time lifetime license for unlimited history and multi-account support.
+- [Changelog](https://www.paperweight.email/changelog): Full release history with version changes, feature additions, and fixes.
+
+## Resources
+
+- [Email Cleanup Tools Compared](https://www.paperweight.email/guides/email-cleanup-tools-compared): Privacy-first comparison of inbox cleanup tools — local vs cloud processing, real unsubscribe vs filtering, and pricing models.
+- [Data Removal Services Compared](https://www.paperweight.email/guides/data-removal-services-compared): Compare major data removal services on privacy, reach, pricing, and what they actually do with your data.
+- [How to Exercise Your GDPR Rights](https://www.paperweight.email/guides/how-to-exercise-your-gdpr-rights): Step-by-step guide to access, delete, or anonymize your personal data under GDPR.
+- [GDPR Request Generator](https://www.paperweight.email/resources/gdpr-generator): Generate pre-filled access or deletion request emails for any organization in the database.
+- [Data Protection Authorities](https://www.paperweight.email/resources/authorities): Directory of data protection authorities worldwide with contact information and jurisdiction details.
+- [Data Breaches](https://www.paperweight.email/breaches): Database of recent data breaches with impact details, exposed data classes, and remediation guidance.
+
+## Key Facts
+
+- Open-source desktop application (MIT license) built with Tauri
+- 100% local processing — no cloud servers, no data collection, no telemetry
+- Supports Gmail, Outlook, Proton Mail via Bridge, and any IMAP provider
+- Available on macOS, Windows, and Linux
+- Free tier: one email account, 90-day history. One-time lifetime license: $69 ($59 with crypto)
+
+## Contact
+
+- Website: https://www.paperweight.email
+- GitHub: https://github.com/wslyvh/paperweight
+- Privacy Policy: https://www.paperweight.email/privacy
+- Terms: https://www.paperweight.email/terms
