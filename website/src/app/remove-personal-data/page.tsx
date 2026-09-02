@@ -9,7 +9,7 @@ import {
   RelatedFeatures,
   type WorkflowStep,
 } from "@/components/FeaturePage";
-import { SITE_CONFIG } from "@/utils/config";
+import { ORGANIZATION_SCHEMA, SITE_CONFIG } from "@/utils/config";
 import { buildMetadata } from "@/utils/seo";
 
 const title = "Remove Personal Data from Companies";
@@ -70,6 +70,7 @@ const faqItems: FaqItem[] = [
 ];
 
 const structuredData = [
+  ORGANIZATION_SCHEMA,
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -90,6 +91,19 @@ const structuredData = [
       "@type": "Question",
       name: item.question,
       acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How personal data review works",
+    description:
+      "Paperweight finds structured personal details in past messages, shows their context, and helps you prepare a focused request.",
+    step: workflowSteps.map((step, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: step.title,
+      text: step.description,
     })),
   },
 ];

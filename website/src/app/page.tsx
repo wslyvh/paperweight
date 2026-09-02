@@ -20,7 +20,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getLatestVersion } from "@/lib/github";
 import { getBreachIndexItems } from "@/utils/breach";
-import { SITE_CONFIG } from "@/utils/config";
+import { ORGANIZATION_SCHEMA, SITE_CONFIG } from "@/utils/config";
 import { getCryptoPrice, LICENSE_PRICING } from "@/utils/pricing";
 import { buildMetadata } from "@/utils/seo";
 
@@ -63,6 +63,7 @@ const homepageFaqItems = [
 ] as const;
 
 const structuredData = [
+  ORGANIZATION_SCHEMA,
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
