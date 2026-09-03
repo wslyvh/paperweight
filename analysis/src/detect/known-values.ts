@@ -1,4 +1,5 @@
 import type { Finding, KnownPiiValue } from "../types";
+import { findDateOfBirth } from "./date-of-birth";
 import { canOmitPostalCodeSeparator } from "./postal-code";
 
 const ADDRESS_BOUNDARY = "\\p{L}\\p{N}";
@@ -95,6 +96,8 @@ function patternFor(value: KnownPiiValue): RegExp | undefined {
         "iu",
       );
     }
+    case "date_of_birth":
+      return undefined;
   }
 }
 
@@ -107,6 +110,7 @@ interface CompiledKnownValue {
   value: KnownPiiValue;
   pattern?: RegExp;
   structuredAddress?: CompiledStructuredAddress;
+  dateOfBirth?: boolean;
 }
 
 const compiledValues = new WeakMap<
@@ -256,11 +260,13 @@ function compileKnownValues(
         ? compileStructuredAddress(value)
         : undefined;
     const pattern = structuredAddress ? undefined : patternFor(value);
-    if (pattern || structuredAddress) {
+    const dateOfBirth = value.type === "date_of_birth";
+    if (pattern || structuredAddress || dateOfBirth) {
       compiled.push({
         value,
         ...(pattern ? { pattern } : {}),
         ...(structuredAddress ? { structuredAddress } : {}),
+        ...(dateOfBirth ? { dateOfBirth } : {}),
       });
     }
   }
@@ -325,17 +331,25 @@ export function detectKnownValues(
     value,
     pattern,
     structuredAddress,
+    dateOfBirth,
   } of compileKnownValues(values)) {
     const exact = pattern?.exec(text);
     const match = structuredAddress
       ? findStructuredAddress(text, structuredAddress)
-      : exact
-        ? {
-            start: exact.index,
-            end: exact.index + exact[0].length,
-            signal: "known-value.exact" as const,
-          }
-        : undefined;
+      : dateOfBirth
+        ? (() => {
+            const date = findDateOfBirth(text, value.valueNormalized);
+            return date
+              ? { ...date, signal: "known-value.exact" as const }
+              : undefined;
+          })()
+        : exact
+          ? {
+              start: exact.index,
+              end: exact.index + exact[0].length,
+              signal: "known-value.exact" as const,
+            }
+          : undefined;
     if (!match) continue;
 
     findings.push({

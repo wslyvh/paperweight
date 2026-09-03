@@ -6,6 +6,7 @@ import {
   normalizeCardNumber,
 } from "./detect/credit-card";
 import { detectEmails } from "./detect/email";
+import { normalizeDateOfBirth } from "./detect/date-of-birth";
 import { isValidIban, normalizeIban } from "./detect/iban";
 import {
   detectPostalCodes,
@@ -70,6 +71,8 @@ export function normalizeValue(type: FindingType, raw: string): string {
       return normalizeIban(raw.trim());
     case "credit_card":
       return normalizeCreditCard(raw);
+    case "date_of_birth":
+      return normalizeDateOfBirth(raw) ?? "";
   }
 }
 
@@ -96,5 +99,7 @@ export function validateValue(type: FindingType, raw: string): boolean {
         /^\*{4}\d{4}$/.test(normalized)
         || (/^[\d -]+$/.test(raw) && isValidCardNumber(normalized))
       );
+    case "date_of_birth":
+      return normalizeDateOfBirth(raw) !== undefined;
   }
 }

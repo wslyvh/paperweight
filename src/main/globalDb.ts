@@ -119,35 +119,56 @@ function globalSchemaSql(schema: "main" | "global"): string {
       PRIMARY KEY (type, value_normalized)
     );
 
-    CREATE VIEW IF NOT EXISTS ${schema}.profile_match_values AS
-      SELECT 'email' AS type, value_normalized
-        FROM profile_emails
-      UNION ALL
-      SELECT 'phone', value_normalized
-        FROM profile_phones
-      UNION ALL
-      SELECT 'address', value_normalized
-        FROM profile_addresses
-       WHERE raw IS NULL OR postal_code_normalized IS NULL
-      UNION ALL
-      SELECT 'postal_code', postal_code_normalized
-        FROM profile_addresses
-       WHERE postal_code_normalized IS NOT NULL
-      UNION ALL
-      SELECT 'national_id', value_normalized
-        FROM profile_national_ids
-      UNION ALL
-      SELECT type, value_normalized
-        FROM profile_payments;
-
     INSERT INTO ${schema}.profile (id)
       VALUES (1)
       ON CONFLICT(id) DO NOTHING;
   `;
 }
 
+function recreateProfileMatchValuesView(
+  target: Database.Database,
+  schema: "main" | "global",
+): void {
+  // View-only replacement is deliberately non-destructive: reverting the code
+  // can recreate the prior definition while stored profile data remains intact.
+  const replace = target.transaction(() => {
+    target.exec(`
+      DROP VIEW IF EXISTS ${schema}.profile_match_values;
+
+      CREATE VIEW ${schema}.profile_match_values AS
+        SELECT 'email' AS type, value_normalized
+          FROM profile_emails
+        UNION ALL
+        SELECT 'phone', value_normalized
+          FROM profile_phones
+        UNION ALL
+        SELECT 'address', value_normalized
+          FROM profile_addresses
+         WHERE raw IS NULL OR postal_code_normalized IS NULL
+        UNION ALL
+        SELECT 'postal_code', postal_code_normalized
+          FROM profile_addresses
+         WHERE postal_code_normalized IS NOT NULL
+        UNION ALL
+        SELECT 'national_id', value_normalized
+          FROM profile_national_ids
+        UNION ALL
+        SELECT type, value_normalized
+          FROM profile_payments
+        UNION ALL
+        SELECT 'date_of_birth', printf('%04d-%02d-%02d', birth_year, birth_month, birth_day)
+          FROM profile
+         WHERE birth_year IS NOT NULL
+           AND birth_month IS NOT NULL
+           AND birth_day IS NOT NULL;
+    `);
+  });
+  replace();
+}
+
 function initGlobalSchema(target: Database.Database, schema: "main" | "global"): void {
   target.exec(globalSchemaSql(schema));
+  recreateProfileMatchValuesView(target, schema);
 }
 
 function migrateLegacySettings(target: Database.Database, globalPath: string): void {

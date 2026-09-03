@@ -54,6 +54,7 @@ import { getDb, initDb } from "../db";
 import {
   invalidateAllAnalysisPasses,
   invalidateAnalysisPass,
+  getKnownPiiValues,
   needsAnalysisPass,
   persistFindings,
   runAnalysisPass,
@@ -152,9 +153,18 @@ beforeAll(() => {
   `);
 });
 beforeEach(() => {
-  getDb().exec(
-    "DELETE FROM pii_findings; DELETE FROM messages; DELETE FROM vendors; DELETE FROM settings; DELETE FROM companies.companies; DELETE FROM global.profile_phones; DELETE FROM global.profile_addresses; DELETE FROM global.pii_suppressions;",
-  );
+  getDb().exec(`
+    DELETE FROM pii_findings;
+    DELETE FROM messages;
+    DELETE FROM vendors;
+    DELETE FROM settings;
+    DELETE FROM companies.companies;
+    DELETE FROM global.profile_phones;
+    DELETE FROM global.profile_addresses;
+    DELETE FROM global.pii_suppressions;
+    UPDATE global.profile
+    SET birth_year = NULL, birth_month = NULL, birth_day = NULL;
+  `);
   mockAnalyze.mockReset();
   mockAnalyzeMessage.mockReset();
   mockExtractAddress.mockReset();
@@ -163,6 +173,23 @@ beforeEach(() => {
   mockIsSenderContact.mockReset();
   mockIsSenderContact.mockReturnValue(false);
   mockListAccounts.mockReturnValue([]);
+});
+
+describe("getKnownPiiValues", () => {
+  it("returns a complete profile birth date from the canonical view", () => {
+    getDb()
+      .prepare(
+        `UPDATE global.profile
+         SET birth_year = 1985, birth_month = 4, birth_day = 9
+         WHERE id = 1`,
+      )
+      .run();
+
+    expect(getKnownPiiValues()).toContainEqual({
+      type: "date_of_birth",
+      valueNormalized: "1985-04-09",
+    });
+  });
 });
 
 describe("runAnalysisPass", () => {

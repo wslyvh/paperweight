@@ -223,6 +223,104 @@ describe("global.db", () => {
     ]);
   });
 
+  it("exposes a complete profile birth date as one canonical match value", () => {
+    const target = getGlobalDb();
+    target
+      .prepare(
+        `UPDATE profile
+         SET birth_year = 1985, birth_month = 4, birth_day = 9
+         WHERE id = 1`,
+      )
+      .run();
+
+    expect(
+      target
+        .prepare(
+          `SELECT type, value_normalized
+           FROM profile_match_values
+           WHERE type = 'date_of_birth'`,
+        )
+        .all(),
+    ).toEqual([{
+      type: "date_of_birth",
+      value_normalized: "1985-04-09",
+    }]);
+  });
+
+  it.each([
+    ["absent", null, null, null],
+    ["missing day", 1985, 4, null],
+    ["missing month", 1985, null, 9],
+    ["missing year", null, 4, 9],
+  ])("omits an %s profile birth date", (_label, year, month, day) => {
+    const target = getGlobalDb();
+    target
+      .prepare(
+        `UPDATE profile
+         SET birth_year = ?, birth_month = ?, birth_day = ?
+         WHERE id = 1`,
+      )
+      .run(year, month, day);
+
+    expect(
+      target
+        .prepare(
+          `SELECT type, value_normalized
+           FROM profile_match_values
+           WHERE type = 'date_of_birth'`,
+        )
+        .all(),
+    ).toEqual([]);
+  });
+
+  it("recreates an old match view without losing profile or suppression data", () => {
+    const path = join(userDataDir, "global.db");
+    const legacy = new Database(path);
+    legacy.exec(`
+      CREATE TABLE profile (
+        id INTEGER PRIMARY KEY CHECK (id = 1),
+        birth_year INTEGER,
+        birth_month INTEGER,
+        birth_day INTEGER,
+        country TEXT
+      );
+      CREATE TABLE profile_emails (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        address TEXT NOT NULL,
+        value_normalized TEXT NOT NULL UNIQUE
+      );
+      CREATE TABLE pii_suppressions (
+        type TEXT NOT NULL,
+        value_normalized TEXT NOT NULL,
+        PRIMARY KEY (type, value_normalized)
+      );
+      INSERT INTO profile (id, birth_year, birth_month, birth_day)
+        VALUES (1, 1985, 4, 9);
+      INSERT INTO profile_emails (address, value_normalized)
+        VALUES ('Person@Example.com', 'person@example.com');
+      INSERT INTO pii_suppressions (type, value_normalized)
+        VALUES ('email', 'suppressed@example.com');
+      CREATE VIEW profile_match_values AS
+        SELECT 'email' AS type, value_normalized FROM profile_emails;
+    `);
+    legacy.close();
+
+    const target = getGlobalDb();
+
+    expect(target.prepare("SELECT birth_year FROM profile WHERE id = 1").pluck().get())
+      .toBe(1985);
+    expect(target.prepare("SELECT COUNT(*) FROM pii_suppressions").pluck().get())
+      .toBe(1);
+    expect(target.prepare(
+      `SELECT type, value_normalized
+       FROM profile_match_values
+       ORDER BY type, value_normalized`,
+    ).all()).toEqual([
+      { type: "date_of_birth", value_normalized: "1985-04-09" },
+      { type: "email", value_normalized: "person@example.com" },
+    ]);
+  });
+
   it("keeps only consumed columns in the global profile schema", () => {
     const target = getGlobalDb();
     const columns = (name: string) => (
