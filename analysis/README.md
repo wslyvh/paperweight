@@ -76,11 +76,14 @@ own storage, aggregation across documents, suppression policy, masking,
 scheduling, and any product claim about ownership or retention.
 
 Consumers may supply already-normalized `knownValues` for the existing finding
-types. The engine finds exact occurrences under that type's normal formatting
-rules and emits `known-value.exact` evidence when a generic detector did not
-already produce the same value. This is detector input, not an ownership claim:
-it does not infer a country, add names or dates of birth, or promote confidence
-to `verified`. Ownership remains consumer policy.
+types. For `date_of_birth`, scanning is activated only by a complete canonical
+known DOB (`YYYY-MM-DD`). Complete date candidates are calendar-validated and
+normalized; only exact equivalents emit `known-value.exact`. The engine does
+not perform generic date detection or claim profile ownership. For other known
+types, it finds exact occurrences under that type's normal formatting rules
+and emits `known-value.exact` evidence when a generic detector did not already
+produce the same value. This is detector input, not an ownership claim:
+consumers own the policy for deciding whose value it is.
 
 A structured address may additionally carry normalized street, house-number,
 and postcode components. The engine requires the exact street phrase adjacent
@@ -101,6 +104,7 @@ verification wherever a checksum exists:
 | `iban`        | country length table + ISO 7064 mod-97                        | `verified`               |
 | `credit_card` | IIN prefix + scheme length + Luhn; masked forms separately    | `verified` / `contextual`|
 | `phone`       | libphonenumber-js; region from locale option or sender ccTLD  | `verified` / `contextual`|
+| `date_of_birth` | complete known DOB; calendar-valid candidate normalized     | `pattern`                |
 | `national_id` | per-country registry: official checksum, optional context word| `verified` / `contextual`|
 | `postal_code` | per-country registry; only distinctive formats stand alone    | `pattern`                |
 | `address`     | postcode-anchored street grammar                              | `contextual`             |

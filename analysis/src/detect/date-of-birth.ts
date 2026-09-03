@@ -111,9 +111,14 @@ function candidatesIn(text: string): DateCandidate[] {
 }
 
 export function normalizeDateOfBirth(raw: string): string | undefined {
-  const candidates = candidatesIn(raw.trim());
-  const exact = candidates.find((candidate) => candidate.start === 0 && candidate.end === raw.trim().length);
-  return exact ? canonicalDate(exact.year, exact.month, exact.day) : undefined;
+  const trimmed = raw.trim();
+  const candidates = candidatesIn(trimmed);
+  for (const candidate of candidates) {
+    if (candidate.start !== 0 || candidate.end !== trimmed.length) continue;
+    const normalized = canonicalDate(candidate.year, candidate.month, candidate.day);
+    if (normalized !== undefined) return normalized;
+  }
+  return undefined;
 }
 
 export function findDateOfBirth(

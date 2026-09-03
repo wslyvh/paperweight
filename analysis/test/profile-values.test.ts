@@ -81,4 +81,9 @@ describe("profile values", () => {
     expect(validateValue("date_of_birth", "1985-04-09")).toBe(true);
     expect(validateValue("date_of_birth", "1985-02-29")).toBe(false);
   });
+
+  it("uses the first valid interpretation of an ambiguous whole-string date", () => {
+    expect(normalizeValue("date_of_birth", "04/13/1985")).toBe("1985-04-13");
+    expect(validateValue("date_of_birth", "04/13/1985")).toBe(true);
+  });
 });

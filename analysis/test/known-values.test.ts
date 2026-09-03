@@ -67,6 +67,24 @@ describe("known PII values", () => {
     expect(result.findings).toEqual([]);
   });
 
+  it.each(["09-04-1985", "09.04.1985"])(
+    "prefers a known DOB over an overlapping Dutch phone: %s",
+    async (text) => {
+      const result = await analyzeText(`DOB: ${text}`, {
+        locale: "NL",
+        knownValues: [known("date_of_birth", "1985-04-09")],
+      });
+
+      expect(result.findings).toHaveLength(1);
+      expect(result.findings[0]).toEqual(
+        expect.objectContaining({
+          type: "date_of_birth",
+          valueNormalized: "1985-04-09",
+        }),
+      );
+    },
+  );
+
   it.each([
     "1985-04-09",
     "09-04-1985",
