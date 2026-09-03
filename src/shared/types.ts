@@ -457,6 +457,19 @@ export interface VendorDetail {
 
 // Account / settings
 
+export type AccountAuthIntent =
+  | { type: "add" }
+  | { type: "reconnect"; email: string };
+
+export function isAccountAuthIntent(value: unknown): value is AccountAuthIntent {
+  if (!value || typeof value !== "object") return false;
+  const intent = value as Record<string, unknown>;
+  if (intent.type === "add") return true;
+  return intent.type === "reconnect"
+    && typeof intent.email === "string"
+    && intent.email.trim() !== "";
+}
+
 export interface AccountSummary {
   email: string;
   providerType: string;

@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { CheckCircle2, Check, Copy, Mail } from "lucide-react";
 import { findPresetById, PROVIDER_PRESETS } from "@shared/email-providers";
 import type { ProviderPreset } from "@shared/email-providers";
+import type { AccountAuthIntent } from "@shared/types";
 import {
   AppleLogo,
   GoogleLogo,
@@ -278,10 +279,12 @@ function OAuthConnect({
 // ── Gmail Connect ─────────────────────────────────────────────────────────────
 
 export function GmailConnect({
+  intent,
   onSuccess,
   onBack,
   copyFirst = false,
 }: {
+  intent: AccountAuthIntent;
   onSuccess: () => void;
   onBack: () => void;
   copyFirst?: boolean;
@@ -289,7 +292,7 @@ export function GmailConnect({
   return (
     <OAuthConnect
       providerName="Google"
-      startAuth={(open) => window.api.startGmailAuth(open)}
+      startAuth={(open) => window.api.startGmailAuth(intent, open)}
       copyFirst={copyFirst}
       onSuccess={onSuccess}
       onBack={onBack}
@@ -300,10 +303,12 @@ export function GmailConnect({
 // ── Microsoft Connect ─────────────────────────────────────────────────────────
 
 export function MicrosoftConnect({
+  intent,
   onSuccess,
   onBack,
   copyFirst = false,
 }: {
+  intent: AccountAuthIntent;
   onSuccess: () => void;
   onBack: () => void;
   copyFirst?: boolean;
@@ -311,7 +316,7 @@ export function MicrosoftConnect({
   return (
     <OAuthConnect
       providerName="Microsoft"
-      startAuth={(open) => window.api.startMicrosoftAuth(open)}
+      startAuth={(open) => window.api.startMicrosoftAuth(intent, open)}
       copyFirst={copyFirst}
       onSuccess={onSuccess}
       onBack={onBack}

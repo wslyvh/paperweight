@@ -28,10 +28,11 @@ import {
 import { createAccountDb, getDb, reconnectDb } from "../db";
 import { IPC } from "@shared/ipc";
 import { PERSONAL_DOMAINS } from "@paperweight/analysis/contracts";
-import type { ImapConfig, AccountInfo, EmailConnection, MessageType, ServerConfig } from "@shared/types";
+import type { AccountAuthIntent, ImapConfig, AccountInfo, EmailConnection, MessageType, ServerConfig } from "@shared/types";
 import { MARKETING_ACTION_TYPES } from "@shared/types";
 import { authLog, actionLog } from "../utils/log";
 import { seedProfileEmailsFromCurrentAccount } from "./profileSeed";
+import { validateAccountIntent } from "./accountIntent";
 
 // Populate per-account settings in the DB if they are missing.
 // Called after every DB reconnect (account switch or new account setup).
@@ -98,74 +99,115 @@ export function getConnectionStatus() {
   return hasCredentials();
 }
 
-export async function startGmailAuthAndRecordAccount(openInBrowser = true) {
+export async function startGmailAuthAndRecordAccount(
+  intent: AccountAuthIntent,
+  openInBrowser = true,
+) {
   authLog.info("Gmail auth started");
 
-  setStagingMode(true);
-  const result = await startLoopbackAuth(openInBrowser);
-  setStagingMode(false);
+  try {
+    setStagingMode(true);
+    let result;
+    try {
+      result = await startLoopbackAuth(openInBrowser);
+    } finally {
+      setStagingMode(false);
+    }
 
-  if (!result.success) {
-    deleteCredentials("__staging__");
-    authLog.error("Gmail auth failed:", result.error);
+    if (!result.success) {
+      authLog.error("Gmail auth failed:", result.error);
+      return result;
+    }
+
+    const stagingCreds = loadCredentials("__staging__");
+    if (!stagingCreds?.gmail?.accessToken) {
+      return { success: false, error: "Auth failed: no credentials stored" };
+    }
+
+    const email = await fetchGmailProfileEmail(stagingCreds.gmail.accessToken);
+    if (!email) {
+      return { success: false, error: "Auth failed: could not fetch account email" };
+    }
+
+    const intentResult = validateAccountIntent(
+      intent,
+      email,
+      "gmail",
+      listAccounts(),
+      getActiveEmail(),
+    );
+    if (!intentResult.success) return intentResult;
+
+    authLog.info("Gmail auth completed");
+    saveCredentials(stagingCreds, email);
+    if (intent.type === "add") recordAccount(email, "gmail");
+
     return result;
-  }
-
-  const stagingCreds = loadCredentials("__staging__");
-  if (!stagingCreds?.gmail?.accessToken) {
+  } finally {
     deleteCredentials("__staging__");
-    return { success: false, error: "Auth failed: no credentials stored" };
   }
-
-  const email = await fetchGmailProfileEmail(stagingCreds.gmail.accessToken);
-  if (!email) {
-    deleteCredentials("__staging__");
-    return { success: false, error: "Auth failed: could not fetch account email" };
-  }
-
-  authLog.info("Gmail auth completed");
-  saveCredentials(stagingCreds, email);
-  deleteCredentials("__staging__");
-  recordAccount(email, "gmail");
-
-  return result;
 }
 
-export async function startMicrosoftAuthAndRecordAccount(openInBrowser = true) {
+export async function startMicrosoftAuthAndRecordAccount(
+  intent: AccountAuthIntent,
+  openInBrowser = true,
+) {
   authLog.info("Microsoft auth started");
 
-  setStagingMode(true);
-  const result = await startMicrosoftLoopbackAuth(openInBrowser);
-  setStagingMode(false);
+  try {
+    setStagingMode(true);
+    let result;
+    try {
+      result = await startMicrosoftLoopbackAuth(openInBrowser);
+    } finally {
+      setStagingMode(false);
+    }
 
-  if (!result.success) {
-    deleteCredentials("__staging__");
-    authLog.error("Microsoft auth failed:", result.error);
+    if (!result.success) {
+      authLog.error("Microsoft auth failed:", result.error);
+      return result;
+    }
+
+    const stagingCreds = loadCredentials("__staging__");
+    if (!stagingCreds?.microsoft?.accessToken) {
+      return { success: false, error: "Auth failed: no credentials stored" };
+    }
+
+    const email = await fetchMicrosoftProfileEmail(stagingCreds.microsoft.accessToken);
+    if (!email) {
+      return { success: false, error: "Auth failed: could not fetch account email" };
+    }
+
+    const intentResult = validateAccountIntent(
+      intent,
+      email,
+      "microsoft",
+      listAccounts(),
+      getActiveEmail(),
+    );
+    if (!intentResult.success) return intentResult;
+
+    authLog.info("Microsoft auth completed");
+    saveCredentials(stagingCreds, email);
+    if (intent.type === "add") recordAccount(email, "microsoft");
+
     return result;
-  }
-
-  const stagingCreds = loadCredentials("__staging__");
-  if (!stagingCreds?.microsoft?.accessToken) {
+  } finally {
     deleteCredentials("__staging__");
-    return { success: false, error: "Auth failed: no credentials stored" };
   }
-
-  const email = await fetchMicrosoftProfileEmail(stagingCreds.microsoft.accessToken);
-  if (!email) {
-    deleteCredentials("__staging__");
-    return { success: false, error: "Auth failed: could not fetch account email" };
-  }
-
-  authLog.info("Microsoft auth completed");
-  saveCredentials(stagingCreds, email);
-  deleteCredentials("__staging__");
-  recordAccount(email, "microsoft");
-
-  return result;
 }
 
 export async function saveImapConfigAndRecordAccount(config: ImapConfig) {
   try {
+    const intentResult = validateAccountIntent(
+      { type: "add" },
+      config.username,
+      "imap",
+      listAccounts(),
+      getActiveEmail(),
+    );
+    if (!intentResult.success) return intentResult;
+
     authLog.info(
       `Testing IMAP ${config.host}:${config.port} + SMTP ${config.smtp ? `${config.smtp.host}:${config.smtp.port}` : "(not provided)"}`,
     );

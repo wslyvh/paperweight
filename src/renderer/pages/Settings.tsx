@@ -210,13 +210,20 @@ export default function Settings(): JSX.Element {
   const connectionHealthy = !!connection;
 
   const handleReconnect = async (): Promise<void> => {
+    if (!account) return;
     setReconnectLoading(true);
     try {
       let result: { success: boolean; error?: string };
-      if (account?.providerType === "microsoft") {
-        result = await window.api.startMicrosoftAuth();
+      if (account.providerType === "microsoft") {
+        result = await window.api.startMicrosoftAuth({
+          type: "reconnect",
+          email: account.email,
+        });
       } else {
-        result = await window.api.startGmailAuth();
+        result = await window.api.startGmailAuth({
+          type: "reconnect",
+          email: account.email,
+        });
       }
       if (result.success) {
         const conn = await window.api.getEmailConnection();
@@ -661,6 +668,7 @@ export default function Settings(): JSX.Element {
 
             {addAccountView === "gmail" && (
               <GmailConnect
+                intent={{ type: "add" }}
                 copyFirst={addAccountCopyFirst}
                 onSuccess={handleAddAccountSuccess}
                 onBack={() => setAddAccountView("provider")}
@@ -669,6 +677,7 @@ export default function Settings(): JSX.Element {
 
             {addAccountView === "microsoft" && (
               <MicrosoftConnect
+                intent={{ type: "add" }}
                 copyFirst={addAccountCopyFirst}
                 onSuccess={handleAddAccountSuccess}
                 onBack={() => setAddAccountView("provider")}

@@ -4,7 +4,7 @@ import { join } from "path";
 import { IPC } from "@shared/ipc";
 import { isIntInRange, isString } from "@shared/validation";
 import type { ImapConfig, ServerConfig, SupportInfo, MessageType } from "@shared/types";
-import { isMessageType } from "@shared/types";
+import { isAccountAuthIntent, isMessageType } from "@shared/types";
 import {
   getAccountInfo,
   getConnectionStatus,
@@ -111,11 +111,15 @@ export function registerAccountHandlers(): void {
 
   // openInBrowser defaults to true; the onboarding "copy link" path passes false
   // so the auth URL is copied to the clipboard instead of auto-opened.
-  ipcMain.handle(IPC.startGmailAuth, (_event, openInBrowser: unknown) =>
-    startGmailAuthAndRecordAccount(openInBrowser !== false));
+  ipcMain.handle(IPC.startGmailAuth, (_event, intent: unknown, openInBrowser: unknown) => {
+    if (!isAccountAuthIntent(intent)) throw new Error("Invalid account auth intent");
+    return startGmailAuthAndRecordAccount(intent, openInBrowser !== false);
+  });
 
-  ipcMain.handle(IPC.startMicrosoftAuth, (_event, openInBrowser: unknown) =>
-    startMicrosoftAuthAndRecordAccount(openInBrowser !== false));
+  ipcMain.handle(IPC.startMicrosoftAuth, (_event, intent: unknown, openInBrowser: unknown) => {
+    if (!isAccountAuthIntent(intent)) throw new Error("Invalid account auth intent");
+    return startMicrosoftAuthAndRecordAccount(intent, openInBrowser !== false);
+  });
 
   ipcMain.handle(IPC.saveImapConfig, (_event, config: unknown) => {
     if (!isImapConfig(config)) throw new Error("Invalid IMAP config");
