@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { reconnectError } from "./settingsReconnect";
 
 describe("Settings reconnect result", () => {
@@ -16,5 +18,15 @@ describe("Settings reconnect result", () => {
 
   it("returns no error after a successful reconnect", () => {
     expect(reconnectError({ success: true })).toBeUndefined();
+  });
+
+  it("starts sync after IMAP server settings are saved", () => {
+    const source = readFileSync(join(__dirname, "Settings.tsx"), "utf8");
+    const modal = source.slice(
+      source.indexOf("{/* Server settings modal (IMAP accounts only) */}"),
+      source.indexOf("{/* Remove account confirmation modal */}"),
+    );
+
+    expect(modal).toContain("window.api.startSync();");
   });
 });

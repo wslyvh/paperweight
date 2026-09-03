@@ -773,6 +773,7 @@ export default function Settings(): JSX.Element {
             setReconnectFailure("");
             window.api.getAccountInfo().then(setAccount);
             window.api.getEmailConnection().then(setConnection);
+            window.api.startSync();
           }}
         />
       )}
