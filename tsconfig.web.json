@@ -9,6 +9,7 @@
     "analysis/src/types.ts",
     "analysis/src/detect/address.ts",
     "analysis/src/detect/credit-card.ts",
+    "analysis/src/detect/date-of-birth.ts",
     "analysis/src/detect/email.ts",
     "analysis/src/detect/iban.ts",
     "analysis/src/detect/postal-code.ts",

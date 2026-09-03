@@ -39,6 +39,8 @@ export function maskValue(type: PiiType, normalized: string): string {
       return `${v.slice(0, 2)}•••`;
     case "address":
       return `${v.slice(0, 3)}•••`;
+    case "date_of_birth":
+      return `••-••-${v.slice(0, 4)}`;
     default:
       return "•••";
   }

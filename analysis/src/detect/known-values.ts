@@ -96,6 +96,8 @@ function patternFor(value: KnownPiiValue): RegExp | undefined {
         "iu",
       );
     }
+    case "date_of_birth":
+      return undefined;
   }
 }
 

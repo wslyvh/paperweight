@@ -16,4 +16,5 @@ export const PII_LABELS: Record<PiiType, string> = {
   address: "Address",
   postal_code: "Postal",
   email: "Email",
+  date_of_birth: "Date of birth",
 };
