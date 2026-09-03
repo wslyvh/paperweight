@@ -142,6 +142,7 @@ export default function Onboarding(): JSX.Element {
           )}
           {view === "gmail" && (
             <GmailConnect
+              intent={{ type: "add" }}
               copyFirst={copyFirst}
               onSuccess={handleSuccess}
               onBack={() => setView("select")}
@@ -149,6 +150,7 @@ export default function Onboarding(): JSX.Element {
           )}
           {view === "microsoft" && (
             <MicrosoftConnect
+              intent={{ type: "add" }}
               copyFirst={copyFirst}
               onSuccess={handleSuccess}
               onBack={() => setView("select")}

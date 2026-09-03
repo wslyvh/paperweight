@@ -26,6 +26,7 @@ import {
   setColorTheme as applyAndSaveColorTheme,
   type ColorTheme,
 } from "../utils/colorTheme";
+import { reconnectError } from "./settingsReconnect";
 
 type AddAccountView = "provider" | "gmail" | "microsoft" | "apple" | "proton" | "imap";
 
@@ -52,6 +53,7 @@ export default function Settings(): JSX.Element {
   );
   const [newEntry, setNewEntry] = useState("");
   const [reconnectLoading, setReconnectLoading] = useState(false);
+  const [reconnectFailure, setReconnectFailure] = useState("");
   const { accounts, refresh: refreshAccounts } = useAccounts();
   const [removeAccountEmail, setRemoveAccountEmail] = useState<string | null>(
     null,
@@ -210,20 +212,39 @@ export default function Settings(): JSX.Element {
   const connectionHealthy = !!connection;
 
   const handleReconnect = async (): Promise<void> => {
+    if (!account) return;
+    setReconnectFailure("");
+    if (account.providerType === "imap") {
+      setShowServerSettings(true);
+      return;
+    }
     setReconnectLoading(true);
     try {
       let result: { success: boolean; error?: string };
-      if (account?.providerType === "microsoft") {
-        result = await window.api.startMicrosoftAuth();
+      if (account.providerType === "microsoft") {
+        result = await window.api.startMicrosoftAuth({
+          type: "reconnect",
+          email: account.email,
+        });
+      } else if (account.providerType === "gmail") {
+        result = await window.api.startGmailAuth({
+          type: "reconnect",
+          email: account.email,
+        });
       } else {
-        result = await window.api.startGmailAuth();
+        result = { success: false, error: "Reconnect is not available for this account" };
       }
-      if (result.success) {
-        const conn = await window.api.getEmailConnection();
-        setConnection(conn);
-        setAccount(await window.api.getAccountInfo());
-        window.api.startSync();
+      const error = reconnectError(result);
+      if (error) {
+        setReconnectFailure(error);
+        return;
       }
+      const conn = await window.api.getEmailConnection();
+      setConnection(conn);
+      setAccount(await window.api.getAccountInfo());
+      window.api.startSync();
+    } catch (err) {
+      setReconnectFailure(err instanceof Error ? err.message : "Reconnect failed");
     } finally {
       setReconnectLoading(false);
     }
@@ -486,7 +507,8 @@ export default function Settings(): JSX.Element {
               </div>
 
               {(account.providerType === "gmail" ||
-                account.providerType === "microsoft") && (
+                account.providerType === "microsoft" ||
+                account.providerType === "imap") && (
                   <button
                     className="btn btn-sm btn-primary w-fit"
                     onClick={handleReconnect}
@@ -499,6 +521,9 @@ export default function Settings(): JSX.Element {
                     )}
                   </button>
                 )}
+              {reconnectFailure && (
+                <p className="text-sm text-error">{reconnectFailure}</p>
+              )}
             </>
           )}
         </div>
@@ -661,6 +686,7 @@ export default function Settings(): JSX.Element {
 
             {addAccountView === "gmail" && (
               <GmailConnect
+                intent={{ type: "add" }}
                 copyFirst={addAccountCopyFirst}
                 onSuccess={handleAddAccountSuccess}
                 onBack={() => setAddAccountView("provider")}
@@ -669,6 +695,7 @@ export default function Settings(): JSX.Element {
 
             {addAccountView === "microsoft" && (
               <MicrosoftConnect
+                intent={{ type: "add" }}
                 copyFirst={addAccountCopyFirst}
                 onSuccess={handleAddAccountSuccess}
                 onBack={() => setAddAccountView("provider")}
@@ -743,7 +770,10 @@ export default function Settings(): JSX.Element {
           onClose={() => setShowServerSettings(false)}
           onSaved={() => {
             setShowServerSettings(false);
+            setReconnectFailure("");
             window.api.getAccountInfo().then(setAccount);
+            window.api.getEmailConnection().then(setConnection);
+            window.api.startSync();
           }}
         />
       )}

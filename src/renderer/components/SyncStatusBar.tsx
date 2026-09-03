@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { SyncStatus } from "@shared/types";
+import { isOAuthTokenError } from "./syncStatus";
 
 function formatMonthYear(ts: number): string {
   return new Date(ts).toLocaleDateString("en-US", { month: "short", year: "numeric" });
@@ -14,14 +15,6 @@ function formatRelativeTime(ts: number): string {
   if (hours < 24) return `${hours}h ago`;
   const days = Math.floor(hours / 24);
   return `${days}d ago`;
-}
-
-function isGmailTokenError(error?: string): boolean {
-  return !!(
-    error &&
-    (error.includes("Gmail authorization expired") ||
-      error.includes("Failed to refresh access token"))
-  );
 }
 
 export default function SyncStatusBar(): JSX.Element {
@@ -53,7 +46,22 @@ export default function SyncStatusBar(): JSX.Element {
   const handleReconnect = async () => {
     setReconnecting(true);
     try {
-      const result = await window.api.startGmailAuth();
+      const account = await window.api.getAccountInfo();
+      const intent = {
+        type: "reconnect",
+        email: account.email,
+      } as const;
+      let result: { success: boolean; error?: string };
+      if (account.providerType === "microsoft") {
+        result = await window.api.startMicrosoftAuth(intent);
+      } else if (account.providerType === "gmail") {
+        result = await window.api.startGmailAuth(intent);
+      } else {
+        result = {
+          success: false,
+          error: "Reconnect is only available for Gmail and Microsoft accounts",
+        };
+      }
       if (result.success) {
         window.api.startSync();
       } else {
@@ -64,7 +72,7 @@ export default function SyncStatusBar(): JSX.Element {
     }
   };
 
-  const showReconnect = isGmailTokenError(status.error);
+  const showReconnect = isOAuthTokenError(status.error);
   const analyzingMessages =
     status.running && status.message === "Analyzing messages";
 

@@ -1,4 +1,5 @@
 import type {
+  AccountAuthIntent,
   AccountInfo,
   AccountSummary,
   ActionType,
@@ -127,10 +128,17 @@ export interface UpdateInfo {
 export interface ElectronAPI {
   getLastUpdateInfo: () => Promise<UpdateInfo | null>;
   getConnectionStatus: () => Promise<boolean>;
-  startGmailAuth: (openInBrowser?: boolean) => Promise<{ success: boolean; error?: string }>;
-  startMicrosoftAuth: (openInBrowser?: boolean) => Promise<{ success: boolean; error?: string }>;
+  startGmailAuth: (
+    intent: AccountAuthIntent,
+    openInBrowser?: boolean,
+  ) => Promise<{ success: boolean; error?: string }>;
+  startMicrosoftAuth: (
+    intent: AccountAuthIntent,
+    openInBrowser?: boolean,
+  ) => Promise<{ success: boolean; error?: string }>;
   saveImapConfig: (
-    config: ImapConfig
+    intent: AccountAuthIntent,
+    config: ImapConfig,
   ) => Promise<{ success: boolean; error?: string }>;
   updateServerConfig: (
     server: ServerConfig & { smtp: NonNullable<ServerConfig["smtp"]> },
