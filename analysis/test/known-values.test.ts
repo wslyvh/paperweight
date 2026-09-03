@@ -43,6 +43,95 @@ describe("known PII values", () => {
     ]);
   });
 
+  it("matches a known date of birth and returns its canonical value", async () => {
+    const result = await analyzeText("Birth date: 1985-04-09", {
+      knownValues: [known("date_of_birth", "1985-04-09")],
+    });
+
+    expect(result.findings).toEqual([
+      expect.objectContaining({
+        type: "date_of_birth",
+        valueRaw: "1985-04-09",
+        valueNormalized: "1985-04-09",
+        confidence: "pattern",
+        signals: [{ id: "known-value.exact" }],
+      }),
+    ]);
+  });
+
+  it("does not emit dates of birth without a known profile value", async () => {
+    const result = await analyzeText(
+      "The appointment was on 9 April 1985 and moved on 2020/04/09.",
+    );
+
+    expect(result.findings).toEqual([]);
+  });
+
+  it.each([
+    "1985-04-09",
+    "09-04-1985",
+    "04/09/1985",
+    "9.4.1985",
+    "9 April 1985",
+    "April 9, 1985",
+    "9 Apr 1985",
+    "Apr 9 1985",
+  ])("matches supported date-of-birth spelling: %s", async (text) => {
+    const result = await analyzeText(`Date of birth: ${text}`, {
+      knownValues: [known("date_of_birth", "1985-04-09")],
+    });
+
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({
+        type: "date_of_birth",
+        valueNormalized: "1985-04-09",
+      }),
+    );
+  });
+
+  it("does not emit unrelated dates as a date of birth", async () => {
+    const result = await analyzeText("Invoice date: 2020-04-09", {
+      knownValues: [known("date_of_birth", "1985-04-09")],
+    });
+
+    expect(result.findings).toEqual([]);
+  });
+
+  it("accepts either interpretation of an ambiguous numeric date", async () => {
+    const monthFirst = await analyzeText("DOB: 04/09/1985", {
+      knownValues: [known("date_of_birth", "1985-04-09")],
+    });
+    const dayFirst = await analyzeText("DOB: 04/09/1985", {
+      knownValues: [known("date_of_birth", "1985-09-04")],
+    });
+
+    expect(monthFirst.findings[0]?.valueNormalized).toBe("1985-04-09");
+    expect(dayFirst.findings[0]?.valueNormalized).toBe("1985-09-04");
+  });
+
+  it.each([
+    "1985-02-29",
+    "31/04/1985",
+    "April 31, 1985",
+    "April 9",
+    "1985-04",
+    "9 Apr",
+  ])("rejects invalid or partial date candidate: %s", async (text) => {
+    const result = await analyzeText(`Value: ${text}`, {
+      knownValues: [known("date_of_birth", "1985-04-09")],
+    });
+
+    expect(result.findings).toEqual([]);
+  });
+
+  it("does not scan dates for an incomplete known profile value", async () => {
+    const result = await analyzeText("DOB: 9 April 1985", {
+      knownValues: [known("date_of_birth", "9 April 1985")],
+    });
+
+    expect(result.findings).toEqual([]);
+  });
+
   it("finds an exact IBAN with normalized spacing", async () => {
     const result = await analyzeText("Account: NL91  ABNA 0417.1643 00", {
       knownValues: [known("iban", "NL91ABNA0417164300")],

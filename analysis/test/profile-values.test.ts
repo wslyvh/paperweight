@@ -75,4 +75,10 @@ describe("profile values", () => {
     expect(validateValue("postal_code", "1234ab")).toBe(true);
     expect(validateValue("postal_code", "not a postcode")).toBe(false);
   });
+
+  it("normalizes and validates complete dates of birth", () => {
+    expect(normalizeValue("date_of_birth", "9 April 1985")).toBe("1985-04-09");
+    expect(validateValue("date_of_birth", "1985-04-09")).toBe(true);
+    expect(validateValue("date_of_birth", "1985-02-29")).toBe(false);
+  });
 });

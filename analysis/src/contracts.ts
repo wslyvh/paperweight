@@ -34,6 +34,7 @@ export const FINDING_TYPES = [
   "phone",
   "postal_code",
   "address",
+  "date_of_birth",
 ] as const;
 
 export type FindingType = (typeof FINDING_TYPES)[number];
@@ -48,6 +49,7 @@ export const FINDING_SENSITIVITY_ORDER: readonly FindingType[] = [
   "address",
   "postal_code",
   "email",
+  "date_of_birth",
 ];
 
 // Public webmail and ISP domains. Mail from one of these is a person writing,
