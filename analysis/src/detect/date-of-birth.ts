@@ -33,8 +33,8 @@ interface DateCandidate {
   day: number;
 }
 
-const NUMERIC_DATE_START = "(?<![\\p{L}\\d])(?<!\\d[^\\p{L}\\d])";
-const NUMERIC_DATE_END = "(?![\\p{L}\\d])(?![^\\p{L}\\d]\\d)";
+const NUMERIC_DATE_START = "(?<![\\p{L}\\d])(?<!\\d[-/.])";
+const NUMERIC_DATE_END = "(?![\\p{L}\\d])(?![-/.]\\d)";
 const ISO_DATE = new RegExp(
   `${NUMERIC_DATE_START}(\\d{4})([-/.])(\\d{1,2})\\2(\\d{1,2})${NUMERIC_DATE_END}`,
   "gu",

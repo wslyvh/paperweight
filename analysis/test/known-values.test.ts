@@ -114,6 +114,22 @@ describe("known PII values", () => {
     );
   });
 
+  it.each([
+    "DOB 1 1985-04-09",
+    "DOB 1985-04-09 10:30",
+  ])("accepts a numeric date near whitespace-separated numbers: %s", async (text) => {
+    const result = await analyzeText(text, {
+      knownValues: [known("date_of_birth", "1985-04-09")],
+    });
+
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({
+        type: "date_of_birth",
+        valueNormalized: "1985-04-09",
+      }),
+    );
+  });
+
   it("does not emit unrelated dates as a date of birth", async () => {
     const result = await analyzeText("Invoice date: 2020-04-09", {
       knownValues: [known("date_of_birth", "1985-04-09")],
