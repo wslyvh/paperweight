@@ -22,6 +22,7 @@ export default function ServerSettingsModal({
   const [smtpHost, setSmtpHost] = useState(initial.smtp?.host ?? "");
   const [smtpPort, setSmtpPort] = useState(initial.smtp?.port ?? 465);
   const [smtpTls, setSmtpTls] = useState(initial.smtp?.tls ?? true);
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -30,16 +31,34 @@ export default function ServerSettingsModal({
     setLoading(true);
     setError("");
 
-    const result = await window.api.updateServerConfig({
-      imap: { host, port, tls, allowSelfSigned },
-      smtp: { host: smtpHost, port: smtpPort, tls: smtpTls },
-    });
-    setLoading(false);
+    try {
+      const result = password.trim()
+        ? await window.api.saveImapConfig(
+            { type: "reconnect", email },
+            {
+              host,
+              port,
+              tls,
+              allowSelfSigned,
+              username: email,
+              password,
+              smtp: { host: smtpHost, port: smtpPort, tls: smtpTls },
+            },
+          )
+        : await window.api.updateServerConfig({
+            imap: { host, port, tls, allowSelfSigned },
+            smtp: { host: smtpHost, port: smtpPort, tls: smtpTls },
+          });
 
-    if (result.success) {
-      onSaved();
-    } else {
-      setError(result.error || "Failed to update server settings");
+      if (result.success) {
+        onSaved();
+      } else {
+        setError(result.error || "Failed to update server settings");
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to update server settings");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -79,6 +98,20 @@ export default function ServerSettingsModal({
             onPort={setSmtpPort}
             onTls={setSmtpTls}
           />
+
+          <label className="form-control">
+            <span className="label-text text-xs font-medium text-base-content/60 uppercase tracking-wide mb-1.5">
+              New password
+            </span>
+            <input
+              type="password"
+              className="input input-bordered input-sm"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Leave blank to keep current password"
+              autoComplete="new-password"
+            />
+          </label>
 
           {error && (
             <div className="alert alert-error text-sm">

@@ -178,7 +178,7 @@ describe("account authentication", () => {
   });
 
   it("rejects an existing IMAP account before testing or persisting it", async () => {
-    const result = await saveImapConfigAndRecordAccount({
+    const result = await saveImapConfigAndRecordAccount({ type: "add" }, {
       host: "imap.example.com",
       port: 993,
       tls: true,
@@ -199,5 +199,42 @@ describe("account authentication", () => {
     expect(mockTestSmtpConnection).not.toHaveBeenCalled();
     expect(mockSaveCredentials).not.toHaveBeenCalled();
     expect(mockRegisterAccount).not.toHaveBeenCalled();
+  });
+
+  it("refreshes IMAP credentials without registering during reconnect", async () => {
+    mockListAccounts.mockReturnValue([{
+      email: "existing@example.com",
+      providerType: "imap",
+      registeredAt: 123,
+    }]);
+    mockGetActiveEmail.mockReturnValue("existing@example.com");
+    const config = {
+      host: "imap.example.com",
+      port: 993,
+      tls: true,
+      username: "existing@example.com",
+      password: "new-app-password",
+      smtp: {
+        host: "smtp.example.com",
+        port: 465,
+        tls: true,
+      },
+    };
+
+    const result = await saveImapConfigAndRecordAccount(
+      { type: "reconnect", email: "existing@example.com" },
+      config,
+    );
+
+    expect(result).toEqual({ success: true });
+    expect(mockTestImapConnection).toHaveBeenCalledWith(config);
+    expect(mockTestSmtpConnection).toHaveBeenCalled();
+    expect(mockSaveCredentials).toHaveBeenCalledWith(
+      { providerType: "imap", imap: config },
+      "existing@example.com",
+    );
+    expect(mockRegisterAccount).not.toHaveBeenCalled();
+    expect(mockCreateAccountDb).not.toHaveBeenCalled();
+    expect(mockReconnectDb).not.toHaveBeenCalled();
   });
 });

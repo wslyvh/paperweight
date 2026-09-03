@@ -137,7 +137,8 @@ export interface ElectronAPI {
     openInBrowser?: boolean,
   ) => Promise<{ success: boolean; error?: string }>;
   saveImapConfig: (
-    config: ImapConfig
+    intent: AccountAuthIntent,
+    config: ImapConfig,
   ) => Promise<{ success: boolean; error?: string }>;
   updateServerConfig: (
     server: ServerConfig & { smtp: NonNullable<ServerConfig["smtp"]> },

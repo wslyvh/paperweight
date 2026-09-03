@@ -197,10 +197,13 @@ export async function startMicrosoftAuthAndRecordAccount(
   }
 }
 
-export async function saveImapConfigAndRecordAccount(config: ImapConfig) {
+export async function saveImapConfigAndRecordAccount(
+  intent: AccountAuthIntent,
+  config: ImapConfig,
+) {
   try {
     const intentResult = validateAccountIntent(
-      { type: "add" },
+      intent,
       config.username,
       "imap",
       listAccounts(),
@@ -244,7 +247,7 @@ export async function saveImapConfigAndRecordAccount(config: ImapConfig) {
     const email = config.username;
     authLog.info("IMAP+SMTP config saved");
     saveCredentials({ providerType: "imap", imap: config }, email);
-    recordAccount(email, "imap");
+    if (intent.type === "add") recordAccount(email, "imap");
 
     return { success: true };
   } catch (err) {

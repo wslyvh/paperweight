@@ -15,7 +15,8 @@ const api: ElectronAPI = {
   startMicrosoftAuth: (intent, openInBrowser) =>
     ipcRenderer.invoke(IPC.startMicrosoftAuth, intent, openInBrowser),
 
-  saveImapConfig: (config) => ipcRenderer.invoke(IPC.saveImapConfig, config),
+  saveImapConfig: (intent, config) =>
+    ipcRenderer.invoke(IPC.saveImapConfig, intent, config),
 
   updateServerConfig: (server) =>
     ipcRenderer.invoke(IPC.updateServerConfig, server),

@@ -408,7 +408,7 @@ export function AppleConnect({
     setLoading(true);
     setError("");
 
-    const result = await window.api.saveImapConfig({
+    const result = await window.api.saveImapConfig({ type: "add" }, {
       host,
       port,
       tls,
@@ -562,7 +562,7 @@ export function ProtonConnect({
     setLoading(true);
     setError("");
 
-    const result = await window.api.saveImapConfig({
+    const result = await window.api.saveImapConfig({ type: "add" }, {
       host,
       port,
       tls,
@@ -759,7 +759,7 @@ export function ImapConnect({
     setLoading(true);
     setError("");
 
-    const result = await window.api.saveImapConfig({
+    const result = await window.api.saveImapConfig({ type: "add" }, {
       host,
       port,
       tls,

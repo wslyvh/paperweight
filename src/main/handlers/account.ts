@@ -121,9 +121,10 @@ export function registerAccountHandlers(): void {
     return startMicrosoftAuthAndRecordAccount(intent, openInBrowser !== false);
   });
 
-  ipcMain.handle(IPC.saveImapConfig, (_event, config: unknown) => {
+  ipcMain.handle(IPC.saveImapConfig, (_event, intent: unknown, config: unknown) => {
+    if (!isAccountAuthIntent(intent)) throw new Error("Invalid account auth intent");
     if (!isImapConfig(config)) throw new Error("Invalid IMAP config");
-    return saveImapConfigAndRecordAccount(config);
+    return saveImapConfigAndRecordAccount(intent, config);
   });
 
   ipcMain.handle(IPC.updateServerConfig, (_event, server: unknown) => {
