@@ -439,4 +439,22 @@ describe("profile service", () => {
       }],
     }))).toBe(false);
   });
+
+  it("reports adding, changing, and removing a birth date as analysis changes", () => {
+    expect(seedProfileEmailsFromAccounts()).toBe(1);
+    const withoutBirthDate = emptyProfile();
+    const firstBirthDate = emptyProfile({
+      birthDate: { day: 9, month: 4, year: 1985 },
+    });
+    const changedBirthDate = emptyProfile({
+      birthDate: { day: 10, month: 4, year: 1985 },
+    });
+
+    expect(saveUserProfile(withoutBirthDate)).toBe(false);
+    expect(saveUserProfile(firstBirthDate)).toBe(true);
+    expect(saveUserProfile(firstBirthDate)).toBe(false);
+    expect(saveUserProfile(changedBirthDate)).toBe(true);
+    expect(saveUserProfile(withoutBirthDate)).toBe(true);
+    expect(saveUserProfile(withoutBirthDate)).toBe(false);
+  });
 });
