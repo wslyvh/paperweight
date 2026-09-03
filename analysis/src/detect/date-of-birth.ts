@@ -33,8 +33,16 @@ interface DateCandidate {
   day: number;
 }
 
-const ISO_DATE = /(?<![\p{L}\d])(\d{4})([-/.])(\d{1,2})\2(\d{1,2})(?![\p{L}\d])/gu;
-const DAY_MONTH_YEAR = /(?<![\p{L}\d])(\d{1,2})([-/.])(\d{1,2})\2(\d{4})(?![\p{L}\d])/gu;
+const NUMERIC_DATE_START = "(?<![\\p{L}\\d])(?<!\\d[^\\p{L}\\d])";
+const NUMERIC_DATE_END = "(?![\\p{L}\\d])(?![^\\p{L}\\d]\\d)";
+const ISO_DATE = new RegExp(
+  `${NUMERIC_DATE_START}(\\d{4})([-/.])(\\d{1,2})\\2(\\d{1,2})${NUMERIC_DATE_END}`,
+  "gu",
+);
+const DAY_MONTH_YEAR = new RegExp(
+  `${NUMERIC_DATE_START}(\\d{1,2})([-/.])(\\d{1,2})\\2(\\d{4})${NUMERIC_DATE_END}`,
+  "gu",
+);
 const ENGLISH_DATE = /(?<![\p{L}\d])(?:(\d{1,2})[ \t]+(January|February|March|April|May|June|July|August|September|Sept|Sep|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Oct|Nov|Dec)[ \t]+(\d{4})|(January|February|March|April|May|June|July|August|September|Sept|Sep|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Oct|Nov|Dec)[ \t]+(\d{1,2})(?:,)?[ \t]+(\d{4}))(?![\p{L}\d])/giu;
 
 function canonicalDate(year: number, month: number, day: number): string | undefined {

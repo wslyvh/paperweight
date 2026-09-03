@@ -89,6 +89,31 @@ describe("known PII values", () => {
     );
   });
 
+  it.each([
+    "1985-04-09-10",
+    "1985-04-09.123",
+    "10-1985-04-09",
+  ])("rejects a numeric date embedded in a larger token: %s", async (text) => {
+    const result = await analyzeText(`Reference: ${text}`, {
+      knownValues: [known("date_of_birth", "1985-04-09")],
+    });
+
+    expect(result.findings).toEqual([]);
+  });
+
+  it("keeps ordinary sentence punctuation after a numeric date valid", async () => {
+    const result = await analyzeText("Sentence 1985-04-09.", {
+      knownValues: [known("date_of_birth", "1985-04-09")],
+    });
+
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({
+        type: "date_of_birth",
+        valueNormalized: "1985-04-09",
+      }),
+    );
+  });
+
   it("does not emit unrelated dates as a date of birth", async () => {
     const result = await analyzeText("Invoice date: 2020-04-09", {
       knownValues: [known("date_of_birth", "1985-04-09")],

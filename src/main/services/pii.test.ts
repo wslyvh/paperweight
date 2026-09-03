@@ -233,6 +233,45 @@ describe("profile matches", () => {
     );
   });
 
+  it.each([
+    ["changed", 1990, 5, 10],
+    ["removed", null, null, null],
+  ])("hides a stale date-of-birth finding after the profile date is %s", (
+    _action,
+    year,
+    month,
+    day,
+  ) => {
+    insertProfileMatch("date_of_birth", "1985-04-09");
+    const vid = insertVendor();
+    insertMsg("m1", vid, 100);
+    const ref = insertFinding("m1", "date_of_birth", "1985-04-09");
+
+    expect(getVendorPiiSummary(vid).values).toEqual([
+      expect.objectContaining({
+        ref,
+        type: "date_of_birth",
+        maskedValue: "••-••-1985",
+        isMatch: true,
+      }),
+    ]);
+    expect(revealVendorPiiValues(vid)).toEqual([{ ref, value: "1985-04-09" }]);
+
+    getDb()
+      .prepare(
+        `UPDATE global.profile
+         SET birth_year = ?, birth_month = ?, birth_day = ?
+         WHERE id = 1`,
+      )
+      .run(year, month, day);
+
+    expect(getVendorPiiSummary(vid).values).toEqual([]);
+    expect(getPiiOverview().values).toEqual([]);
+    expect(revealVendorPiiValues(vid)).toEqual([]);
+    expect(revealPiiValues()).toEqual([]);
+    expect(getPiiValueCompanies(ref)).toEqual([]);
+  });
+
   it("leaves a value outside the profile unlabelled", () => {
     insertProfileMatch("email", "user@example.com");
     const vid = insertVendor();

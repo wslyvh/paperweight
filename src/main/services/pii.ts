@@ -153,6 +153,10 @@ const visibleFindingSql = (
   suppression: SuppressionScope = "excluded",
 ): string => {
   const match = profileMatchSql(findingAlias);
+  const typeAllowed = `(
+    ${findingAlias}.type != 'date_of_birth'
+    OR ${match}
+  )`;
   const inferred = `
     ${findingAlias}.in_quoted_text = 0
     AND ${findingAlias}.in_footer = 0
@@ -162,8 +166,8 @@ const visibleFindingSql = (
       AND ${seenInCompanyFooterSql(findingAlias, vendorAlias)}
     )`;
 
-  if (suppression === "either") return `(${match} OR (${inferred}))`;
-  return `(${match} OR (${inferred}${suppressionSql(findingAlias, suppression)}))`;
+  if (suppression === "either") return `(${typeAllowed} AND (${match} OR (${inferred})))`;
+  return `(${typeAllowed} AND (${match} OR (${inferred}${suppressionSql(findingAlias, suppression)})))`;
 };
 
 // One indexed lookup by (type, value_normalized), counting company identities
