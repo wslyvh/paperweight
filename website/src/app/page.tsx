@@ -3,7 +3,7 @@ import {
   GoogleLogo,
   MicrosoftLogo,
   ProtonLogo,
-} from "@shared/provider-logos";
+} from "@/components/ProviderLogos";
 import dayjs from "dayjs";
 import {
   CheckCircle2,
