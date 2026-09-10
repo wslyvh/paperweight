@@ -52,7 +52,9 @@ jobs:
 
   build-macos:
     needs: verify
-    runs-on: macos-latest
+    # macos-latest is macOS 26. electron-builder 26.8.1 then fails CSC_LINK
+    # signing with SecKeychainUnlock. Pin until we take 26.16.1+ (#10172).
+    runs-on: macos-15
     env:
       GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
       GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
