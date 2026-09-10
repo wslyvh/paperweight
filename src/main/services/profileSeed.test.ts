@@ -240,6 +240,30 @@ describe("profile seed", () => {
     ]);
   });
 
+  it("does not seed values that are not email addresses", () => {
+    const email = "user@example.com";
+    writeFileSync(
+      join(userDataDir, "accounts.json"),
+      JSON.stringify({
+        accounts: [{ email, providerType: "gmail" }],
+      }),
+    );
+    createAccountDb(
+      email,
+      ["notanemail"],
+      [
+        "user+ok@example.com",
+        "srs0=xx=yy=example.com=user@bounce.example.net",
+      ],
+    );
+
+    expect(seedProfileEmailsFromAccounts()).toBe(2);
+    expect(profileEmails()).toEqual([
+      "user+ok@example.com",
+      "user@example.com",
+    ]);
+  });
+
   it("infers country only while the stored profile country is empty", () => {
     expect(seedProfileCountryIfEmpty(() => "nl")).toBe(true);
     const inferAgain = jest.fn(() => "US");

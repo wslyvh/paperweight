@@ -5,6 +5,7 @@ import {
   isSupportedCountryCode,
   normalizeCountryCode,
 } from "@paperweight/analysis/country";
+import { validateValue } from "@paperweight/analysis/profile-values";
 import { emailToFileKey, listAccounts } from "../credentials";
 import { getGlobalDb } from "../globalDb";
 import { dbLog } from "../utils/log";
@@ -108,7 +109,7 @@ function insertProfileEmails(
   const save = target.transaction(() => {
     let inserted = 0;
     for (const email of emails) {
-      if (!email) continue;
+      if (!email || !validateValue("email", email)) continue;
       inserted += insert.run(email, email).changes;
       unsuppress.run(email);
     }
@@ -146,7 +147,7 @@ export function addReceivedProfileEmails(
     let inserted = 0;
     for (const raw of addresses) {
       const address = normalizeEmail(raw);
-      if (!address) continue;
+      if (!address || !validateValue("email", address)) continue;
       inserted += insert.run({ address, value: address }).changes;
     }
     return inserted;

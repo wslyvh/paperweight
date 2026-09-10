@@ -515,6 +515,25 @@ describe("confirmPiiFinding", () => {
     expect(() => confirmPiiFinding(999_999)).toThrow(/no longer available/);
   });
 
+  it("does not file an email finding that is not a valid address", () => {
+    const vid = insertVendor();
+    insertMsg("m1", vid, 100);
+    const ref = insertFinding(
+      "m1",
+      "email",
+      "srs0=xx=yy=example.com=ada@bounce.example.net",
+    );
+
+    expect(() => confirmPiiFinding(ref)).toThrow(
+      "That value cannot be added to your profile.",
+    );
+    expect(
+      getDb()
+        .prepare("SELECT COUNT(*) AS count FROM global.profile_emails")
+        .get(),
+    ).toEqual({ count: 0 });
+  });
+
   it("shows a profile value even if a stale suppression row exists", () => {
     insertProfileMatch("email", "alex@personal.example");
     getDb().prepare(

@@ -226,6 +226,27 @@ describe("profile service", () => {
     );
   });
 
+  it("saves a birth date even when a stored email is not a valid address", () => {
+    saveUserProfile(emptyProfile({
+      emails: [
+        { id: -1, address: "ada@example.com" },
+        { id: -2, address: "notanemail" },
+        {
+          id: -3,
+          address: "srs0=xx=yy=example.com=ada@bounce.example.net",
+        },
+      ],
+      birthDate: { day: 9, month: 4, year: 1985 },
+    }));
+
+    const stored = getUserProfile();
+    expect(stored.birthDate).toEqual({ day: 9, month: 4, year: 1985 });
+    expect(stored.emails.map((entry) => entry.address).sort()).toEqual([
+      "Person@Example.com",
+      "ada@example.com",
+    ]);
+  });
+
   it("rejects unknown country codes", () => {
     expect(() => saveUserProfile(emptyProfile({ country: "XX" }))).toThrow(
       "Invalid profile country",

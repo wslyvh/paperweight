@@ -1,3 +1,4 @@
+import { validateValue } from "@paperweight/analysis/profile-values";
 import { getDb } from "../db";
 import type {
   PiiCompanyOrder,
@@ -618,6 +619,9 @@ export function confirmPiiFinding(findingId: number): boolean {
   const target = getDb();
   const confirm = target.transaction(() => {
     const { type, value_normalized } = resolveFinding(findingId);
+    if (!validateValue(type, value_normalized)) {
+      throw new Error("That value cannot be added to your profile.");
+    }
     const alreadyMatched = !!target
       .prepare(
         `SELECT 1

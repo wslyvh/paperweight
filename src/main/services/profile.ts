@@ -222,10 +222,11 @@ function normalizeEmails(values: ProfileEmail[]): StoredEmail[] {
   const seen = new Set<string>();
   return all.flatMap((address) => {
     const display = compactWhitespace(address);
-    const normalized = normalizeValue("email", display);
     if (!validateValue("email", display)) {
-      throw new Error("Invalid profile email");
+      dbLog.warn("Skipped an invalid profile email");
+      return [];
     }
+    const normalized = normalizeValue("email", display);
     if (seen.has(normalized)) return [];
     seen.add(normalized);
     return [{ address: display, normalized }];
