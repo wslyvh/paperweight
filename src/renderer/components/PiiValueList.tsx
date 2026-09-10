@@ -189,9 +189,8 @@ export default function PiiValueList({
         return (
           <div key={value.ref} className="card bg-base-200 overflow-visible rounded-2xl">
             <div
-              className={`group p-4 cursor-pointer hover:bg-base-300 transition-colors ${
-                isExpanded ? "rounded-t-2xl" : "rounded-2xl"
-              }`}
+              className={`group p-4 cursor-pointer hover:bg-base-300 transition-colors ${isExpanded ? "rounded-t-2xl" : "rounded-2xl"
+                }`}
               onClick={() => toggleExpand(value)}
             >
               <div className={`${ROW_GRID} w-full`}>
@@ -210,29 +209,26 @@ export default function PiiValueList({
                 />
 
                 <ChevronRight
-                  className={`w-5 h-5 text-base-content/50 shrink-0 transition-transform ${
-                    isExpanded ? "rotate-90" : ""
-                  }`}
+                  className={`w-5 h-5 text-base-content/50 shrink-0 transition-transform ${isExpanded ? "rotate-90" : ""
+                    }`}
                   strokeWidth={1.5}
                   aria-hidden="true"
                 />
 
-                <span className="badge badge-sm badge-soft justify-start">
+                <span className="badge badge-sm badge-soft justify-start whitespace-nowrap">
                   {PII_LABELS[value.type]}
                 </span>
 
                 <span
-                  className={`font-mono text-sm truncate min-w-0 ${
-                    value.isMatch ? "font-semibold text-primary" : ""
-                  }`}
+                  className={`font-mono text-sm truncate min-w-0 ${value.isMatch ? "font-semibold text-primary" : ""
+                    }`}
                 >
                   {revealed?.get(value.ref) ?? value.maskedValue}
                 </span>
 
                 <div
-                  className={`flex items-center gap-2 transition-opacity ${
-                    isExpanded ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-                  }`}
+                  className={`flex items-center gap-2 transition-opacity ${isExpanded ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                    }`}
                   onClick={(e) => e.stopPropagation()}
                 >
                   <span

@@ -8,6 +8,7 @@ import {
   normalizeValue,
   validateValue,
 } from "@paperweight/analysis/profile-values";
+import { formatUtcStrictDate } from "@shared/formatting";
 import { PROFILE_BIRTH_YEAR_MIN } from "@shared/types";
 import type { ProfileBirthDate, UserProfile } from "@shared/types";
 import { useAccounts } from "../hooks/useAccounts";
@@ -130,6 +131,12 @@ const EMPTY_ADDRESS: AddressDraft = {
   raw: "",
 };
 
+const EMPTY_BIRTHDAY: Birthday = {
+  day: "",
+  month: "",
+  year: "",
+};
+
 const EMPTY_NATIONAL_ID: NationalIdDraft = {
   value: "",
 };
@@ -190,11 +197,27 @@ function normalizeAddress(draft: AddressDraft): string {
   return normalizeValue("address", value);
 }
 
+function formatBirthDate(date: ProfileBirthDate): string {
+  return formatUtcStrictDate(
+    `${date.year}-${String(date.month).padStart(2, "0")}-${String(date.day).padStart(2, "0")}`,
+    "D MMMM YYYY",
+  );
+}
+
+function birthdayFromProfile(date?: ProfileBirthDate): Birthday {
+  return date
+    ? {
+        day: String(date.day),
+        month: String(date.month),
+        year: String(date.year),
+      }
+    : EMPTY_BIRTHDAY;
+}
+
 function birthdayError(birthday: Birthday): string {
   const values = [birthday.day, birthday.month, birthday.year];
-  if (values.every((value) => !value)) return "";
   if (values.some((value) => !value)) {
-    return "Enter the full date or leave all three fields empty.";
+    return "Enter a valid date of birth.";
   }
 
   const day = Number(birthday.day);
@@ -267,11 +290,10 @@ export default function Profile(): JSX.Element {
   const pendingProfileRef = useRef<UserProfile>();
   const failedProfileRef = useRef<UserProfile>();
   const [currentCountry, setCurrentCountry] = useState("");
-  const [birthday, setBirthday] = useState<Birthday>({
-    day: "",
-    month: "",
-    year: "",
-  });
+  const [birthday, setBirthday] = useState<Birthday>(EMPTY_BIRTHDAY);
+  const [storedBirthDate, setStoredBirthDate] = useState<ProfileBirthDate>();
+  const [editingBirthDate, setEditingBirthDate] = useState(false);
+  const [birthDateError, setBirthDateError] = useState("");
   const [names, setNames] = useState<NameEntry[]>([]);
   const [emails, setEmails] = useState<EmailEntry[]>([]);
   const [emailFilter, setEmailFilter] = useState("");
@@ -353,14 +375,11 @@ export default function Profile(): JSX.Element {
     const country = profile.country ?? deviceCountry();
     savedCountryRef.current = profile.country;
     savedBirthDateRef.current = profile.birthDate;
+    setStoredBirthDate(profile.birthDate);
     setCurrentCountry(country);
-    setBirthday(profile.birthDate
-      ? {
-          day: String(profile.birthDate.day),
-          month: String(profile.birthDate.month),
-          year: String(profile.birthDate.year),
-        }
-      : { day: "", month: "", year: "" });
+    setBirthday(birthdayFromProfile(profile.birthDate));
+    setEditingBirthDate(false);
+    setBirthDateError("");
     setNames(profile.names.map((entry) => ({
       id: entry.id,
       firstName: entry.firstName,
@@ -435,6 +454,7 @@ export default function Profile(): JSX.Element {
   function changed(): void {
     setSaved(false);
     setProfileFieldError("");
+    setBirthDateError("");
   }
 
   function clearNameDraft(): void {
@@ -876,28 +896,46 @@ export default function Profile(): JSX.Element {
     queueProfileSave(buildUserProfile());
   }
 
+  function clearBirthDateDraft(): void {
+    setEditingBirthDate(false);
+    setBirthDateError("");
+    setBirthday(birthdayFromProfile(savedBirthDateRef.current));
+  }
+
   function saveBirthDate(): void {
     const error = birthdayError(birthday);
     if (error) {
-      setProfileFieldError(error);
+      setBirthDateError(error);
       setSaved(false);
       return;
     }
-    const birthDate = birthday.day
-      ? {
-          day: Number(birthday.day),
-          month: Number(birthday.month),
-          year: Number(birthday.year),
-        }
-      : undefined;
+    const birthDate = {
+      day: Number(birthday.day),
+      month: Number(birthday.month),
+      year: Number(birthday.year),
+    };
     const previous = savedBirthDateRef.current;
     if (
-      birthDate?.day === previous?.day
-      && birthDate?.month === previous?.month
-      && birthDate?.year === previous?.year
-    ) return;
-    setProfileFieldError("");
+      birthDate.day === previous?.day
+      && birthDate.month === previous?.month
+      && birthDate.year === previous?.year
+    ) {
+      setEditingBirthDate(false);
+      return;
+    }
+    setBirthDateError("");
     savedBirthDateRef.current = birthDate;
+    setStoredBirthDate(birthDate);
+    setEditingBirthDate(false);
+    queueProfileSave(buildUserProfile());
+  }
+
+  function removeBirthDate(): void {
+    savedBirthDateRef.current = undefined;
+    setStoredBirthDate(undefined);
+    setEditingBirthDate(false);
+    setBirthDateError("");
+    setBirthday(EMPTY_BIRTHDAY);
     queueProfileSave(buildUserProfile());
   }
 
@@ -1406,89 +1444,124 @@ export default function Profile(): JSX.Element {
 
       <section className="card bg-base-200">
         <div className="card-body space-y-3">
-          <h3 className="font-semibold">Identity</h3>
+          <h3 className="font-semibold">Date of birth</h3>
           <p className="text-sm text-base-content/60">
-            Date of birth and government identifiers.
+            Used to match dates in your messages.
           </p>
-          <div className="space-y-3">
-            <p className="text-sm font-medium">Date of birth</p>
-            <div
-              className="grid grid-cols-3 gap-3 max-w-md"
-              onBlur={(event) => {
-                if (
-                  !event.currentTarget.contains(
-                    event.relatedTarget as Node | null,
-                  )
-                ) {
-                  saveBirthDate();
-                }
+          {storedBirthDate && (
+            <div className="space-y-1">
+              <ProfileRow
+                value={formatBirthDate(storedBirthDate)}
+                onEdit={() => {
+                  setBirthday(birthdayFromProfile(storedBirthDate));
+                  setEditingBirthDate(true);
+                  setBirthDateError("");
+                }}
+                onRemove={removeBirthDate}
+              />
+            </div>
+          )}
+          {(!storedBirthDate || editingBirthDate) && (
+            <form
+              className="space-y-3"
+              onSubmit={(event) => {
+                event.preventDefault();
+                saveBirthDate();
               }}
             >
-              <label className="flex flex-col">
-                <span className="text-xs mb-1">Day</span>
-                <input
-                  type="number"
-                  min="1"
-                  max="31"
-                  className="input input-bordered input-sm"
-                  value={birthday.day}
-                  onChange={(event) => {
-                    const day = boundedDatePart(
-                      event.target.value,
-                      1,
-                      31,
-                      2,
-                    );
-                    if (day === undefined) return;
-                    setBirthday((value) => ({ ...value, day }));
-                    changed();
-                  }}
-                />
-              </label>
-              <label className="flex flex-col">
-                <span className="text-xs mb-1">Month</span>
-                <input
-                  type="number"
-                  min="1"
-                  max="12"
-                  className="input input-bordered input-sm"
-                  value={birthday.month}
-                  onChange={(event) => {
-                    const month = boundedDatePart(
-                      event.target.value,
-                      1,
-                      12,
-                      2,
-                    );
-                    if (month === undefined) return;
-                    setBirthday((value) => ({ ...value, month }));
-                    changed();
-                  }}
-                />
-              </label>
-              <label className="flex flex-col">
-                <span className="text-xs mb-1">Year</span>
-                <input
-                  type="number"
-                  min={PROFILE_BIRTH_YEAR_MIN}
-                  max={maximumBirthYear}
-                  className="input input-bordered input-sm"
-                  value={birthday.year}
-                  onChange={(event) => {
-                    const year = boundedDatePart(
-                      event.target.value,
-                      PROFILE_BIRTH_YEAR_MIN,
-                      maximumBirthYear,
-                      4,
-                    );
-                    if (year === undefined) return;
-                    setBirthday((value) => ({ ...value, year }));
-                    changed();
-                  }}
-                />
-              </label>
-            </div>
-          </div>
+              <div className="grid grid-cols-3 gap-3 max-w-md">
+                <label className="flex flex-col">
+                  <span className="text-xs mb-1">Day</span>
+                  <input
+                    type="number"
+                    min="1"
+                    max="31"
+                    className="input input-bordered input-sm"
+                    value={birthday.day}
+                    onChange={(event) => {
+                      const day = boundedDatePart(
+                        event.target.value,
+                        1,
+                        31,
+                        2,
+                      );
+                      if (day === undefined) return;
+                      setBirthday((value) => ({ ...value, day }));
+                      changed();
+                    }}
+                  />
+                </label>
+                <label className="flex flex-col">
+                  <span className="text-xs mb-1">Month</span>
+                  <input
+                    type="number"
+                    min="1"
+                    max="12"
+                    className="input input-bordered input-sm"
+                    value={birthday.month}
+                    onChange={(event) => {
+                      const month = boundedDatePart(
+                        event.target.value,
+                        1,
+                        12,
+                        2,
+                      );
+                      if (month === undefined) return;
+                      setBirthday((value) => ({ ...value, month }));
+                      changed();
+                    }}
+                  />
+                </label>
+                <label className="flex flex-col">
+                  <span className="text-xs mb-1">Year</span>
+                  <input
+                    type="number"
+                    min={PROFILE_BIRTH_YEAR_MIN}
+                    max={maximumBirthYear}
+                    className="input input-bordered input-sm"
+                    value={birthday.year}
+                    onChange={(event) => {
+                      const year = boundedDatePart(
+                        event.target.value,
+                        PROFILE_BIRTH_YEAR_MIN,
+                        maximumBirthYear,
+                        4,
+                      );
+                      if (year === undefined) return;
+                      setBirthday((value) => ({ ...value, year }));
+                      changed();
+                    }}
+                  />
+                </label>
+              </div>
+              <div className="flex justify-end gap-2">
+                {editingBirthDate && (
+                  <button
+                    type="button"
+                    className="btn btn-ghost btn-sm"
+                    onClick={clearBirthDateDraft}
+                  >
+                    Cancel
+                  </button>
+                )}
+                <button type="submit" className="btn btn-primary btn-sm">
+                  {editingBirthDate ? "Save" : "Add"}
+                </button>
+              </div>
+              {birthDateError && (
+                <p className="text-sm text-error">{birthDateError}</p>
+              )}
+            </form>
+          )}
+        </div>
+      </section>
+
+      <section className="card bg-base-200">
+        <div className="card-body space-y-3">
+          <h3 className="font-semibold">National IDs</h3>
+          <p className="text-sm text-base-content/60">
+            Government identifiers.
+          </p>
           {nationalIds.length > 0 && (
             <div className="space-y-1">
               {nationalIds.map((entry) => (
