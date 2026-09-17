@@ -43,6 +43,8 @@ interface AccountRegistry {
   accounts: AccountEntry[];
 }
 
+let _accountRegistryPath: string | undefined;
+
 export function emailToFileKey(email: string): string {
   const normalized = email.toLowerCase();
   const local = normalized.split("@")[0].replace(/[^a-z0-9.-]/g, "_");
@@ -56,9 +58,14 @@ export function accountTag(email: string): string {
 }
 
 function getRegistryPath(): string {
+  if (_accountRegistryPath) return _accountRegistryPath;
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { app } = require("electron") as typeof import("electron");
   return join(app.getPath("userData"), "accounts.json");
+}
+
+export function configureAccountRegistryPath(path: string): void {
+  _accountRegistryPath = path;
 }
 
 function loadRegistry(): AccountRegistry {
@@ -130,6 +137,7 @@ export function setStagingMode(active: boolean): void {
 export function resetCredentialsModuleState(): void {
   _preloaded = undefined;
   _stagingMode = false;
+  _accountRegistryPath = undefined;
 }
 
 function getCredentialsPath(emailOverride?: string): string {

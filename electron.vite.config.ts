@@ -40,6 +40,7 @@ export default defineConfig({
       rollupOptions: {
         input: {
           index: resolve("src/main/index.ts"),
+          mcp: resolve("src/mcp/index.ts"),
           "sync-worker": resolve("src/main/sync-worker.ts"),
         },
         external: ["better-sqlite3"],

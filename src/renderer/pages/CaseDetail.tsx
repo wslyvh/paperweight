@@ -9,6 +9,8 @@ import type {
 } from "@shared/types";
 import { formatAbsoluteDate, formatShortDate } from "@shared/formatting";
 import {
+  CASE_OUTBOUND_EVENT_TYPES,
+  CASE_STATUS_EVENT_TYPES,
   REMINDER_AFTER_DAYS,
   FOLLOWUP_AFTER_DAYS,
   ESCALATE_AFTER_DAYS,
@@ -36,9 +38,6 @@ const NEXT_ACTION_DAY = {
   followup: FOLLOWUP_AFTER_DAYS,
   escalate: ESCALATE_AFTER_DAYS,
 } as const;
-
-const OUTBOUND_TYPES: ActionType[] = ["gdpr_request_sent", "reminder_sent", "followup_sent"];
-const STATUS_TYPES: ActionType[] = ["case_closed", "escalated"];
 
 interface CommunicationItem {
   id: string;
@@ -78,11 +77,7 @@ function buildCommunicationTimeline(
   const linkedIds = new Set(replies.linkedMessageIds);
 
   for (const event of events) {
-    if (event.actionType === "reply_received" || event.actionType === "case_message_linked") {
-      continue;
-    }
-
-    if (OUTBOUND_TYPES.includes(event.actionType)) {
+    if (CASE_OUTBOUND_EVENT_TYPES.includes(event.actionType)) {
       items.push({
         id: `event-${event.id}`,
         date: event.actionedAt,
@@ -94,7 +89,7 @@ function buildCommunicationTimeline(
       continue;
     }
 
-    if (STATUS_TYPES.includes(event.actionType)) {
+    if (CASE_STATUS_EVENT_TYPES.includes(event.actionType)) {
       items.push({
         id: `event-${event.id}`,
         date: event.actionedAt,

@@ -1,7 +1,13 @@
 import { ipcMain, shell } from "electron";
 import { IPC } from "@shared/ipc";
 import { isLicenseKey, isString } from "@shared/validation";
-import { activateLicense, getLicenseStatus, deleteLicense, applyAutoLaunch } from "../services/settings";
+import {
+  activateLicense,
+  applyAutoLaunch,
+  deleteLicense,
+  getLicenseStatus,
+  getMcpSetup,
+} from "../services/settings";
 import { saveSetting } from "../services/settings";
 import { getGlobalSetting, saveGlobalSetting } from "../services/globalSettings";
 import { buildAppSettings } from "../services/appSettings";
@@ -32,8 +38,10 @@ export function registerSettingsHandlers(): void {
       throw new Error("Invalid settings");
     }
     const s = settings as Record<string, unknown>;
-    const changedKeys = Object.keys(s).join(", ");
-    dataLog.info(`Settings saved: ${changedKeys}`);
+    const changedKeys = Object.keys(s)
+      .filter((key) => key !== "agentAccess")
+      .join(", ");
+    if (changedKeys) dataLog.info(`Settings saved: ${changedKeys}`);
 
     if (s.autoLaunch !== undefined) {
       if (typeof s.autoLaunch !== "boolean") throw new Error("Invalid autoLaunch");
@@ -62,7 +70,21 @@ export function registerSettingsHandlers(): void {
       }
       saveGlobalSetting("colorTheme", s.colorTheme);
     }
+
+    if (s.agentAccess !== undefined) {
+      if (
+        s.agentAccess !== "off"
+        && s.agentAccess !== "read"
+        && s.agentAccess !== "actions"
+      ) {
+        throw new Error("Invalid agentAccess");
+      }
+      saveGlobalSetting("agentAccess", s.agentAccess);
+      dataLog.info(`Agent access changed to: ${s.agentAccess}`);
+    }
   });
+
+  ipcMain.handle(IPC.getMcpSetup, () => getMcpSetup());
 
   // --- Shell ---
 

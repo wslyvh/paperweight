@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import type { GdprCaseStatus, GdprCaseSummary } from "@shared/types";
+import { queryCaseSummaries } from "@shared/case-query";
+import type { CaseSort, CaseStatusFilter } from "@shared/case-query";
+import type { GdprCaseSummary } from "@shared/types";
 import { CaseListRow } from "../components/CaseListRow";
 import { ArrowUpDown, ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -36,13 +38,13 @@ function PagerControls({
   );
 }
 
-const SORT_OPTIONS = [
+const SORT_OPTIONS: Array<{ value: CaseSort; label: string }> = [
   { value: "opened_desc", label: "Latest" },
   { value: "opened_asc", label: "Oldest" },
   { value: "name", label: "Name" },
 ];
 
-type CaseFilter = GdprCaseStatus | "needs_attention";
+type CaseFilter = Exclude<CaseStatusFilter, "">;
 
 const STATUS_BADGES: Array<{ value: CaseFilter; label: string }> = [
   { value: "active", label: "Active" },
@@ -55,7 +57,7 @@ const DEFAULT_STATUS_FILTER: CaseFilter = "active";
 
 interface CasesState {
   page: number;
-  sortBy: string;
+  sortBy: CaseSort;
   search: string;
   statusFilter: CaseFilter | "";
 }
@@ -69,7 +71,7 @@ export default function Cases(): JSX.Element {
   const [cases, setCases] = useState<GdprCaseSummary[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(restore?.page ?? 1);
-  const [sortBy, setSortBy] = useState(restore?.sortBy ?? "opened_desc");
+  const [sortBy, setSortBy] = useState<CaseSort>(restore?.sortBy ?? "opened_desc");
   const [search, setSearch] = useState(restore?.search ?? "");
   const [statusFilter, setStatusFilter] = useState<CaseFilter | "">(
     restore?.statusFilter ?? locState?.filter ?? DEFAULT_STATUS_FILTER,
@@ -132,32 +134,15 @@ export default function Cases(): JSX.Element {
     search || statusFilter !== DEFAULT_STATUS_FILTER || sortBy !== "opened_desc" || page > 1
   );
 
-  const filtered = useMemo(() => {
-    let result = cases;
-    if (statusFilter === "needs_attention") {
-      result = result.filter((c) => c.status === "active" && c.nextAction);
-    } else if (statusFilter) {
-      result = result.filter((c) => c.status === statusFilter);
-    }
-    if (search) {
-      const q = search.toLowerCase();
-      result = result.filter((c) => c.vendorName.toLowerCase().includes(q));
-    }
-    const sorted = [...result];
-    switch (sortBy) {
-      case "opened_asc":
-        sorted.sort((a, b) => a.openedAt - b.openedAt);
-        break;
-      case "name":
-        sorted.sort((a, b) => a.vendorName.localeCompare(b.vendorName));
-        break;
-      default:
-        sorted.sort((a, b) => b.openedAt - a.openedAt);
-    }
-    return sorted;
-  }, [cases, statusFilter, search, sortBy]);
+  const queryResult = useMemo(() => queryCaseSummaries(cases, {
+    page,
+    limit,
+    search,
+    status: statusFilter,
+    sort: sortBy,
+  }), [cases, page, search, statusFilter, sortBy]);
 
-  const total = filtered.length;
+  const total = queryResult.total;
   const totalPages = Math.max(1, Math.ceil(total / limit));
   // A restored page (from navigating back) or a shrunk result set can leave
   // page past the last page; snap it back so we never show an empty list while
@@ -165,7 +150,7 @@ export default function Cases(): JSX.Element {
   useEffect(() => {
     if (page > totalPages) setPage(totalPages);
   }, [page, totalPages]);
-  const pageItems = filtered.slice((page - 1) * limit, page * limit);
+  const pageItems = queryResult.items;
 
   if (loading) {
     return (

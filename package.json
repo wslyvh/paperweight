@@ -11,6 +11,7 @@
     "dev:local": "tsx scripts/dev-local.ts",
     "prebuild": "yarn build:companies && yarn build:breaches && yarn build:enforcement",
     "build": "electron-vite build",
+    "mcp": "cross-env ELECTRON_RUN_AS_NODE=1 electron out/main/mcp.js",
     "preview": "electron-vite preview",
     "typecheck:node": "tsc --noEmit -p tsconfig.node.json",
     "typecheck:web": "tsc --noEmit -p tsconfig.web.json",
@@ -26,6 +27,7 @@
     "scripts:stats": "tsx scripts/release-stats.ts",
     "seed:test-account": "cross-env TSX_TSCONFIG_PATH=tsconfig.node.json ELECTRON_RUN_AS_NODE=1 electron --import tsx scripts/seed-test-account.ts",
     "test": "cross-env ELECTRON_RUN_AS_NODE=1 electron node_modules/jest/bin/jest.js",
+    "test:mcp": "electron-vite build && cross-env ELECTRON_RUN_AS_NODE=1 PAPERWEIGHT_MCP=1 electron --import tsx scripts/smoke-mcp.ts",
     "fixture:regenerate": "yarn build:companies && yarn build:breaches && yarn build:enforcement && cross-env TSX_TSCONFIG_PATH=tsconfig.node.json ELECTRON_RUN_AS_NODE=1 electron --import tsx scripts/generate-smoke-fixture.ts test/fixtures/smoke-account --replace",
     "test:smoke": "yarn build && for p in fresh runtime stored; do SMOKE_SKIP_BUILD=1 bash scripts/smoke-boot.sh \"$p\" || exit 1; done",
     "test:analysis": "yarn --cwd analysis test",
@@ -53,6 +55,14 @@
       {
         "from": "resources/enforcement.db",
         "to": "enforcement.db"
+      },
+      {
+        "from": "build/mcp/paperweight-mcp",
+        "to": "paperweight-mcp"
+      },
+      {
+        "from": "build/mcp/paperweight-mcp.cmd",
+        "to": "paperweight-mcp.cmd"
       }
     ],
     "mac": {
@@ -109,6 +119,7 @@
   },
   "dependencies": {
     "@electron-toolkit/utils": "^4.0.0",
+    "@modelcontextprotocol/server": "2.0.0",
     "better-sqlite3": "12.6.0",
     "dayjs": "^1.11.19",
     "electron-log": "^5.4.3",
@@ -122,7 +133,8 @@
     "react-dom": "^18.3.1",
     "react-is": "^19.2.4",
     "react-router-dom": "^6.28.2",
-    "recharts": "^3.7.0"
+    "recharts": "^3.7.0",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@electron-toolkit/tsconfig": "^1.0.1",

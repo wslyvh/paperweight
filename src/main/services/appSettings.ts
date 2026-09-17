@@ -11,11 +11,16 @@ export function buildAppSettings(): Settings {
   const autoLaunchVal = getGlobalSetting("autoLaunch");
   const launchMinimizedVal = getGlobalSetting("launchMinimized");
   const colorTheme = getGlobalSetting("colorTheme");
+  const agentAccess = getGlobalSetting("agentAccess");
   return {
     providerType: creds?.providerType || "none",
     autoLaunch: autoLaunchVal !== undefined ? autoLaunchVal : registered,
     launchMinimized: launchMinimizedVal !== undefined ? launchMinimizedVal : registered,
     userName: hasAccount ? (getSetting("userName") ?? "") : "",
     colorTheme: colorTheme === "silk" ? "silk" : "dim",
+    agentAccess:
+      agentAccess === "read" || agentAccess === "actions"
+        ? agentAccess
+        : "off",
   };
 }

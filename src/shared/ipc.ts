@@ -19,6 +19,7 @@ import type {
   LicenseStatus,
   Message,
   MessageType,
+  McpSetup,
   PiiCompanyOrder,
   PiiOverview,
   PiiRevealedValue,
@@ -54,6 +55,7 @@ export const IPC = {
   queryVendors: "query-vendors",
   getSettings: "get-settings",
   saveSettings: "save-settings",
+  getMcpSetup: "get-mcp-setup",
   resyncData: "resync-data",
   wipeData: "wipe-data",
   noAccountsRemaining: "no-accounts-remaining",
@@ -152,6 +154,7 @@ export interface ElectronAPI {
   queryVendors: (query: VendorQuery) => Promise<{ vendors: Vendor[]; total: number }>;
   getSettings: () => Settings;
   saveSettings: (settings: Partial<Settings>) => Promise<void>;
+  getMcpSetup: () => Promise<McpSetup>;
   resyncData: () => Promise<void>;
   wipeData: () => Promise<void>;
   openExternal: (url: string) => Promise<void>;

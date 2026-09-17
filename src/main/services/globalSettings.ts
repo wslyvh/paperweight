@@ -1,3 +1,4 @@
+import type { AgentAccess } from "@shared/types";
 import {
   getGlobalDb,
   hasReadableGlobalState,
@@ -9,6 +10,7 @@ interface GlobalSettings {
   launchMinimized?: boolean;
   activeAccount?: string;
   colorTheme?: "dim" | "silk";
+  agentAccess?: AgentAccess;
 }
 
 export function getGlobalSetting<K extends keyof GlobalSettings>(key: K): GlobalSettings[K] {

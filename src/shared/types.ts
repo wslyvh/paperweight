@@ -524,12 +524,24 @@ export interface AccountInfo {
   server?: ServerConfig;
 }
 
+export type AgentAccess = "off" | "read" | "actions";
+
+export interface McpClientServerConfig {
+  command: string;
+}
+
+export interface McpSetup {
+  available: boolean;
+  server?: McpClientServerConfig;
+}
+
 export interface Settings {
   providerType: string;
   autoLaunch?: boolean;
   launchMinimized?: boolean;
   userName?: string;
   colorTheme?: "dim" | "silk";
+  agentAccess?: AgentAccess;
 }
 
 export interface LicenseStatus {
