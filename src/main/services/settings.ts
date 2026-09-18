@@ -2,7 +2,7 @@ import { join } from "path";
 import { writeFileSync, readFileSync, unlinkSync, mkdirSync, existsSync } from "fs";
 import { getDb } from "../db";
 import { APP_CONFIG } from "@shared/config";
-import type { WhitelistEntry, LicenseStatus } from "@shared/types";
+import type { LicenseStatus, McpSetup, WhitelistEntry } from "@shared/types";
 import { licenseLog } from "../utils/log";
 
 // --- Key-value settings ---
@@ -101,6 +101,22 @@ export function wasLaunchedAsHidden(launchMinimized: boolean): boolean {
     return app.getLoginItemSettings().wasOpenedAtLogin;
   }
   return false;
+}
+
+// --- MCP setup ---
+
+export function getMcpSetup(): McpSetup {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { app } = require("electron") as typeof import("electron");
+  const launcher = process.platform === "win32"
+    ? "paperweight-mcp.cmd"
+    : "paperweight-mcp";
+  const command = app.isPackaged
+    ? join(process.resourcesPath, launcher)
+    : join(app.getAppPath(), "build", "mcp", launcher);
+  return existsSync(command)
+    ? { available: true, server: { command } }
+    : { available: false };
 }
 
 // --- License ---

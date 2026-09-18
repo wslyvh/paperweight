@@ -524,13 +524,31 @@ export interface AccountInfo {
   server?: ServerConfig;
 }
 
+export type AgentAccess = "off" | "read" | "actions";
+
+export interface McpClientServerConfig {
+  command: string;
+}
+
+export interface McpSetup {
+  available: boolean;
+  server?: McpClientServerConfig;
+}
+
 export interface Settings {
   providerType: string;
   autoLaunch?: boolean;
   launchMinimized?: boolean;
   userName?: string;
   colorTheme?: "dim" | "silk";
+  agentAccess?: AgentAccess;
+  agentMaskPersonalData?: boolean;
 }
+
+export type SettingsUpdate = Partial<Settings> & {
+  confirmAgentActions?: boolean;
+  confirmAgentUnmask?: boolean;
+};
 
 export interface LicenseStatus {
   active: boolean;

@@ -16,6 +16,7 @@ import type {
   ProfileNationalId,
   ProfilePayment,
   ProfilePhone,
+  PiiType,
   UserProfile,
 } from "@shared/types";
 import { listAccounts } from "../credentials";
@@ -105,8 +106,13 @@ interface StoredPayment extends StoredValue {
 }
 
 interface ProfileMatchRow {
-  type: string;
+  type: PiiType;
   value_normalized: string;
+}
+
+export interface ProfileMatchValue {
+  type: PiiType;
+  value: string;
 }
 
 interface ProfileAnalysisAddressRow {
@@ -115,6 +121,23 @@ interface ProfileAnalysisAddressRow {
   postal_code: string | null;
   raw: string | null;
 }
+
+export type UserProfileUpdate =
+  | { operation: "set_country"; country: string }
+  | { operation: "clear_country" }
+  | { operation: "set_birth_date"; year: number; month: number; day: number }
+  | { operation: "clear_birth_date" }
+  | { operation: "add_name"; firstName: string; middleName?: string; lastName: string }
+  | { operation: "add_email"; value: string }
+  | { operation: "add_phone"; value: string }
+  | { operation: "add_address"; value: string }
+  | { operation: "add_national_id"; value: string }
+  | { operation: "add_payment"; paymentType: "iban" | "credit_card"; value: string }
+  | {
+      operation: "remove";
+      field: "name" | "email" | "phone" | "address" | "national_id" | "payment";
+      ref: number;
+    };
 
 function compactWhitespace(value: string): string {
   return value.trim().replace(/\s+/g, " ");
@@ -429,6 +452,19 @@ export function getUserProfile(): UserProfile {
   return result;
 }
 
+export function getProfileMatchValues(): ProfileMatchValue[] {
+  return getGlobalDb()
+    .prepare(
+      `SELECT type, value_normalized
+       FROM profile_match_values`,
+    )
+    .all()
+    .map((row) => {
+      const value = row as ProfileMatchRow;
+      return { type: value.type, value: value.value_normalized };
+    });
+}
+
 export function saveUserProfile(profile: UserProfile): boolean {
   const target = getGlobalDb();
   const country = normalizeCountry(profile.country);
@@ -538,4 +574,82 @@ export function saveUserProfile(profile: UserProfile): boolean {
   }
 
   return !sameKeys(analysisKeysBefore, getProfileAnalysisKeys(target));
+}
+
+export function updateUserProfile(update: UserProfileUpdate): boolean {
+  const profile = getUserProfile();
+  switch (update.operation) {
+    case "set_country":
+      profile.country = update.country;
+      break;
+    case "clear_country":
+      delete profile.country;
+      break;
+    case "set_birth_date":
+      profile.birthDate = {
+        year: update.year,
+        month: update.month,
+        day: update.day,
+      };
+      break;
+    case "clear_birth_date":
+      delete profile.birthDate;
+      break;
+    case "add_name":
+      profile.names.push({
+        id: 0,
+        firstName: update.firstName,
+        middleName: update.middleName,
+        lastName: update.lastName,
+      });
+      break;
+    case "add_email":
+      profile.emails.push({ id: 0, address: update.value });
+      break;
+    case "add_phone":
+      profile.phones.push({ id: 0, number: update.value });
+      break;
+    case "add_address":
+      profile.addresses.push({ id: 0, mode: "raw", raw: update.value });
+      break;
+    case "add_national_id":
+      profile.nationalIds.push({ id: 0, value: update.value });
+      break;
+    case "add_payment":
+      profile.payments.push({
+        id: 0,
+        type: update.paymentType,
+        value: update.value,
+      });
+      break;
+    case "remove":
+      if (update.field === "name") {
+        if (!profile.names.some((entry) => entry.id === update.ref)) throw new Error("Profile value not found");
+        profile.names = profile.names.filter((entry) => entry.id !== update.ref);
+      } else if (update.field === "email") {
+        const email = profile.emails.find((entry) => entry.id === update.ref);
+        if (!email) throw new Error("Profile value not found");
+        const connected = new Set(
+          listAccounts().map((account) => normalizeValue("email", account.email)),
+        );
+        if (connected.has(normalizeValue("email", email.address))) {
+          throw new Error("Connected mailbox addresses cannot be removed from the profile");
+        }
+        profile.emails = profile.emails.filter((entry) => entry.id !== update.ref);
+      } else if (update.field === "phone") {
+        if (!profile.phones.some((entry) => entry.id === update.ref)) throw new Error("Profile value not found");
+        profile.phones = profile.phones.filter((entry) => entry.id !== update.ref);
+      } else if (update.field === "address") {
+        if (!profile.addresses.some((entry) => entry.id === update.ref)) throw new Error("Profile value not found");
+        profile.addresses = profile.addresses.filter((entry) => entry.id !== update.ref);
+      } else if (update.field === "national_id") {
+        if (!profile.nationalIds.some((entry) => entry.id === update.ref)) throw new Error("Profile value not found");
+        profile.nationalIds = profile.nationalIds.filter((entry) => entry.id !== update.ref);
+      } else {
+        if (!profile.payments.some((entry) => entry.id === update.ref)) throw new Error("Profile value not found");
+        profile.payments = profile.payments.filter((entry) => entry.id !== update.ref);
+      }
+      break;
+  }
+  return saveUserProfile(profile);
 }

@@ -1,7 +1,13 @@
 import { ipcMain, shell } from "electron";
 import { IPC } from "@shared/ipc";
 import { isLicenseKey, isString } from "@shared/validation";
-import { activateLicense, getLicenseStatus, deleteLicense, applyAutoLaunch } from "../services/settings";
+import {
+  activateLicense,
+  applyAutoLaunch,
+  deleteLicense,
+  getLicenseStatus,
+  getMcpSetup,
+} from "../services/settings";
 import { saveSetting } from "../services/settings";
 import { getGlobalSetting, saveGlobalSetting } from "../services/globalSettings";
 import { buildAppSettings } from "../services/appSettings";
@@ -32,8 +38,15 @@ export function registerSettingsHandlers(): void {
       throw new Error("Invalid settings");
     }
     const s = settings as Record<string, unknown>;
-    const changedKeys = Object.keys(s).join(", ");
-    dataLog.info(`Settings saved: ${changedKeys}`);
+    const changedKeys = Object.keys(s)
+      .filter((key) => ![
+        "agentAccess",
+        "agentMaskPersonalData",
+        "confirmAgentActions",
+        "confirmAgentUnmask",
+      ].includes(key))
+      .join(", ");
+    if (changedKeys) dataLog.info(`Settings saved: ${changedKeys}`);
 
     if (s.autoLaunch !== undefined) {
       if (typeof s.autoLaunch !== "boolean") throw new Error("Invalid autoLaunch");
@@ -62,7 +75,55 @@ export function registerSettingsHandlers(): void {
       }
       saveGlobalSetting("colorTheme", s.colorTheme);
     }
+
+    if (s.agentAccess !== undefined) {
+      if (
+        s.agentAccess !== "off"
+        && s.agentAccess !== "read"
+        && s.agentAccess !== "actions"
+      ) {
+        throw new Error("Invalid agentAccess");
+      }
+      if (
+        s.agentAccess === "actions"
+        && getGlobalSetting("agentAccess") !== "actions"
+        && s.confirmAgentActions !== true
+      ) {
+        throw new Error("Read & write access requires confirmation");
+      }
+      const previousAgentAccess = getGlobalSetting("agentAccess") ?? "off";
+      if (
+        previousAgentAccess === "off"
+        && s.agentAccess !== "off"
+        && s.agentMaskPersonalData === false
+      ) {
+        throw new Error("Personal-data masking starts on when enabling agent access");
+      }
+      saveGlobalSetting("agentAccess", s.agentAccess);
+      if (previousAgentAccess === "off" && s.agentAccess !== "off") {
+        saveGlobalSetting("agentMaskPersonalData", true);
+        dataLog.info("Agent personal-data masking: on");
+      }
+      dataLog.info(`Agent access changed to: ${s.agentAccess}`);
+    }
+
+    if (s.agentMaskPersonalData !== undefined) {
+      if (typeof s.agentMaskPersonalData !== "boolean") {
+        throw new Error("Invalid agentMaskPersonalData");
+      }
+      if (
+        s.agentMaskPersonalData === false
+        && getGlobalSetting("agentMaskPersonalData") !== false
+        && s.confirmAgentUnmask !== true
+      ) {
+        throw new Error("Disabling personal-data masking requires confirmation");
+      }
+      saveGlobalSetting("agentMaskPersonalData", s.agentMaskPersonalData);
+      dataLog.info(`Agent personal-data masking: ${s.agentMaskPersonalData ? "on" : "off"}`);
+    }
   });
+
+  ipcMain.handle(IPC.getMcpSetup, () => getMcpSetup());
 
   // --- Shell ---
 

@@ -1,0 +1,32 @@
+#!/usr/bin/env sh
+set -eu
+
+RESOURCE_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+# Writes need Electron's safeStorage to decrypt account credentials.
+unset ELECTRON_RUN_AS_NODE
+
+if [ -f "$RESOURCE_DIR/app.asar" ]; then
+  case "$(uname -s)" in
+    Darwin)
+      PAPERWEIGHT_EXECUTABLE="$RESOURCE_DIR/../MacOS/Paperweight"
+      ;;
+    *)
+      PAPERWEIGHT_EXECUTABLE="$RESOURCE_DIR/../paperweight"
+      ;;
+  esac
+  export PAPERWEIGHT_MCP=1
+  exec "$PAPERWEIGHT_EXECUTABLE" "$@"
+else
+  PROJECT_DIR=$(CDPATH= cd -- "$RESOURCE_DIR/../.." && pwd)
+  case "$(uname -s)" in
+    Darwin)
+      PAPERWEIGHT_EXECUTABLE="$PROJECT_DIR/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron"
+      ;;
+    *)
+      PAPERWEIGHT_EXECUTABLE="$PROJECT_DIR/node_modules/electron/dist/electron"
+      ;;
+  esac
+  export PAPERWEIGHT_MCP=1
+  export PAPERWEIGHT_RESOURCES_DIR="$PROJECT_DIR/resources"
+  exec "$PAPERWEIGHT_EXECUTABLE" "$@" "$PROJECT_DIR"
+fi

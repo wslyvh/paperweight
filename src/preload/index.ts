@@ -39,6 +39,8 @@ const api: ElectronAPI = {
 
   saveSettings: (settings) => ipcRenderer.invoke(IPC.saveSettings, settings),
 
+  getMcpSetup: () => ipcRenderer.invoke(IPC.getMcpSetup),
+
   resyncData: () => ipcRenderer.invoke(IPC.resyncData),
 
   wipeData: () => ipcRenderer.invoke(IPC.wipeData),

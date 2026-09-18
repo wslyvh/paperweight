@@ -5,8 +5,8 @@ import {
   CONFIDENCE_OPTIONS,
   compareFindings,
   groupByConfidence,
-} from "../utils/piiConfidence";
-import type { FindingConfidence } from "../utils/piiConfidence";
+} from "@shared/pii-query";
+import type { FindingConfidence } from "@shared/pii-query";
 import { usePiiValueActions } from "../hooks/usePiiValueActions";
 import PiiValueList from "./PiiValueList";
 

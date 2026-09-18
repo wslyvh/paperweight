@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type { PiiCompanyOrder, PiiValue, PiiValueCompany } from "@shared/types";
 import { formatRelativeDate } from "@shared/formatting";
+import { PII_LABELS } from "@shared/pii-query";
 import { ArrowDown, ArrowUp, ChevronRight, CircleCheck, CircleX } from "lucide-react";
 import ActionModal from "./ActionModal";
-import { PII_LABELS } from "../utils/piiLabels";
 
 // The list of found values, shared verbatim by the Personal Data page and the
 // Account Detail "Personal data" panel: same rows, same selection toolbar, same

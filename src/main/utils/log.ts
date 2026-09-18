@@ -25,12 +25,31 @@ function createWorkerLogger() {
   };
 }
 
+function createSilentLogger() {
+  const createScope = () => ({
+    debug: (..._args: unknown[]) => {},
+    info: (..._args: unknown[]) => {},
+    warn: (..._args: unknown[]) => {},
+    error: (..._args: unknown[]) => {},
+    verbose: (..._args: unknown[]) => {},
+  });
+  return {
+    scope: createScope,
+    transports: { file: { getFile: () => ({ path: "" }) } },
+  };
+}
+
+const isMcpProcess = process.env.PAPERWEIGHT_MCP === "1";
+
 let log:
   | ReturnType<typeof createWorkerLogger>
+  | ReturnType<typeof createSilentLogger>
   | import("electron-log").MainLogger;
 
 if (parentPort !== null) {
   log = createWorkerLogger();
+} else if (isMcpProcess) {
+  log = createSilentLogger();
 } else {
   const electronLog = require("electron-log/main").default;
   electronLog.transports.file.level = "info";

@@ -1,4 +1,5 @@
 import { getDb } from "../db";
+import type Database from "better-sqlite3";
 import { toUtcDayString, utcMidnightMs } from "@shared/formatting";
 import type {
   DashboardStats,
@@ -14,8 +15,7 @@ import { caseActivityFilter, mapCaseActivityFields } from "./cases";
 import { PERSONAL_DOMAINS } from "@paperweight/analysis/contracts";
 import { actionableListMailSql } from "./messageVocabulary";
 
-export function getDashboardStats(): DashboardStats {
-  const d = getDb();
+export function getDashboardStats(d: Database.Database = getDb()): DashboardStats {
   const totalMessages = (
     d.prepare("SELECT COUNT(*) as c FROM messages").get() as { c: number }
   ).c;
@@ -176,8 +176,7 @@ export function getDashboardStats(): DashboardStats {
   };
 }
 
-export function getImpactStats(): ImpactStats {
-  const d = getDb();
+export function getImpactStats(d: Database.Database = getDb()): ImpactStats {
   const row = d.prepare(
     `SELECT
       SUM(CASE WHEN action_type = 'unsubscribed' THEN 1 ELSE 0 END) as lists_unsubscribed,

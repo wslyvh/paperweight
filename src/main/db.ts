@@ -102,6 +102,26 @@ export function getDb(): Database.Database {
   return db;
 }
 
+export function withAccountDbReadConnection<T>(
+  dbPath: string,
+  read: (database: Database.Database) => T,
+): T {
+  const database = new Database(dbPath, { fileMustExist: true });
+  try {
+    database.pragma("journal_mode = WAL");
+    database.pragma("foreign_keys = ON");
+    database.pragma("busy_timeout = 5000");
+    initSchema(database);
+    attachCompaniesDb(database);
+    attachBreachesDb(database);
+    attachEnforcementDb(database);
+    database.pragma("query_only = ON");
+    return read(database);
+  } finally {
+    database.close();
+  }
+}
+
 export function reconnectDb(newDbPath: string): void {
   if (db) {
     db.close();

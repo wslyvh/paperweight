@@ -22,6 +22,10 @@ import {
   buildDeletionEmail,
   buildAccessEmail,
 } from "@shared/gdpr/templates";
+import {
+  isNoReplyEmail,
+  pickGdprContactEmail,
+} from "@shared/gdpr/contact";
 import { RISK_CATEGORIES, RISK_LEVELS } from "@shared/vendor-risk";
 import { getRootDomain, parseMailto, PAPERWEIGHT_UNSUB_BODY } from "@shared/utils";
 import {
@@ -62,23 +66,6 @@ function tabClass(active: boolean): string {
       ? "tab-active bg-base-100 shadow-sm"
       : "text-base-content/50 hover:bg-base-100/50 hover:text-base-content/80"
   }`;
-}
-
-function isNoReplyEmail(email: string): boolean {
-  const local = email.split("@")[0]?.toLowerCase() ?? "";
-  return /no[-_.]?reply|do[-_.]?not[-_.]?reply/.test(local);
-}
-
-function pickContactEmail(
-  company: VendorDetail["company"],
-  senders: VendorDetail["senders"],
-): string | undefined {
-  if (company?.email && !isNoReplyEmail(company.email)) return company.email;
-  const nonNoReplySender = senders.find(
-    (s) => s.sender_email && !isNoReplyEmail(s.sender_email),
-  )?.sender_email;
-  if (nonNoReplySender) return nonNoReplySender;
-  return company?.email ?? senders[0]?.sender_email;
 }
 
 function EmailsBySender({
@@ -343,7 +330,7 @@ export default function AccountDetail(): JSX.Element {
             ?? d.user_email
             ?? "",
         );
-        const candidate = pickContactEmail(d.company, d.senders);
+        const candidate = pickGdprContactEmail(d.company, d.senders);
         setRecipientEmail(
           candidate && !isNoReplyEmail(candidate) ? candidate : "",
         );
@@ -488,7 +475,7 @@ export default function AccountDetail(): JSX.Element {
   const hasRiskDetails =
     !!catInfo || !!(company?.runs && company.runs.length > 0);
 
-  const contactEmail = pickContactEmail(company, senders);
+  const contactEmail = pickGdprContactEmail(company, senders);
   const requesterEmail = requestEmail.trim();
   const canBuildRequest = requesterEmail.includes("@");
   const deletionEmail = canBuildRequest

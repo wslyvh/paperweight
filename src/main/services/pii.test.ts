@@ -133,7 +133,9 @@ beforeEach(() => {
 
 describe("maskValue", () => {
   it("reveals only a recognizable hint per type", () => {
-    expect(maskValue("email", "john.doe@example.com")).toBe("j•••@•••.com");
+    expect(maskValue("email", "john.doe@example.com")).toBe("j•••@e••.com");
+    expect(maskValue("email", "person@outlook.com")).toBe("p•••@o••.com");
+    expect(maskValue("email", "person@yahoo.com")).toBe("p•••@y••.com");
     expect(maskValue("iban", "NL91ABNA0417164300")).toBe("NL •••• 4300");
     expect(maskValue("credit_card", "4111111111111111")).toBe("•••• 1111");
     expect(maskValue("phone", "+31612345678")).toBe("+31 •••• 78");
@@ -157,7 +159,7 @@ describe("getVendorPiiSummary", () => {
     expect(values[0]).toEqual({
       ref: first, // representative finding id — the group's lowest
       type: "email",
-      maskedValue: "a•••@•••.com",
+      maskedValue: "a•••@b••.com",
       lastSeen: 200,
       companyCount: 1,
     });
@@ -1074,7 +1076,7 @@ describe("Not mine is a list, not a deletion", () => {
     const [marked] = getPiiOverview().suppressedValues;
     // Same row and opaque ref: the Not mine list can deliberately confirm it.
     expect(marked).toEqual(
-      expect.objectContaining({ ref, type: "email", maskedValue: "a•••@•••.example" }),
+      expect.objectContaining({ ref, type: "email", maskedValue: "a•••@p••.example" }),
     );
 
     expect(confirmPiiFinding(marked.ref)).toBe(true);

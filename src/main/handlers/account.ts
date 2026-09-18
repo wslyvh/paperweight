@@ -23,7 +23,7 @@ import {
 } from "../services/account";
 import { clearSyncData, getSyncState } from "../services/sync";
 import { getStorageBreakdown, accountDbBytes } from "../services/storage";
-import { getProvider } from "../providers/ProviderFactory";
+import { sendEmail } from "../services/email";
 import {
   getSyncStatus,
   startAllSyncs,
@@ -363,19 +363,7 @@ export function registerAccountHandlers(): void {
       if (!isString(subject)) throw new Error("Invalid subject");
       if (!isString(body)) throw new Error("Invalid body");
       if (inReplyTo !== undefined && !isString(inReplyTo)) throw new Error("Invalid inReplyTo");
-      // Log only the recipient domain — the full address is personal data
-      // to the user). Domain alone is enough to debug provider/host issues.
-      const recipientDomain = to.split("@")[1] || "unknown";
-      try {
-        const provider = getProvider();
-        actionLog.info(`Sending email via ${provider.type} to <${recipientDomain}>`);
-        const messageId = await provider.sendEmail(to, subject, body, inReplyTo);
-        return { success: true, messageId };
-      } catch (err) {
-        const msg = err instanceof Error ? err.message : String(err);
-        actionLog.error(`Send email via <${recipientDomain}> failed: ${msg}`);
-        return { success: false, error: msg };
-      }
+      return sendEmail(to, subject, body, inReplyTo);
     },
   );
 

@@ -1,11 +1,11 @@
 import { useEffect, useState, useCallback, useRef, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import type { Vendor, VendorQuery } from "@shared/types";
+import { PII_LABELS, PII_TYPES } from "@shared/pii-query";
 import { RISK_CATEGORIES } from "@shared/vendor-risk";
 import { useLicense } from "../context/LicenseContext";
 import { BadgeCheck, ChevronRight, ChevronLeft, ArrowUpDown, SlidersHorizontal, Check, IdCard } from "lucide-react";
 import { getActivitySignal, ACTIVITY_BADGE } from "../utils/signals";
-import { PII_LABELS, PII_TYPES } from "../utils/piiLabels";
 import ActionModal from "../components/ActionModal";
 import FilterGroup from "../components/FilterGroup";
 

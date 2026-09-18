@@ -29,6 +29,8 @@ describe("buildAppSettings", () => {
       launchMinimized: false,
       userName: "",
       colorTheme: "dim",
+      agentAccess: "off",
+      agentMaskPersonalData: true,
     });
     expect(mockedLoadCredentials).not.toHaveBeenCalled();
     expect(mockedGetSetting).not.toHaveBeenCalled();
@@ -49,6 +51,8 @@ describe("buildAppSettings", () => {
       launchMinimized: false,
       userName: "",
       colorTheme: "silk",
+      agentAccess: "off",
+      agentMaskPersonalData: true,
     });
     expect(mockedLoadCredentials).not.toHaveBeenCalled();
     expect(mockedGetSetting).not.toHaveBeenCalled();
@@ -60,6 +64,7 @@ describe("buildAppSettings", () => {
     mockedGetGlobalSetting.mockImplementation((key) => {
       if (key === "autoLaunch") return true;
       if (key === "launchMinimized") return false;
+      if (key === "agentAccess") return "read";
       return undefined;
     });
     mockedGetSetting.mockImplementation((key) => {
@@ -76,6 +81,8 @@ describe("buildAppSettings", () => {
       launchMinimized: false,
       userName: "Alex",
       colorTheme: "dim",
+      agentAccess: "read",
+      agentMaskPersonalData: true,
     });
     expect(mockedLoadCredentials).toHaveBeenCalledTimes(1);
     expect(mockedGetSetting).toHaveBeenCalledWith("registeredAt");

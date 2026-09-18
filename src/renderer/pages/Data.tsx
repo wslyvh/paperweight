@@ -1,6 +1,13 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { PiiOverview, PiiValue } from "@shared/types";
 import {
+  CONFIDENCE_OPTIONS,
+  PII_LABELS,
+  PII_TYPES,
+  queryPiiOverview,
+} from "@shared/pii-query";
+import type { PiiSort, PiiValueFilter } from "@shared/pii-query";
+import {
   ArrowUpDown,
   BadgeCheck,
   ChevronLeft,
@@ -12,15 +19,8 @@ import {
 import FilterGroup from "../components/FilterGroup";
 import PiiValueList from "../components/PiiValueList";
 import { usePiiValueActions } from "../hooks/usePiiValueActions";
-import {
-  CONFIDENCE_OPTIONS,
-  compareFindings,
-  getFindingConfidence,
-} from "../utils/piiConfidence";
-import type { FindingConfidence } from "../utils/piiConfidence";
-import { PII_LABELS, PII_TYPES } from "../utils/piiLabels";
 
-const SORT_OPTIONS = [
+const SORT_OPTIONS: Array<{ value: PiiSort; label: string }> = [
   { value: "evidence", label: "Evidence" },
   { value: "last_seen", label: "Latest" },
   { value: "last_seen_asc", label: "Oldest" },
@@ -30,16 +30,17 @@ const SORT_OPTIONS = [
 const DEFAULT_SORT = "evidence";
 const PAGE_SIZE = 25;
 const EMPTY_VALUES: PiiValue[] = [];
+const EMPTY_OVERVIEW: PiiOverview = { values: [], suppressedValues: [] };
 
 /** The row-2 filters, which are three separate axes: the user's own correction
  *  (Not mine), a confirmed identity match, and the confidence buckets. */
-type ValueFilter = FindingConfidence | "exact" | "unclassified" | "suppressed" | "";
+type ValueFilter = PiiValueFilter;
 
 export default function Data(): JSX.Element {
   const [overview, setOverview] = useState<PiiOverview>();
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
-  const [sortBy, setSortBy] = useState(DEFAULT_SORT);
+  const [sortBy, setSortBy] = useState<PiiSort>(DEFAULT_SORT);
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState<ValueFilter>("");
   const [typeFilter, setTypeFilter] = useState("");
@@ -96,74 +97,27 @@ export default function Data(): JSX.Element {
 
   const showingSuppressed = filter === "suppressed";
 
-  // Search runs over what is on screen: the type label and the value as
-  // displayed, masked or full while the reveal toggle is on.
-  const searchValues = useCallback(
-    (rows: PiiValue[]) => {
-      let result = rows;
-      if (typeFilter) result = result.filter((v) => v.type === typeFilter);
-      if (search) {
-        const q = search.toLowerCase();
-        result = result.filter(
-          (v) =>
-            PII_LABELS[v.type].toLowerCase().includes(q) ||
-            v.maskedValue.toLowerCase().includes(q) ||
-            !!revealed?.get(v.ref)?.toLowerCase().includes(q),
-        );
-      }
-      return result;
+  const queryResult = useMemo(() => queryPiiOverview(
+    overview ?? EMPTY_OVERVIEW,
+    {
+      page,
+      limit: PAGE_SIZE,
+      search,
+      filter,
+      type: typeFilter ? typeFilter as PiiValue["type"] : undefined,
+      sort: sortBy,
     },
-    [typeFilter, search, revealed],
-  );
+    revealed,
+  ), [filter, overview, page, revealed, search, sortBy, typeFilter]);
 
-  const searched = useMemo(
-    () => searchValues(overview?.values ?? []),
-    [searchValues, overview],
-  );
-  const searchedSuppressed = useMemo(
-    () => searchValues(suppressed),
-    [searchValues, suppressed],
-  );
-
-  const filtered = useMemo(() => {
-    let result = showingSuppressed ? searchedSuppressed : searched;
-    if (filter === "exact") result = result.filter((v) => v.isMatch);
-    else if (filter === "unclassified") result = result.filter((v) => !v.isMatch);
-    else if (filter && filter !== "suppressed") {
-      result = result.filter((v) => getFindingConfidence(v) === filter);
-    }
-    const sorted = [...result];
-    switch (sortBy) {
-      case "last_seen":
-        sorted.sort((a, b) => b.lastSeen - a.lastSeen);
-        break;
-      case "last_seen_asc":
-        sorted.sort((a, b) => a.lastSeen - b.lastSeen);
-        break;
-      case "type":
-        sorted.sort(
-          (a, b) =>
-            PII_TYPES.indexOf(a.type) - PII_TYPES.indexOf(b.type) ||
-            b.lastSeen - a.lastSeen,
-        );
-        break;
-      default:
-        sorted.sort(compareFindings);
-    }
-    return sorted;
-  }, [searched, searchedSuppressed, showingSuppressed, filter, sortBy]);
-
-  const total = filtered.length;
+  const total = queryResult.total;
   const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
   // A shrinking result set can leave page past the last one; snap back so we
   // never show an empty list while matches exist on an earlier page.
   useEffect(() => {
     if (page > totalPages) setPage(totalPages);
   }, [page, totalPages]);
-  const pageValues = filtered.slice(
-    (page - 1) * PAGE_SIZE,
-    page * PAGE_SIZE,
-  );
+  const pageValues = queryResult.items;
 
   const hasAnyFilter = !!(
     search || filter || typeFilter || sortBy !== DEFAULT_SORT || page > 1

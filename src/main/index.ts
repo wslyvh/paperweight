@@ -23,12 +23,14 @@ import type { UpdateInfo } from "@shared/ipc";
 
 let startHidden = false;
 let lastUpdateInfo: UpdateInfo | null = null;
+const isMcpProcess = process.env.PAPERWEIGHT_MCP === "1";
 
 // Isolated seed profile: the directory is the mode. A path here redirects
 // userData and disables automatic sync so fake IMAP credentials are not hit.
 const seedUserDataDir = process.env.PAPERWEIGHT_SEED;
-if (seedUserDataDir) {
-  app.setPath("userData", seedUserDataDir);
+const mcpUserDataDir = process.env.PAPERWEIGHT_USER_DATA;
+if (seedUserDataDir || (isMcpProcess && mcpUserDataDir)) {
+  app.setPath("userData", seedUserDataDir ?? mcpUserDataDir!);
 }
 
 function handleFatalError(err: Error, context: string): void {
@@ -85,7 +87,28 @@ function createWindow(): BrowserWindow {
   return win;
 }
 
+async function startMcpMode(): Promise<void> {
+  const { McpStartupError, runMcpServer } = await import("../mcp/server");
+  try {
+    const quit = () => app.quit();
+    process.stdin.once("end", quit);
+    process.stdin.once("close", quit);
+    await runMcpServer(quit);
+  } catch (error) {
+    const message = error instanceof McpStartupError
+      ? error.message
+      : "Could not start. Check Paperweight data and settings.";
+    process.stderr.write(`paperweight-mcp: ${message}\n`);
+    app.exit(1);
+  }
+}
+
 app.whenReady().then(async () => {
+  if (isMcpProcess) {
+    await startMcpMode();
+    return;
+  }
+
   Menu.setApplicationMenu(null);
   initFileLog(join(app.getPath("logs"), "main.log"));
 
@@ -189,7 +212,7 @@ app.whenReady().then(async () => {
 });
 
 app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") {
+  if (!isMcpProcess && process.platform !== "darwin") {
     app.quit();
   }
 });

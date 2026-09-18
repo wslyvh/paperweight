@@ -1,5 +1,6 @@
 import { join } from "path";
 import { createHash } from "crypto";
+import { AsyncLocalStorage } from "async_hooks";
 import { existsSync, readFileSync, writeFileSync, unlinkSync } from "fs";
 
 import { getGlobalSetting, saveGlobalSetting } from "./services/globalSettings";
@@ -43,6 +44,8 @@ interface AccountRegistry {
   accounts: AccountEntry[];
 }
 
+let _accountRegistryPath: string | undefined;
+
 export function emailToFileKey(email: string): string {
   const normalized = email.toLowerCase();
   const local = normalized.split("@")[0].replace(/[^a-z0-9.-]/g, "_");
@@ -56,9 +59,14 @@ export function accountTag(email: string): string {
 }
 
 function getRegistryPath(): string {
+  if (_accountRegistryPath) return _accountRegistryPath;
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { app } = require("electron") as typeof import("electron");
   return join(app.getPath("userData"), "accounts.json");
+}
+
+export function configureAccountRegistryPath(path: string): void {
+  _accountRegistryPath = path;
 }
 
 function loadRegistry(): AccountRegistry {
@@ -117,6 +125,15 @@ let _preloaded: StoredCredentials | null | undefined = undefined;
 // When true, credentials are saved to/loaded from a staging file.
 // Used during OAuth auth before the account email is known.
 let _stagingMode = false;
+const credentialAccount = new AsyncLocalStorage<string>();
+
+/** Runs provider work against one account without changing the App-active account. */
+export function withCredentialAccount<T>(
+  email: string,
+  action: () => Promise<T>,
+): Promise<T> {
+  return credentialAccount.run(email, action);
+}
 
 export function setPreloadedCredentials(creds: StoredCredentials | null): void {
   _preloaded = creds;
@@ -130,6 +147,7 @@ export function setStagingMode(active: boolean): void {
 export function resetCredentialsModuleState(): void {
   _preloaded = undefined;
   _stagingMode = false;
+  _accountRegistryPath = undefined;
 }
 
 function getCredentialsPath(emailOverride?: string): string {
@@ -140,7 +158,7 @@ function getCredentialsPath(emailOverride?: string): string {
       ? emailOverride
       : _stagingMode
         ? "__staging__"
-        : getActiveEmail();
+        : credentialAccount.getStore() ?? getActiveEmail();
   if (email === "__staging__") {
     return join(app.getPath("userData"), "__staging__.enc");
   }
@@ -170,7 +188,12 @@ export function saveCredentials(creds: StoredCredentials, emailOverride?: string
 
 export function loadCredentials(emailOverride?: string): StoredCredentials | undefined {
   if (_preloaded !== undefined) return _preloaded ?? undefined;
-  if (!emailOverride && !_stagingMode && !getActiveEmail()) return undefined;
+  if (
+    !emailOverride
+    && !_stagingMode
+    && !credentialAccount.getStore()
+    && !getActiveEmail()
+  ) return undefined;
 
   // Main thread path — use safeStorage
   // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -196,7 +219,12 @@ export function loadCredentials(emailOverride?: string): StoredCredentials | und
 }
 
 export function deleteCredentials(emailOverride?: string) {
-  if (!emailOverride && !_stagingMode && !getActiveEmail()) return undefined;
+  if (
+    !emailOverride
+    && !_stagingMode
+    && !credentialAccount.getStore()
+    && !getActiveEmail()
+  ) return undefined;
   const path = getCredentialsPath(emailOverride);
   if (existsSync(path)) {
     unlinkSync(path);
@@ -204,6 +232,11 @@ export function deleteCredentials(emailOverride?: string) {
 }
 
 export function hasCredentials(emailOverride?: string) {
-  if (!emailOverride && !_stagingMode && !getActiveEmail()) return false;
+  if (
+    !emailOverride
+    && !_stagingMode
+    && !credentialAccount.getStore()
+    && !getActiveEmail()
+  ) return false;
   return existsSync(getCredentialsPath(emailOverride));
 }

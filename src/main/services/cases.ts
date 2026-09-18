@@ -1,4 +1,5 @@
 import { getDb } from "../db";
+import type Database from "better-sqlite3";
 import {
   REMINDER_AFTER_DAYS,
   FOLLOWUP_AFTER_DAYS,
@@ -341,8 +342,10 @@ export function getGdprCaseById(id: number): GdprCaseDetail | undefined {
   };
 }
 
-export function queryGdprCases(filter?: { status?: GdprCaseStatus; vendorId?: number }): GdprCaseSummary[] {
-  const d = getDb();
+export function queryGdprCases(
+  filter?: { status?: GdprCaseStatus; vendorId?: number },
+  d: Database.Database = getDb(),
+): GdprCaseSummary[] {
   const conditions: string[] = [];
   const params: unknown[] = [];
   if (filter?.status) {
