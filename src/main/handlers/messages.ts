@@ -9,6 +9,7 @@ import {
   markVendorUnsubscribed,
 } from "../services/messages";
 import { addWhitelistEntry, removeWhitelistEntry, getWhitelistEntries } from "../services/settings";
+import { executeRfc8058Unsubscribe } from "../services/unsubscribe";
 import { actionLog } from "../utils/log";
 
 export function registerMessageHandlers(): void {
@@ -21,20 +22,7 @@ export function registerMessageHandlers(): void {
     if (!isString(url) || !url.startsWith("https://")) {
       throw new Error("Invalid URL: must be https");
     }
-    try {
-      const resp = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: "List-Unsubscribe=One-Click",
-      });
-      actionLog.info(`RFC 8058 unsubscribe POST: ${resp.status}`);
-      if (resp.ok) return { success: true };
-      return { success: false, error: `Server returned HTTP ${resp.status}` };
-    } catch (err) {
-      const msg = err instanceof Error ? err.message : String(err);
-      actionLog.error("RFC 8058 POST failed:", msg);
-      return { success: false, error: msg };
-    }
+    return executeRfc8058Unsubscribe(url);
   });
 
   ipcMain.handle(IPC.markUnsubscribed, (_event, email: unknown) => {

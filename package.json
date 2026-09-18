@@ -11,7 +11,7 @@
     "dev:local": "tsx scripts/dev-local.ts",
     "prebuild": "yarn build:companies && yarn build:breaches && yarn build:enforcement",
     "build": "electron-vite build",
-    "mcp": "cross-env ELECTRON_RUN_AS_NODE=1 electron out/main/mcp.js",
+    "mcp": "cross-env PAPERWEIGHT_MCP=1 electron .",
     "preview": "electron-vite preview",
     "typecheck:node": "tsc --noEmit -p tsconfig.node.json",
     "typecheck:web": "tsc --noEmit -p tsconfig.web.json",

@@ -30,6 +30,7 @@ describe("buildAppSettings", () => {
       userName: "",
       colorTheme: "dim",
       agentAccess: "off",
+      agentMaskPersonalData: true,
     });
     expect(mockedLoadCredentials).not.toHaveBeenCalled();
     expect(mockedGetSetting).not.toHaveBeenCalled();
@@ -51,6 +52,7 @@ describe("buildAppSettings", () => {
       userName: "",
       colorTheme: "silk",
       agentAccess: "off",
+      agentMaskPersonalData: true,
     });
     expect(mockedLoadCredentials).not.toHaveBeenCalled();
     expect(mockedGetSetting).not.toHaveBeenCalled();
@@ -80,6 +82,7 @@ describe("buildAppSettings", () => {
       userName: "Alex",
       colorTheme: "dim",
       agentAccess: "read",
+      agentMaskPersonalData: true,
     });
     expect(mockedLoadCredentials).toHaveBeenCalledTimes(1);
     expect(mockedGetSetting).toHaveBeenCalledWith("registeredAt");

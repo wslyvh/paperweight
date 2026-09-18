@@ -2,6 +2,8 @@
 set -eu
 
 RESOURCE_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+# Writes need Electron's safeStorage to decrypt account credentials.
+unset ELECTRON_RUN_AS_NODE
 
 if [ -f "$RESOURCE_DIR/app.asar" ]; then
   case "$(uname -s)" in
@@ -12,7 +14,8 @@ if [ -f "$RESOURCE_DIR/app.asar" ]; then
       PAPERWEIGHT_EXECUTABLE="$RESOURCE_DIR/../paperweight"
       ;;
   esac
-  MCP_ENTRYPOINT="$RESOURCE_DIR/app.asar/out/main/mcp.js"
+  export PAPERWEIGHT_MCP=1
+  exec "$PAPERWEIGHT_EXECUTABLE" "$@"
 else
   PROJECT_DIR=$(CDPATH= cd -- "$RESOURCE_DIR/../.." && pwd)
   case "$(uname -s)" in
@@ -23,8 +26,7 @@ else
       PAPERWEIGHT_EXECUTABLE="$PROJECT_DIR/node_modules/electron/dist/electron"
       ;;
   esac
-  MCP_ENTRYPOINT="$PROJECT_DIR/out/main/mcp.js"
+  export PAPERWEIGHT_MCP=1
+  export PAPERWEIGHT_RESOURCES_DIR="$PROJECT_DIR/resources"
+  exec "$PAPERWEIGHT_EXECUTABLE" "$@" "$PROJECT_DIR"
 fi
-
-export ELECTRON_RUN_AS_NODE=1
-exec "$PAPERWEIGHT_EXECUTABLE" "$MCP_ENTRYPOINT" "$@"

@@ -542,7 +542,13 @@ export interface Settings {
   userName?: string;
   colorTheme?: "dim" | "silk";
   agentAccess?: AgentAccess;
+  agentMaskPersonalData?: boolean;
 }
+
+export type SettingsUpdate = Partial<Settings> & {
+  confirmAgentActions?: boolean;
+  confirmAgentUnmask?: boolean;
+};
 
 export interface LicenseStatus {
   active: boolean;

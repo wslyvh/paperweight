@@ -25,6 +25,7 @@ import {
   resetCredentialsModuleState,
   saveCredentials,
   setStagingMode,
+  withCredentialAccount,
 } from "./credentials";
 import { resetGlobalSettingsCache } from "./services/globalSettings";
 
@@ -107,6 +108,31 @@ describe("credentials with active account", () => {
     deleteCredentials();
 
     expect(existsSync(credPath)).toBe(false);
+  });
+
+  it("scopes provider credential reads and refresh writes without changing the active account", async () => {
+    const activeCredentials = {
+      providerType: "gmail" as const,
+      gmail: { accessToken: "active", refreshToken: "active-refresh", expiresAt: 1 },
+    };
+    const selectedCredentials = {
+      providerType: "gmail" as const,
+      gmail: { accessToken: "selected", refreshToken: "selected-refresh", expiresAt: 1 },
+    };
+    const selectedEmail = "selected@example.com";
+    saveCredentials(activeCredentials);
+    saveCredentials(selectedCredentials, selectedEmail);
+
+    await withCredentialAccount(selectedEmail, async () => {
+      expect(loadCredentials()).toEqual(selectedCredentials);
+      saveCredentials({
+        ...selectedCredentials,
+        gmail: { ...selectedCredentials.gmail, accessToken: "refreshed" },
+      });
+    });
+
+    expect(loadCredentials()).toEqual(activeCredentials);
+    expect(loadCredentials(selectedEmail)?.gmail?.accessToken).toBe("refreshed");
   });
 });
 

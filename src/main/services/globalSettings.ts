@@ -11,6 +11,7 @@ interface GlobalSettings {
   activeAccount?: string;
   colorTheme?: "dim" | "silk";
   agentAccess?: AgentAccess;
+  agentMaskPersonalData?: boolean;
 }
 
 export function getGlobalSetting<K extends keyof GlobalSettings>(key: K): GlobalSettings[K] {

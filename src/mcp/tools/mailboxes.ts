@@ -1,8 +1,12 @@
 import { McpServer } from "@modelcontextprotocol/server";
 import { z } from "zod";
+import { READ_ONLY_TOOL_ANNOTATIONS, WRITE_TOOL_ANNOTATIONS } from "../annotations";
+import { agentToolResult } from "../payload";
 import { queryGdprCases } from "../../main/services/cases";
+import { getDb } from "../../main/db";
 import { getDashboardStats, getImpactStats } from "../../main/services/stats";
 import { getSyncState } from "../../main/services/sync";
+import { emailToFileKey } from "../../main/credentials";
 import {
   findMailbox,
   getAppActiveMailbox,
@@ -12,7 +16,7 @@ import {
   isMailboxAvailable,
   readAccessError,
   selectMailbox,
-  withMailboxDatabase,
+  readMailboxDatabase,
 } from "../runtime";
 
 const overviewSummarySchema = z.object({
@@ -34,11 +38,11 @@ const overviewSummarySchema = z.object({
   }),
 });
 
-function getOverviewSummary() {
-  const stats = getDashboardStats();
-  const activeCases = queryGdprCases({ status: "active" });
+function getOverviewSummary(database = getDb()) {
+  const stats = getDashboardStats(database);
+  const activeCases = queryGdprCases({ status: "active" }, database);
   return {
-    lastSyncAt: getSyncState().last_sync_at,
+    lastSyncAt: getSyncState(database).last_sync_at,
     totalMessages: stats.totalMessages,
     accountCount: stats.uniqueVendors,
     reviewedAccountCount: stats.reviewedVendors,
@@ -49,8 +53,36 @@ function getOverviewSummary() {
     actionedMailingListCount: stats.mailingListsActioned,
     activePrivacyCaseCount: activeCases.length,
     privacyCasesNeedingAttentionCount: activeCases.filter((item) => item.nextAction).length,
-    impact: getImpactStats(),
+    impact: getImpactStats(database),
   };
+}
+
+export function selectMailboxResult(key: string) {
+  const account = findMailbox(key);
+  if (!account) {
+    return {
+      content: [{ type: "text" as const, text: "That mailbox is not registered in Paperweight." }],
+      isError: true,
+    };
+  }
+  if (!isMailboxAvailable(account.email)) {
+    return {
+      content: [{ type: "text" as const, text: "That mailbox data is unavailable." }],
+      isError: true,
+    };
+  }
+  if (emailToFileKey(account.email) === getSelectedMailbox()) {
+    return agentToolResult({
+      selectedMailbox: key,
+      appActiveMailbox: getAppActiveMailbox(),
+      changed: false,
+    });
+  }
+  return agentToolResult({
+    selectedMailbox: key,
+    appActiveMailbox: getAppActiveMailbox(),
+    changed: selectMailbox(key),
+  });
 }
 
 export function registerMailboxTools(server: McpServer): void {
@@ -58,11 +90,13 @@ export function registerMailboxTools(server: McpServer): void {
     "list_mailboxes",
     {
       description: "List Paperweight mailboxes with scalar Dashboard summaries and show which mailbox the app and this MCP session currently use.",
+      annotations: READ_ONLY_TOOL_ANNOTATIONS,
       inputSchema: z.object({}),
       outputSchema: z.object({
         selectedMailbox: z.string(),
         appActiveMailbox: z.string().optional(),
         mailboxes: z.array(z.object({
+          key: z.string(),
           email: z.string(),
           providerType: z.string(),
           registeredAt: z.number().nonnegative().optional(),
@@ -86,26 +120,24 @@ export function registerMailboxTools(server: McpServer): void {
             let summary: ReturnType<typeof getOverviewSummary> | undefined;
             if (isAvailable) {
               try {
-                summary = withMailboxDatabase(account.email, getOverviewSummary);
+                summary = readMailboxDatabase(account.email, getOverviewSummary);
               } catch {
                 summary = undefined;
               }
             }
             return {
+              key: emailToFileKey(account.email),
               email: account.email,
               providerType: account.providerType,
               registeredAt: account.registeredAt,
-              isAppActive: account.email === appActiveMailbox,
-              isMcpSelected: account.email === selectedMailbox,
+              isAppActive: emailToFileKey(account.email) === appActiveMailbox,
+              isMcpSelected: emailToFileKey(account.email) === selectedMailbox,
               isAvailable,
               summary,
             };
           }),
         };
-        return {
-          content: [{ type: "text" as const, text: JSON.stringify(response) }],
-          structuredContent: response,
-        };
+        return agentToolResult(response);
       } catch {
         return {
           content: [{ type: "text" as const, text: "Paperweight could not list mailboxes." }],
@@ -118,10 +150,11 @@ export function registerMailboxTools(server: McpServer): void {
   server.registerTool(
     "select_mailbox",
     {
-      description: "Select the mailbox used by this MCP session without changing the mailbox selected in the Paperweight app.",
+      description: "Switch this MCP session to another mailbox. Do not call this unless they named a different mailbox. This does not change the mailbox selected in the Paperweight app.",
+      annotations: WRITE_TOOL_ANNOTATIONS,
       inputSchema: z.object({
-        email: z.string().trim().email().max(320)
-          .describe("A mailbox email returned by list_mailboxes."),
+        key: z.string().trim().min(1).max(200)
+          .describe("A mailbox key returned by list_mailboxes."),
       }),
       outputSchema: z.object({
         selectedMailbox: z.string(),
@@ -129,31 +162,10 @@ export function registerMailboxTools(server: McpServer): void {
         changed: z.boolean(),
       }),
     },
-    async ({ email }) => {
+    async ({ key }) => {
       if (!hasReadAccess()) return readAccessError();
       try {
-        const account = findMailbox(email);
-        if (!account) {
-          return {
-            content: [{ type: "text" as const, text: "That mailbox is not registered in Paperweight." }],
-            isError: true,
-          };
-        }
-        if (!isMailboxAvailable(account.email)) {
-          return {
-            content: [{ type: "text" as const, text: "That mailbox data is unavailable." }],
-            isError: true,
-          };
-        }
-        const response = {
-          selectedMailbox: account.email,
-          appActiveMailbox: getAppActiveMailbox(),
-          changed: selectMailbox(account.email),
-        };
-        return {
-          content: [{ type: "text" as const, text: JSON.stringify(response) }],
-          structuredContent: response,
-        };
+        return selectMailboxResult(key);
       } catch {
         return {
           content: [{ type: "text" as const, text: "Paperweight could not select that mailbox." }],
@@ -167,6 +179,7 @@ export function registerMailboxTools(server: McpServer): void {
     "get_overview",
     {
       description: "Get the scalar Dashboard stats, impact, and action counts for the selected mailbox.",
+      annotations: READ_ONLY_TOOL_ANNOTATIONS,
       inputSchema: z.object({}),
       outputSchema: overviewSummarySchema.extend({
         mailbox: z.string(),
@@ -185,10 +198,7 @@ export function registerMailboxTools(server: McpServer): void {
           providerType: account?.providerType ?? "unknown",
           registeredAt: account?.registeredAt,
         };
-        return {
-          content: [{ type: "text" as const, text: JSON.stringify(response) }],
-          structuredContent: response,
-        };
+        return agentToolResult(response);
       } catch {
         return {
           content: [{

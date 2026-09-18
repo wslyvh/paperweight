@@ -21,7 +21,7 @@ function value(
 describe("queryPiiOverview", () => {
   const overview: PiiOverview = {
     values: [
-      value(1, "email", "a•••@•••.com", 3),
+      value(1, "email", "a•••@e••.com", 3),
       value(2, "phone", "+31 •••• 42", 1, { isForeignFormat: true }),
       value(3, "iban", "NL •••• 1234", 1, { isMatch: true }),
     ],

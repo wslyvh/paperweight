@@ -31,7 +31,7 @@ import {
   resetGlobalDb,
 } from "../globalDb";
 import { emailToFileKey } from "../credentials";
-import { getUserProfile, saveUserProfile } from "./profile";
+import { getUserProfile, saveUserProfile, updateUserProfile } from "./profile";
 import { seedProfileEmailsFromAccounts } from "./profileSeed";
 
 function emptyProfile(overrides?: Partial<UserProfile>): UserProfile {
@@ -477,5 +477,42 @@ describe("profile service", () => {
     expect(saveUserProfile(changedBirthDate)).toBe(true);
     expect(saveUserProfile(withoutBirthDate)).toBe(true);
     expect(saveUserProfile(withoutBirthDate)).toBe(false);
+  });
+
+  it("applies focused profile additions and removals without replacing other values", () => {
+    saveUserProfile(emptyProfile({
+      names: [{ id: -1, firstName: "Ada", lastName: "Example" }],
+      phones: [{ id: -2, number: "+31 6 1234 5678" }],
+    }));
+
+    expect(updateUserProfile({
+      operation: "add_address",
+      value: "Keizersgracht 1, 1015 CC Amsterdam",
+    })).toBe(true);
+    let profile = getUserProfile();
+    expect(profile.names).toHaveLength(1);
+    expect(profile.phones).toHaveLength(1);
+    expect(profile.addresses).toHaveLength(1);
+
+    expect(updateUserProfile({
+      operation: "remove",
+      field: "phone",
+      ref: profile.phones[0].id,
+    })).toBe(true);
+    profile = getUserProfile();
+    expect(profile.names).toHaveLength(1);
+    expect(profile.phones).toHaveLength(0);
+    expect(profile.addresses).toHaveLength(1);
+  });
+
+  it("does not remove a connected mailbox address through a focused update", () => {
+    expect(seedProfileEmailsFromAccounts()).toBe(1);
+    const connected = getUserProfile().emails[0];
+
+    expect(() => updateUserProfile({
+      operation: "remove",
+      field: "email",
+      ref: connected.id,
+    })).toThrow("Connected mailbox addresses cannot be removed");
   });
 });

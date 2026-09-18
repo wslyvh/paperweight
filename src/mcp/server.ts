@@ -1,6 +1,7 @@
 import { McpServer } from "@modelcontextprotocol/server";
-import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
-import { initializePaperweight } from "./runtime";
+import { serveStdio } from "@modelcontextprotocol/server/stdio";
+import { bindApprovalServer } from "./elicitation";
+import { hasWriteAccess, initializePaperweight } from "./runtime";
 import { registerActivityTools } from "./tools/activity";
 import { registerCaseTools } from "./tools/cases";
 import { registerCompanyTools } from "./tools/companies";
@@ -9,21 +10,30 @@ import { registerPersonalDataTools } from "./tools/personalData";
 
 export { McpStartupError } from "./runtime";
 
-function createServer(): McpServer {
+function createServer(includeWrites: boolean): McpServer {
   const server = new McpServer({
     name: "paperweight",
     version: "0.1.0",
   });
+  bindApprovalServer(server);
   registerMailboxTools(server);
-  registerCompanyTools(server);
-  registerCaseTools(server);
-  registerPersonalDataTools(server);
+  registerCompanyTools(server, includeWrites);
+  registerCaseTools(server, includeWrites);
+  registerPersonalDataTools(server, includeWrites);
   registerActivityTools(server);
   return server;
 }
 
-export async function runMcpServer(): Promise<void> {
+export async function runMcpServer(onClose?: () => void): Promise<void> {
   initializePaperweight();
-  const server = createServer();
-  await server.connect(new StdioServerTransport());
+  await new Promise<void>((resolve) => {
+    serveStdio(() => {
+      const server = createServer(hasWriteAccess());
+      server.server.onclose = () => {
+        onClose?.();
+        resolve();
+      };
+      return server;
+    });
+  });
 }

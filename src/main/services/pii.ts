@@ -26,7 +26,7 @@ export function maskValue(type: PiiType, normalized: string): string {
     case "email": {
       const [local = "", domain = ""] = v.split("@");
       const tld = domain.split(".").pop() ?? "";
-      return `${local[0] ?? "•"}•••@•••.${tld}`;
+      return `${local[0] ?? "•"}•••@${domain[0] ?? "•"}••.${tld}`;
     }
     case "iban":
       return `${v.slice(0, 2)} •••• ${v.slice(-4)}`;
@@ -554,7 +554,7 @@ export function getPiiValueCompanies(
 }
 
 // The one place a full value leaves the main process, and only when the user
-// asks: the review UI can't judge "is this mine?" from `a•••@•••.com`. The
+// asks: the review UI can't judge "is this mine?" from `a•••@e••.com`. The
 // renderer holds what comes back in memory for as long as the toggle is on and
 // never stores it. Rows are keyed by the same `ref` the list handed out, so the
 // caller matches them up without learning anything new about the grouping. Both
@@ -575,6 +575,19 @@ export function revealPiiValues(): PiiRevealedValue[] {
       `${GLOBAL_VALUES_CTE} SELECT MIN(ref) AS ref, value ${GLOBAL_VALUES_GROUP}`,
     )
     .all() as PiiRevealedValue[];
+}
+
+export function getPiiFindingValues(): Array<{ type: PiiType; value: string }> {
+  return getDb()
+    .prepare(
+      `SELECT DISTINCT type, value_normalized
+       FROM pii_findings`,
+    )
+    .all()
+    .map((row) => {
+      const value = row as { type: PiiType; value_normalized: string };
+      return { type: value.type, value: value.value_normalized };
+    });
 }
 
 // Resolve the renderer's opaque handle back to the pair suppression is keyed on.

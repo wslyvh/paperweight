@@ -1,21 +1,49 @@
 import { McpServer } from "@modelcontextprotocol/server";
 import { z } from "zod";
 import { FINDING_TYPES } from "@paperweight/analysis/contracts";
+import { withCredentialAccount } from "../../main/credentials";
+import {
+  spamVendorMessages,
+  trashVendorMessages,
+} from "../../main/services/account";
 import { queryGdprCases } from "../../main/services/cases";
 import { getAllUnsubscribeMethodsForVendor } from "../../main/services/messages";
-import { getVendorPiiSummary } from "../../main/services/pii";
-import { getWhitelistEntries } from "../../main/services/settings";
-import { getVendorDetail, queryVendors } from "../../main/services/vendors";
+import {
+  getVendorPiiSummary,
+  revealVendorPiiValues,
+} from "../../main/services/pii";
+import {
+  addWhitelistEntry,
+  getWhitelistEntries,
+  removeWhitelistEntry,
+} from "../../main/services/settings";
+import { unsubscribeVendor } from "../../main/services/unsubscribe";
+import {
+  getVendorDetail,
+  queryVendors,
+  updateVendor,
+} from "../../main/services/vendors";
 import { RISK_CATEGORIES } from "../../shared/vendor-risk";
+import { MARKETING_ACTION_TYPES } from "../../shared/types";
 import type { Vendor, VendorQuery } from "../../shared/types";
+import { isEmailOrDomain } from "../../shared/validation";
+import { READ_ONLY_TOOL_ANNOTATIONS, WRITE_TOOL_ANNOTATIONS } from "../annotations";
+import { agentToolResult } from "../payload";
+import { mailboxReference, parseMailboxReference } from "../identifiers";
 import {
   getSelectedMailbox,
   hasReadAccess,
+  hasWriteAccess,
   readAccessError,
+  requireSelectedMailbox,
+  withSelectedMailboxAction,
+  writeAccessError,
 } from "../runtime";
 
 const categoryValues = Object.keys(RISK_CATEGORIES) as [string, ...string[]];
 const riskSchema = z.enum(["high", "medium", "low", "unknown"]);
+const mailboxSchema = z.string().trim().min(1).max(200)
+  .describe("The mailbox key currently selected in this MCP session.");
 
 const breachSchema = z.object({
   name: z.string(),
@@ -102,7 +130,7 @@ function companyKey(vendor: Vendor): string {
 
 function mapCompanySummary(vendor: Vendor) {
   return {
-    key: companyKey(vendor),
+    key: mailboxReference(companyKey(vendor)),
     name: vendor.name,
     domain: vendor.root_domain ?? undefined,
     category: vendor.category_id ?? undefined,
@@ -134,11 +162,12 @@ function companySort(sort: z.infer<typeof searchCompaniesInputSchema>["sort"]): 
   return { sortBy: "message_count", sortDir: "DESC" };
 }
 
-export function registerCompanyTools(server: McpServer): void {
+export function registerCompanyTools(server: McpServer, includeWrites: boolean): void {
   server.registerTool(
     "search_companies",
     {
       description: "Search the same Accounts or Mailing Lists data and filters shown in Paperweight.",
+      annotations: READ_ONLY_TOOL_ANNOTATIONS,
       inputSchema: searchCompaniesInputSchema,
       outputSchema: z.object({
         mailbox: z.string(),
@@ -179,10 +208,7 @@ export function registerCompanyTools(server: McpServer): void {
           limit: input.limit,
           items: result.vendors.map(mapCompanySummary),
         };
-        return {
-          content: [{ type: "text" as const, text: JSON.stringify(response) }],
-          structuredContent: response,
-        };
+        return agentToolResult(response);
       } catch {
         return {
           content: [{ type: "text" as const, text: "Paperweight could not search companies." }],
@@ -195,7 +221,8 @@ export function registerCompanyTools(server: McpServer): void {
   server.registerTool(
     "get_company",
     {
-      description: "Get the company detail Paperweight displays, including bounded previews and masked personal data.",
+      description: "Get the company detail Paperweight displays, including bounded previews. Personal data follows the masking choice in Settings.",
+      annotations: READ_ONLY_TOOL_ANNOTATIONS,
       inputSchema: z.object({
         key: z.string().trim().min(1).max(500)
           .describe("The key returned by search_companies."),
@@ -244,7 +271,7 @@ export function registerCompanyTools(server: McpServer): void {
           values: z.array(piiValueSchema),
         }),
         privacyCases: z.array(z.object({
-          id: z.number().int().positive(),
+          id: z.string(),
           requestType: z.enum(["access", "deletion"]),
           status: z.enum(["active", "closed"]),
           outcome: z.enum(["resolved", "escalated"]).optional(),
@@ -259,7 +286,7 @@ export function registerCompanyTools(server: McpServer): void {
           messageCount: z.number().int().nonnegative(),
           sizeBytes: z.number().int().nonnegative(),
           actionedAt: z.number().nonnegative(),
-          caseId: z.number().int().positive().optional(),
+          caseId: z.string().optional(),
           caseRequestType: z.enum(["access", "deletion"]).optional(),
           caseOutcome: z.enum(["resolved", "escalated"]).optional(),
         })),
@@ -268,7 +295,7 @@ export function registerCompanyTools(server: McpServer): void {
     async ({ key }) => {
       if (!hasReadAccess()) return readAccessError();
       try {
-        const detail = getVendorDetail(key);
+        const detail = getVendorDetail(parseMailboxReference(key));
         const pii = getVendorPiiSummary(detail.vendor.id);
         const cases = queryGdprCases({ vendorId: detail.vendor.id });
         const unsubscribeEntries = getAllUnsubscribeMethodsForVendor(detail.vendor.id);
@@ -277,7 +304,13 @@ export function registerCompanyTools(server: McpServer): void {
           if (entry.url.toLowerCase().startsWith("mailto:")) return "email" as const;
           return "browser" as const;
         }))];
-        const piiValues = pii.values.slice(0, 100).map(({ ref: _ref, ...value }) => value);
+        const revealedPiiValues = new Map(
+          revealVendorPiiValues(detail.vendor.id).map((item) => [item.ref, item.value]),
+        );
+        const piiValues = pii.values.slice(0, 100).map(({ ref, ...value }) => ({
+          ...value,
+          maskedValue: revealedPiiValues.get(ref) ?? value.maskedValue,
+        }));
         const response = {
           mailbox: getSelectedMailbox(),
           company: {
@@ -329,7 +362,7 @@ export function registerCompanyTools(server: McpServer): void {
             values: piiValues,
           },
           privacyCases: cases.slice(0, 50).map((item) => ({
-            id: item.id,
+            id: mailboxReference(item.id),
             requestType: item.requestType,
             status: item.status,
             outcome: item.outcome,
@@ -344,18 +377,339 @@ export function registerCompanyTools(server: McpServer): void {
             messageCount: item.messageCount,
             sizeBytes: item.sizeBytes,
             actionedAt: item.actionedAt,
-            caseId: item.caseId,
+            caseId: item.caseId ? mailboxReference(item.caseId) : undefined,
             caseRequestType: item.caseRequestType,
             caseOutcome: item.caseOutcome,
           })),
         };
-        return {
-          content: [{ type: "text" as const, text: JSON.stringify(response) }],
-          structuredContent: response,
-        };
+        return agentToolResult(response);
       } catch {
         return {
           content: [{ type: "text" as const, text: "Paperweight could not find that company." }],
+          isError: true,
+        };
+      }
+    },
+  );
+
+  if (includeWrites) server.registerTool(
+    "unsubscribe_company",
+    {
+      description: "Unsubscribe from a company. Sends a one-click request or email when possible. If the list only has a web page, return that url so the user can open it. Never tell them to use the Paperweight app.",
+      annotations: {
+        readOnlyHint: false,
+        destructiveHint: true,
+        idempotentHint: false,
+        openWorldHint: true,
+      },
+      inputSchema: z.object({
+        mailbox: mailboxSchema,
+        key: z.string().trim().min(1).max(500)
+          .describe("The key returned by search_companies."),
+      }),
+      outputSchema: z.object({
+        mailbox: z.string(),
+        company: z.object({
+          key: z.string(),
+          name: z.string(),
+          domain: z.string().optional(),
+        }),
+        status: z.enum(["unsubscribed", "manual_required", "not_available", "failed"]),
+        method: z.enum(["one_click", "email", "browser"]).optional(),
+        url: z.string().min(1).optional()
+          .describe("Unsubscribe page. Show this URL to the user."),
+      }),
+    },
+    async ({ mailbox: requestedMailbox, key }) => {
+      if (!hasWriteAccess()) return writeAccessError();
+      try {
+        requireSelectedMailbox(requestedMailbox);
+        const companyReference = parseMailboxReference(key);
+        const { detail, result } = await withSelectedMailboxAction(
+          async (selectedMailbox) => {
+            const selectedDetail = getVendorDetail(companyReference);
+            const selectedResult = await withCredentialAccount(
+              selectedMailbox,
+              () => unsubscribeVendor(selectedDetail.vendor.id),
+            );
+            return {
+              detail: selectedDetail,
+              result: selectedResult,
+            };
+          },
+        );
+        const response = {
+          mailbox: requestedMailbox,
+          company: {
+            key: mailboxReference(companyKey(detail.vendor), requestedMailbox),
+            name: detail.vendor.name,
+            domain: detail.vendor.root_domain ?? undefined,
+          },
+          status: result.status,
+          method: result.method,
+          ...(result.url ? { url: result.url } : {}),
+        };
+        const toolResult = agentToolResult(response, result.status === "failed");
+        if (result.status === "manual_required" && result.url) {
+          return {
+            ...toolResult,
+            content: [{
+              type: "text" as const,
+              text: `Open this unsubscribe page:\n${result.url}`,
+            }],
+          };
+        }
+        if (result.status === "not_available") {
+          return {
+            ...toolResult,
+            content: [{
+              type: "text" as const,
+              text: "No unsubscribe link or email is on file for this company.",
+            }],
+          };
+        }
+        return toolResult;
+      } catch (error) {
+        const message = error instanceof Error && error.message.startsWith("This action belongs to")
+          ? error.message
+          : "Paperweight could not unsubscribe from that company.";
+        return {
+          content: [{ type: "text" as const, text: message }],
+          isError: true,
+        };
+      }
+    },
+  );
+
+  if (includeWrites) server.registerTool(
+    "set_company_reviewed",
+    {
+      description: "Mark a Paperweight company as reviewed or return it to the unreviewed Accounts list.",
+      annotations: WRITE_TOOL_ANNOTATIONS,
+      inputSchema: z.object({
+        mailbox: mailboxSchema,
+        key: z.string().trim().min(1).max(500)
+          .describe("The key returned by search_companies."),
+        reviewed: z.boolean(),
+      }),
+      outputSchema: z.object({
+        mailbox: z.string(),
+        companyKey: z.string(),
+        reviewed: z.boolean(),
+      }),
+    },
+    async ({ mailbox, key, reviewed }) => {
+      if (!hasWriteAccess()) return writeAccessError();
+      try {
+        requireSelectedMailbox(mailbox);
+        const detail = getVendorDetail(parseMailboxReference(key));
+        updateVendor(detail.vendor.id, {
+          status: reviewed ? "reviewed" : undefined,
+        });
+        const response = {
+          mailbox,
+          companyKey: mailboxReference(companyKey(detail.vendor), mailbox),
+          reviewed,
+        };
+        return agentToolResult(response);
+      } catch {
+        return {
+          content: [{ type: "text" as const, text: "Paperweight could not update that company." }],
+          isError: true,
+        };
+      }
+    },
+  );
+
+  if (includeWrites) server.registerTool(
+    "set_company_account_email",
+    {
+      description: "Set the user's account or login email for a company, as shown on the company detail page.",
+      annotations: WRITE_TOOL_ANNOTATIONS,
+      inputSchema: z.object({
+        mailbox: mailboxSchema,
+        key: z.string().trim().min(1).max(500)
+          .describe("The key returned by search_companies."),
+        email: z.string().trim().email().max(320),
+      }),
+      outputSchema: z.object({
+        mailbox: z.string(),
+        companyKey: z.string(),
+        accountEmail: z.string(),
+      }),
+    },
+    async ({ mailbox, key, email }) => {
+      if (!hasWriteAccess()) return writeAccessError();
+      try {
+        requireSelectedMailbox(mailbox);
+        const detail = getVendorDetail(parseMailboxReference(key));
+        updateVendor(detail.vendor.id, { account_email: email });
+        const response = {
+          mailbox,
+          companyKey: mailboxReference(companyKey(detail.vendor), mailbox),
+          accountEmail: email,
+        };
+        return agentToolResult(response);
+      } catch {
+        return {
+          content: [{ type: "text" as const, text: "Paperweight could not update that company email." }],
+          isError: true,
+        };
+      }
+    },
+  );
+
+  if (includeWrites) server.registerTool(
+    "set_whitelist_entry",
+    {
+      description: "Add or remove an email address or domain from the selected mailbox's Paperweight whitelist.",
+      annotations: WRITE_TOOL_ANNOTATIONS,
+      inputSchema: z.object({
+        mailbox: mailboxSchema,
+        value: z.string().trim().min(1).max(320)
+          .refine(isEmailOrDomain, "Enter a valid email address or domain."),
+        whitelisted: z.boolean(),
+      }),
+      outputSchema: z.object({
+        mailbox: z.string(),
+        value: z.string(),
+        whitelisted: z.boolean(),
+      }),
+    },
+    async ({ mailbox, value, whitelisted }) => {
+      if (!hasWriteAccess()) return writeAccessError();
+      try {
+        requireSelectedMailbox(mailbox);
+        if (whitelisted) addWhitelistEntry(value);
+        else removeWhitelistEntry(value);
+        const response = {
+          mailbox,
+          value,
+          whitelisted,
+        };
+        return agentToolResult(response);
+      } catch {
+        return {
+          content: [{ type: "text" as const, text: "Paperweight could not update the whitelist." }],
+          isError: true,
+        };
+      }
+    },
+  );
+
+  if (includeWrites) server.registerTool(
+    "trash_company_messages",
+    {
+      description: "Move a company's messages to trash. The default marketing scope only moves marketing mail; all also moves orders, receipts, password resets, and every other message from that company.",
+      annotations: {
+        readOnlyHint: false,
+        destructiveHint: true,
+        idempotentHint: true,
+        openWorldHint: true,
+      },
+      inputSchema: z.object({
+        mailbox: mailboxSchema,
+        key: z.string().trim().min(1).max(500)
+          .describe("The key returned by search_companies."),
+        scope: z.enum(["marketing", "all"]).default("marketing"),
+      }),
+      outputSchema: z.object({
+        mailbox: z.string(),
+        companyKey: z.string(),
+        scope: z.enum(["marketing", "all"]),
+        status: z.literal("completed"),
+      }),
+    },
+    async ({ mailbox: requestedMailbox, key, scope }) => {
+      if (!hasWriteAccess()) return writeAccessError();
+      try {
+        requireSelectedMailbox(requestedMailbox);
+        const companyReference = parseMailboxReference(key);
+        const { detail, result } = await withSelectedMailboxAction(
+          async (selectedMailbox) => {
+            const selectedDetail = getVendorDetail(companyReference);
+            const selectedResult = await withCredentialAccount(selectedMailbox, () =>
+              trashVendorMessages(
+                selectedDetail.vendor.id,
+                scope === "marketing" ? [...MARKETING_ACTION_TYPES] : undefined,
+                { waitForCompletion: true },
+              )
+            );
+            return {
+              detail: selectedDetail,
+              result: selectedResult,
+            };
+          },
+        );
+        if (!result.success) throw new Error(result.error);
+        const response = {
+          mailbox: requestedMailbox,
+          companyKey: mailboxReference(companyKey(detail.vendor), requestedMailbox),
+          scope,
+          status: "completed" as const,
+        };
+        return agentToolResult(response);
+      } catch {
+        return {
+          content: [{ type: "text" as const, text: "Paperweight could not move those messages to trash." }],
+          isError: true,
+        };
+      }
+    },
+  );
+
+  if (includeWrites) server.registerTool(
+    "report_company_spam",
+    {
+      description: "Report a company's marketing messages as spam, then remove the completed records from Paperweight.",
+      annotations: {
+        readOnlyHint: false,
+        destructiveHint: true,
+        idempotentHint: true,
+        openWorldHint: true,
+      },
+      inputSchema: z.object({
+        mailbox: mailboxSchema,
+        key: z.string().trim().min(1).max(500)
+          .describe("The key returned by search_companies."),
+      }),
+      outputSchema: z.object({
+        mailbox: z.string(),
+        companyKey: z.string(),
+        status: z.literal("completed"),
+      }),
+    },
+    async ({ mailbox: requestedMailbox, key }) => {
+      if (!hasWriteAccess()) return writeAccessError();
+      try {
+        requireSelectedMailbox(requestedMailbox);
+        const companyReference = parseMailboxReference(key);
+        const { detail, result } = await withSelectedMailboxAction(
+          async (selectedMailbox) => {
+            const selectedDetail = getVendorDetail(companyReference);
+            const selectedResult = await withCredentialAccount(
+              selectedMailbox,
+              () => spamVendorMessages(
+                selectedDetail.vendor.id,
+                { waitForCompletion: true },
+              ),
+            );
+            return {
+              detail: selectedDetail,
+              result: selectedResult,
+            };
+          },
+        );
+        if (!result.success) throw new Error(result.error);
+        const response = {
+          mailbox: requestedMailbox,
+          companyKey: mailboxReference(companyKey(detail.vendor), requestedMailbox),
+          status: "completed" as const,
+        };
+        return agentToolResult(response);
+      } catch {
+        return {
+          content: [{ type: "text" as const, text: "Paperweight could not report those messages as spam." }],
           isError: true,
         };
       }
@@ -366,6 +720,7 @@ export function registerCompanyTools(server: McpServer): void {
     "list_whitelist",
     {
       description: "List the email addresses and domains whitelisted for the selected Paperweight mailbox.",
+      annotations: READ_ONLY_TOOL_ANNOTATIONS,
       inputSchema: z.object({
         page: z.number().int().min(1).max(1_000_000).default(1),
         limit: z.number().int().min(1).max(100).default(50),
@@ -398,10 +753,7 @@ export function registerCompanyTools(server: McpServer): void {
             createdAt: entry.created_at,
           })),
         };
-        return {
-          content: [{ type: "text" as const, text: JSON.stringify(response) }],
-          structuredContent: response,
-        };
+        return agentToolResult(response);
       } catch {
         return {
           content: [{ type: "text" as const, text: "Paperweight could not read the whitelist." }],

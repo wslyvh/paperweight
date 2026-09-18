@@ -22,5 +22,6 @@ export function buildAppSettings(): Settings {
       agentAccess === "read" || agentAccess === "actions"
         ? agentAccess
         : "off",
+    agentMaskPersonalData: getGlobalSetting("agentMaskPersonalData") !== false,
   };
 }

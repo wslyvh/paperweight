@@ -27,6 +27,7 @@ import type {
   RiskCounts,
   ServerConfig,
   Settings,
+  SettingsUpdate,
   StorageBreakdown,
   SupportInfo,
   SyncStatus,
@@ -153,7 +154,7 @@ export interface ElectronAPI {
   getDashboardTrend: () => Promise<ChartTrend>;
   queryVendors: (query: VendorQuery) => Promise<{ vendors: Vendor[]; total: number }>;
   getSettings: () => Settings;
-  saveSettings: (settings: Partial<Settings>) => Promise<void>;
+  saveSettings: (settings: SettingsUpdate) => Promise<void>;
   getMcpSetup: () => Promise<McpSetup>;
   resyncData: () => Promise<void>;
   wipeData: () => Promise<void>;

@@ -1,5 +1,8 @@
 import { McpServer } from "@modelcontextprotocol/server";
 import { z } from "zod";
+import { READ_ONLY_TOOL_ANNOTATIONS } from "../annotations";
+import { agentToolResult } from "../payload";
+import { mailboxReference } from "../identifiers";
 import { getActivityLog } from "../../main/services/stats";
 import {
   getSelectedMailbox,
@@ -12,6 +15,7 @@ export function registerActivityTools(server: McpServer): void {
     "get_activity",
     {
       description: "Get the same paginated action history shown in the Paperweight Activity log.",
+      annotations: READ_ONLY_TOOL_ANNOTATIONS,
       inputSchema: z.object({
         page: z.number().int().min(1).max(1_000_000).default(1),
         limit: z.number().int().min(1).max(50).default(50),
@@ -29,7 +33,7 @@ export function registerActivityTools(server: McpServer): void {
           messageCount: z.number().int().nonnegative(),
           sizeBytes: z.number().int().nonnegative(),
           actionedAt: z.number().nonnegative(),
-          caseId: z.number().int().positive().optional(),
+          caseId: z.string().optional(),
           caseRequestType: z.enum(["access", "deletion"]).optional(),
           caseOutcome: z.enum(["resolved", "escalated"]).optional(),
         })),
@@ -45,22 +49,21 @@ export function registerActivityTools(server: McpServer): void {
           page,
           limit,
           items: result.entries.map((entry) => ({
-            companyKey: entry.vendorSlug ?? entry.vendorDomain ?? String(entry.vendorId),
+            companyKey: mailboxReference(
+              entry.vendorSlug ?? entry.vendorDomain ?? String(entry.vendorId),
+            ),
             companyName: entry.vendorName,
             companyDomain: entry.vendorDomain,
             actionType: entry.actionType,
             messageCount: entry.messageCount,
             sizeBytes: entry.sizeBytes,
             actionedAt: entry.actionedAt,
-            caseId: entry.caseId,
+            caseId: entry.caseId ? mailboxReference(entry.caseId) : undefined,
             caseRequestType: entry.caseRequestType,
             caseOutcome: entry.caseOutcome,
           })),
         };
-        return {
-          content: [{ type: "text" as const, text: JSON.stringify(response) }],
-          structuredContent: response,
-        };
+        return agentToolResult(response);
       } catch {
         return {
           content: [{ type: "text" as const, text: "Paperweight could not read activity." }],

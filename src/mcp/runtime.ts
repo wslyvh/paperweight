@@ -7,7 +7,12 @@ import {
   listAccounts,
 } from "../main/credentials";
 import type { AccountEntry } from "../main/credentials";
-import { initDb, reconnectDb } from "../main/db";
+import {
+  getDb,
+  initDb,
+  reconnectDb,
+  withAccountDbReadConnection,
+} from "../main/db";
 import { configureGlobalDbPath } from "../main/globalDb";
 import { getGlobalSetting } from "../main/services/globalSettings";
 
@@ -22,6 +27,7 @@ interface McpRuntime {
 }
 
 let runtime: McpRuntime | undefined;
+let activeMailboxActions = 0;
 
 export class McpStartupError extends Error {}
 
@@ -67,6 +73,10 @@ export function hasReadAccess(): boolean {
   return access === "read" || access === "actions";
 }
 
+export function hasWriteAccess(): boolean {
+  return getGlobalSetting("agentAccess") === "actions";
+}
+
 export function readAccessError() {
   return {
     content: [{
@@ -77,21 +87,62 @@ export function readAccessError() {
   };
 }
 
+export function writeAccessError() {
+  return {
+    content: [{
+      type: "text" as const,
+      text: "Read & write AI Agent access is required. Change Access in Paperweight Settings.",
+    }],
+    isError: true,
+  };
+}
+
 export function getSelectedMailbox(): string {
+  return emailToFileKey(getRuntime().selectedMailbox);
+}
+
+export function getSelectedMailboxEmail(): string {
   return getRuntime().selectedMailbox;
 }
 
+export function requireSelectedMailbox(mailbox: string): string {
+  const selectedMailbox = getSelectedMailbox();
+  if (mailbox !== selectedMailbox) {
+    throw new Error(
+      `This action belongs to ${mailbox}, but the selected mailbox is ${selectedMailbox}.`,
+    );
+  }
+  return selectedMailbox;
+}
+
+/**
+ * Keep async provider work bound to the mailbox it started on. The account
+ * database connection is process-global, so reconnecting it mid-action could
+ * otherwise apply the final local write to another mailbox.
+ */
+export async function withSelectedMailboxAction<T>(
+  action: (email: string) => Promise<T>,
+): Promise<T> {
+  const email = getSelectedMailboxEmail();
+  activeMailboxActions += 1;
+  try {
+    return await action(email);
+  } finally {
+    activeMailboxActions -= 1;
+  }
+}
+
 export function getAppActiveMailbox(): string | undefined {
-  return getGlobalSetting("activeAccount");
+  const email = getGlobalSetting("activeAccount");
+  return email ? emailToFileKey(email) : undefined;
 }
 
 export function getMailboxes(): AccountEntry[] {
   return listAccounts();
 }
 
-export function findMailbox(email: string): AccountEntry | undefined {
-  const normalizedEmail = email.toLowerCase();
-  return listAccounts().find((account) => account.email.toLowerCase() === normalizedEmail);
+export function findMailbox(mailbox: string): AccountEntry | undefined {
+  return listAccounts().find((account) => emailToFileKey(account.email) === mailbox);
 }
 
 export function isMailboxAvailable(email: string): boolean {
@@ -99,9 +150,15 @@ export function isMailboxAvailable(email: string): boolean {
   return existsSync(accountDbPath(current.paths, email));
 }
 
-export function selectMailbox(email: string): boolean {
+export function selectMailbox(mailbox: string): boolean {
   const current = getRuntime();
+  const account = findMailbox(mailbox);
+  if (!account) throw new Error("That mailbox is not registered in Paperweight.");
+  const email = account.email;
   if (current.selectedMailbox === email) return false;
+  if (activeMailboxActions > 0) {
+    throw new Error("Wait for the current mailbox action to finish before switching mailboxes.");
+  }
   try {
     reconnectDb(accountDbPath(current.paths, email));
   } catch (error) {
@@ -112,15 +169,12 @@ export function selectMailbox(email: string): boolean {
   return true;
 }
 
-export function withMailboxDatabase<T>(email: string, read: () => T): T {
+export function readMailboxDatabase<T>(
+  email: string,
+  read: (database: ReturnType<typeof getDb>) => T,
+): T {
   const current = getRuntime();
-  if (email === current.selectedMailbox) return read();
-  try {
-    reconnectDb(accountDbPath(current.paths, email));
-    return read();
-  } finally {
-    reconnectDb(accountDbPath(current.paths, current.selectedMailbox));
-  }
+  return withAccountDbReadConnection(accountDbPath(current.paths, email), read);
 }
 
 export function initializePaperweight(): void {
@@ -134,12 +188,14 @@ export function initializePaperweight(): void {
     );
   }
 
-  const activeEmail = getAppActiveMailbox();
+  const activeEmail = getGlobalSetting("activeAccount");
   if (!activeEmail) {
     throw new McpStartupError("No active Paperweight account is available.");
   }
 
-  const account = findMailbox(activeEmail);
+  const account = listAccounts().find(
+    (item) => item.email.toLowerCase() === activeEmail.toLowerCase(),
+  );
   if (!account) {
     throw new McpStartupError("The active Paperweight mailbox is not registered.");
   }
@@ -155,5 +211,6 @@ export function initializePaperweight(): void {
     join(paths.resources, "breaches.db"),
     join(paths.resources, "enforcement.db"),
   );
+  getDb();
   runtime = { paths, selectedMailbox: account.email };
 }

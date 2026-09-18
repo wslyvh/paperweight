@@ -39,9 +39,7 @@ function createSilentLogger() {
   };
 }
 
-const isMcpProcess =
-  process.env.PAPERWEIGHT_MCP === "1"
-  || process.argv.some((arg) => /(?:^|[/\\])mcp\.js$/.test(arg));
+const isMcpProcess = process.env.PAPERWEIGHT_MCP === "1";
 
 let log:
   | ReturnType<typeof createWorkerLogger>

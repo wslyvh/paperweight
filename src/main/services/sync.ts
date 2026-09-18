@@ -1,4 +1,5 @@
 import { getDb } from "../db";
+import type Database from "better-sqlite3";
 import {
   findOrCreateVendor,
   getVendorDomain,
@@ -83,8 +84,7 @@ interface SyncStateUpdate {
   sync_checkpoint?: string | null;
 }
 
-export function getSyncState() {
-  const d = getDb();
+export function getSyncState(d: Database.Database = getDb()) {
   const row = d
     .prepare(
       "SELECT last_sync_at, next_page_token, quick_sync_done_at, historical_cursor, historical_done, sync_checkpoint FROM sync_state WHERE id = 1",

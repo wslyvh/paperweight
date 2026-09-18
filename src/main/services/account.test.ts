@@ -13,6 +13,7 @@ const mockTestImapConnection = jest.fn();
 const mockTestSmtpConnection = jest.fn();
 const mockCreateAccountDb = jest.fn();
 const mockReconnectDb = jest.fn();
+const mockGetProvider = jest.fn();
 
 jest.mock("../credentials", () => ({
   loadCredentials: mockLoadCredentials,
@@ -43,7 +44,7 @@ jest.mock("../providers/imap", () => ({
 jest.mock("../providers/smtp", () => ({
   testSmtpConnection: mockTestSmtpConnection,
 }));
-jest.mock("../providers/ProviderFactory", () => ({ getProvider: jest.fn() }));
+jest.mock("../providers/ProviderFactory", () => ({ getProvider: mockGetProvider }));
 jest.mock("./settings", () => ({
   addWhitelistEntry: jest.fn(),
   getSetting: jest.fn(),
@@ -75,7 +76,13 @@ import {
   startGmailAuthAndRecordAccount,
   startMicrosoftAuthAndRecordAccount,
   saveImapConfigAndRecordAccount,
+  trashVendorMessages,
 } from "./account";
+import {
+  deleteVendorMessages,
+  getMessageIdsByVendor,
+  insertActionLog,
+} from "./messages";
 
 describe("account authentication", () => {
   beforeEach(() => {
@@ -236,5 +243,62 @@ describe("account authentication", () => {
     expect(mockRegisterAccount).not.toHaveBeenCalled();
     expect(mockCreateAccountDb).not.toHaveBeenCalled();
     expect(mockReconnectDb).not.toHaveBeenCalled();
+  });
+});
+
+describe("bulk account actions", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("can keep an action open until provider and local writes complete", async () => {
+    let releaseTrash: (() => void) | undefined;
+    const trashFinished = new Promise<void>((resolve) => {
+      releaseTrash = resolve;
+    });
+    const provider = {
+      connect: jest.fn().mockResolvedValue(undefined),
+      disconnect: jest.fn().mockResolvedValue(undefined),
+      trashMessage: jest.fn(() => trashFinished),
+    };
+    mockGetProvider.mockReturnValue(provider);
+    jest.mocked(getMessageIdsByVendor).mockReturnValue(["message-1"]);
+    jest.mocked(deleteVendorMessages).mockReturnValue({ count: 1, sizeBytes: 100 });
+
+    const action = trashVendorMessages(
+      7,
+      undefined,
+      { waitForCompletion: true },
+    );
+    await new Promise((resolve) => setImmediate(resolve));
+
+    expect(provider.trashMessage).toHaveBeenCalledWith("message-1");
+    expect(deleteVendorMessages).not.toHaveBeenCalled();
+
+    releaseTrash?.();
+    await expect(action).resolves.toEqual({ success: true });
+    expect(deleteVendorMessages).toHaveBeenCalledWith(7, undefined);
+    expect(insertActionLog).toHaveBeenCalledWith(7, "trashed", 1, 100);
+  });
+
+  it("keeps local records when a waited provider action fails", async () => {
+    const provider = {
+      connect: jest.fn().mockResolvedValue(undefined),
+      disconnect: jest.fn().mockResolvedValue(undefined),
+      trashMessage: jest.fn().mockRejectedValue(new Error("Provider rejected action")),
+    };
+    mockGetProvider.mockReturnValue(provider);
+    jest.mocked(getMessageIdsByVendor).mockReturnValue(["message-1"]);
+
+    await expect(trashVendorMessages(
+      7,
+      undefined,
+      { waitForCompletion: true },
+    )).resolves.toEqual({
+      success: false,
+      error: "One or more mailbox operations failed. Local records were kept.",
+    });
+    expect(deleteVendorMessages).not.toHaveBeenCalled();
+    expect(insertActionLog).not.toHaveBeenCalled();
   });
 });

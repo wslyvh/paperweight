@@ -44,6 +44,11 @@ export default function Settings(): JSX.Element {
   const [agentAccess, setAgentAccess] = useState<AgentAccess>(
     () => window.api.getSettings().agentAccess ?? "off",
   );
+  const [agentMaskPersonalData, setAgentMaskPersonalData] = useState(
+    () => window.api.getSettings().agentMaskPersonalData !== false,
+  );
+  const [showAgentActionsModal, setShowAgentActionsModal] = useState(false);
+  const [showAgentUnmaskModal, setShowAgentUnmaskModal] = useState(false);
   const [mcpSetup, setMcpSetup] = useState<McpSetup>();
   const [mcpConfigCopied, setMcpConfigCopied] = useState(false);
   const [showResyncModal, setShowResyncModal] = useState(false);
@@ -590,7 +595,7 @@ export default function Settings(): JSX.Element {
       {/* Section 5: AI Agent Access */}
       <div className="card bg-base-200">
         <div className="card-body space-y-3">
-          <h3 className="font-semibold">AI Agent access</h3>
+          <h3 className="font-semibold">AI Agent access (experimental)</h3>
           <p className="text-sm text-base-content/60">
             Choose what MCP clients can do with Paperweight.
           </p>
@@ -620,6 +625,13 @@ export default function Settings(): JSX.Element {
               onChange={(event) => {
                 const access = event.target.value;
                 if (access !== "off" && access !== "read" && access !== "actions") return;
+                if (access === "actions" && agentAccess !== "actions") {
+                  setShowAgentActionsModal(true);
+                  return;
+                }
+                if (agentAccess === "off" && access !== "off") {
+                  setAgentMaskPersonalData(true);
+                }
                 setAgentAccess(access);
                 void window.api.saveSettings({ agentAccess: access });
               }}
@@ -629,16 +641,70 @@ export default function Settings(): JSX.Element {
               <option value="actions">Read &amp; write</option>
             </select>
           </label>
-          <p className="text-xs text-base-content/50">
-            {agentAccess === "off"
-              ? "Agents cannot access Paperweight."
-              : agentAccess === "read"
-                ? "Agents can read data, but not change anything."
-                : "Agents can read and help you clean up. Use with caution."}
-          </p>
+          {agentAccess === "actions" ? (
+            <div className="space-y-1 max-w-2xl">
+              <p className="text-sm text-base-content/60">
+                Agents can unsubscribe, trash, report spam, and update
+                Paperweight data for the selected mailbox.
+              </p>
+              <p className="text-xs text-base-content/50">
+                Sending a privacy request or case follow-up asks for approval in
+                the agent. Recommended to turn on tool-call approvals in your
+                agent. Use at own risk.
+              </p>
+            </div>
+          ) : (
+            <p className="text-xs text-base-content/50">
+              {agentAccess === "off"
+                ? "Agents cannot access Paperweight."
+                : "Agents can read data, but not change anything."}
+            </p>
+          )}
 
           {agentAccess !== "off" && (
             <>
+              <div className="divider my-1" />
+
+              <div className="space-y-2">
+                <div className="form-control">
+                  <label className="label cursor-pointer justify-start gap-3">
+                    <input
+                      type="checkbox"
+                      className="toggle toggle-primary toggle-sm"
+                      checked={agentMaskPersonalData}
+                      onChange={(event) => {
+                        if (!event.target.checked) {
+                          setShowAgentUnmaskModal(true);
+                          return;
+                        }
+                        setAgentMaskPersonalData(true);
+                        void window.api.saveSettings({ agentMaskPersonalData: true });
+                      }}
+                    />
+                    <span className="text-sm font-medium">Mask personal data</span>
+                  </label>
+                </div>
+                {agentMaskPersonalData ? (
+                  <>
+                    <p className="text-sm text-base-content/60 max-w-2xl">
+                      Paperweight masks known personal data such as your profile,
+                      PII findings, addresses, and matches in message text. This
+                      is best-effort, and undetected details in mail can still be
+                      forwarded to your agent.
+                    </p>
+                    <p className="text-xs text-base-content/50 max-w-2xl">
+                      Recommended when interacting with agents.
+                    </p>
+                  </>
+                ) : (
+                  <p className="text-xs text-warning max-w-2xl">
+                    Personal data the App can show is visible to the agent,
+                    including profile values and message text. Turn masking on
+                    unless you use a local model you trust.
+                  </p>
+                )}
+              </div>
+
               <div className="divider my-1" />
 
               <div className="space-y-3">
@@ -751,6 +817,85 @@ export default function Settings(): JSX.Element {
           </div>
         </div>
       </div>
+
+      {showAgentActionsModal && (
+        <dialog className="modal modal-open">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">Enable Read &amp; write?</h3>
+            <div className="py-4 space-y-3">
+              <p>
+                This allows agents to act on your behalf, such as unsubscribing,
+                deleting, or reporting messages as spam. Sending a privacy request
+                or follow-up will still ask for explicit approval before sending.
+                Recommended to turn on tool-call approvals in your agent.
+              </p>
+              <p>Use at own risk.</p>
+            </div>
+            <div className="modal-action">
+              <button
+                className="btn btn-ghost"
+                onClick={() => setShowAgentActionsModal(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="btn btn-primary"
+                onClick={async () => {
+                  await window.api.saveSettings({
+                    agentAccess: "actions",
+                    confirmAgentActions: true,
+                  });
+                  if (agentAccess === "off") setAgentMaskPersonalData(true);
+                  setAgentAccess("actions");
+                  setShowAgentActionsModal(false);
+                }}
+              >
+                Enable Read &amp; write
+              </button>
+            </div>
+          </div>
+          <form method="dialog" className="modal-backdrop">
+            <button onClick={() => setShowAgentActionsModal(false)}>close</button>
+          </form>
+        </dialog>
+      )}
+
+      {showAgentUnmaskModal && (
+        <dialog className="modal modal-open">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">Turn off personal-data masking?</h3>
+            <p className="py-4">
+              Your agent will receive any personal data that you discuss,
+              including profile values and message text. Use only with a
+              (local) model you trust or leave this turned on.
+            </p>
+            <div className="modal-action">
+              <button
+                className="btn btn-ghost"
+                onClick={() => setShowAgentUnmaskModal(false)}
+              >
+                Keep masking
+              </button>
+              <button
+                className="btn btn-error"
+                onClick={async () => {
+                  await window.api.saveSettings({
+                    agentMaskPersonalData: false,
+                    confirmAgentUnmask: true,
+                  });
+                  setAgentMaskPersonalData(false);
+                  setShowAgentUnmaskModal(false);
+                }}
+              >
+                Turn off masking
+              </button>
+            </div>
+          </div>
+          <form method="dialog" className="modal-backdrop">
+            <button onClick={() => setShowAgentUnmaskModal(false)}>close</button>
+          </form>
+        </dialog>
+      )}
 
       {/* Add account modal */}
       {showAddAccountModal && (

@@ -417,10 +417,15 @@ export async function markMessageAsRead(messageId: string, isRead: boolean) {
 
 type BulkActionType = "trashed" | "spam_reported";
 
+interface BulkActionOptions {
+  waitForCompletion?: boolean;
+}
+
 async function bulkActionVendorMessages(
   vendorId: number,
   actionType: BulkActionType,
   types?: MessageType[],
+  options?: BulkActionOptions,
 ): Promise<{ success: boolean; error?: string }> {
   const label = actionType === "trashed" ? "trashVendorMessages" : "spamVendorMessages";
 
@@ -428,6 +433,50 @@ async function bulkActionVendorMessages(
   actionLog.info(`${label}: found ${ids.length} messages for vendor ${vendorId}`);
 
   if (ids.length > 0) {
+    const run = async (): Promise<{ success: boolean; error?: string }> => {
+      const p = getProvider();
+      try {
+        await p.connect();
+        actionLog.info(`${label}: processing ${ids.length} messages for vendor ${vendorId}`);
+        let failed = false;
+        for (const id of ids) {
+          try {
+            if (actionType === "trashed") {
+              await p.trashMessage(id);
+            } else {
+              await p.markAsSpam(id);
+            }
+          } catch (err) {
+            failed = true;
+            actionLog.error(`${label}: failed on message ${id}: ${err instanceof Error ? err.message : String(err)}`);
+          }
+        }
+        if (failed) {
+          return {
+            success: false,
+            error: "One or more mailbox operations failed. Local records were kept.",
+          };
+        }
+        const { count, sizeBytes } = deleteVendorMessages(vendorId, types);
+        if (count > 0) insertActionLog(vendorId, actionType, count, sizeBytes);
+        actionLog.info(`${label}: done for vendor ${vendorId}`);
+        return { success: true };
+      } catch (err) {
+        actionLog.error(`${label}: error (vendor ${vendorId}): ${err instanceof Error ? err.message : String(err)}`);
+        return { success: false, error: "The mailbox operation failed. Local records were kept." };
+      } finally {
+        try {
+          await p.disconnect();
+        } catch (err) {
+          actionLog.error(`${label}: disconnect failed (vendor ${vendorId}): ${err instanceof Error ? err.message : String(err)}`);
+        }
+      }
+    };
+
+    if (options?.waitForCompletion) {
+      return run();
+    }
+
     const provider = getProvider();
     try {
       await provider.connect();
@@ -437,43 +486,35 @@ async function bulkActionVendorMessages(
       return { success: false, error: "Failed to connect to your email account." };
     }
 
-    const p = getProvider();
-    (async () => {
-      try {
-        await p.connect();
-        actionLog.info(`${label}: processing ${ids.length} messages for vendor ${vendorId}`);
-        for (const id of ids) {
-          try {
-            if (actionType === "trashed") {
-              await p.trashMessage(id);
-            } else {
-              await p.markAsSpam(id);
-            }
-          } catch (err) {
-            actionLog.error(`${label}: failed on message ${id}: ${err instanceof Error ? err.message : String(err)}`);
-          }
-        }
-        const { count, sizeBytes } = deleteVendorMessages(vendorId, types);
-        if (count > 0) insertActionLog(vendorId, actionType, count, sizeBytes);
-        actionLog.info(`${label}: done for vendor ${vendorId}`);
-      } catch (err) {
-        actionLog.error(`${label}: error (vendor ${vendorId}): ${err instanceof Error ? err.message : String(err)}`);
-      } finally {
-        await p.disconnect();
-      }
-    })().catch((err) => {
-      actionLog.error(`${label}: unexpected error (vendor ${vendorId}): ${err instanceof Error ? err.message : String(err)}`);
-    });
+    void run()
+      .then((result) => {
+        if (!result.success) actionLog.error(`${label}: ${result.error}`);
+      })
+      .catch((err) => {
+        actionLog.error(`${label}: unexpected error (vendor ${vendorId}): ${err instanceof Error ? err.message : String(err)}`);
+      });
   }
 
   return { success: true };
 }
 
 // types: undefined = all message types, otherwise filter to specified types
-export async function trashVendorMessages(vendorId: number, types?: MessageType[]): Promise<{ success: boolean; error?: string }> {
-  return bulkActionVendorMessages(vendorId, "trashed", types);
+export async function trashVendorMessages(
+  vendorId: number,
+  types?: MessageType[],
+  options?: BulkActionOptions,
+): Promise<{ success: boolean; error?: string }> {
+  return bulkActionVendorMessages(vendorId, "trashed", types, options);
 }
 
-export async function spamVendorMessages(vendorId: number): Promise<{ success: boolean; error?: string }> {
-  return bulkActionVendorMessages(vendorId, "spam_reported", [...MARKETING_ACTION_TYPES]);
+export async function spamVendorMessages(
+  vendorId: number,
+  options?: BulkActionOptions,
+): Promise<{ success: boolean; error?: string }> {
+  return bulkActionVendorMessages(
+    vendorId,
+    "spam_reported",
+    [...MARKETING_ACTION_TYPES],
+    options,
+  );
 }
