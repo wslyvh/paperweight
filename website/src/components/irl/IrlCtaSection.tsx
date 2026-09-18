@@ -36,13 +36,15 @@ export function IrlCtaSection() {
         <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap mt-2">
           <PayWithCryptoButton
             pricing={getCryptoPayPricing()}
-            className="btn btn-primary plausible-event-name=IRL+Pay+Crypto"
+            className="btn btn-primary"
+            analyticsEvent="IRL Pay Crypto"
           >
             Pay with crypto (${cryptoPrice})
           </PayWithCryptoButton>
           <a
             href={SITE_CONFIG.LICENSE_URL}
-            className="btn btn-ghost plausible-event-name=IRL+Pay+Card"
+            className="btn btn-ghost"
+            data-umami-event="IRL Pay Card"
             target="_blank"
             rel="noopener noreferrer"
           >

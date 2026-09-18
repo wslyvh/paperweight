@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import type { PropsWithChildren } from "react";
 import { LayoutSelector } from "@/components/LayoutSelector";
-import { Providers } from "@/context";
 import { SITE_CONFIG } from "@/utils/config";
 import { GetGuides } from "@/utils/guides";
 import { FEATURE_NAV_LINKS, RESOURCE_NAV_LINKS } from "@/utils/nav";
@@ -57,15 +56,13 @@ export default function RootLayout(props: PropsWithChildren) {
         />
       </head>
       <body>
-        <Providers>
-          <LayoutSelector
-            featureNavLinks={FEATURE_NAV_LINKS}
-            guideNavLinks={guideNavLinks}
-            resourceNavLinks={RESOURCE_NAV_LINKS}
-          >
-            {props.children}
-          </LayoutSelector>
-        </Providers>
+        <LayoutSelector
+          featureNavLinks={FEATURE_NAV_LINKS}
+          guideNavLinks={guideNavLinks}
+          resourceNavLinks={RESOURCE_NAV_LINKS}
+        >
+          {props.children}
+        </LayoutSelector>
       </body>
     </html>
   );

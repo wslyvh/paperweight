@@ -419,7 +419,8 @@ export default async function Home() {
                 href={`${SITE_CONFIG.GITHUB_URL}/releases/download/v${latestVersion}/Paperweight-${latestVersion}.exe`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-soft btn-lg w-full plausible-event-name=Download+Windows"
+                className="btn btn-soft btn-lg w-full"
+                data-umami-event="Download Windows"
               >
                 Windows
               </a>
@@ -427,7 +428,8 @@ export default async function Home() {
                 href={`${SITE_CONFIG.GITHUB_URL}/releases/download/v${latestVersion}/Paperweight-${latestVersion}.dmg`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-soft btn-lg w-full plausible-event-name=Download+macOS"
+                className="btn btn-soft btn-lg w-full"
+                data-umami-event="Download macOS"
               >
                 macOS
               </a>
@@ -437,7 +439,8 @@ export default async function Home() {
                   href={`${SITE_CONFIG.GITHUB_URL}/releases/download/v${latestVersion}/Paperweight-${latestVersion}.AppImage`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-soft btn-lg w-full plausible-event-name=Download+Linux"
+                  className="btn btn-soft btn-lg w-full"
+                  data-umami-event="Download Linux"
                 >
                   Linux
                 </a>
@@ -446,7 +449,8 @@ export default async function Home() {
                   href={`${SITE_CONFIG.GITHUB_URL}/releases/download/v${latestVersion}/Paperweight-${latestVersion}.deb`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="link text-sm plausible-event-name=Download+Linux+deb"
+                  className="link text-sm"
+                  data-umami-event="Download Linux deb"
                 >
                   or <span className="font-bold">.deb</span> package
                 </a>
@@ -545,7 +549,8 @@ export default async function Home() {
             <div className="flex flex-wrap justify-center gap-3">
               <a
                 href={SITE_CONFIG.LICENSE_URL}
-                className="btn btn-primary plausible-event-name=Buy+License"
+                className="btn btn-primary"
+                data-umami-event="Buy License"
               >
                 Buy Lifetime License
               </a>

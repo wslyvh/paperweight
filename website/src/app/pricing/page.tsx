@@ -247,7 +247,8 @@ export default function PricingPage() {
                 </ul>
                 <a
                   href={SITE_CONFIG.LICENSE_URL}
-                  className="btn btn-primary btn-block plausible-event-name=Buy+License"
+                  className="btn btn-primary btn-block"
+                  data-umami-event="Buy License"
                 >
                   Buy a license
                 </a>
@@ -273,7 +274,8 @@ export default function PricingPage() {
               </div>
               <PayWithCryptoButton
                 pricing={getCryptoPayPricing()}
-                className="btn btn-outline btn-accent btn-sm shrink-0 sm:ml-4 plausible-event-name=Pay+Crypto"
+                className="btn btn-outline btn-accent btn-sm shrink-0 sm:ml-4"
+                analyticsEvent="Pay Crypto"
               >
                 Pay with crypto (${getCryptoPrice()})
               </PayWithCryptoButton>
@@ -407,7 +409,8 @@ export default function PricingPage() {
             <div className="flex flex-wrap justify-center gap-3">
               <a
                 href={SITE_CONFIG.LICENSE_URL}
-                className="btn btn-primary plausible-event-name=Buy+License"
+                className="btn btn-primary"
+                data-umami-event="Buy License"
               >
                 Buy a license
               </a>

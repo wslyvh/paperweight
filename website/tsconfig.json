@@ -21,7 +21,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@shared/*": ["../src/shared/*"]
+      "@shared/*": ["../src/shared/*"],
+      "@paperweight/analysis/contracts": ["../analysis/src/contracts"]
     }
   },
   "include": [
@@ -30,6 +31,7 @@
     "src/**/*.tsx",
     "src/**/*.json",
     "../src/shared/gdpr/**/*.ts",
+    "../analysis/src/contracts.ts",
     "src/**/*.d.ts",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"

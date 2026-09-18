@@ -38,6 +38,7 @@ interface PayWithCryptoButtonProps {
   pricing: PayWithCryptoPricing;
   supportEmail?: string;
   className?: string;
+  analyticsEvent?: string;
   children: ReactNode;
 }
 
@@ -362,7 +363,12 @@ export function PayWithCryptoButton(props: PayWithCryptoButtonProps) {
 
   return (
     <>
-      <button type="button" className={props.className} onClick={() => setOpen(true)}>
+      <button
+        type="button"
+        className={props.className}
+        data-umami-event={props.analyticsEvent}
+        onClick={() => setOpen(true)}
+      >
         {props.children}
       </button>
       <PayWithCryptoDialog

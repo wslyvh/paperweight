@@ -87,7 +87,7 @@ export default async function PrivacyPage() {
             the desktop App does not sign you up for the newsletter.
           </li>
           <li>
-            <strong>Website analytics</strong> - we use Plausible to understand
+            <strong>Website analytics</strong> - we use Umami to understand
             which pages are visited. This is a privacy-friendly analytics tool
             designed to avoid collecting personal data.
           </li>
@@ -125,7 +125,7 @@ export default async function PrivacyPage() {
             store your email address for newsletter delivery only.
           </li>
           <li>
-            <strong>Website analytics</strong> - handled by Plausible.
+            <strong>Website analytics</strong> - handled by Umami.
           </li>
         </ul>
 
