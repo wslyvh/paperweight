@@ -49,7 +49,8 @@ export function FeatureHero(props: FeatureHeroProps) {
             </a>
             <a
               href={SITE_CONFIG.LICENSE_URL}
-              className="btn btn-soft btn-lg plausible-event-name=Buy+License"
+              className="btn btn-soft btn-lg"
+              data-umami-event="Buy License"
             >
               Buy a license
             </a>
@@ -277,6 +278,7 @@ interface FeatureCtaAction {
   href: string;
   label: string;
   className: string;
+  analyticsEvent?: string;
 }
 
 interface FeatureFinalCtaProps {
@@ -299,6 +301,7 @@ export function FeatureFinalCta(props: FeatureFinalCtaProps) {
               <a
                 href={props.primaryAction.href}
                 className={props.primaryAction.className}
+                data-umami-event={props.primaryAction.analyticsEvent}
               >
                 {props.primaryAction.label}
               </a>

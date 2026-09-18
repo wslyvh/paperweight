@@ -213,7 +213,8 @@ export default function EmailCleanupPage() {
         primaryAction={{
           href: SITE_CONFIG.LICENSE_URL,
           label: "Buy a license",
-          className: "btn btn-primary plausible-event-name=Buy+License",
+          className: "btn btn-primary",
+          analyticsEvent: "Buy License",
         }}
         secondaryAction={{
           href: "/#download",
