@@ -632,7 +632,6 @@ export function registerCompanyTools(server: McpServer, includeWrites: boolean):
               trashVendorMessages(
                 selectedDetail.vendor.id,
                 scope === "marketing" ? [...MARKETING_ACTION_TYPES] : undefined,
-                { waitForCompletion: true },
               )
             );
             return {
@@ -689,10 +688,7 @@ export function registerCompanyTools(server: McpServer, includeWrites: boolean):
             const selectedDetail = getVendorDetail(companyReference);
             const selectedResult = await withCredentialAccount(
               selectedMailbox,
-              () => spamVendorMessages(
-                selectedDetail.vendor.id,
-                { waitForCompletion: true },
-              ),
+              () => spamVendorMessages(selectedDetail.vendor.id),
             );
             return {
               detail: selectedDetail,

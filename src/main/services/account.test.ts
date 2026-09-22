@@ -59,6 +59,10 @@ jest.mock("./messages", () => ({
   deleteVendorMessages: jest.fn(),
   insertActionLog: jest.fn(),
 }));
+jest.mock("./vendors", () => ({
+  updateVendorFlags: jest.fn(),
+  updateVendorStats: jest.fn(),
+}));
 jest.mock("../db", () => ({
   createAccountDb: mockCreateAccountDb,
   getDb: jest.fn(),
@@ -83,6 +87,7 @@ import {
   getMessageIdsByVendor,
   insertActionLog,
 } from "./messages";
+import { updateVendorFlags, updateVendorStats } from "./vendors";
 
 describe("account authentication", () => {
   beforeEach(() => {
@@ -251,7 +256,7 @@ describe("bulk account actions", () => {
     jest.clearAllMocks();
   });
 
-  it("can keep an action open until provider and local writes complete", async () => {
+  it("keeps an action open until provider and local writes complete", async () => {
     let releaseTrash: (() => void) | undefined;
     const trashFinished = new Promise<void>((resolve) => {
       releaseTrash = resolve;
@@ -265,23 +270,26 @@ describe("bulk account actions", () => {
     jest.mocked(getMessageIdsByVendor).mockReturnValue(["message-1"]);
     jest.mocked(deleteVendorMessages).mockReturnValue({ count: 1, sizeBytes: 100 });
 
-    const action = trashVendorMessages(
-      7,
-      undefined,
-      { waitForCompletion: true },
-    );
+    let settled = false;
+    const action = trashVendorMessages(7).then((result) => {
+      settled = true;
+      return result;
+    });
     await new Promise((resolve) => setImmediate(resolve));
 
+    expect(settled).toBe(false);
     expect(provider.trashMessage).toHaveBeenCalledWith("message-1");
     expect(deleteVendorMessages).not.toHaveBeenCalled();
 
     releaseTrash?.();
     await expect(action).resolves.toEqual({ success: true });
     expect(deleteVendorMessages).toHaveBeenCalledWith(7, undefined);
+    expect(updateVendorStats).toHaveBeenCalledWith(7);
+    expect(updateVendorFlags).toHaveBeenCalledWith(7);
     expect(insertActionLog).toHaveBeenCalledWith(7, "trashed", 1, 100);
   });
 
-  it("keeps local records when a waited provider action fails", async () => {
+  it("keeps local records when a provider action fails", async () => {
     const provider = {
       connect: jest.fn().mockResolvedValue(undefined),
       disconnect: jest.fn().mockResolvedValue(undefined),
@@ -290,11 +298,7 @@ describe("bulk account actions", () => {
     mockGetProvider.mockReturnValue(provider);
     jest.mocked(getMessageIdsByVendor).mockReturnValue(["message-1"]);
 
-    await expect(trashVendorMessages(
-      7,
-      undefined,
-      { waitForCompletion: true },
-    )).resolves.toEqual({
+    await expect(trashVendorMessages(7)).resolves.toEqual({
       success: false,
       error: "One or more mailbox operations failed. Local records were kept.",
     });

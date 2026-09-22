@@ -266,7 +266,11 @@ export default function AccountDetail(): JSX.Element {
   const [requestEmail, setRequestEmail] = useState("");
   const [recipientEmail, setRecipientEmail] = useState("");
   const [pendingUnsub, setPendingUnsub] = useState<UnsubscribeEntry | null>(null);
-  const [unsubCheck, setUnsubCheck] = useState<{ entry: UnsubscribeEntry; trashAlso: boolean } | null>(null);
+  const [unsubCheck, setUnsubCheck] = useState<{
+    entry: UnsubscribeEntry;
+    trashAlso: boolean;
+    errorMessage?: string;
+  } | null>(null);
   const [unsubResult, setUnsubResult] = useState<{
     entry: UnsubscribeEntry;
     kind: "success" | "failure";
@@ -281,6 +285,7 @@ export default function AccountDetail(): JSX.Element {
     locState?.openDataTab ? "data" : "actions",
   );
   const [pendingDelete, setPendingDelete] = useState<"marketing" | "all" | null>(null);
+  const [deleteError, setDeleteError] = useState<string>();
   const [whitelistModalOpen, setWhitelistModalOpen] = useState(false);
   const [selectedWhitelistValues, setSelectedWhitelistValues] = useState<Set<string>>(new Set());
   const [whitelistLoading, setWhitelistLoading] = useState(false);
@@ -302,6 +307,7 @@ export default function AccountDetail(): JSX.Element {
     setUnsubCheck(null);
     setUnsubResult(null);
     setPendingDelete(null);
+    setDeleteError(undefined);
     setWhitelistModalOpen(false);
     setSelectedWhitelistValues(new Set());
     setGdprSendOpen(false);
@@ -643,6 +649,7 @@ export default function AccountDetail(): JSX.Element {
       setPendingUnsub(entry);
     } else if (id === "deleteMarketing" || id === "deleteAll") {
       setActiveItemId(id);
+      setDeleteError(undefined);
       setPendingDelete(id === "deleteAll" ? "all" : "marketing");
     } else if (id === "dataDeletion" || id === "breachAccess" || id === "breachDeletion") {
       setDataRequestType(id === "breachAccess" ? "access" : "deletion");
@@ -721,7 +728,16 @@ export default function AccountDetail(): JSX.Element {
     const { entry, trashAlso } = unsubResult;
     setActionLoading(true);
     try {
-      if (trashAlso) await window.api.trashVendorMessages(detail.vendor.id, [...MARKETING_ACTION_TYPES]);
+      if (trashAlso) {
+        const result = await window.api.trashVendorMessages(detail.vendor.id, [...MARKETING_ACTION_TYPES]);
+        if (!result.success) {
+          setUnsubResult({
+            ...unsubResult,
+            errorMessage: result.error ?? "Unsubscribed, but couldn't move emails to trash.",
+          });
+          return;
+        }
+      }
       setUnsubResult(null);
       setDoneIds((prev) => new Set(prev).add(`unsub-${entry.method}`));
       setActiveItemId(null);
@@ -733,11 +749,17 @@ export default function AccountDetail(): JSX.Element {
 
   const handleUnsubResultSpam = async (): Promise<void> => {
     if (!unsubResult || !detail) return;
-    const { entry, trashAlso } = unsubResult;
+    const { entry } = unsubResult;
     setActionLoading(true);
     try {
-      await window.api.reportSpamVendor(detail.vendor.id);
-      if (trashAlso) await window.api.trashVendorMessages(detail.vendor.id, [...MARKETING_ACTION_TYPES]);
+      const result = await window.api.reportSpamVendor(detail.vendor.id);
+      if (!result.success) {
+        setUnsubResult({
+          ...unsubResult,
+          errorMessage: result.error ?? "Failed to report spam.",
+        });
+        return;
+      }
       setUnsubResult(null);
       setDoneIds((prev) => new Set(prev).add(`unsub-${entry.method}`));
       setActiveItemId(null);
@@ -788,7 +810,20 @@ export default function AccountDetail(): JSX.Element {
     setActionLoading(true);
     try {
       await window.api.markVendorUnsubscribed(detail.vendor.id);
-      if (trashAlso) await window.api.trashVendorMessages(detail.vendor.id, [...MARKETING_ACTION_TYPES]);
+      if (trashAlso) {
+        const result = await window.api.trashVendorMessages(detail.vendor.id, [...MARKETING_ACTION_TYPES]);
+        if (!result.success) {
+          setUnsubCheck(null);
+          setUnsubResult({
+            entry,
+            kind: "success",
+            fallbackMethods: [],
+            trashAlso,
+            errorMessage: result.error ?? "Unsubscribed, but couldn't move emails to trash.",
+          });
+          return;
+        }
+      }
       setUnsubCheck(null);
       setDoneIds((prev) => new Set(prev).add(`unsub-${entry.method}`));
       setActiveItemId(null);
@@ -803,7 +838,14 @@ export default function AccountDetail(): JSX.Element {
     const { entry } = unsubCheck;
     setActionLoading(true);
     try {
-      await window.api.reportSpamVendor(detail.vendor.id);
+      const result = await window.api.reportSpamVendor(detail.vendor.id);
+      if (!result.success) {
+        setUnsubCheck({
+          ...unsubCheck,
+          errorMessage: result.error ?? "Failed to report spam.",
+        });
+        return;
+      }
       setUnsubCheck(null);
       setDoneIds((prev) => new Set(prev).add(`unsub-${entry.method}`));
       setActiveItemId(null);
@@ -821,12 +863,12 @@ export default function AccountDetail(): JSX.Element {
         ? await window.api.trashVendorMessages(detail.vendor.id)
         : await window.api.trashVendorMessages(detail.vendor.id, [...MARKETING_ACTION_TYPES]);
       if (!result.success) {
-        setPendingDelete(null);
-        setActiveItemId(null);
+        setDeleteError(result.error ?? "Failed to move emails to trash.");
         return;
       }
       const doneId = pendingDelete === "all" ? "deleteAll" : "deleteMarketing";
       setPendingDelete(null);
+      setDeleteError(undefined);
       setDoneIds((prev) => new Set(prev).add(doneId));
       setActiveItemId(null);
       await refreshDetail();
@@ -1796,8 +1838,15 @@ export default function AccountDetail(): JSX.Element {
           confirmLabel="Move to trash"
           confirmVariant="primary"
           onConfirm={handleDeleteConfirm}
-          onCancel={() => { if (!actionLoading) { setPendingDelete(null); setActiveItemId(null); } }}
+          onCancel={() => {
+            if (!actionLoading) {
+              setPendingDelete(null);
+              setDeleteError(undefined);
+              setActiveItemId(null);
+            }
+          }}
           loading={actionLoading}
+          error={deleteError}
         >
           {pendingDelete === "all" ? (
             <>
@@ -1867,7 +1916,9 @@ export default function AccountDetail(): JSX.Element {
           onConfirm={handleUnsubResultDone}
           onCancel={() => {
             if (!actionLoading) {
-              setDoneIds((prev) => new Set(prev).add(`unsub-${unsubResult.entry.method}`));
+              if (!unsubResult.errorMessage) {
+                setDoneIds((prev) => new Set(prev).add(`unsub-${unsubResult.entry.method}`));
+              }
               setUnsubResult(null);
               setActiveItemId(null);
             }
@@ -1877,6 +1928,9 @@ export default function AccountDetail(): JSX.Element {
           <p>
             Successfully unsubscribed from <strong>{displayName}</strong>.
           </p>
+          {unsubResult.errorMessage && (
+            <p className="text-error text-sm">{unsubResult.errorMessage}</p>
+          )}
           <label className="flex items-center gap-2 cursor-pointer mt-1">
             <input
               type="checkbox"
@@ -1935,19 +1989,6 @@ export default function AccountDetail(): JSX.Element {
               ))}
             </div>
           )}
-          <label className="flex items-center gap-2 cursor-pointer mt-1">
-            <input
-              type="checkbox"
-              className="checkbox checkbox-sm"
-              checked={unsubResult.trashAlso}
-              onChange={(e) =>
-                setUnsubResult((prev) =>
-                  prev ? { ...prev, trashAlso: e.target.checked } : prev,
-                )
-              }
-            />
-            <span>Also move all emails to trash</span>
-          </label>
         </ActionModal>
       )}
 
@@ -1971,6 +2012,9 @@ export default function AccountDetail(): JSX.Element {
             Did you successfully unsubscribe from <strong>{displayName}</strong>
             ?
           </p>
+          {unsubCheck.errorMessage && (
+            <p className="text-error text-sm">{unsubCheck.errorMessage}</p>
+          )}
           <label className="flex items-center gap-2 cursor-pointer mt-1">
             <input
               type="checkbox"
@@ -1982,7 +2026,7 @@ export default function AccountDetail(): JSX.Element {
                 )
               }
             />
-            <span>Also move all emails to trash</span>
+            <span>Also move all emails to trash when marking unsubscribe done</span>
           </label>
         </ActionModal>
       )}

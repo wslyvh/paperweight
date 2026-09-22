@@ -19,14 +19,13 @@ interface ModalState {
   whitelistTarget: "domain" | "email";
   // unsubscribe
   methods?: UnsubscribeEntry[];
-  // spam / trash
-  trashAlso: boolean;
 }
 
 /** After opening an external unsubscribe link, ask the user to confirm. */
 interface UnsubCheckState {
   vendor: Vendor;
   trashAlso: boolean;
+  errorMessage?: string;
 }
 
 /** Result of an automated unsubscribe attempt (rfc8058 POST or mailto SMTP send). */
@@ -410,7 +409,6 @@ export default function Mail(): JSX.Element {
       vendor,
       senderEmail,
       whitelistTarget: "domain",
-      trashAlso: false,
     });
   };
 
@@ -425,18 +423,17 @@ export default function Mail(): JSX.Element {
       vendor,
       methods,
       whitelistTarget: "domain",
-      trashAlso: false,
     });
   };
 
   const handleSpamClick = (e: React.MouseEvent, vendor: Vendor): void => {
     e.stopPropagation();
-    setModal({ kind: "spam", vendor, whitelistTarget: "domain", trashAlso: true });
+    setModal({ kind: "spam", vendor, whitelistTarget: "domain" });
   };
 
   const handleTrashClick = (e: React.MouseEvent, vendor: Vendor): void => {
     e.stopPropagation();
-    setModal({ kind: "trash", vendor, whitelistTarget: "domain", trashAlso: false });
+    setModal({ kind: "trash", vendor, whitelistTarget: "domain" });
   };
 
   // ---------- batch actions ----------
@@ -445,7 +442,7 @@ export default function Mail(): JSX.Element {
     setBatch({
       phase: "confirm",
       kind,
-      trashAlso: kind === "spam",
+      trashAlso: false,
       current: 0,
       total: 0,
       succeeded: [],
@@ -496,8 +493,16 @@ export default function Mail(): JSX.Element {
           }
           if (success) {
             await window.api.markVendorUnsubscribed(vendor.id);
-            if (trashAlso) await window.api.trashVendorMessages(vendor.id, [...MARKETING_ACTION_TYPES]);
-            succeeded.push(vendor.id);
+            if (trashAlso) {
+              const result = await window.api.trashVendorMessages(vendor.id, [...MARKETING_ACTION_TYPES]);
+              if (!result.success) {
+                failed.push(name);
+              } else {
+                succeeded.push(vendor.id);
+              }
+            } else {
+              succeeded.push(vendor.id);
+            }
           } else {
             failed.push(name);
           }
@@ -514,7 +519,6 @@ export default function Mail(): JSX.Element {
             failed.push(name);
             continue;
           }
-          if (trashAlso) await window.api.trashVendorMessages(vendor.id, [...MARKETING_ACTION_TYPES]);
           succeeded.push(vendor.id);
         } else if (kind === "trash") {
           const result = await window.api.trashVendorMessages(vendor.id, [...MARKETING_ACTION_TYPES]);
@@ -612,7 +616,13 @@ export default function Mail(): JSX.Element {
     try {
       if (trashAlso) {
         const result = await window.api.trashVendorMessages(vendor.id, [...MARKETING_ACTION_TYPES]);
-        if (!result.success) setToast(result.error ?? "Unsubscribed, but couldn't move emails to trash.");
+        if (!result.success) {
+          setUnsubResult({
+            ...unsubResult,
+            errorMessage: result.error ?? "Unsubscribed, but couldn't move emails to trash.",
+          });
+          return;
+        }
       }
       setUnsubResult(null);
       removeVendor(vendor.id);
@@ -623,11 +633,17 @@ export default function Mail(): JSX.Element {
 
   const handleUnsubResultSpam = async (): Promise<void> => {
     if (!unsubResult) return;
-    const { vendor, trashAlso } = unsubResult;
+    const { vendor } = unsubResult;
     setActionLoading(true);
     try {
-      await window.api.reportSpamVendor(vendor.id);
-      if (trashAlso) await window.api.trashVendorMessages(vendor.id, [...MARKETING_ACTION_TYPES]);
+      const result = await window.api.reportSpamVendor(vendor.id);
+      if (!result.success) {
+        setUnsubResult({
+          ...unsubResult,
+          errorMessage: result.error ?? "Failed to report spam.",
+        });
+        return;
+      }
       setUnsubResult(null);
       removeVendor(vendor.id);
     } finally {
@@ -667,7 +683,17 @@ export default function Mail(): JSX.Element {
       await window.api.markVendorUnsubscribed(vendor.id);
       if (trashAlso) {
         const result = await window.api.trashVendorMessages(vendor.id, [...MARKETING_ACTION_TYPES]);
-        if (!result.success) setToast(result.error ?? "Unsubscribed, but couldn't move emails to trash.");
+        if (!result.success) {
+          setUnsubCheck(null);
+          setUnsubResult({
+            vendor,
+            kind: "success",
+            fallbackMethods: [],
+            trashAlso,
+            errorMessage: result.error ?? "Unsubscribed, but couldn't move emails to trash.",
+          });
+          return;
+        }
       }
       setUnsubCheck(null);
       removeVendor(vendor.id);
@@ -681,7 +707,14 @@ export default function Mail(): JSX.Element {
     const { vendor } = unsubCheck;
     setActionLoading(true);
     try {
-      await window.api.reportSpamVendor(vendor.id);
+      const result = await window.api.reportSpamVendor(vendor.id);
+      if (!result.success) {
+        setUnsubCheck({
+          ...unsubCheck,
+          errorMessage: result.error ?? "Failed to report spam.",
+        });
+        return;
+      }
       setUnsubCheck(null);
       removeVendor(vendor.id);
     } finally {
@@ -693,7 +726,7 @@ export default function Mail(): JSX.Element {
     // Called from spam modal AND from unsubscribe "no methods" modal
     if (!modal || (modal.kind !== "spam" && modal.kind !== "unsubscribe"))
       return;
-    const { vendor, trashAlso } = modal;
+    const { vendor } = modal;
     setActionLoading(true);
     setModalError(null);
     try {
@@ -702,7 +735,6 @@ export default function Mail(): JSX.Element {
         setModalError(spamResult.error ?? "Failed to report spam.");
         return;
       }
-      if (trashAlso) await window.api.trashVendorMessages(vendor.id, [...MARKETING_ACTION_TYPES]);
       setModal(null);
       setModalError(null);
       removeVendor(vendor.id);
@@ -776,25 +808,10 @@ export default function Mail(): JSX.Element {
               </>
             )}
             {batch.kind === "spam" && (
-              <>
-                <p>
-                  Spam reporting works best for unsolicited mail. For lists you
-                  signed up for, unsubscribing is more effective and respectful.
-                </p>
-                <label className="flex items-center gap-2 cursor-pointer mt-1">
-                  <input
-                    type="checkbox"
-                    className="checkbox checkbox-sm"
-                    checked={batch.trashAlso}
-                    onChange={(e) =>
-                      setBatch((prev) =>
-                        prev ? { ...prev, trashAlso: e.target.checked } : prev,
-                      )
-                    }
-                  />
-                  <span>Also move all emails to trash</span>
-                </label>
-              </>
+              <p>
+                Spam reporting works best for unsolicited mail. For lists you
+                signed up for, unsubscribing is more effective and respectful.
+              </p>
             )}
             {batch.kind === "trash" && (
               <p>
@@ -860,7 +877,7 @@ export default function Mail(): JSX.Element {
             onCancel={() => {
               if (!actionLoading) {
                 setUnsubResult(null);
-                removeVendor(unsubResult.vendor.id);
+                if (!unsubResult.errorMessage) removeVendor(unsubResult.vendor.id);
               }
             }}
             loading={actionLoading}
@@ -868,6 +885,9 @@ export default function Mail(): JSX.Element {
             <p>
               Successfully unsubscribed from <strong>{name}</strong>.
             </p>
+            {unsubResult.errorMessage && (
+              <p className="text-error text-sm">{unsubResult.errorMessage}</p>
+            )}
             <label className="flex items-center gap-2 cursor-pointer mt-1">
               <input
                 type="checkbox"
@@ -925,19 +945,6 @@ export default function Mail(): JSX.Element {
               ))}
             </div>
           )}
-          <label className="flex items-center gap-2 cursor-pointer mt-1">
-            <input
-              type="checkbox"
-              className="checkbox checkbox-sm"
-              checked={unsubResult.trashAlso}
-              onChange={(e) =>
-                setUnsubResult((prev) =>
-                  prev ? { ...prev, trashAlso: e.target.checked } : prev,
-                )
-              }
-            />
-            <span>Also move all emails to trash</span>
-          </label>
         </ActionModal>
       );
     }
@@ -964,6 +971,9 @@ export default function Mail(): JSX.Element {
           <p>
             Did you successfully unsubscribe from <strong>{name}</strong>?
           </p>
+          {unsubCheck.errorMessage && (
+            <p className="text-error text-sm">{unsubCheck.errorMessage}</p>
+          )}
           <label className="flex items-center gap-2 cursor-pointer mt-1">
             <input
               type="checkbox"
@@ -975,7 +985,7 @@ export default function Mail(): JSX.Element {
                 )
               }
             />
-            <span>Also move all emails to trash</span>
+            <span>Also move all emails to trash when marking unsubscribe done</span>
           </label>
         </ActionModal>
       );
@@ -1069,6 +1079,7 @@ export default function Mail(): JSX.Element {
               No unsubscribe link was found for <strong>{name}</strong>. You can
               report it as spam instead.
             </p>
+            {modalError && <p className="text-error text-sm mt-2">{modalError}</p>}
           </ActionModal>
         );
       }
@@ -1103,19 +1114,6 @@ export default function Mail(): JSX.Element {
           <p>
             Are you sure you want to report <strong>{name}</strong> as spam?
           </p>
-          <label className="flex items-center gap-2 cursor-pointer mt-1">
-            <input
-              type="checkbox"
-              className="checkbox checkbox-sm"
-              checked={modal.trashAlso}
-              onChange={(e) =>
-                setModal((prev) =>
-                  prev ? { ...prev, trashAlso: e.target.checked } : prev,
-                )
-              }
-            />
-            <span>Also move all {vendor.message_count} emails to trash</span>
-          </label>
           {modalError && <p className="text-error text-sm mt-2">{modalError}</p>}
         </ActionModal>
       );

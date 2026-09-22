@@ -25,6 +25,7 @@ import {
   deleteVendorMessages,
   insertActionLog,
 } from "./messages";
+import { updateVendorFlags, updateVendorStats } from "./vendors";
 import { createAccountDb, getDb, reconnectDb } from "../db";
 import { IPC } from "@shared/ipc";
 import { PERSONAL_DOMAINS } from "@paperweight/analysis/contracts";
@@ -417,15 +418,10 @@ export async function markMessageAsRead(messageId: string, isRead: boolean) {
 
 type BulkActionType = "trashed" | "spam_reported";
 
-interface BulkActionOptions {
-  waitForCompletion?: boolean;
-}
-
 async function bulkActionVendorMessages(
   vendorId: number,
   actionType: BulkActionType,
   types?: MessageType[],
-  options?: BulkActionOptions,
 ): Promise<{ success: boolean; error?: string }> {
   const label = actionType === "trashed" ? "trashVendorMessages" : "spamVendorMessages";
 
@@ -458,6 +454,8 @@ async function bulkActionVendorMessages(
           };
         }
         const { count, sizeBytes } = deleteVendorMessages(vendorId, types);
+        updateVendorStats(vendorId);
+        updateVendorFlags(vendorId);
         if (count > 0) insertActionLog(vendorId, actionType, count, sizeBytes);
         actionLog.info(`${label}: done for vendor ${vendorId}`);
         return { success: true };
@@ -473,26 +471,7 @@ async function bulkActionVendorMessages(
       }
     };
 
-    if (options?.waitForCompletion) {
-      return run();
-    }
-
-    const provider = getProvider();
-    try {
-      await provider.connect();
-      await provider.disconnect();
-    } catch (err) {
-      actionLog.error(`${label}: connection failed (vendor ${vendorId}): ${err instanceof Error ? err.message : String(err)}`);
-      return { success: false, error: "Failed to connect to your email account." };
-    }
-
-    void run()
-      .then((result) => {
-        if (!result.success) actionLog.error(`${label}: ${result.error}`);
-      })
-      .catch((err) => {
-        actionLog.error(`${label}: unexpected error (vendor ${vendorId}): ${err instanceof Error ? err.message : String(err)}`);
-      });
+    return run();
   }
 
   return { success: true };
@@ -502,19 +481,16 @@ async function bulkActionVendorMessages(
 export async function trashVendorMessages(
   vendorId: number,
   types?: MessageType[],
-  options?: BulkActionOptions,
 ): Promise<{ success: boolean; error?: string }> {
-  return bulkActionVendorMessages(vendorId, "trashed", types, options);
+  return bulkActionVendorMessages(vendorId, "trashed", types);
 }
 
 export async function spamVendorMessages(
   vendorId: number,
-  options?: BulkActionOptions,
 ): Promise<{ success: boolean; error?: string }> {
   return bulkActionVendorMessages(
     vendorId,
     "spam_reported",
     [...MARKETING_ACTION_TYPES],
-    options,
   );
 }
