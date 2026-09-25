@@ -1,5 +1,5 @@
 import { useActionAccess } from "../context/LicenseContext";
-import { useEffect, useCallback, useState } from "react";
+import { useEffect, useCallback, useState, type ReactNode } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import type {
   VendorDetail,
@@ -156,8 +156,65 @@ function unsubDescription(
   );
 }
 
-function ActionTaskRow({ index, label, description, done, spinning, anyLoading, onAction, actionLabel, onMarkDone, variant }: {
+const UNSUB_METHOD_PRIORITY = ["rfc8058", "list-unsubscribe", "footer"] as const;
+
+function unsubSenderKey(entry: UnsubscribeEntry): string {
+  return entry.senderEmail?.toLowerCase() || unsubTarget(entry);
+}
+
+function unsubTarget(entry: UnsubscribeEntry): string {
+  if (entry.senderEmail) return entry.senderEmail;
+  const url = entry.url.replace(/^<|>$/g, "").trim();
+  if (url.startsWith("mailto:")) return parseMailto(url).to;
+  try {
+    return new URL(url).hostname;
+  } catch {
+    return url;
+  }
+}
+
+// Several actions of one kind (e.g. one unsubscribe per mailing list) collapse
+// under a single numbered row so the list stays scannable.
+function ActionGroup({ index, label, description, doneCount, total, children }: {
   index: number;
+  label: string;
+  description: string;
+  doneCount: number;
+  total: number;
+  children: ReactNode;
+}) {
+  const [open, setOpen] = useState(false);
+  const done = doneCount === total;
+  return (
+    <div className="border-b border-base-200 last:border-0">
+      <div
+        className={`flex items-start gap-3 py-2.5 cursor-pointer transition-opacity ${done ? "opacity-40" : ""}`}
+        onClick={() => setOpen(!open)}
+      >
+        <span className={`text-sm font-medium tabular-nums shrink-0 mt-0.5 w-5 text-right ${done ? "text-base-content/30" : "text-base-content/40"}`}>
+          {done ? "✓" : `${index}.`}
+        </span>
+        <div className={`flex-1 min-w-0 ${done ? "line-through" : ""}`}>
+          <p className="text-sm">
+            {label}{" "}
+            <span className="text-base-content/50">
+              ({doneCount > 0 ? `${doneCount}/${total} done` : total})
+            </span>
+          </p>
+          <p className="text-xs text-base-content/50 mt-0.5">{description}</p>
+        </div>
+        <ChevronRight
+          className={`w-4 h-4 mt-1 text-base-content/50 shrink-0 transition-transform ${open ? "rotate-90" : ""}`}
+          strokeWidth={2}
+        />
+      </div>
+      {open && <div className="pl-8 pb-1">{children}</div>}
+    </div>
+  );
+}
+
+function ActionTaskRow({ index, label, description, done, spinning, anyLoading, onAction, actionLabel, onMarkDone, variant }: {
+  index?: number;
   label: string;
   description?: string;
   done: boolean;
@@ -171,10 +228,10 @@ function ActionTaskRow({ index, label, description, done, spinning, anyLoading, 
   return (
     <div className={`flex items-start gap-3 py-2.5 border-b border-base-200 last:border-0 transition-opacity ${done ? "opacity-40" : ""}`}>
       <span className={`text-sm font-medium tabular-nums shrink-0 mt-0.5 w-5 text-right ${done ? "text-base-content/30" : "text-base-content/40"}`}>
-        {done ? "✓" : `${index}.`}
+        {done ? "✓" : index === undefined ? "•" : `${index}.`}
       </span>
       <div className={`flex-1 min-w-0 ${done ? "line-through" : ""}`}>
-        <p className={`text-sm ${variant === "warning" ? "text-warning font-semibold" : ""}`}>{label}</p>
+        <p className={`text-sm break-words ${variant === "warning" ? "text-warning font-semibold" : ""}`}>{label}</p>
         {description && <p className="text-xs text-base-content/50 mt-0.5">{description}</p>}
       </div>
       <div className="flex gap-1 shrink-0">
@@ -599,22 +656,29 @@ export default function AccountDetail(): JSX.Element {
     setTimeout(() => setCopiedField(null), 2000);
   };
 
-  // Derive unique unsubscribe methods from bulk messages
-  const unsubMethods: UnsubscribeEntry[] = (() => {
-    if (!detail) return [];
-    const seen = new Set<string>();
-    const result: UnsubscribeEntry[] = [];
-    for (const msg of detail.bulkMessages) {
-      const method = msg.unsubscribe_method;
-      const url = msg.unsubscribe_url;
-      if (!method || method === "none" || !url) continue;
-      const key = url.replace(/^<|>$/g, "").trim();
-      if (seen.has(key)) continue;
-      seen.add(key);
-      result.push({ url, method, senderEmail: msg.sender_email });
-    }
-    return result;
-  })();
+  // Many senders put a per-message token in the unsubscribe URL, so the URL
+  // can't identify a list. Group by sender address instead: one unsubscribe
+  // target per sender, keeping one alternative per method (newest first).
+  const unsubBySender = new Map<string, UnsubscribeEntry[]>();
+  for (const msg of detail?.bulkMessages ?? []) {
+    const method = msg.unsubscribe_method;
+    const url = msg.unsubscribe_url;
+    if (!method || method === "none" || !url) continue;
+    const entry: UnsubscribeEntry = { url, method, senderEmail: msg.sender_email };
+    const key = unsubSenderKey(entry);
+    const alternatives = unsubBySender.get(key) ?? [];
+    if (alternatives.some((m) => m.method === method)) continue;
+    alternatives.push(entry);
+    unsubBySender.set(key, alternatives);
+  }
+  const unsubMethods: UnsubscribeEntry[] = [...unsubBySender.values()].map(
+    (alternatives) =>
+      UNSUB_METHOD_PRIORITY.map((p) => alternatives.find((m) => m.method === p)).find(Boolean) ??
+      alternatives[0],
+  );
+  // Other ways to unsubscribe from the same sender, for when the first fails.
+  const unsubFallbacks = (entry: UnsubscribeEntry): UnsubscribeEntry[] =>
+    (unsubBySender.get(unsubSenderKey(entry)) ?? []).filter((m) => m.url !== entry.url);
 
   // Action item derivation
   const now = Date.now();
@@ -644,6 +708,14 @@ export default function AccountDetail(): JSX.Element {
     ...((isAncientAccount && !anyLikelyAffected) ? ["checkActive"] : []),
     ...((isStaleAccount && !anyLikelyAffected) ? ["dataDeletion"] : []),
   ];
+  // Multiple unsubscribe links share one number, as a single grouped step.
+  const groupUnsubs = hasActiveSubscription && unsubMethods.length > 1;
+  const actionSteps = [
+    ...new Set(
+      actionItems.map((id) => (groupUnsubs && id.startsWith("unsub-") ? "unsub" : id)),
+    ),
+  ];
+  const stepNumber = (id: string): number => actionSteps.indexOf(id) + 1;
 
   function unsubEntryForId(id: string): UnsubscribeEntry | undefined {
     const url = id.replace(/^unsub-/, "");
@@ -682,9 +754,7 @@ export default function AccountDetail(): JSX.Element {
     setActionLoading(true);
     try {
       if (entry.method === "rfc8058") {
-        const fallbackMethods = unsubMethods.filter(
-          (m) => m.method !== "rfc8058",
-        );
+        const fallbackMethods = unsubFallbacks(entry);
         const result = await window.api.executeRfc8058(entry.url);
         setPendingUnsub(null);
         if (result.success) {
@@ -707,7 +777,7 @@ export default function AccountDetail(): JSX.Element {
         }
       } else if (entry.url.startsWith("mailto:")) {
         const { to, subject, body } = parseMailto(entry.url);
-        const fallbackMethods = unsubMethods.filter((m) => m.url !== entry.url);
+        const fallbackMethods = unsubFallbacks(entry);
         const result = await window.api.sendEmail(to, subject, body || PAPERWEIGHT_UNSUB_BODY);
         setPendingUnsub(null);
         if (result.success) {
@@ -1249,17 +1319,16 @@ export default function AccountDetail(): JSX.Element {
           className={`p-4 flex items-center gap-3 ${hasRiskDetails ? "cursor-pointer" : ""}`}
           onClick={hasRiskDetails ? () => setRiskOpen(!riskOpen) : undefined}
         >
-          {hasRiskDetails && (
-            <ChevronRight
-              className={`w-4 h-4 text-base-content/50 shrink-0 transition-transform ${
-                riskOpen ? "rotate-90" : ""
-              }`}
-              strokeWidth={2}
-            />
-          )}
-          <span>{riskBadge}</span>
-          <span className="font-semibold">Risk profile</span>
-          <span className="text-base-content/60 text-sm">
+          {/* Chevron slot stays reserved so titles line up with Personal data. */}
+          <ChevronRight
+            className={`w-4 h-4 text-base-content/50 shrink-0 transition-transform ${
+              riskOpen ? "rotate-90" : ""
+            } ${hasRiskDetails ? "" : "invisible"}`}
+            strokeWidth={2}
+          />
+          <span className="font-semibold shrink-0">Risk profile</span>
+          <span className="shrink-0">{riskBadge}</span>
+          <span className="text-base-content/60 text-sm truncate">
             {riskDescription}
           </span>
         </div>
@@ -1388,7 +1457,7 @@ export default function AccountDetail(): JSX.Element {
 
               {anyLikelyAffected && (
                 <ActionTaskRow
-                  index={actionItems.indexOf("breachReview") + 1}
+                  index={stepNumber("breachReview")}
                   label="Review the security incident"
                   description="Check what data was exposed in this breach. See the Security alert on this page for details."
                   done={doneIds.has("breachReview")}
@@ -1401,7 +1470,7 @@ export default function AccountDetail(): JSX.Element {
               )}
               {anyLikelyAffected && (
                 <ActionTaskRow
-                  index={actionItems.indexOf("breachAccess") + 1}
+                  index={stepNumber("breachAccess")}
                   label="Request your data"
                   description="Request this sender to share all data they hold about you. Opens a pre-filled request in the Data requests tab."
                   done={doneIds.has("breachAccess")}
@@ -1413,7 +1482,7 @@ export default function AccountDetail(): JSX.Element {
               )}
               {anyLikelyAffected && (
                 <ActionTaskRow
-                  index={actionItems.indexOf("breachDeletion") + 1}
+                  index={stepNumber("breachDeletion")}
                   label="Request to delete your data"
                   description="Request this sender to erase all data they hold about you. Opens a pre-filled request in the Data requests tab."
                   done={doneIds.has("breachDeletion")}
@@ -1423,14 +1492,14 @@ export default function AccountDetail(): JSX.Element {
                   onAction={() => handleItemAction("breachDeletion")}
                 />
               )}
-              {hasActiveSubscription && unsubMethods.map((entry) => {
+              {hasActiveSubscription && !groupUnsubs && unsubMethods.map((entry) => {
                 const id = `unsub-${entry.url}`;
                 return (
                   <ActionTaskRow
                     key={id}
-                    index={actionItems.indexOf(id) + 1}
+                    index={stepNumber(id)}
                     label="Unsubscribe"
-                    description={methodDescription(entry.method, entry.url)}
+                    description={`${unsubTarget(entry)} · ${methodDescription(entry.method, entry.url)}`}
                     done={doneIds.has(id)}
                     spinning={activeItemId === id && actionLoading}
                     anyLoading={actionLoading}
@@ -1439,9 +1508,34 @@ export default function AccountDetail(): JSX.Element {
                   />
                 );
               })}
+              {groupUnsubs && (
+                <ActionGroup
+                  index={stepNumber("unsub")}
+                  label="Unsubscribe"
+                  description={`Emails come from ${unsubMethods.length} different addresses`}
+                  doneCount={unsubMethods.filter((m) => doneIds.has(`unsub-${m.url}`)).length}
+                  total={unsubMethods.length}
+                >
+                  {unsubMethods.map((entry) => {
+                    const id = `unsub-${entry.url}`;
+                    return (
+                      <ActionTaskRow
+                        key={id}
+                        label={unsubTarget(entry)}
+                        description={methodDescription(entry.method, entry.url)}
+                        done={doneIds.has(id)}
+                        spinning={activeItemId === id && actionLoading}
+                        anyLoading={actionLoading}
+                        actionLabel="Unsubscribe"
+                        onAction={() => handleItemAction(id)}
+                      />
+                    );
+                  })}
+                </ActionGroup>
+              )}
               {showDeleteMarketing && (
                 <ActionTaskRow
-                  index={actionItems.indexOf("deleteMarketing") + 1}
+                  index={stepNumber("deleteMarketing")}
                   label="Delete marketing emails"
                   description={`Moves ${bulkCount} marketing and newsletter emails to trash`}
                   done={doneIds.has("deleteMarketing")}
@@ -1453,7 +1547,7 @@ export default function AccountDetail(): JSX.Element {
               )}
               {showDeleteAll && (
                 <ActionTaskRow
-                  index={actionItems.indexOf("deleteAll") + 1}
+                  index={stepNumber("deleteAll")}
                   label="Delete all emails"
                   description={`Moves all ${vendor.message_count} emails from this sender to trash, including receipts and notifications`}
                   done={doneIds.has("deleteAll")}
@@ -1465,7 +1559,7 @@ export default function AccountDetail(): JSX.Element {
               )}
               {isAncientAccount && !anyLikelyAffected && (
                 <ActionTaskRow
-                  index={actionItems.indexOf("checkActive") + 1}
+                  index={stepNumber("checkActive")}
                   label="Check if this company is still active"
                   description="This sender may no longer exist. Visit their website to verify before taking further action."
                   done={doneIds.has("checkActive")}
@@ -1477,7 +1571,7 @@ export default function AccountDetail(): JSX.Element {
               )}
               {isStaleAccount && !anyLikelyAffected && (
                 <ActionTaskRow
-                  index={actionItems.indexOf("dataDeletion") + 1}
+                  index={stepNumber("dataDeletion")}
                   label="Request to delete your data"
                   description="Request this sender to erase all data they hold about you. Opens a pre-filled request in the Data requests tab."
                   done={doneIds.has("dataDeletion")}
