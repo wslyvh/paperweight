@@ -143,15 +143,15 @@ export default function FoundInEmails({
   if (!summary) {
     return (
       <div className="rounded-box bg-base-200 p-2">
-        <div className="flex items-start gap-3 p-2">
+        <div className="flex items-center gap-3 p-2">
           <ChevronRight
-            className="w-4 h-4 mt-1 text-base-content/50 shrink-0 rotate-90"
+            className="w-4 h-4 text-base-content/50 shrink-0 rotate-90"
             strokeWidth={2}
           />
-          <div>
-            <p className="font-semibold">Personal data</p>
-            <p className="text-sm text-base-content/50 mt-1">Loading...</p>
-          </div>
+          <span className="font-semibold shrink-0">Personal data</span>
+          <span className="text-sm text-base-content/50 truncate">
+            Loading...
+          </span>
         </div>
       </div>
     );
@@ -163,65 +163,38 @@ export default function FoundInEmails({
   return (
     <div className="rounded-box bg-base-200 p-2">
       <div
-        className="flex items-start gap-3 p-2 cursor-pointer"
+        className="flex items-center gap-3 p-2 cursor-pointer"
         onClick={() => setOpen(!open)}
       >
         <ChevronRight
-          className={`w-4 h-4 mt-1 text-base-content/50 shrink-0 transition-transform ${
+          className={`w-4 h-4 text-base-content/50 shrink-0 transition-transform ${
             open ? "rotate-90" : ""
           }`}
           strokeWidth={2}
         />
-        <div className="grow">
-          <p className="font-semibold">
-            Personal data
-            {totalValues > 0 && (
-              <span className="font-normal text-base-content/50">
-                {" "}({values.length})
-              </span>
-            )}
-          </p>
-          <p className="text-sm text-base-content/60 mt-1">
-            {totalValues > 0 ? (
-              <>
-                Found while scanning {scannedMessages}{" "}
-                {scannedMessages === 1 ? "email" : "emails"} from {vendorName}. This
-                may be incomplete (attachments and sent mail aren&apos;t included)
-                and doesn&apos;t mean the company still stores it.
-              </>
-            ) : (
-              <>
-                Scanned {scannedMessages}{" "}
-                {scannedMessages === 1 ? "email" : "emails"} from {vendorName}.
-                Attachments and sent mail aren&apos;t included.
-              </>
-            )}
-          </p>
-        </div>
-        {open && totalValues > 0 && (
-          <button
-            className="btn btn-sm btn-ghost btn-circle shrink-0"
-            title={showValues ? "Hide values" : "Show values"}
-            aria-label={showValues ? "Hide values" : "Show values"}
-            disabled={busy}
-            onClick={(e) => {
-              e.stopPropagation();
-              toggleReveal();
-            }}
-          >
-            {showValues ? (
-              <Eye className="w-4 h-4" />
-            ) : (
-              <EyeClosed className="w-4 h-4" />
-            )}
-          </button>
-        )}
+        <span className="font-semibold shrink-0">Personal data</span>
+        <span
+          className={`badge badge-sm shrink-0 tabular-nums ${
+            values.length > 0 ? "badge-neutral" : "badge-ghost"
+          }`}
+        >
+          {values.length}
+        </span>
+        <span className="text-sm text-base-content/60 truncate">
+          {totalValues > 0 ? "Found in" : "Nothing found in"} {scannedMessages}{" "}
+          {scannedMessages === 1 ? "email" : "emails"} from {vendorName}
+        </span>
       </div>
 
-      {error && <p className="text-sm text-error px-4 pb-3">{error}</p>}
+      {error && <p className="text-sm text-error px-2 pb-3">{error}</p>}
 
       {open && (
         <div>
+          <p className="text-sm text-base-content/60 px-2 pb-3">
+            {totalValues > 0
+              ? "This may be incomplete (attachments and sent mail aren't included) and doesn't mean the company still stores it."
+              : "Attachments and sent mail aren't included."}
+          </p>
           {totalValues > 0 && (
             <div className="flex items-center px-1">
               <div
@@ -277,7 +250,20 @@ export default function FoundInEmails({
                     : ""}
                 </button>
               </div>
-              <div className="ml-auto">
+              <div className="ml-auto flex items-center gap-1">
+                <button
+                  className="btn btn-sm btn-ghost btn-circle shrink-0"
+                  title={showValues ? "Hide values" : "Show values"}
+                  aria-label={showValues ? "Hide values" : "Show values"}
+                  disabled={busy}
+                  onClick={toggleReveal}
+                >
+                  {showValues ? (
+                    <Eye className="w-4 h-4" />
+                  ) : (
+                    <EyeClosed className="w-4 h-4" />
+                  )}
+                </button>
                 <FindingPagination
                   page={page}
                   totalPages={totalPages}

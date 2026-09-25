@@ -1319,17 +1319,16 @@ export default function AccountDetail(): JSX.Element {
           className={`p-4 flex items-center gap-3 ${hasRiskDetails ? "cursor-pointer" : ""}`}
           onClick={hasRiskDetails ? () => setRiskOpen(!riskOpen) : undefined}
         >
-          {hasRiskDetails && (
-            <ChevronRight
-              className={`w-4 h-4 text-base-content/50 shrink-0 transition-transform ${
-                riskOpen ? "rotate-90" : ""
-              }`}
-              strokeWidth={2}
-            />
-          )}
-          <span>{riskBadge}</span>
-          <span className="font-semibold">Risk profile</span>
-          <span className="text-base-content/60 text-sm">
+          {/* Chevron slot stays reserved so titles line up with Personal data. */}
+          <ChevronRight
+            className={`w-4 h-4 text-base-content/50 shrink-0 transition-transform ${
+              riskOpen ? "rotate-90" : ""
+            } ${hasRiskDetails ? "" : "invisible"}`}
+            strokeWidth={2}
+          />
+          <span className="font-semibold shrink-0">Risk profile</span>
+          <span className="shrink-0">{riskBadge}</span>
+          <span className="text-base-content/60 text-sm truncate">
             {riskDescription}
           </span>
         </div>
