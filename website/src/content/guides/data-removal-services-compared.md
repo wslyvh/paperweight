@@ -1,7 +1,7 @@
 ---
 title: Data removal services
-description: A privacy-first comparison of the major data removal services, what they actually do, what you hand over, and where a local-first, one-time alternative fits in.
-last_updated: 2026-05-21
+description: A privacy-first comparison of the major data removal services, what they actually do, what you hand over, and where a local-first alternative fits in.
+last_updated: 2026-10-08
 ---
 
 Data brokers and people-search sites are one half of your data footprint. The companies you have signed up for over the years are the other half. The services on this page address the first half. Paperweight addresses the second. Most people benefit from doing both.

@@ -25,7 +25,7 @@
 - 100% local processing — no cloud servers, no data collection, no telemetry
 - Supports Gmail, Outlook, Proton Mail via Bridge, and any IMAP provider
 - Available on macOS, Windows, and Linux
-- Free: one email account, full history, discovery, and local curation. Pro: cleanup, privacy requests, multiple accounts, and MCP access. Paperweight Pro: $60/year ($5/month, billed yearly), or $55 for one year via manually verified crypto with manual renewal. Cleanup Pass: $25 for 30 days of full Pro, paid by card or crypto, with no subscription or renewal. Existing early-supporter Lifetime licenses remain valid forever.
+- Free: one email account, full history, discovery, and local curation. Pro: cleanup, privacy requests, multiple accounts, and MCP access. Paperweight Pro: $60/year ($5/month, billed yearly), or $55 for one year via manually verified crypto with manual renewal. Cleanup Pass: $25 for 30 days of full Pro, paid by card or crypto, with no subscription or renewal. Lifetime licenses are currently unavailable and may return for special occasions. Existing Lifetime licenses provide permanent full Pro access with no renewal required.
 
 ## Contact
 

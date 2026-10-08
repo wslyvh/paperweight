@@ -58,9 +58,10 @@ export default async function TermsPage() {
           <li>
             <strong>Paperweight Pro</strong> costs $60 per year, billed yearly.
             The <strong>Cleanup Pass</strong> costs $25 once for 30 days of full
-            Pro access, with no subscription or renewal. Early-supporter
-            <strong> Lifetime licenses</strong> provide permanent full Pro access
-            and remain valid after public Lifetime sales end.
+            Pro access, with no subscription or renewal. Previously purchased
+            <strong> Lifetime licenses</strong> provide permanent full Pro
+            access with no renewal required. Lifetime licenses are currently
+            unavailable.
           </li>
           <li>
             Card payments are processed by Polar.sh. Crypto payments cost $55

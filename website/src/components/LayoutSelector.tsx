@@ -8,11 +8,6 @@ import { useEffect, useRef, useState } from "react";
 import { NavDropdown } from "@/components/NavDropdown";
 import { Newsletter } from "@/components/Newsletter";
 import { SITE_CONFIG } from "@/utils/config";
-import {
-  isLifetimeAvailable,
-  LIFETIME_SALES_ENDS_AT,
-  PLANS,
-} from "@/utils/pricing";
 
 /** Pages that ship their own layout (no main-site nav/footer). */
 const STANDALONE_ROUTES = ["/irl"];
@@ -31,7 +26,6 @@ interface LayoutSelectorProps extends PropsWithChildren {
 export function LayoutSelector(props: LayoutSelectorProps) {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [lifetimeAvailable, setLifetimeAvailable] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -41,29 +35,6 @@ export function LayoutSelector(props: LayoutSelectorProps) {
   const standalone = STANDALONE_ROUTES.some(
     (route) => pathname === route || pathname.startsWith(`${route}/`),
   );
-
-  useEffect(() => {
-    let timer: ReturnType<typeof setTimeout>;
-    function refreshLifetimeOffer() {
-      clearTimeout(timer);
-      const available = isLifetimeAvailable();
-      setLifetimeAvailable(available);
-      if (available) {
-        // Bound the delay for pages opened long before launch; hide at cutoff.
-        timer = setTimeout(
-          refreshLifetimeOffer,
-          Math.min(LIFETIME_SALES_ENDS_AT - Date.now(), 86_400_000),
-        );
-      }
-    }
-    // Client-only evaluation keeps prerendered pages from retaining an expired offer.
-    refreshLifetimeOffer();
-    window.addEventListener("focus", refreshLifetimeOffer);
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener("focus", refreshLifetimeOffer);
-    };
-  }, []);
 
   useEffect(() => {
     const backgroundElements = [
@@ -120,22 +91,6 @@ export function LayoutSelector(props: LayoutSelectorProps) {
   return (
     <div className="min-h-screen flex flex-col">
       <header ref={headerRef}>
-        {lifetimeAvailable && (
-          <Link
-            href="/pricing"
-            className="block bg-secondary text-secondary-content px-4 py-2.5 text-center text-sm hover:brightness-95"
-            data-umami-event="Lifetime Banner"
-          >
-            <span className="font-semibold">Last chance for Lifetime</span>{" "}
-            <span className="inline-block">
-              one-time ${PLANS.lifetime.price} (or ${PLANS.lifetime.cryptoPrice}{" "}
-              with crypto) -
-            </span>{" "}
-            <span className="inline-block font-semibold underline underline-offset-2">
-              Available through Oct 7
-            </span>
-          </Link>
-        )}
         <div className="container mx-auto px-4 py-6">
           <nav className="flex items-center justify-between">
             <Link

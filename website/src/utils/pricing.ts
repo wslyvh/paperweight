@@ -14,12 +14,6 @@ export const PLANS = {
     cryptoPrice: 25,
     productId: "e6f951f0-4655-400b-8b14-06d81e5a1d62",
   },
-  lifetime: {
-    name: "Early-supporter Lifetime",
-    price: 99,
-    cryptoPrice: 90,
-    productId: "84eecff9-fce2-4395-bd21-867543559f11",
-  },
 } as const;
 
 export function checkoutUrl(plan: keyof typeof PLANS) {
@@ -30,22 +24,12 @@ export function getCryptoPayPricing(plan: keyof typeof PLANS = "annual") {
   return {
     priceUsd: PLANS[plan].cryptoPrice,
     planName: PLANS[plan].name,
-    duration:
-      plan === "annual" ? "1 year" : plan === "cleanup" ? "30 days" : "life",
+    duration: plan === "annual" ? "1 year" : "30 days",
     renewal:
       plan === "annual"
         ? "One payment for one year. Renew manually by contacting us."
-        : plan === "cleanup"
-          ? "One payment for 30 days. No subscription or renewal."
-          : "One payment for permanent Pro access. No renewal.",
+        : "One payment for 30 days. No subscription or renewal.",
   };
-}
-
-// Lifetime sales end after October 7, 2026, in Europe/Amsterdam.
-export const LIFETIME_SALES_ENDS_AT = Date.parse("2026-10-08T00:00:00+02:00");
-
-export function isLifetimeAvailable(now = Date.now()) {
-  return now < LIFETIME_SALES_ENDS_AT;
 }
 
 export const STANDARD_OFFERS = [

@@ -4,14 +4,10 @@ import { SITE_CONFIG } from "@/utils/config";
 import {
   checkoutUrl,
   getCryptoPayPricing,
-  isLifetimeAvailable,
   PLANS,
   STANDARD_OFFERS,
 } from "@/utils/pricing";
 import { buildMetadata } from "@/utils/seo";
-
-// Evaluate the launch cutoff on each request, including after a deployment.
-export const dynamic = "force-dynamic";
 
 const description =
   "Free gives you the full picture. Pro lets you act on it. Get Paperweight Pro for $60/year or a 30-Day Cleanup Pass for $25.";
@@ -66,14 +62,13 @@ const faqItems = [
       "Yes. Pay $55 for one year of Pro or $25 for a Cleanup Pass using BTC, ETH, XMR, or ZEC. Use the payment instructions, then send your receipt and plan name by email, Signal, or Telegram. Payments are verified manually and licenses are sent through contact, typically within 24 hours. Crypto payments do not create a recurring subscription.",
   },
   {
-    question: "Will my existing Lifetime license keep working?",
+    question: "What about Lifetime licenses?",
     answer:
-      "Yes. Early-supporter Lifetime licenses provide permanent full Pro access. Ending public Lifetime sales does not change existing licenses.",
+      "Lifetime licenses are currently unavailable. We may offer them again for special occasions. If you already bought a Lifetime license, you keep full Pro access permanently, with no renewal required.",
   },
 ];
 
 export default function PricingPage() {
-  const lifetimeAvailable = isLifetimeAvailable();
   const structuredData = [
     {
       "@context": "https://schema.org",
@@ -83,21 +78,7 @@ export default function PricingPage() {
       operatingSystem: "macOS, Windows, Linux",
       url: `${SITE_CONFIG.URL}/pricing`,
       description,
-      offers: [
-        ...STANDARD_OFFERS,
-        ...(lifetimeAvailable
-          ? [
-              {
-                "@type": "Offer",
-                name: PLANS.lifetime.name,
-                price: PLANS.lifetime.price,
-                priceCurrency: "USD",
-                url: checkoutUrl("lifetime"),
-                availabilityEnds: "2026-10-08T00:00:00+02:00",
-              },
-            ]
-          : []),
-      ],
+      offers: STANDARD_OFFERS,
     },
     {
       "@context": "https://schema.org",
@@ -208,40 +189,6 @@ export default function PricingPage() {
               </div>
             ))}
           </div>
-          {lifetimeAvailable && (
-            <div className="card bg-base-100 border border-primary/30 max-w-6xl mx-auto mt-8">
-              <div className="card-body p-8">
-                <div className="badge badge-soft badge-primary">
-                  Early supporters
-                </div>
-                <h2 className="card-title">Last chance for Lifetime</h2>
-                <p>
-                  ${PLANS.lifetime.price} once for permanent full Pro access.
-                  Available through October 7, 2026.
-                </p>
-                <p className="text-sm opacity-70">
-                  Save ${PLANS.lifetime.price - PLANS.lifetime.cryptoPrice} with
-                  crypto. Existing Lifetime licenses remain valid forever.
-                </p>
-                <div className="card-actions mt-3">
-                  <a
-                    href={checkoutUrl("lifetime")}
-                    className="btn btn-primary"
-                    data-umami-event="Buy Lifetime"
-                  >
-                    Get Lifetime for ${PLANS.lifetime.price}
-                  </a>
-                  <PayWithCryptoButton
-                    pricing={getCryptoPayPricing("lifetime")}
-                    className="btn btn-outline"
-                    analyticsEvent="Pay Crypto Lifetime"
-                  >
-                    Pay with crypto (${PLANS.lifetime.cryptoPrice})
-                  </PayWithCryptoButton>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </section>
       <section className="py-16 container mx-auto px-4">
