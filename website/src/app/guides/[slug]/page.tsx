@@ -125,8 +125,12 @@ export default async function Page({
           dangerouslySetInnerHTML={{ __html: bodyHtml }}
         />
 
-        <div className="divider" />
-        <TakeActionCards />
+        {guide.slug !== "find-online-accounts" ? (
+          <>
+            <div className="divider" />
+            <TakeActionCards />
+          </>
+        ) : null}
       </section>
     </>
   );

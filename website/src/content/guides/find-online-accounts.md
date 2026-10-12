@@ -1,7 +1,7 @@
 ---
 title: How to Find Your Online Accounts
 description: Find online accounts using saved passwords, connected apps, welcome emails, receipts, subscriptions, and security alerts.
-last_updated: 2026-10-11
+last_updated: 2026-10-12
 ---
 
 Check five places to find your online accounts. Start with saved passwords and connected apps. Then search your email for welcome messages, receipts, and security alerts.
@@ -110,28 +110,6 @@ Search for:
 
 Prioritize accounts with reused passwords, saved payment details, identity documents, or a known breach. Change any reused password before closing the account.
 
-<div class="not-prose my-10 rounded-2xl border border-primary/30 bg-base-300 p-6">
-  <h2 class="text-2xl font-bold">Find more accounts with Paperweight</h2>
-  <p class="mt-2 opacity-80">Paperweight analyzes your email history on your computer. It organizes welcome messages, receipts, password resets, security alerts, newsletters, and other evidence by company.</p>
-  <a href="/#download" class="btn btn-primary mt-4" data-umami-event="Guide Download" data-umami-event-guide="find-online-accounts">Download Paperweight for free</a>
-  <p class="mt-3 text-sm opacity-70">Free forever. One email account with full history. No payment required.</p>
-  <p class="mt-3"><a href="/account-discovery" class="link link-primary">See how Paperweight account discovery works</a></p>
-</div>
-
-Your messages and credentials stay on your computer. Paperweight is open source and available for macOS, Windows, and Linux.
-
-## What you can do for free
-
-Paperweight Free lets you discover, inspect, and curate your email history with one account. It includes:
-
-- A full account and company inventory
-- A mailing list overview
-- Breach and risk information
-- Personal data and privacy findings
-- Local curation and profile management
-
-Paperweight Pro adds actions inside the app. These include unsubscribing, removing unwanted mail, and sending privacy requests. It also supports multiple email accounts.
-
 ## What to do after finding an account
 
 For each company, choose the actions you need:
@@ -144,15 +122,20 @@ For each company, choose the actions you need:
 
 Subscription cancellation, account closure, and personal data deletion are separate actions. Completing one does not always complete the others.
 
+<div class="not-prose my-8 rounded-2xl border border-primary/30 bg-base-300 p-5">
+  <h2 class="text-xl font-bold">Find your online accounts with Paperweight</h2>
+  <p class="mt-2 opacity-80">Paperweight analyzes your email history and organizes your accounts by company.</p>
+  <div class="mt-4 flex flex-wrap items-center gap-4">
+    <a href="/#download" class="btn btn-primary" data-umami-event="Guide Download" data-umami-event-guide="find-online-accounts">Download Paperweight for free</a>
+    <a href="/account-discovery" class="link link-primary">See how account discovery works</a>
+  </div>
+</div>
+
 ## Frequently asked questions
 
 ### Can I find every online account I have created?
 
-Not reliably. Accounts may be missing from your saved passwords, connected apps, or email history. These five checks can help you build a more complete list without trusting a public website with your email password.
-
-### Can a website find all accounts connected to my email address?
-
-An email address alone does not reveal a complete private account list. Be cautious with websites that promise to find every account from only an email address. Never enter your email password into an unfamiliar service.
+Check saved passwords and connected apps. Search your email for welcome messages, receipts, subscriptions, and security alerts. Paperweight analyzes your email history and organizes the accounts it finds by company.
 
 ### Does removing a connected app delete its account?
 
