@@ -1,4 +1,5 @@
 import { FileText, Mail } from "lucide-react";
+import Link from "next/link";
 import {
   type FaqItem,
   FeatureFaq,
@@ -138,6 +139,18 @@ export default function AccountDiscoveryPage() {
         description="Your inbox already contains evidence of the shops, apps, and services you have used. Paperweight turns that history into a company-by-company inventory."
         steps={workflowSteps}
       />
+
+      <section className="container mx-auto px-4">
+        <p className="text-center text-sm opacity-80">
+          Want to start manually?{" "}
+          <Link
+            href="/guides/find-online-accounts"
+            className="link link-primary font-medium"
+          >
+            Use these five practical checks to find your online accounts.
+          </Link>
+        </p>
+      </section>
 
       <section className="container mx-auto px-4 py-20">
         <div className="max-w-5xl mx-auto">
