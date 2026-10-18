@@ -12,6 +12,11 @@
 
 ## Resources
 
+- [Resources and Alternatives](https://www.paperweight.email/resources#alternatives): Compare Paperweight with AgainstData, Clean Email, Leave Me Alone, and Unroll.Me.
+- [AgainstData Alternative](https://www.paperweight.email/againstdata-alternative): Compare Paperweight and AgainstData across company discovery, inbox cleanup, local processing, mailbox support, and pricing.
+- [Clean Email Alternative](https://www.paperweight.email/clean-email-alternative): Compare inbox cleanup with Paperweight's account discovery, personal-data detection, and deletion requests.
+- [Leave Me Alone Alternative](https://www.paperweight.email/leave-me-alone-alternative): Compare unsubscribe and newsletter Rollups with Paperweight's local digital-footprint tools.
+- [Unroll.Me Alternative](https://www.paperweight.email/unroll-me-alternative): Compare subscription management, data use, and local account discovery.
 - [Email Cleanup Tools Compared](https://www.paperweight.email/guides/email-cleanup-tools-compared): Privacy-first comparison of inbox cleanup tools — local vs cloud processing, real unsubscribe vs filtering, and pricing models.
 - [Data Removal Services Compared](https://www.paperweight.email/guides/data-removal-services-compared): Compare major data removal services on privacy, reach, pricing, and what they actually do with your data.
 - [How to Exercise Your GDPR Rights](https://www.paperweight.email/guides/how-to-exercise-your-gdpr-rights): Step-by-step guide to access, delete, or anonymize your personal data under GDPR.
