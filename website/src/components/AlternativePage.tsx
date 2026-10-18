@@ -1,26 +1,10 @@
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { CoreFeatureCards } from "@/components/CoreFeatureCards";
 import { FeatureFinalCta, FeatureTrustSummary } from "@/components/FeaturePage";
 import { type Alternative, alternatives } from "@/utils/alternatives";
 import { SITE_CONFIG } from "@/utils/config";
 import { ALTERNATIVES_LAST_UPDATED } from "@/utils/page-dates";
-
-const benefits = [
-  {
-    title: "Find your online accounts",
-    description:
-      "Discover accounts, purchases, and subscriptions from your email history. Review each company and the evidence behind the relationship.",
-  },
-  {
-    title: "Clean up unwanted email",
-    description:
-      "Manage mailing lists, unsubscribe in bulk, and remove unwanted messages.",
-  },
-  {
-    title: "Take control of your personal data",
-    description:
-      "Detect personal details in past messages. Generate and send access or deletion requests, then track the response.",
-  },
-];
 
 interface AlternativePageProps {
   alternative: Alternative;
@@ -48,30 +32,6 @@ export function AlternativePage({ alternative }: AlternativePageProps) {
       url: `${SITE_CONFIG.URL}${path}`,
       dateModified: ALTERNATIVES_LAST_UPDATED,
     },
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "Home",
-          item: SITE_CONFIG.URL,
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "Resources",
-          item: `${SITE_CONFIG.URL}/resources`,
-        },
-        {
-          "@type": "ListItem",
-          position: 3,
-          name: `${alternative.name} alternative`,
-          item: `${SITE_CONFIG.URL}${path}`,
-        },
-      ],
-    },
   ];
 
   return (
@@ -82,18 +42,10 @@ export function AlternativePage({ alternative }: AlternativePageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <section className="container mx-auto px-4 pt-16 pb-20">
-        <div className="max-w-4xl mx-auto text-center">
-          <nav aria-label="Breadcrumb" className="mb-6 text-sm opacity-80">
-            <Link href="/" className="link link-hover">
-              Home
-            </Link>
-            <span aria-hidden> / </span>
-            <Link href="/resources#alternatives" className="link link-hover">
-              Resources
-            </Link>
-            <span aria-hidden> / </span>
-            <span aria-current="page">{alternative.name} alternative</span>
-          </nav>
+        <div className="max-w-6xl mx-auto">
+          <p className="badge badge-primary badge-soft tracking-wider mb-4">
+            Comparison
+          </p>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 break-words">
             Alternative to {alternative.name}
           </h1>
@@ -105,7 +57,7 @@ export function AlternativePage({ alternative }: AlternativePageProps) {
         className="container mx-auto px-4 pb-20"
         aria-label="Product comparison"
       >
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <section
             className="overflow-x-auto rounded-2xl border border-base-300 bg-base-100 focus-visible:outline-2 focus-visible:outline-primary"
             aria-label="Scrollable product comparison"
@@ -167,45 +119,57 @@ export function AlternativePage({ alternative }: AlternativePageProps) {
 
       <section className="bg-base-200 py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-10">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold mb-10">
               What Paperweight does differently
             </h2>
-            <div className="grid gap-6 md:grid-cols-3">
-              {benefits.map((benefit) => (
-                <div
-                  key={benefit.title}
-                  className="card bg-base-100 border border-base-300"
-                >
-                  <div className="card-body">
-                    <h3 className="card-title text-lg">{benefit.title}</h3>
-                    <p className="text-sm opacity-80">{benefit.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <CoreFeatureCards />
           </div>
         </div>
       </section>
 
-      <nav
-        aria-label="Other alternatives"
-        className="container mx-auto px-4 py-8"
+      <section
+        className="container mx-auto px-4 py-20"
+        aria-labelledby="other-comparisons"
       >
-        <div className="max-w-5xl mx-auto flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm">
-          {alternatives
-            .filter((item) => item.slug !== alternative.slug)
-            .map((item) => (
+        <div className="max-w-6xl mx-auto">
+          <h2 id="other-comparisons" className="text-3xl font-bold mb-10">
+            Compare Paperweight against others
+          </h2>
+          <div className="grid gap-4 md:grid-cols-2">
+            {[
+              ...alternatives
+                .filter((item) => item.slug !== alternative.slug)
+                .map((item) => ({
+                  href: `/${item.slug}`,
+                  title: `Alternative to ${item.name}`,
+                  description: item.description,
+                })),
+              {
+                href: "/resources#alternatives",
+                title: "All comparisons",
+                description:
+                  "Explore Paperweight alternatives to email cleanup and privacy tools.",
+              },
+            ].map((item) => (
               <Link
-                key={item.slug}
-                href={`/${item.slug}`}
-                className="link link-primary"
+                key={item.href}
+                href={item.href}
+                className="card bg-base-100 border border-base-300 shadow-sm hover:bg-base-300 transition-colors"
               >
-                {item.name} alternative
+                <div className="card-body">
+                  <h3 className="card-title text-lg">{item.title}</h3>
+                  <p className="text-sm opacity-80">{item.description}</p>
+                  <span className="inline-flex items-center gap-1.5 mt-2 text-sm font-medium">
+                    View comparison
+                    <ArrowRight className="h-4 w-4" />
+                  </span>
+                </div>
               </Link>
             ))}
+          </div>
         </div>
-      </nav>
+      </section>
       <FeatureTrustSummary />
       <FeatureFinalCta
         heading="Manage your digital footprint"
