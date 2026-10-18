@@ -137,17 +137,6 @@ export function AlternativePage({ alternative }: AlternativePageProps) {
             </h2>
             <p>{alternative.decision.competitor}</p>
             <p>{alternative.decision.paperweight}</p>
-            <p className="text-sm opacity-80">
-              Competitor details:{" "}
-              <a
-                href={alternative.decision.sourceUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="link link-hover"
-              >
-                {alternative.decision.sourceLabel}
-              </a>
-            </p>
           </div>
         </div>
       </section>

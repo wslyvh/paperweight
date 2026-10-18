@@ -10,8 +10,6 @@ export interface Alternative {
   decision: {
     competitor: string;
     paperweight: string;
-    sourceUrl: string;
-    sourceLabel: string;
   };
 }
 
@@ -36,8 +34,6 @@ export const againstDataAlternative: Alternative = {
       "Choose AgainstData if you want a hosted inbox workflow with a dashboard for tracking deletion requests.",
     paperweight:
       "Choose Paperweight if you prefer local account discovery and email cleanup across Gmail, Outlook, Proton Mail through Bridge, or standard IMAP.",
-    sourceUrl: "https://againstdata.com/terms",
-    sourceLabel: "AgainstData's terms",
   },
   rows: [
     {
@@ -87,8 +83,6 @@ export const cleanEmailAlternative: Alternative = {
       "Choose Clean Email if your priority is ongoing inbox organization with Auto Clean rules and unsubscribe tools.",
     paperweight:
       "Choose Paperweight if you also want to discover accounts and prepare privacy requests while keeping email analysis on your computer.",
-    sourceUrl: "https://clean.email/features",
-    sourceLabel: "Clean Email's features",
   },
   rows: [
     {
@@ -135,8 +129,6 @@ export const leaveMeAloneAlternative: Alternative = {
       "Choose Leave Me Alone if you want newsletters bundled into scheduled Rollups.",
     paperweight:
       "Choose Paperweight if you want account discovery and personal-data requests alongside unsubscribe tools.",
-    sourceUrl: "https://leavemealone.com/rollups/",
-    sourceLabel: "Leave Me Alone's Rollups",
   },
   rows: [
     {
@@ -183,8 +175,6 @@ export const unrollMeAlternative: Alternative = {
       "Choose Unroll.Me if you want a free daily Rollup and are comfortable with its market-research data model.",
     paperweight:
       "Choose Paperweight if you want to manage subscriptions and discover accounts without your email feeding market-research products.",
-    sourceUrl: "https://unroll.me/your-data/",
-    sourceLabel: "Unroll.Me's data use",
   },
   rows: [
     {
