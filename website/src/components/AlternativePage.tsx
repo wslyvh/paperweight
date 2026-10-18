@@ -52,7 +52,7 @@ export function AlternativePage({ alternative }: AlternativePageProps) {
       </section>
 
       <section
-        className="container mx-auto px-4 pb-20"
+        className="container mx-auto px-4 pb-12"
         aria-label="Product comparison"
       >
         <div className="max-w-6xl mx-auto">
@@ -123,6 +123,32 @@ export function AlternativePage({ alternative }: AlternativePageProps) {
               </tbody>
             </table>
           </section>
+        </div>
+      </section>
+
+      <section
+        className="container mx-auto px-4 pb-20"
+        aria-labelledby="which-to-choose"
+      >
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-3xl space-y-3">
+            <h2 id="which-to-choose" className="text-2xl font-bold">
+              Which should you choose?
+            </h2>
+            <p>{alternative.decision.competitor}</p>
+            <p>{alternative.decision.paperweight}</p>
+            <p className="text-sm opacity-80">
+              Competitor details:{" "}
+              <a
+                href={alternative.decision.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link link-hover"
+              >
+                {alternative.decision.sourceLabel}
+              </a>
+            </p>
+          </div>
         </div>
       </section>
 
