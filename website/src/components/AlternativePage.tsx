@@ -104,15 +104,22 @@ export function AlternativePage({ alternative }: AlternativePageProps) {
                         key={products[index].name}
                         className="align-top whitespace-normal p-3 md:p-4"
                       >
-                        {row.sourceUrl && index === 1 ? (
-                          <a
-                            href={row.sourceUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="link link-hover"
-                          >
-                            {value}
-                          </a>
+                        {row.sourceUrl && row.sourceText && index === 1 ? (
+                          <>
+                            {value.slice(0, value.indexOf(row.sourceText))}
+                            <a
+                              href={row.sourceUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="underline"
+                            >
+                              {row.sourceText}
+                            </a>
+                            {value.slice(
+                              value.indexOf(row.sourceText) +
+                                row.sourceText.length,
+                            )}
+                          </>
                         ) : (
                           value
                         )}

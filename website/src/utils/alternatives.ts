@@ -6,7 +6,12 @@ export interface Alternative {
   metaDescription: string;
   description: string;
   summary: string;
-  rows: { dimension: string; values: [string, string]; sourceUrl?: string }[];
+  rows: {
+    dimension: string;
+    values: [string, string];
+    sourceUrl?: string;
+    sourceText?: string;
+  }[];
   decision: {
     competitor: string;
     paperweight: string;
@@ -206,6 +211,7 @@ export const unrollMeAlternative: Alternative = {
     {
       dimension: "Pricing",
       values: [pricing, "Free, but sells user data"],
+      sourceText: "sells user data",
       sourceUrl:
         "https://www.theverge.com/2019/12/17/21027159/unroll-me-email-privacy-ftc-settlement",
     },
