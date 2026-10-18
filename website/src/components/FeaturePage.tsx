@@ -157,7 +157,11 @@ export function RelatedFeatures({
   );
 }
 
-export function FeatureTrustSummary({ eyebrow }: { eyebrow?: string } = {}) {
+export function FeatureTrustSummary({
+  heading = "Built for privacy from the ground up",
+}: {
+  heading?: string;
+} = {}) {
   return (
     <section className="bg-base-300 py-20">
       <div className="container mx-auto px-4">
@@ -167,14 +171,7 @@ export function FeatureTrustSummary({ eyebrow }: { eyebrow?: string } = {}) {
               className="w-10 h-10 text-success mx-auto mb-4"
               strokeWidth={1.5}
             />
-            {eyebrow ? (
-              <p className="mb-3 text-sm font-semibold uppercase tracking-wider opacity-70">
-                {eyebrow}
-              </p>
-            ) : null}
-            <h2 className="text-3xl font-bold mb-3">
-              Built for privacy from the ground up
-            </h2>
+            <h2 className="text-3xl font-bold mb-3">{heading}</h2>
             <p className="text-lg opacity-80">
               A privacy tool that reads your data in the cloud is not a privacy
               tool. Paperweight connects directly to your provider and stays on

@@ -126,7 +126,7 @@ export function AlternativePage({ alternative }: AlternativePageProps) {
         </div>
       </section>
 
-      <FeatureTrustSummary eyebrow="What Paperweight does differently" />
+      <FeatureTrustSummary heading="What Paperweight does differently" />
 
       <section className="container mx-auto px-4 pt-8 pb-20">
         <div className="max-w-6xl mx-auto">
