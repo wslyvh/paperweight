@@ -6,7 +6,7 @@ export interface Alternative {
   metaDescription: string;
   description: string;
   summary: string;
-  rows: { dimension: string; values: [string, string] }[];
+  rows: { dimension: string; values: [string, string]; sourceUrl?: string }[];
 }
 
 const discovery =
@@ -54,7 +54,7 @@ export const againstDataAlternative: Alternative = {
     },
     {
       dimension: "Pricing",
-      values: [pricing, "Free trial, then paid annual plans"],
+      values: [pricing, "Limited free trial or $79/year"],
     },
   ],
 };
@@ -94,7 +94,7 @@ export const cleanEmailAlternative: Alternative = {
     },
     {
       dimension: "Pricing",
-      values: [pricing, "Limited free trial, then a paid subscription"],
+      values: [pricing, "Limited free trial or $40/year for 1 account"],
     },
   ],
 };
@@ -134,10 +134,7 @@ export const leaveMeAloneAlternative: Alternative = {
     },
     {
       dimension: "Pricing",
-      values: [
-        pricing,
-        "Free trial, then paid cleanup or subscription options",
-      ],
+      values: [pricing, "Limited free version or $80/year"],
     },
   ],
 };
@@ -180,10 +177,9 @@ export const unrollMeAlternative: Alternative = {
     },
     {
       dimension: "Pricing",
-      values: [
-        pricing,
-        "Free service supported by its market research business",
-      ],
+      values: [pricing, "Free, but sells user data"],
+      sourceUrl:
+        "https://www.theverge.com/2019/12/17/21027159/unroll-me-email-privacy-ftc-settlement",
     },
   ],
 };

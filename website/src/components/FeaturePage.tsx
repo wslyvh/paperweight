@@ -157,7 +157,7 @@ export function RelatedFeatures({
   );
 }
 
-export function FeatureTrustSummary() {
+export function FeatureTrustSummary({ eyebrow }: { eyebrow?: string } = {}) {
   return (
     <section className="bg-base-300 py-20">
       <div className="container mx-auto px-4">
@@ -167,6 +167,11 @@ export function FeatureTrustSummary() {
               className="w-10 h-10 text-success mx-auto mb-4"
               strokeWidth={1.5}
             />
+            {eyebrow ? (
+              <p className="mb-3 text-sm font-semibold uppercase tracking-wider opacity-70">
+                {eyebrow}
+              </p>
+            ) : null}
             <h2 className="text-3xl font-bold mb-3">
               Built for privacy from the ground up
             </h2>
@@ -218,8 +223,8 @@ export function FeatureTrustSummary() {
               <div>
                 <h3 className="font-semibold">The walk-away test</h3>
                 <p className="text-sm opacity-80 mt-1">
-                  Your email stays on your computer. Discover and curate for free,
-                  then choose Pro when you want to take action.
+                  Your email stays on your computer. Discover and curate for
+                  free, then choose Pro when you want to take action.
                 </p>
               </div>
             </div>

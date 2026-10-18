@@ -1,8 +1,6 @@
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
-import { CoreFeatureCards } from "@/components/CoreFeatureCards";
+import { ComparisonResources } from "@/components/ComparisonResources";
 import { FeatureFinalCta, FeatureTrustSummary } from "@/components/FeaturePage";
-import { type Alternative, alternatives } from "@/utils/alternatives";
+import type { Alternative } from "@/utils/alternatives";
 import { SITE_CONFIG } from "@/utils/config";
 import { ALTERNATIVES_LAST_UPDATED } from "@/utils/page-dates";
 
@@ -72,15 +70,15 @@ export function AlternativePage({ alternative }: AlternativePageProps) {
                 <tr>
                   <th
                     scope="col"
-                    className="w-1/4 align-bottom text-base-content"
+                    className="w-1/4 align-bottom p-3 md:p-4 text-base-content"
                   >
-                    Feature
+                    <span className="sr-only">Comparison criteria</span>
                   </th>
                   {products.map((product) => (
                     <th
                       key={product.name}
                       scope="col"
-                      className="align-top whitespace-normal break-words p-3 md:p-6"
+                      className="align-top whitespace-normal break-words p-3 md:p-4"
                     >
                       <span className="block text-lg md:text-2xl font-bold text-base-content mb-3">
                         {product.name}
@@ -106,7 +104,18 @@ export function AlternativePage({ alternative }: AlternativePageProps) {
                         key={products[index].name}
                         className="align-top whitespace-normal p-3 md:p-4"
                       >
-                        {value}
+                        {row.sourceUrl && index === 1 ? (
+                          <a
+                            href={row.sourceUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="link link-hover"
+                          >
+                            {value}
+                          </a>
+                        ) : (
+                          value
+                        )}
                       </td>
                     ))}
                   </tr>
@@ -117,60 +126,13 @@ export function AlternativePage({ alternative }: AlternativePageProps) {
         </div>
       </section>
 
-      <section className="bg-base-200 py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-10">
-              What Paperweight does differently
-            </h2>
-            <CoreFeatureCards />
-          </div>
-        </div>
-      </section>
+      <FeatureTrustSummary eyebrow="What Paperweight does differently" />
 
-      <section
-        className="container mx-auto px-4 py-20"
-        aria-labelledby="other-comparisons"
-      >
+      <section className="container mx-auto px-4 pt-8 pb-20">
         <div className="max-w-6xl mx-auto">
-          <h2 id="other-comparisons" className="text-3xl font-bold mb-10">
-            Compare Paperweight against others
-          </h2>
-          <div className="grid gap-4 md:grid-cols-2">
-            {[
-              ...alternatives
-                .filter((item) => item.slug !== alternative.slug)
-                .map((item) => ({
-                  href: `/${item.slug}`,
-                  title: `Alternative to ${item.name}`,
-                  description: item.description,
-                })),
-              {
-                href: "/resources#alternatives",
-                title: "All comparisons",
-                description:
-                  "Explore Paperweight alternatives to email cleanup and privacy tools.",
-              },
-            ].map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="card bg-base-100 border border-base-300 shadow-sm hover:bg-base-300 transition-colors"
-              >
-                <div className="card-body">
-                  <h3 className="card-title text-lg">{item.title}</h3>
-                  <p className="text-sm opacity-80">{item.description}</p>
-                  <span className="inline-flex items-center gap-1.5 mt-2 text-sm font-medium">
-                    View comparison
-                    <ArrowRight className="h-4 w-4" />
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
+          <ComparisonResources />
         </div>
       </section>
-      <FeatureTrustSummary />
       <FeatureFinalCta
         heading="Manage your digital footprint"
         body="Find your accounts, clean up unwanted email, and take control of your personal data."
