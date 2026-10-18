@@ -1,7 +1,7 @@
 ---
 title: Data removal services
 description: A privacy-first comparison of the major data removal services, what they actually do, what you hand over, and where a local-first alternative fits in.
-last_updated: 2026-10-08
+last_updated: 2026-10-18
 ---
 
 Data brokers and people-search sites are one half of your data footprint. The companies you have signed up for over the years are the other half. The services on this page address the first half. Paperweight addresses the second. Most people benefit from doing both.
@@ -148,11 +148,13 @@ Aura is not purely a data removal service. It is a broader identity theft protec
 
 ### AgainstData
 
-> Founded 2020. Privately held, based in Busteni, Romania. EU-native. Web app and mobile, Gmail-only.
+> Founded 2020. Privately held, based in Busteni, Romania. EU-native. Hosted web app for Google and Microsoft accounts.
 
-AgainstData is the closest functional cousin to Paperweight on this list. It connects to your Gmail, identifies the companies that have sent you marketing or transactional emails, and lets you send GDPR deletion request templates with one click. It does broker-adjacent work via the inbox-discovery route rather than scrubbing public broker sites.
+AgainstData is the closest functional cousin to Paperweight on this list. It connects to your Google or Microsoft account, identifies companies that have sent you marketing or transactional emails, and lets you send GDPR deletion request templates. It does broker-adjacent work through inbox discovery rather than scrubbing public broker sites.
 
-The architectural difference is where the processing happens. AgainstData reads and processes your inbox on its own servers. The vendor sees what is in your inbox during operation. Paperweight performs the equivalent reading locally on your machine, so the vendor sees nothing.
+The architectural difference is where the processing happens. AgainstData processes mailbox metadata on its servers. Paperweight performs its analysis locally on your computer.
+
+See the direct [Paperweight and AgainstData comparison](/againstdata-alternative).
 
 **Pros**
 - Inbox-derived discovery rather than broker scrubbing
@@ -160,8 +162,8 @@ The architectural difference is where the processing happens. AgainstData reads 
 - Sends real deletion requests, not just unsubscribe
 
 **Cons**
-- Cloud-based processing of inbox contents
-- Gmail-only
+- Hosted processing of mailbox metadata
+- Google and Microsoft accounts only
 
 ### Mozilla Monitor
 

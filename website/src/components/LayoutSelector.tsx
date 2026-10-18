@@ -95,7 +95,7 @@ export function LayoutSelector(props: LayoutSelectorProps) {
           <nav className="flex items-center justify-between">
             <Link
               href="/"
-              className="text-xl font-bold flex items-center gap-2"
+              className="text-base min-[360px]:text-xl font-bold flex items-center gap-2"
             >
               <span>🗿</span>
               <span>Paperweight</span>
@@ -337,7 +337,7 @@ export function LayoutSelector(props: LayoutSelectorProps) {
               <nav>
                 <Link
                   href="/account-discovery"
-                  className="footer-title link link-hover"
+                  className="footer-title opacity-80 link link-hover"
                 >
                   Features
                 </Link>
@@ -354,7 +354,7 @@ export function LayoutSelector(props: LayoutSelectorProps) {
               <nav>
                 <Link
                   href="/resources"
-                  className="footer-title link link-hover"
+                  className="footer-title opacity-80 link link-hover"
                 >
                   Resources
                 </Link>
@@ -369,7 +369,10 @@ export function LayoutSelector(props: LayoutSelectorProps) {
                 ))}
               </nav>
               <nav>
-                <Link href="/guides" className="footer-title link link-hover">
+                <Link
+                  href="/guides"
+                  className="footer-title opacity-80 link link-hover"
+                >
                   Guides
                 </Link>
                 {props.guideNavLinks.map((item) => (
@@ -383,7 +386,7 @@ export function LayoutSelector(props: LayoutSelectorProps) {
                 ))}
               </nav>
               <nav>
-                <h6 className="footer-title">Legal</h6>
+                <h6 className="footer-title opacity-80">Legal</h6>
                 <Link href="/pricing" className="link link-hover">
                   Pricing
                 </Link>

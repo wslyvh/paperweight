@@ -10,6 +10,7 @@ export const FEATURE_NAV_LINKS: NavLinkItem[] = [
 ];
 
 export const RESOURCE_NAV_LINKS: NavLinkItem[] = [
+  { href: "/resources#alternatives", label: "Alternatives" },
   { href: "/breaches", label: "Data Breaches" },
   { href: "/resources/gdpr-generator", label: "GDPR Generator" },
   { href: "/resources/authorities", label: "DPAs" },

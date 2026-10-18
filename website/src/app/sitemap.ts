@@ -1,10 +1,12 @@
 import type { MetadataRoute } from "next";
 import { getReleases } from "@/lib/github";
+import { alternatives } from "@/utils/alternatives";
 import { getBreachSitemapEntries } from "@/utils/breach";
 import { SITE_CONFIG } from "@/utils/config";
 import { GetGuides } from "@/utils/guides";
 import {
   ACCOUNT_DISCOVERY_LAST_UPDATED,
+  ALTERNATIVES_LAST_UPDATED,
   AUTHORITIES_LAST_UPDATED,
   EMAIL_CLEANUP_LAST_UPDATED,
   GDPR_GENERATOR_LAST_UPDATED,
@@ -52,6 +54,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    ...alternatives.map((alternative) => ({
+      url: `${SITE_CONFIG.URL}/${alternative.slug}`,
+      lastModified: ALTERNATIVES_LAST_UPDATED,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+
     {
       url: `${SITE_CONFIG.URL}/email-cleanup`,
       lastModified: EMAIL_CLEANUP_LAST_UPDATED,
@@ -84,7 +93,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${SITE_CONFIG.URL}/resources`,
-      lastModified: HOME_LAST_UPDATED,
+      lastModified: ALTERNATIVES_LAST_UPDATED,
       changeFrequency: "weekly",
       priority: 0.7,
     },

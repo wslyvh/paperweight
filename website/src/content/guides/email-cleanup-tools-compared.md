@@ -1,7 +1,7 @@
 ---
 title: Email cleanup tools
 description: A privacy-first comparison of email unsubscribe and inbox cleanup tools, what they actually do with your inbox, and where a local-first alternative fits in.
-last_updated: 2026-05-21
+last_updated: 2026-10-18
 ---
 
 Most inbox cleanup tools do one of two things. They unsubscribe you from mailing lists, or they filter unwanted mail into a folder so you stop seeing it. Both leave the underlying situation in place. The company still has your email address, your account, and whatever data it collected when you signed up.
@@ -56,6 +56,8 @@ These six questions apply to any tool in this category, including Paperweight.
 
 ### Clean Email
 
+See the direct [Paperweight and Clean Email comparison](/clean-email-alternative).
+
 > Founded 2015. Privately held, US-based. Web, iOS, Android, and Mac. Works with Gmail, Outlook, Yahoo, iCloud, and any IMAP provider.
 
 Clean Email is the strongest privacy-conscious option among the cloud tools. It analyzes only headers and metadata rather than message content, funds itself entirely through subscriptions, and states plainly that it does not sell or share data. It has been Google-verified and passed a third-party security assessment. The feature set is deep: true unsubscribe that also blocks non-compliant senders, 33 pre-built smart folders, and auto-clean rules. It holds a 4.5 rating across more than 3,300 reviews.
@@ -71,6 +73,8 @@ Clean Email is the strongest privacy-conscious option among the cloud tools. It 
 - Per-account pricing adds up across multiple inboxes
 
 ### Leave Me Alone
+
+See the direct [Paperweight and Leave Me Alone comparison](/leave-me-alone-alternative).
 
 > Founded 2018 by an indie two-person team (Squarecat). Bootstrapped, UK-based. Web and mobile. Works with Gmail, Outlook, Yahoo, and other major providers.
 
@@ -152,9 +156,11 @@ GoodByEmail is the closest tool to Paperweight on architecture, and it is a genu
 
 ### AgainstData
 
-> Founded 2020. Privately held, based in Romania. EU-native. Web app and mobile, Gmail-only.
+> Founded 2020. Privately held, based in Romania. EU-native. Hosted web app for Google and Microsoft accounts.
 
-AgainstData is the closest tool to Paperweight on function rather than architecture. It connects to your Gmail, identifies companies that have emailed you, and sends GDPR deletion request templates with one click. It is one of the very few tools in either the cleanup or data removal categories that addresses the account, not just the mail. It is cloud-based, so the processing happens on its servers, and it works with Gmail only.
+AgainstData is the closest tool to Paperweight on function rather than architecture. It connects to your Google or Microsoft account, identifies companies that have emailed you, and sends GDPR deletion request templates. It is one of the few tools in either the cleanup or data removal categories that addresses the account, not only the mail. It processes mailbox metadata in a hosted service.
+
+See the direct [Paperweight and AgainstData comparison](/againstdata-alternative).
 
 **Pros**
 - Sends real GDPR deletion requests, not just unsubscribes
@@ -162,8 +168,8 @@ AgainstData is the closest tool to Paperweight on function rather than architect
 - Inbox-derived discovery of the companies holding your data
 
 **Cons**
-- Cloud-based processing of inbox contents
-- Gmail-only
+- Hosted processing of mailbox metadata
+- Google and Microsoft accounts only
 - Mixed recent reviews on interface and refunds
 
 ## Pricing comparison
@@ -184,6 +190,8 @@ AgainstData is the closest tool to Paperweight on function rather than architect
 Prices might differ. GoodByEmail and Leave Me Alone pricing should be confirmed against their own sites before publishing.
 
 ## Notable concerns
+
+For subscription management and data use, see the [Paperweight and Unroll.Me comparison](/unroll-me-alternative).
 
 **Unroll.me.** In April 2017, the New York Times reported that Unroll.me's parent company had been selling anonymized purchase data from users' inboxes to Uber, which used it to track a competitor. In August 2019, the FTC charged the company with deceiving users by telling them it would not touch their personal information while doing exactly that. Now owned by NielsenIQ. It withdrew from the EU in 2018 rather than comply with GDPR.
 
