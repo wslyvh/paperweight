@@ -1,0 +1,23 @@
+Paperweight homepage OG assets
+
+Used only by website/src/app/(home)/opengraph-image.tsx.
+moai.png is the original transparent launch artwork.
+Fonts: Ubuntu 400/500, plus a static JetBrains Mono 500 instance of the site's variable font. Keep the accompanying font licences.
+
+background.png contains only the gradient and faint dots, not text or artwork. It preserves the original CSS mask without Satori approximations.
+
+To reproduce the background, render these two layers in Chromium at 1200x630, device scale 1, with body margin 0:
+
+.background {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #2b3440 0%, #1a1f27 100%);
+}
+.dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(178,204,214,0.16) 1.4px, transparent 1.6px);
+  background-size: 44px 44px;
+  background-position: -10.5px -6px;
+  mask-image: radial-gradient(ellipse 65% 60% at 50% 50%, black 10%, transparent 85%);
+}
