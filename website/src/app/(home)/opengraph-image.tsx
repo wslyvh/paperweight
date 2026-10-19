@@ -88,7 +88,7 @@ export default async function Image() {
       readFile(join(process.cwd(), "public/fonts/Ubuntu-Medium.ttf")),
       readFile(join(process.cwd(), "public/fonts/JetBrainsMono-Medium.ttf")),
       readFile(join(process.cwd(), "public/icon.png")),
-      readFile(join(process.cwd(), "public/og/homepage-background.png")),
+      readFile(join(process.cwd(), "public/og/background.png")),
     ]);
 
   return new ImageResponse(
