@@ -84,13 +84,11 @@ function RadarArtwork({ moai }: RadarArtworkProps) {
 export default async function Image() {
   const [ubuntuRegular, ubuntuMedium, monoMedium, moaiBytes, backgroundBytes] =
     await Promise.all([
-      readFile(join(process.cwd(), "public/og-assets/Ubuntu-Regular.ttf")),
-      readFile(join(process.cwd(), "public/og-assets/Ubuntu-Medium.ttf")),
-      readFile(
-        join(process.cwd(), "public/og-assets/JetBrainsMono-Medium.ttf"),
-      ),
-      readFile(join(process.cwd(), "public/og-assets/moai.png")),
-      readFile(join(process.cwd(), "public/og-assets/background.png")),
+      readFile(join(process.cwd(), "public/fonts/Ubuntu-Regular.ttf")),
+      readFile(join(process.cwd(), "public/fonts/Ubuntu-Medium.ttf")),
+      readFile(join(process.cwd(), "public/fonts/JetBrainsMono-Medium.ttf")),
+      readFile(join(process.cwd(), "public/icon.png")),
+      readFile(join(process.cwd(), "public/og/homepage-background.png")),
     ]);
 
   return new ImageResponse(
