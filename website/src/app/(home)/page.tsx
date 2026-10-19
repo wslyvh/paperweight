@@ -30,6 +30,7 @@ export const metadata = buildMetadata({
   title,
   description,
   path: "/",
+  hasOwnImage: true,
 });
 
 const homepageFaqItems = [
