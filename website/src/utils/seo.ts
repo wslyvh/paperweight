@@ -19,7 +19,7 @@ interface PageMetadataOptions {
   hasOwnImage?: boolean;
 }
 
-const DEFAULT_IMAGE = `${SITE_CONFIG.URL}/og.png`;
+export const DEFAULT_OG_IMAGE = `${SITE_CONFIG.URL}/opengraph-image`;
 
 /**
  * Builds page metadata with a complete Open Graph block.
@@ -36,7 +36,7 @@ function resolveOgImage(options: {
 }): string | undefined {
   if (options.image) return options.image;
   if (options.hasOwnImage) return undefined;
-  return DEFAULT_IMAGE;
+  return DEFAULT_OG_IMAGE;
 }
 
 export function buildMetadata({

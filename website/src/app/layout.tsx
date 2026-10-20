@@ -3,6 +3,7 @@ import Script from "next/script";
 import type { PropsWithChildren } from "react";
 import { LayoutSelector } from "@/components/LayoutSelector";
 import { SITE_CONFIG } from "@/utils/config";
+import { DEFAULT_OG_IMAGE } from "@/utils/seo";
 import { GetGuides } from "@/utils/guides";
 import { FEATURE_NAV_LINKS, RESOURCE_NAV_LINKS } from "@/utils/nav";
 import "@/assets/globals.css";
@@ -21,14 +22,14 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.NAME,
     description: SITE_CONFIG.DESCRIPTION,
     url: SITE_CONFIG.URL,
-    images: `${SITE_CONFIG.URL}/og.png`,
+    images: DEFAULT_OG_IMAGE,
   },
   twitter: {
     card: "summary_large_image",
     site: SITE_CONFIG.SOCIAL_TWITTER,
     title: `${SITE_CONFIG.NAME} | ${SITE_CONFIG.TAGLINE}`,
     description: SITE_CONFIG.DESCRIPTION,
-    images: `${SITE_CONFIG.URL}/og.png`,
+    images: DEFAULT_OG_IMAGE,
   },
 };
 
