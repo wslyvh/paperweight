@@ -124,7 +124,7 @@ export const leaveMeAloneAlternative: Alternative = {
   slug: "leave-me-alone-alternative",
   name: "Leave Me Alone",
   metaDescription:
-    "Compare Paperweight with Leave Me Alone. Go beyond unsubscribe and newsletter Rollups with local account discovery, personal-data detection, and deletion requests.",
+    "Compare Paperweight to Leave Me Alone. Go beyond unsubscribe and newsletter Rollups with local account discovery, personal-data detection and deletion requests.",
   description:
     "Clean up unwanted email and see the accounts behind it. Paperweight combines bulk unsubscribe with account discovery, personal-data detection, and deletion requests in an open-source desktop app.",
   summary:
