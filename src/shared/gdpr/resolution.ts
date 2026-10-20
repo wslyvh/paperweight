@@ -49,7 +49,7 @@ export const EU_DPAS: Dpa[] = [
     address: "Drukpersstraat 35, 1000 Brussels",
     complaintUrl:
       "https://www.dataprotectionauthority.be/citizen/actions/lodge-a-complaint",
-    websiteUrl: "https://www.dataprotectionauthority.be",
+    websiteUrl: "https://www.dataprotectionauthority.be/citizen",
     warning:
       "Complaints must be in French, Dutch, or German. English submissions are not accepted.",
     tld: "be",
