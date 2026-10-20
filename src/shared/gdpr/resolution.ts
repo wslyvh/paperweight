@@ -48,7 +48,7 @@ export const EU_DPAS: Dpa[] = [
     email: "contact@apd-gba.be",
     address: "Drukpersstraat 35, 1000 Brussels",
     complaintUrl:
-      "https://www.autoriteprotectiondonnees.be/introduire-une-requete-une-plainte",
+      "https://www.dataprotectionauthority.be/citizen/actions/lodge-a-complaint",
     websiteUrl: "https://www.dataprotectionauthority.be",
     warning:
       "Complaints must be in French, Dutch, or German. English submissions are not accepted.",
@@ -81,7 +81,7 @@ export const EU_DPAS: Dpa[] = [
     address: "P.O. Box 800, FI-00531 Helsinki",
     complaintUrl:
       "https://tietosuoja.fi/en/notification-to-the-data-protection-ombudsman",
-    websiteUrl: "https://www.tietosuoja.fi/en/",
+    websiteUrl: "https://tietosuoja.fi/en/home",
     warning:
       "Complaints are processed in Finnish or Swedish. English submissions may be accepted but Finnish is strongly preferred.",
     tld: "fi",
@@ -110,7 +110,7 @@ export const EU_DPAS: Dpa[] = [
     address: "Graurheindorfer Str. 153, 53117 Bonn",
     complaintUrl:
       "https://www.bfdi.bund.de/EN/Buerger/Inhalte/Allgemein/Datenschutz/BeschwerdeBeiDatenschutzbehoerden.html",
-    websiteUrl: "https://www.bfdi.bund.de",
+    websiteUrl: "https://www.bfdi.bund.de/EN/Home/home_node.html",
     warning:
       "For private companies, file with the state DPA where the company is headquartered, not the federal BfDI. Forms are German only.",
     tld: "de",
@@ -157,7 +157,8 @@ export const EU_DPAS: Dpa[] = [
     phone: "+31 70 888 8500",
     email: "info@autoriteitpersoonsgegevens.nl",
     address: "Postbus 93374, 2509 AJ Den Haag",
-    complaintUrl: "https://klachten.autoriteitpersoonsgegevens.nl/",
+    complaintUrl:
+      "https://autoriteitpersoonsgegevens.nl/en/submitting-a-tip-off-or-a-complaint-to-the-ap",
     websiteUrl: "https://www.autoriteitpersoonsgegevens.nl/en",
     englishOk: true,
     tld: "nl",
@@ -301,7 +302,7 @@ export const NON_EU_DPAS: Dpa[] = [
     email: "postur@personuvernd.is",
     address: "Laugarvegur 166, 4th floor, 105 Reykjavík",
     complaintUrl: "https://island.is/en/complaint-to-the-data-protection-authority",
-    websiteUrl: "https://island.is/s/personuvernd/en/",
+    websiteUrl: "https://island.is/en/o/the-data-protection-authority",
     englishOk: true,
     warning:
       "Iceland is EEA, not EU — GDPR applies via the EEA Agreement. English is widely accepted.",
