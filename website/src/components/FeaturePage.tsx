@@ -220,8 +220,9 @@ export function FeatureTrustSummary({
               <div>
                 <h3 className="font-semibold">The walk-away test</h3>
                 <p className="text-sm opacity-80 mt-1">
-                  Your email stays on your computer. Discover and curate for
-                  free, then choose Pro when you want to take action.
+                  Even if we disappear, you keep the app, source code, and your
+                  data. Fully local, with no Paperweight servers
+                  to depend on.
                 </p>
               </div>
             </div>
