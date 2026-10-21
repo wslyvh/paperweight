@@ -14,6 +14,7 @@ export const metadata: Metadata = buildMetadata({
   description:
     "GDPR request tools, data protection authority contacts, breach overviews, and other practical privacy resources.",
   path: "/resources",
+  hasOwnImage: true,
 });
 
 export default function Page() {

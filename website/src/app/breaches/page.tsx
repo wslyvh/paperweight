@@ -10,6 +10,7 @@ export const metadata: Metadata = buildMetadata({
   description:
     "Guides on recent data breaches. Find out what happened, what personal data was exposed, and the exact steps to take to protect yourself.",
   path: "/breaches",
+  hasOwnImage: true,
 });
 
 export default function BreachIndexPage() {

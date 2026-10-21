@@ -20,8 +20,7 @@ export const metadata = buildMetadata({
   title,
   description,
   path: "/email-cleanup",
-  image: "/og/email-cleanup.png",
-  imageAlt: "Paperweight mailing lists and bulk unsubscribe view",
+  hasOwnImage: true,
 });
 
 const workflowSteps: WorkflowStep[] = [
@@ -202,7 +201,7 @@ export default function EmailCleanupPage() {
               "Detect exposed personal data, phone numbers, addresses, payment info, and send targeted deletion requests.",
             href: "/remove-personal-data",
             icon: (
-              <FileText className="w-12 h-12 text-warning" strokeWidth={1.5} />
+              <FileText className="w-12 h-12 text-primary" strokeWidth={1.5} />
             ),
           },
         ]}

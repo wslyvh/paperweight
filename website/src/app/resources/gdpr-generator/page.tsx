@@ -13,6 +13,7 @@ export const metadata = buildMetadata({
   description:
     "Generate a ready-to-send GDPR access or deletion request in seconds. Free, private, and tailored to the company holding your data.",
   path: "/resources/gdpr-generator",
+  hasOwnImage: true,
 });
 
 interface GdprGeneratorPageProps {

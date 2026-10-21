@@ -10,6 +10,7 @@ export const metadata = buildMetadata({
   description:
     "Find your national data protection authority and the contact details to escalate a GDPR complaint when a company ignores your request.",
   path: "/resources/authorities",
+  hasOwnImage: true,
 });
 
 interface InfoRowProps {

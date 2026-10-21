@@ -10,6 +10,7 @@ export const metadata: Metadata = buildMetadata({
   description:
     "Take back control of your personal data, guides on GDPR rights, comparing data removal and email cleanup tools, and shrinking your footprint.",
   path: "/guides",
+  hasOwnImage: true,
 });
 
 export default function Page() {
