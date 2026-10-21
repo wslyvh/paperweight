@@ -20,8 +20,7 @@ export const metadata = buildMetadata({
   title,
   description,
   path: "/remove-personal-data",
-  image: "/og/remove-personal-data.png",
-  imageAlt: "Paperweight personal data detection and review dashboard",
+  hasOwnImage: true,
 });
 
 const workflowSteps: WorkflowStep[] = [
@@ -161,7 +160,7 @@ export default function RemovePersonalDataPage() {
             <div className="card bg-base-100 border border-base-300">
               <div className="card-body">
                 <SearchCheck
-                  className="w-9 h-9 text-info mb-2"
+                  className="w-9 h-9 text-primary mb-2"
                   strokeWidth={1.5}
                 />
                 <h3 className="card-title text-lg">
@@ -184,7 +183,7 @@ export default function RemovePersonalDataPage() {
             <div className="card bg-base-100 border border-base-300">
               <div className="card-body">
                 <ListFilter
-                  className="w-9 h-9 text-secondary mb-2"
+                  className="w-9 h-9 text-primary mb-2"
                   strokeWidth={1.5}
                 />
                 <h3 className="card-title text-lg">
@@ -227,7 +226,7 @@ export default function RemovePersonalDataPage() {
             description:
               "Compare active mailing lists, identify the senders creating the most noise, and unsubscribe at the source.",
             href: "/email-cleanup",
-            icon: <Mail className="w-12 h-12 text-primary" strokeWidth={1.5} />,
+            icon: <Mail className="w-12 h-12 text-error" strokeWidth={1.5} />,
           },
         ]}
       />

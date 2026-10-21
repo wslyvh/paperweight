@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "biome check",
+    "check:og": "node scripts/check-og.mjs",
     "format": "biome format --write"
   },
   "dependencies": {

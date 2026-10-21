@@ -21,8 +21,7 @@ export const metadata = buildMetadata({
   title,
   description,
   path: "/account-discovery",
-  image: "/og/account-discovery.png",
-  imageAlt: "Paperweight account discovery company detail view",
+  hasOwnImage: true,
 });
 
 const workflowSteps: WorkflowStep[] = [
@@ -212,7 +211,7 @@ export default function AccountDiscoveryPage() {
             description:
               "Compare active mailing lists, identify the senders creating the most noise, and unsubscribe at the source.",
             href: "/email-cleanup",
-            icon: <Mail className="w-12 h-12 text-primary" strokeWidth={1.5} />,
+            icon: <Mail className="w-12 h-12 text-error" strokeWidth={1.5} />,
           },
           {
             title: "Remove personal data",
@@ -220,7 +219,7 @@ export default function AccountDiscoveryPage() {
               "Detect exposed personal data, phone numbers, addresses, payment info, and send targeted deletion requests.",
             href: "/remove-personal-data",
             icon: (
-              <FileText className="w-12 h-12 text-warning" strokeWidth={1.5} />
+              <FileText className="w-12 h-12 text-primary" strokeWidth={1.5} />
             ),
           },
         ]}

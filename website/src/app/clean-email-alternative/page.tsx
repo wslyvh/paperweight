@@ -6,6 +6,7 @@ export const metadata = buildMetadata({
   title: `${alternative.name} Alternative`,
   description: alternative.metaDescription,
   path: `/${alternative.slug}`,
+  hasOwnImage: true,
 });
 
 export default function CleanEmailAlternativePage() {
