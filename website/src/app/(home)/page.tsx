@@ -14,6 +14,7 @@ import {
   Lock,
   ShieldCheck,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { getLatestVersion } from "@/lib/github";
 import { getBreachIndexItems } from "@/utils/breach";
@@ -148,15 +149,14 @@ export default async function Home() {
               Review companies, mailing lists, and personal data found in your
               email history.
             </p>
-            <div className="relative mx-auto w-full aspect-video rounded-2xl overflow-hidden border border-base-300 shadow-2xl ring-1 ring-base-content/5">
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/RLqxiCOhW-Q"
-                title="See Paperweight in action"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-                loading="lazy"
-                className="absolute inset-0 h-full w-full"
+            <div className="relative mx-auto max-w-3xl rounded-2xl overflow-hidden border border-base-300 shadow-2xl ring-1 ring-base-content/5">
+              <Image
+                src="/features/dashboard.png"
+                alt="Paperweight dashboard showing messages synced, mailing lists, accounts, and daily email chart"
+                width={1024}
+                height={1002}
+                className="w-full h-auto"
+                priority
               />
             </div>
           </div>
