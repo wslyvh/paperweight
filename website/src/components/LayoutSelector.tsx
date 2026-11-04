@@ -301,9 +301,74 @@ export function LayoutSelector(props: LayoutSelectorProps) {
             </p>
             <Newsletter />
           </div>
-
-          <div className="divider my-0" />
-
+        </div>
+        <nav
+          aria-label="Featured on"
+          className="flex flex-wrap items-center justify-center gap-4 bg-base-200 px-4 py-5"
+        >
+          <a
+            href="https://www.producthunt.com/products/paperweight/launches/paperweight-2?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-paperweight-2"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-[42px] w-[200px] items-center justify-center rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4"
+          >
+            {/* biome-ignore lint/performance/noImgElement: Preserve the supplied external badge embed. */}
+            <img
+              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1119706&theme=dark&t=1793784198756"
+              alt="Paperweight - Cleanup your email and manage your digital footprint | Product Hunt"
+              width={250}
+              height={54}
+              loading="lazy"
+              className="h-full w-full object-contain"
+            />
+          </a>
+          <a
+            href="https://www.uneed.best/tool/paperweight"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-[42px] w-[200px] items-center justify-center rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4"
+          >
+            {/* biome-ignore lint/performance/noImgElement: Preserve the supplied external badge embed. */}
+            <img
+              src="https://www.uneed.best/POTD3A.png"
+              alt="Uneed product of the day: third place"
+              width={250}
+              height={54}
+              loading="lazy"
+              className="h-full w-full object-contain"
+            />
+          </a>
+          <a
+            href="https://launched.tools/tools/paperweight"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-[42px] w-[200px] items-center justify-center gap-2 rounded-[10px] border border-[#D4D7C9] bg-[#15170F] px-3 font-sans no-underline focus-visible:outline-2 focus-visible:outline-offset-4"
+          >
+            <span className="inline-flex size-[22px] shrink-0 items-center justify-center rounded-md bg-[#C6F94E]">
+              <svg
+                width="13"
+                height="13"
+                viewBox="128 120 264 264"
+                aria-hidden="true"
+              >
+                <path d="M214 120 L392 120 L392 298 Z" fill="#15170F" />
+                <path
+                  d="M156 356 L322 190"
+                  stroke="#15170F"
+                  strokeWidth="78"
+                  fill="none"
+                />
+              </svg>
+            </span>
+            <span className="flex flex-col leading-[1.2]">
+              <span className="text-[11px] font-bold text-[#F5F6F0]">
+                Featured on launched.tools
+              </span>
+              <span className="text-[10px] text-[#878C79]">REVIEWED ✓</span>
+            </span>
+          </a>
+        </nav>
+        <div className="container mx-auto px-4">
           <div className="py-8">
             <footer className="footer sm:footer-horizontal text-sm">
               <nav>
