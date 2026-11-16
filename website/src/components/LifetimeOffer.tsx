@@ -9,24 +9,32 @@ interface LifetimeOfferProps {
 
 export function LifetimeOffer({ checkout = false }: LifetimeOfferProps) {
   return (
-    <div className="card border border-base-300 bg-base-100">
-      <div className="card-body p-6 sm:p-8 gap-4">
-        <div className="flex items-start justify-between gap-3">
-          <span className="badge badge-primary">Black friday</span>
-          <span className="rounded-lg bg-primary/15 p-2 text-primary">
-            <Sparkles className="size-5" aria-hidden />
-          </span>
-        </div>
+    <div className="card relative border border-base-300 bg-base-100">
+      <div
+        className="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]"
+        aria-hidden
+      >
+        <Sparkles
+          className="absolute -right-12 -top-12 size-80 rotate-12 text-primary/10"
+          strokeWidth={1}
+        />
+      </div>
+      <div className="card-body relative p-6 sm:p-8 gap-4">
+        <span className="badge badge-outline badge-primary">Black friday</span>
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="space-y-3">
             <h2 className="text-2xl font-bold">
-              Paperweight Pro Lifetime license
+              Paperweight Pro lifetime license
             </h2>
-            <p className="text-4xl font-bold">${PLANS.lifetime.price}</p>
-            <p className="text-sm opacity-70">
-              One-time payment. No subscription. No renewal.
+            <p className="flex items-baseline gap-2 whitespace-nowrap">
+              <span className="text-4xl font-bold">
+                ${PLANS.lifetime.price}
+              </span>
+              <span className="text-sm sm:text-base">/ one-time payment.</span>
             </p>
-            <p className="text-sm opacity-70">Available until Dec 1, 2026</p>
+            <p className="text-sm opacity-70">
+              No subscription. No renewal. Available until Dec 1.
+            </p>
           </div>
           <div className="grid gap-2 md:shrink-0 md:min-w-56">
             {checkout ? (
