@@ -1,4 +1,5 @@
 import { CoreFeatureCards } from "@/components/CoreFeatureCards";
+import { LifetimeOffer } from "@/components/LifetimeOffer";
 import {
   AppleLogo,
   GoogleLogo,
@@ -18,7 +19,10 @@ import Link from "next/link";
 import { getLatestVersion } from "@/lib/github";
 import { getBreachIndexItems } from "@/utils/breach";
 import { ORGANIZATION_SCHEMA, SITE_CONFIG } from "@/utils/config";
-import { checkoutUrl, STANDARD_OFFERS } from "@/utils/pricing";
+import {
+  BLACK_FRIDAY_ACTIVE,
+  CURRENT_OFFERS,
+} from "@/utils/pricing";
 import { buildMetadata } from "@/utils/seo";
 
 const title = "Manage Your Digital Footprint";
@@ -70,7 +74,7 @@ const structuredData = [
     operatingSystem: "macOS, Windows, Linux",
     url: SITE_CONFIG.URL,
     description,
-    offers: STANDARD_OFFERS,
+    offers: CURRENT_OFFERS,
   },
   {
     "@context": "https://schema.org",
@@ -466,8 +470,8 @@ export default async function Home() {
             </h2>
             <p className="text-lg opacity-80 mb-6">
               Discover and curate one email account with full history for free.
-              Pro lets you act on it. Choose $5/month, billed yearly at $60,
-              or a $25 Cleanup Pass for 30 days of full Pro access.
+              Pro lets you act on it. Choose the Paperweight Pro subscription to
+              maintain your privacy all year, or get Cleanup Pass for 30 days.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <a
@@ -475,17 +479,21 @@ export default async function Home() {
                 className="btn btn-primary"
                 data-umami-event="Buy License"
               >
-                Get Paperweight Pro
+                Paperweight Pro
               </a>
-              <a href={checkoutUrl("cleanup")} className="btn btn-outline">Get Cleanup Pass</a>
               <Link href="/pricing" className="btn btn-soft">
-                View pricing details
+                More info
               </Link>
             </div>
-            <p className="text-xs opacity-60 mt-4">
-              Crypto: $55 for one year of Pro, renewed manually, or $25 for a Cleanup Pass.
-            </p>
           </div>
+          {BLACK_FRIDAY_ACTIVE && (
+            <div className="max-w-6xl mx-auto mt-10">
+              <LifetimeOffer />
+              <p className="text-xs opacity-60 mt-4 text-center">
+                *Crypto discounts available
+              </p>
+            </div>
+          )}
         </div>
       </section>
 

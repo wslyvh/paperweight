@@ -1,21 +1,25 @@
 import { Check, Search, ShieldCheck, WandSparkles } from "lucide-react";
+import { FeatureTrustSummary } from "@/components/FeaturePage";
 import { PayWithCryptoButton } from "@/components/PayWithCrypto";
+import { LifetimeOffer } from "@/components/LifetimeOffer";
 import { SITE_CONFIG } from "@/utils/config";
 import {
+  BLACK_FRIDAY_ACTIVE,
   checkoutUrl,
+  CURRENT_OFFERS,
   getCryptoPayPricing,
   PLANS,
-  STANDARD_OFFERS,
 } from "@/utils/pricing";
 import { buildMetadata } from "@/utils/seo";
 
-const description =
-  "Free gives you the full picture. Pro lets you act on it. Get Paperweight Pro for $60/year or a 30-Day Cleanup Pass for $25.";
+const description = BLACK_FRIDAY_ACTIVE
+  ? "Limited Black Friday offer: Lifetime Pro for $149 once, or $139 with crypto. Available until Dec 1, 2026. Compare Free, yearly Pro, and the Cleanup Pass."
+  : "Free gives you the full picture. Pro lets you act on it. Get Paperweight Pro for $60/year or a 30-Day Cleanup Pass for $25.";
 export const metadata = buildMetadata({
   title: "Pricing",
   description,
   path: "/pricing",
-  imageAlt: "Paperweight pricing",
+  hasOwnImage: true,
 });
 
 const freeFeatures = [
@@ -59,13 +63,34 @@ const faqItems = [
   {
     question: "Can I pay with crypto?",
     answer:
-      "Yes. Pay $55 for one year of Pro or $25 for a Cleanup Pass using BTC, ETH, XMR, or ZEC. Use the payment instructions, then send your receipt and plan name by email, Signal, or Telegram. Payments are verified manually and licenses are sent through contact, typically within 24 hours. Crypto payments do not create a recurring subscription.",
+      "Yes. Pay $55 for one year of Pro or $25 for a Cleanup Pass using BTC, ETH, XMR, or ZEC. " +
+      (BLACK_FRIDAY_ACTIVE
+        ? "Lifetime Pro costs $139 with crypto during Black Friday. "
+        : "") +
+      "Use the payment instructions, then send your receipt and plan name by email, Signal, or Telegram. Payments are verified manually and licenses are sent through contact, typically within 24 hours. Crypto payments do not create a recurring subscription.",
   },
   {
-    question: "What about Lifetime licenses?",
-    answer:
-      "Lifetime licenses are currently unavailable. We may offer them again for special occasions. If you already bought a Lifetime license, you keep full Pro access permanently, with no renewal required.",
+    question: BLACK_FRIDAY_ACTIVE
+      ? "Is Lifetime always available?"
+      : "What about Lifetime licenses?",
+    answer: BLACK_FRIDAY_ACTIVE
+      ? "No. Lifetime is a limited Black Friday offer, available until December 1, 2026: $149 once, or $139 with crypto. It provides permanent full Pro access with no renewal required."
+      : "Lifetime licenses are currently unavailable. We may offer them again for special occasions. If you already bought a Lifetime license, you keep full Pro access permanently, with no renewal required.",
   },
+  ...(BLACK_FRIDAY_ACTIVE
+    ? [
+        {
+          question: "What happens after December 1?",
+          answer:
+            "The Lifetime offer ends. The regular Cleanup Pass and yearly Pro plans remain available. Purchased Lifetime licenses keep permanent full Pro access with no renewal required.",
+        },
+        {
+          question: "Does Lifetime expire?",
+          answer:
+            "No. It is a one-time licence providing permanent full Pro access with no renewal required.",
+        },
+      ]
+    : []),
 ];
 
 export default function PricingPage() {
@@ -78,7 +103,7 @@ export default function PricingPage() {
       operatingSystem: "macOS, Windows, Linux",
       url: `${SITE_CONFIG.URL}/pricing`,
       description,
-      offers: STANDARD_OFFERS,
+      offers: CURRENT_OFFERS,
     },
     {
       "@context": "https://schema.org",
@@ -110,7 +135,7 @@ export default function PricingPage() {
           </p>
         </div>
       </section>
-      <section className="bg-base-200 py-16">
+      <section id="black-friday" className="bg-base-200 py-16">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-3 gap-x-8 gap-y-6 max-w-6xl mx-auto">
             <div className="card bg-base-100 border-2 border-base-300 p-8 grid gap-6 lg:row-span-4 lg:grid-rows-subgrid">
@@ -137,7 +162,7 @@ export default function PricingPage() {
             {(["cleanup", "annual"] as const).map((plan) => (
               <div
                 key={plan}
-                className={`card bg-base-100 border-2 p-8 grid gap-6 lg:row-span-4 lg:grid-rows-subgrid ${plan === "annual" ? "border-primary" : "border-base-300"}`}
+                className={`card bg-base-100 border-2 p-8 grid gap-6 lg:row-span-4 lg:grid-rows-subgrid ${plan === "annual" && !BLACK_FRIDAY_ACTIVE ? "border-primary" : "border-base-300"}`}
               >
                 <div className="space-y-3">
                   <h2 className="text-2xl font-bold">{PLANS[plan].name}</h2>
@@ -189,6 +214,11 @@ export default function PricingPage() {
               </div>
             ))}
           </div>
+          {BLACK_FRIDAY_ACTIVE && (
+            <div className="max-w-6xl mx-auto mt-10">
+              <LifetimeOffer checkout />
+            </div>
+          )}
         </div>
       </section>
       <section className="py-16 container mx-auto px-4">
@@ -238,7 +268,8 @@ export default function PricingPage() {
             What Pro unlocks
           </h2>
           <p className="text-center opacity-80 mb-8">
-            Both paid plans give you the tools to act on what you find.
+            {BLACK_FRIDAY_ACTIVE ? "All" : "Both"} paid plans give you the tools
+            to act on what you find.
           </p>
           <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-4">
             {[
@@ -264,6 +295,7 @@ export default function PricingPage() {
           </p>
         </div>
       </section>
+      {BLACK_FRIDAY_ACTIVE && <FeatureTrustSummary />}
       <section className="py-16 container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold mb-8 text-center">Pricing FAQ</h2>

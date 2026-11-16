@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 
 export const OG_SIZE = { width: 1200, height: 630 };
 
-// DaisyUI Dim: base-content, primary, accent, info, error.
+// DaisyUI Dim palette.
 export const OG_COLORS = {
   background: "#1a1f27",
   surface: "#242933",
@@ -13,6 +13,8 @@ export const OG_COLORS = {
   content: "#b2ccd6",
   muted: "#7d8a9a",
   primary: "#9fe88d",
+  secondary: "#ff7d5d",
+  secondaryContent: "#160503",
   accent: "#c792e9",
   info: "#28ebff",
   error: "#ffae9b",
@@ -33,6 +35,7 @@ const fontSize = { title: 54, eyebrow: 19, badge: 13, domain: 22 };
 interface OgOptions {
   title: string | string[];
   eyebrow: string;
+  campaignBadge?: string;
   color?: string;
   badges?: string;
   background?: string;
@@ -202,6 +205,7 @@ export async function iconArtwork(
 export async function renderOg({
   title,
   eyebrow,
+  campaignBadge,
   color = OG_COLORS.accent,
   badges = OG_COLORS.primary,
   background = "background.png",
@@ -308,6 +312,28 @@ export async function renderOg({
             </div>
           ))}
         </div>
+        {campaignBadge ? (
+          <div
+            style={{
+              display: "flex",
+              alignSelf: "flex-start",
+              alignItems: "center",
+              height: 36,
+              padding: "0 16px",
+              borderRadius: 999,
+              border: `1px solid ${OG_COLORS.secondary}`,
+              background: OG_COLORS.secondary,
+              color: OG_COLORS.secondaryContent,
+              fontFamily: OG_FONTS.mono,
+              fontSize: 16,
+              fontWeight: 500,
+              lineHeight: 1,
+              whiteSpace: "nowrap",
+            }}
+          >
+            {campaignBadge}
+          </div>
+        ) : null}
       </div>
       <div
         style={{

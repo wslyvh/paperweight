@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import { SubpageHeader } from "@/components/SubpageHeader";
 import { SITE_CONFIG } from "@/utils/config";
 import { TERMS_LAST_UPDATED } from "@/utils/page-dates";
+import { BLACK_FRIDAY_ACTIVE, PLANS } from "@/utils/pricing";
 import { buildMetadata } from "@/utils/seo";
 
 export const metadata = buildMetadata({
@@ -58,16 +59,21 @@ export default async function TermsPage() {
           <li>
             <strong>Paperweight Pro</strong> costs $60 per year, billed yearly.
             The <strong>Cleanup Pass</strong> costs $25 once for 30 days of full
-            Pro access, with no subscription or renewal. Previously purchased
+            Pro access, with no subscription or renewal.
             <strong> Lifetime licenses</strong> provide permanent full Pro
-            access with no renewal required. Lifetime licenses are currently
-            unavailable.
+            access with no renewal required.{" "}
+            {BLACK_FRIDAY_ACTIVE
+              ? `Lifetime is a limited Black Friday offer, available until December 1, 2026, for $${PLANS.lifetime.price} once.`
+              : "Lifetime licenses are currently unavailable."}
           </li>
           <li>
             Card payments are processed by Polar.sh. Crypto payments cost $55
-            for one year of Pro or $25 for a Cleanup Pass. Crypto payments are
-            verified manually, and licenses are sent through contact. Annual
-            crypto access is renewed manually and has no recurring subscription.
+            for one year of Pro or $25 for a Cleanup Pass.{" "}
+            {BLACK_FRIDAY_ACTIVE &&
+              `Lifetime costs $${PLANS.lifetime.cryptoPrice} with crypto during the Black Friday campaign. `}
+            Crypto payments are verified manually, and licenses are sent through
+            contact. Annual crypto access is renewed manually and has no
+            recurring subscription.
           </li>
           <li>
             Refunds are handled case-by-case within 30 days of purchase - email

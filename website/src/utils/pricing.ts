@@ -1,6 +1,9 @@
 const CHECKOUT_URL =
   "https://buy.polar.sh/polar_cl_Xw4DvPpmzCehGjZMTlePIVE8UxO63FGtfw1bR3FnaxG";
 
+// Disable and redeploy on December 2, 2026; archive Lifetime in Polar too.
+export const BLACK_FRIDAY_ACTIVE = true;
+
 export const PLANS = {
   annual: {
     name: "Paperweight Pro",
@@ -14,6 +17,12 @@ export const PLANS = {
     cryptoPrice: 25,
     productId: "e6f951f0-4655-400b-8b14-06d81e5a1d62",
   },
+  lifetime: {
+    name: "Paperweight Lifetime Pro",
+    price: 149,
+    cryptoPrice: 139,
+    productId: "84eecff9-fce2-4395-bd21-867543559f11",
+  },
 } as const;
 
 export function checkoutUrl(plan: keyof typeof PLANS) {
@@ -24,11 +33,14 @@ export function getCryptoPayPricing(plan: keyof typeof PLANS = "annual") {
   return {
     priceUsd: PLANS[plan].cryptoPrice,
     planName: PLANS[plan].name,
-    duration: plan === "annual" ? "1 year" : "30 days",
+    duration:
+      plan === "annual" ? "1 year" : plan === "cleanup" ? "30 days" : "life",
     renewal:
       plan === "annual"
         ? "One payment for one year. Renew manually by contacting us."
-        : "One payment for 30 days. No subscription or renewal.",
+        : plan === "cleanup"
+          ? "One payment for 30 days. No subscription or renewal."
+          : "One payment for permanent Pro access. No renewal.",
   };
 }
 
@@ -60,4 +72,19 @@ export const STANDARD_OFFERS = [
     priceCurrency: "USD",
     url: checkoutUrl("cleanup"),
   },
+];
+
+export const LIFETIME_OFFER = {
+  "@type": "Offer",
+  name: PLANS.lifetime.name,
+  price: PLANS.lifetime.price,
+  priceCurrency: "USD",
+  url: checkoutUrl("lifetime"),
+  availabilityStarts: "2026-11-16T00:00:00+01:00",
+  availabilityEnds: "2026-12-01T23:59:59+01:00",
+};
+
+export const CURRENT_OFFERS = [
+  ...STANDARD_OFFERS,
+  ...(BLACK_FRIDAY_ACTIVE ? [LIFETIME_OFFER] : []),
 ];

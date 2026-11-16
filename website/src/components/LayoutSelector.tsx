@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import { NavDropdown } from "@/components/NavDropdown";
 import { Newsletter } from "@/components/Newsletter";
 import { SITE_CONFIG } from "@/utils/config";
+import { BLACK_FRIDAY_ACTIVE, PLANS } from "@/utils/pricing";
 
 /** Pages that ship their own layout (no main-site nav/footer). */
 const STANDALONE_ROUTES = ["/irl"];
@@ -91,6 +92,20 @@ export function LayoutSelector(props: LayoutSelectorProps) {
   return (
     <div className="min-h-screen flex flex-col">
       <header ref={headerRef}>
+        {BLACK_FRIDAY_ACTIVE && (
+          <Link
+            href="/pricing#black-friday"
+            className="block bg-secondary text-secondary-content px-4 py-2.5 text-center text-sm hover:brightness-95"
+            data-umami-event="Black Friday Banner"
+          >
+            <span className="font-semibold">Limited Black Friday offer</span>
+            {" · "}Lifetime Pro license for ${PLANS.lifetime.price} one-time
+            {" · "}
+            <span className="inline-block underline underline-offset-2">
+              Available until Dec 1 →
+            </span>
+          </Link>
+        )}
         <div className="container mx-auto px-4 py-6">
           <nav className="flex items-center justify-between">
             <Link

@@ -10,7 +10,7 @@ assert.ok(urls.length > 0, "Sitemap contains pages");
 const pages = [
   ...new Set([...urls.map(([, url]) => new URL(url).pathname), "/irl"]),
 ];
-const defaults = new Set(["/pricing", "/changelog", "/privacy", "/terms"]);
+const defaults = new Set(["/changelog", "/privacy", "/terms"]);
 
 for (const page of pages) {
   const response = await fetch(new URL(page, base), {

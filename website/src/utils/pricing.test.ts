@@ -1,7 +1,7 @@
 import { checkoutUrl, getCryptoPayPricing } from "./pricing";
 
 it("sends each selected plan directly to its product checkout", () => {
-  for (const plan of ["annual", "cleanup"] as const) {
+  for (const plan of ["annual", "cleanup", "lifetime"] as const) {
     const url = new URL(checkoutUrl(plan));
     expect(`${url.origin}${url.pathname}`).toBe(
       "https://buy.polar.sh/polar_cl_Xw4DvPpmzCehGjZMTlePIVE8UxO63FGtfw1bR3FnaxG",
@@ -12,6 +12,9 @@ it("sends each selected plan directly to its product checkout", () => {
   );
   expect(new URL(checkoutUrl("cleanup")).searchParams.get("product_id")).toBe(
     "e6f951f0-4655-400b-8b14-06d81e5a1d62",
+  );
+  expect(new URL(checkoutUrl("lifetime")).searchParams.get("product_id")).toBe(
+    "84eecff9-fce2-4395-bd21-867543559f11",
   );
 });
 
@@ -27,5 +30,11 @@ it("uses the correct crypto prices and carries each plan into payment instructio
     planName: "Cleanup Pass",
     duration: "30 days",
     renewal: "One payment for 30 days. No subscription or renewal.",
+  });
+  expect(getCryptoPayPricing("lifetime")).toEqual({
+    priceUsd: 139,
+    planName: "Paperweight Lifetime Pro",
+    duration: "life",
+    renewal: "One payment for permanent Pro access. No renewal.",
   });
 });
