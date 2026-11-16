@@ -25,7 +25,7 @@ import Database from "better-sqlite3";
 import { mkdirSync, unlinkSync, existsSync, readFileSync, writeFileSync } from "fs";
 import { join, resolve } from "path";
 import { fileURLToPath } from "url";
-import { EU_DPAS, NON_EU_DPAS } from "../src/shared/gdpr/resolution.js";
+import { EU_DPAS, NON_EU_DPAS } from "../website/src/utils/gdpr.js";
 
 const __dirname = join(fileURLToPath(import.meta.url), "..");
 const ROOT = resolve(__dirname, "..");

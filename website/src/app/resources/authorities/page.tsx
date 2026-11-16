@@ -1,5 +1,5 @@
-import { EU_DPAS, NON_EU_DPAS } from "@shared/gdpr/resolution";
-import type { Dpa } from "@shared/gdpr/types";
+import { EU_DPAS, NON_EU_DPAS } from "@/utils/gdpr";
+import type { Dpa } from "@/utils/gdpr-types";
 import { AlertTriangle } from "lucide-react";
 import Link from "next/link";
 import { SubpageHeader } from "@/components/SubpageHeader";

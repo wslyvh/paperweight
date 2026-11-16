@@ -1,6 +1,6 @@
 export const runtime = "nodejs";
 
-import type { CompanyOption } from "@shared/gdpr/types";
+import type { CompanyOption } from "@/utils/gdpr-types";
 import { NextResponse } from "next/server";
 import companies from "@/data/companies.generated.json";
 

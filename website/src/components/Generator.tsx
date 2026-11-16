@@ -4,13 +4,13 @@ import {
   type CompanyOption,
   type GdprGeneratorInitialState,
   type GdprRequestAction,
-} from "@shared/gdpr/types";
-import { buildGdprMessage } from "@shared/gdpr/templates";
+} from "@/utils/gdpr-types";
+import { LANGUAGES } from "@shared/gdpr/resolution";
 import {
-  LANGUAGES,
+  buildGdprMessage,
   detectPreferredGdprLanguage,
   getPreferredDomain,
-} from "@shared/gdpr/resolution";
+} from "@/utils/gdpr";
 import { Info, Search } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";

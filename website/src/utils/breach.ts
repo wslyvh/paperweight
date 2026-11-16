@@ -1,5 +1,5 @@
-import type { Dpa } from "@shared/gdpr/types";
-import { findDpaByAddress, findDpaByDomain } from "@shared/gdpr/resolution";
+import type { Dpa } from "@/utils/gdpr-types";
+import { findDpaByAddress, findDpaByDomain } from "@/utils/gdpr";
 import { RISK_CATEGORIES, RISK_LEVELS } from "@shared/vendor-risk";
 import {
   getBreachBySlug,

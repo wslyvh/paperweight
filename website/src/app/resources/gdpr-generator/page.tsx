@@ -1,5 +1,5 @@
-import { buildGdprGeneratorInitialState } from "@shared/gdpr/resolution";
-import type { GdprRequestAction } from "@shared/gdpr/types";
+import { buildGdprGeneratorInitialState } from "@/utils/gdpr";
+import type { GdprRequestAction } from "@/utils/gdpr-types";
 import { Sparkles } from "lucide-react";
 import Link from "next/link";
 import { Generator } from "@/components/Generator";

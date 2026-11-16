@@ -1,7 +1,4 @@
-import type {
-  EmailTemplate,
-  GdprRequestContext,
-} from "./types";
+import type { EmailTemplate } from "./types";
 
 export const EMAIL_TEMPLATES: Record<string, EmailTemplate> = {
   en: {
@@ -499,35 +496,4 @@ export function buildFollowupEmail(
   userName?: string,
 ) {
   return buildCaseFollowupEmail("followup", originalSubject, requestType, sentAt, userEmail, lang, userName);
-}
-
-export function buildGdprMessage(context: GdprRequestContext) {
-  let subject: string;
-  let bodyTemplate: string;
-
-  if (context.action === "delete") {
-    const email = buildDeletionEmail(
-      context.userEmail,
-      context.accountReference,
-      context.language,
-      context.userName,
-    );
-    subject = email.subject;
-    bodyTemplate = email.body;
-  } else {
-    const email = buildAccessEmail(
-      context.userEmail,
-      context.accountReference,
-      context.language,
-      context.userName,
-    );
-    subject = email.subject;
-    bodyTemplate = email.body;
-  }
-
-  return {
-    subject,
-    body: bodyTemplate,
-    to: context.companyEmail || "privacy@company.com",
-  };
 }

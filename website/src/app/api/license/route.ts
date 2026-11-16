@@ -1,4 +1,4 @@
-import type { LicenseTier } from "@shared/types";
+import type { LicenseTier } from "@shared/license";
 
 export const runtime = "nodejs";
 

@@ -1,3 +1,6 @@
+import type { LicenseTier } from "./license";
+export type { LicenseTier } from "./license";
+
 // --- Domain types ---
 
 import {
@@ -574,8 +577,6 @@ export type SettingsUpdate = Partial<Settings> & {
   confirmAgentActions?: boolean;
   confirmAgentUnmask?: boolean;
 };
-
-export type LicenseTier = "pro" | "lifetime" | "cleanup";
 
 export interface LicenseStatus {
   active: boolean;
