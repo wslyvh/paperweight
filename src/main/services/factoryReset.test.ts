@@ -31,7 +31,8 @@ beforeEach(() => {
   mocks.paths = { userData: join(directory, "profile"), logs: join(directory, "logs") };
   fs.mkdirSync(mocks.paths.userData);
   fs.mkdirSync(mocks.paths.logs);
-  for (const name of ["accounts.json", "settings.json", "license.enc", "__staging__.enc", "orphan.enc", "orphan.db", "orphan.db-wal", "orphan.db-shm", "global.db"]) {
+  mocks.wipeGlobalDatabase.mockImplementation(() => fs.rmSync(join(mocks.paths.userData, "global.db"), { force: true }));
+  for (const name of ["accounts.json", "settings.json", "license.enc", "__staging__.enc", "orphan.enc", "orphan_abcdef.db", "orphan_abcdef.db-wal", "orphan_abcdef.db-shm", "global.db"]) {
     fs.writeFileSync(join(mocks.paths.userData, name), "synthetic data");
   }
   fs.writeFileSync(join(mocks.paths.logs, "main.old.log"), "synthetic log");
@@ -50,7 +51,8 @@ it("stops sync, disables autostart, clears session data and deletes saved app da
   expect(mocks.wipeDatabase).toHaveBeenCalledOnce();
   expect(mocks.wipeGlobalDatabase).toHaveBeenCalledOnce();
   expect(fs.readdirSync(mocks.paths.userData)).toEqual([]);
-  expect(fs.existsSync(mocks.paths.logs)).toBe(false);
+  expect(fs.readdirSync(mocks.paths.logs)).toEqual([]);
+  fs.appendFileSync(join(mocks.paths.logs, "main.log"), "new session activity");
   expect(fs.existsSync(join(directory, "outside.txt"))).toBe(true);
 });
 
@@ -73,15 +75,24 @@ it("does not delete account files when session cleanup fails", async () => {
 it("preserves credentials and registry when an inactive database cannot be deleted", async () => {
   const realFs = await vi.importActual<typeof fs>("node:fs");
   vi.mocked(fs.rmSync).mockImplementation((path, options) => {
-    if (path === join(mocks.paths.userData, "orphan.db")) throw new Error("EBUSY");
+    if (path === join(mocks.paths.userData, "orphan_abcdef.db")) throw new Error("EBUSY");
     realFs.rmSync(path, options);
   });
   try {
     await expect(requestFactoryReset()).rejects.toThrow("EBUSY");
-    for (const name of ["accounts.json", "license.enc", "__staging__.enc", "orphan.enc"]) {
+    expect(mocks.wipeGlobalDatabase).not.toHaveBeenCalled();
+    for (const name of ["global.db", "accounts.json", "license.enc", "__staging__.enc", "orphan.enc"]) {
       expect(fs.existsSync(join(mocks.paths.userData, name))).toBe(true);
     }
   } finally {
     vi.mocked(fs.rmSync).mockImplementation(realFs.rmSync);
   }
+});
+
+it("leaves Chromium databases to session cleanup", async () => {
+  const chromium = join(mocks.paths.userData, "declarative_performance_observer.db");
+  fs.writeFileSync(chromium, "Chromium owns this file");
+  await requestFactoryReset();
+  expect(mocks.clearData).toHaveBeenCalledOnce();
+  expect(fs.readFileSync(chromium, "utf8")).toBe("Chromium owns this file");
 });

@@ -108,10 +108,11 @@ export default function App() {
 
   useEffect(() => {
     return window.api.onNoAccountsRemaining(() => {
-      window.location.hash = "#/onboarding";
-      resetAccountTree();
+      // Drop the old account screen and its pending requests after deletion.
+      window.location.replace(`${window.location.href.split("#")[0]}#/onboarding`);
+      window.location.reload();
     });
-  }, [resetAccountTree]);
+  }, []);
 
   return (
     <HashRouter>

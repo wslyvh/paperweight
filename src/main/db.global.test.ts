@@ -1,5 +1,6 @@
 import { vi } from "vitest";
 import {
+  existsSync,
   mkdirSync,
   mkdtempSync,
   rmSync,
@@ -29,6 +30,7 @@ vi.mock("./utils/log", () => {
 });
 
 import {
+  createAccountDb,
   deleteDbFiles,
   getDb,
   initDb,
@@ -42,6 +44,7 @@ describe("account database global attachment", () => {
     const accountPath = join(userData, "account.db");
 
     initDb(accountPath, "/nonexistent", "/nonexistent");
+    createAccountDb(accountPath);
     const target = getDb();
     expect(target.pragma("busy_timeout", { simple: true })).toBe(5000);
     expect(
@@ -53,6 +56,13 @@ describe("account database global attachment", () => {
         .get(),
     ).toBeDefined();
 
+    wipeDatabase();
+    expect(() => getDb()).toThrow();
+    expect(existsSync(accountPath)).toBe(false);
+
+    // Explicit account creation still works after a reset in the same process.
+    createAccountDb(accountPath);
+    expect(getDb().prepare("SELECT COUNT(*) AS count FROM messages").get()).toEqual({ count: 0 });
     wipeDatabase();
     resetGlobalDb();
     rmSync(userData, { recursive: true, force: true });

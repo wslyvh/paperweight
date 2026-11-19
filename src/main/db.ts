@@ -67,7 +67,8 @@ function getBreachesDbPath(): string {
 export function getDb(): Database.Database {
   if (db) return db;
   const dbPath = getDbPath();
-  const next = new Database(dbPath);
+  // Account creation is explicit; a late read must not undo account deletion.
+  const next = new Database(dbPath, { fileMustExist: true });
   try {
     next.pragma("journal_mode = WAL");
     next.pragma("foreign_keys = ON");

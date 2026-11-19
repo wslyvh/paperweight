@@ -86,8 +86,13 @@ async function main() {
         writeFileSync(join(profile, "logs", "main.old.log"), "synthetic old log");
         await withDesktop(profile, "factory-reset-request", async (app) => {
           const page = await app.firstWindow();
-          await page.waitForFunction(() => Boolean(window.api));
-          await page.evaluate(() => window.api.wipeData());
+          await page.getByRole("heading", { name: "Dashboard", exact: true }).waitFor();
+          await page.evaluate(() => { window.location.hash = "#/settings"; });
+          await page.getByRole("heading", { name: "Settings", exact: true }).waitFor();
+          await page.getByRole("button", { name: "Configure", exact: true }).waitFor();
+          await page.getByRole("button", { name: "Wipe All Data", exact: true }).click();
+          await page.getByRole("heading", { name: "Wipe all data?", exact: true }).waitFor();
+          await page.getByRole("button", { name: "Wipe everything", exact: true }).click();
           await page.getByRole("heading", { name: "Get Started", exact: true }).waitFor();
         });
         await withDesktop(profile, "factory-reset-reopen", async (app) => {
