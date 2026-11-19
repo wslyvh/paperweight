@@ -93,4 +93,29 @@ describe("maskAgentPayload", () => {
     expect(result.content[0].text).not.toContain("person@example.test");
   });
 
+  it("masks birthdate findings and known dates in both output formats", () => {
+    mockedGetProfileMatchValues.mockReturnValue([{ type: "date_of_birth", value: "1990-04-23" }]);
+    mockedGetPiiFindingValues.mockReturnValue([{ type: "date_of_birth", value: "1985-06-17" }]);
+    const result = agentToolResult({
+      items: [{ type: "date_of_birth", maskedValue: "1990-04-23" }],
+      birthDate: "1990-04-23",
+      preview: "Dates: 1990-04-23 and 1985-06-17",
+    });
+
+    expect(result.structuredContent).toEqual({
+      items: [{ type: "date_of_birth", maskedValue: "••-••-1990" }],
+      birthDate: "••-••-1990",
+      preview: "Dates: ••-••-1990 and ••-••-1985",
+    });
+    expect(JSON.parse(result.content[0].text)).toEqual(result.structuredContent);
+  });
+
+  it("preserves full birthdates when masking is off", () => {
+    mockedGetGlobalSetting.mockReturnValue(false);
+    const payload = { items: [{ type: "date_of_birth", maskedValue: "1990-04-23" }] };
+    const result = agentToolResult(payload);
+    expect(result.structuredContent).toEqual(payload);
+    expect(JSON.parse(result.content[0].text)).toEqual(payload);
+  });
+
 });

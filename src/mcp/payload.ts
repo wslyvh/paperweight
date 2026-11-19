@@ -16,6 +16,7 @@ const SCRUB_TYPES = new Set<PiiType>([
   "national_id",
   "address",
   "postal_code",
+  "date_of_birth",
 ]);
 
 const EMAIL_PATTERN = /[\w.+-]+@[\w.-]+\.[a-z]{2,}/gi;
