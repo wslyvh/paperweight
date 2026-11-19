@@ -198,6 +198,9 @@ export function buildRfc822Message(
   body: string,
   inReplyTo?: string
 ): string {
+  if ([from, to, subject, inReplyTo].some((value) => value !== undefined && /[\r\n]/.test(value))) {
+    throw new Error("Email headers cannot contain line breaks.");
+  }
   const isAscii = (s: string): boolean => /^[\x00-\x7F]*$/.test(s);
   const encodeHeader = (s: string): string =>
     isAscii(s) ? s : `=?UTF-8?B?${Buffer.from(s, "utf-8").toString("base64")}?=`;
