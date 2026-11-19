@@ -69,6 +69,28 @@ it("re-encrypts when Electron requests key rotation", async () => {
   mockStorage.decryptStringAsync.mockResolvedValueOnce({ result: '{"token":"synthetic"}', shouldReEncrypt: true });
   await expect(readSecureFile(file)).resolves.toEqual({ token: "synthetic" });
   expect(mockStorage.encryptStringAsync).toHaveBeenCalledWith('{"token":"synthetic"}');
+  expect(readFileSync(file, "utf8")).toBe('test-cipher:{"token":"synthetic"}');
+});
+
+it.each(["deleted", "replaced"])("does not overwrite a file %s during re-encryption", async (change) => {
+  writeFileSync(file, "old ciphertext");
+  mockStorage.decryptStringAsync.mockResolvedValueOnce({ result: '{"token":"synthetic"}', shouldReEncrypt: true });
+  const started = Promise.withResolvers<void>();
+  const encrypted = Promise.withResolvers<Buffer<ArrayBuffer>>();
+  mockStorage.encryptStringAsync.mockImplementationOnce(() => {
+    started.resolve();
+    return encrypted.promise;
+  });
+
+  const reading = readSecureFile(file);
+  await started.promise;
+  if (change === "deleted") rmSync(file);
+  else writeFileSync(file, "newer ciphertext");
+  encrypted.resolve(Buffer.from("rotated old ciphertext"));
+
+  await expect(reading).resolves.toEqual({ token: "synthetic" });
+  if (change === "deleted") expect(existsSync(file)).toBe(false);
+  else expect(readFileSync(file, "utf8")).toBe("newer ciphertext");
 });
 
 it("returns undefined only for a missing file without accessing storage", async () => {

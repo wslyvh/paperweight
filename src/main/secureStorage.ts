@@ -52,7 +52,14 @@ export async function readSecureFile<T>(path: string): Promise<T | undefined> {
     const data = readFileSync(path);
     const { result, shouldReEncrypt } = await safeStorage.decryptStringAsync(data);
     const value = JSON.parse(result) as T;
-    if (shouldReEncrypt) await writeSecureFile(path, value);
+    if (shouldReEncrypt) {
+      const encrypted = await encrypt(value);
+      // A delete or newer save may have completed while encryption was pending.
+      // Keep the comparison and write synchronous, with no await between them.
+      if (existsSync(path) && readFileSync(path).equals(data)) {
+        writeFileSync(path, encrypted, { mode: 0o600 });
+      }
+    }
     return value;
   } catch {
     throw new SecureStorageError("read");
