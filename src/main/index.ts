@@ -31,6 +31,7 @@ const seedUserDataDir = process.env.PAPERWEIGHT_SEED;
 const mcpUserDataDir = process.env.PAPERWEIGHT_USER_DATA;
 if (seedUserDataDir || (isMcpProcess && mcpUserDataDir)) {
   app.setPath("userData", seedUserDataDir ?? mcpUserDataDir!);
+  app.setPath("sessionData", app.getPath("userData"));
   app.setAppLogsPath(join(app.getPath("userData"), "logs"));
 }
 

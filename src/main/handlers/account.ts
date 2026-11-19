@@ -2,7 +2,7 @@ import { getSecureStorageStatus } from "../secureStorage";
 import { handle } from "./access";
 import { switchToAccount } from "../services/accountView";
 import { app, BrowserWindow, ipcMain } from "electron";
-import { readFileSync, existsSync, unlinkSync } from "fs";
+import { readFileSync, existsSync } from "fs";
 import { join } from "path";
 import { IPC } from "@shared/ipc";
 import { isIntInRange, isString } from "@shared/validation";
@@ -29,10 +29,9 @@ import { sendEmail } from "../services/email";
 import {
   getSyncStatus,
   startAllSyncs,
-  stopAllSyncs,
   stopSync,
 } from "../sync-manager";
-import { getLicenseStatus, deleteLicense } from "../services/settings";
+import { getLicenseStatus } from "../services/settings";
 import { getDashboardStats } from "../services/stats";
 import {
   deleteCredentials,
@@ -42,7 +41,7 @@ import {
   emailToFileKey,
 } from "../credentials";
 import { wipeDatabase, deleteDbFiles, reconnectDb } from "../db";
-import { wipeGlobalDatabase } from "../globalDb";
+import { requestFactoryReset } from "../services/factoryReset";
 import { dataLog, actionLog } from "../utils/log";
 import { getFileLogPath } from "../utils/file-log";
 import os from "os";
@@ -287,35 +286,7 @@ export function registerAccountHandlers(): void {
   });
 
   handle(IPC.wipeData, async () => {
-    dataLog.warn("Wipe ALL data requested");
-    const accounts = listAccounts();
-    const userData = app.getPath("userData");
-    const activeEmail = getActiveEmail();
-
-    await stopAllSyncs();
-
-    try {
-      // Delete databases before credentials and registry state. A locked
-      // database therefore leaves enough account state for a visible retry.
-      wipeDatabase();
-      for (const acc of accounts) {
-        if (acc.email !== activeEmail) deleteDbFiles(acc.email);
-      }
-
-      for (const acc of accounts) deleteCredentials(acc.email);
-      deleteCredentials("__staging__");
-
-      for (const file of ["accounts.json", "settings.json"]) {
-        const filePath = join(userData, file);
-        if (existsSync(filePath)) unlinkSync(filePath);
-      }
-
-      deleteLicense();
-      wipeGlobalDatabase();
-    } catch {
-      throw new Error("Could not wipe all local data. Try again.");
-    }
-
+    await requestFactoryReset();
     for (const win of BrowserWindow.getAllWindows()) {
       win.webContents.send(IPC.noAccountsRemaining);
     }

@@ -81,6 +81,26 @@ async function main() {
         assert.equal(account.totalMessages, messageCount, "Restart changed indexed message count");
         assert.equal(await page.evaluate(() => window.api.getSettings().colorTheme), "silk");
       });
+      if (kind === "runtime") {
+        writeFileSync(join(profile, "orphan.enc"), "synthetic orphan");
+        writeFileSync(join(profile, "logs", "main.old.log"), "synthetic old log");
+        await withDesktop(profile, "factory-reset-request", async (app) => {
+          const page = await app.firstWindow();
+          await page.waitForFunction(() => Boolean(window.api));
+          await page.evaluate(() => window.api.wipeData());
+          await page.getByRole("heading", { name: "Get Started", exact: true }).waitFor();
+        });
+        await withDesktop(profile, "factory-reset-reopen", async (app) => {
+          const page = await app.firstWindow();
+          await page.getByRole("heading", { name: "Get Started", exact: true }).waitFor();
+          assert.equal(await page.evaluate(() => window.api.getConnectionStatus()), false);
+          assert.equal((await page.evaluate(() => window.api.getLicenseStatus())).active, false);
+          for (const file of ["accounts.json", "license.enc", "orphan.enc", `${manifest.fileKey}.db`, `${manifest.fileKey}.enc`, "logs/main.old.log", ".reset-requested"]) {
+            assert.equal(existsSync(join(profile, file)), false, `Reset left ${file} behind`);
+          }
+          assert.doesNotMatch(readFileSync(join(profile, "logs/main.log"), "utf8"), /Settings saved: colorTheme/);
+        });
+      }
     }
 
     const recovery = join(directory, "plaintext-recovery");
