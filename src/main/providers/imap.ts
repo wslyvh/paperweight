@@ -45,6 +45,7 @@ async function createImapClient(): Promise<ImapFlow> {
     host: creds.imap.host,
     port: creds.imap.port,
     secure: creds.imap.tls,
+    doSTARTTLS: !creds.imap.tls ? true : undefined,
     auth: {
       user: creds.imap.username,
       pass: creds.imap.password,
@@ -340,6 +341,7 @@ export function createImapProvider(
         host: creds.imap.smtp.host,
         port: creds.imap.smtp.port,
         secure: creds.imap.smtp.tls,
+        requireTLS: !creds.imap.smtp.tls,
         auth: { user: creds.imap.username, pass: creds.imap.password },
         tls: creds.imap.allowSelfSigned ? { rejectUnauthorized: false } : undefined,
         connectionTimeout: 15_000,
@@ -393,6 +395,7 @@ export async function testImapConnection(config: {
       host: config.host,
       port: config.port,
       secure: config.tls,
+      doSTARTTLS: !config.tls ? true : undefined,
       auth: {
         user: config.username,
         pass: config.password,

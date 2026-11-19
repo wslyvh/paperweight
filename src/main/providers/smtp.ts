@@ -16,6 +16,7 @@ export async function testSmtpConnection(config: {
     host: config.host,
     port: config.port,
     secure: config.tls,
+    requireTLS: !config.tls,
     tls: config.allowSelfSigned ? { rejectUnauthorized: false } : undefined,
     connectionTimeout: 10_000,
     greetingTimeout: 10_000,
