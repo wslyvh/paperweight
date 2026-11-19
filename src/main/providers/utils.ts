@@ -5,6 +5,7 @@ import { getElectron } from "../electronRuntime";
 // @paperweight/analysis and happens where each provider parses.
 
 import http from "node:http";
+import { randomBytes } from "node:crypto";
 import type { AddressInfo } from "node:net";
 import { IPC } from "@shared/ipc";
 
@@ -62,9 +63,15 @@ export function runLoopbackAuth(
 ): Promise<{ code: string; redirectUri: string }> {
   return new Promise((resolve, reject) => {
     let redirectUri = "";
+    const state = randomBytes(32).toString("base64url");
 
     const server = http.createServer((req, res) => {
       const url = new URL(req.url || "/", "http://127.0.0.1");
+      if (url.searchParams.get("state") !== state) {
+        res.writeHead(400, { "Content-Type": "text/plain; charset=utf-8" });
+        res.end("Invalid authorization response.");
+        return;
+      }
       const code = url.searchParams.get("code");
       const error = url.searchParams.get("error");
       const errorDescription = url.searchParams.get("error_description");
@@ -158,19 +165,19 @@ export function runLoopbackAuth(
     server.listen(0, "127.0.0.1", () => {
       const { port } = server.address() as AddressInfo;
       redirectUri = `${redirectUriBase}:${port}`;
-      const authUrl = buildAuthUrl(redirectUri);
-          const { shell, clipboard, BrowserWindow } =
-        getElectron();
+      const authUrl = new URL(buildAuthUrl(redirectUri));
+      authUrl.searchParams.set("state", state);
+      const { shell, clipboard, BrowserWindow } = getElectron();
 
       // Surface the URL to the renderer so the connect screen can offer
       // "open in browser" / "copy link" for the current attempt's live URL.
       for (const win of BrowserWindow.getAllWindows()) {
-        win.webContents.send(IPC.authUrl, authUrl);
+        win.webContents.send(IPC.authUrl, authUrl.toString());
       }
 
       const launch = openInBrowser
-        ? shell.openExternal(authUrl)
-        : clipboard.writeText(authUrl);
+        ? shell.openExternal(authUrl.toString())
+        : clipboard.writeText(authUrl.toString());
       void launch.catch(() => {
         server.close();
         reject(new Error(openInBrowser
@@ -179,10 +186,15 @@ export function runLoopbackAuth(
       });
     });
 
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       server.close();
       reject(new Error("Authorization timed out"));
     }, 5 * 60 * 1000);
+    server.once("close", () => clearTimeout(timeout));
+    server.once("error", (error) => {
+      clearTimeout(timeout);
+      reject(error);
+    });
   });
 }
 

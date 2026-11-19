@@ -1,3 +1,4 @@
+import { createHash, randomBytes } from "node:crypto";
 import type { EmailProvider, EmailMessage, EmailConnection } from "./types";
 import { loadCredentials, saveCredentials } from "../credentials";
 import { buildRfc822Message, runLoopbackAuth } from "./utils";
@@ -36,6 +37,8 @@ export async function startLoopbackAuth(
   }
   try {
     const scopes = SCOPES_MODIFY;
+    const verifier = randomBytes(32).toString("base64url");
+    const challenge = createHash("sha256").update(verifier).digest("base64url");
     const { code, redirectUri } = await runLoopbackAuth(
       "http://127.0.0.1",
       (redirectUri) => {
@@ -46,6 +49,8 @@ export async function startLoopbackAuth(
         authUrl.searchParams.set("scope", scopes);
         authUrl.searchParams.set("access_type", "offline");
         authUrl.searchParams.set("prompt", "consent");
+        authUrl.searchParams.set("code_challenge", challenge);
+        authUrl.searchParams.set("code_challenge_method", "S256");
         return authUrl.toString();
       },
       openInBrowser
@@ -60,6 +65,7 @@ export async function startLoopbackAuth(
         client_secret: CLIENT_SECRET,
         redirect_uri: redirectUri,
         grant_type: "authorization_code",
+        code_verifier: verifier,
       }),
     });
 
