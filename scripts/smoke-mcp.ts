@@ -461,7 +461,8 @@ function openMcp(profile: string): McpConnection {
       child.stdin.end();
       const exitCode = await waitForExit(child);
       if (exitCode !== 0) throw new Error(`MCP process exited with ${exitCode}: ${stderr}`);
-      if (stderr !== "") throw new Error(`MCP process wrote diagnostics during success: ${stderr}`);
+      // MCP permits diagnostics on stderr; only stdout carries protocol messages.
+      if (stderr !== "") console.warn(`MCP diagnostics: ${stderr.trimEnd()}`);
     },
   };
 }
