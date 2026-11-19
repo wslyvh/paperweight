@@ -92,8 +92,6 @@ async function startMcpMode(): Promise<void> {
   const { McpStartupError, runMcpServer } = await import("../mcp/server");
   try {
     const quit = () => app.quit();
-    process.stdin.once("end", quit);
-    process.stdin.once("close", quit);
     await runMcpServer(quit);
   } catch (error) {
     const message = error instanceof McpStartupError

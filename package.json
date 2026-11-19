@@ -61,6 +61,10 @@
       {
         "from": "build/mcp/paperweight-mcp.cmd",
         "to": "paperweight-mcp.cmd"
+      },
+      {
+        "from": "build/mcp/windows-stdio.cjs",
+        "to": "windows-stdio.cjs"
       }
     ],
     "mac": {

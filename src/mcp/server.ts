@@ -1,5 +1,6 @@
 import { McpServer } from "@modelcontextprotocol/server";
-import { serveStdio } from "@modelcontextprotocol/server/stdio";
+import { connect } from "node:net";
+import { serveStdio, StdioServerTransport } from "@modelcontextprotocol/server/stdio";
 import { bindApprovalServer } from "./elicitation";
 import { hasWriteAccess, initializePaperweight } from "./runtime";
 import { registerActivityTools } from "./tools/activity";
@@ -28,6 +29,17 @@ function createServer(includeWrites: boolean): McpServer {
 }
 
 export async function runMcpServer(onClose?: () => void): Promise<void> {
+  const pipe = process.platform === "win32" ? process.env.PAPERWEIGHT_MCP_PIPE : undefined;
+  const socket = pipe ? connect(pipe) : undefined;
+  if (socket) {
+    await new Promise<void>((resolve, reject) => {
+      socket.once("connect", resolve);
+      socket.once("error", reject);
+    });
+  }
+  const input = socket ?? process.stdin;
+  input.once("end", () => onClose?.());
+  input.once("close", () => onClose?.());
   if (!await hasValidLicense()) throw new McpStartupError(PRO_REQUIRED_MESSAGE);
   await initializePaperweight();
   await new Promise<void>((resolve) => {
@@ -38,6 +50,6 @@ export async function runMcpServer(onClose?: () => void): Promise<void> {
         resolve();
       };
       return server;
-    });
+    }, { transport: new StdioServerTransport(input, socket ?? process.stdout) });
   });
 }

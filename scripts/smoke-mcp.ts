@@ -474,13 +474,19 @@ async function proveDeniedStartup(pro: boolean): Promise<void> {
     cwd: root,
     env: command.env,
     windowsVerbatimArguments: process.platform === "win32",
-    stdio: ["ignore", "pipe", "ignore"],
+    stdio: ["ignore", "pipe", "pipe"],
   });
+  liveChildren.add(child);
+  child.once("close", () => liveChildren.delete(child));
   let stdout = "";
+  let stderr = "";
   child.stdout.on("data", (chunk) => { stdout += String(chunk); });
+  child.stderr.on("data", (chunk) => { stderr += String(chunk); });
   const exitCode = await waitForExit(child);
   if (exitCode === 0) throw new Error("Disabled MCP process exited successfully");
-  if (stdout !== "") throw new Error("Disabled MCP process wrote to protocol stdout");
+  if (stdout !== "") throw new Error(`Disabled MCP process wrote to protocol stdout: ${JSON.stringify(stdout)}`);
+  const expected = pro ? "AI Agent access is off" : "Paperweight Pro is required";
+  if (!stderr.includes(expected)) throw new Error(`MCP failed for an unexpected reason: ${stderr}`);
 }
 
 async function proveOverviewRead(): Promise<void> {
