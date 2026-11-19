@@ -40,6 +40,7 @@ describe("credentials without active account", () => {
   });
 
   afterEach(() => {
+    resetGlobalSettingsCache();
     rmSync(userDataDir, { recursive: true, force: true });
   });
 
@@ -87,6 +88,7 @@ describe("credentials with active account", () => {
   });
 
   afterEach(() => {
+    resetGlobalSettingsCache();
     rmSync(userDataDir, { recursive: true, force: true });
   });
 
@@ -155,6 +157,7 @@ describe("loadCredentials rejects plaintext", () => {
   });
 
   afterEach(() => {
+    resetGlobalSettingsCache();
     rmSync(userDataDir, { recursive: true, force: true });
     mockSafeStorage.decryptStringAsync = async (data: Buffer) => ({ result: data.toString("utf-8"), shouldReEncrypt: false });
   });

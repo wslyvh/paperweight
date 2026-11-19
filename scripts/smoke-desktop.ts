@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { isAbsolute, join, relative, resolve } from "node:path";
 import { execFileSync } from "node:child_process";
@@ -60,8 +60,11 @@ async function main() {
           return !status.running && status.error?.includes("Could not reach the mail server");
         }, undefined, { timeout: 30_000 });
         const info = await page.evaluate(() => window.api.getSupportInfo());
-        const logPath = relative(profile, info.logPath);
-        assert.ok(!isAbsolute(logPath) && !logPath.startsWith(".."), "Logs escaped the isolated app-data directory");
+        // macOS can canonicalize /var to /private/var. Compare real paths,
+        // and require the reported log to exist rather than just checking a string.
+        const logPath = relative(realpathSync(profile), realpathSync(info.logPath));
+        assert.ok(!isAbsolute(logPath) && !logPath.startsWith(".."), `Logs escaped the isolated app-data directory: ${info.logPath} (profile: ${profile})`);
+        assert.match(readFileSync(info.logPath, "utf8"), /Settings saved: colorTheme/);
         const setup = await page.evaluate(() => window.api.getMcpSetup());
         assert.equal(setup.available, true, "MCP launcher is missing from the app layout");
         assert.ok(setup.server && existsSync(setup.server.command));

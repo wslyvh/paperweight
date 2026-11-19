@@ -37,6 +37,7 @@ describe("boot contract (#38)", () => {
   });
 
   afterEach(() => {
+    resetGlobalSettingsCache();
     rmSync(userDataDir, { recursive: true, force: true });
   });
 
