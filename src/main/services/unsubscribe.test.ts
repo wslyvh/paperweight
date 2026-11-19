@@ -43,6 +43,7 @@ describe("unsubscribeVendor", () => {
     });
     expect(request).toHaveBeenCalledWith(url, {
       method: "POST",
+      redirect: "manual",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: "List-Unsubscribe=One-Click",
     });
@@ -76,20 +77,20 @@ describe("unsubscribeVendor", () => {
     request.mockRestore();
   });
 
-  it("does not update Paperweight when a one-click request fails", async () => {
+  it.each([301, 302, 303, 307, 308, 500])("does not mark a list unsubscribed after HTTP %i", async (status) => {
     getMethods.mockReturnValue([{
       method: "rfc8058",
       url: "https://example.test/unsubscribe/token",
     }]);
     const request = vi.spyOn(global, "fetch").mockResolvedValue({
       ok: false,
-      status: 500,
+      status,
     } as Response);
 
     await expect(unsubscribeVendor(42)).resolves.toEqual({
       status: "failed",
       method: "one_click",
-      error: "Server returned HTTP 500",
+      error: `Server returned HTTP ${status}`,
     });
     expect(markList).not.toHaveBeenCalled();
     request.mockRestore();

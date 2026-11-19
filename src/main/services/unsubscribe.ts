@@ -52,6 +52,7 @@ export async function executeRfc8058Unsubscribe(
   try {
     const response = await fetch(url, {
       method: "POST",
+      redirect: "manual", // RFC 8058 endpoints must not redirect.
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: "List-Unsubscribe=One-Click",
     });
