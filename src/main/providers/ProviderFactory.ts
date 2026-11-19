@@ -5,8 +5,8 @@ import { createMicrosoftProvider } from "./microsoft";
 import type { AnalyzeOptions } from "@paperweight/analysis";
 import type { EmailProvider } from "./types";
 
-export function getProvider(analysisOptions?: AnalyzeOptions): EmailProvider {
-  const creds = loadCredentials();
+export async function getProvider(analysisOptions?: AnalyzeOptions): Promise<EmailProvider> {
+  const creds = await loadCredentials();
   if (!creds) throw new Error("No credentials configured");
 
   if (creds.providerType === "gmail") {

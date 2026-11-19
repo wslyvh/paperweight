@@ -1,3 +1,6 @@
+import ConnectionError from "./ConnectionError";
+import { isStorageError } from "@shared/secureStorage";
+import type { JSX } from "react";
 import { useState, useRef, useEffect } from "react";
 import { CheckCircle2, Check, Copy, Mail } from "lucide-react";
 import { findPresetById, PROVIDER_PRESETS } from "@shared/email-providers";
@@ -26,7 +29,7 @@ function OAuthSelectRow({
   label: string;
   copyAriaLabel: string;
   onConnect: (copy: boolean) => void;
-}): JSX.Element {
+}) {
   return (
     <div className="join w-full">
       <button
@@ -60,7 +63,7 @@ export function ProviderSelect({
   onApple: () => void;
   onProton: () => void;
   onImap: () => void;
-}): JSX.Element {
+}) {
   return (
     <div className="space-y-4">
       <OAuthSelectRow
@@ -125,7 +128,7 @@ function OAuthConnect({
   copyFirst: boolean;
   onSuccess: () => void;
   onBack: () => void;
-}): JSX.Element {
+}) {
   const [step, setStep] = useState<"authorizing" | "success" | "error">(
     "authorizing",
   );
@@ -256,16 +259,14 @@ function OAuthConnect({
 
       {step === "error" && (
         <div className="space-y-4 py-6">
-          <div className="alert alert-error">
-            <span>{error}</span>
-          </div>
+          <ConnectionError error={error} onRetry={() => handleConnect(true)} />
           <div className="flex gap-3 w-full">
-            <button
+            {!isStorageError(error) && <button
               className="btn btn-outline flex-1"
               onClick={() => handleConnect(true)}
             >
               Try Again
-            </button>
+            </button>}
             <button className="btn btn-ghost flex-1" onClick={onBack}>
               Back
             </button>
@@ -288,7 +289,7 @@ export function GmailConnect({
   onSuccess: () => void;
   onBack: () => void;
   copyFirst?: boolean;
-}): JSX.Element {
+}) {
   return (
     <OAuthConnect
       providerName="Google"
@@ -312,7 +313,7 @@ export function MicrosoftConnect({
   onSuccess: () => void;
   onBack: () => void;
   copyFirst?: boolean;
-}): JSX.Element {
+}) {
   return (
     <OAuthConnect
       providerName="Microsoft"
@@ -342,7 +343,7 @@ export function ServerRow({
   onHost: (v: string) => void;
   onPort: (v: number) => void;
   onTls: (v: boolean) => void;
-}): JSX.Element {
+}) {
   return (
     <div>
       <p className="text-xs font-medium text-base-content/60 uppercase tracking-wide mb-1.5">
@@ -390,7 +391,7 @@ export function AppleConnect({
 }: {
   onSuccess: () => void;
   onBack: () => void;
-}): JSX.Element {
+}) {
   const preset = findPresetById("apple")!;
   const [host, setHost] = useState(preset.imap.host);
   const [port, setPort] = useState(preset.imap.port);
@@ -403,8 +404,8 @@ export function AppleConnect({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
-    e.preventDefault();
+  const handleSubmit = async (e?: React.FormEvent): Promise<void> => {
+    e?.preventDefault();
     setLoading(true);
     setError("");
 
@@ -515,19 +516,17 @@ export function AppleConnect({
       </div>
 
       {error && (
-        <div className="alert alert-error text-sm">
-          <span className="whitespace-pre-line">{error}</span>
-        </div>
+        <ConnectionError error={error} onRetry={() => handleSubmit()} />
       )}
 
       <div className="flex gap-3 pt-2">
-        <button
+        {!isStorageError(error) && <button
           type="submit"
           className="btn btn-primary flex-1"
           disabled={loading}
         >
           {loading ? <><span className="loading loading-spinner loading-xs" /> Connecting...</> : "Connect"}
-        </button>
+        </button>}
         <button type="button" className="btn btn-ghost flex-1" onClick={onBack}>
           Back
         </button>
@@ -544,7 +543,7 @@ export function ProtonConnect({
 }: {
   onSuccess: () => void;
   onBack: () => void;
-}): JSX.Element {
+}) {
   const preset = findPresetById("proton")!;
   const [host, setHost] = useState(preset.imap.host);
   const [port, setPort] = useState(preset.imap.port);
@@ -557,8 +556,8 @@ export function ProtonConnect({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
-    e.preventDefault();
+  const handleSubmit = async (e?: React.FormEvent): Promise<void> => {
+    e?.preventDefault();
     setLoading(true);
     setError("");
 
@@ -657,19 +656,17 @@ export function ProtonConnect({
       </div>
 
       {error && (
-        <div className="alert alert-error text-sm">
-          <span className="whitespace-pre-line">{error}</span>
-        </div>
+        <ConnectionError error={error} onRetry={() => handleSubmit()} />
       )}
 
       <div className="flex gap-3 pt-2">
-        <button
+        {!isStorageError(error) && <button
           type="submit"
           className="btn btn-primary flex-1"
           disabled={loading}
         >
           {loading ? <><span className="loading loading-spinner loading-xs" /> Connecting...</> : "Connect"}
-        </button>
+        </button>}
         <button type="button" className="btn btn-ghost flex-1" onClick={onBack}>
           Back
         </button>
@@ -708,7 +705,7 @@ export function ImapConnect({
 }: {
   onSuccess: () => void;
   onBack: () => void;
-}): JSX.Element {
+}) {
   const [presetId, setPresetId] = useState("custom");
   const [host, setHost] = useState("");
   const [port, setPort] = useState(993);
@@ -754,8 +751,8 @@ export function ImapConnect({
   const updateSmtpPort = (v: number): void => { setSmtpPort(v); checkDrift({ smtpPort: v }); };
   const updateSmtpTls = (v: boolean): void => { setSmtpTls(v); checkDrift({ smtpTls: v }); };
 
-  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
-    e.preventDefault();
+  const handleSubmit = async (e?: React.FormEvent): Promise<void> => {
+    e?.preventDefault();
     setLoading(true);
     setError("");
 
@@ -901,19 +898,17 @@ export function ImapConnect({
       </div>
 
       {error && (
-        <div className="alert alert-error text-sm">
-          <span className="whitespace-pre-line">{error}</span>
-        </div>
+        <ConnectionError error={error} onRetry={() => handleSubmit()} />
       )}
 
       <div className="flex gap-3 pt-2">
-        <button
+        {!isStorageError(error) && <button
           type="submit"
           className="btn btn-primary flex-1"
           disabled={loading}
         >
           {loading ? <><span className="loading loading-spinner loading-xs" /> Connecting...</> : "Connect"}
-        </button>
+        </button>}
         <button type="button" className="btn btn-ghost flex-1" onClick={onBack}>
           Back
         </button>

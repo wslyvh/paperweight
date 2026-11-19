@@ -60,7 +60,7 @@ export async function sendPrivacyRequest(
   sentMessageId?: string,
   recordOnly?: boolean,
 ): Promise<PrivacyRequestResult> {
-  requirePro();
+  await requirePro();
   const detail = getVendorDetail(companyKey);
   if (detail.vendor.id !== vendorId) throw new Error("Company changed while preparing request");
   const hasActiveCase = queryGdprCases({ status: "active", vendorId })
@@ -123,7 +123,7 @@ export async function sendCaseMessage(
   recordOnly?: boolean,
   sentMessageId?: string,
 ): Promise<CaseMessageResult> {
-  requirePro();
+  await requirePro();
   const detail = getGdprCaseById(caseId);
   if (
     !detail

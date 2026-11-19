@@ -1,7 +1,10 @@
+import { getElectron } from "./electronRuntime";
 import { join } from "path";
 import { createHash } from "crypto";
 import { AsyncLocalStorage } from "async_hooks";
 import { existsSync, readFileSync, writeFileSync, unlinkSync } from "fs";
+
+import { readSecureFile, writeSecureFile } from "./secureStorage";
 
 import { getGlobalSetting, saveGlobalSetting } from "./services/globalSettings";
 
@@ -60,8 +63,7 @@ export function accountTag(email: string): string {
 
 function getRegistryPath(): string {
   if (_accountRegistryPath) return _accountRegistryPath;
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { app } = require("electron") as typeof import("electron");
+  const { app } = getElectron();
   return join(app.getPath("userData"), "accounts.json");
 }
 
@@ -121,6 +123,7 @@ export function removeAccountEntry(email: string): void {
 
 // undefined = not set (use safeStorage); null = explicitly no credentials
 let _preloaded: StoredCredentials | null | undefined = undefined;
+let _persistPreloaded: ((creds: StoredCredentials) => Promise<void>) | undefined;
 
 // When true, credentials are saved to/loaded from a staging file.
 // Used during OAuth auth before the account email is known.
@@ -135,8 +138,9 @@ export function withCredentialAccount<T>(
   return credentialAccount.run(email, action);
 }
 
-export function setPreloadedCredentials(creds: StoredCredentials | null): void {
+export function setPreloadedCredentials(creds: StoredCredentials | null, persist?: (creds: StoredCredentials) => Promise<void>): void {
   _preloaded = creds;
+  _persistPreloaded = persist;
 }
 
 export function setStagingMode(active: boolean): void {
@@ -146,13 +150,13 @@ export function setStagingMode(active: boolean): void {
 /** Resets in-memory credential state (for tests). */
 export function resetCredentialsModuleState(): void {
   _preloaded = undefined;
+  _persistPreloaded = undefined;
   _stagingMode = false;
   _accountRegistryPath = undefined;
 }
 
 function getCredentialsPath(emailOverride?: string): string {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { app } = require("electron") as typeof import("electron");
+  const { app } = getElectron();
   const email =
     emailOverride !== undefined
       ? emailOverride
@@ -166,56 +170,20 @@ function getCredentialsPath(emailOverride?: string): string {
   return join(app.getPath("userData"), `${emailToFileKey(email)}.enc`);
 }
 
-export function saveCredentials(creds: StoredCredentials, emailOverride?: string) {
+export async function saveCredentials(creds: StoredCredentials, emailOverride?: string) {
   if (_preloaded !== undefined) {
-    // Worker thread context: safeStorage is not available in worker threads.
-    // Update _preloaded in-memory so the current sync run sees refreshed tokens.
-    // Disk persistence is skipped; the main thread reloads credentials on the next sync.
+    if (_persistPreloaded) await _persistPreloaded(creds);
     _preloaded = creds;
     return;
   }
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { safeStorage } = require("electron") as typeof import("electron");
-  const json = JSON.stringify(creds);
-  if (safeStorage.isEncryptionAvailable()) {
-    const encrypted = safeStorage.encryptString(json);
-    writeFileSync(getCredentialsPath(emailOverride), encrypted);
-  } else {
-    // Fallback: store as plain text (dev environments where encryption may not be available)
-    writeFileSync(getCredentialsPath(emailOverride), json, "utf-8");
-  }
+  const path = getCredentialsPath(emailOverride);
+  await writeSecureFile(path, creds);
 }
 
-export function loadCredentials(emailOverride?: string): StoredCredentials | undefined {
+export async function loadCredentials(emailOverride?: string): Promise<StoredCredentials | undefined> {
   if (_preloaded !== undefined) return _preloaded ?? undefined;
-  if (
-    !emailOverride
-    && !_stagingMode
-    && !credentialAccount.getStore()
-    && !getActiveEmail()
-  ) return undefined;
-
-  // Main thread path — use safeStorage
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { safeStorage } = require("electron") as typeof import("electron");
-  const path = getCredentialsPath(emailOverride);
-  if (!existsSync(path)) return undefined;
-
-  try {
-    const data = readFileSync(path);
-    if (safeStorage.isEncryptionAvailable()) {
-      try {
-        const json = safeStorage.decryptString(data);
-        return JSON.parse(json) as StoredCredentials;
-      } catch {
-        // Plain-text fallback (dev/CI fixtures, same idea as saveCredentials when encryption is off)
-        return JSON.parse(data.toString("utf-8")) as StoredCredentials;
-      }
-    }
-    return JSON.parse(data.toString("utf-8")) as StoredCredentials;
-  } catch {
-    return undefined;
-  }
+  if (!emailOverride && !_stagingMode && !credentialAccount.getStore() && !getActiveEmail()) return undefined;
+  return readSecureFile<StoredCredentials>(getCredentialsPath(emailOverride));
 }
 
 export function deleteCredentials(emailOverride?: string) {

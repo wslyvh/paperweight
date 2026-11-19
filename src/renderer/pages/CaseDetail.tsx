@@ -1,6 +1,6 @@
 import { useActionAccess } from "../context/LicenseContext";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router";
 import type {
   ActionType,
   GdprCaseDetail,
@@ -304,7 +304,7 @@ function Timeline({
   );
 }
 
-export default function CaseDetail(): JSX.Element {
+export default function CaseDetail() {
   const allowAction = useActionAccess();
   const { caseId } = useParams<{ caseId: string }>();
   const navigate = useNavigate();

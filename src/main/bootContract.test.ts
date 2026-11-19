@@ -1,38 +1,39 @@
+import { vi } from "vitest";
 import { existsSync, mkdtempSync, rmSync, writeFileSync } from "fs";
 import { tmpdir } from "os";
 import { join } from "path";
 
-let userDataDir = "";
+let userDataDir = vi.hoisted(() => (""));
 
-jest.mock("electron", () => ({
+vi.mock("electron", () => ({
   app: {
     getPath: (name: string) => (name === "userData" ? userDataDir : "/tmp"),
   },
   safeStorage: {
-    isEncryptionAvailable: () => false,
-    encryptString: (value: string) => Buffer.from(value, "utf-8"),
-    decryptString: (data: Buffer) => data.toString("utf-8"),
+    isAsyncEncryptionAvailable: async () => true,
+    encryptStringAsync: async (value: string) => Buffer.from(value, "utf-8"),
+    decryptStringAsync: async (data: Buffer) => ({ result: data.toString("utf-8"), shouldReEncrypt: false }),
   },
 }));
 
-jest.mock("./services/settings", () => ({
-  getSetting: jest.fn(() => {
+vi.mock("./services/settings", () => ({
+  getSetting: vi.fn(() => {
     throw new Error("Database not initialized: initDb() must be called before accessing the database");
   }),
-  saveSetting: jest.fn(),
+  saveSetting: vi.fn(),
 }));
 
 import { buildAppSettings } from "./services/appSettings";
 import { resetGlobalSettingsCache } from "./services/globalSettings";
 import { getSetting } from "./services/settings";
 
-const mockedGetSetting = jest.mocked(getSetting);
+const mockedGetSetting = vi.mocked(getSetting);
 
 describe("boot contract (#38)", () => {
   beforeEach(() => {
     userDataDir = mkdtempSync(join(tmpdir(), "paperweight-boot-"));
     resetGlobalSettingsCache();
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   afterEach(() => {

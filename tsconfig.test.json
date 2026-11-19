@@ -1,0 +1,20 @@
+{
+  "extends": "./tsconfig.node.json",
+  "compilerOptions": {
+    "composite": false,
+    "types": [
+      "node",
+      "vitest/globals"
+    ]
+  },
+  "include": [
+    "src/**/*.test.ts",
+    "src/**/*.d.ts",
+    "test/**/*.ts",
+    "vitest.config.mts",
+    "scripts/smoke-desktop.ts",
+    "scripts/smoke-mcp.ts",
+    "scripts/lib/desktop-test.ts"
+  ],
+  "exclude": []
+}

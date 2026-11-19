@@ -29,10 +29,10 @@ function createServer(includeWrites: boolean): McpServer {
 
 export async function runMcpServer(onClose?: () => void): Promise<void> {
   if (!await hasValidLicense()) throw new McpStartupError(PRO_REQUIRED_MESSAGE);
-  initializePaperweight();
+  await initializePaperweight();
   await new Promise<void>((resolve) => {
-    serveStdio(() => {
-      const server = createServer(hasWriteAccess());
+    serveStdio(async () => {
+      const server = createServer(await hasWriteAccess());
       server.server.onclose = () => {
         onClose?.();
         resolve();

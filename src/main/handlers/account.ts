@@ -1,3 +1,4 @@
+import { getSecureStorageStatus } from "../secureStorage";
 import { handle } from "./access";
 import { switchToAccount } from "../services/accountView";
 import { app, BrowserWindow, ipcMain } from "electron";
@@ -35,7 +36,6 @@ import { getLicenseStatus, deleteLicense } from "../services/settings";
 import { getDashboardStats } from "../services/stats";
 import {
   deleteCredentials,
-  loadCredentials,
   listAccounts,
   getActiveEmail,
   removeAccountEntry,
@@ -108,6 +108,7 @@ export function registerAccountHandlers(): void {
   // --- Auth & connection ---
 
   handle(IPC.getConnectionStatus, () => getConnectionStatus());
+  handle(IPC.getSecureStorageStatus, () => getSecureStorageStatus());
 
   // openInBrowser defaults to true; the onboarding "copy link" path passes false
   // so the auth URL is copied to the clipboard instead of auto-opened.
@@ -142,10 +143,10 @@ export function registerAccountHandlers(): void {
   // Intentionally two-step: this returns immediately so the renderer can show
   // the license modal inline, then the actual auth IPC (startGmailAuth etc.)
   // is called separately once the user is cleared to proceed.
-  handle(IPC.addAccount, () => {
+  handle(IPC.addAccount, async () => {
     const existing = listAccounts();
     if (existing.length >= 1) {
-      const license = getLicenseStatus();
+      const license = await getLicenseStatus();
       if (!license.active) {
         return { blocked: true, reason: "license_required" };
       }
@@ -275,9 +276,7 @@ export function registerAccountHandlers(): void {
 
   // --- Sync ---
 
-  handle(IPC.startSync, () => {
-    startAllSyncs();
-  });
+  handle(IPC.startSync, () => startAllSyncs());
 
   handle(IPC.getSyncStatus, () => getSyncStatus(getActiveEmail()));
 
@@ -324,9 +323,9 @@ export function registerAccountHandlers(): void {
 
   // --- Support / diagnostics ---
 
-  handle(IPC.getSupportInfo, (): SupportInfo => {
-    const creds = loadCredentials();
-    const license = getLicenseStatus();
+  handle(IPC.getSupportInfo, async (): Promise<SupportInfo> => {
+    const account = listAccounts().find((entry) => entry.email === getActiveEmail());
+    const license = await getLicenseStatus();
     const stats = getDashboardStats();
     const syncState = getSyncState();
 
@@ -338,7 +337,7 @@ export function registerAccountHandlers(): void {
       os: `${os.type()} ${os.release()}`,
       arch: os.arch(),
       platform: process.platform,
-      providerType: creds?.providerType || "none",
+      providerType: account?.providerType || "none",
       licenseActive: license.active,
       totalMessages: stats.totalMessages,
       lastSyncAt: syncState.last_sync_at,

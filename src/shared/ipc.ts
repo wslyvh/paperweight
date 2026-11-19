@@ -46,6 +46,7 @@ import type {
 export const IPC = {
   getLastUpdateInfo: "get-last-update-info",
   getConnectionStatus: "get-connection-status",
+  getSecureStorageStatus: "get-secure-storage-status",
   startGmailAuth: "start-gmail-auth",
   startMicrosoftAuth: "start-microsoft-auth",
   saveImapConfig: "save-imap-config",
@@ -134,6 +135,7 @@ export interface UpdateInfo {
 export interface ElectronAPI {
   getLastUpdateInfo: () => Promise<UpdateInfo | null>;
   getConnectionStatus: () => Promise<boolean>;
+  getSecureStorageStatus: () => Promise<{ available: boolean; platform: string }>;
   startGmailAuth: (
     intent: AccountAuthIntent,
     openInBrowser?: boolean,

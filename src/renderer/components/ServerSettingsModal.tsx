@@ -1,33 +1,37 @@
+import { isStorageError } from "@shared/secureStorage";
+import ConnectionError from "./ConnectionError";
 import { useState } from "react";
 import type { ServerConfig } from "@shared/types";
 import { ServerRow } from "./ProviderConnect";
+
+interface ServerSettingsModalProps {
+  email: string;
+  initial?: ServerConfig;
+  onClose: () => void;
+  onSaved: () => void;
+}
 
 export default function ServerSettingsModal({
   email,
   initial,
   onClose,
   onSaved,
-}: {
-  email: string;
-  initial: ServerConfig;
-  onClose: () => void;
-  onSaved: () => void;
-}): JSX.Element {
-  const [host, setHost] = useState(initial.imap.host);
-  const [port, setPort] = useState(initial.imap.port);
-  const [tls, setTls] = useState(initial.imap.tls);
+}: ServerSettingsModalProps) {
+  const [host, setHost] = useState(initial?.imap.host ?? "");
+  const [port, setPort] = useState(initial?.imap.port ?? 993);
+  const [tls, setTls] = useState(initial?.imap.tls ?? true);
   const [allowSelfSigned, setAllowSelfSigned] = useState(
-    initial.imap.allowSelfSigned,
+    initial?.imap.allowSelfSigned ?? false,
   );
-  const [smtpHost, setSmtpHost] = useState(initial.smtp?.host ?? "");
-  const [smtpPort, setSmtpPort] = useState(initial.smtp?.port ?? 465);
-  const [smtpTls, setSmtpTls] = useState(initial.smtp?.tls ?? true);
+  const [smtpHost, setSmtpHost] = useState(initial?.smtp?.host ?? "");
+  const [smtpPort, setSmtpPort] = useState(initial?.smtp?.port ?? 465);
+  const [smtpTls, setSmtpTls] = useState(initial?.smtp?.tls ?? true);
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
-    e.preventDefault();
+  const handleSubmit = async (e?: React.FormEvent): Promise<void> => {
+    e?.preventDefault();
     setLoading(true);
     setError("");
 
@@ -68,7 +72,7 @@ export default function ServerSettingsModal({
         <h3 className="font-bold text-lg">Server Settings</h3>
         <p className="text-xs text-base-content/60 mt-1">{email}</p>
 
-        <form onSubmit={handleSubmit} className="space-y-3 pt-4">
+        <form onSubmit={handleSubmit} className="space-y-4 pt-4">
           <ServerRow
             label="IMAP"
             host={host}
@@ -99,7 +103,7 @@ export default function ServerSettingsModal({
             onTls={setSmtpTls}
           />
 
-          <label className="form-control">
+          <label className="flex flex-col">
             <span className="label-text text-xs font-medium text-base-content/60 uppercase tracking-wide mb-1.5">
               New password
             </span>
@@ -108,15 +112,14 @@ export default function ServerSettingsModal({
               className="input input-bordered input-sm"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Leave blank to keep current password"
+              required={!initial}
+              placeholder={initial ? "Leave blank to keep current password" : "Enter your mail password"}
               autoComplete="new-password"
             />
           </label>
 
           {error && (
-            <div className="alert alert-error text-sm">
-              <span className="whitespace-pre-line">{error}</span>
-            </div>
+            <ConnectionError error={error} onRetry={() => handleSubmit()} />
           )}
 
           <div className="modal-action">
@@ -128,7 +131,7 @@ export default function ServerSettingsModal({
             >
               Cancel
             </button>
-            <button
+            {!isStorageError(error) && <button
               type="submit"
               className="btn btn-primary"
               disabled={loading}
@@ -140,7 +143,7 @@ export default function ServerSettingsModal({
               ) : (
                 "Save"
               )}
-            </button>
+            </button>}
           </div>
         </form>
       </div>

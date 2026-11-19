@@ -17,7 +17,7 @@ function formatRelativeTime(ts: number): string {
   return `${days}d ago`;
 }
 
-export default function SyncStatusBar(): JSX.Element {
+export default function SyncStatusBar() {
   const [status, setStatus] = useState<SyncStatus>({
     running: false,
     progress: 0,

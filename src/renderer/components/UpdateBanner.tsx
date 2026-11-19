@@ -5,7 +5,7 @@ interface UpdateBannerProps {
   onDismiss: () => void;
 }
 
-export default function UpdateBanner({ info, onDismiss }: UpdateBannerProps): JSX.Element | null {
+export default function UpdateBanner({ info, onDismiss }: UpdateBannerProps) {
   if (!info) return null;
 
   return (

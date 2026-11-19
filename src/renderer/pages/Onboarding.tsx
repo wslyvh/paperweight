@@ -1,5 +1,7 @@
+import ConnectionError from "../components/ConnectionError";
+import { STORAGE_SAVE_ERROR } from "@shared/secureStorage";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { HelpCircle, Search, Trash2, Globe } from "lucide-react";
 import type { SupportInfo } from "@shared/types";
 import DeviceInfoCard from "../components/DeviceInfoCard";
@@ -36,7 +38,7 @@ const slides = [
   },
 ];
 
-function OnboardingCarousel(): JSX.Element {
+function OnboardingCarousel() {
   const [active, setActive] = useState(0);
 
   useEffect(() => {
@@ -76,7 +78,7 @@ function OnboardingCarousel(): JSX.Element {
 
 // ── Main ─────────────────────────────────────────────────────────────────────
 
-export default function Onboarding(): JSX.Element {
+export default function Onboarding() {
   const navigate = useNavigate();
   const [view, setView] = useState<
     "select" | "gmail" | "microsoft" | "apple" | "proton" | "imap"
@@ -84,6 +86,15 @@ export default function Onboarding(): JSX.Element {
   const [showHelpModal, setShowHelpModal] = useState(false);
   const [supportInfo, setSupportInfo] = useState<SupportInfo>();
   const [copyFirst, setCopyFirst] = useState(false);
+  const [storageReady, setStorageReady] = useState<boolean>();
+  async function checkStorage() {
+    try {
+      setStorageReady((await window.api.getSecureStorageStatus()).available);
+    } catch {
+      setStorageReady(false);
+    }
+  }
+  useEffect(() => { void checkStorage(); }, []);
 
   // If the page reloads while on /onboarding (e.g. after accountSwitched fires)
   // and credentials are already present, redirect straight to dashboard.
@@ -125,7 +136,9 @@ export default function Onboarding(): JSX.Element {
             </button>
           </div>
 
-          {view === "select" && (
+          {storageReady === undefined && <p className="text-sm text-base-content/60">Checking secure storage…</p>}
+          {storageReady === false && <ConnectionError error={STORAGE_SAVE_ERROR} onRetry={checkStorage} />}
+          {storageReady && view === "select" && (
             <ProviderSelect
               onGmail={(copy) => {
                 setCopyFirst(copy);
@@ -140,7 +153,7 @@ export default function Onboarding(): JSX.Element {
               onImap={() => setView("imap")}
             />
           )}
-          {view === "gmail" && (
+          {storageReady && view === "gmail" && (
             <GmailConnect
               intent={{ type: "add" }}
               copyFirst={copyFirst}
@@ -148,7 +161,7 @@ export default function Onboarding(): JSX.Element {
               onBack={() => setView("select")}
             />
           )}
-          {view === "microsoft" && (
+          {storageReady && view === "microsoft" && (
             <MicrosoftConnect
               intent={{ type: "add" }}
               copyFirst={copyFirst}
@@ -156,19 +169,19 @@ export default function Onboarding(): JSX.Element {
               onBack={() => setView("select")}
             />
           )}
-          {view === "apple" && (
+          {storageReady && view === "apple" && (
             <AppleConnect
               onSuccess={handleSuccess}
               onBack={() => setView("select")}
             />
           )}
-          {view === "proton" && (
+          {storageReady && view === "proton" && (
             <ProtonConnect
               onSuccess={handleSuccess}
               onBack={() => setView("select")}
             />
           )}
-          {view === "imap" && (
+          {storageReady && view === "imap" && (
             <ImapConnect
               onSuccess={handleSuccess}
               onBack={() => setView("select")}

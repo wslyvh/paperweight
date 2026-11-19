@@ -1,6 +1,6 @@
 import { useActionAccess } from "../context/LicenseContext";
 import { useEffect, useCallback, useState, type ReactNode } from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router";
 import type {
   VendorDetail,
   VendorQuery,
@@ -131,7 +131,7 @@ function methodDescription(method: string, url: string): string {
 function unsubDescription(
   entry: UnsubscribeEntry,
   vendorName: string,
-): JSX.Element {
+) {
   if (entry.method === "rfc8058") {
     return (
       <>
@@ -266,7 +266,7 @@ function WhitelistSection({
   entries: WhitelistEntry[];
   isLoading: boolean;
   onRemove: (value: string) => void;
-}): JSX.Element | null {
+}) {
   if (entries.length === 0) return null;
 
   return (
@@ -297,7 +297,7 @@ function WhitelistSection({
   );
 }
 
-export default function AccountDetail(): JSX.Element {
+export default function AccountDetail() {
   const allowAction = useActionAccess();
   const { groupKey } = useParams<{ groupKey: string }>();
   const navigate = useNavigate();

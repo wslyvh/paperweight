@@ -37,8 +37,8 @@ function connectImapWithErrorHandling(client: ImapFlow): Promise<void> {
   });
 }
 
-function createImapClient(): ImapFlow {
-  const creds = loadCredentials();
+async function createImapClient(): Promise<ImapFlow> {
+  const creds = await loadCredentials();
   if (!creds?.imap) throw new Error("No IMAP credentials stored");
 
   return new ImapFlow({
@@ -129,9 +129,9 @@ export async function parseImapMessage(
   // (its html-to-text inlines raw urls). parsed.text is then only ever a genuine
   // text/plain part, so the engine's body-source rule sees the same inputs it
   // would from Gmail/Microsoft.
-  const parsed = (await simpleParser(msg.source, {
+  const parsed = await simpleParser(msg.source, {
     skipHtmlToText: true,
-  })) as import("mailparser").ParsedMail;
+  }) as import("mailparser").ParsedMail;
   const from = parsed.from?.value?.[0];
 
   const pairs = buildHeaderPairs(parsed);
@@ -211,10 +211,10 @@ export function createImapProvider(
     type: "imap",
 
     async connect(): Promise<EmailConnection> {
-      const creds = loadCredentials();
+      const creds = await loadCredentials();
       if (!creds?.imap) throw new Error("No IMAP credentials stored");
 
-      client = createImapClient();
+      client = await createImapClient();
       await connectImapWithErrorHandling(client);
 
       return {
@@ -223,7 +223,7 @@ export function createImapProvider(
       };
     },
 
-    isAuthenticated(): boolean {
+    async isAuthenticated(): Promise<boolean> {
       return client !== undefined;
     },
 
@@ -332,7 +332,7 @@ export function createImapProvider(
     },
 
     async sendEmail(to: string, subject: string, body: string, inReplyTo?: string): Promise<string | undefined> {
-      const creds = loadCredentials();
+      const creds = await loadCredentials();
       if (!creds?.imap) throw new Error("No IMAP credentials stored");
       if (!creds.imap.smtp) throw new Error("No SMTP server configured for this account");
 

@@ -1,11 +1,12 @@
-jest.mock("./settings", () => ({ requirePro: jest.fn() }));
-jest.mock("../utils/log", () => ({
-  actionLog: { info: jest.fn(), error: jest.fn() },
+import { vi } from "vitest";
+vi.mock("./settings", () => ({ requirePro: vi.fn() }));
+vi.mock("../utils/log", () => ({
+  actionLog: { info: vi.fn(), error: vi.fn() },
 }));
-jest.mock("./email", () => ({ sendEmail: jest.fn() }));
-jest.mock("./messages", () => ({
-  getAllUnsubscribeMethodsForVendor: jest.fn(),
-  markListUnsubscribed: jest.fn(),
+vi.mock("./email", () => ({ sendEmail: vi.fn() }));
+vi.mock("./messages", () => ({
+  getAllUnsubscribeMethodsForVendor: vi.fn(),
+  markListUnsubscribed: vi.fn(),
 }));
 
 import {
@@ -15,12 +16,12 @@ import {
 import { sendEmail } from "./email";
 import { unsubscribeVendor } from "./unsubscribe";
 
-const getMethods = jest.mocked(getAllUnsubscribeMethodsForVendor);
-const markList = jest.mocked(markListUnsubscribed);
-const send = jest.mocked(sendEmail);
+const getMethods = vi.mocked(getAllUnsubscribeMethodsForVendor);
+const markList = vi.mocked(markListUnsubscribed);
+const send = vi.mocked(sendEmail);
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 describe("unsubscribeVendor", () => {
@@ -29,7 +30,7 @@ describe("unsubscribeVendor", () => {
     getMethods
       .mockReturnValueOnce([{ method: "rfc8058", url }])
       .mockReturnValueOnce([]);
-    const request = jest.spyOn(global, "fetch").mockResolvedValue({
+    const request = vi.spyOn(global, "fetch").mockResolvedValue({
       ok: true,
       status: 204,
     } as Response);
@@ -58,7 +59,7 @@ describe("unsubscribeVendor", () => {
         { method: "rfc8058", url: listB },
       ])
       .mockReturnValueOnce([{ method: "rfc8058", url: listB }]);
-    const request = jest.spyOn(global, "fetch").mockResolvedValue({
+    const request = vi.spyOn(global, "fetch").mockResolvedValue({
       ok: true,
       status: 204,
     } as Response);
@@ -80,7 +81,7 @@ describe("unsubscribeVendor", () => {
       method: "rfc8058",
       url: "https://example.test/unsubscribe/token",
     }]);
-    const request = jest.spyOn(global, "fetch").mockResolvedValue({
+    const request = vi.spyOn(global, "fetch").mockResolvedValue({
       ok: false,
       status: 500,
     } as Response);
@@ -183,8 +184,8 @@ describe("unsubscribeVendor", () => {
 
 it("blocks Free unsubscribe before any request or local status change", async () => {
   const { requirePro } = await import("./settings");
-  jest.mocked(requirePro).mockImplementationOnce(() => { throw new Error("Pro required"); });
-  const request = jest.spyOn(global, "fetch");
+  vi.mocked(requirePro).mockImplementationOnce(() => { throw new Error("Pro required"); });
+  const request = vi.spyOn(global, "fetch");
   await expect(unsubscribeVendor(42)).rejects.toThrow("Pro required");
   expect(request).not.toHaveBeenCalled();
   expect(send).not.toHaveBeenCalled();

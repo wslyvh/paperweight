@@ -1,9 +1,10 @@
 import { resolve } from "path";
-import { config } from "dotenv";
+import { existsSync } from "node:fs";
+import { loadEnvFile } from "node:process";
 import { defineConfig } from "electron-vite";
 import react from "@vitejs/plugin-react";
 
-config();
+if (existsSync(".env")) loadEnvFile(".env");
 
 export default defineConfig({
   main: {
@@ -19,7 +20,7 @@ export default defineConfig({
           "analysis/src/profile-values.ts",
         ),
         // The app (CJS) consumes the engine's public index. Its ESM-only deps
-        // (franc, postal-mime) can't be `require`d in a CJS worker, but Rollup
+        // (franc, postal-mime) can't be `require`d in a CJS worker, but the bundler
         // bundles the whole graph inline and converts it to CJS at build time
         // (verified: no runtime require of franc/postal-mime/libphonenumber/
         // htmlparser2). So we alias to source and let the bundler flatten it.
@@ -37,7 +38,7 @@ export default defineConfig({
     },
     build: {
       externalizeDeps: true,
-      rollupOptions: {
+      rolldownOptions: {
         input: {
           index: resolve("src/main/index.ts"),
           "sync-worker": resolve("src/main/sync-worker.ts"),

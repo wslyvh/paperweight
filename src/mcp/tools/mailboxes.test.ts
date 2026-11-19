@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { emailToFileKey } from "../../main/credentials";
 import {
   findMailbox,
@@ -8,41 +9,41 @@ import {
 } from "../runtime";
 import { selectMailboxResult } from "./mailboxes";
 
-jest.mock("../../main/db", () => ({ getDb: jest.fn() }));
-jest.mock("../../main/services/cases", () => ({ queryGdprCases: jest.fn(() => []) }));
-jest.mock("../../main/services/stats", () => ({
-  getDashboardStats: jest.fn(),
-  getImpactStats: jest.fn(),
+vi.mock("../../main/db", () => ({ getDb: vi.fn() }));
+vi.mock("../../main/services/cases", () => ({ queryGdprCases: vi.fn(() => []) }));
+vi.mock("../../main/services/stats", () => ({
+  getDashboardStats: vi.fn(),
+  getImpactStats: vi.fn(),
 }));
-jest.mock("../../main/services/sync", () => ({ getSyncState: jest.fn() }));
-jest.mock("../payload", () => ({
+vi.mock("../../main/services/sync", () => ({ getSyncState: vi.fn() }));
+vi.mock("../payload", () => ({
   agentToolResult: (payload: Record<string, unknown>, isError = false) => ({
     content: [{ type: "text", text: JSON.stringify(payload) }],
     structuredContent: payload,
     ...(isError ? { isError: true } : {}),
   }),
 }));
-jest.mock("../runtime", () => {
-  const actual = jest.requireActual("../runtime") as typeof import("../runtime");
+vi.mock("../runtime", async () => {
+  const actual = await vi.importActual("../runtime") as typeof import("../runtime");
   return {
     ...actual,
-    findMailbox: jest.fn(),
-    getAppActiveMailbox: jest.fn(),
-    getSelectedMailbox: jest.fn(),
-    isMailboxAvailable: jest.fn(),
-    selectMailbox: jest.fn(),
+    findMailbox: vi.fn(),
+    getAppActiveMailbox: vi.fn(),
+    getSelectedMailbox: vi.fn(),
+    isMailboxAvailable: vi.fn(),
+    selectMailbox: vi.fn(),
   };
 });
 
-const mockedFindMailbox = jest.mocked(findMailbox);
-const mockedSelectMailbox = jest.mocked(selectMailbox);
-const mockedGetSelectedMailbox = jest.mocked(getSelectedMailbox);
-const mockedGetAppActiveMailbox = jest.mocked(getAppActiveMailbox);
-const mockedIsMailboxAvailable = jest.mocked(isMailboxAvailable);
+const mockedFindMailbox = vi.mocked(findMailbox);
+const mockedSelectMailbox = vi.mocked(selectMailbox);
+const mockedGetSelectedMailbox = vi.mocked(getSelectedMailbox);
+const mockedGetAppActiveMailbox = vi.mocked(getAppActiveMailbox);
+const mockedIsMailboxAvailable = vi.mocked(isMailboxAvailable);
 
 describe("selectMailboxResult", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     mockedFindMailbox.mockReturnValue({
       email: "second@example.test",
       providerType: "gmail",

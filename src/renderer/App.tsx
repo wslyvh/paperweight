@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate, useNavigate, useLocation } from "react-router";
 import { useCallback, useEffect, useState } from "react";
 import type { LicenseStatus } from "@shared/types";
 import type { UpdateInfo } from "@shared/ipc";
@@ -18,7 +18,8 @@ import Settings from "./pages/Settings";
 import Support from "./pages/Support";
 import Activity from "./pages/Activity";
 
-function AuthGate({ children }: { children: React.ReactNode }): JSX.Element {
+function AuthGate({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
   const [state, setState] = useState<{
     connected?: boolean;
     license?: LicenseStatus;
@@ -39,8 +40,11 @@ function AuthGate({ children }: { children: React.ReactNode }): JSX.Element {
     );
   }
 
-  if (!state.connected) {
+  if (!state.connected && window.api.listAccounts().length === 0) {
     return <Navigate to="/onboarding" replace />;
+  }
+  if (!state.connected && location.pathname === "/") {
+    return <Navigate to="/settings" replace />;
   }
 
   return (
@@ -63,7 +67,7 @@ function AccountSwitchReset({ onReset }: { onReset: () => void }): null {
   return null;
 }
 
-export default function App(): JSX.Element {
+export default function App() {
   const [accountKey, setAccountKey] = useState(0);
   const resetAccountTree = useCallback(() => setAccountKey((k) => k + 1), []);
   const [updateInfo, setUpdateInfo] = useState<UpdateInfo | null>(null);

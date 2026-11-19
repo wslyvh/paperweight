@@ -1,3 +1,4 @@
+import { getElectron } from "../electronRuntime";
 import Database from "better-sqlite3";
 import { existsSync } from "fs";
 import { join } from "path";
@@ -160,8 +161,7 @@ export function seedProfileEmailsFromAccounts(): number {
   if (accounts.length === 0) return 0;
   const known = new Set(accounts.map((account) => normalizeEmail(account.email)));
   const candidates = new Set<string>();
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { app } = require("electron") as typeof import("electron");
+  const { app } = getElectron();
   const userData = app.getPath("userData");
 
   for (const account of accounts) {

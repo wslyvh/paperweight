@@ -31,6 +31,7 @@ const seedUserDataDir = process.env.PAPERWEIGHT_SEED;
 const mcpUserDataDir = process.env.PAPERWEIGHT_USER_DATA;
 if (seedUserDataDir || (isMcpProcess && mcpUserDataDir)) {
   app.setPath("userData", seedUserDataDir ?? mcpUserDataDir!);
+  app.setAppLogsPath(join(app.getPath("userData"), "logs"));
 }
 
 function handleFatalError(err: Error, context: string): void {
@@ -150,7 +151,7 @@ app.whenReady().then(async () => {
   // Ensure OS login item state matches saved settings
   const autoLaunch = getGlobalSetting("autoLaunch") ?? false;
   const launchMinimized = getGlobalSetting("launchMinimized") ?? false;
-  applyAutoLaunch(autoLaunch, launchMinimized);
+  if (!seedUserDataDir) applyAutoLaunch(autoLaunch, launchMinimized);
 
   // Determine if we should start hidden (must be after DB is available)
   startHidden = wasLaunchedAsHidden(launchMinimized);
@@ -165,7 +166,7 @@ app.whenReady().then(async () => {
     win.webContents.send(IPC.updateDownloaded, lastUpdateInfo);
   };
 
-  if (!is.dev) {
+  if (!is.dev && !seedUserDataDir) {
     autoUpdater.logger = appLog;
     autoUpdater.autoDownload = true;
     autoUpdater.on("error", (err) => {
@@ -194,15 +195,13 @@ app.whenReady().then(async () => {
     // Sync all accounts on launch (delayed to let the window render)
     setTimeout(() => {
       appLog.info("Startup sync scheduled for eligible accounts");
-      startAllSyncs();
+      void startAllSyncs().catch(() => appLog.error("Could not start account sync"));
     }, 3000);
 
     // Background sync every 20 minutes — picks up any accounts whose worker has finished
     appLog.info("Background sync interval set (20 min)");
     setInterval(() => {
-      void hasValidLicense().then(() => {
-        startAllSyncs();
-      }).catch(() => appLog.error("Could not refresh account access"));
+      void hasValidLicense().then(() => startAllSyncs()).catch(() => appLog.error("Could not refresh account access"));
     }, 20 * 60 * 1000);
   }
 

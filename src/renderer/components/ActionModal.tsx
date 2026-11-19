@@ -49,7 +49,7 @@ export default function ActionModal({
   loading,
   copyText,
   error,
-}: ActionModalProps): JSX.Element {
+}: ActionModalProps) {
   const ref = useRef<HTMLDialogElement>(null);
   const [copied, setCopied] = useState(false);
 

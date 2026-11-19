@@ -22,7 +22,18 @@ const {
 
 // Initialize before any module calls getDb() or loadCredentials()
 initDb(dbPath, companiesDbPath, breachesDbPath);
-setPreloadedCredentials(credentials);
+let credentialRequestId = 0;
+setPreloadedCredentials(credentials, (updated) => new Promise<void>((resolve, reject) => {
+  const requestId = ++credentialRequestId;
+  const onMessage = (message: { type: string; requestId?: number; error?: string }) => {
+    if (message.type !== "credentials-saved" || message.requestId !== requestId) return;
+    parentPort!.off("message", onMessage);
+    if (message.error) reject(new Error(message.error));
+    else resolve();
+  };
+  parentPort!.on("message", onMessage);
+  parentPort!.postMessage({ type: "credentials", requestId, credentials: updated });
+}));
 
 setProgressEmitter((status: SyncStatus) => {
   parentPort!.postMessage({ type: "progress", status });

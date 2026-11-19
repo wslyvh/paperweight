@@ -1,9 +1,10 @@
-jest.mock("../credentials", () => ({
-  emailToFileKey: jest.fn(),
-  listAccounts: jest.fn(() => []),
+import { vi } from "vitest";
+vi.mock("../credentials", () => ({
+  emailToFileKey: vi.fn(),
+  listAccounts: vi.fn(() => []),
 }));
-jest.mock("../utils/log", () => {
-  const l = { debug: jest.fn(), info: jest.fn(), warn: jest.fn(), error: jest.fn() };
+vi.mock("../utils/log", () => {
+  const l = { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() };
   return { dbLog: l, syncLog: l, appLog: l };
 });
 

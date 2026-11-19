@@ -1,3 +1,5 @@
+import { getElectron } from "./electronRuntime";
+import { SecureStorageError, removeLegacyPlaintextFile } from "./secureStorage";
 import { join } from "path";
 import { existsSync, unlinkSync } from "fs";
 import Database from "better-sqlite3";
@@ -20,8 +22,7 @@ import { addReceivedProfileEmails } from "./services/profileSeed";
 // of heavy top-level imports (it lazy-requires electron itself). So we access
 // electron lazily here too, keeping this module's load graph light.
 function userDataDir(): string {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { app } = require("electron") as typeof import("electron");
+  const { app } = getElectron();
   return app.getPath("userData");
 }
 
@@ -66,34 +67,39 @@ async function backfillSmtpFromPreset(): Promise<void> {
   // migrateActionLog — keeping this import out of module scope keeps db.ts light.
   const { testSmtpConnection } = await import("./providers/smtp");
   for (const acc of listAccounts()) {
-    const creds = loadCredentials(acc.email);
-    if (!creds?.imap || creds.imap.smtp) continue;
+    try {
+      const creds = await loadCredentials(acc.email);
+      if (!creds?.imap || creds.imap.smtp) continue;
 
-    const preset = findPresetByHost(creds.imap.host);
-    if (!preset) continue;
+      const preset = findPresetByHost(creds.imap.host);
+      if (!preset) continue;
 
-    const testResult = await testSmtpConnection({
-      host: preset.smtp.host,
-      port: preset.smtp.port,
-      tls: preset.smtp.tls,
-      username: creds.imap.username,
-      password: creds.imap.password,
-      allowSelfSigned: creds.imap.allowSelfSigned,
-    });
+      const testResult = await testSmtpConnection({
+        host: preset.smtp.host,
+        port: preset.smtp.port,
+        tls: preset.smtp.tls,
+        username: creds.imap.username,
+        password: creds.imap.password,
+        allowSelfSigned: creds.imap.allowSelfSigned,
+      });
 
-    if (!testResult.success) {
-      appLog.warn(
-        `migrations: SMTP test failed for [${accountTag(acc.email)}] with preset "${preset.id}": ${testResult.error} — leaving unconfigured`,
-      );
-      continue;
+      if (!testResult.success) {
+        appLog.warn(
+          `migrations: SMTP test failed for [${accountTag(acc.email)}] with preset "${preset.id}": ${testResult.error} — leaving unconfigured`,
+        );
+        continue;
+      }
+
+      const updated = {
+        ...creds,
+        imap: { ...creds.imap, smtp: { ...preset.smtp } },
+      };
+      await saveCredentials(updated, acc.email);
+      appLog.info(`migrations: backfilled SMTP for [${accountTag(acc.email)}] from preset "${preset.id}"`);
+    } catch (error) {
+      if (!(error instanceof SecureStorageError)) throw error;
+      appLog.warn(error.message);
     }
-
-    const updated = {
-      ...creds,
-      imap: { ...creds.imap, smtp: { ...preset.smtp } },
-    };
-    saveCredentials(updated, acc.email);
-    appLog.info(`migrations: backfilled SMTP for [${accountTag(acc.email)}] from preset "${preset.id}"`);
   }
 }
 
@@ -110,18 +116,18 @@ async function backfillSmtpFromPreset(): Promise<void> {
  *     and flag re-derivation of `unsubscribed` status from action_log on the next sync.
  *   - gmail: already all-mail with stable IDs; marker only.
  */
-function migrateScanScopeAllMail(): void {
+async function migrateScanScopeAllMail(): Promise<void> {
   const userData = userDataDir();
 
   for (const acc of listAccounts()) {
-    const creds = loadCredentials(acc.email);
-    if (!creds) continue;
-
     const dbPath = join(userData, `${emailToFileKey(acc.email)}.db`);
     if (!existsSync(dbPath)) continue;
 
     let db: Database.Database | undefined;
     try {
+      const creds = await loadCredentials(acc.email);
+      if (!creds) continue;
+
       db = new Database(dbPath);
 
       const done = db
@@ -438,9 +444,13 @@ function migrateReceivedAddresses(): void {
  * is a no-op if there is nothing to do.
  */
 export async function runMigrations(): Promise<void> {
+  for (const account of listAccounts()) {
+    removeLegacyPlaintextFile(join(userDataDir(), `${emailToFileKey(account.email)}.enc`), "credentials");
+  }
+  removeLegacyPlaintextFile(join(userDataDir(), "license.enc"), "license");
   cleanupStaleFiles();
   await backfillSmtpFromPreset();
-  migrateScanScopeAllMail();
+  await migrateScanScopeAllMail();
   migrateEngineSwitch();
   migrateReceivedAddresses();
 }

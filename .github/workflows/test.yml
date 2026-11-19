@@ -4,32 +4,112 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+env:
+  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+  CSC_IDENTITY_AUTO_DISCOVERY: "false"
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    name: App (${{ matrix.os }}, ${{ matrix.arch }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            arch: x64
+          - os: windows-2025
+            arch: x64
+          - os: macos-15
+            arch: arm64
+          - os: macos-15-intel
+            arch: x64
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    defaults:
+      run:
+        shell: bash
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
+      - uses: actions/checkout@v6
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
+      - uses: actions/setup-node@v6
         with:
           node-version: 24
           cache: yarn
+          cache-dependency-path: |
+            yarn.lock
+            analysis/yarn.lock
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: |
+          npm install --global yarn@1.22.22
+          yarn install --frozen-lockfile
+          yarn --cwd analysis install --frozen-lockfile
+          yarn install-electron
 
-      - name: Install analysis dependencies
-        run: yarn install --immutable
-        working-directory: analysis
+      - name: Typecheck and unit tests
+        run: |
+          yarn typecheck
+          yarn test
+          yarn test:analysis
 
-      - name: Install xvfb
-        run: sudo apt-get update && sudo apt-get install -y xvfb
+      - name: Build app and package for this runner
+        # Ad-hoc bundles need no release secrets. Signed installers are a separate release check.
+        run: |
+          yarn build
+          yarn electron-builder --dir --${{ matrix.arch }} --publish never -c.mac.identity=- -c.mac.hardenedRuntime=false -c.mac.notarize=false
 
-      - name: Typecheck
-        run: yarn typecheck
+      - name: Install Linux desktop test services
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y xvfb gnome-keyring libsecret-1-0 dbus-x11
 
-      - name: Run tests
-        run: yarn test:all
+      - name: Create isolated macOS test keychain
+        if: runner.os == 'macOS'
+        run: |
+          KEYCHAIN="$RUNNER_TEMP/paperweight-test.keychain-db"
+          TEST_PASSWORD=$(uuidgen)
+          security default-keychain -d user > "$RUNNER_TEMP/paperweight-original-keychain"
+          security list-keychains -d user > "$RUNNER_TEMP/paperweight-original-keychains"
+          security create-keychain -p "$TEST_PASSWORD" "$KEYCHAIN"
+          security default-keychain -d user -s "$KEYCHAIN"
+          security list-keychains -d user -s "$KEYCHAIN"
+          security unlock-keychain -p "$TEST_PASSWORD" "$KEYCHAIN"
+          security set-keychain-settings -lut 21600 "$KEYCHAIN"
+
+      - name: Packaged desktop and MCP integration (Linux)
+        if: runner.os == 'Linux'
+        run: bash scripts/test-linux-desktop.sh bash -euc 'yarn tsx scripts/smoke-desktop.ts --packaged && yarn tsx scripts/smoke-mcp.ts --packaged'
+
+      - name: Packaged desktop and MCP integration (macOS / Windows)
+        if: runner.os != 'Linux'
+        run: |
+          yarn tsx scripts/smoke-desktop.ts --packaged
+          yarn tsx scripts/smoke-mcp.ts --packaged
+
+      - name: Retain failure diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: desktop-failure-${{ matrix.os }}-${{ matrix.arch }}
+          path: dist/test-results/
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Remove test keychain
+        if: always() && runner.os == 'macOS'
+        run: |
+          if [ -f "$RUNNER_TEMP/paperweight-original-keychain" ]; then
+            ORIGINAL=$(sed 's/^[[:space:]]*"//; s/"[[:space:]]*$//' "$RUNNER_TEMP/paperweight-original-keychain")
+            security default-keychain -d user -s "$ORIGINAL"
+          fi
+          if [ -f "$RUNNER_TEMP/paperweight-original-keychains" ]; then
+            xargs security list-keychains -d user -s < "$RUNNER_TEMP/paperweight-original-keychains"
+          fi
+          if [ -f "$RUNNER_TEMP/paperweight-test.keychain-db" ]; then
+            security delete-keychain "$RUNNER_TEMP/paperweight-test.keychain-db"
+          fi

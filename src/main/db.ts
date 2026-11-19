@@ -1,3 +1,4 @@
+import { getElectron } from "./electronRuntime";
 // INVARIANT: keep this module's top-level import graph light. db.ts is loaded
 // very early and by nearly everything, including during the account-connect DB
 // handling (temp DB → deterministic per-account DB swap). Do NOT add top-level
@@ -47,9 +48,7 @@ function getDbPath(): string {
 
 function getCompaniesDbPath(): string {
   if (_companiesDbPath) return _companiesDbPath;
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { app } = require("electron") as typeof import("electron");
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { app } = getElectron();
   const { is } = require("@electron-toolkit/utils") as typeof import("@electron-toolkit/utils");
   return is.dev
     ? join(app.getAppPath(), "resources", "companies.db")
@@ -58,9 +57,7 @@ function getCompaniesDbPath(): string {
 
 function getBreachesDbPath(): string {
   if (_breachesDbPath) return _breachesDbPath;
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { app } = require("electron") as typeof import("electron");
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { app } = getElectron();
   const { is } = require("@electron-toolkit/utils") as typeof import("@electron-toolkit/utils");
   return is.dev
     ? join(app.getAppPath(), "resources", "breaches.db")
@@ -305,8 +302,7 @@ function deleteSqliteFiles(dbPath: string): void {
 }
 
 export function deleteDbFiles(email: string): void {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { app } = require("electron") as typeof import("electron");
+  const { app } = getElectron();
   const dbPath = join(app.getPath("userData"), `${emailToFileKey(email)}.db`);
   deleteSqliteFiles(dbPath);
 }

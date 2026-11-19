@@ -1,15 +1,17 @@
+import type { MockedFunction } from "vitest";
+import { vi } from "vitest";
 // Stub credentials, settings and logging so the pure parse helpers load alone.
-jest.mock("../services/settings", () => ({ getSetting: () => undefined }));
-jest.mock("../credentials", () => ({ loadCredentials: () => undefined }));
-jest.mock("../utils/log", () => ({
-  syncLog: { debug: jest.fn(), info: jest.fn(), warn: jest.fn(), error: jest.fn() },
+vi.mock("../services/settings", () => ({ getSetting: () => undefined }));
+vi.mock("../credentials", () => ({ loadCredentials: () => undefined }));
+vi.mock("../utils/log", () => ({
+  syncLog: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
 }));
 // The real engine imports ESM (htmlparser2/franc) the CJS jest runner can't
 // load. What it decides — body selection, type, unsubscribe — is covered by the
 // analysis vitest suite. What matters here is the handoff: which inputs the
 // provider builds out of a raw IMAP message, so the mock records them.
-jest.mock("@paperweight/analysis", () => ({
-  analyzeMessage: jest.fn(),
+vi.mock("@paperweight/analysis", () => ({
+  analyzeMessage: vi.fn(),
 }));
 
 import { simpleParser } from "mailparser";
@@ -17,7 +19,7 @@ import { analyzeMessage } from "@paperweight/analysis";
 import type { Analysis, RawMessage } from "@paperweight/analysis";
 import { buildHeaderPairs, parseImapMessage } from "./imap";
 
-const mockAnalyze = analyzeMessage as jest.MockedFunction<typeof analyzeMessage>;
+const mockAnalyze = analyzeMessage as MockedFunction<typeof analyzeMessage>;
 
 const ANALYSIS: Analysis = {
   version: "test-v1",

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router";
 import { queryCaseSummaries } from "@shared/case-query";
 import type { CaseSort, CaseStatusFilter } from "@shared/case-query";
 import type { GdprCaseSummary } from "@shared/types";
@@ -14,7 +14,7 @@ function PagerControls({
   page: number;
   totalPages: number;
   onChange: (page: number) => void;
-}): JSX.Element {
+}) {
   return (
     <>
       <button
@@ -62,7 +62,7 @@ interface CasesState {
   statusFilter: CaseFilter | "";
 }
 
-export default function Cases(): JSX.Element {
+export default function Cases() {
   const navigate = useNavigate();
   const location = useLocation();
   const locState = location.state as { restore?: CasesState; filter?: "needs_attention" } | null;

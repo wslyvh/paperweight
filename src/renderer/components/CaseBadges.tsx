@@ -10,7 +10,7 @@ import {
 // Active case → its next-action nudge badge (nothing when no action is due);
 // closed case → a neutral "Closed" badge. Shared by the Cases list and the
 // account's Cases tab so the two never drift.
-export function CaseStatusBadge({ item }: { item: GdprCaseSummary }): JSX.Element | null {
+export function CaseStatusBadge({ item }: { item: GdprCaseSummary }) {
   if (item.status === "active") {
     if (!item.nextAction) return null;
     return (
@@ -26,7 +26,7 @@ export function CaseRequestBadge({
   requestType,
 }: {
   requestType: GdprRequestType;
-}): JSX.Element {
+}) {
   return (
     <span className={`badge badge-xs shrink-0 ${REQUEST_TYPE_BADGES[requestType]}`}>
       {REQUEST_TYPE_LABELS[requestType]}

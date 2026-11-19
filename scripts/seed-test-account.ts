@@ -1,5 +1,5 @@
 /**
- * Populate a second, throwaway account in the real dev userData dir with a
+ * Populate a throwaway account in the isolated dev profile with a
  * realistic-looking inbox — dozens of vendors, a mix of promotion/social/
  * update/purchase/personal mail, some already unsubscribed/trashed/reported, and GDPR
  * cases on a minority of vendors covering every case-lifecycle stage. Lets
@@ -19,8 +19,9 @@
  * Run via: yarn seed:test-account
  * Then switch to "test-cases@paperweight.local" from the account switcher.
  */
-import { existsSync, readFileSync, rmSync, writeFileSync } from "fs";
-import { homedir } from "os";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { tmpdir } from "os";
+import { execFileSync } from "node:child_process";
 import { join } from "path";
 import { createAccountDb, initDb, getDb } from "../src/main/db";
 import { emailToFileKey } from "../src/main/credentials";
@@ -63,23 +64,8 @@ const weighted = <T extends string>(weights: Record<T, number>): T => {
   return entries[entries.length - 1][0];
 };
 
-function defaultUserDataDir(): string {
-  const home = homedir();
-  switch (process.platform) {
-    case "darwin":
-      return join(home, "Library", "Application Support", "paperweight");
-    case "win32":
-      return join(process.env.APPDATA ?? join(home, "AppData", "Roaming"), "paperweight");
-    default:
-      return join(home, ".config", "paperweight");
-  }
-}
-
-const userDataDir = process.argv[2] ?? defaultUserDataDir();
-if (!existsSync(userDataDir)) {
-  console.error(`userData dir not found: ${userDataDir} — pass it explicitly as an argument`);
-  process.exit(1);
-}
+const userDataDir = process.argv[2] ?? join(tmpdir(), "paperweight-local");
+mkdirSync(userDataDir, { recursive: true });
 
 // ── 1. Register the account (without touching the existing accounts or activeAccount) ──
 
@@ -97,8 +83,7 @@ else registry.accounts.push(entry);
 writeFileSync(accountsPath, JSON.stringify(registry, null, 2), "utf-8");
 
 // Fake credentials so getConnectionStatus()/hasCredentials() treat this account as
-// connected (skips onboarding). Plain-text: dev machines fall back to this when
-// safeStorage.decryptString() fails on non-encrypted data (see loadCredentials()).
+// connected (skips onboarding). Encrypt the synthetic input before app startup.
 writeFileSync(
   join(userDataDir, `${emailToFileKey(TEST_EMAIL)}.enc`),
   JSON.stringify({
@@ -118,6 +103,10 @@ writeFileSync(
   }),
   "utf-8",
 );
+
+const fixtureEnv = { ...process.env };
+delete fixtureEnv.ELECTRON_RUN_AS_NODE;
+execFileSync(process.execPath, [join(process.cwd(), "scripts", "encrypt-smoke-fixture.cjs"), userDataDir, `--file=${emailToFileKey(TEST_EMAIL)}.enc`], { env: fixtureEnv, stdio: "inherit" });
 
 // ── 2. Reset this account's db file ──
 

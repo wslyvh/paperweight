@@ -37,6 +37,16 @@ IMAP Presets: Proton, Yahoo Mail, Fastmail, Yandex, Zoho, Mailbox.org, Posteo, G
 3. Scan your inbox in ~2 minutes
 4. Review your footprint; use Pro to unsubscribe and delete emails
 
+## System requirements
+
+- **macOS:** 13 Ventura or later, Intel or Apple Silicon.
+- **Windows:** Windows 10 or later, x64.
+- **Linux:** x64, distributed as AppImage and Debian packages.
+
+These requirements apply to the next Electron 45-based release. For an older
+release, check its release notes. Changes to requirements are announced in
+release notes; automatic updates must respect the minimum supported OS.
+
 ## License
 
 Discover, inspect, and curate your digital footprint for free. Upgrade to Pro to execute cleanup and support open-source development.
@@ -51,15 +61,21 @@ Both paid plans unlock unsubscribe, trash, spam, bulk cleanup actions, privacy r
 
 ## Development
 
+Use Node.js 24. CI and the commands below use Yarn Classic 1.22.22 with frozen
+lockfiles. Other local package managers are fine, but only Yarn lockfiles belong
+in the repository. Dependency upgrades are deliberate.
+
 Released binaries ship with OAuth credentials configured. Building from source needs your own.
 
 ```bash
-yarn
+yarn install --frozen-lockfile
+yarn --cwd analysis install --frozen-lockfile
+yarn install-electron
 cp .env.example .env   # then fill in the three IDs below
 yarn dev
 ```
 
-OAuth values are baked in at build time (`electron.vite.config.ts`). Empty `.env` values compile to empty strings and auth fails at runtime.
+OAuth values are baked in at build time (`electron.vite.config.mts`). Empty `.env` values compile to empty strings and auth fails at runtime.
 
 **Google / Gmail** — https://console.cloud.google.com/
 - Create OAuth 2.0 credentials, application type "Desktop app"
@@ -75,6 +91,19 @@ OAuth values are baked in at build time (`electron.vite.config.ts`). Empty `.env
 - Set `MICROSOFT_CLIENT_ID` in `.env` (no secret; the flow uses PKCE)
 
 IMAP accounts need no OAuth env vars.
+
+`yarn typecheck`, `yarn test` and `yarn test:analysis` run the local checks.
+`yarn test:smoke` checks app startup, saved data and OS-backed credential storage;
+`yarn test:mcp` checks the MCP launcher and protocol. On headless Linux, install
+Xvfb, D-Bus and GNOME Keyring, then use
+`bash scripts/test-linux-desktop.sh yarn test:all` for an isolated test session.
+Tests use synthetic profiles and do not need mailbox or signing credentials.
+
+The **Test** GitHub workflow runs on Linux, Windows and macOS Intel/Apple Silicon
+for pull requests and main-branch pushes. It can also be run manually and is
+reused by release builds. It tests unpacked app bundles and retains failure logs
+and screenshots for seven days. Real OAuth login and signed installer/update
+prompts remain release checks.
 
 ## Contributing
 

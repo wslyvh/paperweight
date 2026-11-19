@@ -1,4 +1,5 @@
-import { spawn } from "child_process";
+import { spawn, spawnSync } from "child_process";
+import { appPaths, electronArgs, encryptProfile, packaged } from "./lib/desktop-test";
 import {
   copyFileSync,
   cpSync,
@@ -41,6 +42,7 @@ interface McpConnection {
 const root = resolve(__dirname, "..");
 const fixture = join(root, "test", "fixtures", "smoke-account");
 const profiles: string[] = [];
+const liveChildren = new Set<ReturnType<typeof spawn>>();
 const primaryMailbox = "smoke-test@paperweight.test";
 const secondMailbox = "second@paperweight.test";
 const primaryMailboxKey = emailToFileKey(primaryMailbox);
@@ -144,29 +146,8 @@ function prepareProfile(enabled: boolean): string {
   return profile;
 }
 
-// Use the same OS-backed encryption as the real MCP process. This cached test
-// license never contacts the license API and exists only in a temporary profile.
 async function prepareLicense(profile: string): Promise<void> {
-  const script = join(profile, "seed-license.cjs");
-  writeFileSync(script, `
-    const { app, safeStorage } = require("electron");
-    const { writeFileSync } = require("fs");
-    const { join } = require("path");
-    app.setPath("userData", __dirname);
-    app.whenReady().then(() => {
-      const data = JSON.stringify({ key: "MCP-SMOKE-TEST", tier: "test", validatedAt: Date.now() });
-      writeFileSync(join(__dirname, "license.enc"), safeStorage.isEncryptionAvailable() ? safeStorage.encryptString(data) : data);
-      app.quit();
-    });
-  `);
-  const env = { ...process.env };
-  delete env.ELECTRON_RUN_AS_NODE;
-  delete env.PAPERWEIGHT_MCP;
-  const child = spawn(process.execPath, [script, "--no-sandbox", "--disable-gpu", "--password-store=basic"], {
-    env, stdio: "ignore",
-  });
-  if (await waitForExit(child) !== 0) throw new Error("Could not prepare MCP test license");
-  unlinkSync(script);
+  await encryptProfile(profile, `mcp-encrypt-${profiles.indexOf(profile)}`, true);
 }
 
 function seedReadSurface(profile: string): void {
@@ -367,46 +348,46 @@ function seedCollisionSurface(profile: string): void {
 }
 
 function commandFor(profile: string): Command {
-  const packaged = process.argv.includes("--packaged");
-  if (packaged) {
+  const launcher = join(packaged ? appPaths().resources : join(root, "build", "mcp"),
+    process.platform === "win32" ? "paperweight-mcp.cmd" : "paperweight-mcp");
+  const env: NodeJS.ProcessEnv = { ...process.env, PAPERWEIGHT_USER_DATA: profile };
+  delete env.PAPERWEIGHT_SEED;
+  const args = electronArgs();
+  if (process.platform === "win32") {
     return {
-      executable: join(root, "dist", "linux-unpacked", "resources", "paperweight-mcp"),
-      args: ["--no-sandbox", "--disable-gpu", "--password-store=basic"],
-      env: {
-        ...process.env,
-        ELECTRON_DISABLE_SANDBOX: "1",
-        PAPERWEIGHT_USER_DATA: profile,
-      },
+      executable: process.env.ComSpec || "cmd.exe",
+      args: ["/d", "/s", "/c", `""${launcher}" ${args.map((arg) => `"${arg}"`).join(" ")}"`],
+      env,
     };
   }
-  return {
-    executable: join(
-      root,
-      "build",
-      "mcp",
-      process.platform === "win32" ? "paperweight-mcp.cmd" : "paperweight-mcp",
-    ),
-    args: ["--no-sandbox", "--disable-gpu", "--password-store=basic"],
-    env: {
-      ...process.env,
-      ELECTRON_DISABLE_SANDBOX: "1",
-      PAPERWEIGHT_USER_DATA: profile,
-    },
-  };
+  return { executable: launcher, args, env };
 }
 
 async function waitForExit(child: ReturnType<typeof spawn>): Promise<number | null> {
+  if (child.exitCode !== null || child.signalCode !== null) return child.exitCode;
   return new Promise((resolveExit, reject) => {
     const timeout = setTimeout(() => {
-      child.kill();
+      terminateMcp(child);
       reject(new Error("MCP process did not exit after stdin closed"));
-    }, 5_000);
+    }, 30_000);
     child.once("close", (code) => {
       clearTimeout(timeout);
       resolveExit(code);
     });
-    child.once("error", reject);
+    child.once("error", (error) => {
+      clearTimeout(timeout);
+      reject(error);
+    });
   });
+}
+
+function terminateMcp(child: ReturnType<typeof spawn>) {
+  if (process.platform === "win32" && child.pid) {
+    // The .cmd launcher owns an Electron child; stopping only cmd.exe leaks it.
+    spawnSync("taskkill", ["/pid", String(child.pid), "/t", "/f"], { stdio: "ignore" });
+  } else {
+    child.kill();
+  }
 }
 
 function openMcp(profile: string): McpConnection {
@@ -414,8 +395,11 @@ function openMcp(profile: string): McpConnection {
   const child = spawn(command.executable, command.args, {
     cwd: root,
     env: command.env,
+    windowsVerbatimArguments: process.platform === "win32",
     stdio: ["pipe", "pipe", "pipe"],
   });
+  liveChildren.add(child);
+  child.once("close", () => liveChildren.delete(child));
   const responses = new Map<number, {
     resolve: (response: JsonRpcResponse) => void;
     reject: (error: Error) => void;
@@ -430,7 +414,7 @@ function openMcp(profile: string): McpConnection {
     try {
       response = JSON.parse(line) as JsonRpcResponse;
     } catch {
-      child.kill();
+      terminateMcp(child);
       for (const pending of responses.values()) {
         clearTimeout(pending.timeout);
         pending.reject(new Error(`Non-protocol stdout from MCP process: ${line}`));
@@ -461,7 +445,7 @@ function openMcp(profile: string): McpConnection {
         const timeout = setTimeout(() => {
           responses.delete(id);
           rejectResponse(new Error(`MCP request timed out: ${method}`));
-        }, 5_000);
+        }, 30_000);
         responses.set(id, {
           resolve: resolveResponse,
           reject: rejectResponse,
@@ -489,6 +473,7 @@ async function proveDeniedStartup(pro: boolean): Promise<void> {
   const child = spawn(command.executable, command.args, {
     cwd: root,
     env: command.env,
+    windowsVerbatimArguments: process.platform === "win32",
     stdio: ["ignore", "pipe", "ignore"],
   });
   let stdout = "";
@@ -1285,7 +1270,13 @@ async function main(): Promise<void> {
     await proveOverviewRead();
     console.info("MCP smoke OK: Pro startup, live revocation, permissions, stdio, mailboxes, overview, search, detail, shutdown");
   } finally {
-    for (const profile of profiles) rmSync(profile, { recursive: true, force: true });
+    await Promise.all([...liveChildren].map(async (child) => {
+      const exited = waitForExit(child);
+      terminateMcp(child);
+      await exited;
+    }));
+    configureGlobalDbPath(":memory:");
+    for (const profile of profiles) rmSync(profile, { recursive: true, force: true, maxRetries: 10, retryDelay: 200 });
   }
 }
 

@@ -11,7 +11,7 @@ on:
         required: true
 
 jobs:
-  verify:
+  verify-version:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -28,33 +28,13 @@ jobs:
           fi
           echo "Version OK: $ACTUAL"
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
-          cache: yarn
-
-      - name: Install dependencies
-        run: yarn install --immutable
-
-      - name: Install analysis dependencies
-        run: yarn install --immutable
-        working-directory: analysis
-
-      - name: Install xvfb
-        run: sudo apt-get update && sudo apt-get install -y xvfb
-
-      - name: Typecheck
-        run: yarn typecheck
-
-      - name: Run tests
-        run: yarn test:all
+  verify:
+    needs: verify-version
+    uses: ./.github/workflows/test.yml
 
   build-macos:
     needs: verify
-    # macos-latest is macOS 26. electron-builder 26.8.1 then fails CSC_LINK
-    # signing with SecKeychainUnlock. Pin until we take 26.16.1+ (#10172).
-    runs-on: macos-15
+    runs-on: macos-latest
     env:
       GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
       GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
@@ -74,12 +54,18 @@ jobs:
           node-version: 24
           cache: "yarn"
 
+      - name: Pin Yarn Classic
+        run: npm install --global yarn@1.22.22
+
       - name: Install dependencies
-        run: yarn install --immutable
+        run: yarn install --frozen-lockfile
 
       - name: Install analysis dependencies
-        run: yarn install --immutable
+        run: yarn install --frozen-lockfile
         working-directory: analysis
+
+      - name: Install Electron runtime
+        run: yarn install-electron
 
       - name: Build macOS installer
         run: yarn dist:mac
@@ -125,12 +111,18 @@ jobs:
           node-version: 24
           cache: "yarn"
 
+      - name: Pin Yarn Classic
+        run: npm install --global yarn@1.22.22
+
       - name: Install dependencies
-        run: yarn install --immutable
+        run: yarn install --frozen-lockfile
 
       - name: Install analysis dependencies
-        run: yarn install --immutable
+        run: yarn install --frozen-lockfile
         working-directory: analysis
+
+      - name: Install Electron runtime
+        run: yarn install-electron
 
       - name: Build Linux installer
         run: yarn dist:linux
@@ -187,12 +179,18 @@ jobs:
           node-version: 24
           cache: "yarn"
 
+      - name: Pin Yarn Classic
+        run: npm install --global yarn@1.22.22
+
       - name: Install dependencies
-        run: yarn install --immutable
+        run: yarn install --frozen-lockfile
 
       - name: Install analysis dependencies
-        run: yarn install --immutable
+        run: yarn install --frozen-lockfile
         working-directory: analysis
+
+      - name: Install Electron runtime
+        run: yarn install-electron
 
       - name: Build Windows installer
         run: yarn dist:win

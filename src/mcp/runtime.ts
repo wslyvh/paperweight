@@ -70,21 +70,21 @@ function accountDbPath(paths: McpPaths, email: string): string {
   return join(paths.userData, `${emailToFileKey(email)}.db`);
 }
 
-export function hasReadAccess(): boolean {
-  if (!getLicenseStatus().active) return false;
+export async function hasReadAccess(): Promise<boolean> {
+  if (!(await getLicenseStatus()).active) return false;
   const access = getGlobalSetting("agentAccess") ?? "off";
   return access === "read" || access === "actions";
 }
 
-export function hasWriteAccess(): boolean {
-  return getLicenseStatus().active && getGlobalSetting("agentAccess") === "actions";
+export async function hasWriteAccess(): Promise<boolean> {
+  return (await getLicenseStatus()).active && getGlobalSetting("agentAccess") === "actions";
 }
 
-export function readAccessError() {
+export async function readAccessError() {
   return {
     content: [{
       type: "text" as const,
-      text: getLicenseStatus().active
+      text: (await getLicenseStatus()).active
         ? "AI Agent access is off. Enable it in Paperweight Settings."
         : PRO_REQUIRED_MESSAGE,
     }],
@@ -92,11 +92,11 @@ export function readAccessError() {
   };
 }
 
-export function writeAccessError() {
+export async function writeAccessError() {
   return {
     content: [{
       type: "text" as const,
-      text: getLicenseStatus().active
+      text: (await getLicenseStatus()).active
         ? "Read & write AI Agent access is required. Change Access in Paperweight Settings."
         : PRO_REQUIRED_MESSAGE,
     }],
@@ -184,13 +184,13 @@ export function readMailboxDatabase<T>(
   return withAccountDbReadConnection(accountDbPath(current.paths, email), read);
 }
 
-export function initializePaperweight(): void {
+export async function initializePaperweight(): Promise<void> {
   const paths = resolvePaths();
   configureGlobalDbPath(join(paths.userData, "global.db"));
   configureAccountRegistryPath(join(paths.userData, "accounts.json"));
 
-  if (!getLicenseStatus().active) throw new McpStartupError(PRO_REQUIRED_MESSAGE);
-  if (!hasReadAccess()) {
+  if (!(await getLicenseStatus()).active) throw new McpStartupError(PRO_REQUIRED_MESSAGE);
+  if (!(await hasReadAccess())) {
     throw new McpStartupError(
       "AI Agent access is off. Enable it in Paperweight Settings.",
     );

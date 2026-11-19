@@ -8,6 +8,7 @@ const api: ElectronAPI = {
   getLastUpdateInfo: () => ipcRenderer.invoke(IPC.getLastUpdateInfo),
 
   getConnectionStatus: () => ipcRenderer.invoke(IPC.getConnectionStatus),
+  getSecureStorageStatus: () => ipcRenderer.invoke(IPC.getSecureStorageStatus),
 
   startGmailAuth: (intent, openInBrowser) =>
     ipcRenderer.invoke(IPC.startGmailAuth, intent, openInBrowser),

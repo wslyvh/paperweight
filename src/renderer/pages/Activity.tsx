@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import type { ActivityEntry } from "@shared/types";
 import { formatAbsoluteDate, formatBytes } from "@shared/formatting";
 import Pagination from "../components/Pagination";
@@ -7,7 +7,7 @@ import { ACTION_COLORS, activityEntryLabel } from "../utils/activityLabels";
 
 const LIMIT = 50;
 
-export default function Activity(): JSX.Element {
+export default function Activity() {
   const navigate = useNavigate();
   const [entries, setEntries] = useState<ActivityEntry[]>([]);
   const [total, setTotal] = useState(0);

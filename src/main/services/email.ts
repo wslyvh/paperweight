@@ -14,10 +14,10 @@ export async function sendEmail(
   body: string,
   inReplyTo?: string,
 ): Promise<SendEmailResult> {
-  requirePro();
+  await requirePro();
   const recipientDomain = to.split("@")[1] || "unknown";
   try {
-    const provider = getProvider();
+    const provider = await getProvider();
     actionLog.info(`Sending email via ${provider.type} to <${recipientDomain}>`);
     const messageId = await provider.sendEmail(to, subject, body, inReplyTo);
     return { success: true, messageId };

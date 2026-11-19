@@ -45,7 +45,7 @@ function httpUnsubscribeUrl(url: string): string | undefined {
 export async function executeRfc8058Unsubscribe(
   url: string,
 ): Promise<{ success: boolean; error?: string }> {
-  requirePro();
+  await requirePro();
   if (!url.startsWith("https://")) {
     return { success: false, error: "One-click unsubscribe requires HTTPS." };
   }
@@ -66,7 +66,7 @@ export async function executeRfc8058Unsubscribe(
 }
 
 export async function unsubscribeVendor(vendorId: number): Promise<UnsubscribeResult> {
-  requirePro();
+  await requirePro();
   const entry = pickBestMethod(getAllUnsubscribeMethodsForVendor(vendorId));
   if (!entry) return { status: "not_available", remainingTargets: 0 };
 

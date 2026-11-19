@@ -1,3 +1,4 @@
+import { getElectron } from "./electronRuntime";
 import Database from "better-sqlite3";
 import { existsSync, readFileSync, unlinkSync } from "fs";
 import { dirname, join } from "path";
@@ -8,8 +9,7 @@ let configuredPath: string | undefined;
 let openPath: string | undefined;
 
 function defaultGlobalDbPath(): string {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { app } = require("electron") as typeof import("electron");
+  const { app } = getElectron();
   return join(app.getPath("userData"), "global.db");
 }
 

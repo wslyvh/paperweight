@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { ArrowLeft, RefreshCw, Copy } from "lucide-react";
 import type { StorageBreakdown, SupportInfo } from "@shared/types";
 import { formatBytes } from "@shared/formatting";
@@ -7,7 +7,7 @@ import DeviceInfoCard from "../components/DeviceInfoCard";
 import HelpSection from "../components/HelpSection";
 import { useLicense } from "../context/LicenseContext";
 
-export default function Support(): JSX.Element {
+export default function Support() {
   const navigate = useNavigate();
   const license = useLicense();
   const [info, setInfo] = useState<SupportInfo>();

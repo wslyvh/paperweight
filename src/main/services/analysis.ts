@@ -1,3 +1,4 @@
+import { getElectron } from "../electronRuntime";
 import {
   analyzeMessage,
   analyzeText,
@@ -162,8 +163,7 @@ export function needsAnalysisPass(path: string): boolean {
 export function invalidateAllAnalysisPasses(): number {
   // Lazy: this service also runs inside the worker thread, where Electron's app
   // module is unavailable.
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { app } = require("electron") as typeof import("electron");
+  const { app } = getElectron();
   const userData = app.getPath("userData");
   let failures = 0;
 

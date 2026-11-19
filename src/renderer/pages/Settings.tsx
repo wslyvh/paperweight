@@ -1,5 +1,7 @@
+import ConnectionError from "../components/ConnectionError";
+import { isStorageError, STORAGE_SAVE_ERROR } from "@shared/secureStorage";
 import { useEffect, useRef, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router";
 import makeBlockie from "ethereum-blockies-base64";
 import { HelpCircle, Lock, Moon, Sun } from "lucide-react";
 import {
@@ -37,7 +39,7 @@ import { reconnectError } from "./settingsReconnect";
 
 type AddAccountView = "provider" | "gmail" | "microsoft" | "apple" | "proton" | "imap";
 
-export default function Settings(): JSX.Element {
+export default function Settings() {
   const navigate = useNavigate();
   const location = useLocation();
   const [account, setAccount] = useState<AccountInfo>();
@@ -72,6 +74,20 @@ export default function Settings(): JSX.Element {
   const [newEntry, setNewEntry] = useState("");
   const [reconnectLoading, setReconnectLoading] = useState(false);
   const [reconnectFailure, setReconnectFailure] = useState("");
+  const [storageUnavailable, setStorageUnavailable] = useState(false);
+  async function refreshStorage() {
+    try {
+      const status = await window.api.getSecureStorageStatus();
+      setStorageUnavailable(!status.available);
+      if (status.available) {
+        setReconnectFailure("");
+        setAccount(await window.api.getAccountInfo());
+      }
+    } catch {
+      setStorageUnavailable(true);
+    }
+  }
+  useEffect(() => { void refreshStorage(); }, []);
   const { accounts, refresh: refreshAccounts } = useAccounts();
   const [removeAccountEmail, setRemoveAccountEmail] = useState<string | null>(
     null,
@@ -253,6 +269,10 @@ export default function Settings(): JSX.Element {
   const handleReconnect = async (): Promise<void> => {
     if (!account) return;
     setReconnectFailure("");
+    if (!(await window.api.getSecureStorageStatus()).available) {
+      setStorageUnavailable(true);
+      return;
+    }
     if (account.providerType === "imap") {
       setShowServerSettings(true);
       return;
@@ -326,6 +346,15 @@ export default function Settings(): JSX.Element {
           </button>
         </div>
       </div>
+      {(storageUnavailable || isStorageError(reconnectFailure) || (account?.storageError && !account.credentialsMissing)) ? (
+        <ConnectionError error={STORAGE_SAVE_ERROR} onRetry={refreshStorage} />
+      ) : account?.storageError && !showServerSettings && (
+        <ConnectionError
+          reconnect
+          error={STORAGE_SAVE_ERROR}
+          onRetry={handleReconnect}
+        />
+      )}
 
       {/* Section 1: Accounts */}
       <div id="accounts" ref={accountsSectionRef} className="card bg-base-200">
@@ -547,7 +576,7 @@ export default function Settings(): JSX.Element {
                 <span>Full history</span>
               </div>
 
-              {(account.providerType === "gmail" ||
+              {!account.credentialsMissing && (account.providerType === "gmail" ||
                 account.providerType === "microsoft" ||
                 account.providerType === "imap") && (
                   <button
@@ -562,7 +591,7 @@ export default function Settings(): JSX.Element {
                     )}
                   </button>
                 )}
-              {reconnectFailure && (
+              {reconnectFailure && !isStorageError(reconnectFailure) && (
                 <p className="text-sm text-error">{reconnectFailure}</p>
               )}
             </>
@@ -1032,7 +1061,7 @@ export default function Settings(): JSX.Element {
       )}
 
       {/* Server settings modal (IMAP accounts only) */}
-      {showServerSettings && account?.server && (
+      {showServerSettings && account?.providerType === "imap" && (
         <ServerSettingsModal
           email={account.email}
           initial={account.server}

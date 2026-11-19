@@ -127,7 +127,7 @@ export function registerPersonalDataTools(server: McpServer, includeWrites: bool
       }),
     },
     async (input) => {
-      if (!hasReadAccess()) return readAccessError();
+      if (!(await hasReadAccess())) return await readAccessError();
       try {
         const filter = input.state === "match"
           ? "exact"
@@ -196,7 +196,7 @@ export function registerPersonalDataTools(server: McpServer, includeWrites: bool
       }),
     },
     async ({ ref, order }) => {
-      if (!hasReadAccess()) return readAccessError();
+      if (!(await hasReadAccess())) return await readAccessError();
       try {
         const response = {
           mailbox: getSelectedMailbox(),
@@ -244,7 +244,7 @@ export function registerPersonalDataTools(server: McpServer, includeWrites: bool
       }),
     },
     async ({ mailbox, ref, classification }) => {
-      if (!hasWriteAccess()) return writeAccessError();
+      if (!(await hasWriteAccess())) return await writeAccessError();
       try {
         requireSelectedMailbox(mailbox);
         const findingId = parseMailboxNumberReference(ref);
@@ -289,7 +289,7 @@ export function registerPersonalDataTools(server: McpServer, includeWrites: bool
       }),
     },
     async () => {
-      if (!hasReadAccess()) return readAccessError();
+      if (!(await hasReadAccess())) return await readAccessError();
       try {
         const profile = getUserProfile();
         const response = {
@@ -360,7 +360,7 @@ export function registerPersonalDataTools(server: McpServer, includeWrites: bool
       }),
     },
     async (input) => {
-      if (!hasWriteAccess()) return writeAccessError();
+      if (!(await hasWriteAccess())) return await writeAccessError();
       try {
         requireSelectedMailbox(input.mailbox);
         if (updateUserProfile(input)) markProfileAnalysisStale();

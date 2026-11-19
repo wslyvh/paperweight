@@ -62,7 +62,7 @@ initDb(
 );
 createAccountDb(dbPath);
 
-// Plain-text format: CI has no keychain; dev machines read via loadCredentials decrypt fallback.
+// Synthetic input only: encrypt-smoke-fixture.cjs encrypts this before app startup.
 writeFileSync(
   join(userDataDir, `${fileKey}.enc`),
   JSON.stringify({

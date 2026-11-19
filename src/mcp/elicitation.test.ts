@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import {
   acceptedContent,
   inputRequired,
@@ -11,16 +12,16 @@ import {
   UserInputRequired,
 } from "./elicitation";
 
-jest.mock("@modelcontextprotocol/server", () => ({
-  acceptedContent: jest.fn(),
-  inputRequired: Object.assign(jest.fn(), { elicit: jest.fn() }),
-  inputResponse: jest.fn(),
+vi.mock("@modelcontextprotocol/server", () => ({
+  acceptedContent: vi.fn(),
+  inputRequired: Object.assign(vi.fn(), { elicit: vi.fn() }),
+  inputResponse: vi.fn(),
 }));
 
-const mockedAcceptedContent = jest.mocked(acceptedContent);
-const mockedInputRequired = jest.mocked(inputRequired);
-const mockedInputResponse = jest.mocked(inputResponse);
-const mockedElicit = jest.mocked(inputRequired.elicit);
+const mockedAcceptedContent = vi.mocked(acceptedContent);
+const mockedInputRequired = vi.mocked(inputRequired);
+const mockedInputResponse = vi.mocked(inputResponse);
+const mockedElicit = vi.mocked(inputRequired.elicit);
 
 function context(): ServerContext {
   return { mcpReq: { inputResponses: { confirm: true } } } as unknown as ServerContext;
@@ -36,7 +37,7 @@ function connectionWithoutElicitation(): McpServer {
 
 describe("resolveUserConfirmation", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     bindApprovalServer();
     mockedElicit.mockReturnValue({ method: "elicitation/create" } as never);
     mockedInputRequired.mockReturnValue({ resultType: "input_required" } as never);

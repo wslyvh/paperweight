@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import {
   mkdirSync,
   mkdtempSync,
@@ -6,23 +7,23 @@ import {
 import { tmpdir } from "os";
 import { join } from "path";
 
-let userDataDir = "";
+let userDataDir = vi.hoisted(() => (""));
 
-jest.mock("electron", () => ({
+vi.mock("electron", () => ({
   app: {
     getPath: (name: string) => (name === "userData" ? userDataDir : "/tmp"),
   },
 }));
 
-jest.mock("./credentials", () => ({
-  emailToFileKey: jest.fn(() => "account"),
+vi.mock("./credentials", () => ({
+  emailToFileKey: vi.fn(() => "account"),
 }));
-jest.mock("./utils/log", () => {
+vi.mock("./utils/log", () => {
   const log = {
-    debug: jest.fn(),
-    info: jest.fn(),
-    warn: jest.fn(),
-    error: jest.fn(),
+    debug: vi.fn(),
+    info: vi.fn(),
+    warn: vi.fn(),
+    error: vi.fn(),
   };
   return { dbLog: log, syncLog: log, appLog: log };
 });

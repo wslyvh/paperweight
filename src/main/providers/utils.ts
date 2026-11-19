@@ -1,3 +1,4 @@
+import { getElectron } from "../electronRuntime";
 // Provider plumbing shared by Gmail, Microsoft and IMAP: the OAuth loopback
 // server and outbound RFC 5322 message building. Reading meaning out of a
 // message — unsubscribe targets, message type, body text — belongs to
@@ -158,9 +159,8 @@ export function runLoopbackAuth(
       const { port } = server.address() as AddressInfo;
       redirectUri = `${redirectUriBase}:${port}`;
       const authUrl = buildAuthUrl(redirectUri);
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { shell, clipboard, BrowserWindow } =
-        require("electron") as typeof import("electron");
+          const { shell, clipboard, BrowserWindow } =
+        getElectron();
 
       // Surface the URL to the renderer so the connect screen can offer
       // "open in browser" / "copy link" for the current attempt's live URL.
@@ -168,11 +168,15 @@ export function runLoopbackAuth(
         win.webContents.send(IPC.authUrl, authUrl);
       }
 
-      if (openInBrowser) {
-        shell.openExternal(authUrl);
-      } else {
-        clipboard.writeText(authUrl);
-      }
+      const launch = openInBrowser
+        ? shell.openExternal(authUrl)
+        : clipboard.writeText(authUrl);
+      void launch.catch(() => {
+        server.close();
+        reject(new Error(openInBrowser
+          ? "Could not open the browser. Try connecting again."
+          : "Could not copy the authorization link. Try connecting again."));
+      });
     });
 
     setTimeout(() => {

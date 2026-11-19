@@ -1,5 +1,7 @@
+import { getElectron } from "../electronRuntime";
+import { readSecureFile, writeSecureFile, SecureStorageError } from "../secureStorage";
 import { join } from "path";
-import { writeFileSync, readFileSync, unlinkSync, mkdirSync, existsSync } from "fs";
+import { writeFileSync, unlinkSync, mkdirSync, existsSync } from "fs";
 import { getDb } from "../db";
 import { APP_CONFIG } from "@shared/config";
 import type { LicenseTier, LicenseStatus, McpSetup, WhitelistEntry } from "@shared/types";
@@ -7,8 +9,10 @@ import { licenseLog } from "../utils/log";
 
 export const PRO_REQUIRED_MESSAGE = "Paperweight Pro is required. Upgrade in Settings to continue.";
 
-export function requirePro(): void {
-  if (!getLicenseStatus().active) throw new Error(PRO_REQUIRED_MESSAGE);
+export async function requirePro(): Promise<void> {
+  const status = await getLicenseStatus();
+  if (status.error) throw new Error(status.error);
+  if (!status.active) throw new Error(PRO_REQUIRED_MESSAGE);
 }
 
 // --- Key-value settings ---
@@ -55,8 +59,7 @@ export function getWhitelistEntries(): WhitelistEntry[] {
 const DESKTOP_FILE_NAME = "paperweight.desktop";
 
 function getLinuxAutostartPath() {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { app } = require("electron") as typeof import("electron");
+  const { app } = getElectron();
   const configDir =
     process.env["XDG_CONFIG_HOME"] || join(app.getPath("home"), ".config");
   return join(configDir, "autostart", DESKTOP_FILE_NAME);
@@ -91,8 +94,7 @@ export function applyAutoLaunch(enabled: boolean, minimized: boolean): void {
     return;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { app } = require("electron") as typeof import("electron");
+  const { app } = getElectron();
   app.setLoginItemSettings({
     openAtLogin: enabled,
     args: enabled && minimized ? ["--hidden"] : [],
@@ -102,8 +104,7 @@ export function applyAutoLaunch(enabled: boolean, minimized: boolean): void {
 export function wasLaunchedAsHidden(launchMinimized: boolean): boolean {
   if (process.argv.includes("--hidden")) return true;
   if (process.platform === "darwin" && launchMinimized) {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { app } = require("electron") as typeof import("electron");
+      const { app } = getElectron();
     return app.getLoginItemSettings().wasOpenedAtLogin;
   }
   return false;
@@ -112,8 +113,7 @@ export function wasLaunchedAsHidden(launchMinimized: boolean): boolean {
 // --- MCP setup ---
 
 export function getMcpSetup(): McpSetup {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { app } = require("electron") as typeof import("electron");
+  const { app } = getElectron();
   const launcher = process.platform === "win32"
     ? "paperweight-mcp.cmd"
     : "paperweight-mcp";
@@ -146,40 +146,16 @@ const VALIDATION_CACHE_MS = 24 * 60 * 60 * 1000; // 24 hours
 const VALIDATION_TIMEOUT_MS = 8_000;
 
 function getLicensePath(): string {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { app } = require("electron") as typeof import("electron");
+  const { app } = getElectron();
   return join(app.getPath("userData"), "license.enc");
 }
 
-function saveLicense(info: LicenseInfo) {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { safeStorage } = require("electron") as typeof import("electron");
-  const json = JSON.stringify(info);
-  if (safeStorage.isEncryptionAvailable()) {
-    const encrypted = safeStorage.encryptString(json);
-    writeFileSync(getLicensePath(), encrypted);
-  } else {
-    writeFileSync(getLicensePath(), json, "utf-8");
-  }
+async function saveLicense(info: LicenseInfo) {
+  await writeSecureFile(getLicensePath(), info);
 }
 
-function loadLicense(): LicenseInfo | undefined {
-  const path = getLicensePath();
-  if (!existsSync(path)) return undefined;
-
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { safeStorage } = require("electron") as typeof import("electron");
-    const data = readFileSync(path);
-    if (safeStorage.isEncryptionAvailable()) {
-      const json = safeStorage.decryptString(data);
-      return JSON.parse(json) as LicenseInfo;
-    } else {
-      return JSON.parse(data.toString("utf-8")) as LicenseInfo;
-    }
-  } catch {
-    return undefined;
-  }
+async function loadLicense() {
+  return readSecureFile<LicenseInfo>(getLicensePath());
 }
 
 export function deleteLicense() {
@@ -199,8 +175,7 @@ async function validateLicenseKey(
   key: string,
 ) {
   const body = JSON.stringify({ key });
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { net } = require("electron") as typeof import("electron");
+  const { net } = getElectron();
   const controller = new AbortController();
   let timeout: ReturnType<typeof setTimeout> | undefined;
   const timedOut = new Promise<never>((_, reject) => {
@@ -267,7 +242,7 @@ export async function activateLicense(key: string): Promise<LicenseStatus> {
     tier: result.tier,
     portalUrl: result.portalUrl,
   };
-  saveLicense(info);
+  await saveLicense(info);
 
   licenseLog.info(`License activated (tier: ${info.tier})`);
   return {
@@ -279,8 +254,14 @@ export async function activateLicense(key: string): Promise<LicenseStatus> {
   };
 }
 
-export function getLicenseStatus(): LicenseStatus {
-  const info = loadLicense();
+export async function getLicenseStatus(): Promise<LicenseStatus> {
+  let info: LicenseInfo | undefined;
+  try {
+    info = await loadLicense();
+  } catch (error) {
+    if (error instanceof SecureStorageError) return { active: false, error: error.message };
+    throw error;
+  }
   if (!info) return { active: false };
 
   if (isExpired(info)) {
@@ -297,7 +278,7 @@ export function getLicenseStatus(): LicenseStatus {
 }
 
 export async function hasValidLicense(): Promise<boolean> {
-  const info = loadLicense();
+  const info = await loadLicense();
   if (!info) return false;
 
   const cacheAge = Date.now() - info.validatedAt;
@@ -308,7 +289,7 @@ export async function hasValidLicense(): Promise<boolean> {
 
   try {
     const result = await validateLicenseKey(info.key);
-    const current = loadLicense();
+    const current = await loadLicense();
     if (!current || current.key !== info.key) {
       return current ? !isExpired(current) : false;
     }
@@ -324,11 +305,12 @@ export async function hasValidLicense(): Promise<boolean> {
       tier: result.tier,
       portalUrl: result.portalUrl ?? current.portalUrl,
     };
-    saveLicense(updated);
+    await saveLicense(updated);
     const valid = !isExpired(updated);
     licenseLog.info(`License validation (remote): ${valid ? "valid" : "expired"}, tier: ${updated.tier}`);
     return valid;
   } catch (err) {
+    if (err instanceof SecureStorageError) throw err;
     // Offline or timed out — fall back to local expiration check
     licenseLog.error("License validation network error:", err instanceof Error ? err.message : String(err));
     return !isExpired(info);
