@@ -108,7 +108,7 @@ export function registerMailboxTools(server: McpServer): void {
       }),
     },
     async () => {
-      if (!(await hasReadAccess())) return await readAccessError();
+      if (!(await hasReadAccess(false))) return await readAccessError();
       try {
         const selectedMailbox = getSelectedMailbox();
         const appActiveMailbox = getAppActiveMailbox();
@@ -163,7 +163,7 @@ export function registerMailboxTools(server: McpServer): void {
       }),
     },
     async ({ key }) => {
-      if (!(await hasReadAccess())) return await readAccessError();
+      if (!(await hasReadAccess(false))) return await readAccessError();
       try {
         return selectMailboxResult(key);
       } catch {

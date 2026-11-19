@@ -98,6 +98,7 @@ describe("MCP mailbox actions", () => {
 it("revokes both MCP permission levels immediately from local entitlement state", async () => {
   const { getLicenseStatus } = await import("../main/services/settings");
   const { hasReadAccess, hasWriteAccess, readAccessError, writeAccessError } = await import("./runtime");
+  await initializePaperweight();
   expect(await hasReadAccess()).toBe(true);
   expect(await hasWriteAccess()).toBe(true);
   vi.mocked(getLicenseStatus).mockResolvedValue({ active: false });
@@ -110,3 +111,29 @@ it("revokes both MCP permission levels immediately from local entitlement state"
 
 beforeEach(() => vi.stubEnv("PAPERWEIGHT_RESOURCES_DIR", "/tmp/paperweight-resources-test"));
 afterEach(() => vi.unstubAllEnvs());
+
+
+it.each(["registry", "database"])("blocks removed mailbox operations (%s) while allowing selection of another account", async (missing) => {
+  const { getLicenseStatus } = await import("../main/services/settings");
+  const { listAccounts } = await import("../main/credentials");
+  const { existsSync } = await import("fs");
+  const { hasReadAccess, hasWriteAccess, readAccessError, writeAccessError } = await import("./runtime");
+  vi.mocked(getLicenseStatus).mockResolvedValue({ active: true });
+  await initializePaperweight();
+  const accounts = listAccounts();
+  try {
+    if (missing === "registry") vi.mocked(listAccounts).mockReturnValue(accounts.slice(1));
+    else vi.mocked(existsSync).mockImplementation((path) => !String(path).endsWith("first_example.test.db"));
+    expect(await hasReadAccess()).toBe(false);
+    expect(await hasWriteAccess()).toBe(false);
+    expect(await hasReadAccess(false)).toBe(true);
+    expect((await readAccessError()).content[0].text).toContain("select_mailbox");
+    expect((await writeAccessError()).content[0].text).toContain("select_mailbox");
+    expect(selectMailbox("second_example.test")).toBe(true);
+    expect(await hasReadAccess()).toBe(true);
+    expect(await hasWriteAccess()).toBe(true);
+  } finally {
+    vi.mocked(listAccounts).mockReturnValue(accounts);
+    vi.mocked(existsSync).mockReturnValue(true);
+  }
+});

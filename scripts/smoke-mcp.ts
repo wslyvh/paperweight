@@ -1,6 +1,8 @@
+import assert from "node:assert/strict";
 import { spawn, spawnSync } from "child_process";
-import { appPaths, electronArgs, encryptProfile, packaged } from "./lib/desktop-test";
+import { appPaths, electronArgs, encryptProfile, packaged, withDesktop } from "./lib/desktop-test";
 import {
+  existsSync,
   copyFileSync,
   cpSync,
   mkdtempSync,
@@ -1270,11 +1272,71 @@ async function proveOverviewRead(): Promise<void> {
   await actionConnection.close();
 }
 
+async function proveAccountRemoval(): Promise<void> {
+  const profile = prepareProfile(true);
+  saveGlobalSetting("agentMaskPersonalData", true);
+  await prepareLicense(profile);
+  const connection = openMcp(profile);
+  try {
+    const initialized = await connection.request(1, "initialize", {
+      protocolVersion: "2026-07-28", capabilities: {},
+      clientInfo: { name: "paperweight-removal-smoke", version: "1.0.0" },
+    });
+    assert.equal(initialized.error, undefined);
+    connection.notify("notifications/initialized");
+    let id = 2;
+    const call = (name: string, args: Record<string, unknown> = {}) =>
+      connection.request(id++, "tools/call", { name, arguments: args });
+    await withDesktop(profile, "mcp-account-removal", async (app) => {
+      const page = await app.firstWindow();
+      await page.waitForFunction(() => Boolean(window.api));
+      seedReadSurface(profile);
+      assert.notEqual((await call("get_company", { key: primaryCompanyKey })).result?.isError, true);
+      const removalError = await page.evaluate(async (email) => {
+        try { await window.api.removeAccount(email); return ""; }
+        catch (error) { return String(error); }
+      }, primaryMailbox);
+      const registry = JSON.parse(readFileSync(join(profile, "accounts.json"), "utf8")) as {
+        accounts: Array<{ email: string }>;
+      };
+      const registered = registry.accounts.some((account) => account.email === primaryMailbox);
+      const databaseExists = existsSync(join(profile, `${primaryMailboxKey}.db`));
+      if (removalError) {
+        // Windows may refuse to unlink MCP's open SQLite file. That is a failed
+        // removal, not revoked access: the account must remain usable/retryable.
+        assert.equal(process.platform, "win32", removalError);
+        assert.match(removalError, /Could not delete this account's local data/);
+        assert.equal(registered, true);
+        assert.equal(databaseExists, true);
+        assert.ok(existsSync(join(profile, `${primaryMailboxKey}.enc`)));
+        assert.notEqual((await call("get_overview")).result?.isError, true);
+        return;
+      }
+      assert.equal(registered, false);
+      assert.equal(databaseExists, false);
+      assert.equal(existsSync(join(profile, `${primaryMailboxKey}.enc`)), false);
+      for (const [name, args] of [["get_overview", {}], ["get_company", { key: primaryCompanyKey }]] as const) {
+        const response = await call(name, args);
+        assert.equal(response.result?.isError, true, `${name} read a removed mailbox`);
+        assert.match(toolResultText(response), /select_mailbox/);
+      }
+      assert.notEqual((await call("list_mailboxes")).result?.isError, true);
+      assert.notEqual((await call("select_mailbox", { key: secondMailboxKey })).result?.isError, true);
+      const overview = await call("get_overview");
+      assert.notEqual(overview.result?.isError, true);
+      assert.equal((overview.result?.structuredContent as { mailbox?: string })?.mailbox, secondMailboxKey);
+    });
+  } finally {
+    await connection.close();
+  }
+}
+
 async function main(): Promise<void> {
   try {
     await proveDeniedStartup(true);
     await proveDeniedStartup(false);
     await proveOverviewRead();
+    await proveAccountRemoval();
     console.info("MCP smoke OK: Pro startup, live revocation, permissions, stdio, mailboxes, overview, search, detail, shutdown");
   } finally {
     await Promise.all([...liveChildren].map(async (child) => {

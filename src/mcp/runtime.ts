@@ -70,14 +70,24 @@ function accountDbPath(paths: McpPaths, email: string): string {
   return join(paths.userData, `${emailToFileKey(email)}.db`);
 }
 
-export async function hasReadAccess(): Promise<boolean> {
+function selectedMailboxAvailable(): boolean {
+  const current = runtime;
+  return current !== undefined
+    && listAccounts().some((account) => account.email === current.selectedMailbox)
+    && existsSync(accountDbPath(current.paths, current.selectedMailbox));
+}
+
+export async function hasReadAccess(checkMailbox = true): Promise<boolean> {
   if (!(await getLicenseStatus()).active) return false;
   const access = getGlobalSetting("agentAccess") ?? "off";
-  return access === "read" || access === "actions";
+  return (access === "read" || access === "actions")
+    && (!checkMailbox || selectedMailboxAvailable());
 }
 
 export async function hasWriteAccess(): Promise<boolean> {
-  return (await getLicenseStatus()).active && getGlobalSetting("agentAccess") === "actions";
+  return (await getLicenseStatus()).active
+    && getGlobalSetting("agentAccess") === "actions"
+    && selectedMailboxAvailable();
 }
 
 export async function readAccessError() {
@@ -85,7 +95,9 @@ export async function readAccessError() {
     content: [{
       type: "text" as const,
       text: (await getLicenseStatus()).active
-        ? "AI Agent access is off. Enable it in Paperweight Settings."
+        ? (["read", "actions"].includes(getGlobalSetting("agentAccess") ?? "off") && !selectedMailboxAvailable()
+          ? "This mailbox is no longer available. Use list_mailboxes and select_mailbox to choose another account. If none remain, connect an account in Paperweight."
+          : "AI Agent access is off. Enable it in Paperweight Settings.")
         : PRO_REQUIRED_MESSAGE,
     }],
     isError: true,
@@ -97,7 +109,9 @@ export async function writeAccessError() {
     content: [{
       type: "text" as const,
       text: (await getLicenseStatus()).active
-        ? "Read & write AI Agent access is required. Change Access in Paperweight Settings."
+        ? (getGlobalSetting("agentAccess") === "actions" && !selectedMailboxAvailable()
+          ? "This mailbox is no longer available. Use list_mailboxes and select_mailbox to choose another account. If none remain, connect an account in Paperweight."
+          : "Read & write AI Agent access is required. Change Access in Paperweight Settings.")
         : PRO_REQUIRED_MESSAGE,
     }],
     isError: true,
@@ -190,7 +204,7 @@ export async function initializePaperweight(): Promise<void> {
   configureAccountRegistryPath(join(paths.userData, "accounts.json"));
 
   if (!(await getLicenseStatus()).active) throw new McpStartupError(PRO_REQUIRED_MESSAGE);
-  if (!(await hasReadAccess())) {
+  if (!(await hasReadAccess(false))) {
     throw new McpStartupError(
       "AI Agent access is off. Enable it in Paperweight Settings.",
     );
