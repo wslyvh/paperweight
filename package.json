@@ -83,6 +83,7 @@
         }
       ],
       "category": "public.app-category.productivity",
+      "x64ArchFiles": "Contents/Resources/app.asar.unpacked/node_modules/better-sqlite3/prebuilds/darwin-{x64,arm64}.node",
       "icon": "build/icon.png",
       "hardenedRuntime": true,
       "gatekeeperAssess": false,
@@ -107,7 +108,7 @@
       "icon": "build/icon.png"
     },
     "toolsets": {
-      "appimage": "1.0.2"
+      "appimage": "1.0.3"
     },
     "nsis": {
       "oneClick": true,
@@ -150,7 +151,7 @@
     "cross-env": "10.1.0",
     "daisyui": "5.8.1",
     "electron": "45.3.4",
-    "electron-builder": "26.18.0",
+    "electron-builder": "26.18.1",
     "electron-vite": "6.0.0",
     "playwright-core": "1.65.1",
     "postcss": "8.5.33",

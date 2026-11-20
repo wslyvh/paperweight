@@ -91,6 +91,11 @@ jobs:
           yarn tsx scripts/smoke-desktop.ts --packaged
           yarn tsx scripts/smoke-mcp.ts --packaged
 
+      - name: Verify installer packaging
+        # Exercise release targets, including AppImage and the universal macOS merge.
+        # Signing and notarization remain in the release workflow.
+        run: yarn electron-builder --publish never -c.mac.identity=- -c.mac.hardenedRuntime=false -c.mac.notarize=false
+
       - name: Retain failure diagnostics
         if: failure()
         uses: actions/upload-artifact@v7
