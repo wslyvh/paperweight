@@ -28,6 +28,18 @@ jobs:
           fi
           echo "Version OK: $ACTUAL"
 
+      - name: Refuse published releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.event.inputs.version || github.ref_name }}
+        run: |
+          PUBLISHED=$(gh api --paginate "repos/$GITHUB_REPOSITORY/releases" \
+            --jq '.[] | select(.tag_name == env.RELEASE_TAG and .draft == false) | .id')
+          if [ -n "$PUBLISHED" ]; then
+            echo "::error::Release $RELEASE_TAG is already published. Use a new version."
+            exit 1
+          fi
+
   verify:
     needs: verify-version
     uses: ./.github/workflows/test.yml
@@ -219,6 +231,18 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           path: artifacts
+
+      - name: Refuse published releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.event.inputs.version || github.ref_name }}
+        run: |
+          PUBLISHED=$(gh api --paginate "repos/$GITHUB_REPOSITORY/releases" \
+            --jq '.[] | select(.tag_name == env.RELEASE_TAG and .draft == false) | .id')
+          if [ -n "$PUBLISHED" ]; then
+            echo "::error::Release $RELEASE_TAG is already published. Use a new version."
+            exit 1
+          fi
 
       - name: Create draft release
         uses: softprops/action-gh-release@v3
