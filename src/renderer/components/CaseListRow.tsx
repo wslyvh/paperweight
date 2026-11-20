@@ -16,7 +16,7 @@ export function CaseListRow({
   item: GdprCaseSummary;
   primary: string;
   onOpen: () => void;
-}): JSX.Element {
+}) {
   return (
     <div className="card bg-base-200 overflow-visible rounded-2xl">
       <button

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import type { PiiCompanyOrder, PiiValue, PiiValueCompany } from "@shared/types";
 import { formatRelativeDate } from "@shared/formatting";
 import { PII_LABELS } from "@shared/pii-query";
@@ -24,7 +24,7 @@ interface PiiValueBadgesProps {
   value: PiiValue;
 }
 
-function PiiValueBadges({ value }: PiiValueBadgesProps): JSX.Element | null {
+function PiiValueBadges({ value }: PiiValueBadgesProps) {
   if (!value.isMatch && value.companyCount <= 1) return null;
   return (
     <>
@@ -59,7 +59,7 @@ export default function PiiValueList({
   mode = "active",
   onConfirm,
   onSuppress,
-}: PiiValueListProps): JSX.Element {
+}: PiiValueListProps) {
   const navigate = useNavigate();
   const [selected, setSelected] = useState<Set<number>>(new Set());
   const [expanded, setExpanded] = useState<Set<number>>(new Set());

@@ -1,9 +1,10 @@
-const mockHandlers = new Map<string, (...args: unknown[]) => unknown>();
-let mockMailbox = "first@example.test";
-jest.mock("electron", () => ({
+import { vi } from "vitest";
+const mockHandlers = vi.hoisted(() => (new Map<string, (...args: unknown[]) => unknown>()));
+let mockMailbox = vi.hoisted(() => ("first@example.test"));
+vi.mock("electron", () => ({
   ipcMain: { handle: (channel: string, listener: (...args: unknown[]) => unknown) => mockHandlers.set(channel, listener) },
 }));
-jest.mock("../credentials", () => ({
+vi.mock("../credentials", () => ({
   getActiveEmail: () => mockMailbox,
 }));
 import { IPC } from "@shared/ipc";
@@ -16,7 +17,7 @@ beforeEach(() => {
 
 it.each([IPC.markVendorReviewed, IPC.addWhitelistEntry, IPC.confirmPiiFinding, IPC.suppressPiiFinding, IPC.linkGdprCaseMessage])(
   "allows local curation on the selected account for %s", async (channel) => {
-    const mutate = jest.fn();
+    const mutate = vi.fn();
     handle(channel, mutate);
     await mockHandlers.get(channel)?.({});
     expect(mutate).toHaveBeenCalledTimes(1);
@@ -25,7 +26,7 @@ it.each([IPC.markVendorReviewed, IPC.addWhitelistEntry, IPC.confirmPiiFinding, I
 
 it("allows inspection and global profile edits without the write lock", () => {
   for (const channel of [IPC.queryVendors, IPC.getPiiOverview, IPC.queryGdprCases, IPC.saveUserProfile]) {
-    const operation = jest.fn(() => "available");
+    const operation = vi.fn(() => "available");
     handle(channel, operation);
     expect(mockHandlers.get(channel)?.({})).toBe("available");
   }
@@ -34,7 +35,7 @@ it("allows inspection and global profile edits without the write lock", () => {
 it("keeps the selected database stable while a mailbox action is pending", async () => {
   let finish: (() => void) | undefined;
   handle(IPC.sendEmail, () => new Promise<void>((resolve) => { finish = resolve; }));
-  const switchAccount = jest.fn();
+  const switchAccount = vi.fn();
   handle(IPC.switchAccount, switchAccount);
   const sending = mockHandlers.get(IPC.sendEmail)?.({});
   expect(() => mockHandlers.get(IPC.switchAccount)?.({}, "second@example.test")).toThrow("Wait for the current action to finish before continuing.");
@@ -48,7 +49,7 @@ it("keeps the selected database stable while a mailbox action is pending", async
 it("blocks mailbox writes while an account change is pending", async () => {
   let finish: (() => void) | undefined;
   handle(IPC.switchAccount, () => new Promise<void>((resolve) => { finish = resolve; }));
-  const send = jest.fn();
+  const send = vi.fn();
   handle(IPC.sendEmail, send);
   const switching = mockHandlers.get(IPC.switchAccount)?.({}, "second@example.test");
   expect(() => mockHandlers.get(IPC.sendEmail)?.({})).toThrow("Wait for the current action to finish before continuing.");
@@ -79,7 +80,7 @@ it("treats account connection as a mailbox transition, not a failed write", asyn
 it("blocks connecting an account while a mailbox write is pending", async () => {
   let finish: (() => void) | undefined;
   handle(IPC.sendEmail, () => new Promise<void>((resolve) => { finish = resolve; }));
-  const connect = jest.fn();
+  const connect = vi.fn();
   handle(IPC.startGmailAuth, connect);
   const sending = mockHandlers.get(IPC.sendEmail)?.({});
   expect(() => mockHandlers.get(IPC.startGmailAuth)?.({})).toThrow("Wait for the current action to finish before continuing.");

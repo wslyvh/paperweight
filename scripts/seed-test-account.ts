@@ -1,5 +1,5 @@
 /**
- * Populate a second, throwaway account in the real dev userData dir with a
+ * Populate a throwaway account in the isolated dev profile with a
  * realistic-looking inbox — dozens of vendors, a mix of promotion/social/
  * update/purchase/personal mail, some already unsubscribed/trashed/reported, and GDPR
  * cases on a minority of vendors covering every case-lifecycle stage. Lets
@@ -19,8 +19,9 @@
  * Run via: yarn seed:test-account
  * Then switch to "test-cases@paperweight.local" from the account switcher.
  */
-import { existsSync, readFileSync, rmSync, writeFileSync } from "fs";
-import { homedir } from "os";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { tmpdir } from "os";
+import { encryptAccountRegistry, decryptAccountRegistry } from "../src/main/databaseEncryption";
 import { join } from "path";
 import { createAccountDb, initDb, getDb } from "../src/main/db";
 import { emailToFileKey } from "../src/main/credentials";
@@ -63,29 +64,14 @@ const weighted = <T extends string>(weights: Record<T, number>): T => {
   return entries[entries.length - 1][0];
 };
 
-function defaultUserDataDir(): string {
-  const home = homedir();
-  switch (process.platform) {
-    case "darwin":
-      return join(home, "Library", "Application Support", "paperweight");
-    case "win32":
-      return join(process.env.APPDATA ?? join(home, "AppData", "Roaming"), "paperweight");
-    default:
-      return join(home, ".config", "paperweight");
-  }
-}
-
-const userDataDir = process.argv[2] ?? defaultUserDataDir();
-if (!existsSync(userDataDir)) {
-  console.error(`userData dir not found: ${userDataDir} — pass it explicitly as an argument`);
-  process.exit(1);
-}
+const userDataDir = process.argv[2] ?? join(tmpdir(), "paperweight-local");
+mkdirSync(userDataDir, { recursive: true });
 
 // ── 1. Register the account (without touching the existing accounts or activeAccount) ──
 
 const accountsPath = join(userDataDir, "accounts.json");
 const registry = existsSync(accountsPath)
-  ? (JSON.parse(readFileSync(accountsPath, "utf-8")) as {
+  ? (JSON.parse(decryptAccountRegistry(readFileSync(accountsPath, "utf-8"))) as {
       accounts: Array<{ email: string; providerType: string; registeredAt?: number }>;
     })
   : { accounts: [] };
@@ -94,13 +80,13 @@ const idx = registry.accounts.findIndex((a) => a.email === TEST_EMAIL);
 const entry = { email: TEST_EMAIL, providerType: "imap", registeredAt: Date.now() };
 if (idx >= 0) registry.accounts[idx] = entry;
 else registry.accounts.push(entry);
-writeFileSync(accountsPath, JSON.stringify(registry, null, 2), "utf-8");
+writeFileSync(accountsPath, encryptAccountRegistry(JSON.stringify(registry)), "utf-8");
 
 // Fake credentials so getConnectionStatus()/hasCredentials() treat this account as
-// connected (skips onboarding). Plain-text: dev machines fall back to this when
-// safeStorage.decryptString() fails on non-encrypted data (see loadCredentials()).
+// connected (skips onboarding). Encrypt the synthetic input before app startup.
+export const syntheticCredentialsPath = join(userDataDir, `${emailToFileKey(TEST_EMAIL)}.enc`);
 writeFileSync(
-  join(userDataDir, `${emailToFileKey(TEST_EMAIL)}.enc`),
+  syntheticCredentialsPath,
   JSON.stringify({
     providerType: "imap",
     imap: {

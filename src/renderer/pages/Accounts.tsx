@@ -1,6 +1,6 @@
 import { useActionAccess } from "../context/LicenseContext";
 import { useEffect, useState, useCallback, useRef, useMemo } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router";
 import type { Vendor, VendorQuery } from "@shared/types";
 import { PII_LABELS, PII_TYPES } from "@shared/pii-query";
 import { RISK_CATEGORIES } from "@shared/vendor-risk";
@@ -67,7 +67,7 @@ interface AccountsState {
   showReviewed: boolean;
 }
 
-export default function Accounts(): JSX.Element {
+export default function Accounts() {
   const allowAction = useActionAccess();
   const navigate = useNavigate();
   const location = useLocation();

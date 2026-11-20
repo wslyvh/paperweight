@@ -179,7 +179,7 @@ export function registerCompanyTools(server: McpServer, includeWrites: boolean):
       }),
     },
     async (input) => {
-      if (!hasReadAccess()) return readAccessError();
+      if (!(await hasReadAccess())) return await readAccessError();
       try {
         const sort = companySort(input.sort);
         const query: VendorQuery = {
@@ -293,7 +293,7 @@ export function registerCompanyTools(server: McpServer, includeWrites: boolean):
       }),
     },
     async ({ key }) => {
-      if (!hasReadAccess()) return readAccessError();
+      if (!(await hasReadAccess())) return await readAccessError();
       try {
         const detail = getVendorDetail(parseMailboxReference(key));
         const pii = getVendorPiiSummary(detail.vendor.id);
@@ -423,7 +423,7 @@ export function registerCompanyTools(server: McpServer, includeWrites: boolean):
       }),
     },
     async ({ mailbox: requestedMailbox, key }) => {
-      if (!hasWriteAccess()) return writeAccessError();
+      if (!(await hasWriteAccess())) return await writeAccessError();
       try {
         requireSelectedMailbox(requestedMailbox);
         const companyReference = parseMailboxReference(key);
@@ -504,7 +504,7 @@ export function registerCompanyTools(server: McpServer, includeWrites: boolean):
       }),
     },
     async ({ mailbox, key, reviewed }) => {
-      if (!hasWriteAccess()) return writeAccessError();
+      if (!(await hasWriteAccess())) return await writeAccessError();
       try {
         requireSelectedMailbox(mailbox);
         const detail = getVendorDetail(parseMailboxReference(key));
@@ -544,7 +544,7 @@ export function registerCompanyTools(server: McpServer, includeWrites: boolean):
       }),
     },
     async ({ mailbox, key, email }) => {
-      if (!hasWriteAccess()) return writeAccessError();
+      if (!(await hasWriteAccess())) return await writeAccessError();
       try {
         requireSelectedMailbox(mailbox);
         const detail = getVendorDetail(parseMailboxReference(key));
@@ -582,7 +582,7 @@ export function registerCompanyTools(server: McpServer, includeWrites: boolean):
       }),
     },
     async ({ mailbox, value, whitelisted }) => {
-      if (!hasWriteAccess()) return writeAccessError();
+      if (!(await hasWriteAccess())) return await writeAccessError();
       try {
         requireSelectedMailbox(mailbox);
         if (whitelisted) addWhitelistEntry(value);
@@ -626,7 +626,7 @@ export function registerCompanyTools(server: McpServer, includeWrites: boolean):
       }),
     },
     async ({ mailbox: requestedMailbox, key, scope }) => {
-      if (!hasWriteAccess()) return writeAccessError();
+      if (!(await hasWriteAccess())) return await writeAccessError();
       try {
         requireSelectedMailbox(requestedMailbox);
         const companyReference = parseMailboxReference(key);
@@ -684,7 +684,7 @@ export function registerCompanyTools(server: McpServer, includeWrites: boolean):
       }),
     },
     async ({ mailbox: requestedMailbox, key }) => {
-      if (!hasWriteAccess()) return writeAccessError();
+      if (!(await hasWriteAccess())) return await writeAccessError();
       try {
         requireSelectedMailbox(requestedMailbox);
         const companyReference = parseMailboxReference(key);
@@ -739,7 +739,7 @@ export function registerCompanyTools(server: McpServer, includeWrites: boolean):
       }),
     },
     async ({ page, limit }) => {
-      if (!hasReadAccess()) return readAccessError();
+      if (!(await hasReadAccess())) return await readAccessError();
       try {
         const entries = getWhitelistEntries();
         const offset = (page - 1) * limit;

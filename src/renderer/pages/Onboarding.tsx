@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { HelpCircle, Search, Trash2, Globe } from "lucide-react";
 import type { SupportInfo } from "@shared/types";
 import DeviceInfoCard from "../components/DeviceInfoCard";
@@ -36,7 +36,7 @@ const slides = [
   },
 ];
 
-function OnboardingCarousel(): JSX.Element {
+function OnboardingCarousel() {
   const [active, setActive] = useState(0);
 
   useEffect(() => {
@@ -76,7 +76,7 @@ function OnboardingCarousel(): JSX.Element {
 
 // ── Main ─────────────────────────────────────────────────────────────────────
 
-export default function Onboarding(): JSX.Element {
+export default function Onboarding() {
   const navigate = useNavigate();
   const [view, setView] = useState<
     "select" | "gmail" | "microsoft" | "apple" | "proton" | "imap"
@@ -84,7 +84,6 @@ export default function Onboarding(): JSX.Element {
   const [showHelpModal, setShowHelpModal] = useState(false);
   const [supportInfo, setSupportInfo] = useState<SupportInfo>();
   const [copyFirst, setCopyFirst] = useState(false);
-
   // If the page reloads while on /onboarding (e.g. after accountSwitched fires)
   // and credentials are already present, redirect straight to dashboard.
   useEffect(() => {

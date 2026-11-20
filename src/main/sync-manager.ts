@@ -1,3 +1,4 @@
+import { getDatabaseKey } from "./databaseEncryption";
 import { BrowserWindow, app } from "electron";
 import { is } from "@electron-toolkit/utils";
 import { existsSync } from "fs";
@@ -6,6 +7,8 @@ import { Worker } from "node:worker_threads";
 import { IPC } from "@shared/ipc";
 import {
   loadCredentials,
+  saveCredentials,
+  type StoredCredentials,
   getActiveEmail,
   emailToFileKey,
   listAccounts,
@@ -21,7 +24,10 @@ import type { SyncStatus } from "@shared/types";
 
 type WorkerMode = "sync" | "profile-analysis";
 
+const pendingStarts = new Map<string, object>();
+let startsGeneration = 0;
 const workers = new Map<string, Worker>();
+const credentialWrites = new WeakMap<Worker, Promise<void>>();
 const workerModes = new WeakMap<Worker, WorkerMode>();
 const workerProfileGenerations = new WeakMap<Worker, number>();
 const terminatingWorkers = new WeakSet<Worker>();
@@ -94,6 +100,8 @@ export function getSyncStatus(email?: string): SyncStatus {
 
 export async function stopSync(email?: string): Promise<void> {
   const key = email ?? getActiveEmail() ?? "";
+  pendingStarts.delete(key);
+  startsGeneration++;
   pendingAnalysis.delete(key);
   profileBaseStatuses.delete(key);
 
@@ -101,6 +109,7 @@ export async function stopSync(email?: string): Promise<void> {
   if (worker) {
     terminatingWorkers.add(worker);
     await worker.terminate();
+    await credentialWrites.get(worker);
     if (workers.get(key) === worker) workers.delete(key);
     if (activeAnalysisAccount === key) activeAnalysisAccount = undefined;
   }
@@ -108,6 +117,8 @@ export async function stopSync(email?: string): Promise<void> {
 }
 
 export async function stopAllSyncs(): Promise<void> {
+  pendingStarts.clear();
+  startsGeneration++;
   pendingAnalysis.clear();
   profileBaseStatuses.clear();
   await Promise.all([...workers.keys()].map((email) => stopSync(email)));
@@ -146,14 +157,13 @@ function startNextAnalysis(): void {
   }
 }
 
-function startWorker(key: string, mode: WorkerMode): boolean {
+function startWorker(key: string, mode: WorkerMode, credentials: StoredCredentials | null = null): boolean {
   if (workers.has(key)) return false;
   if (mode === "profile-analysis" && activeAnalysisAccount) return false;
 
   const dbPath = accountDbPath(key);
   if (mode === "profile-analysis" && !existsSync(dbPath)) return false;
 
-  const credentials = mode === "sync" ? loadCredentials(key) ?? null : null;
   if (mode === "sync" && !credentials) return false;
 
   const companiesDbPath = is.dev
@@ -186,6 +196,7 @@ function startWorker(key: string, mode: WorkerMode): boolean {
   const worker = new Worker(workerPath, {
     workerData: {
       dbPath,
+      databaseKey: getDatabaseKey(),
       companiesDbPath,
       breachesDbPath,
       credentials,
@@ -209,7 +220,18 @@ function startWorker(key: string, mode: WorkerMode): boolean {
       level?: string;
       args?: unknown[];
       message?: string;
+      credentials?: StoredCredentials;
+      requestId?: number;
     }) => {
+      if (msg.type === "credentials" && msg.credentials && msg.requestId !== undefined) {
+        if (workers.get(key) !== worker || terminatingWorkers.has(worker)) return;
+        const saved = saveCredentials(msg.credentials, key).then(
+          () => worker.postMessage({ type: "credentials-saved", requestId: msg.requestId }),
+          () => worker.postMessage({ type: "credentials-saved", requestId: msg.requestId, error: "Could not securely save refreshed credentials. Unlock your system keychain or keyring and retry." }),
+        );
+        credentialWrites.set(worker, saved);
+        return;
+      }
       if (msg.type === "log" && msg.scope && msg.level && msg.args) {
         const level = msg.level as "debug" | "info" | "warn" | "error" | "verbose";
         log.scope(msg.scope)[level](
@@ -325,13 +347,26 @@ function startWorker(key: string, mode: WorkerMode): boolean {
   return true;
 }
 
-function startSync(email?: string): void {
-  const key = email ?? getActiveEmail() ?? "";
-  if (!key) return;
-  startWorker(key, "sync");
+async function startSync(email: string) {
+  if (workers.has(email) || pendingStarts.has(email)) return;
+  const request = {};
+  pendingStarts.set(email, request);
+  try {
+    const credentials = await loadCredentials(email);
+    if (pendingStarts.get(email) === request && credentials) {
+      startWorker(email, "sync", credentials);
+    }
+  } catch (error) {
+    if (pendingStarts.get(email) === request) {
+      broadcastStatus(email, { ...idleStatus(), error: error instanceof Error ? error.message : "Could not read stored credentials" });
+    }
+  } finally {
+    if (pendingStarts.get(email) === request) pendingStarts.delete(email);
+  }
 }
 
-export function startAllSyncs(): void {
+export async function startAllSyncs(): Promise<void> {
+  const generation = startsGeneration;
   const activeEmail = getActiveEmail();
   const accounts = listAccounts();
   const ordered = activeEmail
@@ -341,9 +376,8 @@ export function startAllSyncs(): void {
       ]
     : accounts;
 
-  for (const account of ordered) {
-    startSync(account.email);
-  }
+  await Promise.all(ordered.map((account) => startSync(account.email)));
+  if (generation !== startsGeneration) return;
 
   // Missing credentials must not prevent a local, already-marked analysis pass.
   for (const account of ordered) {

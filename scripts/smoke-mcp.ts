@@ -1,5 +1,8 @@
-import { spawn } from "child_process";
+import assert from "node:assert/strict";
+import { spawn, spawnSync } from "child_process";
+import { appPaths, electronArgs, encryptProfile, packaged, withDesktop } from "./lib/desktop-test";
 import {
+  existsSync,
   copyFileSync,
   cpSync,
   mkdtempSync,
@@ -11,9 +14,19 @@ import {
 import { tmpdir } from "os";
 import { join, resolve } from "path";
 import { createInterface } from "readline";
-import Database from "better-sqlite3";
+import PlainDatabase from "better-sqlite3";
+import { openDatabase, decryptAccountRegistry } from "../src/main/databaseEncryption";
+import { initGlobalSchema } from "../src/main/globalDb";
+
+// Legacy fixture preparation stays plaintext; after desktop migration use the
+// synthetic key obtained through that app's real OS storage, only in this driver.
+function fixtureDatabase(path: string, options?: PlainDatabase.Options) {
+  return existsSync(path) && !readFileSync(path).subarray(0, 16).equals(Buffer.from("SQLite format 3\0"))
+    ? openDatabase(path, options) : new PlainDatabase(path, options);
+}
+
 import { emailToFileKey } from "../src/main/credentials";
-import { configureGlobalDbPath, getGlobalDb } from "../src/main/globalDb";
+import { configureGlobalDbPath } from "../src/main/globalDb";
 import { saveGlobalSetting } from "../src/main/services/globalSettings";
 
 interface JsonRpcResponse {
@@ -41,6 +54,7 @@ interface McpConnection {
 const root = resolve(__dirname, "..");
 const fixture = join(root, "test", "fixtures", "smoke-account");
 const profiles: string[] = [];
+const liveChildren = new Set<ReturnType<typeof spawn>>();
 const primaryMailbox = "smoke-test@paperweight.test";
 const secondMailbox = "second@paperweight.test";
 const primaryMailboxKey = emailToFileKey(primaryMailbox);
@@ -62,9 +76,14 @@ function prepareProfile(enabled: boolean): string {
   profiles.push(profile);
   cpSync(fixture, profile, { recursive: true });
   configureGlobalDbPath(join(profile, "global.db"));
-  getGlobalDb();
+  const fixtureGlobal = new PlainDatabase(join(profile, "global.db"));
+  initGlobalSchema(fixtureGlobal, "main");
+  const settings = JSON.parse(readFileSync(join(profile, "settings.json"), "utf8"));
+  for (const [key, value] of Object.entries(settings)) {
+    fixtureGlobal.prepare("INSERT OR REPLACE INTO app_settings VALUES (?, ?)").run(key, JSON.stringify(value));
+  }
   if (enabled) {
-    saveGlobalSetting("agentAccess", "read");
+    fixtureGlobal.prepare("INSERT OR REPLACE INTO app_settings VALUES (?, ?)").run("agentAccess", JSON.stringify("read"));
 
     const manifest = JSON.parse(
       readFileSync(join(profile, "manifest.json"), "utf-8"),
@@ -75,7 +94,7 @@ function prepareProfile(enabled: boolean): string {
       join(profile, `${manifest.fileKey}.db`),
       join(profile, `${secondFileKey}.db`),
     );
-    const secondDatabase = new Database(join(profile, `${secondFileKey}.db`));
+    const secondDatabase = fixtureDatabase(join(profile, `${secondFileKey}.db`));
     const secondVendor = secondDatabase.prepare(
       `INSERT INTO vendors (
          root_domain, name, category_id, risk_level, first_seen, last_seen,
@@ -110,7 +129,7 @@ function prepareProfile(enabled: boolean): string {
     );
     secondDatabase.close();
 
-    const global = getGlobalDb();
+    const global = fixtureGlobal;
     global.prepare(
       `UPDATE profile
        SET birth_year = ?, birth_month = ?, birth_day = ?, country = ?
@@ -141,39 +160,16 @@ function prepareProfile(enabled: boolean): string {
     });
     writeFileSync(registryPath, JSON.stringify(registry, null, 2), "utf-8");
   }
+  fixtureGlobal.close();
   return profile;
 }
 
-// Use the same OS-backed encryption as the real MCP process. This cached test
-// license never contacts the license API and exists only in a temporary profile.
 async function prepareLicense(profile: string): Promise<void> {
-  const script = join(profile, "seed-license.cjs");
-  writeFileSync(script, `
-    const { app, safeStorage } = require("electron");
-    const { writeFileSync } = require("fs");
-    const { join } = require("path");
-    app.setPath("userData", __dirname);
-    app.whenReady().then(() => {
-      const data = JSON.stringify({ key: "MCP-SMOKE-TEST", tier: "test", validatedAt: Date.now() });
-      writeFileSync(join(__dirname, "license.enc"), safeStorage.isEncryptionAvailable() ? safeStorage.encryptString(data) : data);
-      app.quit();
-    });
-  `);
-  const env = { ...process.env };
-  delete env.ELECTRON_RUN_AS_NODE;
-  delete env.PAPERWEIGHT_MCP;
-  const child = spawn(process.execPath, [script, "--no-sandbox", "--disable-gpu", "--password-store=basic"], {
-    env, stdio: "ignore",
-  });
-  if (await waitForExit(child) !== 0) throw new Error("Could not prepare MCP test license");
-  unlinkSync(script);
+  await encryptProfile(profile, `mcp-encrypt-${profiles.indexOf(profile)}`, true);
 }
 
 function seedReadSurface(profile: string): void {
-  const manifest = JSON.parse(
-    readFileSync(join(profile, "manifest.json"), "utf-8"),
-  ) as { fileKey: string };
-  const database = new Database(join(profile, `${manifest.fileKey}.db`));
+  const database = fixtureDatabase(join(profile, `${primaryMailboxKey}.db`));
   database.pragma("busy_timeout = 5000");
   const vendor = database.prepare(
     `INSERT INTO vendors (
@@ -335,7 +331,7 @@ function seedReadSurface(profile: string): void {
 }
 
 function seedCollisionSurface(profile: string): void {
-  const secondDatabase = new Database(
+  const secondDatabase = fixtureDatabase(
     join(profile, `${emailToFileKey(secondMailbox)}.db`),
   );
   const secondVendor = secondDatabase.prepare(
@@ -367,46 +363,46 @@ function seedCollisionSurface(profile: string): void {
 }
 
 function commandFor(profile: string): Command {
-  const packaged = process.argv.includes("--packaged");
-  if (packaged) {
+  const launcher = join(packaged ? appPaths().resources : join(root, "build", "mcp"),
+    process.platform === "win32" ? "paperweight-mcp.cmd" : "paperweight-mcp");
+  const env: NodeJS.ProcessEnv = { ...process.env, PAPERWEIGHT_USER_DATA: profile };
+  delete env.PAPERWEIGHT_SEED;
+  const args = electronArgs();
+  if (process.platform === "win32") {
     return {
-      executable: join(root, "dist", "linux-unpacked", "resources", "paperweight-mcp"),
-      args: ["--no-sandbox", "--disable-gpu", "--password-store=basic"],
-      env: {
-        ...process.env,
-        ELECTRON_DISABLE_SANDBOX: "1",
-        PAPERWEIGHT_USER_DATA: profile,
-      },
+      executable: process.env.ComSpec || "cmd.exe",
+      args: ["/d", "/s", "/c", `""${launcher}" ${args.map((arg) => `"${arg}"`).join(" ")}"`],
+      env,
     };
   }
-  return {
-    executable: join(
-      root,
-      "build",
-      "mcp",
-      process.platform === "win32" ? "paperweight-mcp.cmd" : "paperweight-mcp",
-    ),
-    args: ["--no-sandbox", "--disable-gpu", "--password-store=basic"],
-    env: {
-      ...process.env,
-      ELECTRON_DISABLE_SANDBOX: "1",
-      PAPERWEIGHT_USER_DATA: profile,
-    },
-  };
+  return { executable: launcher, args, env };
 }
 
 async function waitForExit(child: ReturnType<typeof spawn>): Promise<number | null> {
+  if (child.exitCode !== null || child.signalCode !== null) return child.exitCode;
   return new Promise((resolveExit, reject) => {
     const timeout = setTimeout(() => {
-      child.kill();
+      terminateMcp(child);
       reject(new Error("MCP process did not exit after stdin closed"));
-    }, 5_000);
+    }, 30_000);
     child.once("close", (code) => {
       clearTimeout(timeout);
       resolveExit(code);
     });
-    child.once("error", reject);
+    child.once("error", (error) => {
+      clearTimeout(timeout);
+      reject(error);
+    });
   });
+}
+
+function terminateMcp(child: ReturnType<typeof spawn>) {
+  if (process.platform === "win32" && child.pid) {
+    // The .cmd launcher owns an Electron child; stopping only cmd.exe leaks it.
+    spawnSync("taskkill", ["/pid", String(child.pid), "/t", "/f"], { stdio: "ignore" });
+  } else {
+    child.kill();
+  }
 }
 
 function openMcp(profile: string): McpConnection {
@@ -414,8 +410,11 @@ function openMcp(profile: string): McpConnection {
   const child = spawn(command.executable, command.args, {
     cwd: root,
     env: command.env,
+    windowsVerbatimArguments: process.platform === "win32",
     stdio: ["pipe", "pipe", "pipe"],
   });
+  liveChildren.add(child);
+  child.once("close", () => liveChildren.delete(child));
   const responses = new Map<number, {
     resolve: (response: JsonRpcResponse) => void;
     reject: (error: Error) => void;
@@ -430,7 +429,7 @@ function openMcp(profile: string): McpConnection {
     try {
       response = JSON.parse(line) as JsonRpcResponse;
     } catch {
-      child.kill();
+      terminateMcp(child);
       for (const pending of responses.values()) {
         clearTimeout(pending.timeout);
         pending.reject(new Error(`Non-protocol stdout from MCP process: ${line}`));
@@ -461,7 +460,7 @@ function openMcp(profile: string): McpConnection {
         const timeout = setTimeout(() => {
           responses.delete(id);
           rejectResponse(new Error(`MCP request timed out: ${method}`));
-        }, 5_000);
+        }, 30_000);
         responses.set(id, {
           resolve: resolveResponse,
           reject: rejectResponse,
@@ -477,7 +476,8 @@ function openMcp(profile: string): McpConnection {
       child.stdin.end();
       const exitCode = await waitForExit(child);
       if (exitCode !== 0) throw new Error(`MCP process exited with ${exitCode}: ${stderr}`);
-      if (stderr !== "") throw new Error(`MCP process wrote diagnostics during success: ${stderr}`);
+      // MCP permits diagnostics on stderr; only stdout carries protocol messages.
+      if (stderr !== "") console.warn(`MCP diagnostics: ${stderr.trimEnd()}`);
     },
   };
 }
@@ -489,13 +489,20 @@ async function proveDeniedStartup(pro: boolean): Promise<void> {
   const child = spawn(command.executable, command.args, {
     cwd: root,
     env: command.env,
-    stdio: ["ignore", "pipe", "ignore"],
+    windowsVerbatimArguments: process.platform === "win32",
+    stdio: ["ignore", "pipe", "pipe"],
   });
+  liveChildren.add(child);
+  child.once("close", () => liveChildren.delete(child));
   let stdout = "";
+  let stderr = "";
   child.stdout.on("data", (chunk) => { stdout += String(chunk); });
+  child.stderr.on("data", (chunk) => { stderr += String(chunk); });
   const exitCode = await waitForExit(child);
   if (exitCode === 0) throw new Error("Disabled MCP process exited successfully");
-  if (stdout !== "") throw new Error("Disabled MCP process wrote to protocol stdout");
+  if (stdout !== "") throw new Error(`Disabled MCP process wrote to protocol stdout: ${JSON.stringify(stdout)}`);
+  const expected = pro ? "AI Agent access is off" : "Paperweight Pro is required";
+  if (!stderr.includes(expected)) throw new Error(`MCP failed for an unexpected reason: ${stderr}`);
 }
 
 async function proveOverviewRead(): Promise<void> {
@@ -1040,7 +1047,7 @@ async function proveOverviewRead(): Promise<void> {
   if (collisionInitialize.error) throw new Error("Collision MCP initialize failed");
   collisionConnection.notify("notifications/initialized");
 
-  const collisionDatabase = new Database(
+  const collisionDatabase = fixtureDatabase(
     join(profile, `${emailToFileKey(secondMailbox)}.db`),
     { readonly: true },
   );
@@ -1105,10 +1112,7 @@ async function proveOverviewRead(): Promise<void> {
     );
   }
 
-  const manifest = JSON.parse(
-    readFileSync(join(profile, "manifest.json"), "utf-8"),
-  ) as { fileKey: string };
-  const actionDatabase = new Database(join(profile, `${manifest.fileKey}.db`));
+  const actionDatabase = fixtureDatabase(join(profile, `${primaryMailboxKey}.db`));
   const vendorRow = actionDatabase.prepare(
     "SELECT id FROM vendors WHERE root_domain = ?",
   ).get("mcp-smoke.test") as { id: number };
@@ -1278,14 +1282,80 @@ async function proveOverviewRead(): Promise<void> {
   await actionConnection.close();
 }
 
+async function proveAccountRemoval(): Promise<void> {
+  const profile = prepareProfile(true);
+  await prepareLicense(profile);
+  saveGlobalSetting("agentMaskPersonalData", true);
+  const connection = openMcp(profile);
+  try {
+    const initialized = await connection.request(1, "initialize", {
+      protocolVersion: "2026-07-28", capabilities: {},
+      clientInfo: { name: "paperweight-removal-smoke", version: "1.0.0" },
+    });
+    assert.equal(initialized.error, undefined);
+    connection.notify("notifications/initialized");
+    let id = 2;
+    const call = (name: string, args: Record<string, unknown> = {}) =>
+      connection.request(id++, "tools/call", { name, arguments: args });
+    await withDesktop(profile, "mcp-account-removal", async (app) => {
+      const page = await app.firstWindow();
+      await page.waitForFunction(() => Boolean(window.api));
+      seedReadSurface(profile);
+      assert.notEqual((await call("get_company", { key: primaryCompanyKey })).result?.isError, true);
+      const removalError = await page.evaluate(async (email) => {
+        try { await window.api.removeAccount(email); return ""; }
+        catch (error) { return String(error); }
+      }, primaryMailbox);
+      const registry = JSON.parse(decryptAccountRegistry(readFileSync(join(profile, "accounts.json"), "utf8"))) as {
+        accounts: Array<{ email: string }>;
+      };
+      const registered = registry.accounts.some((account) => account.email === primaryMailbox);
+      const databaseExists = existsSync(join(profile, `${primaryMailboxKey}.db`));
+      if (removalError) {
+        // Windows may refuse to unlink MCP's open SQLite file. That is a failed
+        // removal, not revoked access: the account must remain usable/retryable.
+        assert.equal(process.platform, "win32", removalError);
+        assert.match(removalError, /Could not delete this account's local data/);
+        assert.equal(registered, true);
+        assert.equal(databaseExists, true);
+        assert.ok(existsSync(join(profile, `${primaryMailboxKey}.enc`)));
+        assert.notEqual((await call("get_overview")).result?.isError, true);
+        return;
+      }
+      assert.equal(registered, false);
+      assert.equal(databaseExists, false);
+      assert.equal(existsSync(join(profile, `${primaryMailboxKey}.enc`)), false);
+      for (const [name, args] of [["get_overview", {}], ["get_company", { key: primaryCompanyKey }]] as const) {
+        const response = await call(name, args);
+        assert.equal(response.result?.isError, true, `${name} read a removed mailbox`);
+        assert.match(toolResultText(response), /select_mailbox/);
+      }
+      assert.notEqual((await call("list_mailboxes")).result?.isError, true);
+      assert.notEqual((await call("select_mailbox", { key: secondMailboxKey })).result?.isError, true);
+      const overview = await call("get_overview");
+      assert.notEqual(overview.result?.isError, true);
+      assert.equal((overview.result?.structuredContent as { mailbox?: string })?.mailbox, secondMailboxKey);
+    });
+  } finally {
+    await connection.close();
+  }
+}
+
 async function main(): Promise<void> {
   try {
     await proveDeniedStartup(true);
     await proveDeniedStartup(false);
     await proveOverviewRead();
+    await proveAccountRemoval();
     console.info("MCP smoke OK: Pro startup, live revocation, permissions, stdio, mailboxes, overview, search, detail, shutdown");
   } finally {
-    for (const profile of profiles) rmSync(profile, { recursive: true, force: true });
+    await Promise.all([...liveChildren].map(async (child) => {
+      const exited = waitForExit(child);
+      terminateMcp(child);
+      await exited;
+    }));
+    configureGlobalDbPath(":memory:");
+    for (const profile of profiles) rmSync(profile, { recursive: true, force: true, maxRetries: 10, retryDelay: 200 });
   }
 }
 

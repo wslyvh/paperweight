@@ -8,7 +8,7 @@ export default function Pagination({
   page,
   totalPages,
   onPageChange,
-}: PaginationProps): JSX.Element {
+}: PaginationProps) {
   return (
     <div className="flex justify-center">
       <div className="join">

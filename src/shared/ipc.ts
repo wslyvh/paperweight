@@ -1,3 +1,4 @@
+import type { StorageState } from "./secureStorage";
 import type {
   AccountAuthIntent,
   AccountInfo,
@@ -46,6 +47,7 @@ import type {
 export const IPC = {
   getLastUpdateInfo: "get-last-update-info",
   getConnectionStatus: "get-connection-status",
+  initializeStorage: "initialize-storage",
   startGmailAuth: "start-gmail-auth",
   startMicrosoftAuth: "start-microsoft-auth",
   saveImapConfig: "save-imap-config",
@@ -132,8 +134,10 @@ export interface UpdateInfo {
 }
 
 export interface ElectronAPI {
+  readonly platform: string;
   getLastUpdateInfo: () => Promise<UpdateInfo | null>;
   getConnectionStatus: () => Promise<boolean>;
+  initializeStorage: () => Promise<StorageState>;
   startGmailAuth: (
     intent: AccountAuthIntent,
     openInBrowser?: boolean,

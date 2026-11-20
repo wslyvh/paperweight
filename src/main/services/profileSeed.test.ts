@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import Database from "better-sqlite3";
 import {
   mkdtempSync,
@@ -7,20 +8,20 @@ import {
 import { tmpdir } from "os";
 import { join } from "path";
 
-let userDataDir = "";
+let userDataDir = vi.hoisted(() => (""));
 
-jest.mock("electron", () => ({
+vi.mock("electron", () => ({
   app: {
     getPath: (name: string) => (name === "userData" ? userDataDir : "/tmp"),
   },
 }));
 
-jest.mock("../utils/log", () => ({
+vi.mock("../utils/log", () => ({
   dbLog: {
-    debug: jest.fn(),
-    info: jest.fn(),
-    warn: jest.fn(),
-    error: jest.fn(),
+    debug: vi.fn(),
+    info: vi.fn(),
+    warn: vi.fn(),
+    error: vi.fn(),
   },
 }));
 
@@ -266,7 +267,7 @@ describe("profile seed", () => {
 
   it("infers country only while the stored profile country is empty", () => {
     expect(seedProfileCountryIfEmpty(() => "nl")).toBe(true);
-    const inferAgain = jest.fn(() => "US");
+    const inferAgain = vi.fn(() => "US");
 
     expect(seedProfileCountryIfEmpty(inferAgain)).toBe(false);
     expect(inferAgain).not.toHaveBeenCalled();

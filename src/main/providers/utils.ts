@@ -1,9 +1,11 @@
+import { getElectron } from "../electronRuntime";
 // Provider plumbing shared by Gmail, Microsoft and IMAP: the OAuth loopback
 // server and outbound RFC 5322 message building. Reading meaning out of a
 // message — unsubscribe targets, message type, body text — belongs to
 // @paperweight/analysis and happens where each provider parses.
 
 import http from "node:http";
+import { randomBytes } from "node:crypto";
 import type { AddressInfo } from "node:net";
 import { IPC } from "@shared/ipc";
 
@@ -61,9 +63,15 @@ export function runLoopbackAuth(
 ): Promise<{ code: string; redirectUri: string }> {
   return new Promise((resolve, reject) => {
     let redirectUri = "";
+    const state = randomBytes(32).toString("base64url");
 
     const server = http.createServer((req, res) => {
       const url = new URL(req.url || "/", "http://127.0.0.1");
+      if (url.searchParams.get("state") !== state) {
+        res.writeHead(400, { "Content-Type": "text/plain; charset=utf-8" });
+        res.end("Invalid authorization response.");
+        return;
+      }
       const code = url.searchParams.get("code");
       const error = url.searchParams.get("error");
       const errorDescription = url.searchParams.get("error_description");
@@ -157,28 +165,36 @@ export function runLoopbackAuth(
     server.listen(0, "127.0.0.1", () => {
       const { port } = server.address() as AddressInfo;
       redirectUri = `${redirectUriBase}:${port}`;
-      const authUrl = buildAuthUrl(redirectUri);
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { shell, clipboard, BrowserWindow } =
-        require("electron") as typeof import("electron");
+      const authUrl = new URL(buildAuthUrl(redirectUri));
+      authUrl.searchParams.set("state", state);
+      const { shell, clipboard, BrowserWindow } = getElectron();
 
       // Surface the URL to the renderer so the connect screen can offer
       // "open in browser" / "copy link" for the current attempt's live URL.
       for (const win of BrowserWindow.getAllWindows()) {
-        win.webContents.send(IPC.authUrl, authUrl);
+        win.webContents.send(IPC.authUrl, authUrl.toString());
       }
 
-      if (openInBrowser) {
-        shell.openExternal(authUrl);
-      } else {
-        clipboard.writeText(authUrl);
-      }
+      const launch = openInBrowser
+        ? shell.openExternal(authUrl.toString())
+        : clipboard.writeText(authUrl.toString());
+      void launch.catch(() => {
+        server.close();
+        reject(new Error(openInBrowser
+          ? "Could not open the browser. Try connecting again."
+          : "Could not copy the authorization link. Try connecting again."));
+      });
     });
 
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       server.close();
       reject(new Error("Authorization timed out"));
     }, 5 * 60 * 1000);
+    server.once("close", () => clearTimeout(timeout));
+    server.once("error", (error) => {
+      clearTimeout(timeout);
+      reject(error);
+    });
   });
 }
 
@@ -194,6 +210,9 @@ export function buildRfc822Message(
   body: string,
   inReplyTo?: string
 ): string {
+  if ([from, to, subject, inReplyTo].some((value) => value !== undefined && /[\r\n]/.test(value))) {
+    throw new Error("Email headers cannot contain line breaks.");
+  }
   const isAscii = (s: string): boolean => /^[\x00-\x7F]*$/.test(s);
   const encodeHeader = (s: string): string =>
     isAscii(s) ? s : `=?UTF-8?B?${Buffer.from(s, "utf-8").toString("base64")}?=`;

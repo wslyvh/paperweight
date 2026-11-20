@@ -104,7 +104,7 @@ export async function startMicrosoftLoopbackAuth(openInBrowser = true): Promise<
     }
 
     if (data.access_token) {
-      saveCredentials({
+      await saveCredentials({
         providerType: "microsoft",
         microsoft: {
           accessToken: data.access_token,
@@ -127,7 +127,7 @@ export async function startMicrosoftLoopbackAuth(openInBrowser = true): Promise<
 // --- Token management ---
 
 async function getValidAccessToken(): Promise<string> {
-  const creds = loadCredentials();
+  const creds = await loadCredentials();
   if (!creds?.microsoft) throw new Error("No Microsoft credentials stored");
 
   if (Date.now() < creds.microsoft.expiresAt - 60_000) {
@@ -159,7 +159,7 @@ async function getValidAccessToken(): Promise<string> {
     creds.microsoft.accessToken = data.access_token;
     creds.microsoft.expiresAt = Date.now() + (data.expires_in || 3600) * 1000;
     if (data.refresh_token) creds.microsoft.refreshToken = data.refresh_token;
-    saveCredentials(creds);
+    await saveCredentials(creds);
     return data.access_token;
   }
 
@@ -314,9 +314,9 @@ async function graphBatchGetMessages(
   // Retry the whole batch if any per-response status is 429.
   let attempt = 0;
   while (true) {
-    const result = (await graphPost(`${GRAPH_API_BASE}/$batch`, {
+    const result = await graphPost(`${GRAPH_API_BASE}/$batch`, {
       requests,
-    })) as GraphBatchResponse;
+    }) as GraphBatchResponse;
 
     const responses = result.responses ?? [];
     const throttled = responses.filter((r) => r.status === 429);
@@ -395,7 +395,7 @@ export async function fetchMicrosoftProfileEmail(accessToken: string): Promise<s
       authLog.error(`Microsoft profile fetch failed (${resp.status}): ${body}`);
       return undefined;
     }
-    const profile = (await resp.json()) as { mail?: string; userPrincipalName?: string };
+    const profile = await resp.json() as { mail?: string; userPrincipalName?: string };
     const email = profile.mail || profile.userPrincipalName;
     if (!email) {
       authLog.error("Microsoft profile response missing mail and userPrincipalName");
@@ -421,9 +421,9 @@ export function createMicrosoftProvider(
     const ids = new Set<string>();
     for (const name of ["junkemail", "deleteditems", "sentitems", "drafts"]) {
       try {
-        const folder = (await graphGet(
+        const folder = await graphGet(
           `${GRAPH_ME_BASE}/mailFolders/${name}?$select=id`
-        )) as { id?: string };
+        ) as { id?: string };
         if (folder.id) ids.add(folder.id);
       } catch {
         // Folder may not exist on this mailbox — ignore.
@@ -440,9 +440,9 @@ export function createMicrosoftProvider(
     type: "microsoft",
 
     async connect(): Promise<EmailConnection> {
-      const profile = (await graphGet(
+      const profile = await graphGet(
         `${GRAPH_ME_BASE}?$select=mail,userPrincipalName`
-      )) as { mail?: string; userPrincipalName?: string };
+      ) as { mail?: string; userPrincipalName?: string };
 
       return {
         type: "microsoft-oauth",
@@ -450,8 +450,8 @@ export function createMicrosoftProvider(
       };
     },
 
-    isAuthenticated(): boolean {
-      return !!loadCredentials()?.microsoft?.accessToken;
+    async isAuthenticated(): Promise<boolean> {
+      return !!(await loadCredentials())?.microsoft?.accessToken;
     },
 
     async listMessages(
@@ -477,7 +477,7 @@ export function createMicrosoftProvider(
         listUrl = url.toString();
       }
 
-      const listResult = (await graphGet(listUrl)) as {
+      const listResult = await graphGet(listUrl) as {
         value?: Array<GraphMessage>;
         "@odata.nextLink"?: string;
       };
@@ -574,9 +574,9 @@ export function createMicrosoftProvider(
       // internetMessageId itself — read it back from Sent Items. Best effort:
       // the sent item may not have landed yet.
       try {
-        const recent = (await graphGet(
+        const recent = await graphGet(
           `${GRAPH_ME_BASE}/mailFolders/sentitems/messages?$top=10&$orderby=sentDateTime desc&$select=subject,internetMessageId,toRecipients`
-        )) as {
+        ) as {
           value?: Array<{
             subject?: string;
             internetMessageId?: string;

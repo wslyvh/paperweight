@@ -1,12 +1,12 @@
 {
   "name": "paperweight",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Manage your digital footprint",
   "license": "MIT",
   "author": "wslyvh",
   "main": "./out/main/index.js",
+  "desktopName": "email.paperweight.desktop",
   "scripts": {
-    "postinstall": "yarn --cwd analysis install && electron-rebuild -f -w better-sqlite3",
     "dev": "electron-vite dev",
     "dev:local": "tsx scripts/dev-local.ts",
     "prebuild": "yarn build:companies && yarn build:breaches",
@@ -15,23 +15,23 @@
     "preview": "electron-vite preview",
     "typecheck:node": "tsc --noEmit -p tsconfig.node.json",
     "typecheck:web": "tsc --noEmit -p tsconfig.web.json",
-    "typecheck": "yarn typecheck:node && yarn typecheck:web",
-    "build:companies": "cross-env TSX_TSCONFIG_PATH=tsconfig.node.json ELECTRON_RUN_AS_NODE=1 electron --import tsx scripts/build-companies-db.ts",
-    "build:breaches": "cross-env TSX_TSCONFIG_PATH=tsconfig.node.json ELECTRON_RUN_AS_NODE=1 electron --import tsx scripts/build-breaches-db.ts",
-    "build:enforcement": "cross-env TSX_TSCONFIG_PATH=tsconfig.node.json ELECTRON_RUN_AS_NODE=1 electron --import tsx scripts/build-enforcement-db.ts",
-    "build:breach": "cross-env TSX_TSCONFIG_PATH=tsconfig.node.json ELECTRON_RUN_AS_NODE=1 electron --import tsx scripts/generate-breach-content.ts",
+    "typecheck": "yarn typecheck:node && yarn typecheck:web && tsc --noEmit -p tsconfig.test.json",
+    "build:companies": "tsx scripts/build-companies-db.ts",
+    "build:breaches": "tsx scripts/build-breaches-db.ts",
     "dist": "yarn dist:mac && yarn dist:linux && yarn dist:win",
-    "dist:mac": "electron-rebuild -f -w better-sqlite3 && yarn build && electron-builder --mac --publish never",
-    "dist:linux": "electron-rebuild -f -w better-sqlite3 && yarn build && electron-builder --linux --publish never",
-    "dist:win": "electron-rebuild -f -w better-sqlite3 && yarn build && electron-builder --win --publish never",
-    "scripts:stats": "tsx scripts/release-stats.ts",
-    "seed:test-account": "cross-env TSX_TSCONFIG_PATH=tsconfig.node.json ELECTRON_RUN_AS_NODE=1 electron --import tsx scripts/seed-test-account.ts",
-    "test": "cross-env ELECTRON_RUN_AS_NODE=1 electron node_modules/jest/bin/jest.js",
-    "test:mcp": "electron-vite build && cross-env ELECTRON_RUN_AS_NODE=1 PAPERWEIGHT_MCP=1 electron --import tsx scripts/smoke-mcp.ts",
+    "dist:mac": "yarn build && electron-builder --mac --publish never && node scripts/set-mac-update-minimum.cjs",
+    "dist:linux": "yarn build && electron-builder --linux --publish never",
+    "dist:win": "yarn build && electron-builder --win --publish never",
+    "seed:test-account": "cross-env TSX_TSCONFIG_PATH=tsconfig.node.json electron scripts/seed-test-account.cjs",
+    "test": "vitest run",
+    "test:mcp": "electron-vite build && tsx scripts/smoke-mcp.ts",
     "fixture:regenerate": "yarn build:companies && yarn build:breaches && cross-env TSX_TSCONFIG_PATH=tsconfig.node.json ELECTRON_RUN_AS_NODE=1 electron --import tsx scripts/generate-smoke-fixture.ts test/fixtures/smoke-account --replace",
-    "test:smoke": "yarn build && for p in fresh runtime stored; do SMOKE_SKIP_BUILD=1 bash scripts/smoke-boot.sh \"$p\" || exit 1; done",
+    "test:smoke": "yarn build && tsx scripts/smoke-desktop.ts",
     "test:analysis": "yarn --cwd analysis test",
-    "test:all": "yarn test && yarn test:analysis && yarn test:smoke"
+    "test:all": "yarn test && yarn test:analysis && yarn test:smoke && yarn test:mcp",
+    "scripts:stats": "tsx scripts/release-stats.ts",
+    "build:breach": "cross-env TSX_TSCONFIG_PATH=tsconfig.node.json ELECTRON_RUN_AS_NODE=1 electron --import tsx scripts/generate-breach-content.ts",
+    "build:enforcement": "cross-env TSX_TSCONFIG_PATH=tsconfig.node.json ELECTRON_RUN_AS_NODE=1 electron --import tsx scripts/build-enforcement-db.ts"
   },
   "build": {
     "appId": "email.paperweight",
@@ -41,7 +41,9 @@
       "output": "dist"
     },
     "files": [
-      "out/**/*"
+      "out/**/*",
+      "!node_modules/**/{test,tests,__tests__,fixtures}/**",
+      "!node_modules/**/*.{test,spec}.{js,cjs,mjs,ts,tsx}"
     ],
     "extraResources": [
       {
@@ -59,6 +61,10 @@
       {
         "from": "build/mcp/paperweight-mcp.cmd",
         "to": "paperweight-mcp.cmd"
+      },
+      {
+        "from": "build/mcp/windows-stdio.cjs",
+        "to": "windows-stdio.cjs"
       }
     ],
     "mac": {
@@ -77,6 +83,7 @@
         }
       ],
       "category": "public.app-category.productivity",
+      "x64ArchFiles": "Contents/Resources/app.asar.unpacked/node_modules/better-sqlite3-multiple-ciphers/prebuilds/darwin-{x64,arm64}.node",
       "icon": "build/icon.png",
       "hardenedRuntime": true,
       "gatekeeperAssess": false,
@@ -91,6 +98,7 @@
       "icon": "build/icon.ico"
     },
     "linux": {
+      "syncDesktopName": true,
       "target": [
         "AppImage",
         "deb"
@@ -100,7 +108,7 @@
       "icon": "build/icon.png"
     },
     "toolsets": {
-      "appimage": "1.0.2"
+      "appimage": "1.0.3"
     },
     "nsis": {
       "oneClick": true,
@@ -111,51 +119,50 @@
       "provider": "github",
       "owner": "wslyvh",
       "repo": "paperweight"
-    }
+    },
+    "npmRebuild": false
   },
   "dependencies": {
-    "@electron-toolkit/utils": "^4.0.0",
-    "@modelcontextprotocol/server": "2.0.0",
-    "better-sqlite3": "12.6.0",
-    "dayjs": "^1.11.19",
-    "electron-log": "^5.4.3",
-    "electron-updater": "^6.8.3",
-    "ethereum-blockies-base64": "^1.0.2",
-    "imapflow": "^1.0.172",
-    "lucide-react": "^0.563.0",
-    "mailparser": "^3.7.2",
-    "nodemailer": "^8.0.5",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-is": "^19.2.4",
-    "react-router-dom": "^6.28.2",
-    "recharts": "^3.7.0",
-    "zod": "^4.6.5"
+    "@electron-toolkit/utils": "4.0.0",
+    "@modelcontextprotocol/server": "2.4.0",
+    "better-sqlite3-multiple-ciphers": "13.2.0",
+    "dayjs": "1.11.23",
+    "electron-log": "5.4.4",
+    "electron-updater": "6.8.11",
+    "ethereum-blockies-base64": "1.0.2",
+    "imapflow": "2.12.1",
+    "lucide-react": "1.75.0",
+    "mailparser": "3.14.5",
+    "nodemailer": "10.6.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "react-is": "19.3.1",
+    "react-router": "7.18.5",
+    "recharts": "3.11.0",
+    "zod": "4.6.7"
   },
   "devDependencies": {
-    "@electron-toolkit/tsconfig": "^1.0.1",
-    "@electron/rebuild": "^4.0.3",
-    "@tailwindcss/postcss": "^4.1.18",
-    "@types/better-sqlite3": "^7.6.12",
-    "@types/jest": "^30.0.0",
-    "@types/mailparser": "^3.4.5",
-    "@types/node": "^25.1.0",
-    "@types/react": "^18.3.31",
-    "@types/react-dom": "^18.3.7",
-    "@vitejs/plugin-react": "^4.3.4",
-    "autoprefixer": "^10.4.24",
-    "cross-env": "^10.1.0",
-    "daisyui": "^5.5.17",
-    "dotenv": "^17.2.3",
-    "electron": "^33.2.1",
-    "electron-builder": "^26.7.0",
-    "electron-vite": "^5.0.0",
-    "jest": "^30.3.0",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.18",
-    "ts-jest": "^29.4.6",
-    "tsx": "^4.21.0",
-    "typescript": "^5.7.2",
-    "vite": "^7.3.1"
+    "better-sqlite3": "13.2.0",
+    "@tailwindcss/postcss": "4.3.5",
+    "@types/better-sqlite3": "9.6.0",
+    "@types/node": "24.19.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.3.0",
+    "cross-env": "10.1.0",
+    "daisyui": "5.8.1",
+    "electron": "45.3.4",
+    "electron-builder": "26.18.1",
+    "electron-vite": "6.0.0",
+    "playwright-core": "1.65.1",
+    "postcss": "8.5.33",
+    "tailwindcss": "4.3.5",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2",
+    "vite": "8.3.8",
+    "vitest": "5.1.1"
+  },
+  "engines": {
+    "node": "24.x"
   }
 }

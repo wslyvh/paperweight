@@ -1,19 +1,21 @@
-const mockProvider = {
-  connect: jest.fn(async () => ({ type: "gmail" })),
-  disconnect: jest.fn(async () => undefined),
-  listMessages: jest.fn(async (_since: Date, _until?: Date, _page?: string, _progress?: unknown) => ({ messages: [] })),
-};
-jest.mock("../providers/ProviderFactory", () => ({ getProvider: () => mockProvider }));
-jest.mock("../providers/utils", () => ({ friendlyConnectionError: String }));
-jest.mock("../credentials", () => ({ loadCredentials: () => ({ providerType: "gmail" }) }));
-jest.mock("./analysis", () => ({
-  getKnownPiiValues: () => [],
-  runReclassifyPass: jest.fn(async () => undefined),
-  persistFindings: jest.fn(),
+import type { EmailProvider } from "../providers/types";
+import { vi } from "vitest";
+const mockProvider = vi.hoisted(() => ({
+  connect: vi.fn(async () => ({ type: "gmail" })),
+  disconnect: vi.fn(async () => undefined),
+  listMessages: vi.fn<EmailProvider["listMessages"]>(async () => ({ messages: [] })),
 }));
-jest.mock("./profileSeed", () => ({ seedProfileEmailsFromCurrentAccount: jest.fn() }));
-jest.mock("../utils/log", () => {
-  const logger = { info: jest.fn(), warn: jest.fn(), error: jest.fn(), debug: jest.fn() };
+vi.mock("../providers/ProviderFactory", () => ({ getProvider: () => mockProvider }));
+vi.mock("../providers/utils", () => ({ friendlyConnectionError: String }));
+vi.mock("../credentials", () => ({ loadCredentials: () => ({ providerType: "gmail" }) }));
+vi.mock("./analysis", () => ({
+  getKnownPiiValues: () => [],
+  runReclassifyPass: vi.fn(async () => undefined),
+  persistFindings: vi.fn(),
+}));
+vi.mock("./profileSeed", () => ({ seedProfileEmailsFromCurrentAccount: vi.fn() }));
+vi.mock("../utils/log", () => {
+  const logger = { info: vi.fn(), warn: vi.fn(), error: vi.fn(), debug: vi.fn() };
   return { syncLog: logger, dbLog: logger };
 });
 
@@ -24,7 +26,7 @@ import { createGdprCase, getGdprCaseById } from "./cases";
 beforeEach(() => {
   initDb(":memory:", "/nonexistent", "/nonexistent");
   getDb().exec("DELETE FROM vendors;");
-  jest.clearAllMocks();
+  vi.clearAllMocks();
   mockProvider.listMessages.mockImplementation(async () => ({ messages: [] }));
 });
 
@@ -32,7 +34,7 @@ it("walks history without any license and preserves a previous Free account's cu
   const cursor = Date.now() - 120 * 86_400_000;
   getDb().prepare(`UPDATE sync_state SET last_sync_at = ?, quick_sync_done_at = ?, historical_cursor = ?, historical_done = 0 WHERE id = 1`)
     .run(Date.now(), Date.now(), cursor);
-  const progress = jest.fn();
+  const progress = vi.fn();
   setProgressEmitter(progress);
   await runSync();
   expect(mockProvider.listMessages).toHaveBeenCalledTimes(5);

@@ -543,6 +543,8 @@ export interface ServerConfig {
 }
 
 export interface AccountInfo {
+  credentialsMissing?: boolean;
+  storageError?: string;
   email: string;
   providerType: string;
   registeredAt?: number;
@@ -579,6 +581,7 @@ export type SettingsUpdate = Partial<Settings> & {
 };
 
 export interface LicenseStatus {
+  error?: string;
   active: boolean;
   tier?: LicenseTier;
   expiresAt?: string;

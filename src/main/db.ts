@@ -1,3 +1,4 @@
+import { getElectron } from "./electronRuntime";
 // INVARIANT: keep this module's top-level import graph light. db.ts is loaded
 // very early and by nearly everything, including during the account-connect DB
 // handling (temp DB → deterministic per-account DB swap). Do NOT add top-level
@@ -5,7 +6,8 @@
 // require() inside functions (see getCompaniesDbPath below). Anything imported
 // here (e.g. ./migrations for migrateActionLog) must itself keep its top-level
 // graph light for the same reason.
-import Database from "better-sqlite3";
+import type Database from "better-sqlite3";
+import { openDatabase, attachDatabase, getDatabaseKey } from "./databaseEncryption";
 import { join, basename, dirname } from "path";
 import { existsSync, unlinkSync } from "fs";
 import { dbLog } from "./utils/log";
@@ -47,9 +49,7 @@ function getDbPath(): string {
 
 function getCompaniesDbPath(): string {
   if (_companiesDbPath) return _companiesDbPath;
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { app } = require("electron") as typeof import("electron");
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { app } = getElectron();
   const { is } = require("@electron-toolkit/utils") as typeof import("@electron-toolkit/utils");
   return is.dev
     ? join(app.getAppPath(), "resources", "companies.db")
@@ -58,9 +58,7 @@ function getCompaniesDbPath(): string {
 
 function getBreachesDbPath(): string {
   if (_breachesDbPath) return _breachesDbPath;
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { app } = require("electron") as typeof import("electron");
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { app } = getElectron();
   const { is } = require("@electron-toolkit/utils") as typeof import("@electron-toolkit/utils");
   return is.dev
     ? join(app.getAppPath(), "resources", "breaches.db")
@@ -68,9 +66,11 @@ function getBreachesDbPath(): string {
 }
 
 export function getDb(): Database.Database {
+  getDatabaseKey();
   if (db) return db;
   const dbPath = getDbPath();
-  const next = new Database(dbPath);
+  // Account creation is explicit; a late read must not undo account deletion.
+  const next = openDatabase(dbPath, { fileMustExist: true });
   try {
     next.pragma("journal_mode = WAL");
     next.pragma("foreign_keys = ON");
@@ -79,7 +79,7 @@ export function getDb(): Database.Database {
     attachCompaniesDb(next);
     attachBreachesDb(next);
     attachGlobalDb(next);
-    const tag = basename(dbPath, ".db").split("_").pop() ?? "?";
+    const tag = basename(dbPath, ".db").split("_").pop()?.slice(0, 6) ?? "?";
     dbLog.info(`Database initialized [${tag}]`);
   } catch (error) {
     next.close();
@@ -93,7 +93,7 @@ export function withAccountDbReadConnection<T>(
   dbPath: string,
   read: (database: Database.Database) => T,
 ): T {
-  const database = new Database(dbPath, { fileMustExist: true });
+  const database = openDatabase(dbPath, { fileMustExist: true });
   try {
     database.pragma("journal_mode = WAL");
     database.pragma("foreign_keys = ON");
@@ -119,18 +119,18 @@ export function reconnectDb(newDbPath: string): void {
 }
 
 export function createAccountDb(dbPath: string): void {
-  const newDb = new Database(dbPath);
+  const newDb = openDatabase(dbPath);
   newDb.pragma("journal_mode = WAL");
   newDb.pragma("foreign_keys = ON");
   initSchema(newDb);
   attachCompaniesDb(newDb);
   attachBreachesDb(newDb);
   newDb.close();
-  const tag = basename(dbPath, ".db").split("_").pop() ?? "?";
+  const tag = basename(dbPath, ".db").split("_").pop()?.slice(0, 6) ?? "?";
   dbLog.info(`Account DB created [${tag}]`);
 }
 
-function initSchema(d: Database.Database) {
+export function initSchema(d: Database.Database) {
   d.exec(`
     CREATE TABLE IF NOT EXISTS vendors (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -280,7 +280,7 @@ function attachCompaniesDb(d: Database.Database) {
     dbLog.warn(`Companies DB not found at ${companiesPath} — skipping attach`);
     return;
   }
-  d.exec(`ATTACH DATABASE '${companiesPath}' AS companies`);
+  attachDatabase(d, companiesPath, "companies");
 }
 
 function attachBreachesDb(d: Database.Database) {
@@ -289,7 +289,7 @@ function attachBreachesDb(d: Database.Database) {
     dbLog.warn(`Breaches DB not found at ${breachesPath} — skipping attach`);
     return;
   }
-  d.exec(`ATTACH DATABASE '${breachesPath}' AS breaches`);
+  attachDatabase(d, breachesPath, "breaches");
 }
 
 function deleteSqliteFiles(dbPath: string): void {
@@ -305,8 +305,7 @@ function deleteSqliteFiles(dbPath: string): void {
 }
 
 export function deleteDbFiles(email: string): void {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { app } = require("electron") as typeof import("electron");
+  const { app } = getElectron();
   const dbPath = join(app.getPath("userData"), `${emailToFileKey(email)}.db`);
   deleteSqliteFiles(dbPath);
 }
@@ -316,5 +315,5 @@ export function wipeDatabase(): void {
     db.close();
     db = undefined;
   }
-  deleteSqliteFiles(getDbPath());
+  if (_dbPath && _dbPath !== ":memory:") deleteSqliteFiles(_dbPath);
 }

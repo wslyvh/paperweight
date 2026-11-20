@@ -26,7 +26,7 @@ export function registerSettingsHandlers(): void {
     return status;
   });
 
-  handle(IPC.getLicenseStatus, () => getLicenseStatus());
+  handle(IPC.getLicenseStatus, async () => await getLicenseStatus());
 
   handle(IPC.deactivateLicense, () => {
     deleteLicense();
@@ -35,10 +35,10 @@ export function registerSettingsHandlers(): void {
   // --- App settings ---
 
   ipcMain.on(IPC.getSettings, (event) => {
-    event.returnValue = buildAppSettings();
+    try { event.returnValue = buildAppSettings(); } catch { event.returnValue = {}; }
   });
 
-  handle(IPC.saveSettings, (_event, settings: unknown) => {
+  handle(IPC.saveSettings, async (_event, settings: unknown) => {
     if (!settings || typeof settings !== "object") {
       throw new Error("Invalid settings");
     }
@@ -82,7 +82,7 @@ export function registerSettingsHandlers(): void {
     }
 
     if (s.agentAccess !== undefined) {
-      if (s.agentAccess !== "off") requirePro();
+      if (s.agentAccess !== "off") await requirePro();
       if (
         s.agentAccess !== "off"
         && s.agentAccess !== "read"
@@ -132,7 +132,7 @@ export function registerSettingsHandlers(): void {
   handle(IPC.getMcpSetup, () => getMcpSetup());
 
   handle(IPC.openUnsubscribeUrl, async (_event, url: unknown) => {
-    requirePro();
+    await requirePro();
     if (!isString(url)) throw new Error("Invalid unsubscribe URL");
     const parsed = new URL(url);
     if (!["https:", "http:"].includes(parsed.protocol)) throw new Error("Invalid unsubscribe URL");

@@ -1,38 +1,40 @@
-let analysisUserDataDir = "/tmp";
-const mockListAccounts = jest.fn((): Array<{
+import type { MockedFunction } from "vitest";
+import { vi } from "vitest";
+let analysisUserDataDir = vi.hoisted(() => ("/tmp"));
+const mockListAccounts = vi.hoisted(() => (vi.fn((): Array<{
   email: string;
   providerType: string;
-}> => []);
+}> => [])));
 
-jest.mock("electron", () => ({
+vi.mock("electron", () => ({
   app: {
     getPath: () => analysisUserDataDir,
   },
 }));
-jest.mock("../credentials", () => ({
+vi.mock("../credentials", () => ({
   accountTag: () => "account",
   emailToFileKey: (email: string) => email.split("@")[0],
   listAccounts: mockListAccounts,
 }));
-jest.mock("../utils/log", () => {
-  const l = { debug: jest.fn(), info: jest.fn(), warn: jest.fn(), error: jest.fn() };
+vi.mock("../utils/log", () => {
+  const l = { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() };
   return { dbLog: l, syncLog: l, appLog: l };
 });
 // The full engine imports ESM (htmlparser2/franc) the CJS jest runner can't
 // load. Stub that package boundary for analysis/version wiring; the address
 // correction tests below import detectPii directly for the real detector handoff.
-jest.mock("@paperweight/analysis", () => ({
+vi.mock("@paperweight/analysis", () => ({
   ENGINE_VERSION: "test-v1",
-  analyzeText: jest.fn(),
-  analyzeMessage: jest.fn(),
-  extractKnownAddressComponents: jest.fn(),
-  regionFromDomain: jest.fn(),
+  analyzeText: vi.fn(),
+  analyzeMessage: vi.fn(),
+  extractKnownAddressComponents: vi.fn(),
+  regionFromDomain: vi.fn(),
   normalizeValue: (_type: string, value: string) => (
     value.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim()
   ),
   // Catalogue matching is the engine's call; its own suite covers the
   // comparison. Here it stays off unless a test opts in.
-  isSenderContact: jest.fn(() => false),
+  isSenderContact: vi.fn(() => false),
 }));
 
 import {
@@ -61,13 +63,13 @@ import {
   runReclassifyPass,
 } from "./analysis";
 
-const mockAnalyze = analyzeText as jest.MockedFunction<typeof analyzeText>;
-const mockAnalyzeMessage = analyzeMessage as jest.MockedFunction<typeof analyzeMessage>;
-const mockExtractAddress = extractKnownAddressComponents as jest.MockedFunction<
+const mockAnalyze = analyzeText as MockedFunction<typeof analyzeText>;
+const mockAnalyzeMessage = analyzeMessage as MockedFunction<typeof analyzeMessage>;
+const mockExtractAddress = extractKnownAddressComponents as MockedFunction<
   typeof extractKnownAddressComponents
 >;
-const mockRegion = regionFromDomain as jest.MockedFunction<typeof regionFromDomain>;
-const mockIsSenderContact = isSenderContact as jest.MockedFunction<typeof isSenderContact>;
+const mockRegion = regionFromDomain as MockedFunction<typeof regionFromDomain>;
+const mockIsSenderContact = isSenderContact as MockedFunction<typeof isSenderContact>;
 
 function finding(over: Partial<Finding> = {}): Finding {
   return {

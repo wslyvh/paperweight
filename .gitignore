@@ -16,7 +16,7 @@ coverage/
 
 # editor / tooling
 .claude/
-./docs/
+/docs/
 *.md
 !website/src/content/**
 

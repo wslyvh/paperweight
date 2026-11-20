@@ -1,20 +1,21 @@
+import { vi } from "vitest";
 import { buildAppSettings } from "./appSettings";
-import { getActiveEmail, loadCredentials } from "../credentials";
+import { getActiveEmail, listAccounts } from "../credentials";
 import { getGlobalSetting } from "./globalSettings";
 import { getSetting } from "./settings";
 
-jest.mock("../credentials");
-jest.mock("./globalSettings");
-jest.mock("./settings");
+vi.mock("../credentials", () => ({ getActiveEmail: vi.fn(), listAccounts: vi.fn() }));
+vi.mock("./globalSettings", () => ({ getGlobalSetting: vi.fn() }));
+vi.mock("./settings", () => ({ getSetting: vi.fn() }));
 
-const mockedGetActiveEmail = jest.mocked(getActiveEmail);
-const mockedLoadCredentials = jest.mocked(loadCredentials);
-const mockedGetGlobalSetting = jest.mocked(getGlobalSetting);
-const mockedGetSetting = jest.mocked(getSetting);
+const mockedGetActiveEmail = vi.mocked(getActiveEmail);
+const mockedListAccounts = vi.mocked(listAccounts);
+const mockedGetGlobalSetting = vi.mocked(getGlobalSetting);
+const mockedGetSetting = vi.mocked(getSetting);
 
 describe("buildAppSettings", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("fresh install: returns defaults without touching DB or credentials", () => {
@@ -32,7 +33,7 @@ describe("buildAppSettings", () => {
       agentAccess: "off",
       agentMaskPersonalData: true,
     });
-    expect(mockedLoadCredentials).not.toHaveBeenCalled();
+    expect(mockedListAccounts).not.toHaveBeenCalled();
     expect(mockedGetSetting).not.toHaveBeenCalled();
   });
 
@@ -54,13 +55,13 @@ describe("buildAppSettings", () => {
       agentAccess: "off",
       agentMaskPersonalData: true,
     });
-    expect(mockedLoadCredentials).not.toHaveBeenCalled();
+    expect(mockedListAccounts).not.toHaveBeenCalled();
     expect(mockedGetSetting).not.toHaveBeenCalled();
   });
 
-  it("registered account: reads credentials and per-account settings", () => {
+  it("registered account: reads account metadata and per-account settings", () => {
     mockedGetActiveEmail.mockReturnValue("user@example.com");
-    mockedLoadCredentials.mockReturnValue({ providerType: "gmail" });
+    mockedListAccounts.mockReturnValue([{ email: "user@example.com", providerType: "gmail" }]);
     mockedGetGlobalSetting.mockImplementation((key) => {
       if (key === "autoLaunch") return true;
       if (key === "launchMinimized") return false;
@@ -84,14 +85,14 @@ describe("buildAppSettings", () => {
       agentAccess: "read",
       agentMaskPersonalData: true,
     });
-    expect(mockedLoadCredentials).toHaveBeenCalledTimes(1);
+    expect(mockedListAccounts).toHaveBeenCalledTimes(1);
     expect(mockedGetSetting).toHaveBeenCalledWith("registeredAt");
     expect(mockedGetSetting).toHaveBeenCalledWith("userName");
   });
 
   it("registered account without explicit launch prefs falls back to registered flag", () => {
     mockedGetActiveEmail.mockReturnValue("user@example.com");
-    mockedLoadCredentials.mockReturnValue({ providerType: "imap" });
+    mockedListAccounts.mockReturnValue([{ email: "user@example.com", providerType: "imap" }]);
     mockedGetGlobalSetting.mockReturnValue(undefined);
     mockedGetSetting.mockImplementation((key) => {
       if (key === "registeredAt") return String(Date.now());

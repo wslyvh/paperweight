@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { getGlobalSetting } from "../main/services/globalSettings";
 import { getPiiFindingValues } from "../main/services/pii";
 import { getProfileMatchValues } from "../main/services/profile";
@@ -6,20 +7,20 @@ import {
   maskAgentPayload,
 } from "./payload";
 
-jest.mock("../main/services/globalSettings");
-jest.mock("../main/services/pii", () => ({
-  getPiiFindingValues: jest.fn(),
-  maskValue: jest.requireActual("../main/services/pii").maskValue,
+vi.mock("../main/services/globalSettings");
+vi.mock("../main/services/pii", async () => ({
+  getPiiFindingValues: vi.fn(),
+  maskValue: (await vi.importActual<typeof import("../main/services/pii")>("../main/services/pii")).maskValue,
 }));
-jest.mock("../main/services/profile");
+vi.mock("../main/services/profile");
 
-const mockedGetGlobalSetting = jest.mocked(getGlobalSetting);
-const mockedGetPiiFindingValues = jest.mocked(getPiiFindingValues);
-const mockedGetProfileMatchValues = jest.mocked(getProfileMatchValues);
+const mockedGetGlobalSetting = vi.mocked(getGlobalSetting);
+const mockedGetPiiFindingValues = vi.mocked(getPiiFindingValues);
+const mockedGetProfileMatchValues = vi.mocked(getProfileMatchValues);
 
 describe("maskAgentPayload", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     mockedGetGlobalSetting.mockReturnValue(true);
     mockedGetProfileMatchValues.mockReturnValue([
       { type: "email", value: "person@example.test" },
@@ -90,6 +91,31 @@ describe("maskAgentPayload", () => {
 
     expect(JSON.parse(result.content[0].text)).toEqual(result.structuredContent);
     expect(result.content[0].text).not.toContain("person@example.test");
+  });
+
+  it("masks birthdate findings and known dates in both output formats", () => {
+    mockedGetProfileMatchValues.mockReturnValue([{ type: "date_of_birth", value: "1990-04-23" }]);
+    mockedGetPiiFindingValues.mockReturnValue([{ type: "date_of_birth", value: "1985-06-17" }]);
+    const result = agentToolResult({
+      items: [{ type: "date_of_birth", maskedValue: "1990-04-23" }],
+      birthDate: "1990-04-23",
+      preview: "Dates: 1990-04-23 and 1985-06-17",
+    });
+
+    expect(result.structuredContent).toEqual({
+      items: [{ type: "date_of_birth", maskedValue: "••-••-1990" }],
+      birthDate: "••-••-1990",
+      preview: "Dates: ••-••-1990 and ••-••-1985",
+    });
+    expect(JSON.parse(result.content[0].text)).toEqual(result.structuredContent);
+  });
+
+  it("preserves full birthdates when masking is off", () => {
+    mockedGetGlobalSetting.mockReturnValue(false);
+    const payload = { items: [{ type: "date_of_birth", maskedValue: "1990-04-23" }] };
+    const result = agentToolResult(payload);
+    expect(result.structuredContent).toEqual(payload);
+    expect(JSON.parse(result.content[0].text)).toEqual(payload);
   });
 
 });

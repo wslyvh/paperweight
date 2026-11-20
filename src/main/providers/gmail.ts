@@ -1,3 +1,4 @@
+import { createHash, randomBytes } from "node:crypto";
 import type { EmailProvider, EmailMessage, EmailConnection } from "./types";
 import { loadCredentials, saveCredentials } from "../credentials";
 import { buildRfc822Message, runLoopbackAuth } from "./utils";
@@ -36,6 +37,8 @@ export async function startLoopbackAuth(
   }
   try {
     const scopes = SCOPES_MODIFY;
+    const verifier = randomBytes(32).toString("base64url");
+    const challenge = createHash("sha256").update(verifier).digest("base64url");
     const { code, redirectUri } = await runLoopbackAuth(
       "http://127.0.0.1",
       (redirectUri) => {
@@ -46,6 +49,8 @@ export async function startLoopbackAuth(
         authUrl.searchParams.set("scope", scopes);
         authUrl.searchParams.set("access_type", "offline");
         authUrl.searchParams.set("prompt", "consent");
+        authUrl.searchParams.set("code_challenge", challenge);
+        authUrl.searchParams.set("code_challenge_method", "S256");
         return authUrl.toString();
       },
       openInBrowser
@@ -60,6 +65,7 @@ export async function startLoopbackAuth(
         client_secret: CLIENT_SECRET,
         redirect_uri: redirectUri,
         grant_type: "authorization_code",
+        code_verifier: verifier,
       }),
     });
 
@@ -81,7 +87,7 @@ export async function startLoopbackAuth(
     }
 
     if (data.access_token) {
-      saveCredentials({
+      await saveCredentials({
         providerType: "gmail",
         gmail: {
           accessToken: data.access_token,
@@ -104,7 +110,7 @@ export async function startLoopbackAuth(
 // --- Token management ---
 
 async function getValidAccessToken(): Promise<string> {
-  const creds = loadCredentials();
+  const creds = await loadCredentials();
   if (!creds?.gmail) throw new Error("No Gmail credentials stored");
 
   if (Date.now() < creds.gmail.expiresAt - 60_000) {
@@ -132,7 +138,7 @@ async function getValidAccessToken(): Promise<string> {
   if (data.access_token) {
     creds.gmail.accessToken = data.access_token;
     creds.gmail.expiresAt = Date.now() + (data.expires_in || 3600) * 1000;
-    saveCredentials(creds);
+    await saveCredentials(creds);
     return data.access_token;
   }
 
@@ -208,7 +214,7 @@ export async function fetchGmailProfileEmail(
       authLog.error(`Gmail profile fetch failed (${resp.status}): ${body}`);
       return undefined;
     }
-    const profile = (await resp.json()) as { emailAddress?: string };
+    const profile = await resp.json() as { emailAddress?: string };
     if (!profile.emailAddress) {
       authLog.error("Gmail profile response missing emailAddress");
     }
@@ -365,8 +371,8 @@ export function createGmailProvider(
       };
     },
 
-    isAuthenticated(): boolean {
-      const creds = loadCredentials();
+    async isAuthenticated(): Promise<boolean> {
+      const creds = await loadCredentials();
       return !!creds?.gmail?.accessToken;
     },
 
@@ -390,7 +396,7 @@ export function createGmailProvider(
         params.pageToken = pageToken;
       }
 
-      const listResult = (await gmailApiFetch("/messages", params)) as {
+      const listResult = await gmailApiFetch("/messages", params) as {
         messages?: Array<{ id: string }>;
         nextPageToken?: string;
         resultSizeEstimate?: number;
@@ -405,9 +411,9 @@ export function createGmailProvider(
 
       for (const msgRef of listResult.messages) {
         try {
-          const msg = (await gmailApiFetch(`/messages/${msgRef.id}`, {
+          const msg = await gmailApiFetch(`/messages/${msgRef.id}`, {
             format: "full",
-          })) as GmailRawMessage;
+          }) as GmailRawMessage;
 
           emailMessages.push(await parseGmailMessage(msg, analysisOptions));
           onProgress?.(emailMessages.length, estimatedTotal);
@@ -453,15 +459,15 @@ export function createGmailProvider(
       if (!from) throw new Error("Could not resolve sender address from Gmail profile");
       const raw = buildRfc822Message(from, to, subject, body, inReplyTo);
       const encoded = Buffer.from(raw, "utf-8").toString("base64url");
-      const sent = (await gmailApiPost("/messages/send", { raw: encoded })) as { id?: string };
+      const sent = await gmailApiPost("/messages/send", { raw: encoded }) as { id?: string };
       // Read the Message-ID back from the sent message — Gmail assigns it
       // server-side, so what we sent is not what went out.
       if (!sent?.id) return undefined;
       try {
-        const meta = (await gmailApiFetch(`/messages/${sent.id}`, {
+        const meta = await gmailApiFetch(`/messages/${sent.id}`, {
           format: "metadata",
           metadataHeaders: "Message-ID",
-        })) as { payload?: { headers?: Array<{ name: string; value: string }> } };
+        }) as { payload?: { headers?: Array<{ name: string; value: string }> } };
         return meta.payload?.headers?.find((h) => h.name.toLowerCase() === "message-id")?.value;
       } catch {
         return undefined;
@@ -476,7 +482,7 @@ export function createGmailProvider(
 
     async getRemovalCursor(): Promise<string | undefined> {
       try {
-        const profile = (await gmailApiFetch("/profile")) as { historyId?: string };
+        const profile = await gmailApiFetch("/profile") as { historyId?: string };
         return profile.historyId;
       } catch {
         return undefined;
@@ -498,7 +504,7 @@ export function createGmailProvider(
           const params: Record<string, string> = { startHistoryId: cursor };
           if (pageToken) params.pageToken = pageToken;
 
-          const result = (await gmailApiFetch("/history", params)) as GmailHistoryResponse;
+          const result = await gmailApiFetch("/history", params) as GmailHistoryResponse;
 
           // Always update to the latest historyId returned, even if history array is empty
           nextCursor = result.historyId;

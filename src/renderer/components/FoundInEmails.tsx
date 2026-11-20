@@ -28,7 +28,7 @@ function FindingPagination({
   page,
   totalPages,
   onPageChange,
-}: FindingPaginationProps): JSX.Element {
+}: FindingPaginationProps) {
   return (
     <div className="flex items-center gap-1">
       <button
@@ -65,7 +65,7 @@ function FindingPagination({
 export default function FoundInEmails({
   vendorId,
   vendorName,
-}: FoundInEmailsProps): JSX.Element {
+}: FoundInEmailsProps) {
   const [summary, setSummary] = useState<VendorPiiSummary>();
   const [activeTab, setActiveTab] = useState<FindingTab>();
   const [page, setPage] = useState(1);

@@ -1,12 +1,13 @@
+import { vi } from "vitest";
 import Database from "better-sqlite3";
 import { join } from "path";
 import { tmpdir } from "os";
 import { existsSync, unlinkSync } from "fs";
 
-jest.mock("../utils/log", () => ({
-  dbLog: { debug: jest.fn(), info: jest.fn(), warn: jest.fn(), error: jest.fn() },
+vi.mock("../utils/log", () => ({
+  dbLog: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
 }));
-jest.mock("../credentials", () => ({ emailToFileKey: jest.fn() }));
+vi.mock("../credentials", () => ({ emailToFileKey: vi.fn() }));
 
 import { getDb, initDb, reconnectDb } from "../db";
 import { migrateVendors } from "../migrations";
@@ -17,7 +18,6 @@ import {
   escalateGdprCase,
   getGdprCaseById,
   getGdprCaseReplies,
-  insertGdprCaseEvent,
   linkGdprCaseMessage,
   queryGdprCases,
   reopenGdprCase,

@@ -1,49 +1,54 @@
+import { vi } from "vitest";
 import { mkdtempSync, rmSync, writeFileSync, unlinkSync } from "fs";
 import { tmpdir } from "os";
 import { join } from "path";
 
-let mockUserData = "";
-jest.mock("../sync-manager", () => ({ startAllSyncs: jest.fn() }));
-let saveSettingsHandler: ((event: unknown, settings: unknown) => void) | undefined;
+let mockUserData = vi.hoisted(() => (""));
+vi.mock("../sync-manager", () => ({ startAllSyncs: vi.fn() }));
+let saveSettingsHandler: ((event: unknown, settings: unknown) => Promise<void>) | undefined;
 
-jest.mock("electron", () => ({
+vi.mock("electron", () => ({
   app: { getPath: () => mockUserData },
-  safeStorage: { isEncryptionAvailable: () => false },
+  safeStorage: {
+    isAsyncEncryptionAvailable: async () => true,
+    encryptStringAsync: async (value: string) => Buffer.from(value),
+    decryptStringAsync: async (value: Buffer) => ({ result: value.toString(), shouldReEncrypt: false }),
+  },
   ipcMain: {
-    handle: jest.fn((channel: string, handler: (event: unknown, value: unknown) => void) => {
+    handle: vi.fn((channel: string, handler: (event: unknown, value: unknown) => Promise<void>) => {
       if (channel === "save-settings") saveSettingsHandler = handler;
     }),
-    on: jest.fn(),
+    on: vi.fn(),
   },
-  shell: { openExternal: jest.fn() },
+  shell: { openExternal: vi.fn() },
 }));
-jest.mock("../services/settings", () => ({
-  activateLicense: jest.fn(),
-  requirePro: jest.requireActual<typeof import("../services/settings")>("../services/settings").requirePro,
-  applyAutoLaunch: jest.fn(),
-  deleteLicense: jest.fn(),
-  getLicenseStatus: jest.fn(),
-  getMcpSetup: jest.fn(),
-  saveSetting: jest.fn(),
+vi.mock("../services/settings", async () => ({
+  activateLicense: vi.fn(),
+  requirePro: (await vi.importActual<typeof import("../services/settings")>("../services/settings")).requirePro,
+  applyAutoLaunch: vi.fn(),
+  deleteLicense: vi.fn(),
+  getLicenseStatus: vi.fn(),
+  getMcpSetup: vi.fn(),
+  saveSetting: vi.fn(),
 }));
-jest.mock("../services/appSettings", () => ({ buildAppSettings: jest.fn() }));
-jest.mock("../services/globalSettings", () => ({
-  getGlobalSetting: jest.fn(),
-  saveGlobalSetting: jest.fn(),
+vi.mock("../services/appSettings", () => ({ buildAppSettings: vi.fn() }));
+vi.mock("../services/globalSettings", () => ({
+  getGlobalSetting: vi.fn(),
+  saveGlobalSetting: vi.fn(),
 }));
-jest.mock("../utils/log", () => ({
-  dataLog: { info: jest.fn() },
+vi.mock("../utils/log", () => ({
+  dataLog: { info: vi.fn() },
 }));
 
 import { getGlobalSetting, saveGlobalSetting } from "../services/globalSettings";
 import { registerSettingsHandlers } from "./settings";
 
-const getGlobal = jest.mocked(getGlobalSetting);
-const saveGlobal = jest.mocked(saveGlobalSetting);
+const getGlobal = vi.mocked(getGlobalSetting);
+const saveGlobal = vi.mocked(saveGlobalSetting);
 
 describe("AI Agent access settings", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     mockUserData = mkdtempSync(join(tmpdir(), "paperweight-agent-settings-"));
     writeFileSync(join(mockUserData, "license.enc"), JSON.stringify({
       key: "SETTINGS-TEST", tier: "test", validatedAt: Date.now(),
@@ -54,60 +59,60 @@ describe("AI Agent access settings", () => {
 
   afterEach(() => rmSync(mockUserData, { recursive: true, force: true }));
 
-  it.each(["read", "actions"])("blocks Free from enabling %s access through the real entitlement guard", (access) => {
+  it.each(["read", "actions"])("blocks Free from enabling %s access through the real entitlement guard", async (access) => {
     unlinkSync(join(mockUserData, "license.enc"));
-    expect(() => saveSettingsHandler?.({}, { agentAccess: access, confirmAgentActions: true }))
-      .toThrow("Paperweight Pro is required");
+    await expect(saveSettingsHandler?.({}, { agentAccess: access, confirmAgentActions: true }))
+      .rejects.toThrow("Paperweight Pro is required");
     expect(saveGlobal).not.toHaveBeenCalled();
   });
 
-  it("allows Free to revoke agent access", () => {
+  it("allows Free to revoke agent access", async () => {
     unlinkSync(join(mockUserData, "license.enc"));
     getGlobal.mockReturnValue("actions");
-    saveSettingsHandler?.({}, { agentAccess: "off" });
+    await saveSettingsHandler?.({}, { agentAccess: "off" });
     expect(saveGlobal).toHaveBeenCalledWith("agentAccess", "off");
   });
 
-  it("requires explicit confirmation before enabling Read & write", () => {
+  it("requires explicit confirmation before enabling Read & write", async () => {
     getGlobal.mockReturnValue("read");
 
-    expect(() => saveSettingsHandler?.({}, { agentAccess: "actions" }))
-      .toThrow("Read & write access requires confirmation");
+    await expect(saveSettingsHandler?.({}, { agentAccess: "actions" }))
+      .rejects.toThrow("Read & write access requires confirmation");
     expect(saveGlobal).not.toHaveBeenCalledWith("agentAccess", "actions");
 
-    saveSettingsHandler?.({}, {
+    await saveSettingsHandler?.({}, {
       agentAccess: "actions",
       confirmAgentActions: true,
     });
     expect(saveGlobal).toHaveBeenCalledWith("agentAccess", "actions");
   });
 
-  it("does not require another confirmation when Read & write is already on", () => {
+  it("does not require another confirmation when Read & write is already on", async () => {
     getGlobal.mockImplementation((key) => key === "agentAccess" ? "actions" : undefined);
 
-    expect(() => saveSettingsHandler?.({}, { agentAccess: "actions" })).not.toThrow();
+    await expect(saveSettingsHandler?.({}, { agentAccess: "actions" })).resolves.toBeUndefined();
     expect(saveGlobal).toHaveBeenCalledWith("agentAccess", "actions");
   });
 
-  it("starts masking when agent access is enabled", () => {
+  it("starts masking when agent access is enabled", async () => {
     getGlobal.mockImplementation((key) => key === "agentAccess" ? "off" : false);
 
-    saveSettingsHandler?.({}, { agentAccess: "read" });
+    await saveSettingsHandler?.({}, { agentAccess: "read" });
 
     expect(saveGlobal).toHaveBeenCalledWith("agentAccess", "read");
     expect(saveGlobal).toHaveBeenCalledWith("agentMaskPersonalData", true);
   });
 
-  it("requires explicit confirmation before disabling masking", () => {
+  it("requires explicit confirmation before disabling masking", async () => {
     getGlobal.mockImplementation((key) =>
       key === "agentMaskPersonalData" ? true : "read"
     );
 
-    expect(() => saveSettingsHandler?.({}, { agentMaskPersonalData: false }))
-      .toThrow("Disabling personal-data masking requires confirmation");
+    await expect(saveSettingsHandler?.({}, { agentMaskPersonalData: false }))
+      .rejects.toThrow("Disabling personal-data masking requires confirmation");
     expect(saveGlobal).not.toHaveBeenCalledWith("agentMaskPersonalData", false);
 
-    saveSettingsHandler?.({}, {
+    await saveSettingsHandler?.({}, {
       agentMaskPersonalData: false,
       confirmAgentUnmask: true,
     });

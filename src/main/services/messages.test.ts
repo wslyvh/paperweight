@@ -1,7 +1,8 @@
-jest.mock("../utils/log", () => ({
-  dbLog: { debug: jest.fn(), info: jest.fn(), warn: jest.fn(), error: jest.fn() },
+import { vi } from "vitest";
+vi.mock("../utils/log", () => ({
+  dbLog: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
 }));
-jest.mock("../credentials", () => ({ emailToFileKey: jest.fn() }));
+vi.mock("../credentials", () => ({ emailToFileKey: vi.fn() }));
 
 import { getDb, initDb } from "../db";
 import {
@@ -155,8 +156,9 @@ describe("insertMessageVendor — body storage", () => {
     insertMessageVendor(fullMessage("m3"), vid);
 
     expect(MESSAGE_COLUMNS).not.toMatch(/body_text|body_state|analysis_version/);
-    const message = getMessageById("m3") as Record<string, unknown>;
+    const message = getMessageById("m3");
     expect(message).toBeDefined();
+    if (!message) throw new Error("Expected stored message");
     expect("body_text" in message).toBe(false);
     expect("body_state" in message).toBe(false);
     expect("analysis_version" in message).toBe(false);

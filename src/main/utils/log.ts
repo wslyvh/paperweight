@@ -1,3 +1,4 @@
+import { join } from "node:path";
 import { parentPort } from "node:worker_threads";
 
 // Worker threads don't have access to 'electron' — electron-log requires it at load time.
@@ -52,6 +53,9 @@ if (parentPort !== null) {
   log = createSilentLogger();
 } else {
   const electronLog = require("electron-log/main").default;
+  // Honor Electron's log directory, including isolated profiles on macOS.
+  electronLog.transports.file.resolvePathFn = ({ electronDefaultDir, fileName }: { electronDefaultDir: string; fileName: string }) =>
+    join(electronDefaultDir, fileName);
   electronLog.transports.file.level = "info";
   electronLog.transports.file.maxSize = 5 * 1024 * 1024; // 5MB
   electronLog.transports.console.level =

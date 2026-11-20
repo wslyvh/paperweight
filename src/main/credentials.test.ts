@@ -1,16 +1,18 @@
-import { existsSync, mkdtempSync, rmSync, writeFileSync } from "fs";
+import { STORAGE_READ_ERROR } from "../shared/secureStorage";
+import { vi } from "vitest";
+import { existsSync, mkdtempSync, rmSync, writeFileSync, readFileSync } from "fs";
 import { tmpdir } from "os";
 import { join } from "path";
 
-let userDataDir = "";
+let userDataDir = vi.hoisted(() => (""));
 
-const mockSafeStorage = {
-  isEncryptionAvailable: jest.fn(() => false),
-  encryptString: (value: string) => Buffer.from(value, "utf-8"),
-  decryptString: (data: Buffer) => data.toString("utf-8"),
-};
+const mockSafeStorage = vi.hoisted(() => ({
+  isAsyncEncryptionAvailable: vi.fn(async () => true),
+  encryptStringAsync: async (value: string) => Buffer.from(value, "utf-8"),
+  decryptStringAsync: async (data: Buffer) => ({ result: data.toString("utf-8"), shouldReEncrypt: false }),
+}));
 
-jest.mock("electron", () => ({
+vi.mock("electron", () => ({
   app: {
     getPath: (name: string) => (name === "userData" ? userDataDir : "/tmp"),
   },
@@ -19,6 +21,8 @@ jest.mock("electron", () => ({
 
 import {
   deleteCredentials,
+  migrateAccountFilenames,
+  registerAccount,
   emailToFileKey,
   hasCredentials,
   loadCredentials,
@@ -34,15 +38,16 @@ describe("credentials without active account", () => {
     userDataDir = mkdtempSync(join(tmpdir(), "paperweight-creds-"));
     resetCredentialsModuleState();
     resetGlobalSettingsCache();
-    mockSafeStorage.isEncryptionAvailable.mockReturnValue(false);
+    mockSafeStorage.isAsyncEncryptionAvailable.mockResolvedValue(true);
   });
 
   afterEach(() => {
+    resetGlobalSettingsCache();
     rmSync(userDataDir, { recursive: true, force: true });
   });
 
-  it("loadCredentials returns undefined without throwing", () => {
-    expect(loadCredentials()).toBeUndefined();
+  it("loadCredentials returns undefined without throwing", async () => {
+    expect(await loadCredentials()).toBeUndefined();
   });
 
   it("deleteCredentials no-ops without throwing and does not touch files", () => {
@@ -57,19 +62,19 @@ describe("credentials without active account", () => {
     expect(hasCredentials()).toBe(false);
   });
 
-  it("loadCredentials with staging override works without active account", () => {
+  it("loadCredentials with staging override works without active account", async () => {
     const creds = { providerType: "gmail" as const, gmail: { accessToken: "a", refreshToken: "r", expiresAt: 1 } };
-    saveCredentials(creds, "__staging__");
+    await saveCredentials(creds, "__staging__");
 
-    expect(loadCredentials("__staging__")).toEqual(creds);
+    expect(await loadCredentials("__staging__")).toEqual(creds);
   });
 
-  it("loadCredentials in staging mode uses staging file without active account", () => {
+  it("loadCredentials in staging mode uses staging file without active account", async () => {
     const creds = { providerType: "microsoft" as const, microsoft: { accessToken: "a", refreshToken: "r", expiresAt: 1 } };
     setStagingMode(true);
-    saveCredentials(creds);
+    await saveCredentials(creds);
 
-    expect(loadCredentials()).toEqual(creds);
+    expect(await loadCredentials()).toEqual(creds);
   });
 });
 
@@ -80,28 +85,29 @@ describe("credentials with active account", () => {
     userDataDir = mkdtempSync(join(tmpdir(), "paperweight-creds-"));
     resetCredentialsModuleState();
     resetGlobalSettingsCache();
-    mockSafeStorage.isEncryptionAvailable.mockReturnValue(false);
+    mockSafeStorage.isAsyncEncryptionAvailable.mockResolvedValue(true);
     writeFileSync(join(userDataDir, "settings.json"), JSON.stringify({ activeAccount: email }));
   });
 
   afterEach(() => {
+    resetGlobalSettingsCache();
     rmSync(userDataDir, { recursive: true, force: true });
   });
 
-  it("loadCredentials returns undefined when credential file is missing", () => {
-    expect(loadCredentials()).toBeUndefined();
+  it("loadCredentials returns undefined when credential file is missing", async () => {
+    expect(await loadCredentials()).toBeUndefined();
   });
 
-  it("saveCredentials and loadCredentials round-trip", () => {
+  it("saveCredentials and loadCredentials round-trip", async () => {
     const creds = { providerType: "gmail" as const, gmail: { accessToken: "a", refreshToken: "r", expiresAt: 1 } };
-    saveCredentials(creds);
+    await saveCredentials(creds);
 
-    expect(loadCredentials()).toEqual(creds);
+    expect(await loadCredentials()).toEqual(creds);
   });
 
-  it("deleteCredentials removes the credential file", () => {
+  it("deleteCredentials removes the credential file", async () => {
     const creds = { providerType: "gmail" as const, gmail: { accessToken: "a", refreshToken: "r", expiresAt: 1 } };
-    saveCredentials(creds);
+    await saveCredentials(creds);
     const credPath = join(userDataDir, `${emailToFileKey(email)}.enc`);
     expect(existsSync(credPath)).toBe(true);
 
@@ -120,23 +126,23 @@ describe("credentials with active account", () => {
       gmail: { accessToken: "selected", refreshToken: "selected-refresh", expiresAt: 1 },
     };
     const selectedEmail = "selected@example.com";
-    saveCredentials(activeCredentials);
-    saveCredentials(selectedCredentials, selectedEmail);
+    await saveCredentials(activeCredentials);
+    await saveCredentials(selectedCredentials, selectedEmail);
 
     await withCredentialAccount(selectedEmail, async () => {
-      expect(loadCredentials()).toEqual(selectedCredentials);
-      saveCredentials({
+      expect(await loadCredentials()).toEqual(selectedCredentials);
+      await saveCredentials({
         ...selectedCredentials,
         gmail: { ...selectedCredentials.gmail, accessToken: "refreshed" },
       });
     });
 
-    expect(loadCredentials()).toEqual(activeCredentials);
-    expect(loadCredentials(selectedEmail)?.gmail?.accessToken).toBe("refreshed");
+    expect(await loadCredentials()).toEqual(activeCredentials);
+    expect((await loadCredentials(selectedEmail))?.gmail?.accessToken).toBe("refreshed");
   });
 });
 
-describe("loadCredentials plain-text fallback", () => {
+describe("loadCredentials rejects plaintext", () => {
   const email = "user@example.com";
   const creds = { providerType: "imap" as const, imap: { host: "imap.test", port: 993, tls: true, username: email, password: "x" } };
 
@@ -144,8 +150,8 @@ describe("loadCredentials plain-text fallback", () => {
     userDataDir = mkdtempSync(join(tmpdir(), "paperweight-creds-"));
     resetCredentialsModuleState();
     resetGlobalSettingsCache();
-    mockSafeStorage.isEncryptionAvailable.mockReturnValue(true);
-    mockSafeStorage.decryptString = jest.fn(() => {
+    mockSafeStorage.isAsyncEncryptionAvailable.mockResolvedValue(true);
+    mockSafeStorage.decryptStringAsync = vi.fn(async () => {
       throw new Error("not encrypted");
     });
     writeFileSync(join(userDataDir, "settings.json"), JSON.stringify({ activeAccount: email }));
@@ -153,11 +159,44 @@ describe("loadCredentials plain-text fallback", () => {
   });
 
   afterEach(() => {
+    resetGlobalSettingsCache();
     rmSync(userDataDir, { recursive: true, force: true });
-    mockSafeStorage.decryptString = (data: Buffer) => data.toString("utf-8");
+    mockSafeStorage.decryptStringAsync = async (data: Buffer) => ({ result: data.toString("utf-8"), shouldReEncrypt: false });
   });
 
-  it("reads plain JSON when decrypt fails (dev fixtures, CI stored profile)", () => {
-    expect(loadCredentials()).toEqual(creds);
+  it("rejects plain JSON when decryption fails", async () => {
+    await expect(loadCredentials()).rejects.toThrow(STORAGE_READ_ERROR);
   });
+});
+
+it("uses an opaque, case-insensitive account filename without the email local part", () => {
+  const key = emailToFileKey("Person@Example.com");
+  expect(key).toMatch(/^account_[a-f0-9]{64}$/);
+  expect(key).not.toContain("person");
+  expect(key).toBe(emailToFileKey("person@example.com"));
+  expect(key).not.toBe(emailToFileKey("person@other.example"));
+});
+
+it("renames legacy account data and sidecars, preserves contents, and is safe to rerun", () => {
+  userDataDir = mkdtempSync(join(tmpdir(), "paperweight-filenames-"));
+  resetCredentialsModuleState();
+  const currentKey = emailToFileKey("SMOKE-TEST@paperweight.test");
+  const suffixes = [".db", ".db-wal", ".db-shm", ".db-journal", ".enc"];
+  try {
+    registerAccount("SMOKE-TEST@paperweight.test", "imap");
+    for (const suffix of suffixes) {
+      writeFileSync(join(userDataDir, `smoke-test_fd381a${suffix}`), `preserved ${suffix}`);
+    }
+    const registry = readFileSync(join(userDataDir, "accounts.json"), "utf8");
+    migrateAccountFilenames();
+    migrateAccountFilenames();
+    for (const suffix of suffixes) {
+      expect(existsSync(join(userDataDir, `smoke-test_fd381a${suffix}`))).toBe(false);
+      expect(readFileSync(join(userDataDir, `${currentKey}${suffix}`), "utf8")).toBe(`preserved ${suffix}`);
+    }
+    expect(readFileSync(join(userDataDir, "accounts.json"), "utf8")).toBe(registry);
+  } finally {
+    resetGlobalSettingsCache();
+    rmSync(userDataDir, { recursive: true, force: true });
+  }
 });
