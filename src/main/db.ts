@@ -6,7 +6,8 @@ import { getElectron } from "./electronRuntime";
 // require() inside functions (see getCompaniesDbPath below). Anything imported
 // here (e.g. ./migrations for migrateActionLog) must itself keep its top-level
 // graph light for the same reason.
-import Database from "better-sqlite3";
+import type Database from "better-sqlite3";
+import { openDatabase, attachDatabase, getDatabaseKey } from "./databaseEncryption";
 import { join, basename, dirname } from "path";
 import { existsSync, unlinkSync } from "fs";
 import { dbLog } from "./utils/log";
@@ -65,10 +66,11 @@ function getBreachesDbPath(): string {
 }
 
 export function getDb(): Database.Database {
+  getDatabaseKey();
   if (db) return db;
   const dbPath = getDbPath();
   // Account creation is explicit; a late read must not undo account deletion.
-  const next = new Database(dbPath, { fileMustExist: true });
+  const next = openDatabase(dbPath, { fileMustExist: true });
   try {
     next.pragma("journal_mode = WAL");
     next.pragma("foreign_keys = ON");
@@ -91,7 +93,7 @@ export function withAccountDbReadConnection<T>(
   dbPath: string,
   read: (database: Database.Database) => T,
 ): T {
-  const database = new Database(dbPath, { fileMustExist: true });
+  const database = openDatabase(dbPath, { fileMustExist: true });
   try {
     database.pragma("journal_mode = WAL");
     database.pragma("foreign_keys = ON");
@@ -117,7 +119,7 @@ export function reconnectDb(newDbPath: string): void {
 }
 
 export function createAccountDb(dbPath: string): void {
-  const newDb = new Database(dbPath);
+  const newDb = openDatabase(dbPath);
   newDb.pragma("journal_mode = WAL");
   newDb.pragma("foreign_keys = ON");
   initSchema(newDb);
@@ -128,7 +130,7 @@ export function createAccountDb(dbPath: string): void {
   dbLog.info(`Account DB created [${tag}]`);
 }
 
-function initSchema(d: Database.Database) {
+export function initSchema(d: Database.Database) {
   d.exec(`
     CREATE TABLE IF NOT EXISTS vendors (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -278,7 +280,7 @@ function attachCompaniesDb(d: Database.Database) {
     dbLog.warn(`Companies DB not found at ${companiesPath} — skipping attach`);
     return;
   }
-  d.exec(`ATTACH DATABASE '${companiesPath}' AS companies`);
+  attachDatabase(d, companiesPath, "companies");
 }
 
 function attachBreachesDb(d: Database.Database) {
@@ -287,7 +289,7 @@ function attachBreachesDb(d: Database.Database) {
     dbLog.warn(`Breaches DB not found at ${breachesPath} — skipping attach`);
     return;
   }
-  d.exec(`ATTACH DATABASE '${breachesPath}' AS breaches`);
+  attachDatabase(d, breachesPath, "breaches");
 }
 
 function deleteSqliteFiles(dbPath: string): void {
@@ -313,5 +315,5 @@ export function wipeDatabase(): void {
     db.close();
     db = undefined;
   }
-  deleteSqliteFiles(getDbPath());
+  if (_dbPath && _dbPath !== ":memory:") deleteSqliteFiles(_dbPath);
 }

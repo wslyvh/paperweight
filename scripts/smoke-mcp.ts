@@ -14,9 +14,19 @@ import {
 import { tmpdir } from "os";
 import { join, resolve } from "path";
 import { createInterface } from "readline";
-import Database from "better-sqlite3";
+import PlainDatabase from "better-sqlite3";
+import { openDatabase, decryptAccountRegistry } from "../src/main/databaseEncryption";
+import { initGlobalSchema } from "../src/main/globalDb";
+
+// Legacy fixture preparation stays plaintext; after desktop migration use the
+// synthetic key obtained through that app's real OS storage, only in this driver.
+function fixtureDatabase(path: string, options?: PlainDatabase.Options) {
+  return existsSync(path) && !readFileSync(path).subarray(0, 16).equals(Buffer.from("SQLite format 3\0"))
+    ? openDatabase(path, options) : new PlainDatabase(path, options);
+}
+
 import { emailToFileKey } from "../src/main/credentials";
-import { configureGlobalDbPath, getGlobalDb } from "../src/main/globalDb";
+import { configureGlobalDbPath } from "../src/main/globalDb";
 import { saveGlobalSetting } from "../src/main/services/globalSettings";
 
 interface JsonRpcResponse {
@@ -66,9 +76,14 @@ function prepareProfile(enabled: boolean): string {
   profiles.push(profile);
   cpSync(fixture, profile, { recursive: true });
   configureGlobalDbPath(join(profile, "global.db"));
-  getGlobalDb();
+  const fixtureGlobal = new PlainDatabase(join(profile, "global.db"));
+  initGlobalSchema(fixtureGlobal, "main");
+  const settings = JSON.parse(readFileSync(join(profile, "settings.json"), "utf8"));
+  for (const [key, value] of Object.entries(settings)) {
+    fixtureGlobal.prepare("INSERT OR REPLACE INTO app_settings VALUES (?, ?)").run(key, JSON.stringify(value));
+  }
   if (enabled) {
-    saveGlobalSetting("agentAccess", "read");
+    fixtureGlobal.prepare("INSERT OR REPLACE INTO app_settings VALUES (?, ?)").run("agentAccess", JSON.stringify("read"));
 
     const manifest = JSON.parse(
       readFileSync(join(profile, "manifest.json"), "utf-8"),
@@ -79,7 +94,7 @@ function prepareProfile(enabled: boolean): string {
       join(profile, `${manifest.fileKey}.db`),
       join(profile, `${secondFileKey}.db`),
     );
-    const secondDatabase = new Database(join(profile, `${secondFileKey}.db`));
+    const secondDatabase = fixtureDatabase(join(profile, `${secondFileKey}.db`));
     const secondVendor = secondDatabase.prepare(
       `INSERT INTO vendors (
          root_domain, name, category_id, risk_level, first_seen, last_seen,
@@ -114,7 +129,7 @@ function prepareProfile(enabled: boolean): string {
     );
     secondDatabase.close();
 
-    const global = getGlobalDb();
+    const global = fixtureGlobal;
     global.prepare(
       `UPDATE profile
        SET birth_year = ?, birth_month = ?, birth_day = ?, country = ?
@@ -145,6 +160,7 @@ function prepareProfile(enabled: boolean): string {
     });
     writeFileSync(registryPath, JSON.stringify(registry, null, 2), "utf-8");
   }
+  fixtureGlobal.close();
   return profile;
 }
 
@@ -156,7 +172,7 @@ function seedReadSurface(profile: string): void {
   const manifest = JSON.parse(
     readFileSync(join(profile, "manifest.json"), "utf-8"),
   ) as { fileKey: string };
-  const database = new Database(join(profile, `${manifest.fileKey}.db`));
+  const database = fixtureDatabase(join(profile, `${manifest.fileKey}.db`));
   database.pragma("busy_timeout = 5000");
   const vendor = database.prepare(
     `INSERT INTO vendors (
@@ -318,7 +334,7 @@ function seedReadSurface(profile: string): void {
 }
 
 function seedCollisionSurface(profile: string): void {
-  const secondDatabase = new Database(
+  const secondDatabase = fixtureDatabase(
     join(profile, `${emailToFileKey(secondMailbox)}.db`),
   );
   const secondVendor = secondDatabase.prepare(
@@ -1034,7 +1050,7 @@ async function proveOverviewRead(): Promise<void> {
   if (collisionInitialize.error) throw new Error("Collision MCP initialize failed");
   collisionConnection.notify("notifications/initialized");
 
-  const collisionDatabase = new Database(
+  const collisionDatabase = fixtureDatabase(
     join(profile, `${emailToFileKey(secondMailbox)}.db`),
     { readonly: true },
   );
@@ -1102,7 +1118,7 @@ async function proveOverviewRead(): Promise<void> {
   const manifest = JSON.parse(
     readFileSync(join(profile, "manifest.json"), "utf-8"),
   ) as { fileKey: string };
-  const actionDatabase = new Database(join(profile, `${manifest.fileKey}.db`));
+  const actionDatabase = fixtureDatabase(join(profile, `${manifest.fileKey}.db`));
   const vendorRow = actionDatabase.prepare(
     "SELECT id FROM vendors WHERE root_domain = ?",
   ).get("mcp-smoke.test") as { id: number };
@@ -1274,8 +1290,8 @@ async function proveOverviewRead(): Promise<void> {
 
 async function proveAccountRemoval(): Promise<void> {
   const profile = prepareProfile(true);
-  saveGlobalSetting("agentMaskPersonalData", true);
   await prepareLicense(profile);
+  saveGlobalSetting("agentMaskPersonalData", true);
   const connection = openMcp(profile);
   try {
     const initialized = await connection.request(1, "initialize", {
@@ -1296,7 +1312,7 @@ async function proveAccountRemoval(): Promise<void> {
         try { await window.api.removeAccount(email); return ""; }
         catch (error) { return String(error); }
       }, primaryMailbox);
-      const registry = JSON.parse(readFileSync(join(profile, "accounts.json"), "utf8")) as {
+      const registry = JSON.parse(decryptAccountRegistry(readFileSync(join(profile, "accounts.json"), "utf8"))) as {
         accounts: Array<{ email: string }>;
       };
       const registered = registry.accounts.some((account) => account.email === primaryMailbox);

@@ -14,7 +14,7 @@ vi.mock("electron", () => ({
 }));
 vi.mock("../sync-manager", () => ({ stopAllSyncs: mocks.stop }));
 vi.mock("./settings", () => ({ applyAutoLaunch: mocks.autoLaunch }));
-vi.mock("../credentials", () => ({ getActiveEmail: () => "synthetic@example.test" }));
+vi.mock("../credentials", () => ({ getActiveEmail: () => { throw new Error("Database is unreadable"); } }));
 vi.mock("../db", () => ({ wipeDatabase: mocks.wipeDatabase }));
 vi.mock("../globalDb", () => ({ wipeGlobalDatabase: mocks.wipeGlobalDatabase }));
 vi.mock("node:fs", async (importOriginal) => {

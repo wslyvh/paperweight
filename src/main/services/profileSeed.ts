@@ -1,5 +1,6 @@
 import { getElectron } from "../electronRuntime";
-import Database from "better-sqlite3";
+import type Database from "better-sqlite3";
+import { openDatabase } from "../databaseEncryption";
 import { existsSync } from "fs";
 import { join } from "path";
 import {
@@ -167,7 +168,7 @@ export function seedProfileEmailsFromAccounts(): number {
   for (const account of accounts) {
     const path = join(userData, `${emailToFileKey(account.email)}.db`);
     if (!existsSync(path)) continue;
-    const accountDb = new Database(path, {
+    const accountDb = openDatabase(path, {
       readonly: true,
       fileMustExist: true,
     });

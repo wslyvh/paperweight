@@ -21,7 +21,7 @@
  */
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { tmpdir } from "os";
-import { execFileSync } from "node:child_process";
+import { encryptAccountRegistry, decryptAccountRegistry } from "../src/main/databaseEncryption";
 import { join } from "path";
 import { createAccountDb, initDb, getDb } from "../src/main/db";
 import { emailToFileKey } from "../src/main/credentials";
@@ -71,7 +71,7 @@ mkdirSync(userDataDir, { recursive: true });
 
 const accountsPath = join(userDataDir, "accounts.json");
 const registry = existsSync(accountsPath)
-  ? (JSON.parse(readFileSync(accountsPath, "utf-8")) as {
+  ? (JSON.parse(decryptAccountRegistry(readFileSync(accountsPath, "utf-8"))) as {
       accounts: Array<{ email: string; providerType: string; registeredAt?: number }>;
     })
   : { accounts: [] };
@@ -80,12 +80,13 @@ const idx = registry.accounts.findIndex((a) => a.email === TEST_EMAIL);
 const entry = { email: TEST_EMAIL, providerType: "imap", registeredAt: Date.now() };
 if (idx >= 0) registry.accounts[idx] = entry;
 else registry.accounts.push(entry);
-writeFileSync(accountsPath, JSON.stringify(registry, null, 2), "utf-8");
+writeFileSync(accountsPath, encryptAccountRegistry(JSON.stringify(registry)), "utf-8");
 
 // Fake credentials so getConnectionStatus()/hasCredentials() treat this account as
 // connected (skips onboarding). Encrypt the synthetic input before app startup.
+export const syntheticCredentialsPath = join(userDataDir, `${emailToFileKey(TEST_EMAIL)}.enc`);
 writeFileSync(
-  join(userDataDir, `${emailToFileKey(TEST_EMAIL)}.enc`),
+  syntheticCredentialsPath,
   JSON.stringify({
     providerType: "imap",
     imap: {
@@ -103,10 +104,6 @@ writeFileSync(
   }),
   "utf-8",
 );
-
-const fixtureEnv = { ...process.env };
-delete fixtureEnv.ELECTRON_RUN_AS_NODE;
-execFileSync(process.execPath, [join(process.cwd(), "scripts", "encrypt-smoke-fixture.cjs"), userDataDir, `--file=${emailToFileKey(TEST_EMAIL)}.enc`], { env: fixtureEnv, stdio: "inherit" });
 
 // ── 2. Reset this account's db file ──
 

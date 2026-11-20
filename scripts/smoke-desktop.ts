@@ -1,10 +1,17 @@
 import assert from "node:assert/strict";
-import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync, unlinkSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { isAbsolute, join, relative, resolve } from "node:path";
 import { execFileSync } from "node:child_process";
 import Database from "better-sqlite3";
-import { appPaths, encryptProfile, packaged, root, withDesktop } from "./lib/desktop-test";
+import type { Page } from "playwright-core";
+import { appPaths, encryptProfile, packaged, results, root, withDesktop } from "./lib/desktop-test";
+
+async function captureStorageFlow(page: Page, name: string) {
+  const directory = join(results, "storage-flows");
+  mkdirSync(directory, { recursive: true });
+  await page.screenshot({ path: join(directory, `${name}.png`), animations: "disabled" });
+}
 
 async function main() {
   // Spaces and non-ASCII characters catch path/launcher mistakes on every OS.
@@ -20,16 +27,21 @@ async function main() {
       assert.equal(resolve(await app.evaluate(({ app }) => app.getPath("userData"))), resolve(fresh));
       assert.equal(await app.evaluate(({ app }) => app.isPackaged), packaged);
       await page.getByRole("button", { name: "Connect with Google", exact: true }).waitFor();
-      // Test-only unavailable OS storage: block onboarding before provider auth.
+      // Test-only unavailable OS storage: force initialization before onboarding.
       await app.evaluate(({ safeStorage }) => { safeStorage.isAsyncEncryptionAvailable = async () => false; });
+      unlinkSync(join(fresh, "database-key.enc"));
       await page.reload();
       await page.getByText("Secure storage unavailable", { exact: true }).waitFor();
+      assert.equal(await page.locator(".bg-secondary").count(), 1);
+      assert.equal(await page.getByRole("heading", { name: "Get Started", exact: true }).count(), 0);
       assert.equal(await page.getByRole("button", { name: "Connect with Google", exact: true }).count(), 0);
+      await captureStorageFlow(page, "01-secure-storage-unavailable");
       await page.getByRole("button", { name: "Retry", exact: true }).click();
       assert.equal(await page.getByRole("button", { name: "Connect with Google", exact: true }).count(), 0);
       await app.evaluate(({ safeStorage }) => { safeStorage.isAsyncEncryptionAvailable = async () => true; });
       await page.getByRole("button", { name: "Retry", exact: true }).click();
       await page.getByRole("button", { name: "Connect with Google", exact: true }).waitFor();
+      await captureStorageFlow(page, "02-onboarding-after-retry");
     });
 
     for (const kind of ["runtime", "stored"]) {
@@ -68,6 +80,20 @@ async function main() {
         const setup = await page.evaluate(() => window.api.getMcpSetup());
         assert.equal(setup.available, true, "MCP launcher is missing from the app layout");
         assert.ok(setup.server && existsSync(setup.server.command));
+        if (kind === "runtime") {
+          // Availability can change after startup. Retry the failed credential
+          // read itself, without adding a second page-level storage preflight.
+          await app.evaluate(({ safeStorage }) => { safeStorage.isAsyncEncryptionAvailable = async () => false; });
+          await page.evaluate(() => { window.location.hash = "#/settings"; });
+          await page.getByRole("heading", { name: "Settings", exact: true }).waitFor();
+          await page.getByText("Secure storage unavailable", { exact: true }).waitFor();
+          await page.getByRole("button", { name: "Retry", exact: true }).click();
+          await page.getByText("Secure storage unavailable", { exact: true }).waitFor();
+          await app.evaluate(({ safeStorage }) => { safeStorage.isAsyncEncryptionAvailable = async () => true; });
+          await page.getByRole("button", { name: "Retry", exact: true }).click();
+          await page.getByText("Secure storage unavailable", { exact: true }).waitFor({ state: "hidden" });
+          assert.equal((await page.evaluate(() => window.api.getAccountInfo())).storageError, undefined);
+        }
       });
       assert.ok(existsSync(join(profile, `${manifest.fileKey}.db`)));
       assert.ok(existsSync(join(profile, "global.db")));
@@ -108,6 +134,56 @@ async function main() {
       }
     }
 
+    for (const failure of ["missing", "damaged"]) {
+      const profile = join(directory, `key-${failure}`);
+      cpSync(join(directory, "stored"), profile, { recursive: true });
+      const keyPath = join(profile, "database-key.enc");
+      const savedKey = readFileSync(keyPath);
+      if (failure === "missing") unlinkSync(keyPath);
+      else writeFileSync(keyPath, "damaged synthetic key");
+      await withDesktop(profile, `key-${failure}-recovery`, async (app) => {
+        const page = await app.firstWindow();
+        await page.getByText("Couldn't unlock your data", { exact: true }).waitFor();
+        assert.equal(await page.locator(".bg-secondary").count(), 1);
+        await page.getByRole("button", { name: "Retry", exact: true }).click();
+        await page.getByText("Couldn't unlock your data", { exact: true }).waitFor();
+        if (failure === "damaged") {
+          assert.equal(readFileSync(keyPath, "utf8"), "damaged synthetic key");
+          writeFileSync(keyPath, savedKey);
+          await page.getByRole("button", { name: "Retry", exact: true }).click();
+          await page.getByRole("heading", { name: "Dashboard", exact: true }).waitFor();
+          await captureStorageFlow(page, "06-dashboard-after-retry");
+        } else {
+          assert.equal(existsSync(keyPath), false);
+          // Exercise the startup gate as well as onboarding's storage check.
+          await app.evaluate(({ safeStorage }) => { safeStorage.isAsyncEncryptionAvailable = async () => false; });
+          await page.reload();
+          await page.getByText("Secure storage unavailable", { exact: true }).waitFor();
+          assert.equal(await page.getByRole("button", { name: "Reset", exact: true }).count(), 0);
+          await page.getByRole("button", { name: "Retry", exact: true }).click();
+          await page.getByText("Secure storage unavailable", { exact: true }).waitFor();
+          await app.evaluate(({ safeStorage }) => { safeStorage.isAsyncEncryptionAvailable = async () => true; });
+          await page.getByRole("button", { name: "Retry", exact: true }).click();
+          await page.getByText("Couldn't unlock your data", { exact: true }).waitFor();
+          await captureStorageFlow(page, "03-data-unlock-failed");
+          await page.getByRole("button", { name: "Reset", exact: true }).click();
+          await page.getByRole("heading", { name: "Wipe all data?", exact: true }).waitFor();
+          await captureStorageFlow(page, "04-reset-confirmation");
+          await page.getByRole("button", { name: "Cancel", exact: true }).click();
+          assert.equal(existsSync(keyPath), false);
+          assert.ok(existsSync(join(profile, "accounts.json")));
+          await page.getByRole("button", { name: "Reset", exact: true }).click();
+          await page.getByRole("button", { name: "Wipe everything", exact: true }).click();
+          await page.getByRole("heading", { name: "Get Started", exact: true }).waitFor();
+          await page.getByRole("button", { name: "Connect with Google", exact: true }).waitFor();
+          await captureStorageFlow(page, "05-onboarding-after-reset");
+          assert.ok(existsSync(keyPath));
+          assert.notDeepEqual(readFileSync(keyPath), savedKey);
+          assert.equal(existsSync(join(profile, "global.db")), false);
+        }
+      });
+    }
+
     const recovery = join(directory, "plaintext-recovery");
     cpSync(join(root, "test/fixtures/smoke-account"), recovery, { recursive: true });
     const manifest = JSON.parse(readFileSync(join(recovery, "manifest.json"), "utf8")) as { fileKey: string };
@@ -129,13 +205,18 @@ async function main() {
       await page.getByRole("heading", { name: "Settings", exact: true }).waitFor();
       assert.equal(existsSync(join(recovery, `${manifest.fileKey}.enc`)), false);
       assert.equal(existsSync(join(recovery, "license.enc")), false);
-      assert.deepEqual(readFileSync(join(recovery, "accounts.json")), registry);
+      const accounts = await page.evaluate(() => window.api.listAccounts());
+      assert.deepEqual(accounts.map(({ email, providerType }) => ({ email, providerType })),
+        JSON.parse(registry.toString()).accounts.map(({ email, providerType }: { email: string; providerType: string }) => ({ email, providerType })));
+      assert.equal(readFileSync(join(recovery, "accounts.json"), "utf8").includes("smoke-test@paperweight.test"), false);
       const account = await page.evaluate(() => window.api.getAccountInfo());
       assert.equal(account.providerType, "imap");
       assert.equal(account.credentialsMissing, true);
       assert.equal(account.totalMessages, 1, "Credential cleanup removed indexed mail");
       assert.equal(await page.evaluate(() => window.api.getSettings().userName), "Synthetic saved name");
       assert.match(account.storageError ?? "", /Reconnect this account/);
+      await page.getByText("Reconnect your account", { exact: true }).waitFor();
+      assert.equal(await page.getByText("Secure storage unavailable", { exact: true }).count(), 0);
       assert.equal(await page.getByRole("button", { name: "Retry", exact: true }).count(), 0);
       assert.equal(await page.getByRole("button", { name: "Storage help", exact: true }).count(), 0);
       await page.getByRole("button", { name: "Reconnect", exact: true }).click();

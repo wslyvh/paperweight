@@ -5,10 +5,11 @@ import type { ElectronAPI, SyncStatus, UpdateInfo } from "@shared/ipc";
 export type { ElectronAPI } from "@shared/ipc";
 
 const api: ElectronAPI = {
+  platform: process.platform,
   getLastUpdateInfo: () => ipcRenderer.invoke(IPC.getLastUpdateInfo),
 
   getConnectionStatus: () => ipcRenderer.invoke(IPC.getConnectionStatus),
-  getSecureStorageStatus: () => ipcRenderer.invoke(IPC.getSecureStorageStatus),
+  initializeStorage: () => ipcRenderer.invoke(IPC.initializeStorage),
 
   startGmailAuth: (intent, openInBrowser) =>
     ipcRenderer.invoke(IPC.startGmailAuth, intent, openInBrowser),

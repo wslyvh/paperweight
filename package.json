@@ -22,7 +22,7 @@
     "dist:mac": "yarn build && electron-builder --mac --publish never && node scripts/set-mac-update-minimum.cjs",
     "dist:linux": "yarn build && electron-builder --linux --publish never",
     "dist:win": "yarn build && electron-builder --win --publish never",
-    "seed:test-account": "cross-env TSX_TSCONFIG_PATH=tsconfig.node.json ELECTRON_RUN_AS_NODE=1 electron --import tsx scripts/seed-test-account.ts",
+    "seed:test-account": "cross-env TSX_TSCONFIG_PATH=tsconfig.node.json electron scripts/seed-test-account.cjs",
     "test": "vitest run",
     "test:mcp": "electron-vite build && tsx scripts/smoke-mcp.ts",
     "fixture:regenerate": "yarn build:companies && yarn build:breaches && cross-env TSX_TSCONFIG_PATH=tsconfig.node.json ELECTRON_RUN_AS_NODE=1 electron --import tsx scripts/generate-smoke-fixture.ts test/fixtures/smoke-account --replace",
@@ -83,7 +83,7 @@
         }
       ],
       "category": "public.app-category.productivity",
-      "x64ArchFiles": "Contents/Resources/app.asar.unpacked/node_modules/better-sqlite3/prebuilds/darwin-{x64,arm64}.node",
+      "x64ArchFiles": "Contents/Resources/app.asar.unpacked/node_modules/better-sqlite3-multiple-ciphers/prebuilds/darwin-{x64,arm64}.node",
       "icon": "build/icon.png",
       "hardenedRuntime": true,
       "gatekeeperAssess": false,
@@ -125,7 +125,7 @@
   "dependencies": {
     "@electron-toolkit/utils": "4.0.0",
     "@modelcontextprotocol/server": "2.4.0",
-    "better-sqlite3": "13.2.0",
+    "better-sqlite3-multiple-ciphers": "13.2.0",
     "dayjs": "1.11.23",
     "electron-log": "5.4.4",
     "electron-updater": "6.8.11",
@@ -142,6 +142,7 @@
     "zod": "4.6.7"
   },
   "devDependencies": {
+    "better-sqlite3": "13.2.0",
     "@tailwindcss/postcss": "4.3.5",
     "@types/better-sqlite3": "9.6.0",
     "@types/node": "24.19.2",

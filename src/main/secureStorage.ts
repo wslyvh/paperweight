@@ -65,11 +65,3 @@ export async function readSecureFile<T>(path: string): Promise<T | undefined> {
     throw new SecureStorageError("read");
   }
 }
-
-export async function getSecureStorageStatus() {
-  try {
-    return { available: await getElectron().safeStorage.isAsyncEncryptionAvailable(), platform: process.platform };
-  } catch {
-    return { available: false, platform: process.platform };
-  }
-}

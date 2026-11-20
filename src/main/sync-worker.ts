@@ -1,4 +1,5 @@
 import { workerData, parentPort } from "node:worker_threads";
+import { setDatabaseKey, type DatabaseKeyContext } from "./databaseEncryption";
 import { initDb } from "./db";
 import { setPreloadedCredentials } from "./credentials";
 import { runAnalysisPass } from "./services/analysis";
@@ -11,16 +12,19 @@ const {
   companiesDbPath,
   breachesDbPath,
   credentials,
+  databaseKey,
   mode,
 } = workerData as {
   dbPath: string;
   companiesDbPath: string;
   breachesDbPath: string;
   credentials: StoredCredentials | null;
+  databaseKey: DatabaseKeyContext;
   mode: "sync" | "profile-analysis";
 };
 
 // Initialize before any module calls getDb() or loadCredentials()
+setDatabaseKey(databaseKey);
 initDb(dbPath, companiesDbPath, breachesDbPath);
 let credentialRequestId = 0;
 setPreloadedCredentials(credentials, (updated) => new Promise<void>((resolve, reject) => {

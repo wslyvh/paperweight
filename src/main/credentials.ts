@@ -5,6 +5,7 @@ import { AsyncLocalStorage } from "async_hooks";
 import { existsSync, readFileSync, writeFileSync, unlinkSync } from "fs";
 
 import { readSecureFile, writeSecureFile } from "./secureStorage";
+import { encryptAccountRegistry, decryptAccountRegistry } from "./databaseEncryption";
 
 import { getGlobalSetting, saveGlobalSetting } from "./services/globalSettings";
 
@@ -74,15 +75,19 @@ export function configureAccountRegistryPath(path: string): void {
 function loadRegistry(): AccountRegistry {
   const path = getRegistryPath();
   if (!existsSync(path)) return { accounts: [] };
-  try {
-    return JSON.parse(readFileSync(path, "utf-8")) as AccountRegistry;
-  } catch {
-    return { accounts: [] };
-  }
+  return JSON.parse(decryptAccountRegistry(readFileSync(path, "utf-8"))) as AccountRegistry;
 }
 
 function saveRegistry(registry: AccountRegistry): void {
-  writeFileSync(getRegistryPath(), JSON.stringify(registry, null, 2), "utf-8");
+  writeFileSync(getRegistryPath(), encryptAccountRegistry(JSON.stringify(registry)), { mode: 0o600 });
+}
+
+export function migrateAccountRegistry(): void {
+  const path = getRegistryPath();
+  if (!existsSync(path)) return;
+  const value = JSON.parse(readFileSync(path, "utf8"));
+  if (Array.isArray(value.accounts)) saveRegistry(value as AccountRegistry);
+  else loadRegistry(); // Validate existing ciphertext before accepting startup.
 }
 
 export function listAccounts(): AccountEntry[] {

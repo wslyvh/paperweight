@@ -17,7 +17,8 @@ import type {
   SenderContacts,
   UnsubscribeMethod,
 } from "@paperweight/analysis";
-import Database from "better-sqlite3";
+import type Database from "better-sqlite3";
+import { openDatabase } from "../databaseEncryption";
 import { existsSync } from "fs";
 import { join } from "path";
 import { getDb } from "../db";
@@ -132,7 +133,7 @@ export function invalidateAnalysisPass(
 export function invalidateAnalysisPassAtPath(path: string): boolean {
   if (!existsSync(path)) return false;
 
-  const target = new Database(path);
+  const target = openDatabase(path);
   try {
     target.pragma("busy_timeout = 5000");
     invalidateAnalysisPass(target);
@@ -145,7 +146,7 @@ export function invalidateAnalysisPassAtPath(path: string): boolean {
 export function needsAnalysisPass(path: string): boolean {
   if (!existsSync(path)) return false;
 
-  const target = new Database(path, { readonly: true });
+  const target = openDatabase(path, { readonly: true });
   try {
     target.pragma("busy_timeout = 5000");
     const row = target

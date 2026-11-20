@@ -1,3 +1,4 @@
+import { getDatabaseKey } from "./databaseEncryption";
 import { BrowserWindow, app } from "electron";
 import { is } from "@electron-toolkit/utils";
 import { existsSync } from "fs";
@@ -195,6 +196,7 @@ function startWorker(key: string, mode: WorkerMode, credentials: StoredCredentia
   const worker = new Worker(workerPath, {
     workerData: {
       dbPath,
+      databaseKey: getDatabaseKey(),
       companiesDbPath,
       breachesDbPath,
       credentials,

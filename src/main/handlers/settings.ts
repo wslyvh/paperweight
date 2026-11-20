@@ -35,7 +35,7 @@ export function registerSettingsHandlers(): void {
   // --- App settings ---
 
   ipcMain.on(IPC.getSettings, (event) => {
-    event.returnValue = buildAppSettings();
+    try { event.returnValue = buildAppSettings(); } catch { event.returnValue = {}; }
   });
 
   handle(IPC.saveSettings, async (_event, settings: unknown) => {

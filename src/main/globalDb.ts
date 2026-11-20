@@ -1,5 +1,6 @@
 import { getElectron } from "./electronRuntime";
-import Database from "better-sqlite3";
+import type Database from "better-sqlite3";
+import { openDatabase, attachDatabase, getDatabaseKey } from "./databaseEncryption";
 import { existsSync, readFileSync, unlinkSync } from "fs";
 import { dirname, join } from "path";
 import { dbLog } from "./utils/log";
@@ -166,7 +167,7 @@ function recreateProfileMatchValuesView(
   replace();
 }
 
-function initGlobalSchema(target: Database.Database, schema: "main" | "global"): void {
+export function initGlobalSchema(target: Database.Database, schema: "main" | "global"): void {
   target.exec(globalSchemaSql(schema));
   recreateProfileMatchValuesView(target, schema);
 }
@@ -211,7 +212,7 @@ function migrateLegacySettings(target: Database.Database, globalPath: string): v
 }
 
 function openInitializedGlobalDb(path: string): Database.Database {
-  const next = new Database(path);
+  const next = openDatabase(path);
   try {
     next.pragma("journal_mode = WAL");
     next.pragma("foreign_keys = ON");
@@ -226,6 +227,7 @@ function openInitializedGlobalDb(path: string): Database.Database {
 }
 
 export function getGlobalDb(): Database.Database {
+  getDatabaseKey();
   if (db) return db;
   const path = getGlobalDbPath();
   const next = openInitializedGlobalDb(path);
@@ -240,7 +242,7 @@ export function attachGlobalDb(target: Database.Database): void {
     const temporary = openInitializedGlobalDb(path);
     temporary.close();
   }
-  target.prepare("ATTACH DATABASE ? AS global").run(path);
+  attachDatabase(target, path, "global");
   if (path === ":memory:") initGlobalSchema(target, "global");
 }
 

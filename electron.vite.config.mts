@@ -43,7 +43,7 @@ export default defineConfig({
           index: resolve("src/main/index.ts"),
           "sync-worker": resolve("src/main/sync-worker.ts"),
         },
-        external: ["better-sqlite3"],
+        external: ["better-sqlite3-multiple-ciphers"],
       },
     },
   },

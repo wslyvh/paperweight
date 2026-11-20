@@ -1,5 +1,6 @@
+import WipeDataModal from "../components/WipeDataModal";
 import ConnectionError from "../components/ConnectionError";
-import { isStorageError, STORAGE_SAVE_ERROR } from "@shared/secureStorage";
+import { isStorageError, STORAGE_READ_ERROR } from "@shared/secureStorage";
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import makeBlockie from "ethereum-blockies-base64";
@@ -66,7 +67,6 @@ export default function Settings() {
   const [licenseLoading, setLicenseLoading] = useState(false);
   const [licenseError, setLicenseError] = useState("");
   const [showWipeModal, setShowWipeModal] = useState(false);
-  const [wipeInProgress, setWipeInProgress] = useState(false);
   const [deletionError, setDeletionError] = useState("");
   const [whitelistEntries, setWhitelistEntries] = useState<WhitelistEntry[]>(
     [],
@@ -74,20 +74,10 @@ export default function Settings() {
   const [newEntry, setNewEntry] = useState("");
   const [reconnectLoading, setReconnectLoading] = useState(false);
   const [reconnectFailure, setReconnectFailure] = useState("");
-  const [storageUnavailable, setStorageUnavailable] = useState(false);
-  async function refreshStorage() {
-    try {
-      const status = await window.api.getSecureStorageStatus();
-      setStorageUnavailable(!status.available);
-      if (status.available) {
-        setReconnectFailure("");
-        setAccount(await window.api.getAccountInfo());
-      }
-    } catch {
-      setStorageUnavailable(true);
-    }
+  async function refreshAccount() {
+    setAccount(await window.api.getAccountInfo());
+    setReconnectFailure("");
   }
-  useEffect(() => { void refreshStorage(); }, []);
   const { accounts, refresh: refreshAccounts } = useAccounts();
   const [removeAccountEmail, setRemoveAccountEmail] = useState<string | null>(
     null,
@@ -190,21 +180,6 @@ export default function Settings() {
     window.api.getAccountInfo().then(setAccount);
   };
 
-  const handleWipe = async (): Promise<void> => {
-    setWipeInProgress(true);
-    setDeletionError("");
-    try {
-      await window.api.wipeData();
-      setShowWipeModal(false);
-    } catch {
-      setDeletionError(
-        "Paperweight could not delete all local data. Close other programs using these files and try again.",
-      );
-    } finally {
-      setWipeInProgress(false);
-    }
-  };
-
   const handleSwitchAccount = async (email: string): Promise<void> => {
     setSwitchingEmail(email);
     try {
@@ -269,10 +244,6 @@ export default function Settings() {
   const handleReconnect = async (): Promise<void> => {
     if (!account) return;
     setReconnectFailure("");
-    if (!(await window.api.getSecureStorageStatus()).available) {
-      setStorageUnavailable(true);
-      return;
-    }
     if (account.providerType === "imap") {
       setShowServerSettings(true);
       return;
@@ -346,12 +317,15 @@ export default function Settings() {
           </button>
         </div>
       </div>
-      {(storageUnavailable || isStorageError(reconnectFailure) || (account?.storageError && !account.credentialsMissing)) ? (
-        <ConnectionError error={STORAGE_SAVE_ERROR} onRetry={refreshStorage} />
+      {(isStorageError(reconnectFailure) || (account?.storageError && !account.credentialsMissing)) ? (
+        <ConnectionError
+          error={isStorageError(reconnectFailure) ? reconnectFailure : account?.storageError ?? STORAGE_READ_ERROR}
+          onRetry={isStorageError(reconnectFailure) ? handleReconnect : refreshAccount}
+        />
       ) : account?.storageError && !showServerSettings && (
         <ConnectionError
           reconnect
-          error={STORAGE_SAVE_ERROR}
+          error={account.storageError}
           onRetry={handleReconnect}
         />
       )}
@@ -1143,56 +1117,7 @@ export default function Settings() {
         </dialog>
       )}
 
-      {/* Wipe confirmation modal */}
-      {showWipeModal && (
-        <dialog className="modal modal-open">
-          <div className="modal-box">
-            <h3 className="font-bold text-lg">Wipe all data?</h3>
-            <p className="py-4">
-              This will permanently delete <strong>all accounts</strong>,
-              synced emails, credentials, settings, and your license. This
-              action cannot be undone.
-            </p>
-            {deletionError && (
-              <p className="text-sm text-error">{deletionError}</p>
-            )}
-            <div className="modal-action">
-              <button
-                className="btn btn-ghost"
-                disabled={wipeInProgress}
-                onClick={() => {
-                  setDeletionError("");
-                  setShowWipeModal(false);
-                }}
-              >
-                Cancel
-              </button>
-              <button
-                className="btn btn-error"
-                disabled={wipeInProgress}
-                onClick={handleWipe}
-              >
-                {wipeInProgress ? (
-                  <span className="loading loading-spinner loading-xs" />
-                ) : (
-                  "Wipe everything"
-                )}
-              </button>
-            </div>
-          </div>
-          <form method="dialog" className="modal-backdrop">
-            <button
-              disabled={wipeInProgress}
-              onClick={() => {
-                setDeletionError("");
-                setShowWipeModal(false);
-              }}
-            >
-              close
-            </button>
-          </form>
-        </dialog>
-      )}
+      {showWipeModal && <WipeDataModal onClose={() => setShowWipeModal(false)} />}
     </div>
   );
 }

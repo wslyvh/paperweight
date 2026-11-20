@@ -2,7 +2,8 @@ import { getElectron } from "./electronRuntime";
 import { SecureStorageError, removeLegacyPlaintextFile } from "./secureStorage";
 import { join } from "path";
 import { existsSync, unlinkSync } from "fs";
-import Database from "better-sqlite3";
+import type Database from "better-sqlite3";
+import { openDatabase } from "./databaseEncryption";
 import { APP_CONFIG } from "@shared/config";
 import { findPresetByHost } from "@shared/email-providers";
 import {
@@ -128,7 +129,7 @@ async function migrateScanScopeAllMail(): Promise<void> {
       const creds = await loadCredentials(acc.email);
       if (!creds) continue;
 
-      db = new Database(dbPath);
+      db = openDatabase(dbPath);
 
       const done = db
         .prepare("SELECT 1 FROM settings WHERE key = 'migration:all-mail-scope'")
@@ -219,7 +220,7 @@ function migrateEngineSwitch(): void {
 
     let db: Database.Database | undefined;
     try {
-      db = new Database(dbPath);
+      db = openDatabase(dbPath);
       if (applyEngineSwitch(db)) {
         appLog.info(`migrations: engine switch applied for [${accountTag(acc.email)}]`);
       }
@@ -407,7 +408,7 @@ function migrateReceivedAddresses(): void {
 
     let db: Database.Database | undefined;
     try {
-      db = new Database(dbPath);
+      db = openDatabase(dbPath);
       migrateMessages(db); // the column may not exist yet on this account
       const result = applyReceivedAddresses(db);
       if (!result) continue;

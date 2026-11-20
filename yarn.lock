@@ -1267,6 +1267,13 @@ baseline-browser-mapping@^2.11.37:
   resolved "https://registry.yarnpkg.com/baseline-browser-mapping/-/baseline-browser-mapping-2.11.38.tgz#3f7be275be548fb58ebce2b15cd2d2533141e4b5"
   integrity sha512-rMgy5YW7x28SMfXHLlVZDBqlWzYZ0x2rVR/6FWrNBF0chjigARK1H6nM0hKA1Um3kPOlkQFVtjJs00d2N1ezuw==
 
+better-sqlite3-multiple-ciphers@13.2.0:
+  version "13.2.0"
+  resolved "https://registry.yarnpkg.com/better-sqlite3-multiple-ciphers/-/better-sqlite3-multiple-ciphers-13.2.0.tgz#a6ff68243bff1071231bce94b6fe216ce1b33027"
+  integrity sha512-e85mBgBIA79uJqct6E/QwqPEVVLihiEpV2dEH5J9b1L1hyZQOegR1XBfa68l0fbvqk2oCpmPQOz6R44x+BOOLg==
+  dependencies:
+    node-addon-api "^8.0.0"
+
 better-sqlite3@13.2.0:
   version "13.2.0"
   resolved "https://registry.yarnpkg.com/better-sqlite3/-/better-sqlite3-13.2.0.tgz#61b452adbc3db9fb13e1d0e5ad04347b6fc7f833"

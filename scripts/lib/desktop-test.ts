@@ -1,3 +1,5 @@
+import { createHash } from "node:crypto";
+import { setDatabaseKey } from "../../src/main/databaseEncryption";
 import { _electron, type ElectronApplication } from "playwright-core";
 import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
@@ -84,7 +86,7 @@ export async function encryptProfile(profile: string, label: string, license = f
   if (license) values.push({ name: "license.enc", value: { key: "MCP-SMOKE-TEST", tier: "test", validatedAt: Date.now() } });
   await withDesktop(profile, label, async (app) => {
     await app.firstWindow();
-    await app.evaluate(async ({ app, safeStorage }, input) => {
+    const databaseKey = await app.evaluate(async ({ app, safeStorage }, input) => {
       const require = process.getBuiltinModule("module").createRequire(input.helper);
       if (!await safeStorage.isAsyncEncryptionAvailable()) throw new Error("OS secure storage is unavailable");
       if (process.platform === "linux" && safeStorage.getSelectedStorageBackend() !== "gnome_libsecret") {
@@ -103,7 +105,11 @@ export async function encryptProfile(profile: string, label: string, license = f
           await writeSecureFile(path, entry.value);
         }
       }
+      const keyPath = join(app.getPath("userData"), "database-key.enc");
+      return JSON.parse((await safeStorage.decryptStringAsync(require("node:fs").readFileSync(keyPath))).result).key as string;
     }, { tsx: require.resolve("tsx/cjs"), helper: join(root, "src/main/secureStorage.ts"), values, legacy });
+    const keyPath = join(profile, "database-key.enc");
+    setDatabaseKey({ key: databaseKey, path: keyPath, fingerprint: createHash("sha256").update(readFileSync(keyPath)).digest("hex") });
   });
   for (const { name, value } of values) {
     if (readFileSync(join(profile, name)).includes(Buffer.from(JSON.stringify(value)))) {

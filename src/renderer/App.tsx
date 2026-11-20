@@ -1,3 +1,4 @@
+import StorageGate from "./components/StorageGate";
 import { HashRouter, Routes, Route, Navigate, useNavigate, useLocation } from "react-router";
 import { useCallback, useEffect, useState } from "react";
 import type { LicenseStatus } from "@shared/types";
@@ -115,6 +116,7 @@ export default function App() {
   }, []);
 
   return (
+    <StorageGate>
     <HashRouter>
       <AccountSwitchReset onReset={resetAccountTree} />
       <div
@@ -161,5 +163,6 @@ export default function App() {
         </Routes>
       </div>
     </HashRouter>
+    </StorageGate>
   );
 }

@@ -1,5 +1,3 @@
-import ConnectionError from "../components/ConnectionError";
-import { STORAGE_SAVE_ERROR } from "@shared/secureStorage";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { HelpCircle, Search, Trash2, Globe } from "lucide-react";
@@ -86,16 +84,6 @@ export default function Onboarding() {
   const [showHelpModal, setShowHelpModal] = useState(false);
   const [supportInfo, setSupportInfo] = useState<SupportInfo>();
   const [copyFirst, setCopyFirst] = useState(false);
-  const [storageReady, setStorageReady] = useState<boolean>();
-  async function checkStorage() {
-    try {
-      setStorageReady((await window.api.getSecureStorageStatus()).available);
-    } catch {
-      setStorageReady(false);
-    }
-  }
-  useEffect(() => { void checkStorage(); }, []);
-
   // If the page reloads while on /onboarding (e.g. after accountSwitched fires)
   // and credentials are already present, redirect straight to dashboard.
   useEffect(() => {
@@ -136,9 +124,7 @@ export default function Onboarding() {
             </button>
           </div>
 
-          {storageReady === undefined && <p className="text-sm text-base-content/60">Checking secure storage…</p>}
-          {storageReady === false && <ConnectionError error={STORAGE_SAVE_ERROR} onRetry={checkStorage} />}
-          {storageReady && view === "select" && (
+          {view === "select" && (
             <ProviderSelect
               onGmail={(copy) => {
                 setCopyFirst(copy);
@@ -153,7 +139,7 @@ export default function Onboarding() {
               onImap={() => setView("imap")}
             />
           )}
-          {storageReady && view === "gmail" && (
+          {view === "gmail" && (
             <GmailConnect
               intent={{ type: "add" }}
               copyFirst={copyFirst}
@@ -161,7 +147,7 @@ export default function Onboarding() {
               onBack={() => setView("select")}
             />
           )}
-          {storageReady && view === "microsoft" && (
+          {view === "microsoft" && (
             <MicrosoftConnect
               intent={{ type: "add" }}
               copyFirst={copyFirst}
@@ -169,19 +155,19 @@ export default function Onboarding() {
               onBack={() => setView("select")}
             />
           )}
-          {storageReady && view === "apple" && (
+          {view === "apple" && (
             <AppleConnect
               onSuccess={handleSuccess}
               onBack={() => setView("select")}
             />
           )}
-          {storageReady && view === "proton" && (
+          {view === "proton" && (
             <ProtonConnect
               onSuccess={handleSuccess}
               onBack={() => setView("select")}
             />
           )}
-          {storageReady && view === "imap" && (
+          {view === "imap" && (
             <ImapConnect
               onSuccess={handleSuccess}
               onBack={() => setView("select")}

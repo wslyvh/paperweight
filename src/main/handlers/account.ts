@@ -1,4 +1,3 @@
-import { getSecureStorageStatus } from "../secureStorage";
 import { handle } from "./access";
 import { switchToAccount } from "../services/accountView";
 import { app, BrowserWindow, ipcMain } from "electron";
@@ -107,7 +106,6 @@ export function registerAccountHandlers(): void {
   // --- Auth & connection ---
 
   handle(IPC.getConnectionStatus, () => getConnectionStatus());
-  handle(IPC.getSecureStorageStatus, () => getSecureStorageStatus());
 
   // openInBrowser defaults to true; the onboarding "copy link" path passes false
   // so the auth URL is copied to the clipboard instead of auto-opened.

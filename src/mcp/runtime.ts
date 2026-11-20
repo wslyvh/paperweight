@@ -1,3 +1,4 @@
+import { initializeDatabaseEncryption } from "../main/databaseEncryption";
 import { existsSync } from "fs";
 import { homedir } from "os";
 import { join, resolve } from "path";
@@ -200,6 +201,11 @@ export function readMailboxDatabase<T>(
 
 export async function initializePaperweight(): Promise<void> {
   const paths = resolvePaths();
+  try {
+    await initializeDatabaseEncryption(paths.userData, false);
+  } catch (error) {
+    throw new McpStartupError(error instanceof Error ? error.message : "Could not unlock local data.");
+  }
   configureGlobalDbPath(join(paths.userData, "global.db"));
   configureAccountRegistryPath(join(paths.userData, "accounts.json"));
 
