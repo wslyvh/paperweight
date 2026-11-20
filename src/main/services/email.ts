@@ -23,7 +23,9 @@ export async function sendEmail(
     return { success: true, messageId };
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    actionLog.error(`Send email via <${recipientDomain}> failed: ${message}`);
+    const details = error instanceof Error ? error.stack || message : message;
+    // SMTP rejection replies can echo the recipient supplied to sendEmail.
+    actionLog.error(`Send email via <${recipientDomain}> failed: ${details.split(to).join("[recipient]")}`);
     return { success: false, error: message };
   }
 }
