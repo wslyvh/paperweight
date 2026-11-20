@@ -180,10 +180,10 @@ it("uses an opaque, case-insensitive account filename without the email local pa
 it("renames legacy account data and sidecars, preserves contents, and is safe to rerun", () => {
   userDataDir = mkdtempSync(join(tmpdir(), "paperweight-filenames-"));
   resetCredentialsModuleState();
-  registerAccount("SMOKE-TEST@paperweight.test", "imap");
   const currentKey = emailToFileKey("SMOKE-TEST@paperweight.test");
   const suffixes = [".db", ".db-wal", ".db-shm", ".db-journal", ".enc"];
   try {
+    registerAccount("SMOKE-TEST@paperweight.test", "imap");
     for (const suffix of suffixes) {
       writeFileSync(join(userDataDir, `smoke-test_fd381a${suffix}`), `preserved ${suffix}`);
     }
@@ -196,6 +196,7 @@ it("renames legacy account data and sidecars, preserves contents, and is safe to
     }
     expect(readFileSync(join(userDataDir, "accounts.json"), "utf8")).toBe(registry);
   } finally {
+    resetGlobalSettingsCache();
     rmSync(userDataDir, { recursive: true, force: true });
   }
 });
