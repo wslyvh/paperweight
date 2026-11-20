@@ -49,7 +49,7 @@ it("creates encrypted database and WAL pages, with encrypted global and plaintex
 });
 
 it("converts existing account/global databases, preserving their contents and existing WAL commits", async () => {
-  for (const name of ["person_abcdef.db", "global.db"]) {
+  for (const name of ["person_abcdef.db", `account_${"a".repeat(64)}.db`, "global.db"]) {
     const db = new Database(join(directory, name));
     db.pragma("journal_mode = WAL");
     db.exec("CREATE TABLE records(value TEXT); INSERT INTO records VALUES ('keep-this-private-value')");
@@ -59,7 +59,7 @@ it("converts existing account/global databases, preserving their contents and ex
   const savedKey = readFileSync(join(directory, DATABASE_KEY_FILE));
   await initializeDatabaseEncryption(directory);
   expect(readFileSync(join(directory, DATABASE_KEY_FILE))).toEqual(savedKey);
-  for (const name of ["person_abcdef.db", "global.db"]) {
+  for (const name of ["person_abcdef.db", `account_${"a".repeat(64)}.db`, "global.db"]) {
     const db = openDatabase(join(directory, name));
     try { expect(db.prepare("SELECT value FROM records").pluck().get()).toBe("keep-this-private-value"); } finally { db.close(); }
     expect(readFileSync(join(directory, name)).includes(Buffer.from("keep-this-private-value"))).toBe(false);

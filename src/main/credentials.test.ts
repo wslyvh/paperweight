@@ -1,6 +1,6 @@
 import { STORAGE_READ_ERROR } from "../shared/secureStorage";
 import { vi } from "vitest";
-import { existsSync, mkdtempSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdtempSync, rmSync, writeFileSync, readFileSync } from "fs";
 import { tmpdir } from "os";
 import { join } from "path";
 
@@ -21,6 +21,8 @@ vi.mock("electron", () => ({
 
 import {
   deleteCredentials,
+  migrateAccountFilenames,
+  registerAccount,
   emailToFileKey,
   hasCredentials,
   loadCredentials,
@@ -165,4 +167,35 @@ describe("loadCredentials rejects plaintext", () => {
   it("rejects plain JSON when decryption fails", async () => {
     await expect(loadCredentials()).rejects.toThrow(STORAGE_READ_ERROR);
   });
+});
+
+it("uses an opaque, case-insensitive account filename without the email local part", () => {
+  const key = emailToFileKey("Person@Example.com");
+  expect(key).toMatch(/^account_[a-f0-9]{64}$/);
+  expect(key).not.toContain("person");
+  expect(key).toBe(emailToFileKey("person@example.com"));
+  expect(key).not.toBe(emailToFileKey("person@other.example"));
+});
+
+it("renames legacy account data and sidecars, preserves contents, and is safe to rerun", () => {
+  userDataDir = mkdtempSync(join(tmpdir(), "paperweight-filenames-"));
+  resetCredentialsModuleState();
+  registerAccount("SMOKE-TEST@paperweight.test", "imap");
+  const currentKey = emailToFileKey("SMOKE-TEST@paperweight.test");
+  const suffixes = [".db", ".db-wal", ".db-shm", ".db-journal", ".enc"];
+  try {
+    for (const suffix of suffixes) {
+      writeFileSync(join(userDataDir, `smoke-test_fd381a${suffix}`), `preserved ${suffix}`);
+    }
+    const registry = readFileSync(join(userDataDir, "accounts.json"), "utf8");
+    migrateAccountFilenames();
+    migrateAccountFilenames();
+    for (const suffix of suffixes) {
+      expect(existsSync(join(userDataDir, `smoke-test_fd381a${suffix}`))).toBe(false);
+      expect(readFileSync(join(userDataDir, `${currentKey}${suffix}`), "utf8")).toBe(`preserved ${suffix}`);
+    }
+    expect(readFileSync(join(userDataDir, "accounts.json"), "utf8")).toBe(registry);
+  } finally {
+    rmSync(userDataDir, { recursive: true, force: true });
+  }
 });

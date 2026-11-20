@@ -12,7 +12,7 @@ import { getGlobalSetting } from "./services/globalSettings";
 import { initDb } from "./db";
 import { appLog } from "./utils/log";
 import { initFileLog } from "./utils/file-log";
-import { emailToFileKey, getActiveEmail, migrateAccountRegistry } from "./credentials";
+import { emailToFileKey, getActiveEmail, migrateAccountRegistry, migrateAccountFilenames } from "./credentials";
 import { ensureAccountSettingsInDb } from "./services/account";
 import {
   seedProfileCountryIfEmpty,
@@ -124,6 +124,7 @@ async function initializeAppData(): Promise<StorageState> {
     try {
       await initializeDatabaseEncryption(app.getPath("userData"));
       migrateAccountRegistry();
+      migrateAccountFilenames();
       await runMigrations();
       seedProfileEmailsFromAccounts();
 

@@ -28,7 +28,7 @@ export async function requestFactoryReset(): Promise<void> {
   // Include orphaned account files using emailToFileKey names, not Chromium DBs.
   const files = readdirSync(userData);
   for (const name of files) {
-    if (/^[a-z0-9._-]*_[a-f0-9]{6}\.db(?:-wal|-shm|-journal|\.encrypting(?:-journal|-wal|-shm)?)?$/.test(name)) {
+    if (/^(?:account_[a-f0-9]{64}|[a-z0-9._-]*_[a-f0-9]{6})\.db(?:-wal|-shm|-journal|\.encrypting(?:-journal|-wal|-shm)?)?$/.test(name)) {
       rmSync(join(userData, name), { force: true });
     }
   }

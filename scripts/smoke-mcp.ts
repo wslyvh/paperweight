@@ -169,10 +169,7 @@ async function prepareLicense(profile: string): Promise<void> {
 }
 
 function seedReadSurface(profile: string): void {
-  const manifest = JSON.parse(
-    readFileSync(join(profile, "manifest.json"), "utf-8"),
-  ) as { fileKey: string };
-  const database = fixtureDatabase(join(profile, `${manifest.fileKey}.db`));
+  const database = fixtureDatabase(join(profile, `${primaryMailboxKey}.db`));
   database.pragma("busy_timeout = 5000");
   const vendor = database.prepare(
     `INSERT INTO vendors (
@@ -1115,10 +1112,7 @@ async function proveOverviewRead(): Promise<void> {
     );
   }
 
-  const manifest = JSON.parse(
-    readFileSync(join(profile, "manifest.json"), "utf-8"),
-  ) as { fileKey: string };
-  const actionDatabase = fixtureDatabase(join(profile, `${manifest.fileKey}.db`));
+  const actionDatabase = fixtureDatabase(join(profile, `${primaryMailboxKey}.db`));
   const vendorRow = actionDatabase.prepare(
     "SELECT id FROM vendors WHERE root_domain = ?",
   ).get("mcp-smoke.test") as { id: number };

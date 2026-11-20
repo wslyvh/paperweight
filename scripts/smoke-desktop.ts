@@ -1,3 +1,4 @@
+import { emailToFileKey } from "../src/main/credentials";
 import assert from "node:assert/strict";
 import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync, unlinkSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -50,8 +51,9 @@ async function main() {
       else execFileSync(process.execPath, ["--import", "tsx", join(root, "scripts/generate-smoke-fixture.ts"), profile], {
         cwd: root, env: { ...process.env, TSX_TSCONFIG_PATH: join(root, "tsconfig.node.json") }, stdio: "pipe",
       });
-      const manifest = JSON.parse(readFileSync(join(profile, "manifest.json"), "utf8")) as { fileKey: string };
+      const manifest = JSON.parse(readFileSync(join(profile, "manifest.json"), "utf8")) as { fileKey: string; email: string };
       await encryptProfile(profile, `${kind}-encrypt`, true, kind === "stored");
+      const currentKey = emailToFileKey(manifest.email);
       let messageCount = 0;
       await withDesktop(profile, `${kind}-open`, async (app) => {
         const page = await app.firstWindow();
@@ -95,7 +97,7 @@ async function main() {
           assert.equal((await page.evaluate(() => window.api.getAccountInfo())).storageError, undefined);
         }
       });
-      assert.ok(existsSync(join(profile, `${manifest.fileKey}.db`)));
+      assert.ok(existsSync(join(profile, `${currentKey}.db`)));
       assert.ok(existsSync(join(profile, "global.db")));
       await withDesktop(profile, `${kind}-reopen`, async (app) => {
         const page = await app.firstWindow();
@@ -126,7 +128,7 @@ async function main() {
           await page.getByRole("heading", { name: "Get Started", exact: true }).waitFor();
           assert.equal(await page.evaluate(() => window.api.getConnectionStatus()), false);
           assert.equal((await page.evaluate(() => window.api.getLicenseStatus())).active, false);
-          for (const file of ["accounts.json", "license.enc", "orphan.enc", `${manifest.fileKey}.db`, `${manifest.fileKey}.enc`, "logs/main.old.log", ".reset-requested"]) {
+          for (const file of ["accounts.json", "license.enc", "orphan.enc", `${currentKey}.db`, `${currentKey}.enc`, "logs/main.old.log", ".reset-requested"]) {
             assert.equal(existsSync(join(profile, file)), false, `Reset left ${file} behind`);
           }
           assert.doesNotMatch(readFileSync(join(profile, "logs/main.log"), "utf8"), /Settings saved: colorTheme/);
@@ -186,7 +188,7 @@ async function main() {
 
     const recovery = join(directory, "plaintext-recovery");
     cpSync(join(root, "test/fixtures/smoke-account"), recovery, { recursive: true });
-    const manifest = JSON.parse(readFileSync(join(recovery, "manifest.json"), "utf8")) as { fileKey: string };
+    const manifest = JSON.parse(readFileSync(join(recovery, "manifest.json"), "utf8")) as { fileKey: string; email: string };
     const registry = readFileSync(join(recovery, "accounts.json"));
     const recoveryDb = new Database(join(recovery, `${manifest.fileKey}.db`));
     try {
@@ -204,6 +206,7 @@ async function main() {
       const page = await app.firstWindow();
       await page.getByRole("heading", { name: "Settings", exact: true }).waitFor();
       assert.equal(existsSync(join(recovery, `${manifest.fileKey}.enc`)), false);
+      assert.equal(existsSync(join(recovery, `${emailToFileKey(manifest.email)}.enc`)), false);
       assert.equal(existsSync(join(recovery, "license.enc")), false);
       const accounts = await page.evaluate(() => window.api.listAccounts());
       assert.deepEqual(accounts.map(({ email, providerType }) => ({ email, providerType })),

@@ -9,7 +9,7 @@ import { DATA_UNLOCK_ERROR, STORAGE_UNAVAILABLE_ERROR } from "../shared/secureSt
 
 export const DATABASE_KEY_FILE = "database-key.enc";
 const SQLITE_HEADER = Buffer.from("SQLite format 3\0");
-const ACCOUNT_DB = /^[a-z0-9._-]*_[a-f0-9]{6}\.db$/;
+const ACCOUNT_DB = /^(?:account_[a-f0-9]{64}|[a-z0-9._-]*_[a-f0-9]{6})\.db$/;
 
 interface DatabaseKey {
   key: string;

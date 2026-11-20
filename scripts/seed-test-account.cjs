@@ -12,9 +12,10 @@ app.setPath("userData", profile);
 app.whenReady().then(async () => {
   require("tsx/cjs");
   const { initializeDatabaseEncryption } = require("../src/main/databaseEncryption.ts");
-  const { migrateAccountRegistry } = require("../src/main/credentials.ts");
+  const { migrateAccountRegistry, migrateAccountFilenames } = require("../src/main/credentials.ts");
   await initializeDatabaseEncryption(profile);
   migrateAccountRegistry();
+  migrateAccountFilenames();
   process.argv = [process.execPath, __filename, profile];
   const { syntheticCredentialsPath } = require("./seed-test-account.ts");
   const { writeSecureFile } = require("../src/main/secureStorage.ts");

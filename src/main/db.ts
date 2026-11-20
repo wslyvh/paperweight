@@ -79,7 +79,7 @@ export function getDb(): Database.Database {
     attachCompaniesDb(next);
     attachBreachesDb(next);
     attachGlobalDb(next);
-    const tag = basename(dbPath, ".db").split("_").pop() ?? "?";
+    const tag = basename(dbPath, ".db").split("_").pop()?.slice(0, 6) ?? "?";
     dbLog.info(`Database initialized [${tag}]`);
   } catch (error) {
     next.close();
@@ -126,7 +126,7 @@ export function createAccountDb(dbPath: string): void {
   attachCompaniesDb(newDb);
   attachBreachesDb(newDb);
   newDb.close();
-  const tag = basename(dbPath, ".db").split("_").pop() ?? "?";
+  const tag = basename(dbPath, ".db").split("_").pop()?.slice(0, 6) ?? "?";
   dbLog.info(`Account DB created [${tag}]`);
 }
 

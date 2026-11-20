@@ -1,3 +1,4 @@
+import { emailToFileKey } from "../../src/main/credentials";
 import { createHash } from "node:crypto";
 import { setDatabaseKey } from "../../src/main/databaseEncryption";
 import { _electron, type ElectronApplication } from "playwright-core";
@@ -80,8 +81,9 @@ export async function withDesktop(profile: string, label: string, check: (app: E
 // storage helper. This preserves app identity/keychain access across restarts.
 // The source helper is loaded only by the test driver, never shipped in the app.
 export async function encryptProfile(profile: string, label: string, license = false, legacy = false) {
+  const manifest = JSON.parse(readFileSync(join(profile, "manifest.json"), "utf8")) as { email: string; fileKey: string };
   const values = readdirSync(profile).filter((name) => name.endsWith(".enc")).map((name) => ({
-    name, value: JSON.parse(readFileSync(join(profile, name), "utf8")) as unknown,
+    name: name === `${manifest.fileKey}.enc` ? `${emailToFileKey(manifest.email)}.enc` : name, value: JSON.parse(readFileSync(join(profile, name), "utf8")) as unknown,
   }));
   if (license) values.push({ name: "license.enc", value: { key: "MCP-SMOKE-TEST", tier: "test", validatedAt: Date.now() } });
   await withDesktop(profile, label, async (app) => {

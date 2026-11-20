@@ -2,7 +2,7 @@ import { getElectron } from "./electronRuntime";
 import { join } from "path";
 import { createHash } from "crypto";
 import { AsyncLocalStorage } from "async_hooks";
-import { existsSync, readFileSync, writeFileSync, unlinkSync } from "fs";
+import { existsSync, readFileSync, writeFileSync, unlinkSync, renameSync } from "fs";
 
 import { readSecureFile, writeSecureFile } from "./secureStorage";
 import { encryptAccountRegistry, decryptAccountRegistry } from "./databaseEncryption";
@@ -51,13 +51,10 @@ interface AccountRegistry {
 let _accountRegistryPath: string | undefined;
 
 export function emailToFileKey(email: string): string {
-  const normalized = email.toLowerCase();
-  const local = normalized.split("@")[0].replace(/[^a-z0-9.-]/g, "_");
-  const hash = createHash("sha256").update(normalized).digest("hex").slice(0, 6);
-  return `${local}_${hash}`;
+  return `account_${createHash("sha256").update(email.toLowerCase()).digest("hex")}`;
 }
 
-/** Short privacy-safe account identifier for logging (6-char hash, matches filename suffix). */
+/** Short privacy-safe account identifier for logging (6-char hash). */
 export function accountTag(email: string): string {
   return createHash("sha256").update(email.toLowerCase()).digest("hex").slice(0, 6);
 }
@@ -88,6 +85,27 @@ export function migrateAccountRegistry(): void {
   const value = JSON.parse(readFileSync(path, "utf8"));
   if (Array.isArray(value.accounts)) saveRegistry(value as AccountRegistry);
   else loadRegistry(); // Validate existing ciphertext before accepting startup.
+}
+
+/**
+ * Post-v1.1.0 encryption release — replace readable account filenames with hashes.
+ * Storage preparation after registry unlock, before chronological database migrations.
+ */
+export function migrateAccountFilenames(): void {
+  const { app } = getElectron();
+  const directory = app.getPath("userData");
+  for (const { email } of listAccounts()) {
+    const normalized = email.toLowerCase();
+    const local = normalized.split("@")[0].replace(/[^a-z0-9.-]/g, "_");
+    const hash = createHash("sha256").update(normalized).digest("hex").slice(0, 6);
+    const previous = join(directory, `${local}_${hash}`);
+    const current = join(directory, emailToFileKey(email));
+    for (const suffix of [".db", ".db-wal", ".db-shm", ".db-journal", ".enc"]) {
+      if (!existsSync(previous + suffix)) continue;
+      if (existsSync(current + suffix)) throw new Error("Cannot rename account data: destination already exists");
+      renameSync(previous + suffix, current + suffix);
+    }
+  }
 }
 
 export function listAccounts(): AccountEntry[] {

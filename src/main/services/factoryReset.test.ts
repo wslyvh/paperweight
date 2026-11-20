@@ -32,7 +32,7 @@ beforeEach(() => {
   fs.mkdirSync(mocks.paths.userData);
   fs.mkdirSync(mocks.paths.logs);
   mocks.wipeGlobalDatabase.mockImplementation(() => fs.rmSync(join(mocks.paths.userData, "global.db"), { force: true }));
-  for (const name of ["accounts.json", "settings.json", "license.enc", "__staging__.enc", "orphan.enc", "orphan_abcdef.db", "orphan_abcdef.db-wal", "orphan_abcdef.db-shm", "global.db"]) {
+  for (const name of ["accounts.json", "settings.json", "license.enc", "__staging__.enc", "orphan.enc", "orphan_abcdef.db", "orphan_abcdef.db-wal", "orphan_abcdef.db-shm", "global.db", `account_${"a".repeat(64)}.db`, `account_${"a".repeat(64)}.db-wal`, `account_${"a".repeat(64)}.db-shm`]) {
     fs.writeFileSync(join(mocks.paths.userData, name), "synthetic data");
   }
   fs.writeFileSync(join(mocks.paths.logs, "main.old.log"), "synthetic log");
