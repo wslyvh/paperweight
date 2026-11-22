@@ -1408,16 +1408,16 @@ export default function AccountDetail() {
             Cases{vendorCases.length > 0 ? ` (${vendorCases.length})` : ""}
           </button>
 
-          <div className={hasAnyActivity ? "" : "tooltip tooltip-bottom"} data-tip={hasAnyActivity ? undefined : "No activity yet"}>
-            <button
-              role="tab"
-              aria-selected={activeTab === "activity"}
-              className={`${tabClass(activeTab === "activity")} ${hasAnyActivity ? "" : "tab-disabled opacity-40 cursor-not-allowed"}`}
-              onClick={() => { if (hasAnyActivity) setActiveTab("activity"); }}
-            >
-              Activity
-            </button>
-          </div>
+          <button
+            role="tab"
+            aria-selected={activeTab === "activity"}
+            aria-disabled={!hasAnyActivity}
+            data-tip={hasAnyActivity ? undefined : "No activity yet"}
+            className={`${tabClass(activeTab === "activity")} ${hasAnyActivity ? "" : "tooltip tooltip-bottom opacity-40 cursor-not-allowed"}`}
+            onClick={() => { if (hasAnyActivity) setActiveTab("activity"); }}
+          >
+            Activity
+          </button>
         </div>
 
         {/* Actions tab */}
