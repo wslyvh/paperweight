@@ -1,6 +1,5 @@
 import WipeDataModal from "../components/WipeDataModal";
 import ConnectionError from "../components/ConnectionError";
-import { isStorageError, STORAGE_READ_ERROR } from "@shared/secureStorage";
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import makeBlockie from "ethereum-blockies-base64";
@@ -76,10 +75,8 @@ export default function Settings() {
   const [reconnectAccount, setReconnectAccount] = useState<AccountInfo>();
   const [reconnectStarted, setReconnectStarted] = useState(false);
   const [reconnectCopyFirst, setReconnectCopyFirst] = useState(false);
-  const [reconnectFailure, setReconnectFailure] = useState("");
   async function refreshAccount() {
     setAccount(await window.api.getAccountInfo());
-    setReconnectFailure("");
   }
   const { accounts, refresh: refreshAccounts } = useAccounts();
   const [removeAccountEmail, setRemoveAccountEmail] = useState<string | null>(
@@ -251,15 +248,12 @@ export default function Settings() {
 
   const handleReconnect = (): void => {
     if (!account) return;
-    setReconnectFailure("");
     if (account.providerType === "imap") {
       setShowServerSettings(true);
     } else if (account.providerType === "gmail" || account.providerType === "microsoft") {
       setReconnectStarted(false);
       setReconnectCopyFirst(false);
       setReconnectAccount(account);
-    } else {
-      setReconnectFailure("Reconnect is not available for this account");
     }
   };
 
@@ -306,10 +300,10 @@ export default function Settings() {
           </button>
         </div>
       </div>
-      {(isStorageError(reconnectFailure) || (account?.storageError && !account.credentialsMissing)) ? (
+      {account?.storageError && !account.credentialsMissing ? (
         <ConnectionError
-          error={isStorageError(reconnectFailure) ? reconnectFailure : account?.storageError ?? STORAGE_READ_ERROR}
-          onRetry={isStorageError(reconnectFailure) ? handleReconnect : refreshAccount}
+          error={account.storageError}
+          onRetry={refreshAccount}
         />
       ) : account?.storageError && !showServerSettings && (
         <ConnectionError
@@ -549,9 +543,6 @@ export default function Settings() {
                     Reconnect
                   </button>
                 )}
-              {reconnectFailure && !isStorageError(reconnectFailure) && (
-                <p className="text-sm text-error">{reconnectFailure}</p>
-              )}
             </>
           )}
         </div>
@@ -1064,7 +1055,6 @@ export default function Settings() {
           onClose={() => setShowServerSettings(false)}
           onSaved={() => {
             setShowServerSettings(false);
-            setReconnectFailure("");
             window.api.getAccountInfo().then(setAccount);
             window.api.getEmailConnection().then(setConnection);
             window.api.startSync();
