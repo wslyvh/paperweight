@@ -455,3 +455,27 @@ export async function runMigrations(): Promise<void> {
   migrateEngineSwitch();
   migrateReceivedAddresses();
 }
+
+/**
+ * Post-v1.2.0 — covering indexes for mailbox navigation. Run from initSchema
+ * after column migrations, for both new accounts and existing account opens.
+ * Metadata queries avoid loading message rows containing bodies and headers.
+ * Existing indexes make subsequent opens a no-op; no mailbox rows change.
+ * Rollback: drop these three indexes and restore messages(vendor_id) and
+ * pii_findings(type, value_normalized) under their former index names.
+ */
+export function migrateQueryIndexes(d: Database.Database): void {
+  d.transaction(() => {
+    d.exec(`
+      CREATE INDEX IF NOT EXISTS idx_messages_id_metadata
+        ON messages(id, vendor_id, date);
+      CREATE INDEX IF NOT EXISTS idx_messages_vendor_metadata
+        ON messages(vendor_id, id, type, date, sender_email);
+      CREATE INDEX IF NOT EXISTS idx_pii_findings_value_metadata
+        ON pii_findings(type, value_normalized, in_footer, in_quoted_text,
+                        self_reference, message_id, country);
+      DROP INDEX IF EXISTS idx_messages_vendor;
+      DROP INDEX IF EXISTS idx_pii_findings_type_value;
+    `);
+  })();
+}

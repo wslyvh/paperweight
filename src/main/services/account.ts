@@ -20,7 +20,6 @@ import { testSmtpConnection } from "../providers/smtp";
 import { getProvider } from "../providers/ProviderFactory";
 import { addWhitelistEntry, getSetting, saveSetting, applyAutoLaunch, requirePro } from "./settings";
 import { saveGlobalSetting } from "./globalSettings";
-import { getDashboardStats } from "./stats";
 import { getSyncState } from "./sync";
 import {
   getMessageIdsByVendor,
@@ -331,7 +330,7 @@ export async function getAccountInfo(): Promise<AccountInfo> {
     if (!(error instanceof SecureStorageError)) throw error;
     storageError = error.message;
   }
-  const stats = getDashboardStats();
+  const totalMessages = getDb().prepare("SELECT COUNT(*) FROM messages").pluck().get() as number;
   const syncState = getSyncState();
 
   const server = creds?.imap
@@ -353,7 +352,7 @@ export async function getAccountInfo(): Promise<AccountInfo> {
     storageError,
     registeredAt: parseInt(getSetting("registeredAt") || "0", 10) || undefined,
     lastSyncAt: syncState.last_sync_at,
-    totalMessages: stats.totalMessages,
+    totalMessages,
     server,
   };
 }

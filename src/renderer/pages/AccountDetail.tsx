@@ -1413,10 +1413,10 @@ export default function AccountDetail() {
             aria-selected={activeTab === "activity"}
             aria-disabled={!hasAnyActivity}
             data-tip={hasAnyActivity ? undefined : "No activity yet"}
-            className={`${tabClass(activeTab === "activity")} ${hasAnyActivity ? "" : "tooltip tooltip-bottom opacity-40 cursor-not-allowed"}`}
+            className={`${tabClass(activeTab === "activity")} ${hasAnyActivity ? "" : "tooltip tooltip-bottom cursor-not-allowed"}`}
             onClick={() => { if (hasAnyActivity) setActiveTab("activity"); }}
           >
-            Activity
+            <span className={hasAnyActivity ? undefined : "opacity-40"}>Activity</span>
           </button>
         </div>
 

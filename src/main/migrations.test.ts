@@ -26,6 +26,7 @@ import {
   applyEngineSwitch,
   applyReceivedAddresses,
   markReceivedAddressesDone,
+  migrateQueryIndexes,
 } from "./migrations";
 
 // The switch release resets each account's sync cursors so the next sync behaves
@@ -83,6 +84,32 @@ function seedPreUpgradeDb(): void {
 
 beforeAll(() => initDb(":memory:", "/nonexistent", "/nonexistent"));
 beforeEach(seedPreUpgradeDb);
+
+it("upgrades navigation indexes without changing mailbox rows or rebuilding on repeat", () => {
+  const d = getDb();
+  d.exec(`
+    DROP INDEX idx_messages_id_metadata;
+    DROP INDEX idx_messages_vendor_metadata;
+    DROP INDEX idx_pii_findings_value_metadata;
+    CREATE INDEX idx_messages_vendor ON messages(vendor_id);
+    CREATE INDEX idx_pii_findings_type_value ON pii_findings(type, value_normalized);
+  `);
+  const messages = d.prepare("SELECT * FROM messages ORDER BY id").all();
+  const findings = d.prepare("SELECT * FROM pii_findings ORDER BY id").all();
+
+  migrateQueryIndexes(d);
+
+  expect(d.prepare("SELECT * FROM messages ORDER BY id").all()).toEqual(messages);
+  expect(d.prepare("SELECT * FROM pii_findings ORDER BY id").all()).toEqual(findings);
+  const plan = d.prepare(
+    "EXPLAIN QUERY PLAN SELECT id, type, date, sender_email FROM messages WHERE vendor_id = ?",
+  ).all(1) as Array<{ detail: string }>;
+  expect(plan.some((row) => row.detail.includes("COVERING INDEX"))).toBe(true);
+
+  const version = d.pragma("schema_version", { simple: true });
+  migrateQueryIndexes(d);
+  expect(d.pragma("schema_version", { simple: true })).toBe(version);
+});
 
 it("migrates a readable account when another account's credentials cannot be read", async () => {
   mockUserData = mkdtempSync(join(tmpdir(), "paperweight-migrations-"));

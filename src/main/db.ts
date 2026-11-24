@@ -17,6 +17,7 @@ import {
   migrateActionLog,
   migrateGdprCases,
   migrateMessages,
+  migrateQueryIndexes,
   migrateSyncState,
   migrateVendors,
 } from "./migrations";
@@ -179,7 +180,6 @@ export function initSchema(d: Database.Database) {
       FOREIGN KEY (vendor_id) REFERENCES vendors(id) ON DELETE CASCADE
     );
 
-    CREATE INDEX IF NOT EXISTS idx_messages_vendor ON messages(vendor_id);
     CREATE INDEX IF NOT EXISTS idx_messages_sender ON messages(sender_email);
     CREATE INDEX IF NOT EXISTS idx_messages_date ON messages(date DESC);
     CREATE INDEX IF NOT EXISTS idx_messages_type ON messages(type);
@@ -261,7 +261,6 @@ export function initSchema(d: Database.Database) {
     );
 
     CREATE INDEX IF NOT EXISTS idx_pii_findings_message ON pii_findings(message_id);
-    CREATE INDEX IF NOT EXISTS idx_pii_findings_type_value ON pii_findings(type, value_normalized);
 
   `);
 
@@ -270,6 +269,7 @@ export function initSchema(d: Database.Database) {
   migrateGdprCases(d);
   migrateMessages(d);
   migrateSyncState(d);
+  migrateQueryIndexes(d);
 
   d.prepare("INSERT OR IGNORE INTO sync_state (id) VALUES (1)").run();
 }

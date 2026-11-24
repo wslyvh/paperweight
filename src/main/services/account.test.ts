@@ -1,4 +1,8 @@
 import { vi } from "vitest";
+import Database from "better-sqlite3";
+import { getDb } from "../db";
+import { getDashboardStats } from "./stats";
+import { getSyncState } from "./sync";
 const mockRequirePro = vi.hoisted(() => (vi.fn()));
 const mockLoadCredentials = vi.hoisted(() => (vi.fn()));
 const mockSaveCredentials = vi.hoisted(() => (vi.fn()));
@@ -79,6 +83,7 @@ vi.mock("./profileSeed", () => ({
 }));
 
 import {
+  getAccountInfo,
   startGmailAuthAndRecordAccount,
   startMicrosoftAuthAndRecordAccount,
   saveImapConfigAndRecordAccount,
@@ -350,4 +355,20 @@ describe("Free account creation and cleanup", () => {
     expect(mockGetProvider).not.toHaveBeenCalled();
     expect(deleteVendorMessages).not.toHaveBeenCalled();
   });
+});
+
+it("loads account metadata without calculating dashboard statistics", async () => {
+  vi.clearAllMocks();
+  const db = new Database(":memory:");
+  db.exec("CREATE TABLE messages(id TEXT); INSERT INTO messages VALUES ('one'), ('two')");
+  vi.mocked(getDb).mockReturnValue(db);
+  mockLoadCredentials.mockResolvedValue({ providerType: "gmail" });
+  vi.mocked(getSyncState).mockReturnValue({ last_sync_at: 123 } as ReturnType<typeof getSyncState>);
+  try {
+    expect(await getAccountInfo()).toMatchObject({ providerType: "gmail", totalMessages: 2, lastSyncAt: 123 });
+    expect(getDashboardStats).not.toHaveBeenCalled();
+  } finally {
+    db.close();
+    vi.mocked(getDb).mockReset();
+  }
 });
