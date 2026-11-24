@@ -1,6 +1,25 @@
 import { simpleParser } from "mailparser";
 import { parseMailto } from "../../shared/utils";
-import { buildRfc822Message } from "./utils";
+import { buildRfc822Message, friendlyConnectionError } from "./utils";
+import { isOAuthTokenError } from "../../renderer/components/syncStatus";
+
+describe("connection recovery errors", () => {
+  it.each([
+    "Failed to refresh access token: invalid_grant Refresh token expired",
+    "invalid_grant",
+    "Token revoked: invalid credentials",
+  ])("keeps OAuth recovery available for %s", (message) => {
+    const error = friendlyConnectionError(new Error(message));
+    expect(error).toBe("Authorization expired. Reconnect your account to continue syncing.");
+    expect(isOAuthTokenError(error)).toBe(true);
+  });
+
+  it("preserves password guidance for an IMAP login failure", () => {
+    const error = friendlyConnectionError(new Error("LOGIN failed: invalid credentials"));
+    expect(error).toBe("Authentication failed. Check your username and password.");
+    expect(isOAuthTokenError(error)).toBe(false);
+  });
+});
 
 describe("buildRfc822Message", () => {
   it.each(["\r", "\n", "\r\n"])("rejects %j in every header input", (newline) => {

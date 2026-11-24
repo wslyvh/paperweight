@@ -24,15 +24,16 @@ export function friendlyConnectionError(err: unknown): string {
   if (/ETIMEDOUT|ENOTFOUND/i.test(msg)) {
     return "Could not reach the mail server. Check the host and port.";
   }
-  if (/authenticate|login|credentials|invalid|Command failed/i.test(msg)) {
-    return "Authentication failed. Check your username and password.";
-  }
+  // invalid_grant must reach OAuth recovery before the generic "invalid" match.
   if (
     /Failed to refresh access token|invalid_grant|token.*expired|token.*revoked/i.test(
       msg,
     )
   ) {
     return "Authorization expired. Reconnect your account to continue syncing.";
+  }
+  if (/authenticate|login|credentials|invalid|Command failed/i.test(msg)) {
+    return "Authentication failed. Check your username and password.";
   }
 
   return msg;
