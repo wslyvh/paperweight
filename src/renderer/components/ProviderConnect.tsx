@@ -19,17 +19,19 @@ import {
 // opens the system browser (covers most users); the copy icon starts the same auth
 // but copies the sign-in link instead — for people whose account lives in a
 // different browser profile than their default.
-function OAuthSelectRow({
-  logo,
-  label,
-  copyAriaLabel,
-  onConnect,
-}: {
+interface OAuthSelectRowProps {
   logo: JSX.Element;
   label: string;
   copyAriaLabel: string;
   onConnect: (copy: boolean) => void;
-}) {
+}
+
+export function OAuthSelectRow({
+  logo,
+  label,
+  copyAriaLabel,
+  onConnect,
+}: OAuthSelectRowProps) {
   return (
     <div className="join w-full">
       <button
@@ -134,6 +136,8 @@ function OAuthConnect({
   );
   const [error, setError] = useState("");
   const [authUrl, setAuthUrl] = useState("");
+  const [cancelling, setCancelling] = useState(false);
+  const pendingAuth = useRef<Promise<{ success: boolean; error?: string }>>(undefined);
   const [copied, setCopied] = useState(false);
   const attemptRef = useRef(0);
   const copyModeRef = useRef(copyFirst);
@@ -157,7 +161,12 @@ function OAuthConnect({
     setAuthUrl("");
     setCopied(false);
 
-    const result = await startAuth(openInBrowser);
+    const pending = startAuth(openInBrowser).catch((err: unknown) => ({
+      success: false,
+      error: err instanceof Error ? err.message : "Authorization failed",
+    }));
+    pendingAuth.current = pending;
+    const result = await pending;
 
     if (attemptRef.current !== thisAttempt) return;
 
@@ -175,6 +184,24 @@ function OAuthConnect({
     if (attemptRef.current !== 0) return;
     handleConnect(!copyFirst);
   }, []);
+
+  const handleCancel = async (): Promise<void> => {
+    setCancelling(true);
+    try {
+      if (await window.api.cancelAuth()) {
+        attemptRef.current++;
+        // Wait for credential staging and the account-change guard to finish
+        // before allowing another attempt from the provider picker.
+        await pendingAuth.current;
+        onBack();
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not cancel authorization");
+      setStep("error");
+    } finally {
+      setCancelling(false);
+    }
+  };
 
   const copyLink = async (): Promise<void> => {
     if (!authUrl) return;
@@ -235,12 +262,10 @@ function OAuthConnect({
 
           <button
             className="btn btn-ghost btn-sm w-full"
-            onClick={() => {
-              attemptRef.current++;
-              onBack();
-            }}
+            onClick={handleCancel}
+            disabled={cancelling || !authUrl}
           >
-            Cancel
+            {cancelling ? "Cancelling..." : "Cancel"}
           </button>
         </div>
       )}

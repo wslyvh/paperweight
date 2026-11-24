@@ -57,12 +57,20 @@ function escapeHtml(str: string): string {
   return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
+let cancelPendingAuth: (() => void) | undefined;
+
+export function cancelLoopbackAuth(): boolean {
+  if (!cancelPendingAuth) return false;
+  cancelPendingAuth();
+  return true;
+}
+
 export function runLoopbackAuth(
   redirectUriBase: string,
   buildAuthUrl: (redirectUri: string) => string,
   openInBrowser = true
 ): Promise<{ code: string; redirectUri: string }> {
-  return new Promise((resolve, reject) => {
+  return new Promise<{ code: string; redirectUri: string }>((resolve, reject) => {
     let redirectUri = "";
     const state = randomBytes(32).toString("base64url");
 
@@ -163,6 +171,11 @@ export function runLoopbackAuth(
       }
     });
 
+    cancelPendingAuth = () => {
+      server.close();
+      reject(new Error("Authorization cancelled"));
+    };
+
     server.listen(0, "127.0.0.1", () => {
       const { port } = server.address() as AddressInfo;
       redirectUri = `${redirectUriBase}:${port}`;
@@ -196,6 +209,8 @@ export function runLoopbackAuth(
       clearTimeout(timeout);
       reject(error);
     });
+  }).finally(() => {
+    cancelPendingAuth = undefined;
   });
 }
 

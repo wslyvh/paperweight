@@ -47,6 +47,8 @@ const api: ElectronAPI = {
 
   openExternal: (url) => ipcRenderer.invoke(IPC.openExternal, url),
 
+  cancelAuth: () => ipcRenderer.invoke(IPC.cancelAuth),
+
   onAuthUrl: (callback) => {
     const handler = (_event: Electron.IpcRendererEvent, url: string): void => {
       callback(url);

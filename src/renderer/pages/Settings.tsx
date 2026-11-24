@@ -23,6 +23,7 @@ import {
 } from "../context/LicenseContext";
 import {
   ProviderSelect,
+  OAuthSelectRow,
   GmailConnect,
   MicrosoftConnect,
   AppleConnect,
@@ -36,7 +37,7 @@ import {
   setColorTheme as applyAndSaveColorTheme,
   type ColorTheme,
 } from "../utils/colorTheme";
-import { reconnectError } from "./settingsReconnect";
+import { GoogleLogo, MicrosoftLogo } from "@shared/provider-logos";
 
 type AddAccountView = "provider" | "gmail" | "microsoft" | "apple" | "proton" | "imap";
 
@@ -72,7 +73,9 @@ export default function Settings() {
     [],
   );
   const [newEntry, setNewEntry] = useState("");
-  const [reconnectLoading, setReconnectLoading] = useState(false);
+  const [reconnectAccount, setReconnectAccount] = useState<AccountInfo>();
+  const [reconnectStarted, setReconnectStarted] = useState(false);
+  const [reconnectCopyFirst, setReconnectCopyFirst] = useState(false);
   const [reconnectFailure, setReconnectFailure] = useState("");
   async function refreshAccount() {
     setAccount(await window.api.getAccountInfo());
@@ -90,6 +93,7 @@ export default function Settings() {
   const [addAccountCopyFirst, setAddAccountCopyFirst] = useState(false);
   const licenseSectionRef = useRef<HTMLDivElement>(null);
   const accountsSectionRef = useRef<HTMLDivElement>(null);
+  const syncSectionRef = useRef<HTMLDivElement>(null);
 
   const mcpConfig = mcpSetup?.server
     ? JSON.stringify({ mcpServers: { paperweight: mcpSetup.server } }, null, 2)
@@ -116,10 +120,14 @@ export default function Settings() {
       openServerSettings?: boolean;
       scrollToLicense?: boolean;
       scrollToAccounts?: boolean;
+      scrollToSync?: boolean;
     } | null;
-    if (!state?.openServerSettings && !state?.scrollToLicense && !state?.scrollToAccounts) return;
+    if (!state?.openServerSettings && !state?.scrollToLicense && !state?.scrollToAccounts && !state?.scrollToSync) return;
     if (state.openServerSettings) {
       setShowServerSettings(true);
+    }
+    if (state.scrollToSync) {
+      syncSectionRef.current?.scrollIntoView({ behavior: "auto", block: "start" });
     }
     if (state.scrollToLicense) {
       licenseSectionRef.current?.scrollIntoView({ behavior: "auto", block: "start" });
@@ -241,43 +249,24 @@ export default function Settings() {
 
   const connectionHealthy = !!connection;
 
-  const handleReconnect = async (): Promise<void> => {
+  const handleReconnect = (): void => {
     if (!account) return;
     setReconnectFailure("");
     if (account.providerType === "imap") {
       setShowServerSettings(true);
-      return;
+    } else if (account.providerType === "gmail" || account.providerType === "microsoft") {
+      setReconnectStarted(false);
+      setReconnectCopyFirst(false);
+      setReconnectAccount(account);
+    } else {
+      setReconnectFailure("Reconnect is not available for this account");
     }
-    setReconnectLoading(true);
-    try {
-      let result: { success: boolean; error?: string };
-      if (account.providerType === "microsoft") {
-        result = await window.api.startMicrosoftAuth({
-          type: "reconnect",
-          email: account.email,
-        });
-      } else if (account.providerType === "gmail") {
-        result = await window.api.startGmailAuth({
-          type: "reconnect",
-          email: account.email,
-        });
-      } else {
-        result = { success: false, error: "Reconnect is not available for this account" };
-      }
-      const error = reconnectError(result);
-      if (error) {
-        setReconnectFailure(error);
-        return;
-      }
-      const conn = await window.api.getEmailConnection();
-      setConnection(conn);
-      setAccount(await window.api.getAccountInfo());
-      window.api.startSync();
-    } catch (err) {
-      setReconnectFailure(err instanceof Error ? err.message : "Reconnect failed");
-    } finally {
-      setReconnectLoading(false);
-    }
+  };
+
+  const handleReconnectSuccess = (): void => {
+    setReconnectAccount(undefined);
+    void refreshAccount();
+    window.api.getEmailConnection().then(setConnection);
   };
 
   const actionBusy = switchingEmail !== null || removeInProgress;
@@ -525,7 +514,7 @@ export default function Settings() {
       </div>
 
       {/* Section 3: Sync */}
-      <div className="card bg-base-200">
+      <div ref={syncSectionRef} className="card bg-base-200">
         <div className="card-body space-y-3">
           <h3 className="font-semibold">Sync</h3>
 
@@ -556,13 +545,8 @@ export default function Settings() {
                   <button
                     className="btn btn-sm btn-primary w-fit"
                     onClick={handleReconnect}
-                    disabled={reconnectLoading}
                   >
-                    {reconnectLoading ? (
-                      <span className="loading loading-spinner loading-xs" />
-                    ) : (
-                      "Reconnect"
-                    )}
+                    Reconnect
                   </button>
                 )}
               {reconnectFailure && !isStorageError(reconnectFailure) && (
@@ -921,6 +905,44 @@ export default function Settings() {
           <form method="dialog" className="modal-backdrop">
             <button onClick={() => setShowAgentUnmaskModal(false)}>close</button>
           </form>
+        </dialog>
+      )}
+
+      {reconnectAccount && (
+        <dialog className="modal modal-open">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg mb-4">Reconnect account</h3>
+            {!reconnectStarted ? (
+              <>
+                <OAuthSelectRow
+                  logo={reconnectAccount.providerType === "gmail" ? <GoogleLogo /> : <MicrosoftLogo />}
+                  label={reconnectAccount.providerType === "gmail" ? "Connect with Google" : "Connect with Microsoft"}
+                  copyAriaLabel="Copy sign-in link"
+                  onConnect={(copy) => {
+                    setReconnectCopyFirst(copy);
+                    setReconnectStarted(true);
+                  }}
+                />
+                <div className="modal-action">
+                  <button className="btn btn-ghost" onClick={() => setReconnectAccount(undefined)}>Cancel</button>
+                </div>
+              </>
+            ) : reconnectAccount.providerType === "gmail" ? (
+              <GmailConnect
+                intent={{ type: "reconnect", email: reconnectAccount.email }}
+                copyFirst={reconnectCopyFirst}
+                onSuccess={handleReconnectSuccess}
+                onBack={() => setReconnectAccount(undefined)}
+              />
+            ) : (
+              <MicrosoftConnect
+                intent={{ type: "reconnect", email: reconnectAccount.email }}
+                copyFirst={reconnectCopyFirst}
+                onSuccess={handleReconnectSuccess}
+                onBack={() => setReconnectAccount(undefined)}
+              />
+            )}
+          </div>
         </dialog>
       )}
 

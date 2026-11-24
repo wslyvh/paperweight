@@ -4,7 +4,7 @@ import { vi } from "vitest";
 import { saveCredentials } from "../credentials";
 import { startLoopbackAuth } from "./gmail";
 import { startMicrosoftLoopbackAuth } from "./microsoft";
-import { runLoopbackAuth } from "./utils";
+import { cancelLoopbackAuth, runLoopbackAuth } from "./utils";
 
 const mocks = vi.hoisted(() => {
   vi.stubGlobal("__GOOGLE_CLIENT_ID__", "fixture-google");
@@ -110,4 +110,35 @@ it("returns the existing error if opening the browser fails", async () => {
   mocks.open.mockRejectedValue(new Error("fixture failure"));
   await expect(runLoopbackAuth("http://127.0.0.1", () => "https://example.test/auth"))
     .rejects.toThrow("Could not open the browser. Try connecting again.");
+});
+
+
+it.each([
+  { provider: "Google", start: startLoopbackAuth },
+  { provider: "Microsoft", start: startMicrosoftLoopbackAuth },
+])("cancels $provider sign-in and permits an immediate retry", async ({ start }) => {
+  const fetchMock = vi.fn(async () => Response.json({ access_token: "fixture-token", expires_in: 3600 }));
+  vi.stubGlobal("fetch", fetchMock);
+  for (const browser of [true, false]) {
+    fetchMock.mockClear();
+    vi.mocked(saveCredentials).mockClear();
+    const opened = captureAuthUrl();
+    const pending = start(browser);
+    const authUrl = await opened;
+    expect(cancelLoopbackAuth()).toBe(true);
+    expect(await pending).toEqual({ success: false, error: "Authorization cancelled" });
+    expect(cancelLoopbackAuth()).toBe(false);
+    await expect(callback(authUrl, {
+      code: "fixture-code", state: authUrl.searchParams.get("state")!,
+    })).rejects.toMatchObject({ code: "ECONNREFUSED" });
+    expect(fetchMock).not.toHaveBeenCalled();
+    expect(saveCredentials).not.toHaveBeenCalled();
+
+    const reopened = captureAuthUrl();
+    const retry = start(browser);
+    const retryUrl = await reopened;
+    await callback(retryUrl, { code: "fixture-code", state: retryUrl.searchParams.get("state")! });
+    expect(await retry).toEqual({ success: true });
+    expect(saveCredentials).toHaveBeenCalledTimes(1);
+  }
 });

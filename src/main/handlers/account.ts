@@ -1,4 +1,5 @@
 import { handle } from "./access";
+import { cancelLoopbackAuth } from "../providers/utils";
 import { switchToAccount } from "../services/accountView";
 import { app, BrowserWindow, ipcMain } from "electron";
 import { readFileSync, existsSync } from "fs";
@@ -104,6 +105,8 @@ function isImapConfig(value: unknown): value is ImapConfig {
 
 export function registerAccountHandlers(): void {
   // --- Auth & connection ---
+
+  handle(IPC.cancelAuth, () => cancelLoopbackAuth());
 
   handle(IPC.getConnectionStatus, () => getConnectionStatus());
 
