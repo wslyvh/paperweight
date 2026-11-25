@@ -1,3 +1,4 @@
+import type { StorageState } from "./secureStorage";
 import type {
   AccountAuthIntent,
   AccountInfo,
@@ -46,6 +47,7 @@ import type {
 export const IPC = {
   getLastUpdateInfo: "get-last-update-info",
   getConnectionStatus: "get-connection-status",
+  initializeStorage: "initialize-storage",
   startGmailAuth: "start-gmail-auth",
   startMicrosoftAuth: "start-microsoft-auth",
   saveImapConfig: "save-imap-config",
@@ -64,6 +66,7 @@ export const IPC = {
   noAccountsRemaining: "no-accounts-remaining",
   openExternal: "open-external",
   authUrl: "auth-url",
+  cancelAuth: "cancel-auth",
   syncProgress: "sync-progress",
   markVendorUnsubscribed: "mark-vendor-unsubscribed",
   markListUnsubscribed: "mark-list-unsubscribed",
@@ -132,8 +135,10 @@ export interface UpdateInfo {
 }
 
 export interface ElectronAPI {
+  readonly platform: string;
   getLastUpdateInfo: () => Promise<UpdateInfo | null>;
   getConnectionStatus: () => Promise<boolean>;
+  initializeStorage: () => Promise<StorageState>;
   startGmailAuth: (
     intent: AccountAuthIntent,
     openInBrowser?: boolean,
@@ -161,6 +166,7 @@ export interface ElectronAPI {
   resyncData: () => Promise<void>;
   wipeData: () => Promise<void>;
   openExternal: (url: string) => Promise<void>;
+  cancelAuth: () => Promise<boolean>;
   onAuthUrl: (callback: (url: string) => void) => () => void;
   onSyncProgress: (callback: (status: SyncStatus) => void) => () => void;
   markVendorUnsubscribed: (vendorId: number) => Promise<void>;

@@ -1,27 +1,28 @@
-jest.mock("../main/services/settings", () => ({ getLicenseStatus: jest.fn(() => ({ active: true })), PRO_REQUIRED_MESSAGE: "Pro required" }));
-const mockReconnectDb = jest.fn();
-const mockWithAccountDbReadConnection = jest.fn((_path: string, read: (database: unknown) => unknown) =>
+import { vi } from "vitest";
+vi.mock("../main/services/settings", () => ({ getLicenseStatus: vi.fn(() => ({ active: true })), PRO_REQUIRED_MESSAGE: "Pro required" }));
+const mockReconnectDb = vi.hoisted(() => (vi.fn()));
+const mockWithAccountDbReadConnection = vi.hoisted(() => (vi.fn((_path: string, read: (database: unknown) => unknown) =>
   read({}),
-);
+)));
 
-jest.mock("fs", () => ({ existsSync: jest.fn(() => true) }));
-jest.mock("../main/credentials", () => ({
-  configureAccountRegistryPath: jest.fn(),
-  emailToFileKey: jest.fn((email: string) => email.replace("@", "_")),
-  listAccounts: jest.fn(() => [
+vi.mock("fs", () => ({ existsSync: vi.fn(() => true) }));
+vi.mock("../main/credentials", () => ({
+  configureAccountRegistryPath: vi.fn(),
+  emailToFileKey: vi.fn((email: string) => email.replace("@", "_")),
+  listAccounts: vi.fn(() => [
     { email: "first@example.test", providerType: "gmail" },
     { email: "second@example.test", providerType: "gmail" },
   ]),
 }));
-jest.mock("../main/db", () => ({
-  getDb: jest.fn(),
-  initDb: jest.fn(),
+vi.mock("../main/db", () => ({
+  getDb: vi.fn(),
+  initDb: vi.fn(),
   reconnectDb: mockReconnectDb,
   withAccountDbReadConnection: mockWithAccountDbReadConnection,
 }));
-jest.mock("../main/globalDb", () => ({ configureGlobalDbPath: jest.fn() }));
-jest.mock("../main/services/globalSettings", () => ({
-  getGlobalSetting: jest.fn((key: string) => {
+vi.mock("../main/globalDb", () => ({ configureGlobalDbPath: vi.fn() }));
+vi.mock("../main/services/globalSettings", () => ({
+  getGlobalSetting: vi.fn((key: string) => {
     if (key === "agentAccess") return "actions";
     if (key === "activeAccount") return "first@example.test";
     return undefined;
@@ -42,11 +43,11 @@ import {
 
 describe("MCP mailbox actions", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("prevents account database switches until an async action finishes", async () => {
-    initializePaperweight();
+    await initializePaperweight();
     let releaseAction: (() => void) | undefined;
     const actionFinished = new Promise<void>((resolve) => {
       releaseAction = resolve;
@@ -67,8 +68,8 @@ describe("MCP mailbox actions", () => {
     expect(mockReconnectDb).toHaveBeenCalledTimes(1);
   });
 
-  it("reads list_mailboxes summaries without reconnecting the selected database", () => {
-    initializePaperweight();
+  it("reads list_mailboxes summaries without reconnecting the selected database", async () => {
+    await initializePaperweight();
 
     expect(readMailboxDatabase("second@example.test", () => "summary")).toBe("summary");
     expect(mockWithAccountDbReadConnection).toHaveBeenCalledWith(
@@ -78,8 +79,8 @@ describe("MCP mailbox actions", () => {
     expect(mockReconnectDb).not.toHaveBeenCalled();
   });
 
-  it("rejects a write argument from the previously selected mailbox", () => {
-    initializePaperweight();
+  it("rejects a write argument from the previously selected mailbox", async () => {
+    await initializePaperweight();
     const staleReference = mailboxReference(1);
     selectMailbox("second_example.test");
 
@@ -97,12 +98,42 @@ describe("MCP mailbox actions", () => {
 it("revokes both MCP permission levels immediately from local entitlement state", async () => {
   const { getLicenseStatus } = await import("../main/services/settings");
   const { hasReadAccess, hasWriteAccess, readAccessError, writeAccessError } = await import("./runtime");
-  expect(hasReadAccess()).toBe(true);
-  expect(hasWriteAccess()).toBe(true);
-  jest.mocked(getLicenseStatus).mockReturnValue({ active: false });
-  expect(hasReadAccess()).toBe(false);
-  expect(hasWriteAccess()).toBe(false);
-  expect(readAccessError().content[0].text).toBe("Pro required");
-  expect(writeAccessError().content[0].text).toBe("Pro required");
-  expect(() => initializePaperweight()).toThrow("Pro required");
+  await initializePaperweight();
+  expect(await hasReadAccess()).toBe(true);
+  expect(await hasWriteAccess()).toBe(true);
+  vi.mocked(getLicenseStatus).mockResolvedValue({ active: false });
+  expect(await hasReadAccess()).toBe(false);
+  expect(await hasWriteAccess()).toBe(false);
+  expect((await readAccessError()).content[0].text).toBe("Pro required");
+  expect((await writeAccessError()).content[0].text).toBe("Pro required");
+  await expect(initializePaperweight()).rejects.toThrow("Pro required");
+});
+
+beforeEach(() => vi.stubEnv("PAPERWEIGHT_RESOURCES_DIR", "/tmp/paperweight-resources-test"));
+afterEach(() => vi.unstubAllEnvs());
+
+
+it.each(["registry", "database"])("blocks removed mailbox operations (%s) while allowing selection of another account", async (missing) => {
+  const { getLicenseStatus } = await import("../main/services/settings");
+  const { listAccounts } = await import("../main/credentials");
+  const { existsSync } = await import("fs");
+  const { hasReadAccess, hasWriteAccess, readAccessError, writeAccessError } = await import("./runtime");
+  vi.mocked(getLicenseStatus).mockResolvedValue({ active: true });
+  await initializePaperweight();
+  const accounts = listAccounts();
+  try {
+    if (missing === "registry") vi.mocked(listAccounts).mockReturnValue(accounts.slice(1));
+    else vi.mocked(existsSync).mockImplementation((path) => !String(path).endsWith("first_example.test.db"));
+    expect(await hasReadAccess()).toBe(false);
+    expect(await hasWriteAccess()).toBe(false);
+    expect(await hasReadAccess(false)).toBe(true);
+    expect((await readAccessError()).content[0].text).toContain("select_mailbox");
+    expect((await writeAccessError()).content[0].text).toContain("select_mailbox");
+    expect(selectMailbox("second_example.test")).toBe(true);
+    expect(await hasReadAccess()).toBe(true);
+    expect(await hasWriteAccess()).toBe(true);
+  } finally {
+    vi.mocked(listAccounts).mockReturnValue(accounts);
+    vi.mocked(existsSync).mockReturnValue(true);
+  }
 });

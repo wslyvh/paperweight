@@ -1,3 +1,5 @@
+import { initializeDatabaseEncryption, getDatabaseKey } from "./databaseEncryption";
+import { storageFailureState, type StorageState } from "../shared/secureStorage";
 import { app, BrowserWindow, dialog, shell, Menu, ipcMain } from "electron";
 import { join } from "path";
 import { electronApp, optimizer, is } from "@electron-toolkit/utils";
@@ -10,7 +12,7 @@ import { getGlobalSetting } from "./services/globalSettings";
 import { initDb } from "./db";
 import { appLog } from "./utils/log";
 import { initFileLog } from "./utils/file-log";
-import { emailToFileKey, getActiveEmail } from "./credentials";
+import { emailToFileKey, getActiveEmail, migrateAccountRegistry, migrateAccountFilenames } from "./credentials";
 import { ensureAccountSettingsInDb } from "./services/account";
 import {
   seedProfileCountryIfEmpty,
@@ -31,7 +33,16 @@ const seedUserDataDir = process.env.PAPERWEIGHT_SEED;
 const mcpUserDataDir = process.env.PAPERWEIGHT_USER_DATA;
 if (seedUserDataDir || (isMcpProcess && mcpUserDataDir)) {
   app.setPath("userData", seedUserDataDir ?? mcpUserDataDir!);
+  app.setPath("sessionData", app.getPath("userData"));
+  app.setAppLogsPath(join(app.getPath("userData"), "logs"));
 }
+
+// Only the desktop performs storage migration; MCP remains an independent process.
+if (!isMcpProcess && !app.requestSingleInstanceLock()) app.exit(0);
+app.on("second-instance", () => {
+  const window = BrowserWindow.getAllWindows()[0];
+  if (window) { window.show(); window.focus(); }
+});
 
 function handleFatalError(err: Error, context: string): void {
   const message = err.message || String(err);
@@ -91,8 +102,6 @@ async function startMcpMode(): Promise<void> {
   const { McpStartupError, runMcpServer } = await import("../mcp/server");
   try {
     const quit = () => app.quit();
-    process.stdin.once("end", quit);
-    process.stdin.once("close", quit);
     await runMcpServer(quit);
   } catch (error) {
     const message = error instanceof McpStartupError
@@ -101,6 +110,47 @@ async function startMcpMode(): Promise<void> {
     process.stderr.write(`paperweight-mcp: ${message}\n`);
     app.exit(1);
   }
+}
+
+let storageState: StorageState = "unavailable";
+let storageInitialization: Promise<StorageState> | undefined;
+
+async function initializeAppData(): Promise<StorageState> {
+  if (storageState === "ready") {
+    try { getDatabaseKey(); return "ready"; } catch { /* Reset or key removal. */ }
+  }
+  if (storageInitialization) return storageInitialization;
+  storageInitialization = (async () => {
+    try {
+      await initializeDatabaseEncryption(app.getPath("userData"));
+      migrateAccountRegistry();
+      migrateAccountFilenames();
+      await runMigrations();
+      seedProfileEmailsFromAccounts();
+
+      const companiesDbPath = is.dev
+        ? join(app.getAppPath(), "resources", "companies.db")
+        : join(process.resourcesPath, "companies.db");
+      const breachesDbPath = is.dev
+        ? join(app.getAppPath(), "resources", "breaches.db")
+        : join(process.resourcesPath, "breaches.db");
+
+      // Only open the DB if an account is already registered — onboarding creates it on first auth.
+      const activeEmail = getActiveEmail();
+      if (activeEmail) {
+        const dbPath = join(app.getPath("userData"), `${emailToFileKey(activeEmail)}.db`);
+        initDb(dbPath, companiesDbPath, breachesDbPath);
+        ensureAccountSettingsInDb();
+        seedProfileCountryIfEmpty(inferHomeCountry);
+      }
+
+      storageState = "ready";
+    } catch (error) {
+      storageState = storageFailureState(error);
+    }
+    return storageState;
+  })();
+  try { return await storageInitialization; } finally { storageInitialization = undefined; }
 }
 
 app.whenReady().then(async () => {
@@ -114,24 +164,7 @@ app.whenReady().then(async () => {
 
   appLog.info(`Starting ${APP_CONFIG.NAME} v${app.getVersion()} (Electron ${process.versions.electron})`);
 
-  await runMigrations();
-  seedProfileEmailsFromAccounts();
-
-  const companiesDbPath = is.dev
-    ? join(app.getAppPath(), "resources", "companies.db")
-    : join(process.resourcesPath, "companies.db");
-  const breachesDbPath = is.dev
-    ? join(app.getAppPath(), "resources", "breaches.db")
-    : join(process.resourcesPath, "breaches.db");
-
-  // Only open the DB if an account is already registered — onboarding creates it on first auth.
-  const activeEmail = getActiveEmail();
-  if (activeEmail) {
-    const dbPath = join(app.getPath("userData"), `${emailToFileKey(activeEmail)}.db`);
-    initDb(dbPath, companiesDbPath, breachesDbPath);
-    ensureAccountSettingsInDb();
-    seedProfileCountryIfEmpty(inferHomeCountry);
-  }
+  await initializeAppData();
 
   electronApp.setAppUserModelId(APP_CONFIG.DOMAIN);
 
@@ -140,6 +173,7 @@ app.whenReady().then(async () => {
   });
 
   registerIpcHandlers();
+  ipcMain.handle(IPC.initializeStorage, () => initializeAppData());
   ipcMain.handle(IPC.getLastUpdateInfo, () => lastUpdateInfo);
   ipcMain.handle(IPC.installUpdate, () => autoUpdater.quitAndInstall());
 
@@ -148,9 +182,9 @@ app.whenReady().then(async () => {
   });
 
   // Ensure OS login item state matches saved settings
-  const autoLaunch = getGlobalSetting("autoLaunch") ?? false;
-  const launchMinimized = getGlobalSetting("launchMinimized") ?? false;
-  applyAutoLaunch(autoLaunch, launchMinimized);
+  const autoLaunch = storageState === "ready" && (getGlobalSetting("autoLaunch") ?? false);
+  const launchMinimized = storageState === "ready" && (getGlobalSetting("launchMinimized") ?? false);
+  if (!seedUserDataDir && storageState === "ready") applyAutoLaunch(autoLaunch, launchMinimized);
 
   // Determine if we should start hidden (must be after DB is available)
   startHidden = wasLaunchedAsHidden(launchMinimized);
@@ -165,7 +199,7 @@ app.whenReady().then(async () => {
     win.webContents.send(IPC.updateDownloaded, lastUpdateInfo);
   };
 
-  if (!is.dev) {
+  if (!is.dev && !seedUserDataDir) {
     autoUpdater.logger = appLog;
     autoUpdater.autoDownload = true;
     autoUpdater.on("error", (err) => {
@@ -194,15 +228,13 @@ app.whenReady().then(async () => {
     // Sync all accounts on launch (delayed to let the window render)
     setTimeout(() => {
       appLog.info("Startup sync scheduled for eligible accounts");
-      startAllSyncs();
+      if (storageState === "ready") void startAllSyncs().catch(() => appLog.error("Could not start account sync"));
     }, 3000);
 
     // Background sync every 20 minutes — picks up any accounts whose worker has finished
     appLog.info("Background sync interval set (20 min)");
     setInterval(() => {
-      void hasValidLicense().then(() => {
-        startAllSyncs();
-      }).catch(() => appLog.error("Could not refresh account access"));
+      if (storageState === "ready") void hasValidLicense().then(() => startAllSyncs()).catch(() => appLog.error("Could not refresh account access"));
     }, 20 * 60 * 1000);
   }
 

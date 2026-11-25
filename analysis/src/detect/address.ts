@@ -155,6 +155,8 @@ export function detectAddressBlocks(text: string, candidates: PostalCandidate[])
     for (const spec of specs) {
       for (const m of text.matchAll(spec.pattern)) {
         const mEnd = m.index + m[0].length;
+        const gap = m.index >= pc.end ? m.index - pc.end : pc.start - mEnd;
+        if (gap > MAX_GAP) continue;
         // A house number is not a postcode. When the street match swallows any
         // postcode of this country — "Orchestrator 2012" reading a bare code as
         // its number, or a US street pattern taking a leading ZIP as one — the
@@ -166,8 +168,6 @@ export function detectAddressBlocks(text: string, candidates: PostalCandidate[])
             ? overlapsAnchor(pc)
             : sameCountry.some(overlapsAnchor)
         ) continue;
-        const gap = m.index >= pc.end ? m.index - pc.end : pc.start - mEnd;
-        if (gap > MAX_GAP) continue;
         const betweenStart = m.index >= pc.end ? pc.end : mEnd;
         const betweenEnd = m.index >= pc.end ? m.index : pc.start;
         const between = text.slice(betweenStart, betweenEnd);

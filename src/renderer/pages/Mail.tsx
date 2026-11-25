@@ -1,6 +1,6 @@
 import { useActionAccess } from "../context/LicenseContext";
 import { useEffect, useState, useCallback, useRef } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router";
 import type { Vendor, VendorQuery, UnsubscribeEntry } from "@shared/types";
 import { MARKETING_ACTION_TYPES } from "@shared/types";
 import { formatRelativeDate } from "@shared/formatting";
@@ -187,7 +187,7 @@ interface MailState {
   breachedFilter: boolean;
 }
 
-export default function Mail(): JSX.Element {
+export default function Mail() {
   const allowAction = useActionAccess();
   const navigate = useNavigate();
   const location = useLocation();

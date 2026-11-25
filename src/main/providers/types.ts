@@ -39,7 +39,7 @@ export interface EmailProvider {
   // Connection
   connect(): Promise<EmailConnection>;
   disconnect(): Promise<void>;
-  isAuthenticated(): boolean;
+  isAuthenticated(): Promise<boolean>;
 
   listMessages(
     since: Date,

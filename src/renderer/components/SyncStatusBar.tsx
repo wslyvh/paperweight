@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import type { SyncStatus } from "@shared/types";
 import { formatRunningSyncStatus, isOAuthTokenError } from "./syncStatus";
 
@@ -17,14 +18,14 @@ function formatRelativeTime(ts: number): string {
   return `${days}d ago`;
 }
 
-export default function SyncStatusBar(): JSX.Element {
+export default function SyncStatusBar() {
   const [status, setStatus] = useState<SyncStatus>({
     running: false,
     progress: 0,
     total: 0,
     message: "",
   });
-  const [reconnecting, setReconnecting] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const unsub = window.api.onSyncProgress(setStatus);
@@ -43,36 +44,8 @@ export default function SyncStatusBar(): JSX.Element {
     window.api.startSync();
   };
 
-  const handleReconnect = async () => {
-    setReconnecting(true);
-    try {
-      const account = await window.api.getAccountInfo();
-      const intent = {
-        type: "reconnect",
-        email: account.email,
-      } as const;
-      let result: { success: boolean; error?: string };
-      if (account.providerType === "microsoft") {
-        result = await window.api.startMicrosoftAuth(intent);
-      } else if (account.providerType === "gmail") {
-        result = await window.api.startGmailAuth(intent);
-      } else {
-        result = {
-          success: false,
-          error: "Reconnect is only available for Gmail and Microsoft accounts",
-        };
-      }
-      if (result.success) {
-        window.api.startSync();
-      } else {
-        setStatus((s) => ({ ...s, error: result.error ?? "Reconnect failed" }));
-      }
-    } finally {
-      setReconnecting(false);
-    }
-  };
-
-  const showReconnect = isOAuthTokenError(status.error);
+  const showReconnect = isOAuthTokenError(status.error) ||
+    status.error === "Authentication failed. Check your username and password.";
   const analyzingMessages =
     status.running && status.message === "Analyzing messages";
 
@@ -129,16 +102,14 @@ export default function SyncStatusBar(): JSX.Element {
             ? "btn-primary"
             : "btn-ghost"
         }`}
-        onClick={showReconnect ? handleReconnect : handleSync}
-        disabled={status.running || reconnecting}
+        onClick={showReconnect ? () => navigate("/settings", { state: { scrollToSync: true } }) : handleSync}
+        disabled={status.running}
       >
         {status.running
           ? analyzingMessages
             ? "Analyzing..."
             : "Syncing..."
-          : reconnecting
-            ? "Reconnecting..."
-            : showReconnect
+          : showReconnect
               ? "Reconnect"
               : "Refresh"}
       </button>

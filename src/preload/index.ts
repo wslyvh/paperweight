@@ -5,9 +5,11 @@ import type { ElectronAPI, SyncStatus, UpdateInfo } from "@shared/ipc";
 export type { ElectronAPI } from "@shared/ipc";
 
 const api: ElectronAPI = {
+  platform: process.platform,
   getLastUpdateInfo: () => ipcRenderer.invoke(IPC.getLastUpdateInfo),
 
   getConnectionStatus: () => ipcRenderer.invoke(IPC.getConnectionStatus),
+  initializeStorage: () => ipcRenderer.invoke(IPC.initializeStorage),
 
   startGmailAuth: (intent, openInBrowser) =>
     ipcRenderer.invoke(IPC.startGmailAuth, intent, openInBrowser),
@@ -44,6 +46,8 @@ const api: ElectronAPI = {
   wipeData: () => ipcRenderer.invoke(IPC.wipeData),
 
   openExternal: (url) => ipcRenderer.invoke(IPC.openExternal, url),
+
+  cancelAuth: () => ipcRenderer.invoke(IPC.cancelAuth),
 
   onAuthUrl: (callback) => {
     const handler = (_event: Electron.IpcRendererEvent, url: string): void => {

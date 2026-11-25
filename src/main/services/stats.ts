@@ -1,4 +1,5 @@
 import { getDb } from "../db";
+import { getBreachLookup, ON_BREACH_LIST_SQL } from "./breaches";
 import type Database from "better-sqlite3";
 import { toUtcDayString, utcMidnightMs } from "@shared/formatting";
 import type {
@@ -25,12 +26,8 @@ export function getDashboardStats(d: Database.Database = getDb()): DashboardStat
       : "";
   const actionedStats = `(status = 'reviewed' OR EXISTS (SELECT 1 FROM action_log al WHERE al.vendor_id = vendors.id LIMIT 1))`;
 
-  const breachesAttached = !!(
-    d.prepare("SELECT name FROM pragma_database_list WHERE name = 'breaches'").get()
-  );
-  const onBreachListSql = breachesAttached
-    ? `EXISTS (SELECT 1 FROM breaches.breaches b WHERE (b.domain = vendors.root_domain OR vendors.root_domain LIKE '%.' || b.domain))`
-    : "0";
+  const breachesAttached = !!getBreachLookup(d);
+  const onBreachListSql = breachesAttached ? ON_BREACH_LIST_SQL : "0";
 
   const uniqueVendors = (
     d
@@ -88,10 +85,7 @@ export function getDashboardStats(d: Database.Database = getDb()): DashboardStat
         d
           .prepare(
             `SELECT COUNT(*) as c FROM vendors
-             WHERE EXISTS (
-               SELECT 1 FROM breaches.breaches b
-               WHERE (b.domain = vendors.root_domain OR vendors.root_domain LIKE '%.' || b.domain)
-             )
+             WHERE ${onBreachListSql}
              AND (status IS NULL OR status != 'reviewed')`
           )
           .get() as { c: number }

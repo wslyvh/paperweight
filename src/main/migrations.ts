@@ -1,6 +1,9 @@
+import { getElectron } from "./electronRuntime";
+import { SecureStorageError, removeLegacyPlaintextFile } from "./secureStorage";
 import { join } from "path";
 import { existsSync, unlinkSync } from "fs";
-import Database from "better-sqlite3";
+import type Database from "better-sqlite3";
+import { openDatabase } from "./databaseEncryption";
 import { APP_CONFIG } from "@shared/config";
 import { findPresetByHost } from "@shared/email-providers";
 import {
@@ -20,8 +23,7 @@ import { addReceivedProfileEmails } from "./services/profileSeed";
 // of heavy top-level imports (it lazy-requires electron itself). So we access
 // electron lazily here too, keeping this module's load graph light.
 function userDataDir(): string {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { app } = require("electron") as typeof import("electron");
+  const { app } = getElectron();
   return app.getPath("userData");
 }
 
@@ -66,34 +68,39 @@ async function backfillSmtpFromPreset(): Promise<void> {
   // migrateActionLog — keeping this import out of module scope keeps db.ts light.
   const { testSmtpConnection } = await import("./providers/smtp");
   for (const acc of listAccounts()) {
-    const creds = loadCredentials(acc.email);
-    if (!creds?.imap || creds.imap.smtp) continue;
+    try {
+      const creds = await loadCredentials(acc.email);
+      if (!creds?.imap || creds.imap.smtp) continue;
 
-    const preset = findPresetByHost(creds.imap.host);
-    if (!preset) continue;
+      const preset = findPresetByHost(creds.imap.host);
+      if (!preset) continue;
 
-    const testResult = await testSmtpConnection({
-      host: preset.smtp.host,
-      port: preset.smtp.port,
-      tls: preset.smtp.tls,
-      username: creds.imap.username,
-      password: creds.imap.password,
-      allowSelfSigned: creds.imap.allowSelfSigned,
-    });
+      const testResult = await testSmtpConnection({
+        host: preset.smtp.host,
+        port: preset.smtp.port,
+        tls: preset.smtp.tls,
+        username: creds.imap.username,
+        password: creds.imap.password,
+        allowSelfSigned: creds.imap.allowSelfSigned,
+      });
 
-    if (!testResult.success) {
-      appLog.warn(
-        `migrations: SMTP test failed for [${accountTag(acc.email)}] with preset "${preset.id}": ${testResult.error} — leaving unconfigured`,
-      );
-      continue;
+      if (!testResult.success) {
+        appLog.warn(
+          `migrations: SMTP test failed for [${accountTag(acc.email)}] with preset "${preset.id}": ${testResult.error} — leaving unconfigured`,
+        );
+        continue;
+      }
+
+      const updated = {
+        ...creds,
+        imap: { ...creds.imap, smtp: { ...preset.smtp } },
+      };
+      await saveCredentials(updated, acc.email);
+      appLog.info(`migrations: backfilled SMTP for [${accountTag(acc.email)}] from preset "${preset.id}"`);
+    } catch (error) {
+      if (!(error instanceof SecureStorageError)) throw error;
+      appLog.warn(error.message);
     }
-
-    const updated = {
-      ...creds,
-      imap: { ...creds.imap, smtp: { ...preset.smtp } },
-    };
-    saveCredentials(updated, acc.email);
-    appLog.info(`migrations: backfilled SMTP for [${accountTag(acc.email)}] from preset "${preset.id}"`);
   }
 }
 
@@ -110,19 +117,19 @@ async function backfillSmtpFromPreset(): Promise<void> {
  *     and flag re-derivation of `unsubscribed` status from action_log on the next sync.
  *   - gmail: already all-mail with stable IDs; marker only.
  */
-function migrateScanScopeAllMail(): void {
+async function migrateScanScopeAllMail(): Promise<void> {
   const userData = userDataDir();
 
   for (const acc of listAccounts()) {
-    const creds = loadCredentials(acc.email);
-    if (!creds) continue;
-
     const dbPath = join(userData, `${emailToFileKey(acc.email)}.db`);
     if (!existsSync(dbPath)) continue;
 
     let db: Database.Database | undefined;
     try {
-      db = new Database(dbPath);
+      const creds = await loadCredentials(acc.email);
+      if (!creds) continue;
+
+      db = openDatabase(dbPath);
 
       const done = db
         .prepare("SELECT 1 FROM settings WHERE key = 'migration:all-mail-scope'")
@@ -213,7 +220,7 @@ function migrateEngineSwitch(): void {
 
     let db: Database.Database | undefined;
     try {
-      db = new Database(dbPath);
+      db = openDatabase(dbPath);
       if (applyEngineSwitch(db)) {
         appLog.info(`migrations: engine switch applied for [${accountTag(acc.email)}]`);
       }
@@ -401,7 +408,7 @@ function migrateReceivedAddresses(): void {
 
     let db: Database.Database | undefined;
     try {
-      db = new Database(dbPath);
+      db = openDatabase(dbPath);
       migrateMessages(db); // the column may not exist yet on this account
       const result = applyReceivedAddresses(db);
       if (!result) continue;
@@ -438,9 +445,37 @@ function migrateReceivedAddresses(): void {
  * is a no-op if there is nothing to do.
  */
 export async function runMigrations(): Promise<void> {
+  for (const account of listAccounts()) {
+    removeLegacyPlaintextFile(join(userDataDir(), `${emailToFileKey(account.email)}.enc`), "credentials");
+  }
+  removeLegacyPlaintextFile(join(userDataDir(), "license.enc"), "license");
   cleanupStaleFiles();
   await backfillSmtpFromPreset();
-  migrateScanScopeAllMail();
+  await migrateScanScopeAllMail();
   migrateEngineSwitch();
   migrateReceivedAddresses();
+}
+
+/**
+ * Post-v1.2.0 — covering indexes for mailbox navigation. Run from initSchema
+ * after column migrations, for both new accounts and existing account opens.
+ * Metadata queries avoid loading message rows containing bodies and headers.
+ * Existing indexes make subsequent opens a no-op; no mailbox rows change.
+ * Rollback: drop these three indexes and restore messages(vendor_id) and
+ * pii_findings(type, value_normalized) under their former index names.
+ */
+export function migrateQueryIndexes(d: Database.Database): void {
+  d.transaction(() => {
+    d.exec(`
+      CREATE INDEX IF NOT EXISTS idx_messages_id_metadata
+        ON messages(id, vendor_id, date);
+      CREATE INDEX IF NOT EXISTS idx_messages_vendor_metadata
+        ON messages(vendor_id, id, type, date, sender_email);
+      CREATE INDEX IF NOT EXISTS idx_pii_findings_value_metadata
+        ON pii_findings(type, value_normalized, in_footer, in_quoted_text,
+                        self_reference, message_id, country);
+      DROP INDEX IF EXISTS idx_messages_vendor;
+      DROP INDEX IF EXISTS idx_pii_findings_type_value;
+    `);
+  })();
 }

@@ -1,5 +1,5 @@
 import { APP_CONFIG } from "@shared/config";
-import { Outlet, NavLink, useLocation } from "react-router-dom";
+import { Outlet, NavLink, useLocation } from "react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import makeBlockie from "ethereum-blockies-base64";
 import SyncStatusBar from "./SyncStatusBar";
@@ -43,7 +43,7 @@ const navItems = [
   },
 ];
 
-export default function AppShell(): JSX.Element {
+export default function AppShell() {
   const { accounts } = useAccounts();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);

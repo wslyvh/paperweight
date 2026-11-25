@@ -9,7 +9,7 @@ interface DeviceInfoCardProps {
 export default function DeviceInfoCard({
   info,
   variant = "card",
-}: DeviceInfoCardProps): JSX.Element {
+}: DeviceInfoCardProps) {
   const content = info ? (
     <div className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-sm">
       <span className="text-base-content/50">OS</span>

@@ -62,12 +62,12 @@ export function registerVendorHandlers(): void {
     updateVendor(vendorId, { account_email: email });
   });
 
-  handle(IPC.getVendorDetail, (_event, groupKey: unknown) => {
+  handle(IPC.getVendorDetail, async (_event, groupKey: unknown) => {
     if (!isString(groupKey) || !groupKey) throw new Error("Invalid group key");
     const detail = getVendorDetail(groupKey);
     let user_email: string | undefined;
     try {
-      user_email = getAccountInfo().email;
+      user_email = (await getAccountInfo()).email;
     } catch {
       // non-fatal — user_email stays undefined
     }

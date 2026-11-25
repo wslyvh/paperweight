@@ -4,7 +4,8 @@
  */
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { join } from "path";
-import { createAccountDb, initDb } from "../src/main/db";
+import Database from "better-sqlite3";
+import { initSchema } from "../src/main/db";
 import { emailToFileKey } from "../src/main/credentials";
 
 export const SMOKE_TEST_EMAIL = "smoke-test@paperweight.test";
@@ -53,16 +54,12 @@ writeFileSync(
   "utf-8",
 );
 
-const resourcesDir = join(process.cwd(), "resources");
 const dbPath = join(userDataDir, `${fileKey}.db`);
-initDb(
-  dbPath,
-  join(resourcesDir, "companies.db"),
-  join(resourcesDir, "breaches.db"),
-);
-createAccountDb(dbPath);
+const database = new Database(dbPath);
+initSchema(database);
+database.close();
 
-// Plain-text format: CI has no keychain; dev machines read via loadCredentials decrypt fallback.
+// Synthetic input only: encrypt-smoke-fixture.cjs encrypts this before app startup.
 writeFileSync(
   join(userDataDir, `${fileKey}.enc`),
   JSON.stringify({

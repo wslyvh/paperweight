@@ -1,14 +1,15 @@
-jest.mock("./cases", () => ({
-  createGdprCase: jest.fn(),
-  getGdprCaseById: jest.fn(),
-  insertGdprCaseEvent: jest.fn(),
-  queryGdprCases: jest.fn(() => []),
+import { vi } from "vitest";
+vi.mock("./cases", () => ({
+  createGdprCase: vi.fn(),
+  getGdprCaseById: vi.fn(),
+  insertGdprCaseEvent: vi.fn(),
+  queryGdprCases: vi.fn(() => []),
 }));
-jest.mock("./email", () => ({ sendEmail: jest.fn() }));
-jest.mock("./settings", () => ({ requirePro: jest.fn(), getSetting: jest.fn(() => "Test User") }));
-jest.mock("./vendors", () => ({
-  getVendorDetail: jest.fn(),
-  updateVendor: jest.fn(),
+vi.mock("./email", () => ({ sendEmail: vi.fn() }));
+vi.mock("./settings", () => ({ requirePro: vi.fn(), getSetting: vi.fn(() => "Test User") }));
+vi.mock("./vendors", () => ({
+  getVendorDetail: vi.fn(),
+  updateVendor: vi.fn(),
 }));
 
 import {
@@ -21,17 +22,17 @@ import { sendEmail } from "./email";
 import { sendCaseMessage, sendPrivacyRequest } from "./gdprActions";
 import { getVendorDetail, updateVendor } from "./vendors";
 
-const getDetail = jest.mocked(getVendorDetail);
-const update = jest.mocked(updateVendor);
-const send = jest.mocked(sendEmail);
-const createCase = jest.mocked(createGdprCase);
-const getCase = jest.mocked(getGdprCaseById);
-const addEvent = jest.mocked(insertGdprCaseEvent);
-const queryCases = jest.mocked(queryGdprCases);
-const approve = jest.fn(async () => "confirmed" as const);
+const getDetail = vi.mocked(getVendorDetail);
+const update = vi.mocked(updateVendor);
+const send = vi.mocked(sendEmail);
+const createCase = vi.mocked(createGdprCase);
+const getCase = vi.mocked(getGdprCaseById);
+const addEvent = vi.mocked(insertGdprCaseEvent);
+const queryCases = vi.mocked(queryGdprCases);
+const approve = vi.fn(async () => "confirmed" as const);
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
   queryCases.mockReturnValue([]);
 });
 
@@ -244,7 +245,7 @@ describe("sendPrivacyRequest", () => {
       senders: [],
       receivedAddresses: [],
     } as never);
-    const decline = jest.fn(async () => "declined" as const);
+    const decline = vi.fn(async () => "declined" as const);
 
     await expect(sendPrivacyRequest(
       7,
@@ -358,7 +359,7 @@ describe("sendCaseMessage", () => {
 
 it("blocks Free privacy requests before approval, sending, or local changes", async () => {
   const { requirePro } = await import("./settings");
-  jest.mocked(requirePro).mockImplementationOnce(() => { throw new Error("Pro required"); });
+  vi.mocked(requirePro).mockImplementationOnce(() => { throw new Error("Pro required"); });
   await expect(sendPrivacyRequest(7, "example.nl", "access", "mailbox@example.test", undefined, undefined, undefined, approve))
     .rejects.toThrow("Pro required");
   expect(approve).not.toHaveBeenCalled();

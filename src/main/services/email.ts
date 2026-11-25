@@ -14,16 +14,18 @@ export async function sendEmail(
   body: string,
   inReplyTo?: string,
 ): Promise<SendEmailResult> {
-  requirePro();
+  await requirePro();
   const recipientDomain = to.split("@")[1] || "unknown";
   try {
-    const provider = getProvider();
+    const provider = await getProvider();
     actionLog.info(`Sending email via ${provider.type} to <${recipientDomain}>`);
     const messageId = await provider.sendEmail(to, subject, body, inReplyTo);
     return { success: true, messageId };
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    actionLog.error(`Send email via <${recipientDomain}> failed: ${message}`);
+    const details = error instanceof Error ? error.stack || message : message;
+    // SMTP rejection replies can echo the recipient supplied to sendEmail.
+    actionLog.error(`Send email via <${recipientDomain}> failed: ${details.split(to).join("[recipient]")}`);
     return { success: false, error: message };
   }
 }

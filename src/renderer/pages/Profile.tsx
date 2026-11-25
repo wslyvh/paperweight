@@ -243,7 +243,7 @@ function ProfileRow({
   badge,
   onEdit,
   onRemove,
-}: ProfileRowProps): JSX.Element {
+}: ProfileRowProps) {
   return (
     <div className="flex items-center justify-between gap-3 text-sm py-1.5 px-3 -mx-3 rounded-xl hover:bg-base-300 transition-colors">
       <div className="min-w-0 flex-1">
@@ -281,14 +281,14 @@ function ProfileRow({
   );
 }
 
-export default function Profile(): JSX.Element {
+export default function Profile() {
   const { accounts } = useAccounts();
   const maximumBirthYear = new Date().getUTCFullYear();
   const savingRef = useRef(false);
-  const savedCountryRef = useRef<string>();
-  const savedBirthDateRef = useRef<ProfileBirthDate>();
-  const pendingProfileRef = useRef<UserProfile>();
-  const failedProfileRef = useRef<UserProfile>();
+  const savedCountryRef = useRef<string | undefined>(undefined);
+  const savedBirthDateRef = useRef<ProfileBirthDate | undefined>(undefined);
+  const pendingProfileRef = useRef<UserProfile | undefined>(undefined);
+  const failedProfileRef = useRef<UserProfile | undefined>(undefined);
   const [currentCountry, setCurrentCountry] = useState("");
   const [birthday, setBirthday] = useState<Birthday>(EMPTY_BIRTHDAY);
   const [storedBirthDate, setStoredBirthDate] = useState<ProfileBirthDate>();

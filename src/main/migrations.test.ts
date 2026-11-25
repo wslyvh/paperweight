@@ -1,14 +1,32 @@
-jest.mock("./credentials", () => ({ emailToFileKey: jest.fn() }));
-jest.mock("./utils/log", () => {
-  const l = { debug: jest.fn(), info: jest.fn(), warn: jest.fn(), error: jest.fn() };
+import { vi } from "vitest";
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import Database from "better-sqlite3";
+let mockUserData = vi.hoisted(() => "");
+vi.mock("electron", () => ({ app: { getPath: () => mockUserData } }));
+vi.mock("./providers/smtp", () => ({ testSmtpConnection: vi.fn() }));
+vi.mock("./credentials", () => ({
+  emailToFileKey: vi.fn(),
+  accountTag: () => "test-account",
+  listAccounts: vi.fn(),
+  loadCredentials: vi.fn(),
+  saveCredentials: vi.fn(),
+}));
+vi.mock("./utils/log", () => {
+  const l = { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() };
   return { dbLog: l, syncLog: l, appLog: l };
 });
 
 import { getDb, initDb } from "./db";
+import { emailToFileKey, listAccounts, loadCredentials } from "./credentials";
+import { SecureStorageError } from "./secureStorage";
 import {
+  runMigrations,
   applyEngineSwitch,
   applyReceivedAddresses,
   markReceivedAddressesDone,
+  migrateQueryIndexes,
 } from "./migrations";
 
 // The switch release resets each account's sync cursors so the next sync behaves
@@ -66,6 +84,62 @@ function seedPreUpgradeDb(): void {
 
 beforeAll(() => initDb(":memory:", "/nonexistent", "/nonexistent"));
 beforeEach(seedPreUpgradeDb);
+
+it("upgrades navigation indexes without changing mailbox rows or rebuilding on repeat", () => {
+  const d = getDb();
+  d.exec(`
+    DROP INDEX idx_messages_id_metadata;
+    DROP INDEX idx_messages_vendor_metadata;
+    DROP INDEX idx_pii_findings_value_metadata;
+    CREATE INDEX idx_messages_vendor ON messages(vendor_id);
+    CREATE INDEX idx_pii_findings_type_value ON pii_findings(type, value_normalized);
+  `);
+  const messages = d.prepare("SELECT * FROM messages ORDER BY id").all();
+  const findings = d.prepare("SELECT * FROM pii_findings ORDER BY id").all();
+
+  migrateQueryIndexes(d);
+
+  expect(d.prepare("SELECT * FROM messages ORDER BY id").all()).toEqual(messages);
+  expect(d.prepare("SELECT * FROM pii_findings ORDER BY id").all()).toEqual(findings);
+  const plan = d.prepare(
+    "EXPLAIN QUERY PLAN SELECT id, type, date, sender_email FROM messages WHERE vendor_id = ?",
+  ).all(1) as Array<{ detail: string }>;
+  expect(plan.some((row) => row.detail.includes("COVERING INDEX"))).toBe(true);
+
+  const version = d.pragma("schema_version", { simple: true });
+  migrateQueryIndexes(d);
+  expect(d.pragma("schema_version", { simple: true })).toBe(version);
+});
+
+it("migrates a readable account when another account's credentials cannot be read", async () => {
+  mockUserData = mkdtempSync(join(tmpdir(), "paperweight-migrations-"));
+  vi.mocked(listAccounts).mockReturnValue([
+    { email: "locked@example.test", providerType: "gmail" },
+    { email: "working@example.test", providerType: "gmail" },
+  ]);
+  vi.mocked(emailToFileKey).mockImplementation((email) => email.split("@")[0]);
+  vi.mocked(loadCredentials).mockImplementation(async (email) => {
+    if (email === "locked@example.test") throw new SecureStorageError("read");
+    return { providerType: "gmail" };
+  });
+  try {
+    for (const name of ["locked", "working"]) {
+      writeFileSync(join(mockUserData, `${name}.db`), getDb().serialize());
+    }
+    await runMigrations();
+    for (const name of ["locked", "working"]) {
+      const db = new Database(join(mockUserData, `${name}.db`));
+      try {
+        const marker = db.prepare("SELECT value FROM settings WHERE key = 'migration:all-mail-scope'").get();
+        expect(Boolean(marker)).toBe(name === "working");
+      } finally {
+        db.close();
+      }
+    }
+  } finally {
+    rmSync(mockUserData, { recursive: true, force: true });
+  }
+});
 
 describe("applyEngineSwitch", () => {
   it("resets the add-path cursors and flags the reclassify pass", () => {

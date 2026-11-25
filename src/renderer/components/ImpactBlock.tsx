@@ -18,7 +18,7 @@ function buildSentence(stats: ImpactStats): { headline: string; detail: string }
   return { headline, detail };
 }
 
-export default function ImpactBlock({ refreshKey }: { refreshKey?: number }): JSX.Element | null {
+export default function ImpactBlock({ refreshKey }: { refreshKey?: number }) {
   const [stats, setStats] = useState<ImpactStats | null>(null);
 
   useEffect(() => {

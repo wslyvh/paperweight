@@ -1,7 +1,8 @@
 import { handle } from "./access";
+import { cancelLoopbackAuth } from "../providers/utils";
 import { switchToAccount } from "../services/accountView";
 import { app, BrowserWindow, ipcMain } from "electron";
-import { readFileSync, existsSync, unlinkSync } from "fs";
+import { readFileSync, existsSync } from "fs";
 import { join } from "path";
 import { IPC } from "@shared/ipc";
 import { isIntInRange, isString } from "@shared/validation";
@@ -28,21 +29,19 @@ import { sendEmail } from "../services/email";
 import {
   getSyncStatus,
   startAllSyncs,
-  stopAllSyncs,
   stopSync,
 } from "../sync-manager";
-import { getLicenseStatus, deleteLicense } from "../services/settings";
+import { getLicenseStatus } from "../services/settings";
 import { getDashboardStats } from "../services/stats";
 import {
   deleteCredentials,
-  loadCredentials,
   listAccounts,
   getActiveEmail,
   removeAccountEntry,
   emailToFileKey,
 } from "../credentials";
 import { wipeDatabase, deleteDbFiles, reconnectDb } from "../db";
-import { wipeGlobalDatabase } from "../globalDb";
+import { requestFactoryReset } from "../services/factoryReset";
 import { dataLog, actionLog } from "../utils/log";
 import { getFileLogPath } from "../utils/file-log";
 import os from "os";
@@ -107,6 +106,8 @@ function isImapConfig(value: unknown): value is ImapConfig {
 export function registerAccountHandlers(): void {
   // --- Auth & connection ---
 
+  handle(IPC.cancelAuth, () => cancelLoopbackAuth());
+
   handle(IPC.getConnectionStatus, () => getConnectionStatus());
 
   // openInBrowser defaults to true; the onboarding "copy link" path passes false
@@ -142,10 +143,10 @@ export function registerAccountHandlers(): void {
   // Intentionally two-step: this returns immediately so the renderer can show
   // the license modal inline, then the actual auth IPC (startGmailAuth etc.)
   // is called separately once the user is cleared to proceed.
-  handle(IPC.addAccount, () => {
+  handle(IPC.addAccount, async () => {
     const existing = listAccounts();
     if (existing.length >= 1) {
-      const license = getLicenseStatus();
+      const license = await getLicenseStatus();
       if (!license.active) {
         return { blocked: true, reason: "license_required" };
       }
@@ -275,9 +276,7 @@ export function registerAccountHandlers(): void {
 
   // --- Sync ---
 
-  handle(IPC.startSync, () => {
-    startAllSyncs();
-  });
+  handle(IPC.startSync, () => startAllSyncs());
 
   handle(IPC.getSyncStatus, () => getSyncStatus(getActiveEmail()));
 
@@ -288,35 +287,7 @@ export function registerAccountHandlers(): void {
   });
 
   handle(IPC.wipeData, async () => {
-    dataLog.warn("Wipe ALL data requested");
-    const accounts = listAccounts();
-    const userData = app.getPath("userData");
-    const activeEmail = getActiveEmail();
-
-    await stopAllSyncs();
-
-    try {
-      // Delete databases before credentials and registry state. A locked
-      // database therefore leaves enough account state for a visible retry.
-      wipeDatabase();
-      for (const acc of accounts) {
-        if (acc.email !== activeEmail) deleteDbFiles(acc.email);
-      }
-
-      for (const acc of accounts) deleteCredentials(acc.email);
-      deleteCredentials("__staging__");
-
-      for (const file of ["accounts.json", "settings.json"]) {
-        const filePath = join(userData, file);
-        if (existsSync(filePath)) unlinkSync(filePath);
-      }
-
-      deleteLicense();
-      wipeGlobalDatabase();
-    } catch {
-      throw new Error("Could not wipe all local data. Try again.");
-    }
-
+    await requestFactoryReset();
     for (const win of BrowserWindow.getAllWindows()) {
       win.webContents.send(IPC.noAccountsRemaining);
     }
@@ -324,9 +295,9 @@ export function registerAccountHandlers(): void {
 
   // --- Support / diagnostics ---
 
-  handle(IPC.getSupportInfo, (): SupportInfo => {
-    const creds = loadCredentials();
-    const license = getLicenseStatus();
+  handle(IPC.getSupportInfo, async (): Promise<SupportInfo> => {
+    const account = listAccounts().find((entry) => entry.email === getActiveEmail());
+    const license = await getLicenseStatus();
     const stats = getDashboardStats();
     const syncState = getSyncState();
 
@@ -338,7 +309,7 @@ export function registerAccountHandlers(): void {
       os: `${os.type()} ${os.release()}`,
       arch: os.arch(),
       platform: process.platform,
-      providerType: creds?.providerType || "none",
+      providerType: account?.providerType || "none",
       licenseActive: license.active,
       totalMessages: stats.totalMessages,
       lastSyncAt: syncState.last_sync_at,

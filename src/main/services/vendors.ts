@@ -1,4 +1,5 @@
 import { getDb } from "../db";
+import { getBreachLookup, ON_BREACH_LIST_SQL, type BreachRow } from "./breaches";
 import { caseActivityFilter, mapCaseActivityFields } from "./cases";
 import { MESSAGE_COLUMNS } from "./messages";
 import {
@@ -57,31 +58,6 @@ function toVendor(raw: Record<string, unknown>): Vendor {
   };
 }
 
-interface BreachRow {
-  name: string;
-  title: string;
-  domain: string;
-  breach_date: string;
-  pwn_count: number;
-  description: string | null;
-  data_classes: string | null;
-  is_verified: number;
-  is_sensitive: number;
-}
-
-function isBreachesAttached(): boolean {
-  const d = getDb();
-  const attached = d
-    .prepare("SELECT name FROM pragma_database_list WHERE name = 'breaches'")
-    .get();
-  if (!attached) return false;
-  return !!d
-    .prepare(
-      "SELECT 1 FROM breaches.sqlite_master WHERE type = 'table' AND name = 'breaches'",
-    )
-    .get();
-}
-
 function parseBreachInfo(vendor: Vendor, row: BreachRow): BreachInfo {
   let dataClasses: string[];
   try {
@@ -109,12 +85,6 @@ function parseBreachInfo(vendor: Vendor, row: BreachRow): BreachInfo {
 
   return { breach, likelyAffected };
 }
-
-// SQL condition: any vendor whose domain appears in the breach database, regardless of first_seen.
-const ON_BREACH_LIST_SQL = `EXISTS (
-  SELECT 1 FROM breaches.breaches b
-  WHERE (b.domain = vendors.root_domain OR vendors.root_domain LIKE '%.' || b.domain)
-)`;
 
 // Any vendor with order-type messages holds payment + shipping address data → always high.
 // This is category-independent: a streaming service that sends an "invoice" is high risk.
@@ -491,7 +461,8 @@ export function queryVendors(
   query: VendorQuery
 ): { vendors: Vendor[]; total: number } {
   const d = getDb();
-  const breachDataReady = isBreachesAttached();
+  const breaches = getBreachLookup(d);
+  const breachDataReady = !!breaches;
   // Only Accounts admits companies on observed findings. The predicate is a
   // per-vendor grouped scan with a cross-company subquery inside it, expensive
   // enough that no other view should pay for it.
@@ -724,20 +695,9 @@ export function queryVendors(
     .all(...(notablePii?.params ?? []), ...params, limit, offset) as Record<string, unknown>[])
     .map(toVendor);
 
-  // Enrich with breach data if breaches.db is attached.
-  // Match exact domain OR subdomain of a breached root (e.g. kvibes.substack.com → substack.com).
-  const breachStmt = breachDataReady
-    ? d.prepare(
-        `SELECT name, title, domain, breach_date, pwn_count, description, data_classes, is_verified, is_sensitive
-         FROM breaches.breaches
-         WHERE domain = ? OR ? LIKE '%.' || domain
-         ORDER BY breach_date DESC`
-      )
-    : null;
-
   const enriched = vendors.map((v) => {
-    if (!breachStmt || !v.root_domain) return v;
-    const rows = breachStmt.all(v.root_domain, v.root_domain) as BreachRow[];
+    if (!breaches || !v.root_domain) return v;
+    const rows = breaches.find(v.root_domain);
     if (rows.length === 0) return v;
     return { ...v, breachInfo: rows.map((row) => parseBreachInfo(v, row)) };
   });
@@ -856,18 +816,10 @@ export function getVendorDetail(groupKey: string): VendorDetail {
     }
   }
 
-  // Enrich with breach data if breaches.db is attached.
-  // Match exact domain OR subdomain of a breached root (e.g. kvibes.substack.com → substack.com).
   let enrichedVendor = vendor;
-  if (vendor.root_domain && isBreachesAttached()) {
-    const breachRows = d
-      .prepare(
-        `SELECT name, title, domain, breach_date, pwn_count, description, data_classes, is_verified, is_sensitive
-         FROM breaches.breaches
-         WHERE domain = ? OR ? LIKE '%.' || domain
-         ORDER BY breach_date DESC`
-      )
-      .all(vendor.root_domain, vendor.root_domain) as BreachRow[];
+  const breaches = getBreachLookup(d);
+  if (vendor.root_domain && breaches) {
+    const breachRows = breaches.find(vendor.root_domain);
     if (breachRows.length > 0) {
       enrichedVendor = { ...vendor, breachInfo: breachRows.map((row) => parseBreachInfo(vendor, row)) };
     }

@@ -16,7 +16,7 @@ export default function FilterGroup({
   value,
   onChange,
   colors,
-}: FilterGroupProps): JSX.Element {
+}: FilterGroupProps) {
   return (
     <div>
       <div className="text-sm text-base-content/40 mb-1.5">{label}</div>

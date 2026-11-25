@@ -1,5 +1,7 @@
+import WipeDataModal from "../components/WipeDataModal";
+import ConnectionError from "../components/ConnectionError";
 import { useEffect, useRef, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router";
 import makeBlockie from "ethereum-blockies-base64";
 import { HelpCircle, Lock, Moon, Sun } from "lucide-react";
 import {
@@ -20,6 +22,7 @@ import {
 } from "../context/LicenseContext";
 import {
   ProviderSelect,
+  OAuthSelectRow,
   GmailConnect,
   MicrosoftConnect,
   AppleConnect,
@@ -33,11 +36,11 @@ import {
   setColorTheme as applyAndSaveColorTheme,
   type ColorTheme,
 } from "../utils/colorTheme";
-import { reconnectError } from "./settingsReconnect";
+import { GoogleLogo, MicrosoftLogo } from "@shared/provider-logos";
 
 type AddAccountView = "provider" | "gmail" | "microsoft" | "apple" | "proton" | "imap";
 
-export default function Settings(): JSX.Element {
+export default function Settings() {
   const navigate = useNavigate();
   const location = useLocation();
   const [account, setAccount] = useState<AccountInfo>();
@@ -64,14 +67,17 @@ export default function Settings(): JSX.Element {
   const [licenseLoading, setLicenseLoading] = useState(false);
   const [licenseError, setLicenseError] = useState("");
   const [showWipeModal, setShowWipeModal] = useState(false);
-  const [wipeInProgress, setWipeInProgress] = useState(false);
   const [deletionError, setDeletionError] = useState("");
   const [whitelistEntries, setWhitelistEntries] = useState<WhitelistEntry[]>(
     [],
   );
   const [newEntry, setNewEntry] = useState("");
-  const [reconnectLoading, setReconnectLoading] = useState(false);
-  const [reconnectFailure, setReconnectFailure] = useState("");
+  const [reconnectAccount, setReconnectAccount] = useState<AccountInfo>();
+  const [reconnectStarted, setReconnectStarted] = useState(false);
+  const [reconnectCopyFirst, setReconnectCopyFirst] = useState(false);
+  async function refreshAccount() {
+    setAccount(await window.api.getAccountInfo());
+  }
   const { accounts, refresh: refreshAccounts } = useAccounts();
   const [removeAccountEmail, setRemoveAccountEmail] = useState<string | null>(
     null,
@@ -84,6 +90,7 @@ export default function Settings(): JSX.Element {
   const [addAccountCopyFirst, setAddAccountCopyFirst] = useState(false);
   const licenseSectionRef = useRef<HTMLDivElement>(null);
   const accountsSectionRef = useRef<HTMLDivElement>(null);
+  const syncSectionRef = useRef<HTMLDivElement>(null);
 
   const mcpConfig = mcpSetup?.server
     ? JSON.stringify({ mcpServers: { paperweight: mcpSetup.server } }, null, 2)
@@ -110,10 +117,14 @@ export default function Settings(): JSX.Element {
       openServerSettings?: boolean;
       scrollToLicense?: boolean;
       scrollToAccounts?: boolean;
+      scrollToSync?: boolean;
     } | null;
-    if (!state?.openServerSettings && !state?.scrollToLicense && !state?.scrollToAccounts) return;
+    if (!state?.openServerSettings && !state?.scrollToLicense && !state?.scrollToAccounts && !state?.scrollToSync) return;
     if (state.openServerSettings) {
       setShowServerSettings(true);
+    }
+    if (state.scrollToSync) {
+      syncSectionRef.current?.scrollIntoView({ behavior: "auto", block: "start" });
     }
     if (state.scrollToLicense) {
       licenseSectionRef.current?.scrollIntoView({ behavior: "auto", block: "start" });
@@ -172,21 +183,6 @@ export default function Settings(): JSX.Element {
     setShowResyncModal(false);
     window.api.startSync();
     window.api.getAccountInfo().then(setAccount);
-  };
-
-  const handleWipe = async (): Promise<void> => {
-    setWipeInProgress(true);
-    setDeletionError("");
-    try {
-      await window.api.wipeData();
-      setShowWipeModal(false);
-    } catch {
-      setDeletionError(
-        "Paperweight could not delete all local data. Close other programs using these files and try again.",
-      );
-    } finally {
-      setWipeInProgress(false);
-    }
   };
 
   const handleSwitchAccount = async (email: string): Promise<void> => {
@@ -250,43 +246,21 @@ export default function Settings(): JSX.Element {
 
   const connectionHealthy = !!connection;
 
-  const handleReconnect = async (): Promise<void> => {
+  const handleReconnect = (): void => {
     if (!account) return;
-    setReconnectFailure("");
     if (account.providerType === "imap") {
       setShowServerSettings(true);
-      return;
+    } else if (account.providerType === "gmail" || account.providerType === "microsoft") {
+      setReconnectStarted(false);
+      setReconnectCopyFirst(false);
+      setReconnectAccount(account);
     }
-    setReconnectLoading(true);
-    try {
-      let result: { success: boolean; error?: string };
-      if (account.providerType === "microsoft") {
-        result = await window.api.startMicrosoftAuth({
-          type: "reconnect",
-          email: account.email,
-        });
-      } else if (account.providerType === "gmail") {
-        result = await window.api.startGmailAuth({
-          type: "reconnect",
-          email: account.email,
-        });
-      } else {
-        result = { success: false, error: "Reconnect is not available for this account" };
-      }
-      const error = reconnectError(result);
-      if (error) {
-        setReconnectFailure(error);
-        return;
-      }
-      const conn = await window.api.getEmailConnection();
-      setConnection(conn);
-      setAccount(await window.api.getAccountInfo());
-      window.api.startSync();
-    } catch (err) {
-      setReconnectFailure(err instanceof Error ? err.message : "Reconnect failed");
-    } finally {
-      setReconnectLoading(false);
-    }
+  };
+
+  const handleReconnectSuccess = (): void => {
+    setReconnectAccount(undefined);
+    void refreshAccount();
+    window.api.getEmailConnection().then(setConnection);
   };
 
   const actionBusy = switchingEmail !== null || removeInProgress;
@@ -326,6 +300,18 @@ export default function Settings(): JSX.Element {
           </button>
         </div>
       </div>
+      {account?.storageError && !account.credentialsMissing ? (
+        <ConnectionError
+          error={account.storageError}
+          onRetry={refreshAccount}
+        />
+      ) : account?.storageError && !showServerSettings && (
+        <ConnectionError
+          reconnect
+          error={account.storageError}
+          onRetry={handleReconnect}
+        />
+      )}
 
       {/* Section 1: Accounts */}
       <div id="accounts" ref={accountsSectionRef} className="card bg-base-200">
@@ -522,7 +508,7 @@ export default function Settings(): JSX.Element {
       </div>
 
       {/* Section 3: Sync */}
-      <div className="card bg-base-200">
+      <div ref={syncSectionRef} className="card bg-base-200">
         <div className="card-body space-y-3">
           <h3 className="font-semibold">Sync</h3>
 
@@ -547,24 +533,16 @@ export default function Settings(): JSX.Element {
                 <span>Full history</span>
               </div>
 
-              {(account.providerType === "gmail" ||
+              {!account.credentialsMissing && (account.providerType === "gmail" ||
                 account.providerType === "microsoft" ||
                 account.providerType === "imap") && (
                   <button
                     className="btn btn-sm btn-primary w-fit"
                     onClick={handleReconnect}
-                    disabled={reconnectLoading}
                   >
-                    {reconnectLoading ? (
-                      <span className="loading loading-spinner loading-xs" />
-                    ) : (
-                      "Reconnect"
-                    )}
+                    Reconnect
                   </button>
                 )}
-              {reconnectFailure && (
-                <p className="text-sm text-error">{reconnectFailure}</p>
-              )}
             </>
           )}
         </div>
@@ -921,6 +899,44 @@ export default function Settings(): JSX.Element {
         </dialog>
       )}
 
+      {reconnectAccount && (
+        <dialog className="modal modal-open">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg mb-4">Reconnect account</h3>
+            {!reconnectStarted ? (
+              <>
+                <OAuthSelectRow
+                  logo={reconnectAccount.providerType === "gmail" ? <GoogleLogo /> : <MicrosoftLogo />}
+                  label={reconnectAccount.providerType === "gmail" ? "Connect with Google" : "Connect with Microsoft"}
+                  copyAriaLabel="Copy sign-in link"
+                  onConnect={(copy) => {
+                    setReconnectCopyFirst(copy);
+                    setReconnectStarted(true);
+                  }}
+                />
+                <div className="modal-action">
+                  <button className="btn btn-ghost" onClick={() => setReconnectAccount(undefined)}>Cancel</button>
+                </div>
+              </>
+            ) : reconnectAccount.providerType === "gmail" ? (
+              <GmailConnect
+                intent={{ type: "reconnect", email: reconnectAccount.email }}
+                copyFirst={reconnectCopyFirst}
+                onSuccess={handleReconnectSuccess}
+                onBack={() => setReconnectAccount(undefined)}
+              />
+            ) : (
+              <MicrosoftConnect
+                intent={{ type: "reconnect", email: reconnectAccount.email }}
+                copyFirst={reconnectCopyFirst}
+                onSuccess={handleReconnectSuccess}
+                onBack={() => setReconnectAccount(undefined)}
+              />
+            )}
+          </div>
+        </dialog>
+      )}
+
       {/* Add account modal */}
       {showAddAccountModal && (
         <dialog className="modal modal-open">
@@ -1032,14 +1048,13 @@ export default function Settings(): JSX.Element {
       )}
 
       {/* Server settings modal (IMAP accounts only) */}
-      {showServerSettings && account?.server && (
+      {showServerSettings && account?.providerType === "imap" && (
         <ServerSettingsModal
           email={account.email}
           initial={account.server}
           onClose={() => setShowServerSettings(false)}
           onSaved={() => {
             setShowServerSettings(false);
-            setReconnectFailure("");
             window.api.getAccountInfo().then(setAccount);
             window.api.getEmailConnection().then(setConnection);
             window.api.startSync();
@@ -1114,56 +1129,7 @@ export default function Settings(): JSX.Element {
         </dialog>
       )}
 
-      {/* Wipe confirmation modal */}
-      {showWipeModal && (
-        <dialog className="modal modal-open">
-          <div className="modal-box">
-            <h3 className="font-bold text-lg">Wipe all data?</h3>
-            <p className="py-4">
-              This will permanently delete <strong>all accounts</strong>,
-              synced emails, credentials, settings, and your license. This
-              action cannot be undone.
-            </p>
-            {deletionError && (
-              <p className="text-sm text-error">{deletionError}</p>
-            )}
-            <div className="modal-action">
-              <button
-                className="btn btn-ghost"
-                disabled={wipeInProgress}
-                onClick={() => {
-                  setDeletionError("");
-                  setShowWipeModal(false);
-                }}
-              >
-                Cancel
-              </button>
-              <button
-                className="btn btn-error"
-                disabled={wipeInProgress}
-                onClick={handleWipe}
-              >
-                {wipeInProgress ? (
-                  <span className="loading loading-spinner loading-xs" />
-                ) : (
-                  "Wipe everything"
-                )}
-              </button>
-            </div>
-          </div>
-          <form method="dialog" className="modal-backdrop">
-            <button
-              disabled={wipeInProgress}
-              onClick={() => {
-                setDeletionError("");
-                setShowWipeModal(false);
-              }}
-            >
-              close
-            </button>
-          </form>
-        </dialog>
-      )}
+      {showWipeModal && <WipeDataModal onClose={() => setShowWipeModal(false)} />}
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import type {
   AccountInfo,
   ChartTrend,
@@ -11,7 +11,7 @@ import TrendChartCard from "../components/TrendChartCard";
 import ImpactBlock from "../components/ImpactBlock";
 import { AlertTriangle, ArrowRight, ChevronRight, Contact, FolderClosed, Inbox, Mail } from "lucide-react";
 
-export default function Dashboard(): JSX.Element {
+export default function Dashboard() {
   const navigate = useNavigate();
   const [stats, setStats] = useState<DashboardStats>({
     totalMessages: 0,

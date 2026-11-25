@@ -512,11 +512,11 @@ export async function runSync(): Promise<void> {
     return;
   }
 
-  const creds = loadCredentials();
+  const creds = await loadCredentials();
   if (!creds) return;
 
   const knownValues = getKnownPiiValues();
-  const provider = getProvider(
+  const provider = await getProvider(
     knownValues.length > 0 ? { knownValues } : undefined,
   );
 

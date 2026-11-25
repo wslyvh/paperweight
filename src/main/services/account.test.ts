@@ -1,83 +1,89 @@
-const mockRequirePro = jest.fn();
-const mockLoadCredentials = jest.fn();
-const mockSaveCredentials = jest.fn();
-const mockDeleteCredentials = jest.fn();
-const mockSetStagingMode = jest.fn();
-const mockRegisterAccount = jest.fn();
-const mockListAccounts = jest.fn();
-const mockGetActiveEmail = jest.fn();
-const mockStartLoopbackAuth = jest.fn();
-const mockFetchGmailProfileEmail = jest.fn();
-const mockStartMicrosoftLoopbackAuth = jest.fn();
-const mockFetchMicrosoftProfileEmail = jest.fn();
-const mockTestImapConnection = jest.fn();
-const mockTestSmtpConnection = jest.fn();
-const mockCreateAccountDb = jest.fn();
-const mockReconnectDb = jest.fn();
-const mockGetProvider = jest.fn();
+import { vi } from "vitest";
+import Database from "better-sqlite3";
+import { getDb } from "../db";
+import { getDashboardStats } from "./stats";
+import { getSyncState } from "./sync";
+const mockRequirePro = vi.hoisted(() => (vi.fn()));
+const mockLoadCredentials = vi.hoisted(() => (vi.fn()));
+const mockSaveCredentials = vi.hoisted(() => (vi.fn()));
+const mockDeleteCredentials = vi.hoisted(() => (vi.fn()));
+const mockSetStagingMode = vi.hoisted(() => (vi.fn()));
+const mockRegisterAccount = vi.hoisted(() => (vi.fn()));
+const mockListAccounts = vi.hoisted(() => (vi.fn()));
+const mockGetActiveEmail = vi.hoisted(() => (vi.fn()));
+const mockStartLoopbackAuth = vi.hoisted(() => (vi.fn()));
+const mockFetchGmailProfileEmail = vi.hoisted(() => (vi.fn()));
+const mockStartMicrosoftLoopbackAuth = vi.hoisted(() => (vi.fn()));
+const mockFetchMicrosoftProfileEmail = vi.hoisted(() => (vi.fn()));
+const mockTestImapConnection = vi.hoisted(() => (vi.fn()));
+const mockTestSmtpConnection = vi.hoisted(() => (vi.fn()));
+const mockCreateAccountDb = vi.hoisted(() => (vi.fn()));
+const mockReconnectDb = vi.hoisted(() => (vi.fn()));
+const mockGetProvider = vi.hoisted(() => (vi.fn()));
 
-jest.mock("../credentials", () => ({
+vi.mock("../credentials", () => ({
   loadCredentials: mockLoadCredentials,
   saveCredentials: mockSaveCredentials,
   deleteCredentials: mockDeleteCredentials,
-  hasCredentials: jest.fn(),
+  hasCredentials: vi.fn(),
   setStagingMode: mockSetStagingMode,
   registerAccount: mockRegisterAccount,
   listAccounts: mockListAccounts,
   getActiveEmail: mockGetActiveEmail,
-  emailToFileKey: jest.fn(() => "account"),
-  accountTag: jest.fn(() => "tag"),
+  emailToFileKey: vi.fn(() => "account"),
+  accountTag: vi.fn(() => "tag"),
 }));
 
-jest.mock("../providers/gmail", () => ({
+vi.mock("../providers/gmail", () => ({
   startLoopbackAuth: mockStartLoopbackAuth,
   fetchGmailProfileEmail: mockFetchGmailProfileEmail,
 }));
 
-jest.mock("../providers/microsoft", () => ({
+vi.mock("../providers/microsoft", () => ({
   startMicrosoftLoopbackAuth: mockStartMicrosoftLoopbackAuth,
   fetchMicrosoftProfileEmail: mockFetchMicrosoftProfileEmail,
 }));
 
-jest.mock("../providers/imap", () => ({
+vi.mock("../providers/imap", () => ({
   testImapConnection: mockTestImapConnection,
 }));
-jest.mock("../providers/smtp", () => ({
+vi.mock("../providers/smtp", () => ({
   testSmtpConnection: mockTestSmtpConnection,
 }));
-jest.mock("../providers/ProviderFactory", () => ({ getProvider: mockGetProvider }));
-jest.mock("./settings", () => ({ requirePro: mockRequirePro,
-  addWhitelistEntry: jest.fn(),
-  getSetting: jest.fn(),
-  saveSetting: jest.fn(),
-  applyAutoLaunch: jest.fn(),
+vi.mock("../providers/ProviderFactory", () => ({ getProvider: mockGetProvider }));
+vi.mock("./settings", () => ({ requirePro: mockRequirePro,
+  addWhitelistEntry: vi.fn(),
+  getSetting: vi.fn(),
+  saveSetting: vi.fn(),
+  applyAutoLaunch: vi.fn(),
 }));
-jest.mock("./globalSettings", () => ({ saveGlobalSetting: jest.fn() }));
-jest.mock("./stats", () => ({ getDashboardStats: jest.fn() }));
-jest.mock("./sync", () => ({ getSyncState: jest.fn() }));
-jest.mock("./messages", () => ({
-  getMessageIdsByVendor: jest.fn(),
-  deleteVendorMessages: jest.fn(),
-  insertActionLog: jest.fn(),
+vi.mock("./globalSettings", () => ({ saveGlobalSetting: vi.fn() }));
+vi.mock("./stats", () => ({ getDashboardStats: vi.fn() }));
+vi.mock("./sync", () => ({ getSyncState: vi.fn() }));
+vi.mock("./messages", () => ({
+  getMessageIdsByVendor: vi.fn(),
+  deleteVendorMessages: vi.fn(),
+  insertActionLog: vi.fn(),
 }));
-jest.mock("./vendors", () => ({
-  updateVendorFlags: jest.fn(),
-  updateVendorStats: jest.fn(),
+vi.mock("./vendors", () => ({
+  updateVendorFlags: vi.fn(),
+  updateVendorStats: vi.fn(),
 }));
-jest.mock("../db", () => ({
+vi.mock("../db", () => ({
   createAccountDb: mockCreateAccountDb,
-  getDb: jest.fn(),
+  getDb: vi.fn(),
   reconnectDb: mockReconnectDb,
 }));
-jest.mock("../utils/log", () => ({
-  authLog: { info: jest.fn(), error: jest.fn(), warn: jest.fn() },
-  actionLog: { info: jest.fn(), error: jest.fn(), warn: jest.fn() },
+vi.mock("../utils/log", () => ({
+  authLog: { info: vi.fn(), error: vi.fn(), warn: vi.fn() },
+  actionLog: { info: vi.fn(), error: vi.fn(), warn: vi.fn() },
 }));
-jest.mock("./profileSeed", () => ({
-  seedProfileEmailsFromCurrentAccount: jest.fn(),
+vi.mock("./profileSeed", () => ({
+  seedProfileEmailsFromCurrentAccount: vi.fn(),
 }));
 
 import {
+  getAccountInfo,
   startGmailAuthAndRecordAccount,
   startMicrosoftAuthAndRecordAccount,
   saveImapConfigAndRecordAccount,
@@ -96,7 +102,7 @@ import { updateVendorFlags, updateVendorStats } from "./vendors";
 
 describe("account authentication", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     mockStartLoopbackAuth.mockResolvedValue({ success: true });
     mockLoadCredentials.mockReturnValue({
       providerType: "gmail",
@@ -258,7 +264,7 @@ describe("account authentication", () => {
 
 describe("bulk account actions", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("keeps an action open until provider and local writes complete", async () => {
@@ -267,13 +273,13 @@ describe("bulk account actions", () => {
       releaseTrash = resolve;
     });
     const provider = {
-      connect: jest.fn().mockResolvedValue(undefined),
-      disconnect: jest.fn().mockResolvedValue(undefined),
-      trashMessage: jest.fn(() => trashFinished),
+      connect: vi.fn().mockResolvedValue(undefined),
+      disconnect: vi.fn().mockResolvedValue(undefined),
+      trashMessage: vi.fn(() => trashFinished),
     };
     mockGetProvider.mockReturnValue(provider);
-    jest.mocked(getMessageIdsByVendor).mockReturnValue(["message-1"]);
-    jest.mocked(deleteVendorMessages).mockReturnValue({ count: 1, sizeBytes: 100 });
+    vi.mocked(getMessageIdsByVendor).mockReturnValue(["message-1"]);
+    vi.mocked(deleteVendorMessages).mockReturnValue({ count: 1, sizeBytes: 100 });
 
     let settled = false;
     const action = trashVendorMessages(7).then((result) => {
@@ -296,12 +302,12 @@ describe("bulk account actions", () => {
 
   it("keeps local records when a provider action fails", async () => {
     const provider = {
-      connect: jest.fn().mockResolvedValue(undefined),
-      disconnect: jest.fn().mockResolvedValue(undefined),
-      trashMessage: jest.fn().mockRejectedValue(new Error("Provider rejected action")),
+      connect: vi.fn().mockResolvedValue(undefined),
+      disconnect: vi.fn().mockResolvedValue(undefined),
+      trashMessage: vi.fn().mockRejectedValue(new Error("Provider rejected action")),
     };
     mockGetProvider.mockReturnValue(provider);
-    jest.mocked(getMessageIdsByVendor).mockReturnValue(["message-1"]);
+    vi.mocked(getMessageIdsByVendor).mockReturnValue(["message-1"]);
 
     await expect(trashVendorMessages(7)).resolves.toEqual({
       success: false,
@@ -315,7 +321,7 @@ describe("bulk account actions", () => {
 
 describe("Free account creation and cleanup", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     mockListAccounts.mockReturnValue([{ email: "existing@example.com", providerType: "gmail" }]);
     mockRequirePro.mockImplementation(() => { throw new Error("Pro required"); });
   });
@@ -349,4 +355,20 @@ describe("Free account creation and cleanup", () => {
     expect(mockGetProvider).not.toHaveBeenCalled();
     expect(deleteVendorMessages).not.toHaveBeenCalled();
   });
+});
+
+it("loads account metadata without calculating dashboard statistics", async () => {
+  vi.clearAllMocks();
+  const db = new Database(":memory:");
+  db.exec("CREATE TABLE messages(id TEXT); INSERT INTO messages VALUES ('one'), ('two')");
+  vi.mocked(getDb).mockReturnValue(db);
+  mockLoadCredentials.mockResolvedValue({ providerType: "gmail" });
+  vi.mocked(getSyncState).mockReturnValue({ last_sync_at: 123 } as ReturnType<typeof getSyncState>);
+  try {
+    expect(await getAccountInfo()).toMatchObject({ providerType: "gmail", totalMessages: 2, lastSyncAt: 123 });
+    expect(getDashboardStats).not.toHaveBeenCalled();
+  } finally {
+    db.close();
+    vi.mocked(getDb).mockReset();
+  }
 });

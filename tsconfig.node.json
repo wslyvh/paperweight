@@ -1,7 +1,6 @@
 {
-  "extends": "@electron-toolkit/tsconfig/tsconfig.node.json",
   "include": [
-    "electron.vite.config.ts",
+    "electron.vite.config.mts",
     "src/mcp/**/*",
     "src/main/**/*",
     "src/shared/**/*",
@@ -14,23 +13,42 @@
   "compilerOptions": {
     "composite": true,
     "outDir": "./out",
-    "baseUrl": ".",
     "paths": {
-      "@shared/*": ["src/shared/*"],
-      "@paperweight/analysis": ["analysis/src/index"],
-      "@paperweight/analysis/contracts": ["analysis/src/contracts"],
-      "@paperweight/analysis/country": ["analysis/src/country"],
-      "@paperweight/analysis/received-address": ["analysis/src/received-address"],
-      "@paperweight/analysis/profile-values": ["analysis/src/profile-values"]
+      "@shared/*": [
+        "./src/shared/*"
+      ],
+      "@paperweight/analysis": [
+        "./analysis/src/index"
+      ],
+      "@paperweight/analysis/contracts": [
+        "./analysis/src/contracts"
+      ],
+      "@paperweight/analysis/country": [
+        "./analysis/src/country"
+      ],
+      "@paperweight/analysis/received-address": [
+        "./analysis/src/received-address"
+      ],
+      "@paperweight/analysis/profile-values": [
+        "./analysis/src/profile-values"
+      ]
     },
-    "types": ["node"],
+    "types": [
+      "node"
+    ],
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "module": "ESNext",
     "target": "ESNext",
     "sourceMap": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "jsx": "react-jsx"
   }
 }

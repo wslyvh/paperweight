@@ -36,7 +36,7 @@ const EMPTY_OVERVIEW: PiiOverview = { values: [], suppressedValues: [] };
  *  (Not mine), a confirmed identity match, and the confidence buckets. */
 type ValueFilter = PiiValueFilter;
 
-export default function Data(): JSX.Element {
+export default function Data() {
   const [overview, setOverview] = useState<PiiOverview>();
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);

@@ -106,7 +106,7 @@ export function registerCaseTools(server: McpServer, includeWrites: boolean): vo
       }),
     },
     async (input) => {
-      if (!hasReadAccess()) return readAccessError();
+      if (!(await hasReadAccess())) return await readAccessError();
       try {
         const result = queryCaseSummaries(queryGdprCases(), {
           page: input.page,
@@ -169,7 +169,7 @@ export function registerCaseTools(server: McpServer, includeWrites: boolean): vo
       }),
     },
     async ({ id }) => {
-      if (!hasReadAccess()) return readAccessError();
+      if (!(await hasReadAccess())) return await readAccessError();
       try {
         const caseId = parseMailboxNumberReference(id);
         const detail = getGdprCaseById(caseId);
@@ -276,7 +276,7 @@ export function registerCaseTools(server: McpServer, includeWrites: boolean): vo
       }),
     },
     async ({ mailbox: requestedMailbox, key, requestType, recipientEmail, accountIdentifier, language, sentMessageId, recordOnly }, context) => {
-      if (!hasWriteAccess()) return writeAccessError();
+      if (!(await hasWriteAccess())) return await writeAccessError();
       try {
         requireSelectedMailbox(requestedMailbox);
         const companyReference = parseMailboxReference(key);
@@ -375,7 +375,7 @@ export function registerCaseTools(server: McpServer, includeWrites: boolean): vo
       }),
     },
     async ({ mailbox: requestedMailbox, id, action, recordOnly, sentMessageId }, context) => {
-      if (!hasWriteAccess()) return writeAccessError();
+      if (!(await hasWriteAccess())) return await writeAccessError();
       try {
         requireSelectedMailbox(requestedMailbox);
         const caseId = parseMailboxNumberReference(id);
@@ -445,7 +445,7 @@ export function registerCaseTools(server: McpServer, includeWrites: boolean): vo
       }),
     },
     async ({ mailbox, id, action }) => {
-      if (!hasWriteAccess()) return writeAccessError();
+      if (!(await hasWriteAccess())) return await writeAccessError();
       try {
         requireSelectedMailbox(mailbox);
         const caseId = parseMailboxNumberReference(id);
@@ -496,7 +496,7 @@ export function registerCaseTools(server: McpServer, includeWrites: boolean): vo
       }),
     },
     async ({ mailbox, id, messageRef, linked }) => {
-      if (!hasWriteAccess()) return writeAccessError();
+      if (!(await hasWriteAccess())) return await writeAccessError();
       try {
         requireSelectedMailbox(mailbox);
         const caseId = parseMailboxNumberReference(id);

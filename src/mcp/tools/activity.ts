@@ -40,7 +40,7 @@ export function registerActivityTools(server: McpServer): void {
       }),
     },
     async ({ page, limit }) => {
-      if (!hasReadAccess()) return readAccessError();
+      if (!(await hasReadAccess())) return await readAccessError();
       try {
         const result = getActivityLog(limit, (page - 1) * limit);
         const response = {

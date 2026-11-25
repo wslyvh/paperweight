@@ -1,3 +1,5 @@
+import { getElectron } from "../electronRuntime";
+import { SecureStorageError } from "../secureStorage";
 import { join } from "path";
 import {
   loadCredentials,
@@ -18,7 +20,6 @@ import { testSmtpConnection } from "../providers/smtp";
 import { getProvider } from "../providers/ProviderFactory";
 import { addWhitelistEntry, getSetting, saveSetting, applyAutoLaunch, requirePro } from "./settings";
 import { saveGlobalSetting } from "./globalSettings";
-import { getDashboardStats } from "./stats";
 import { getSyncState } from "./sync";
 import {
   getMessageIdsByVendor,
@@ -35,8 +36,8 @@ import { authLog, actionLog } from "../utils/log";
 import { seedProfileEmailsFromCurrentAccount } from "./profileSeed";
 import { validateAccountIntent } from "./accountIntent";
 
-function requireAccountEntitlement(intent: AccountAuthIntent): void {
-  if (intent.type === "add" && listAccounts().length > 0) requirePro();
+async function requireAccountEntitlement(intent: AccountAuthIntent): Promise<void> {
+  if (intent.type === "add" && listAccounts().length > 0) await requirePro();
 }
 
 // Populate per-account settings in the DB if they are missing.
@@ -64,8 +65,7 @@ export function ensureAccountSettingsInDb(): void {
 
 // Create a fresh DB for a new account, switch to it, and notify the renderer.
 function switchToNewAccount(email: string): void {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { app, BrowserWindow } = require("electron") as typeof import("electron");
+  const { app, BrowserWindow } = getElectron();
   const newDbPath = join(app.getPath("userData"), `${emailToFileKey(email)}.db`);
   createAccountDb(newDbPath);
   reconnectDb(newDbPath);
@@ -109,7 +109,7 @@ export async function startGmailAuthAndRecordAccount(
   openInBrowser = true,
 ) {
   try {
-    requireAccountEntitlement(intent);
+    await requireAccountEntitlement(intent);
     authLog.info("Gmail auth started");
     setStagingMode(true);
     let result;
@@ -124,7 +124,7 @@ export async function startGmailAuthAndRecordAccount(
       return result;
     }
 
-    const stagingCreds = loadCredentials("__staging__");
+    const stagingCreds = await loadCredentials("__staging__");
     if (!stagingCreds?.gmail?.accessToken) {
       return { success: false, error: "Auth failed: no credentials stored" };
     }
@@ -144,8 +144,8 @@ export async function startGmailAuthAndRecordAccount(
     if (!intentResult.success) return intentResult;
 
     authLog.info("Gmail auth completed");
-    requireAccountEntitlement(intent);
-    saveCredentials(stagingCreds, email);
+    await requireAccountEntitlement(intent);
+    await saveCredentials(stagingCreds, email);
     if (intent.type === "add") recordAccount(email, "gmail");
 
     return result;
@@ -161,7 +161,7 @@ export async function startMicrosoftAuthAndRecordAccount(
   openInBrowser = true,
 ) {
   try {
-    requireAccountEntitlement(intent);
+    await requireAccountEntitlement(intent);
     authLog.info("Microsoft auth started");
     setStagingMode(true);
     let result;
@@ -176,7 +176,7 @@ export async function startMicrosoftAuthAndRecordAccount(
       return result;
     }
 
-    const stagingCreds = loadCredentials("__staging__");
+    const stagingCreds = await loadCredentials("__staging__");
     if (!stagingCreds?.microsoft?.accessToken) {
       return { success: false, error: "Auth failed: no credentials stored" };
     }
@@ -196,8 +196,8 @@ export async function startMicrosoftAuthAndRecordAccount(
     if (!intentResult.success) return intentResult;
 
     authLog.info("Microsoft auth completed");
-    requireAccountEntitlement(intent);
-    saveCredentials(stagingCreds, email);
+    await requireAccountEntitlement(intent);
+    await saveCredentials(stagingCreds, email);
     if (intent.type === "add") recordAccount(email, "microsoft");
 
     return result;
@@ -213,7 +213,7 @@ export async function saveImapConfigAndRecordAccount(
   config: ImapConfig,
 ) {
   try {
-    requireAccountEntitlement(intent);
+    await requireAccountEntitlement(intent);
     const intentResult = validateAccountIntent(
       intent,
       config.username,
@@ -258,8 +258,8 @@ export async function saveImapConfigAndRecordAccount(
 
     const email = config.username;
     authLog.info("IMAP+SMTP config saved");
-    requireAccountEntitlement(intent);
-    saveCredentials({ providerType: "imap", imap: config }, email);
+    await requireAccountEntitlement(intent);
+    await saveCredentials({ providerType: "imap", imap: config }, email);
     if (intent.type === "add") recordAccount(email, "imap");
 
     return { success: true };
@@ -272,7 +272,7 @@ export async function saveImapConfigAndRecordAccount(
 export async function updateServerConfig(
   server: ServerConfig & { smtp: NonNullable<ServerConfig["smtp"]> },
 ): Promise<{ success: boolean; error?: string }> {
-  const creds = loadCredentials();
+  const creds = await loadCredentials();
   if (!creds?.imap) {
     return { success: false, error: "No IMAP account to update" };
   }
@@ -314,15 +314,23 @@ export async function updateServerConfig(
   if (!imapResult.success) return { success: false, error: `IMAP: ${imapResult.error}` };
   if (!smtpResult.success) return { success: false, error: `SMTP: ${smtpResult.error}` };
 
-  saveCredentials({ ...creds, imap: imapCfg });
+  await saveCredentials({ ...creds, imap: imapCfg });
   authLog.info("Server config updated");
 
   return { success: true };
 }
 
-export function getAccountInfo(): AccountInfo {
-  const creds = loadCredentials(getActiveEmail());
-  const stats = getDashboardStats();
+export async function getAccountInfo(): Promise<AccountInfo> {
+  let creds: Awaited<ReturnType<typeof loadCredentials>>;
+  let storageError: string | undefined;
+  try {
+    creds = await loadCredentials(getActiveEmail());
+    if (!creds) storageError = "Saved credentials are unavailable. Reconnect this account to resume syncing. Your indexed mail and settings are still here.";
+  } catch (error) {
+    if (!(error instanceof SecureStorageError)) throw error;
+    storageError = error.message;
+  }
+  const totalMessages = getDb().prepare("SELECT COUNT(*) FROM messages").pluck().get() as number;
   const syncState = getSyncState();
 
   const server = creds?.imap
@@ -339,10 +347,12 @@ export function getAccountInfo(): AccountInfo {
 
   return {
     email: getSetting("accountEmail") || "",
-    providerType: creds?.providerType || "none",
+    providerType: creds?.providerType ?? listAccounts().find((entry) => entry.email === getActiveEmail())?.providerType ?? "none",
+    credentialsMissing: !hasCredentials(),
+    storageError,
     registeredAt: parseInt(getSetting("registeredAt") || "0", 10) || undefined,
     lastSyncAt: syncState.last_sync_at,
-    totalMessages: stats.totalMessages,
+    totalMessages,
     server,
   };
 }
@@ -350,8 +360,8 @@ export function getAccountInfo(): AccountInfo {
 export async function getEmailConnection(): Promise<EmailConnection | null> {
   if (!hasCredentials()) return null;
 
-  const provider = getProvider();
   try {
+    const provider = await getProvider();
     const connection = await provider.connect();
     await provider.disconnect();
     return connection;
@@ -361,11 +371,11 @@ export async function getEmailConnection(): Promise<EmailConnection | null> {
 }
 
 export async function trashMessage(messageId: string) {
-  requirePro();
-  const provider = getProvider();
+  await requirePro();
+  const provider = await getProvider();
   try {
     await provider.connect();
-    requirePro();
+    await requirePro();
     await provider.trashMessage(messageId);
   } finally {
     await provider.disconnect();
@@ -373,11 +383,11 @@ export async function trashMessage(messageId: string) {
 }
 
 export async function markMessageAsSpam(messageId: string) {
-  requirePro();
-  const provider = getProvider();
+  await requirePro();
+  const provider = await getProvider();
   try {
     await provider.connect();
-    requirePro();
+    await requirePro();
     await provider.markAsSpam(messageId);
   } finally {
     await provider.disconnect();
@@ -385,11 +395,11 @@ export async function markMessageAsSpam(messageId: string) {
 }
 
 export async function markMessageAsRead(messageId: string, isRead: boolean) {
-  requirePro();
-  const provider = getProvider();
+  await requirePro();
+  const provider = await getProvider();
   try {
     await provider.connect();
-    requirePro();
+    await requirePro();
     await provider.markAsRead(messageId, isRead);
   } finally {
     await provider.disconnect();
@@ -403,7 +413,7 @@ async function bulkActionVendorMessages(
   actionType: BulkActionType,
   types?: MessageType[],
 ): Promise<{ success: boolean; error?: string }> {
-  requirePro();
+  await requirePro();
   const label = actionType === "trashed" ? "trashVendorMessages" : "spamVendorMessages";
 
   const ids = getMessageIdsByVendor(vendorId, types);
@@ -411,14 +421,14 @@ async function bulkActionVendorMessages(
 
   if (ids.length > 0) {
     const run = async (): Promise<{ success: boolean; error?: string }> => {
-      const p = getProvider();
+      const p = await getProvider();
       try {
         await p.connect();
         actionLog.info(`${label}: processing ${ids.length} messages for vendor ${vendorId}`);
         let failed = false;
         for (const id of ids) {
           try {
-            requirePro();
+            await requirePro();
             if (actionType === "trashed") {
               await p.trashMessage(id);
             } else {

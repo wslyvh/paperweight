@@ -2,7 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useState } from "rea
 import type { LicenseStatus } from "@shared/types";
 import { APP_CONFIG } from "@shared/config";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import ActionModal from "../components/ActionModal";
 
 const PRICING_URL = `${APP_CONFIG.WEBSITE}/pricing`;
@@ -50,7 +50,7 @@ interface LicenseProviderProps {
 export function LicenseProvider({
   initialLicense,
   children,
-}: LicenseProviderProps): JSX.Element {
+}: LicenseProviderProps) {
   const [license, setLicense] = useState<LicenseStatus>(initialLicense);
   const [blocked, setBlocked] = useState(false);
   const openProUpgrade = useOpenProUpgrade();
@@ -74,21 +74,28 @@ export function LicenseProvider({
 
   return (
     <LicenseContext.Provider value={{ license, refreshLicense, allowAction }}>
+      {license.error && (
+        <div role="alert" className="flex flex-wrap items-center gap-3 p-4 bg-warning/10 border border-warning/20 rounded-box">
+          <span className="flex-1 text-sm">{license.error}</span>
+          <button className="btn btn-sm" onClick={() => { void refreshLicense(); }}>Retry</button>
+        </div>
+      )}
       {children}
       <ActionModal
         isOpen={blocked}
-        title={PRO_UPGRADE_HEADLINE}
-        confirmLabel="Upgrade to Pro"
+        title={license.error ? "License unavailable" : PRO_UPGRADE_HEADLINE}
+        confirmLabel={license.error ? "Retry" : "Upgrade to Pro"}
         confirmVariant="primary"
         cancelLabel="Maybe later"
         cancelVariant="neutral"
         onConfirm={() => {
           setBlocked(false);
-          openProUpgrade();
+          if (license.error) void refreshLicense();
+          else openProUpgrade();
         }}
         onCancel={() => setBlocked(false)}
       >
-        {PRO_UPGRADE_BODY}
+        {license.error ?? PRO_UPGRADE_BODY}
       </ActionModal>
     </LicenseContext.Provider>
   );

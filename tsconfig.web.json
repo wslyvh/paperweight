@@ -1,5 +1,4 @@
 {
-  "extends": "@electron-toolkit/tsconfig/tsconfig.web.json",
   "include": [
     "src/renderer/**/*",
     "src/shared/**/*",
@@ -21,14 +20,25 @@
   "compilerOptions": {
     "composite": true,
     "outDir": "./out",
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/renderer/*"],
-      "@shared/*": ["src/shared/*"],
-      "@paperweight/analysis/contracts": ["analysis/src/contracts"],
-      "@paperweight/analysis/country": ["analysis/src/country"],
-      "@paperweight/analysis/received-address": ["analysis/src/received-address"],
-      "@paperweight/analysis/profile-values": ["analysis/src/profile-values"]
+      "@/*": [
+        "./src/renderer/*"
+      ],
+      "@shared/*": [
+        "./src/shared/*"
+      ],
+      "@paperweight/analysis/contracts": [
+        "./analysis/src/contracts"
+      ],
+      "@paperweight/analysis/country": [
+        "./analysis/src/country"
+      ],
+      "@paperweight/analysis/received-address": [
+        "./analysis/src/received-address"
+      ],
+      "@paperweight/analysis/profile-values": [
+        "./analysis/src/profile-values"
+      ]
     },
     "jsx": "react-jsx",
     "strict": true,
@@ -38,6 +48,22 @@
     "module": "ESNext",
     "target": "ESNext",
     "sourceMap": true,
-    "resolveJsonModule": true
-  }
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "types": [
+      "node"
+    ]
+  },
+  "exclude": [
+    "src/**/*.test.ts"
+  ]
 }
