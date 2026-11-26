@@ -1144,5 +1144,139 @@
     "comments": [
       "Lidl Nederland controls purchase-contract processing, including withdrawal. Lidl Nederland GmbH and Lidl Stiftung & Co. KG are joint controllers for Dutch website/app processing unless otherwise specified. The notice offers this mailbox for both DPOs. Not the Lidl Plus-specific mailbox."
     ]
+  },
+  {
+    "slug": "paypal",
+    "relevant-countries": [
+      "de"
+    ],
+    "categories": [
+      "finance"
+    ],
+    "name": "PayPal (Europe) S.à r.l. et Cie, S.C.A.",
+    "address": "22 – 24 Boulevard Royal\nL-2449 Luxembourg\nLuxembourg",
+    "phone": "+49 800 723 4500",
+    "webform": "https://www.paypal.com/de/cshelp/article/wie-kann-ich-eine-anfrage-zur-datenl%C3%B6schung-einreichen-help1036",
+    "web": "https://www.paypal.com",
+    "suggested-transport-medium": "webform",
+    "sources": [
+      "https://www.paypal.com/ie/legalhub/privacy-full",
+      "https://www.paypal.com/de/cshelp/article/wie-kann-ich-eine-anfrage-zur-datenl%C3%B6schung-einreichen-help1036"
+    ],
+    "required-elements": [
+      {
+        "desc": "Name",
+        "type": "name"
+      },
+      {
+        "desc": "Adresse",
+        "type": "address"
+      },
+      {
+        "desc": "E-Mail-Adresse PayPal-Konto",
+        "type": "input"
+      }
+    ],
+    "quality": "verified"
+  },
+  {
+    "slug": "badoo",
+    "relevant-countries": [
+      "all"
+    ],
+    "name": "Badoo Trading Limited",
+    "runs": [
+      "Badoo"
+    ],
+    "categories": [
+      "social"
+    ],
+    "address": "1 Blossom Yard\nFourth Floor\nLondon E1 6RS\nUnited Kingdom",
+    "web": "https://badoo.com",
+    "email": "DPO@badoo.com",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "sources": [
+      "https://badoo.com/privacy",
+      "https://support.badoo.com/api/v2/help_center/en-us/articles/32151698136093.json",
+      "https://support.badoo.com/api/v2/help_center/en-us/articles/32092037528989.json"
+    ],
+    "comments": [
+      "Badoo Trading Limited and Bumble Trading LLC jointly control personal data collected through Badoo's app and sites. This record identifies a real joint controller for Badoo, not the separate Bumble app.",
+      "The Badoo privacy policy publishes this DPO email and postal address for exercising privacy rights."
+    ]
+  },
+  {
+    "slug": "indeed",
+    "relevant-countries": [
+      "all"
+    ],
+    "name": "Indeed Ireland Operations Limited",
+    "runs": [
+      "Indeed"
+    ],
+    "categories": [
+      "services"
+    ],
+    "address": "Privacy Department\nDublin – Block B, Capital Dock\n80 Sir John Rogerson’s Quay\nGrand Canal Dock\nDublin 2, D02 HE36\nIreland",
+    "web": "https://www.indeed.com",
+    "webform": "https://requests.hrtechprivacy.com/create?entity=INDEED",
+    "email": "privacy-dept@indeed.com",
+    "suggested-transport-medium": "webform",
+    "quality": "verified",
+    "sources": [
+      "https://hrtechprivacy.com/brands/indeed?from=legal",
+      "https://www.indeed.com/help/job-seekers/articles/10652026126605-requesting-or-deleting-your-data?hl=en&co=US",
+      "https://www.indeed.com/help/job-seekers/articles/204488880-closing-an-account?hl=en&co=US"
+    ],
+    "comments": [
+      "The live privacy policy, updated November 18, 2026, identifies this controller for users other than US users and Japan users. Japan scope includes users applying to jobs posted by employers in Japan, not only Japanese residents. Users in the EEA, UK and Switzerland are explicitly included in this Irish-controller scope.",
+      "US users' controller is Indeed Inc.; Japan users' controller is Indeed Japan K.K. A shared privacy mailbox and global request form do not merge these entities. relevant-countries is discovery metadata, not a representation of worldwide legal control. Keep the guide request_description explicit and offer the official form in its regional explanation.",
+      "Prefer the official Personal Data Request form for personal-data deletion. It also closes the account. The policy separately permits privacy-dept@indeed.com, sent from the email associated with the account, with a separate request for each email address.",
+      "Indeed is a processor for some employer-controlled application and interview information. Employer-held recruitment records and Glassdoor accounts require separate consideration. This entry does not cover internal Indeed employment records or every affiliated service."
+    ]
+  },
+  {
+    "slug": "ancestry-com",
+    "name": "Ancestry Ireland Unlimited Company",
+    "runs": [
+      "AncestryDNA",
+      "Fold3 (www.fold3.com)",
+      "Newspapers.com (www.newspapers.com)"
+    ],
+    "web": "https://www.ancestry.com",
+    "webform": "https://www.ancestry.com/c/privacy-center",
+    "suggested-transport-medium": "webform",
+    "quality": "verified",
+    "sources": [
+      "https://www.ancestry.com/c/legal/row-privacy-statement-en",
+      "https://www.ancestry.com/c/privacy-center"
+    ],
+    "comments": [
+      "Ancestry Ireland Unlimited Company is the controller for non-US customers. This record is not the US controller.",
+      "Use the official Privacy Center for account-data downloads, account and DNA deletion controls, research consent and links to the applicable privacy statement. Related services have their own request routes."
+    ]
+  },
+  {
+    "slug": "myheritage-com",
+    "name": "MyHeritage Ltd.",
+    "address": "PO Box 50, Terminal Park\nOr Yehuda 6037606\nIsrael",
+    "web": "https://www.myheritage.com",
+    "email": "privacy@myheritage.com",
+    "quality": "verified",
+    "comments": [
+      "MyHeritage's current general terms identify MyHeritage Ltd. as the service owner/operator and give this postal address in the customer-support section. This record is for the MyHeritage consumer service, not a newly inferred worldwide controller for every group company or product.",
+      "The privacy policy expressly accepts personal-data deletion requests at privacy@myheritage.com or through customer support. A separate DPO mailbox and EU representative are not substituted for the operating company.",
+      "Rights depend on applicable law and residence. An Israeli postal address is not a residence or GDPR-eligibility label."
+    ],
+    "suggested-transport-medium": "email",
+    "categories": [
+      "services"
+    ],
+    "sources": [
+      "https://www.myheritage.com/FP/Company/legal-documents-viewer.php?type=terms_conditions&force_lang=EN",
+      "https://www.myheritage.com/FP/Company/popup-privacy-policy.php?dispLang=EN",
+      "https://www.myheritage.com/informed-consent?lang=EN"
+    ]
   }
 ]
