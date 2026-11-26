@@ -964,18 +964,27 @@
   },
   {
     "slug": "paidwork",
-    "relevant-countries": ["us"],
-    "name": "Paidwork LLC",
-    "categories": ["services"],
-    "address": "Paidwork LLC, 3400 Cottage Way Ste G2 #27204, Sacramento, CA 95825, USA",
+    "relevant-countries": [
+      "us",
+      "pl"
+    ],
+    "name": "Paidwork Sp. z o.o.",
+    "categories": [
+      "services"
+    ],
+    "address": "Podzamcze 217\n21-010 Podzamcze\nPoland",
     "web": "https://www.paidwork.com",
     "webform": "https://support.paidwork.com",
-    "email": "support@paidwork.com",
+    "email": "privacy@paidwork.com",
     "suggested-transport-medium": "email",
-    "quality": "tested",
+    "quality": "verified",
     "comments": [
-      "Gig economy/microtask platform. US-based LLC serving global users. No dedicated DPO email published; support@paidwork.com listed as customer service contact in privacy policy and terms.",
-      "Address confirmed from Terms of Service (paidwork.com/terms-of-service). Privacy policy effective date: March 29, 2026."
+      "Paidwork serves users internationally. Its current privacy policy identifies Paidwork Sp. z o.o., Poland (KRS 0000727316), as the controller.",
+      "Privacy requests: privacy@paidwork.com. This is a privacy contact, not a claim that a Data Protection Officer has been appointed."
+    ],
+    "sources": [
+      "https://policies.paidwork.com/privacy-policy",
+      "https://policies.paidwork.com/terms-of-service"
     ]
   },
   {
@@ -1020,5 +1029,30 @@
   "comments": [
     "Legal entity: Trezor Company s.r.o. Official company contact and registered office from Trezor Terms of Use; no dedicated privacy/DPO email confirmed."
   ]
-}
+},
+  {
+    "slug": "zara-gb",
+    "relevant-countries": [
+      "gb"
+    ],
+    "categories": [
+      "commerce"
+    ],
+    "name": "ITX UK LIMITED",
+    "address": "Lumina House\n89 New Bond Street\nLondon W1S 1DA\nUnited Kingdom",
+    "email": "dataprotection@zara.com",
+    "web": "https://www.zara.com/uk/",
+    "sources": [
+      "https://static.zara.net/static/pdfs/UK/privacy-policy/privacy-policy-en_UK-20260618.pdf"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "runs": [
+      "Zara (United Kingdom)"
+    ],
+    "comments": [
+      "Operates Zara in the United Kingdom. The UK privacy policy identifies ITX UK LIMITED and Industria de Diseño Textil, S.A. (Inditex) as joint controllers.",
+      "The shared data-protection contact covers the UK policy. Preserve explicit regional choice rather than treating this as a worldwide Zara company."
+    ]
+  }
 ]
