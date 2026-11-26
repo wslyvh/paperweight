@@ -1054,5 +1054,95 @@
       "Operates Zara in the United Kingdom. The UK privacy policy identifies ITX UK LIMITED and Industria de Diseño Textil, S.A. (Inditex) as joint controllers.",
       "The shared data-protection contact covers the UK policy. Preserve explicit regional choice rather than treating this as a worldwide Zara company."
     ]
+  },
+  {
+    "slug": "suno-com",
+    "relevant-countries": ["all"],
+    "categories": ["entertainment"],
+    "name": "Suno, Inc.",
+    "address": "17 Dunster Street\nFloor 4\nCambridge, MA 02138\nUnited States of America",
+    "email": "privacy@suno.com",
+    "web": "https://suno.com",
+    "sources": [
+      "https://suno.com/terms",
+      "https://suno.com/privacy",
+      "https://github.com/datenanfragen/data/pull/2623"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified"
+  },
+  {
+    "slug": "soundcloud",
+    "name": "SoundCloud Global Limited & Co. KG",
+    "runs": [
+      "SoundCloud",
+      "SoundCloud Go+"
+    ],
+    "categories": [
+      "entertainment"
+    ],
+    "address": "Karl-Marx-Strasse 101\n12043 Berlin\nGermany",
+    "web": "https://soundcloud.com/",
+    "email": "dataprotection@soundcloud.com",
+    "sources": [
+      "https://soundcloud.com/pages/privacy",
+      "https://pages.soundcloud.com/geo/uk_us_ie/legal/privacy-policy.html",
+      "https://pages.soundcloud.com/geo/uk_us_ie/legal/terms-of-use.html"
+    ],
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "comments": [
+      "The privacy policy identifies this entity as sole controller for SoundCloud Platform users located outside the United States, except for the joint processes described in the policy. It is not the sole controller for US users.",
+      "The policy explicitly permits EU/EEA/UK residents to exercise privacy rights through the Help Center or dataprotection@soundcloud.com. The same mailbox is published for SoundCloud Inc., the US controller. A shared mailbox does not merge the legal entities or establish universal GDPR eligibility.",
+      "Some internal centralized processes are jointly controlled with SoundCloud Inc. and Repost Network Inc.; Rightsholder Insights have separate joint-controllership arrangements."
+    ]
+  },
+  {
+    "slug": "lidl-plus-nl",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Lidl Stiftung & Co. KG",
+    "runs": [
+      "Lidl Plus (Netherlands)"
+    ],
+    "categories": [
+      "shopping"
+    ],
+    "address": "Stiftsbergstraße 1\n74172 Neckarsulm\nDeutschland",
+    "web": "https://www.lidl.nl/c/lidl-plus-privacy/s10008388",
+    "email": "gegevensbescherming@lidlplus.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "sources": [
+      "https://www.lidl.nl/c/lidl-plus-privacy/s10008388"
+    ],
+    "comments": [
+      "Lidl Plus Netherlands only. Controller unless a specific section says otherwise: Lidl Stiftung & Co. KG."
+    ]
+  },
+  {
+    "slug": "lidl-nl",
+    "relevant-countries": [
+      "nl"
+    ],
+    "name": "Lidl Nederland GmbH",
+    "runs": [
+      "Lidl Netherlands online shop and Dutch website services"
+    ],
+    "categories": [
+      "shopping"
+    ],
+    "address": "Havenstraat 71\n1271 AD Huizen\nNederland",
+    "web": "https://www.lidl.nl/c/privacy-cookie-verklaring/s10004059",
+    "email": "gegevensbescherming@lidl.nl",
+    "suggested-transport-medium": "email",
+    "quality": "verified",
+    "sources": [
+      "https://www.lidl.nl/c/privacy-cookie-verklaring/s10004059"
+    ],
+    "comments": [
+      "Lidl Nederland controls purchase-contract processing, including withdrawal. Lidl Nederland GmbH and Lidl Stiftung & Co. KG are joint controllers for Dutch website/app processing unless otherwise specified. The notice offers this mailbox for both DPOs. Not the Lidl Plus-specific mailbox."
+    ]
   }
 ]
