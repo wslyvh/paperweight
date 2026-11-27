@@ -124,6 +124,13 @@ export function createAccountDb(dbPath: string): void {
   newDb.pragma("journal_mode = WAL");
   newDb.pragma("foreign_keys = ON");
   initSchema(newDb);
+  // Fresh accounts already use all-mail scanning and the current analysis engine.
+  // Do not replay the v0.4/v0.5 resync migrations on their next startup.
+  newDb.exec(`
+    INSERT OR IGNORE INTO settings (key, value) VALUES
+      ('migration:all-mail-scope', '1'),
+      ('migration:engine-switch', '1');
+  `);
   attachCompaniesDb(newDb);
   attachBreachesDb(newDb);
   newDb.close();

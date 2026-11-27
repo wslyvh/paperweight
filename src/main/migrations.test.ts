@@ -18,7 +18,7 @@ vi.mock("./utils/log", () => {
   return { dbLog: l, syncLog: l, appLog: l };
 });
 
-import { getDb, initDb } from "./db";
+import { createAccountDb, getDb, initDb } from "./db";
 import { emailToFileKey, listAccounts, loadCredentials } from "./credentials";
 import { SecureStorageError } from "./secureStorage";
 import {
@@ -332,3 +332,48 @@ describe("receiver address migration", () => {
     expect([...retry!.addresses]).toEqual(["shop@mydomain.example"]);
   });
 });
+
+
+it.each(["gmail", "microsoft", "imap"] as const)(
+  "preserves a newly created %s account's messages and sync progress on restart",
+  async (providerType) => {
+    mockUserData = mkdtempSync(join(tmpdir(), "paperweight-fresh-account-"));
+    const path = join(mockUserData, "fresh.db");
+    vi.mocked(listAccounts).mockReturnValue([{ email: "fresh@example.test", providerType }]);
+    vi.mocked(emailToFileKey).mockReturnValue("fresh");
+    vi.mocked(loadCredentials).mockResolvedValue({ providerType });
+    try {
+      createAccountDb(path);
+      const fresh = new Database(path);
+      let before: unknown;
+      try {
+        fresh.exec(`
+          INSERT INTO vendors (id, root_domain, name) VALUES (1, 'example.test', 'Example');
+          INSERT INTO messages (id, vendor_id, sender_email, date, type)
+            VALUES ('fresh-message', 1, 'hello@example.test', 1700000000000, 'order');
+          UPDATE sync_state SET last_sync_at = 1700000000000,
+            quick_sync_done_at = 1699000000000, historical_cursor = 1690000000000,
+            historical_done = 1, sync_checkpoint = 'fixture-cursor' WHERE id = 1;
+        `);
+        before = fresh.prepare("SELECT * FROM sync_state").all();
+      } finally {
+        fresh.close();
+      }
+
+      // Startup migrations run after account creation on the next launch.
+      for (let restart = 0; restart < 2; restart++) {
+        await runMigrations();
+        const reopened = new Database(path);
+        try {
+          expect(reopened.prepare("SELECT id FROM messages").all()).toEqual([{ id: "fresh-message" }]);
+          expect(reopened.prepare("SELECT * FROM sync_state").all()).toEqual(before);
+          expect(reopened.prepare("SELECT value FROM settings WHERE key = 'migration:reclassify'").get()).toBeUndefined();
+        } finally {
+          reopened.close();
+        }
+      }
+    } finally {
+      rmSync(mockUserData, { recursive: true, force: true });
+    }
+  },
+);
